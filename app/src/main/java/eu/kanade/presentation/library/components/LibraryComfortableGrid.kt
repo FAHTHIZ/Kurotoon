@@ -1,5 +1,6 @@
 package eu.kanade.presentation.library.components
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.grid.items
@@ -30,37 +31,40 @@ internal fun LibraryComfortableGrid(
 
         items(
             items = items,
+            key = { it.libraryManga.id },
             contentType = { "library_comfortable_grid_item" },
         ) { libraryItem ->
-            val manga = libraryItem.libraryManga.manga
-            MangaComfortableGridItem(
-                isSelected = manga.id in selection,
-                title = manga.title,
-                coverData = MangaCover(
-                    mangaId = manga.id,
-                    sourceId = manga.source,
-                    isMangaFavorite = manga.favorite,
-                    url = manga.thumbnailUrl,
-                    lastModified = manga.coverLastModified,
-                ),
-                coverBadgeStart = {
-                    DownloadsBadge(count = libraryItem.badges.downloadCount)
-                    UnreadBadge(count = libraryItem.badges.unreadCount)
-                },
-                coverBadgeEnd = {
-                    LanguageBadge(
-                        isLocal = libraryItem.badges.isLocal,
-                        sourceLanguage = libraryItem.badges.sourceLanguage,
-                    )
-                },
-                onLongClick = { onLongClick(libraryItem.libraryManga) },
-                onClick = { onClick(libraryItem.libraryManga) },
-                onClickContinueReading = if (onClickContinueReading != null && libraryItem.unreadCount > 0) {
-                    { onClickContinueReading(libraryItem.libraryManga) }
-                } else {
-                    null
-                },
-            )
+            Box(Modifier.animateItem()) {
+                val manga = libraryItem.libraryManga.manga
+                MangaComfortableGridItem(
+                    isSelected = manga.id in selection,
+                    title = manga.title,
+                    coverData = MangaCover(
+                        mangaId = manga.id,
+                        sourceId = manga.source,
+                        isMangaFavorite = manga.favorite,
+                        url = manga.thumbnailUrl,
+                        lastModified = manga.coverLastModified,
+                    ),
+                    coverBadgeStart = {
+                        DownloadsBadge(count = libraryItem.badges.downloadCount)
+                        UnreadBadge(count = libraryItem.badges.unreadCount)
+                    },
+                    coverBadgeEnd = {
+                        LanguageBadge(
+                            isLocal = libraryItem.badges.isLocal,
+                            sourceLanguage = libraryItem.badges.sourceLanguage,
+                        )
+                    },
+                    onLongClick = { onLongClick(libraryItem.libraryManga) },
+                    onClick = { onClick(libraryItem.libraryManga) },
+                    onClickContinueReading = if (onClickContinueReading != null && libraryItem.unreadCount > 0) {
+                        { onClickContinueReading(libraryItem.libraryManga) }
+                    } else {
+                        null
+                    },
+                )
+            }
         }
     }
 }
