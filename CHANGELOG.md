@@ -49,6 +49,8 @@ All notable changes to KuroToon are documented here. Versions follow
 - History day headers show that day's chapters and reading time, like "Today · 5 chapters · 42m".
 - Time left in chapter: the reader learns your pace and shows "~4 min left" next to the page number,
   ignoring pauses and quick skims (Settings > Reader).
+- Your year in reading: a Statistics recap of this year's time, chapters, most-read series, top genres
+  and busiest month.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.

@@ -12,4 +12,8 @@ class GetReadActivity(
     suspend fun await(since: Instant): List<Pair<Instant, Long>> {
         return repository.getReadActivity(since)
     }
+
+    suspend fun awaitEntries(since: Instant): List<tachiyomi.domain.history.model.ReadEntry> {
+        return repository.getReadEntries(since)
+    }
 }

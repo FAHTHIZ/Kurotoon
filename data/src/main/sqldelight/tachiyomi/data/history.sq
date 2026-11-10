@@ -57,6 +57,12 @@ SELECT read_at, read_duration
 FROM history
 WHERE read_at >= :since;
 
+getReadEntriesSince:
+SELECT history.read_at, history.read_duration, history.manga_id, manga.remote_title, manga.remote_genre
+FROM history
+JOIN manga ON manga.id = history.manga_id
+WHERE history.read_at >= :since;
+
 getReadDuration:
 SELECT coalesce(sum(read_duration), 0)
 FROM history;
