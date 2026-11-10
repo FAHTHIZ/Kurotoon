@@ -12,6 +12,8 @@ import { registerPWA } from "@/lib/pwa";
 import { claimDailyOpen, setRewardNotifier } from "@/lib/rewards";
 import { toast } from "sonner";
 import { TouchBurst } from "@/components/TouchBurst";
+import { ParticleField } from "@/components/ParticleField";
+import { installToastSounds } from "@/lib/fx";
 
 function NotFoundComponent() {
   return (
@@ -84,6 +86,7 @@ function Layout() {
   const { pathname } = useLocation();
   const isReader = pathname.startsWith("/read/");
   useEffect(() => {
+    installToastSounds();
     setRewardNotifier((title, description) => toast.success(title, { description }));
     claimDailyOpen();
   }, []);
@@ -105,6 +108,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
         <Layout />
+        <ParticleField />
         <TouchBurst />
         <Toaster theme="dark" position="top-center" />
     </QueryClientProvider>

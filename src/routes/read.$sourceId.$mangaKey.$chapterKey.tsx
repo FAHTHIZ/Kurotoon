@@ -9,6 +9,7 @@ import { chapterLabel, getProgress, markChapterRead, recordHistory, rememberSeri
 import { useReaderSettings, useWakeLock, type ReaderMode } from "@/lib/reader-settings";
 import { ProgressOrb } from "@/components/ProgressOrb";
 import { ChapterComplete } from "@/components/ChapterComplete";
+import { haptic, sfx } from "@/lib/fx";
 import { AtmospherePlayer } from "@/components/AtmospherePlayer";
 import { analyzeAtmosphere } from "@/lib/atmosphere";
 import { spring } from "@/lib/motion";
@@ -153,11 +154,8 @@ function Reader() {
       if (n < 0) return goChapter(prevCh);
       if (n >= pages.length) return nextCh ? goChapter(nextCh) : setShowComplete(true);
       setCurrent(n);
-      try {
-        navigator.vibrate?.(4);
-      } catch {
-        /* noop */
-      }
+      sfx("page");
+      haptic("light");
     },
     [current, pages.length, goChapter, prevCh, nextCh],
   );

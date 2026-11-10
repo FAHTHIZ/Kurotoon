@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, ChevronRight, List, RotateCcw } from "lucide-react";
+import { useEffect } from "react";
 import { spring, ease } from "@/lib/motion";
+import { celebrate, haptic, sfx } from "@/lib/fx";
 
 type Props = {
   open: boolean;
@@ -26,6 +28,13 @@ export function ChapterComplete({
   onDismiss,
   onRestart,
 }: Props) {
+  useEffect(() => {
+    if (!open) return;
+    sfx("complete");
+    haptic("success");
+    const t = window.setTimeout(celebrate, 120);
+    return () => window.clearTimeout(t);
+  }, [open]);
   return (
     <AnimatePresence>
       {open && (

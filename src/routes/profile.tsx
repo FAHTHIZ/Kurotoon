@@ -7,6 +7,7 @@ import { getBookmarks, getContinueReading } from "@/lib/local-library";
 import { useRewards } from "@/lib/rewards";
 import { useEngine } from "@/engine/store";
 import { BackupCard } from "@/components/BackupCard";
+import { FxCard } from "@/components/FxCard";
 
 export const Route = createFileRoute("/profile")({
   head: () => ({
@@ -132,6 +133,8 @@ function Profile() {
           </Link>
         ))}
       </div>
+
+      <FxCard />
 
       <BackupCard />
     </div>
