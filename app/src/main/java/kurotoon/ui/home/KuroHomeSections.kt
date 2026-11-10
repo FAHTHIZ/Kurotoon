@@ -1,8 +1,16 @@
 package kurotoon.ui.home
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.collectIsDraggedAsState
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,12 +23,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -28,13 +40,16 @@ import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.util.lerp
 import coil3.compose.AsyncImage
 import eu.kanade.presentation.manga.components.MangaCover
+import kotlinx.coroutines.delay
 import kurotoon.ui.KuroColors
 import kurotoon.ui.kuroCard
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -45,18 +60,19 @@ import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.manga.model.asMangaCover
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
+import kotlin.math.absoluteValue
 
-/** The first source's top title, presented like the web app's hero banner. */
+/** A source's top title, presented like the web app's hero banner. */
 @Composable
 internal fun HomeHero(
     sourceName: String,
     manga: Manga,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val shape = RoundedCornerShape(24.dp)
     Box(
-        modifier = Modifier
-            .padding(horizontal = 16.dp)
+        modifier = modifier
             .fillMaxWidth()
             .clip(shape)
             .kuroCard(shape)
@@ -158,6 +174,82 @@ internal fun HomeHero(
         }
     }
 }
+
+/**
+ * The top titles as a swipeable carousel that moves on by itself every few seconds. It holds
+ * still while touched, and the pages beside the current one shrink and fade a little.
+ */
+@Composable
+internal fun HomeHeroCarousel(
+    heroes: List<Pair<KuroHomeViewModel.SourceRow, Manga>>,
+    onClick: (Manga) -> Unit,
+) {
+    val pagerState = rememberPagerState { heroes.size }
+    val dragged by pagerState.interactionSource.collectIsDraggedAsState()
+    val pressed by pagerState.interactionSource.collectIsPressedAsState()
+    if (heroes.size > 1) {
+        LaunchedEffect(pagerState, dragged, pressed, heroes.size) {
+            if (dragged || pressed) return@LaunchedEffect
+            while (true) {
+                delay(HERO_INTERVAL_MS)
+                val next = (pagerState.currentPage + 1) % heroes.size
+                pagerState.animateScrollToPage(next, animationSpec = tween(700, easing = FastOutSlowInEasing))
+            }
+        }
+    }
+
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        HorizontalPager(
+            state = pagerState,
+            contentPadding = PaddingValues(horizontal = 16.dp),
+            pageSpacing = 12.dp,
+            key = { heroes[it].second.url + heroes[it].first.sourceId },
+        ) { page ->
+            val (row, manga) = heroes[page]
+            HomeHero(
+                sourceName = row.name,
+                manga = manga,
+                onClick = { onClick(manga) },
+                modifier = Modifier.graphicsLayer {
+                    val offset = pagerState.getOffsetDistanceInPages(page).absoluteValue.coerceIn(0f, 1f)
+                    val scale = lerp(1f, 0.92f, offset)
+                    scaleX = scale
+                    scaleY = scale
+                    alpha = lerp(1f, 0.55f, offset)
+                },
+            )
+        }
+        if (heroes.size > 1) {
+            Row(
+                modifier = Modifier.padding(top = 10.dp),
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                repeat(heroes.size) { i ->
+                    val selected = pagerState.currentPage == i
+                    val width by animateDpAsState(
+                        targetValue = if (selected) 20.dp else 6.dp,
+                        animationSpec = spring(dampingRatio = 0.7f, stiffness = Spring.StiffnessMediumLow),
+                        label = "heroDot",
+                    )
+                    val color by animateColorAsState(
+                        targetValue = if (selected) KuroColors.Crimson else Color.White.copy(alpha = 0.22f),
+                        label = "heroDotColor",
+                    )
+                    Box(
+                        Modifier
+                            .height(6.dp)
+                            .width(width)
+                            .clip(CircleShape)
+                            .background(color),
+                    )
+                }
+            }
+        }
+    }
+}
+
+private const val HERO_INTERVAL_MS = 5_000L
 
 /** A source's popular titles in a horizontal row. */
 @Composable

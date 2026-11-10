@@ -82,9 +82,9 @@ fun KuroHomeContent(
             if (!state.isLoading && !state.hasSources) {
                 item(key = "welcome") { Welcome(onAddSourcesClick) }
             }
-            state.hero?.let { (row, manga) ->
+            if (state.heroes.isNotEmpty()) {
                 item(key = "hero") {
-                    HomeHero(sourceName = row.name, manga = manga, onClick = { onBrowseMangaClick(manga) })
+                    HomeHeroCarousel(heroes = state.heroes, onClick = onBrowseMangaClick)
                 }
             }
             item(key = "shortcuts") {

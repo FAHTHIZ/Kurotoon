@@ -128,10 +128,19 @@ class KuroHomeViewModel(
         val hasSources: Boolean = true,
         val rows: List<SourceRow> = emptyList(),
     ) {
-        /** The first source's top title, shown as the hero card. */
-        val hero: Pair<SourceRow, Manga>?
-            get() = rows.firstOrNull()?.let { row ->
-                row.items?.firstOrNull { !it.thumbnailUrl.isNullOrBlank() }?.let { row to it }
+        /** Top titles for the hero carousel, taking turns between sources so each gets a slot. */
+        val heroes: List<Pair<SourceRow, Manga>>
+            get() {
+                val picks = rows.map { row -> row.items.orEmpty().filter { !it.thumbnailUrl.isNullOrBlank() } }
+                return buildList {
+                    var depth = 0
+                    while (size < HERO_COUNT && picks.any { it.size > depth }) {
+                        rows.forEachIndexed { i, row ->
+                            picks[i].getOrNull(depth)?.let { if (size < HERO_COUNT) add(row to it) }
+                        }
+                        depth++
+                    }
+                }
             }
     }
 
@@ -150,3 +159,5 @@ class KuroHomeViewModel(
         const val ROW_LIMIT = 18
     }
 }
+
+private const val HERO_COUNT = 6
