@@ -93,6 +93,7 @@ interface AppGraph : ViewModelGraph {
     val privacyPreferences: PrivacyPreferences
     val securityPreferences: SecurityPreferences
     val downloadPreferences: DownloadPreferences
+    val kuroPreferences: kurotoon.prefs.KuroPreferences
 
     val crashLogUtil: CrashLogUtil
 

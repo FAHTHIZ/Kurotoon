@@ -166,6 +166,11 @@ object SettingsAppearanceScreen : SearchableSettings {
                     preference = uiPreferences.imagesInDescription,
                     title = stringResource(MR.strings.pref_display_images_description),
                 ),
+                Preference.PreferenceItem.SwitchPreference(
+                    preference = context.appGraph.kuroPreferences.particles,
+                    title = stringResource(MR.strings.kurotoon_settings_particles),
+                    subtitle = stringResource(MR.strings.kurotoon_settings_particlesSummary),
+                ),
             ),
         )
     }

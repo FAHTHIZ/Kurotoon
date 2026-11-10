@@ -1,6 +1,8 @@
 package eu.kanade.presentation.manga.components
 
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.graphics.res.animatedVectorResource
@@ -36,6 +38,7 @@ import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -50,6 +53,7 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
@@ -77,6 +81,8 @@ import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.daysUntil
+import kurotoon.ui.fx.fxAnchor
+import kurotoon.ui.fx.rememberFxAnchor
 import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.AttachMoney
@@ -200,8 +206,27 @@ fun MangaActionRow(
         }
     }
 
+    // Sparks and a little pop when a title joins the library
+    val favoriteAnchor = rememberFxAnchor()
+    val favoriteScale = remember { Animatable(1f) }
+    var wasFavorite by remember { mutableStateOf(favorite) }
+    LaunchedEffect(favorite) {
+        if (favorite && !wasFavorite) {
+            favoriteAnchor.burst(count = 28, power = 5f)
+            favoriteScale.animateTo(1.35f, spring(stiffness = Spring.StiffnessHigh))
+            favoriteScale.animateTo(1f, spring(dampingRatio = Spring.DampingRatioMediumBouncy))
+        }
+        wasFavorite = favorite
+    }
+
     Row(modifier = modifier.padding(start = 16.dp, top = 8.dp, end = 16.dp)) {
         MangaActionButton(
+            iconModifier = Modifier
+                .fxAnchor(favoriteAnchor)
+                .graphicsLayer {
+                    scaleX = favoriteScale.value
+                    scaleY = favoriteScale.value
+                },
             title = if (favorite) {
                 stringResource(MR.strings.in_library)
             } else {
@@ -732,6 +757,7 @@ private fun RowScope.MangaActionButton(
     color: Color,
     onClick: () -> Unit,
     onLongClick: (() -> Unit)? = null,
+    iconModifier: Modifier = Modifier,
 ) {
     TextButton(
         onClick = onClick,
@@ -743,7 +769,7 @@ private fun RowScope.MangaActionButton(
                 imageVector = icon,
                 contentDescription = null,
                 tint = color,
-                modifier = Modifier.size(20.dp),
+                modifier = iconModifier.size(20.dp),
             )
             Spacer(Modifier.height(4.dp))
             Text(

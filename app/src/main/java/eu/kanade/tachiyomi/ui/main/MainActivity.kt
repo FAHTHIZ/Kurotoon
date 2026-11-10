@@ -108,6 +108,7 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kurotoon.ui.fx.ParticleField
 import logcat.LogPriority
 import mihon.app.di.AppGraph
 import mihon.app.di.appGraph
@@ -288,6 +289,8 @@ class MainActivity : BaseActivity() {
                         }
                     }
                 }
+
+                ParticleField(ambient = true)
 
                 // Pop source-related screens when incognito mode is turned off
                 LaunchedEffect(Unit) {
