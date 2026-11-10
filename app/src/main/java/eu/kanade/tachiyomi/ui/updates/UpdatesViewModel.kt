@@ -505,9 +505,17 @@ class UpdatesViewModel(
         val selected = items.filter { it.selected }
         val selectionMode = selected.isNotEmpty()
 
-        fun getUiModel(): List<UpdatesUiModel> {
-            return items
-                .map { UpdatesUiModel.Item(it) }
+        fun getUiModel(grouped: Boolean = false, expanded: Set<String> = emptySet()): List<UpdatesUiModel> {
+            val rows = if (grouped && !selectionMode) {
+                kurotoon.updates.UpdateGroups.fold(
+                    items,
+                    { "${it.update.mangaId}-${it.update.dateFetch.toLocalDate()}" },
+                    expanded,
+                ).map { UpdatesUiModel.Item(it.item, it.hidden, it.key, it.expanded) }
+            } else {
+                items.map { UpdatesUiModel.Item(it) }
+            }
+            return rows
                 .insertSeparators { before, after ->
                     val beforeDate = before?.item?.update?.dateFetch?.toLocalDate()
                     val afterDate = after?.item?.update?.dateFetch?.toLocalDate()

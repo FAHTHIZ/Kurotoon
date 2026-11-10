@@ -63,6 +63,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Choose which Home sections show in Settings > Appearance > Hidden on Home.
 - Browse a tag on every source: "Browse on all sources" from a series tag, or your library tags in Universal Search, opens one row per source whose catalogue has that tag (its own genre filter, not a title search).
 - Covers in Home and tag rows show a bookmark badge when the series is already in your library.
+- Updates folds several same-day chapters of one series into a single row with a "+N more" pill to expand it (toggle in the Updates filter sheet).
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.

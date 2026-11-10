@@ -1244,6 +1244,9 @@
     <string name="kurotoon.home.newChapters">New chapters</string>
     <string name="kurotoon.home.newCount">%d new</string>
     <string name="kurotoon.home.becauseYouRead">Because you read %s</string>
+    <string name="kurotoon.updates.groupSeries">Group chapters by series</string>
+    <string name="kurotoon.updates.more">+%d more</string>
+    <string name="kurotoon.updates.collapse">Less</string>
     <string name="kurotoon.home.newBadge">NEW</string>
     <string name="kurotoon.home.stalled">Pick back up</string>
     <string name="kurotoon.home.stalledSummary">Series you started and haven\'t opened in three weeks</string>
