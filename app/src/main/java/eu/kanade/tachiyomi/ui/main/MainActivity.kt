@@ -108,7 +108,9 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kurotoon.prefs.KuroPreferences
 import kurotoon.ui.fx.ParticleField
+import kurotoon.ui.fx.tapBursts
 import logcat.LogPriority
 import mihon.app.di.AppGraph
 import mihon.app.di.appGraph
@@ -155,6 +157,8 @@ class MainActivity : BaseActivity() {
     @Inject private lateinit var getIncognitoState: GetIncognitoState
 
     @Inject private lateinit var extensionManager: ExtensionManager
+
+    @Inject private lateinit var kuroPreferences: KuroPreferences
 
     // To be checked by splash screen. If true then splash screen will be removed.
     var ready = false
@@ -255,7 +259,9 @@ class MainActivity : BaseActivity() {
                 }
 
                 val scaffoldInsets = WindowInsets.navigationBars.only(WindowInsetsSides.Horizontal)
+                val particles by remember { kuroPreferences.particles }.collectAsState()
                 Scaffold(
+                    modifier = if (particles) Modifier.tapBursts() else Modifier,
                     topBar = {
                         AppStateBanners(
                             downloadedOnlyMode = downloadOnly,

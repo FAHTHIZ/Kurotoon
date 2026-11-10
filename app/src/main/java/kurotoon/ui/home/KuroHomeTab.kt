@@ -65,7 +65,7 @@ data object KuroHomeTab : Tab {
             onSourceClick = { navigator.push(BrowseSourceScreen(it, BrowseSourceViewModel.Listing.Popular.query)) },
             onRetrySource = viewModel::retry,
             onResumeClick = viewModel::resume,
-            onUpdatesClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.Updates) } },
+            onExtensionsClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.Browse(toExtensions = true)) } },
             onHistoryClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.History) } },
             onDownloadsClick = { navigator.push(DownloadQueueScreen) },
             onStatsClick = { navigator.push(StatsScreen()) },
