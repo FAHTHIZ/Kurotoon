@@ -1,23 +1,15 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Search, LogIn, User as UserIcon, Loader2, TrendingUp, Clock, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAuth } from "@/lib/auth";
-import { suggest } from "@/lib/catalog";
-import { proxied } from "@/lib/image";
 import { spring, ease } from "@/lib/motion";
-import { getRecentSearches, pushRecentSearch, clearRecentSearches } from "@/lib/local-library";
+import { getRecentSearches, pushRecentSearch, clearRecentSearches, searchLocal, rememberSeries } from "@/lib/local-library";
+import { encodeKey } from "@/engine/ids";
+import type { SeriesCard } from "@/engine/types";
 import { KuroBalance } from "./KuroBalance";
 
-const TRENDING = [
-  "Solo Leveling",
-  "One Piece",
-  "Jujutsu Kaisen",
-  "Chainsaw Man",
-  "Omniscient Reader",
-  "Berserk",
-];
+const TRENDING = ["Solo Leveling", "One Piece", "Jujutsu Kaisen", "Chainsaw Man", "Omniscient Reader", "Berserk"];
 
 export function TopBar() {
   const [q, setQ] = useState("");
@@ -44,18 +36,14 @@ export function TopBar() {
     return () => document.removeEventListener("mousedown", onDown);
   }, []);
 
-  const { data: hits, isFetching } = useQuery({
-    queryKey: ["md", "suggest", debounced],
-    enabled: debounced.length >= 2,
-    staleTime: 5 * 60_000,
-    queryFn: () => suggest(debounced),
-  });
+  // Instant typeahead over the on-device library; Enter runs Universal Search.
+  const hits = debounced.length >= 2 ? searchLocal(debounced) : [];
 
-  const go = (id: string, title?: string) => {
+  const go = (s: SeriesCard) => {
     setOpen(false);
-    if (title) { pushRecentSearch(title); setRecent(getRecentSearches()); }
+    rememberSeries(s);
     setQ("");
-    navigate({ to: "/series/$slug", params: { slug: id } });
+    navigate({ to: "/manga/$sourceId/$key", params: { sourceId: s.sourceId, key: encodeKey(s.key) } });
   };
 
   const runSearch = (term: string) => {
@@ -64,7 +52,7 @@ export function TopBar() {
     setRecent(getRecentSearches());
     setOpen(false);
     setQ(term);
-    navigate({ to: "/browse", search: { q: term.trim() } });
+    navigate({ to: "/search", search: { q: term.trim() } });
   };
 
   const showTypeahead = open && debounced.length >= 2;
@@ -103,7 +91,8 @@ export function TopBar() {
               onChange={(e) => { setQ(e.target.value); setOpen(true); }}
               onFocus={() => { setOpen(true); setFocused(true); }}
               onBlur={() => setFocused(false)}
-              placeholder="Search manga…"
+              placeholder="Search every source…"
+              enterKeyHint="search"
               className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
             />
             <AnimatePresence>
@@ -122,7 +111,7 @@ export function TopBar() {
                 </motion.button>
               )}
             </AnimatePresence>
-            {isFetching && debounced.length >= 2 && <Loader2 className="h-3.5 w-3.5 animate-spin text-primary" />}
+            
           </motion.form>
 
           <AnimatePresence>
@@ -135,28 +124,25 @@ export function TopBar() {
                 className="absolute left-0 right-0 top-full z-40 mt-2 origin-top overflow-hidden rounded-2xl border border-white/[0.08] bg-background/95 shadow-[var(--shadow-depth-3)] backdrop-blur-2xl"
               >
                 {showTypeahead ? (
-                  hits && hits.length > 0 ? (
-                    <>
+                  <>
                       {hits.map((h, i) => (
                         <motion.button
-                          key={h.id}
+                          key={`${h.sourceId}:${h.key}`}
                           initial={{ opacity: 0, x: -8 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: i * 0.03, duration: 0.2, ease: ease.out }}
                           whileTap={{ scale: 0.98 }}
-                          onClick={() => go(h.id, h.title)}
+                          onClick={() => go(h)}
                           className="flex w-full items-center gap-3 px-3 py-2 text-left hover:bg-[color:var(--surface)]"
                         >
-                          {h.cover_url ? (
-                            <img src={proxied(h.cover_url)} alt="" loading="lazy" className="h-12 w-8 rounded object-cover shadow-[var(--shadow-depth-1)]" />
+                          {h.cover ? (
+                            <img src={h.cover} alt="" loading="lazy" referrerPolicy="no-referrer" className="h-12 w-8 rounded object-cover shadow-[var(--shadow-depth-1)]" />
                           ) : (
                             <div className="h-12 w-8 rounded bg-[color:var(--surface-2)]" />
                           )}
                           <span className="min-w-0 flex-1">
                             <span className="block truncate text-sm font-semibold">{h.title}</span>
-                            <span className="block text-[11px] capitalize text-muted-foreground">
-                              {[h.year, h.status].filter(Boolean).join(" · ")}
-                            </span>
+                            <span className="block truncate text-[11px] text-muted-foreground">In your library · {h.sourceId}</span>
                           </span>
                         </motion.button>
                       ))}
@@ -164,14 +150,9 @@ export function TopBar() {
                         onClick={() => runSearch(debounced)}
                         className="w-full border-t border-border px-3 py-2 text-xs font-semibold text-primary hover:bg-[color:var(--surface)]"
                       >
-                        See all results for “{debounced}”
+                        Search every source for “{debounced}”
                       </button>
                     </>
-                  ) : (
-                    <p className="px-3 py-3 text-xs text-muted-foreground">
-                      {isFetching ? "Searching…" : "No readable titles found."}
-                    </p>
-                  )
                 ) : (
                   <div className="p-3">
                     {recent.length > 0 && (

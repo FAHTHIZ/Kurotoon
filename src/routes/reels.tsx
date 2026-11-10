@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { Heart, Plus, Film } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
-import { proxied } from "@/lib/image";
-import { getBookmarks, getContinueReading } from "@/lib/local-library";
+import { encodeKey } from "@/engine/ids";
+import { getBookmarks, getContinueReading, idOf } from "@/lib/local-library";
 import { KuroTip } from "@/components/Kuro";
 import { spring, revealUp, staggerContainer } from "@/lib/motion";
 import { analyzeAtmosphere } from "@/lib/atmosphere";
@@ -38,8 +38,10 @@ type Reel = {
 
 function Composer({ onDone }: { onDone: () => void }) {
   const { user } = useAuth();
-  const options = [...getContinueReading().map((r) => r.series), ...getBookmarks()].slice(0, 12);
-  const [pick, setPick] = useState(options[0]?.id ?? "");
+  const options = [...getContinueReading().map((r) => r.series), ...getBookmarks()]
+    .filter((s, i, a) => a.findIndex((x) => idOf(x) === idOf(s)) === i)
+    .slice(0, 12);
+  const [pick, setPick] = useState(options[0] ? idOf(options[0]) : "");
   const [caption, setCaption] = useState("");
   const [busy, setBusy] = useState(false);
 
@@ -48,15 +50,15 @@ function Composer({ onDone }: { onDone: () => void }) {
     return <KuroTip mood="reading">Read or bookmark a series first — then you can share it as a reel.</KuroTip>;
 
   const submit = async () => {
-    const series = options.find((s) => s.id === pick);
+    const series = options.find((s) => idOf(s) === pick);
     if (!series || !caption.trim()) return;
     setBusy(true);
-    const atmo = analyzeAtmosphere({ title: series.title, genres: series.genres });
+    const atmo = analyzeAtmosphere({ title: series.title, genres: series.tags });
     const { error } = await supabase.from("reels").insert({
       created_by: user.id,
       caption: caption.trim().slice(0, 240),
-      image_url: series.cover_url ?? "",
-      series_ref: series.id,
+      image_url: series.cover ?? "",
+      series_ref: idOf(series),
       series_title: series.title,
       atmosphere: atmo.mood,
     });
@@ -76,7 +78,7 @@ function Composer({ onDone }: { onDone: () => void }) {
         className="w-full rounded-xl bg-[color:var(--surface-2)] px-3 py-2 text-xs ring-1 ring-border"
       >
         {options.map((s) => (
-          <option key={s.id} value={s.id}>
+          <option key={idOf(s)} value={idOf(s)}>
             {s.title}
           </option>
         ))}
@@ -158,7 +160,7 @@ function Reels() {
               className="kt-card relative overflow-hidden rounded-3xl"
             >
               <img
-                src={proxied(r.image_url)}
+                src={r.image_url}
                 alt=""
                 referrerPolicy="no-referrer"
                 className="h-80 w-full object-cover"
@@ -172,13 +174,20 @@ function Reels() {
                 )}
                 <p className="text-sm font-semibold">{r.caption}</p>
                 <div className="mt-2 flex items-center gap-3">
-                  <Link
-                    to="/series/$slug"
-                    params={{ slug: r.series_ref }}
-                    className="rounded-full bg-primary/20 px-3 py-1 text-[11px] font-bold text-primary ring-1 ring-primary/25"
-                  >
-                    {r.series_title}
-                  </Link>
+                  {r.series_ref.includes("::") ? (
+                    <Link
+                      to="/manga/$sourceId/$key"
+                      params={{
+                        sourceId: r.series_ref.slice(0, r.series_ref.indexOf("::")),
+                        key: encodeKey(r.series_ref.slice(r.series_ref.indexOf("::") + 2)),
+                      }}
+                      className="rounded-full bg-primary/20 px-3 py-1 text-[11px] font-bold text-primary ring-1 ring-primary/25"
+                    >
+                      {r.series_title}
+                    </Link>
+                  ) : (
+                    <span className="rounded-full bg-white/10 px-3 py-1 text-[11px] font-bold">{r.series_title}</span>
+                  )}
                   <motion.button
                     whileTap={{ scale: 0.85 }}
                     transition={spring.tap}

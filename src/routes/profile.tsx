@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth";
-import { LogOut, Bookmark, BookOpen, Flame, Gift, PenTool, Wrench, ShoppingBag, Compass, Boxes } from "lucide-react";
+import { LogOut, Bookmark, BookOpen, Flame, Gift, PenTool, ShoppingBag, Compass, Boxes } from "lucide-react";
 import { useKuro } from "@/lib/kuro";
 import { KuroCoin } from "@/components/KuroBalance";
 import { useHubProfile, trustLabel } from "@/lib/economy";
@@ -25,10 +25,9 @@ export const Route = createFileRoute("/profile")({
 const ROLES = [
   { to: "/rewards", icon: Gift, label: "Rewards", hint: "Missions, shop & collections" },
   { to: "/creator", icon: PenTool, label: "Creator studio", hint: "Publish your own comics" },
-  { to: "/contribute", icon: Wrench, label: "Contributor desk", hint: "Fix the catalogue, earn points" },
   { to: "/shop", icon: ShoppingBag, label: "Kuro Shop", hint: "Spend your Kuro Points" },
-  { to: "/discover", icon: Compass, label: "Discover", hint: "Curated rails & collections" },
-  { to: "/repos", icon: Boxes, label: "Repositories", hint: "Sources & collection indexes" },
+  { to: "/extensions", icon: Boxes, label: "Extensions", hint: "Repositories, sources & content filters" },
+  { to: "/search", icon: Compass, label: "Universal Search", hint: "Search every source at once" },
 ] as const;
 
 function Profile() {

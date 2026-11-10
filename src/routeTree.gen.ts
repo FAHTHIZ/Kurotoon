@@ -11,25 +11,19 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BrowseRouteImport } from './routes/browse'
-import { Route as ContributeRouteImport } from './routes/contribute'
 import { Route as CreatorRouteImport } from './routes/creator'
-import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as ExtensionsRouteImport } from './routes/extensions'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ReelsRouteImport } from './routes/reels'
-import { Route as ReposRouteImport } from './routes/repos'
 import { Route as RewardsRouteImport } from './routes/rewards'
+import { Route as SearchRouteImport } from './routes/search'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ApiRelayRouteImport } from './routes/api/relay'
-import { Route as ReadChapterIdRouteImport } from './routes/read.$chapterId'
-import { Route as SeriesSlugRouteImport } from './routes/series.$slug'
-import { Route as ApiPublicProxyImageRouteImport } from './routes/api/public/proxy-image'
-import { Route as ApiPublicMdListRouteImport } from './routes/api/public/md/list'
-import { Route as ApiPublicMdSuggestRouteImport } from './routes/api/public/md/suggest'
-import { Route as ApiPublicMdTagsRouteImport } from './routes/api/public/md/tags'
-import { Route as ApiPublicMdChapterChapterIdRouteImport } from './routes/api/public/md/chapter.$chapterId'
-import { Route as ApiPublicMdSeriesIdRouteImport } from './routes/api/public/md/series.$id'
+import { Route as SourceSourceIdRouteImport } from './routes/source.$sourceId'
+import { Route as MangaSourceIdKeyRouteImport } from './routes/manga.$sourceId.$key'
+import { Route as ReadSourceIdMangaKeyChapterKeyRouteImport } from './routes/read.$sourceId.$mangaKey.$chapterKey'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -41,19 +35,14 @@ const BrowseRoute = BrowseRouteImport.update({
   path: '/browse',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContributeRoute = ContributeRouteImport.update({
-  id: '/contribute',
-  path: '/contribute',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const CreatorRoute = CreatorRouteImport.update({
   id: '/creator',
   path: '/creator',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DiscoverRoute = DiscoverRouteImport.update({
-  id: '/discover',
-  path: '/discover',
+const ExtensionsRoute = ExtensionsRouteImport.update({
+  id: '/extensions',
+  path: '/extensions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LibraryRoute = LibraryRouteImport.update({
@@ -76,14 +65,14 @@ const ReelsRoute = ReelsRouteImport.update({
   path: '/reels',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ReposRoute = ReposRouteImport.update({
-  id: '/repos',
-  path: '/repos',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const RewardsRoute = RewardsRouteImport.update({
   id: '/rewards',
   path: '/rewards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShopRoute = ShopRouteImport.update({
@@ -96,212 +85,145 @@ const ApiRelayRoute = ApiRelayRouteImport.update({
   path: '/api/relay',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ReadChapterIdRoute = ReadChapterIdRouteImport.update({
-  id: '/read/$chapterId',
-  path: '/read/$chapterId',
+const SourceSourceIdRoute = SourceSourceIdRouteImport.update({
+  id: '/source/$sourceId',
+  path: '/source/$sourceId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SeriesSlugRoute = SeriesSlugRouteImport.update({
-  id: '/series/$slug',
-  path: '/series/$slug',
+const MangaSourceIdKeyRoute = MangaSourceIdKeyRouteImport.update({
+  id: '/manga/$sourceId/$key',
+  path: '/manga/$sourceId/$key',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicProxyImageRoute = ApiPublicProxyImageRouteImport.update({
-  id: '/api/public/proxy-image',
-  path: '/api/public/proxy-image',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiPublicMdListRoute = ApiPublicMdListRouteImport.update({
-  id: '/api/public/md/list',
-  path: '/api/public/md/list',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiPublicMdSuggestRoute = ApiPublicMdSuggestRouteImport.update({
-  id: '/api/public/md/suggest',
-  path: '/api/public/md/suggest',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiPublicMdTagsRoute = ApiPublicMdTagsRouteImport.update({
-  id: '/api/public/md/tags',
-  path: '/api/public/md/tags',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiPublicMdChapterChapterIdRoute =
-  ApiPublicMdChapterChapterIdRouteImport.update({
-    id: '/api/public/md/chapter/$chapterId',
-    path: '/api/public/md/chapter/$chapterId',
+const ReadSourceIdMangaKeyChapterKeyRoute =
+  ReadSourceIdMangaKeyChapterKeyRouteImport.update({
+    id: '/read/$sourceId/$mangaKey/$chapterKey',
+    path: '/read/$sourceId/$mangaKey/$chapterKey',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ApiPublicMdSeriesIdRoute = ApiPublicMdSeriesIdRouteImport.update({
-  id: '/api/public/md/series/$id',
-  path: '/api/public/md/series/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/browse': typeof BrowseRoute
-  '/contribute': typeof ContributeRoute
   '/creator': typeof CreatorRoute
-  '/discover': typeof DiscoverRoute
+  '/extensions': typeof ExtensionsRoute
   '/library': typeof LibraryRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/reels': typeof ReelsRoute
-  '/repos': typeof ReposRoute
   '/rewards': typeof RewardsRoute
+  '/search': typeof SearchRoute
   '/shop': typeof ShopRoute
   '/api/relay': typeof ApiRelayRoute
-  '/read/$chapterId': typeof ReadChapterIdRoute
-  '/series/$slug': typeof SeriesSlugRoute
-  '/api/public/proxy-image': typeof ApiPublicProxyImageRoute
-  '/api/public/md/list': typeof ApiPublicMdListRoute
-  '/api/public/md/suggest': typeof ApiPublicMdSuggestRoute
-  '/api/public/md/tags': typeof ApiPublicMdTagsRoute
-  '/api/public/md/chapter/$chapterId': typeof ApiPublicMdChapterChapterIdRoute
-  '/api/public/md/series/$id': typeof ApiPublicMdSeriesIdRoute
+  '/source/$sourceId': typeof SourceSourceIdRoute
+  '/manga/$sourceId/$key': typeof MangaSourceIdKeyRoute
+  '/read/$sourceId/$mangaKey/$chapterKey': typeof ReadSourceIdMangaKeyChapterKeyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/browse': typeof BrowseRoute
-  '/contribute': typeof ContributeRoute
   '/creator': typeof CreatorRoute
-  '/discover': typeof DiscoverRoute
+  '/extensions': typeof ExtensionsRoute
   '/library': typeof LibraryRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/reels': typeof ReelsRoute
-  '/repos': typeof ReposRoute
   '/rewards': typeof RewardsRoute
+  '/search': typeof SearchRoute
   '/shop': typeof ShopRoute
   '/api/relay': typeof ApiRelayRoute
-  '/read/$chapterId': typeof ReadChapterIdRoute
-  '/series/$slug': typeof SeriesSlugRoute
-  '/api/public/proxy-image': typeof ApiPublicProxyImageRoute
-  '/api/public/md/list': typeof ApiPublicMdListRoute
-  '/api/public/md/suggest': typeof ApiPublicMdSuggestRoute
-  '/api/public/md/tags': typeof ApiPublicMdTagsRoute
-  '/api/public/md/chapter/$chapterId': typeof ApiPublicMdChapterChapterIdRoute
-  '/api/public/md/series/$id': typeof ApiPublicMdSeriesIdRoute
+  '/source/$sourceId': typeof SourceSourceIdRoute
+  '/manga/$sourceId/$key': typeof MangaSourceIdKeyRoute
+  '/read/$sourceId/$mangaKey/$chapterKey': typeof ReadSourceIdMangaKeyChapterKeyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/browse': typeof BrowseRoute
-  '/contribute': typeof ContributeRoute
   '/creator': typeof CreatorRoute
-  '/discover': typeof DiscoverRoute
+  '/extensions': typeof ExtensionsRoute
   '/library': typeof LibraryRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/reels': typeof ReelsRoute
-  '/repos': typeof ReposRoute
   '/rewards': typeof RewardsRoute
+  '/search': typeof SearchRoute
   '/shop': typeof ShopRoute
   '/api/relay': typeof ApiRelayRoute
-  '/read/$chapterId': typeof ReadChapterIdRoute
-  '/series/$slug': typeof SeriesSlugRoute
-  '/api/public/proxy-image': typeof ApiPublicProxyImageRoute
-  '/api/public/md/list': typeof ApiPublicMdListRoute
-  '/api/public/md/suggest': typeof ApiPublicMdSuggestRoute
-  '/api/public/md/tags': typeof ApiPublicMdTagsRoute
-  '/api/public/md/chapter/$chapterId': typeof ApiPublicMdChapterChapterIdRoute
-  '/api/public/md/series/$id': typeof ApiPublicMdSeriesIdRoute
+  '/source/$sourceId': typeof SourceSourceIdRoute
+  '/manga/$sourceId/$key': typeof MangaSourceIdKeyRoute
+  '/read/$sourceId/$mangaKey/$chapterKey': typeof ReadSourceIdMangaKeyChapterKeyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/browse'
-    | '/contribute'
     | '/creator'
-    | '/discover'
+    | '/extensions'
     | '/library'
     | '/login'
     | '/profile'
     | '/reels'
-    | '/repos'
     | '/rewards'
+    | '/search'
     | '/shop'
     | '/api/relay'
-    | '/read/$chapterId'
-    | '/series/$slug'
-    | '/api/public/proxy-image'
-    | '/api/public/md/list'
-    | '/api/public/md/suggest'
-    | '/api/public/md/tags'
-    | '/api/public/md/chapter/$chapterId'
-    | '/api/public/md/series/$id'
+    | '/source/$sourceId'
+    | '/manga/$sourceId/$key'
+    | '/read/$sourceId/$mangaKey/$chapterKey'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/browse'
-    | '/contribute'
     | '/creator'
-    | '/discover'
+    | '/extensions'
     | '/library'
     | '/login'
     | '/profile'
     | '/reels'
-    | '/repos'
     | '/rewards'
+    | '/search'
     | '/shop'
     | '/api/relay'
-    | '/read/$chapterId'
-    | '/series/$slug'
-    | '/api/public/proxy-image'
-    | '/api/public/md/list'
-    | '/api/public/md/suggest'
-    | '/api/public/md/tags'
-    | '/api/public/md/chapter/$chapterId'
-    | '/api/public/md/series/$id'
+    | '/source/$sourceId'
+    | '/manga/$sourceId/$key'
+    | '/read/$sourceId/$mangaKey/$chapterKey'
   id:
     | '__root__'
     | '/'
     | '/browse'
-    | '/contribute'
     | '/creator'
-    | '/discover'
+    | '/extensions'
     | '/library'
     | '/login'
     | '/profile'
     | '/reels'
-    | '/repos'
     | '/rewards'
+    | '/search'
     | '/shop'
     | '/api/relay'
-    | '/read/$chapterId'
-    | '/series/$slug'
-    | '/api/public/proxy-image'
-    | '/api/public/md/list'
-    | '/api/public/md/suggest'
-    | '/api/public/md/tags'
-    | '/api/public/md/chapter/$chapterId'
-    | '/api/public/md/series/$id'
+    | '/source/$sourceId'
+    | '/manga/$sourceId/$key'
+    | '/read/$sourceId/$mangaKey/$chapterKey'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BrowseRoute: typeof BrowseRoute
-  ContributeRoute: typeof ContributeRoute
   CreatorRoute: typeof CreatorRoute
-  DiscoverRoute: typeof DiscoverRoute
+  ExtensionsRoute: typeof ExtensionsRoute
   LibraryRoute: typeof LibraryRoute
   LoginRoute: typeof LoginRoute
   ProfileRoute: typeof ProfileRoute
   ReelsRoute: typeof ReelsRoute
-  ReposRoute: typeof ReposRoute
   RewardsRoute: typeof RewardsRoute
+  SearchRoute: typeof SearchRoute
   ShopRoute: typeof ShopRoute
   ApiRelayRoute: typeof ApiRelayRoute
-  ReadChapterIdRoute: typeof ReadChapterIdRoute
-  SeriesSlugRoute: typeof SeriesSlugRoute
-  ApiPublicProxyImageRoute: typeof ApiPublicProxyImageRoute
-  ApiPublicMdListRoute: typeof ApiPublicMdListRoute
-  ApiPublicMdSuggestRoute: typeof ApiPublicMdSuggestRoute
-  ApiPublicMdTagsRoute: typeof ApiPublicMdTagsRoute
-  ApiPublicMdChapterChapterIdRoute: typeof ApiPublicMdChapterChapterIdRoute
-  ApiPublicMdSeriesIdRoute: typeof ApiPublicMdSeriesIdRoute
+  SourceSourceIdRoute: typeof SourceSourceIdRoute
+  MangaSourceIdKeyRoute: typeof MangaSourceIdKeyRoute
+  ReadSourceIdMangaKeyChapterKeyRoute: typeof ReadSourceIdMangaKeyChapterKeyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -320,13 +242,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrowseRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contribute': {
-      id: '/contribute'
-      path: '/contribute'
-      fullPath: '/contribute'
-      preLoaderRoute: typeof ContributeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/creator': {
       id: '/creator'
       path: '/creator'
@@ -334,11 +249,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreatorRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/discover': {
-      id: '/discover'
-      path: '/discover'
-      fullPath: '/discover'
-      preLoaderRoute: typeof DiscoverRouteImport
+    '/extensions': {
+      id: '/extensions'
+      path: '/extensions'
+      fullPath: '/extensions'
+      preLoaderRoute: typeof ExtensionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/library': {
@@ -369,18 +284,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReelsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/repos': {
-      id: '/repos'
-      path: '/repos'
-      fullPath: '/repos'
-      preLoaderRoute: typeof ReposRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/rewards': {
       id: '/rewards'
       path: '/rewards'
       fullPath: '/rewards'
       preLoaderRoute: typeof RewardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shop': {
@@ -397,60 +312,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiRelayRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/read/$chapterId': {
-      id: '/read/$chapterId'
-      path: '/read/$chapterId'
-      fullPath: '/read/$chapterId'
-      preLoaderRoute: typeof ReadChapterIdRouteImport
+    '/source/$sourceId': {
+      id: '/source/$sourceId'
+      path: '/source/$sourceId'
+      fullPath: '/source/$sourceId'
+      preLoaderRoute: typeof SourceSourceIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/series/$slug': {
-      id: '/series/$slug'
-      path: '/series/$slug'
-      fullPath: '/series/$slug'
-      preLoaderRoute: typeof SeriesSlugRouteImport
+    '/manga/$sourceId/$key': {
+      id: '/manga/$sourceId/$key'
+      path: '/manga/$sourceId/$key'
+      fullPath: '/manga/$sourceId/$key'
+      preLoaderRoute: typeof MangaSourceIdKeyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/proxy-image': {
-      id: '/api/public/proxy-image'
-      path: '/api/public/proxy-image'
-      fullPath: '/api/public/proxy-image'
-      preLoaderRoute: typeof ApiPublicProxyImageRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/public/md/list': {
-      id: '/api/public/md/list'
-      path: '/api/public/md/list'
-      fullPath: '/api/public/md/list'
-      preLoaderRoute: typeof ApiPublicMdListRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/public/md/suggest': {
-      id: '/api/public/md/suggest'
-      path: '/api/public/md/suggest'
-      fullPath: '/api/public/md/suggest'
-      preLoaderRoute: typeof ApiPublicMdSuggestRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/public/md/tags': {
-      id: '/api/public/md/tags'
-      path: '/api/public/md/tags'
-      fullPath: '/api/public/md/tags'
-      preLoaderRoute: typeof ApiPublicMdTagsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/public/md/chapter/$chapterId': {
-      id: '/api/public/md/chapter/$chapterId'
-      path: '/api/public/md/chapter/$chapterId'
-      fullPath: '/api/public/md/chapter/$chapterId'
-      preLoaderRoute: typeof ApiPublicMdChapterChapterIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/public/md/series/$id': {
-      id: '/api/public/md/series/$id'
-      path: '/api/public/md/series/$id'
-      fullPath: '/api/public/md/series/$id'
-      preLoaderRoute: typeof ApiPublicMdSeriesIdRouteImport
+    '/read/$sourceId/$mangaKey/$chapterKey': {
+      id: '/read/$sourceId/$mangaKey/$chapterKey'
+      path: '/read/$sourceId/$mangaKey/$chapterKey'
+      fullPath: '/read/$sourceId/$mangaKey/$chapterKey'
+      preLoaderRoute: typeof ReadSourceIdMangaKeyChapterKeyRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -459,25 +339,19 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BrowseRoute: BrowseRoute,
-  ContributeRoute: ContributeRoute,
   CreatorRoute: CreatorRoute,
-  DiscoverRoute: DiscoverRoute,
+  ExtensionsRoute: ExtensionsRoute,
   LibraryRoute: LibraryRoute,
   LoginRoute: LoginRoute,
   ProfileRoute: ProfileRoute,
   ReelsRoute: ReelsRoute,
-  ReposRoute: ReposRoute,
   RewardsRoute: RewardsRoute,
+  SearchRoute: SearchRoute,
   ShopRoute: ShopRoute,
   ApiRelayRoute: ApiRelayRoute,
-  ReadChapterIdRoute: ReadChapterIdRoute,
-  SeriesSlugRoute: SeriesSlugRoute,
-  ApiPublicProxyImageRoute: ApiPublicProxyImageRoute,
-  ApiPublicMdListRoute: ApiPublicMdListRoute,
-  ApiPublicMdSuggestRoute: ApiPublicMdSuggestRoute,
-  ApiPublicMdTagsRoute: ApiPublicMdTagsRoute,
-  ApiPublicMdChapterChapterIdRoute: ApiPublicMdChapterChapterIdRoute,
-  ApiPublicMdSeriesIdRoute: ApiPublicMdSeriesIdRoute,
+  SourceSourceIdRoute: SourceSourceIdRoute,
+  MangaSourceIdKeyRoute: MangaSourceIdKeyRoute,
+  ReadSourceIdMangaKeyChapterKeyRoute: ReadSourceIdMangaKeyChapterKeyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
