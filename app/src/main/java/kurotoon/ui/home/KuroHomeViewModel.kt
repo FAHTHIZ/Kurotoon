@@ -27,6 +27,9 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.datetime.DateTimeUnit
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.minus
 import kurotoon.catalogue.HiddenTags
 import kurotoon.catalogue.SavedSearch
 import kurotoon.catalogue.SavedSearches
@@ -42,7 +45,10 @@ import tachiyomi.domain.history.model.HistoryWithRelations
 import tachiyomi.domain.manga.interactor.NetworkToLocalManga
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.source.service.SourceManager
+import tachiyomi.domain.updates.interactor.GetUpdates
+import tachiyomi.domain.updates.model.UpdatesWithRelations
 import tachiyomi.source.local.LocalSource
+import kotlin.time.Clock
 
 @Inject
 @ViewModelKey
@@ -54,7 +60,26 @@ class KuroHomeViewModel(
     private val sourceManager: SourceManager,
     private val networkToLocalManga: NetworkToLocalManga,
     private val kuroPreferences: KuroPreferences,
+    getUpdates: GetUpdates,
 ) : ViewModel() {
+
+    /** Unread chapters fetched lately, one entry per series, newest first. */
+    private val newChapters = getUpdates.subscribe(
+        Clock.System.now().minus(NEW_CHAPTER_DAYS, DateTimeUnit.DAY, TimeZone.currentSystemDefault()),
+        unread = true,
+        started = null,
+        bookmarked = null,
+        hideExcludedScanlators = true,
+        includedCategories = emptyList(),
+        excludedCategories = emptyList(),
+    )
+        .catch { logcat(LogPriority.ERROR, it) }
+        .map { updates ->
+            updates.groupBy { it.mangaId }.values
+                .map { chapters -> NewChapters(chapters.first(), chapters.size) }
+                .take(NEW_CHAPTERS_LIMIT)
+        }
+        .distinctUntilChanged()
 
     private val rows = MutableStateFlow<List<SourceRow>>(emptyList())
     private val savedRows = MutableStateFlow<List<SourceRow>>(emptyList())
@@ -77,13 +102,15 @@ class KuroHomeViewModel(
         sourceIds,
         rows,
         savedRows,
-    ) { history, ids, rows, savedRows ->
+        newChapters,
+    ) { history, ids, rows, savedRows, newChapters ->
         State(
             isLoading = false,
             continueReading = history.distinctBy { it.mangaId }.take(CONTINUE_READING_LIMIT),
             hasSources = ids.isNotEmpty(),
             rows = rows,
             savedRows = savedRows,
+            newChapters = newChapters,
         )
     }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), State())
@@ -189,6 +216,7 @@ class KuroHomeViewModel(
         val rows: List<SourceRow> = emptyList(),
         /** Rows for saved searches the user pinned to Home. */
         val savedRows: List<SourceRow> = emptyList(),
+        val newChapters: List<NewChapters> = emptyList(),
     ) {
         /** Top titles for the hero carousel, taking turns between sources so each gets a slot. */
         val heroes: List<Pair<SourceRow, Manga>>
@@ -205,6 +233,10 @@ class KuroHomeViewModel(
                 }
             }
     }
+
+    /** A library series with [count] unread chapters fetched lately; [latest] is the newest. */
+    @Immutable
+    data class NewChapters(val latest: UpdatesWithRelations, val count: Int)
 
     @Immutable
     data class SourceRow(
@@ -228,6 +260,8 @@ class KuroHomeViewModel(
         const val HOME_SOURCES = 4
         const val ROW_LIMIT = 18
         const val HOME_SAVED_SEARCHES = 6
+        const val NEW_CHAPTER_DAYS = 14
+        const val NEW_CHAPTERS_LIMIT = 20
     }
 }
 

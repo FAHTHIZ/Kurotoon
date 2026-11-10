@@ -51,6 +51,8 @@ All notable changes to KuroToon are documented here. Versions follow
   ignoring pauses and quick skims (Settings > Reader).
 - Your year in reading: a Statistics recap of this year's time, chapters, most-read series, top genres
   and busiest month. Share it as an image.
+  and busiest month.
+- New chapters row on Home: library series with unread chapters from the last two weeks, with a count.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.

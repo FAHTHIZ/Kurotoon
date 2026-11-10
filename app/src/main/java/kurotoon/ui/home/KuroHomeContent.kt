@@ -62,6 +62,7 @@ fun KuroHomeContent(
     onRowClick: (KuroHomeViewModel.SourceRow) -> Unit,
     onRetryRow: (KuroHomeViewModel.SourceRow) -> Unit,
     onToggleLatest: (KuroHomeViewModel.SourceRow) -> Unit = {},
+    onUpdatesClick: () -> Unit = {},
     onResumeClick: (HistoryWithRelations) -> Unit,
     onExtensionsClick: () -> Unit,
     onHistoryClick: () -> Unit,
@@ -102,6 +103,11 @@ fun KuroHomeContent(
                     onMangaClick = onMangaClick,
                     onResumeClick = onResumeClick,
                 )
+            }
+            if (state.newChapters.isNotEmpty()) {
+                item(key = "new-chapters") {
+                    HomeNewChapters(items = state.newChapters, onMangaClick = onMangaClick, onSeeAll = onUpdatesClick)
+                }
             }
             items(state.savedRows + state.rows, key = { it.key }) { row ->
                 HomeSourceRow(
