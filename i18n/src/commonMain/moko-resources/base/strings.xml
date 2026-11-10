@@ -1093,6 +1093,8 @@
     <string name="kurotoon.reader.autoScrollOn">Auto-scroll on. Tap the screen to pause</string>
     <string name="kurotoon.reader.autoScrollEnd">Auto-scroll stopped at the end</string>
     <string name="kurotoon.reader.autoScrollSpeed">Auto-scroll speed</string>
+    <string name="kurotoon.reader.chapterComplete">Chapter complete</string>
+    <string name="kurotoon.reader.celebrateChapters">Celebrate finished chapters</string>
     <string name="kurotoon.settings.particles">Particle effects</string>
     <string name="kurotoon.settings.particlesSummary">Drifting embers and sparks when you add to your library</string>
     <string name="kurotoon.me.onDevice">No account. Your data stays on this device.</string>

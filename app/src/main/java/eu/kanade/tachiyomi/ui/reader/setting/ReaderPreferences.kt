@@ -67,6 +67,8 @@ class ReaderPreferences(
     /** Auto-scroll speed from 1 (slowest) to 10. */
     val autoScrollSpeed: Preference<Int> = preferenceStore.getInt("kurotoon_reader_auto_scroll_speed", 4)
 
+    val celebrateChapters: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_reader_celebrate_chapters", true)
+
     val defaultReadingMode: Preference<Int> = preferenceStore.getInt(
         "pref_default_reading_mode_key",
         ReadingMode.RIGHT_TO_LEFT.flagValue,
