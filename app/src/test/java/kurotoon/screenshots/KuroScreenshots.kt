@@ -320,6 +320,34 @@ class KuroScreenshots {
         )
     }
 
+    @Test
+    fun libraryProgress() = shot("library_progress") {
+        val entries = listOf("Solo Leveling" to 0.25f, "Omniscient Reader" to 0.7f, "Tower of God" to 1f)
+        androidx.compose.foundation.layout.Row(
+            horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(8.dp),
+            modifier = Modifier.padding(12.dp),
+        ) {
+            entries.forEachIndexed { index, (title, progress) ->
+                androidx.compose.foundation.layout.Box(Modifier.weight(1f)) {
+                    eu.kanade.presentation.library.components.MangaCompactGridItem(
+                        coverData = MangaCover(
+                            mangaId = index.toLong(),
+                            sourceId = 1L,
+                            isMangaFavorite = true,
+                            url = "https://example.org/$index.jpg",
+                            lastModified = null,
+                        ),
+                        title = title,
+                        onClick = {},
+                        onLongClick = {},
+                        onClickContinueReading = if (progress < 1f) ({}) else null,
+                        readProgress = progress,
+                    )
+                }
+            }
+        }
+    }
+
     private fun shot(name: String, fullScreen: Boolean = false, content: @Composable () -> Unit) {
         captureRoboImage("build/screenshots/$name.png") {
             val covers = AsyncImagePreviewHandler { request -> fakeCover(request.data.hashCode()) }

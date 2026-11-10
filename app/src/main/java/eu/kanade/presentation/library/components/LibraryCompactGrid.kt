@@ -5,10 +5,16 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import eu.kanade.tachiyomi.ui.library.LibraryItem
+import kurotoon.ui.library.readFraction
+import mihon.app.di.appGraph
 import tachiyomi.domain.library.model.LibraryManga
 import tachiyomi.domain.manga.model.MangaCover
+import tachiyomi.presentation.core.util.collectAsState
 
 @Composable
 internal fun LibraryCompactGrid(
@@ -23,6 +29,8 @@ internal fun LibraryCompactGrid(
     searchQuery: String?,
     onGlobalSearchClicked: () -> Unit,
 ) {
+    val context = LocalContext.current
+    val showProgress by remember { context.appGraph.kuroPreferences.coverProgress }.collectAsState()
     LazyLibraryGrid(
         modifier = Modifier.fillMaxSize(),
         columns = columns,
@@ -38,6 +46,11 @@ internal fun LibraryCompactGrid(
             Box(Modifier.animateItem()) {
                 val manga = libraryItem.libraryManga.manga
                 MangaCompactGridItem(
+                    readProgress = if (showProgress) {
+                        readFraction(libraryItem.libraryManga.readCount, libraryItem.libraryManga.totalChapters)
+                    } else {
+                        null
+                    },
                     isSelected = manga.id in selection,
                     title = manga.title.takeIf { showTitle },
                     coverData = MangaCover(

@@ -21,6 +21,9 @@ class KuroPreferences(preferenceStore: PreferenceStore) {
     /** Tint a series' page with colours from its cover. */
     val coverColors = preferenceStore.getBoolean("kurotoon_cover_colors", true)
 
+    /** A thin read-progress bar along the bottom of library covers. */
+    val coverProgress = preferenceStore.getBoolean("kurotoon_cover_progress", true)
+
     /** Searches kept from source browsing, for every source. Shown as chips there and rows on Home. */
     val savedSearches = preferenceStore.getObjectFromString<List<SavedSearch>>(
         key = "kurotoon_saved_searches",

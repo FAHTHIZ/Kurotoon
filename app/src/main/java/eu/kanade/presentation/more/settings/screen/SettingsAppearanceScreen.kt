@@ -176,6 +176,11 @@ object SettingsAppearanceScreen : SearchableSettings {
                     title = stringResource(MR.strings.kurotoon_settings_coverColors),
                     subtitle = stringResource(MR.strings.kurotoon_settings_coverColorsSummary),
                 ),
+                Preference.PreferenceItem.SwitchPreference(
+                    preference = context.appGraph.kuroPreferences.coverProgress,
+                    title = stringResource(MR.strings.kurotoon_settings_coverProgress),
+                    subtitle = stringResource(MR.strings.kurotoon_settings_coverProgressSummary),
+                ),
             ),
         )
     }
