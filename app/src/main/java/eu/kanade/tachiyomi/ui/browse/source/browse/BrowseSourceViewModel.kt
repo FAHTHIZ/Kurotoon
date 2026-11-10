@@ -109,11 +109,14 @@ class BrowseSourceViewModel(
                     listing = Listing.Search(query, source.getFilterList())
                 }
 
+                val defaults = source.getFilterList()
                 it.copy(
                     source = source,
                     listing = listing,
-                    filters = source.getFilterList(),
+                    filters = defaults,
                     toolbarQuery = query,
+                    quickGenres = defaults.genreGroup()?.genreNames().orEmpty(),
+                    quickSorts = defaults.sortFilter()?.values?.toList().orEmpty(),
                 )
             }
 
@@ -162,7 +165,48 @@ class BrowseSourceViewModel(
     }
 
     fun setListing(listing: Listing) {
-        state.update { it.copy(listing = listing, toolbarQuery = null) }
+        state.update { it.copy(listing = listing, toolbarQuery = null, selectedGenre = null, selectedSort = null) }
+    }
+
+    /**
+     * Browses with one genre and/or one sort order picked from the quick chips, starting from the
+     * source's default filters. Clearing both goes back to the popular listing.
+     */
+    fun applyQuickFilters(genre: String?, sort: Int?) {
+        val source = source ?: return
+        if (genre == null && sort == null) {
+            resetFilters()
+            setListing(Listing.Popular)
+            return
+        }
+        val filters = source.getFilterList()
+        if (genre != null) {
+            filters.genreGroup()?.state?.forEach { filter ->
+                if (filter is SourceModelFilter<*> && filter.name == genre) {
+                    when (filter) {
+                        is SourceModelFilter.TriState -> filter.state = SourceModelFilter.TriState.STATE_INCLUDE
+                        is SourceModelFilter.CheckBox -> filter.state = true
+                        else -> {}
+                    }
+                }
+            }
+        }
+        if (sort != null) {
+            filters.sortFilter()?.let { filter ->
+                val name = filter.values.getOrNull(sort).orEmpty()
+                val ascending = AscendingSortHints.any { name.contains(it, ignoreCase = true) }
+                filter.state = SourceModelFilter.Sort.Selection(sort, ascending)
+            }
+        }
+        state.update {
+            it.copy(
+                filters = filters,
+                listing = Listing.Search(query = null, filters = filters),
+                toolbarQuery = null,
+                selectedGenre = genre,
+                selectedSort = sort,
+            )
+        }
     }
 
     fun setFilters(filters: FilterList) {
@@ -184,6 +228,8 @@ class BrowseSourceViewModel(
                     filters = filters ?: input.filters,
                 ),
                 toolbarQuery = query ?: input.query,
+                selectedGenre = null,
+                selectedSort = null,
             )
         }
     }
@@ -227,6 +273,8 @@ class BrowseSourceViewModel(
                 filters = defaultFilters,
                 listing = listing,
                 toolbarQuery = listing.query,
+                selectedGenre = it.quickGenres.firstOrNull { name -> name.equals(genreName, true) },
+                selectedSort = null,
             )
         }
     }
@@ -364,7 +412,37 @@ class BrowseSourceViewModel(
         val filters: FilterList = FilterList(),
         val toolbarQuery: String? = null,
         val dialog: Dialog? = null,
+        val quickGenres: List<String> = emptyList(),
+        val quickSorts: List<String> = emptyList(),
+        val selectedGenre: String? = null,
+        val selectedSort: Int? = null,
     ) {
         val isUserQuery get() = listing is Listing.Search && !listing.query.isNullOrEmpty()
     }
 }
+
+/** Sort names that read best A to Z or oldest first. */
+private val AscendingSortHints = listOf("title", "name", "alphabet", "a-z")
+
+/** The filter group that lists genres, so they can be offered as one-tap chips. */
+private fun FilterList.genreGroup(): SourceModelFilter.Group<*>? {
+    val groups = filterIsInstance<SourceModelFilter.Group<*>>()
+        .filter { group ->
+            group.state.count { it is SourceModelFilter.CheckBox || it is SourceModelFilter.TriState } >=
+                3
+        }
+    return groups.firstOrNull { it.name.contains("genre", ignoreCase = true) }
+        ?: groups.firstOrNull { group -> GenreGroupHints.any { group.name.contains(it, ignoreCase = true) } }
+        ?: groups.singleOrNull()
+}
+
+private val GenreGroupHints = listOf("tag", "categor", "theme", "género", "genero", "жанр")
+
+private fun SourceModelFilter.Group<*>.genreNames(): List<String> = state
+    .filter { it is SourceModelFilter.CheckBox || it is SourceModelFilter.TriState }
+    .map { (it as SourceModelFilter<*>).name }
+    .filter { it.isNotBlank() }
+    .distinct()
+
+private fun FilterList.sortFilter(): SourceModelFilter.Sort? =
+    firstNotNullOfOrNull { it as? SourceModelFilter.Sort }
