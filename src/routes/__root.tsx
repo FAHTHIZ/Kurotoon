@@ -3,14 +3,14 @@ import {
   Outlet, Link, createRootRouteWithContext, useRouter, HeadContent, Scripts, useLocation,
 } from "@tanstack/react-router";
 import appCss from "../styles.css?url";
-import { AuthProvider } from "@/lib/auth";
 import { TopBar } from "@/components/TopBar";
 import { BottomNav } from "@/components/BottomNav";
 import { Toaster } from "@/components/ui/sonner";
 import { useEffect } from "react";
 import type { ErrorComponentProps } from "@tanstack/react-router";
 import { registerPWA } from "@/lib/pwa";
-import { useDailyLoginClaim } from "@/lib/kuro";
+import { claimDailyOpen, setRewardNotifier } from "@/lib/rewards";
+import { toast } from "sonner";
 import { TouchBurst } from "@/components/TouchBurst";
 
 function NotFoundComponent() {
@@ -45,17 +45,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { name: "theme-color", content: "#0b0b0b" },
-      { title: "KuroToon — Manga, manhwa & creator discovery" },
-      { name: "description", content: "A next-generation manga, manhwa, webcomic, and creator discovery platform. Read, follow and explore in a sleek dark experience." },
-      { property: "og:title", content: "KuroToon — Manga, manhwa & creator discovery" },
-      { property: "og:description", content: "A next-generation manga, manhwa, webcomic, and creator discovery platform." },
+      { title: "KuroToon — manga, manhwa & webtoon reader" },
+      { name: "description", content: "An extension-based manga, manhwa and webtoon reader. Add source repositories, search every source at once and read on your phone. Everything stays on your device." },
+      { property: "og:title", content: "KuroToon — manga, manhwa & webtoon reader" },
+      { property: "og:description", content: "Extension-based manga reader with Universal Search. Everything stays on your device." },
       { property: "og:site_name", content: "KuroToon" },
       { property: "og:type", content: "website" },
-      { name: "twitter:title", content: "KuroToon — Manga, manhwa & creator discovery" },
-      { name: "twitter:description", content: "A next-generation manga, manhwa, webcomic, and creator discovery platform." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e9db122d-b027-4482-bdaa-f28b36592594/id-preview-620161ad--eef62591-ae69-4f91-bf3b-04bb3e69bd43.lovable.app-1778545002314.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e9db122d-b027-4482-bdaa-f28b36592594/id-preview-620161ad--eef62591-ae69-4f91-bf3b-04bb3e69bd43.lovable.app-1778545002314.png" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "KuroToon — manga, manhwa & webtoon reader" },
+      { name: "twitter:description", content: "Extension-based manga reader with Universal Search. Everything stays on your device." },
+      { name: "twitter:card", content: "summary" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -85,7 +83,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function Layout() {
   const { pathname } = useLocation();
   const isReader = pathname.startsWith("/read/");
-  useDailyLoginClaim();
+  useEffect(() => {
+    setRewardNotifier((title, description) => toast.success(title, { description }));
+    claimDailyOpen();
+  }, []);
   if (isReader) return <Outlet />;
   return (
     <div className="min-h-screen bg-background pb-20 md:pb-0">
@@ -103,11 +104,9 @@ function RootComponent() {
   useEffect(() => { registerPWA(); }, []);
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
         <Layout />
         <TouchBurst />
         <Toaster theme="dark" position="top-center" />
-      </AuthProvider>
     </QueryClientProvider>
   );
 }

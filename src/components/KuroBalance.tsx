@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { useKuro } from "@/lib/kuro";
+import { useRewards } from "@/lib/rewards";
 
 export function KuroCoin({ className = "" }: { className?: string }) {
   return (
@@ -21,7 +21,7 @@ export function KuroCoin({ className = "" }: { className?: string }) {
 }
 
 export function KuroBalance() {
-  const { credits } = useKuro();
+  const { points: credits } = useRewards();
   const [display, setDisplay] = useState(credits);
   const prev = useRef(credits);
 

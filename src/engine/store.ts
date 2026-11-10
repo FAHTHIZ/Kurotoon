@@ -5,6 +5,7 @@
  * Nothing here ever leaves the device.
  */
 import { createStore, del, get, set, type UseStore } from "idb-keyval";
+import { track } from "@/lib/rewards";
 import { useSyncExternalStore } from "react";
 import { fetchRepository, fetchViaRelay } from "./repos";
 import type { InstalledSource, RepoSourceEntry, Repository, SourceHealth } from "./types";
@@ -155,6 +156,7 @@ export async function installSource(repo: Repository, entry: RepoSourceEntry): P
   await set("installed", installed, db());
   emit({ installed });
   window.dispatchEvent(new CustomEvent("kt:source-updated", { detail: { id: entry.id } }));
+  track("source_installed");
   return record;
 }
 

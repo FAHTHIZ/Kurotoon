@@ -1,6 +1,7 @@
 // Library, reading progress and history live on the device (like Mihon's
 // local database). Series are identified by `${sourceId}::${key}`.
 import type { SeriesCard } from "@/engine/types";
+import { track } from "./rewards";
 import { seriesId } from "@/engine/ids";
 
 export { seriesId };
@@ -72,6 +73,7 @@ export function toggleBookmark(series: SeriesCard): boolean {
   const exists = list.some((s) => idOf(s) === id);
   write(BOOKMARKS, exists ? list.filter((s) => idOf(s) !== id) : [slim(series), ...list]);
   rememberSeries(series);
+  if (!exists) track("bookmark");
   return !exists;
 }
 
@@ -169,6 +171,7 @@ export function toggleFavourite(series: SeriesCard): boolean {
   const exists = ids.includes(id);
   write(FAVOURITES, exists ? ids.filter((x) => x !== id) : [id, ...ids]);
   rememberSeries(series);
+  if (!exists) track("bookmark");
   return !exists;
 }
 

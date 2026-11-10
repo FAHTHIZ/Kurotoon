@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { track } from "@/lib/rewards";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { AlertTriangle, ChevronRight, Globe2, Loader2, Search } from "lucide-react";
@@ -40,6 +41,7 @@ function SearchPage() {
       return;
     }
     pushRecentSearch(term);
+    track("search");
     const ctrl = new AbortController();
     setRunning(true);
     universalSearch(term, setResults, ctrl.signal).finally(() => {
