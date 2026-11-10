@@ -10,7 +10,7 @@ Imported snapshots are stored in the app-private file:
 files/kurotoon/catalogue/chapter-snapshots.json
 ~~~
 
-This file is independent of the inherited tachiyomi.db database. Removing a snapshot from the screen removes only that imported snapshot. No automatic cloud sync or telemetry is involved.
+This file is independent of the inherited tachiyomi.db database. Removing a snapshot from the screen removes only that imported snapshot. This store does not upload or sync snapshot contents.
 
 ## Import format
 

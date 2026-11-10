@@ -114,8 +114,9 @@ class ChapterReconciliationScreen : Screen() {
                             Text("Merge chapter lists you already have", style = MaterialTheme.typography.titleMedium)
                             Text(
                                 "Import one JSON snapshot per local catalogue. KuroToon combines matching chapter " +
-                                    "numbers, keeps every original title and source label, and reports numbering gaps. " +
-                                    "This screen reads imported files only; it does not contact extensions or providers.",
+                                    "numbers, keeps every original title and source label, and reports " +
+                                        "numbering gaps. This screen reads imported files only; it does not " +
+                                        "contact extensions or providers.",
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )

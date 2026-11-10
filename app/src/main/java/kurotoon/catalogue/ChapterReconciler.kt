@@ -31,7 +31,7 @@ object ChapterReconciler {
                     }
                     .values
                     .map(::toReconciledChapter)
-                    .sortedWith(::compareChapters)
+                    .sortedWith(Comparator(::compareChapters))
 
                 ReconciledSeries(
                     seriesTitle = mostCommon(seriesSnapshots.map { it.seriesTitle }),
