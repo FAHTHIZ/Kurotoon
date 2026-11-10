@@ -3,6 +3,8 @@ package kurotoon.prefs
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
+import kurotoon.catalogue.SavedSearch
+import kurotoon.catalogue.SavedSearches
 import tachiyomi.core.common.preference.PreferenceStore
 
 /** Settings that only exist in KuroToon. */
@@ -18,4 +20,12 @@ class KuroPreferences(preferenceStore: PreferenceStore) {
 
     /** Tint a series' page with colours from its cover. */
     val coverColors = preferenceStore.getBoolean("kurotoon_cover_colors", true)
+
+    /** Searches kept from source browsing, for every source. Shown as chips there and rows on Home. */
+    val savedSearches = preferenceStore.getObjectFromString<List<SavedSearch>>(
+        key = "kurotoon_saved_searches",
+        defaultValue = emptyList(),
+        serializer = SavedSearches::encode,
+        deserializer = SavedSearches::decode,
+    )
 }

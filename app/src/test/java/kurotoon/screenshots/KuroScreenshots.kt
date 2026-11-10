@@ -33,11 +33,13 @@ import eu.kanade.tachiyomi.source.model.Filter
 import eu.kanade.tachiyomi.source.model.FilterList
 import kurotoon.catalogue.CatalogFacet
 import kurotoon.catalogue.CatalogFacets
+import kurotoon.catalogue.SavedSearch
 import kurotoon.shop.toPack
 import kurotoon.ui.KuroBottomBar
 import kurotoon.ui.KuroBottomBarItem
 import kurotoon.ui.browse.BrowseChips
 import kurotoon.ui.browse.BrowseSort
+import kurotoon.ui.browse.SavedSearchRow
 import kurotoon.ui.fx.drawTapFrame
 import kurotoon.ui.home.KuroHomeContent
 import kurotoon.ui.home.KuroHomeViewModel
@@ -100,6 +102,20 @@ class KuroScreenshots {
                 supportsLatest = false,
                 sorts = emptyList(),
                 selectedSort = BrowseSort.None,
+                extraRow = {
+                    SavedSearchRow(
+                        saved = listOf(
+                            SavedSearch(1, 1, "Romance + Completed"),
+                            SavedSearch(2, 1, "Murim"),
+                            SavedSearch(3, 1, "“regression”"),
+                        ),
+                        selectedId = 1,
+                        canSave = true,
+                        onSave = {},
+                        onOpen = {},
+                        onEdit = {},
+                    )
+                },
                 hasFilters = true,
                 onPopular = {},
                 onLatest = {},

@@ -26,6 +26,8 @@ All notable changes to KuroToon are documented here. Versions follow
   sources for any of them.
 - Reader extras: hands-free auto-scroll, a reading progress orb, a small celebration when you finish a
   chapter, and tap sparks across the app.
+- Saved searches per source: keep a query and its tags as a one-tap chip, rename or delete it, and choose
+  whether it shows on Home.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.
