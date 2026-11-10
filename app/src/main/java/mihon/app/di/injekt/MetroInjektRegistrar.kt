@@ -93,8 +93,8 @@ class MetroInjektRegistrar(
 
     override fun importModule(submodule: InjektModule) = readOnly()
 
-    private fun readOnly(): Nothing = throw UnsupportedOperationException("Mihon's Injekt instance is read-only")
+    private fun readOnly(): Nothing = throw UnsupportedOperationException("KuroToon's Injekt instance is read-only")
 
     private fun unsupported(feature: String): Nothing =
-        throw UnsupportedOperationException("$feature is not supported by Mihon's Injekt instance")
+        throw UnsupportedOperationException("$feature is not supported by KuroToon's Injekt instance")
 }

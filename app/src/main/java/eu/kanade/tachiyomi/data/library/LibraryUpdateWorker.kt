@@ -398,7 +398,7 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
     private suspend fun writeErrorFile(errors: List<Pair<Manga, String?>>): File {
         try {
             if (errors.isNotEmpty()) {
-                val file = context.createFileInCacheDir("mihon_update_errors.txt")
+                val file = context.createFileInCacheDir("kurotoon_update_errors.txt")
                 file.bufferedWriter().use { out ->
                     out.write(context.stringResource(MR.strings.library_errors_help, ERROR_LOG_HELP_URL) + "\n\n")
                     // Error file format:
@@ -427,7 +427,7 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
         private const val WORK_NAME_AUTO = "LibraryUpdate-auto"
         private const val WORK_NAME_MANUAL = "LibraryUpdate-manual"
 
-        private const val ERROR_LOG_HELP_URL = "https://mihon.app/docs/guides/troubleshooting/"
+        private const val ERROR_LOG_HELP_URL = "https://github.com/FAHTHIZ/Kurotoon/blob/main/docs/troubleshooting.md"
 
         private const val MANGA_PER_SOURCE_QUEUE_WARNING_THRESHOLD = 60
 
