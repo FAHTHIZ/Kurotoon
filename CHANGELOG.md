@@ -61,6 +61,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Find box in the expanded tag panel when a source offers lots of tags, so a genre can be picked by typing.
 - Find duplicates in the Library menu: series saved more than once (matched by title across sources), with the most-read copy first.
 - Choose which Home sections show in Settings > Appearance > Hidden on Home.
+- Browse a tag on every source: "Browse on all sources" from a series tag, or your library tags in Universal Search, opens one row per source whose catalogue has that tag (its own genre filter, not a title search).
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.
