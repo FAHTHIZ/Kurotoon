@@ -3,10 +3,9 @@
 **Your manga. Your sources. One beautifully simple home.**
 
 KuroToon is an open-source, source-based manga, manhwa and webtoon reader for Android, written in
-Kotlin and Jetpack Compose. It is built on top of [Mihon](https://github.com/mihonapp/mihon)
-(Apache-2.0), which provides the source/extension runtime, reader, library, downloads, updates and
-backup engine. KuroToon layers its own identity on top: the dark crimson look, the Home / Browse /
-Rewards / Library / Me navigation, Kuro Points, missions, achievements and the Kuro Shop.
+Kotlin and Jetpack Compose. It is private by design: no accounts, no analytics, and your library
+never leaves your phone. Home, Browse, Library, Updates and Me sit behind a dark crimson look built
+for reading at night. Guides live in [`docs/`](docs/).
 
 ## Status
 
@@ -27,5 +26,5 @@ Every push to `main` is built by GitHub Actions; the APK is attached to the work
 
 ## License
 
-KuroToon is distributed under the Apache License 2.0. It includes code from the Mihon project,
-Copyright © The Mihon Open Source Project, Apache-2.0. See [LICENSE](LICENSE).
+KuroToon is distributed under the Apache License 2.0. It includes code from the
+Mihon open source project (Apache-2.0). See [LICENSE](LICENSE).

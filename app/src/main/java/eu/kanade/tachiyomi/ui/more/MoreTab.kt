@@ -41,7 +41,6 @@ import kotlinx.coroutines.launch
 import kurotoon.prefs.KuroPreferences
 import kurotoon.ui.profile.ProfileStats
 import logcat.LogPriority
-import mihon.feature.support.SupportUsScreen
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Person
 import mihon.icons.materialsymbols.roundedfilled.Person
@@ -87,7 +86,6 @@ data object MoreTab : Tab {
             onClickStats = { navigator.push(StatsScreen()) },
             onClickDataAndStorage = { navigator.push(SettingsScreen(SettingsScreen.Destination.DataAndStorage)) },
             onClickSettings = { navigator.push(SettingsScreen()) },
-            onClickSupport = { navigator.push(SupportUsScreen()) },
             onClickAbout = { navigator.push(SettingsScreen(SettingsScreen.Destination.About)) },
             nickname = viewModel.nickname,
             onNicknameChange = { viewModel.nickname = it },

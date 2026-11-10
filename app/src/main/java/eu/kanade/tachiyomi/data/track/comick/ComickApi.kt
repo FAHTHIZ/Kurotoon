@@ -52,9 +52,9 @@ class ComickApi(
                 .header(
                     "User-Agent",
                     buildString {
-                        append("Mihon/v${BuildConfig.VERSION_NAME} ")
+                        append("KuroToon/v${BuildConfig.VERSION_NAME} ")
                         append("(${BuildConfig.APPLICATION_ID}) ${BuildConfig.COMMIT_SHA}) ")
-                        append("(Android) (https://github.com/mihonapp/mihon)")
+                        append("(Android) (https://github.com/FAHTHIZ/Kurotoon)")
                     },
                 )
                 .header("Accept", jsonMime.toString())

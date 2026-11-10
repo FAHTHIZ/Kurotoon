@@ -75,7 +75,7 @@ import tachiyomi.presentation.core.util.collectAsState
 object SettingsDataScreen : SearchableSettings {
 
     val restorePreferenceKeyString = MR.strings.label_backup
-    const val HELP_URL = "https://mihon.app/docs/faq/storage"
+    const val HELP_URL = "https://github.com/FAHTHIZ/Kurotoon/blob/main/docs/storage.md"
 
     @ReadOnlyComposable
     @Composable
@@ -375,7 +375,7 @@ object SettingsDataScreen : SearchableSettings {
                 options = exportOptions,
                 onConfirm = { options ->
                     exportOptions = options
-                    saveFileLauncher.launch("mihon_library.csv")
+                    saveFileLauncher.launch("kurotoon_library.csv")
                 },
                 onDismissRequest = { showDialog = false },
             )
