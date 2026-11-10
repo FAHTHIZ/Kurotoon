@@ -1106,6 +1106,14 @@
     <string name="kurotoon.similar.none">No recommendations found for this series</string>
     <string name="kurotoon.similar.failed">Couldn\'t load recommendations. Check your connection.</string>
     <string name="kurotoon.shortcut.continue">Continue %1$s</string>
+    <string name="kurotoon.stats.activity">Reading activity</string>
+    <string name="kurotoon.stats.weeks">Last %1$d weeks</string>
+    <string name="kurotoon.stats.chapters">Chapters</string>
+    <string name="kurotoon.stats.activeDays">Active days</string>
+    <string name="kurotoon.stats.streak">Day streak</string>
+    <string name="kurotoon.stats.bestStreak">Best streak</string>
+    <string name="kurotoon.stats.less">Less</string>
+    <string name="kurotoon.stats.more">More</string>
     <!-- Kuro Points, missions and the shop -->
     <string name="kurotoon.shop.title">Kuro Shop</string>
     <string name="kurotoon.rewards.points">Kuro Points</string>

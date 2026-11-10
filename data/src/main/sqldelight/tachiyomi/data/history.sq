@@ -52,6 +52,11 @@ ON CONFLICT(chapter_id) DO UPDATE SET
     read_at = excluded.read_at,
     read_duration = read_duration + excluded.read_duration;
 
+getReadActivitySince:
+SELECT read_at, read_duration
+FROM history
+WHERE read_at >= :since;
+
 getReadDuration:
 SELECT coalesce(sum(read_duration), 0)
 FROM history;

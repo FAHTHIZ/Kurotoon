@@ -374,6 +374,23 @@ class KuroScreenshots {
         }
     }
 
+    @Test
+    fun readingActivity() = shot("reading_activity") {
+        val today = java.time.LocalDate.of(2026, 11, 11)
+        val zone = java.time.ZoneOffset.UTC
+        val entries = (0 until 119).flatMap { back ->
+            val date = today.minusDays(back.toLong())
+            val count = ((back * 7 + 3) % 11).let { if (it < 4) 0 else it - 3 }.coerceAtMost(if (back < 9) 6 else 4)
+            (0 until count).map {
+                kotlin.time.Instant.fromEpochMilliseconds(date.atTime(20, it).toInstant(zone).toEpochMilli()) to 60_000L
+            }
+        }
+        val activity = kurotoon.stats.ReadingActivity.build(entries, today, zone)
+        androidx.compose.foundation.layout.Box(Modifier.padding(16.dp)) {
+            kurotoon.ui.stats.ReadingActivityCard(activity)
+        }
+    }
+
     private fun shot(name: String, fullScreen: Boolean = false, content: @Composable () -> Unit) {
         captureRoboImage("build/screenshots/$name.png") {
             val covers = AsyncImagePreviewHandler { request -> fakeCover(request.data.hashCode()) }

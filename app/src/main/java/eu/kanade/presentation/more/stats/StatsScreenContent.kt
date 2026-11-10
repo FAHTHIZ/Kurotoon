@@ -16,6 +16,7 @@ import eu.kanade.presentation.more.stats.components.StatsItem
 import eu.kanade.presentation.more.stats.components.StatsOverviewItem
 import eu.kanade.presentation.more.stats.data.StatsData
 import eu.kanade.presentation.util.toDurationString
+import kurotoon.ui.stats.ReadingActivityCard
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.CollectionsBookmark
 import mihon.icons.materialsymbols.rounded.LocalLibrary
@@ -39,6 +40,11 @@ fun StatsScreenContent(
     ) {
         item {
             OverviewSection(state.overview)
+        }
+        item {
+            SectionCard(MR.strings.kurotoon_stats_activity) {
+                ReadingActivityCard(state.activity)
+            }
         }
         item {
             TitlesStats(state.titles)

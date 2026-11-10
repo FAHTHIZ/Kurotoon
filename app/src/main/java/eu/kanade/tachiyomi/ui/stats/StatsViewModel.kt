@@ -20,6 +20,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kurotoon.stats.ReadingActivity
+import tachiyomi.domain.history.interactor.GetReadActivity
 import tachiyomi.domain.history.interactor.GetTotalReadDuration
 import tachiyomi.domain.library.model.LibraryManga
 import tachiyomi.domain.library.service.LibraryPreferences
@@ -30,6 +32,9 @@ import tachiyomi.domain.manga.interactor.GetLibraryManga
 import tachiyomi.domain.track.interactor.GetTracksPerManga
 import tachiyomi.domain.track.model.Track
 import tachiyomi.source.local.isLocal
+import java.time.LocalDate
+import java.time.ZoneId
+import kotlin.time.Instant
 
 @Inject
 @ViewModelKey
@@ -38,6 +43,7 @@ class StatsViewModel(
     private val downloadManager: DownloadManager,
     private val getLibraryManga: GetLibraryManga,
     private val getTotalReadDuration: GetTotalReadDuration,
+    private val getReadActivity: GetReadActivity,
     private val getTracksPerManga: GetTracksPerManga,
     private val preferences: LibraryPreferences,
     private val trackerManager: TrackerManager,
@@ -91,9 +97,18 @@ class StatsViewModel(
                     titles = titlesStatData,
                     chapters = chaptersStatData,
                     trackers = trackersStatData,
+                    activity = readingActivity(),
                 )
             }
         }
+    }
+
+    private suspend fun readingActivity(): ReadingActivity {
+        val zone = ZoneId.systemDefault()
+        val today = LocalDate.now(zone)
+        val since = ReadingActivity.startOf(today).atStartOfDay(zone).toInstant().toEpochMilli()
+        val entries = getReadActivity.await(Instant.fromEpochMilliseconds(since))
+        return ReadingActivity.build(entries, today, zone)
     }
 
     private fun getGlobalUpdateItemCount(libraryManga: List<LibraryManga>): Int {

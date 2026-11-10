@@ -16,6 +16,7 @@ import tachiyomi.domain.history.model.History
 import tachiyomi.domain.history.model.HistoryUpdate
 import tachiyomi.domain.history.model.HistoryWithRelations
 import tachiyomi.domain.history.repository.HistoryRepository
+import kotlin.time.Instant
 
 @Inject
 @SingleIn(AppScope::class)
@@ -40,6 +41,13 @@ class HistoryRepositoryImpl(
         return database.historyQueries
             .getReadDuration()
             .awaitAsOne()
+    }
+
+    override suspend fun getReadActivity(since: Instant): List<Pair<Instant, Long>> {
+        return database.historyQueries
+            .getReadActivitySince(since)
+            .awaitAsList()
+            .mapNotNull { row -> row.read_at?.let { it to row.read_duration } }
     }
 
     override suspend fun getHistoryByMangaId(mangaId: Long): List<History> {
