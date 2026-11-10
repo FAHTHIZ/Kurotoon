@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
-import { ArrowDownUp, ArrowLeft, Bookmark, BookmarkCheck, CheckCheck, ExternalLink, Heart, Lock, Play, RefreshCcw } from "lucide-react";
+import { ArrowDownUp, ArrowLeft, Bookmark, BookmarkCheck, CheckCheck, ExternalLink, Heart, Lock, Play, RefreshCcw, Tags } from "lucide-react";
 import { toast } from "sonner";
 import { Cover } from "@/components/Cover";
 import { KuroTip } from "@/components/Kuro";
@@ -22,6 +22,8 @@ import { useChapters, useEngineReady, useMangaDetails } from "@/engine/hooks";
 import { decodeKey, encodeKey, seriesId } from "@/engine/ids";
 import { STATUS_LABEL, type ChapterRow, type SeriesCard } from "@/engine/types";
 import { seedKnownChapters } from "@/lib/updates";
+import { getCategories } from "@/lib/categories";
+import { CategoryPicker, Sheet } from "@/components/LibraryShelf";
 
 export const Route = createFileRoute("/manga/$sourceId/$key")({
   head: () => ({
@@ -63,6 +65,7 @@ function MangaPage() {
   }, [details.data]);
 
   const [saved, setSaved] = useState(false);
+  const [pickCats, setPickCats] = useState(false);
   const [fav, setFav] = useState(false);
   useEffect(() => {
     setSaved(isBookmarked(id));
@@ -94,6 +97,9 @@ function MangaPage() {
 
   return (
     <article className="space-y-5">
+      <Sheet open={pickCats} onClose={() => setPickCats(false)} title="Categories">
+        <CategoryPicker seriesId={id} onClose={() => setPickCats(false)} />
+      </Sheet>
       <div className="relative -mx-3 overflow-hidden md:-mx-6 md:rounded-3xl">
         <div className="absolute inset-0 -z-10">
           {card && (
@@ -169,6 +175,7 @@ function MangaPage() {
             const now = toggleBookmark(card);
             setSaved(now);
             if (now && chapters.data) seedKnownChapters(id, chapters.data.map((c) => c.key));
+            if (now && getCategories().length) setPickCats(true);
             toast.success(now ? "Added to library" : "Removed from library");
           }}
           className="inline-flex items-center gap-2 rounded-full bg-[color:var(--surface)] px-4 py-2.5 text-sm font-semibold ring-1 ring-border"
@@ -176,6 +183,17 @@ function MangaPage() {
           {saved ? <BookmarkCheck className="h-4 w-4 text-primary" /> : <Bookmark className="h-4 w-4" />}
           {saved ? "In library" : "Add to library"}
         </motion.button>
+        {saved && (
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            transition={spring.tap}
+            onClick={() => setPickCats(true)}
+            aria-label="Set categories"
+            className="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--surface)] ring-1 ring-border"
+          >
+            <Tags className="h-4 w-4" />
+          </motion.button>
+        )}
         <motion.button
           whileTap={{ scale: 0.85 }}
           transition={spring.tap}

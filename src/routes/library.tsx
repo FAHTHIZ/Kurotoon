@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MangaCard } from "@/components/MangaCard";
+import { LibraryShelf } from "@/components/LibraryShelf";
 import { Bookmark, History, BookOpen, Heart, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -33,11 +34,11 @@ export const Route = createFileRoute("/library")({
   component: Library,
 });
 
-type Tab = "reading" | "bookmarks" | "favourites" | "history";
+type Tab = "bookmarks" | "reading" | "favourites" | "history";
 
 const TABS: Array<{ id: Tab; label: string; icon: typeof Bookmark }> = [
+  { id: "bookmarks", label: "Library", icon: Bookmark },
   { id: "reading", label: "Reading", icon: BookOpen },
-  { id: "bookmarks", label: "Bookmarks", icon: Bookmark },
   { id: "favourites", label: "Favourites", icon: Heart },
   { id: "history", label: "History", icon: History },
 ];
@@ -52,7 +53,7 @@ type State = {
 const EMPTY: State = { reading: [], bookmarks: [], favourites: [], history: [] };
 
 function Library() {
-  const [tab, setTab] = useState<Tab>("reading");
+  const [tab, setTab] = useState<Tab>("bookmarks");
   const [state, setState] = useState<State>(EMPTY);
   const [ready, setReady] = useState(false);
 
@@ -146,9 +147,9 @@ function Library() {
         )
       ) : tab === "bookmarks" ? (
         state.bookmarks.length === 0 ? (
-          <Empty text="No bookmarks yet. Tap the bookmark icon on any series to save it here." />
+          <Empty text="Your library is empty. Tap Add to library on any series to save it here." />
         ) : (
-          <Grid items={state.bookmarks} />
+          <LibraryShelf items={state.bookmarks} />
         )
       ) : tab === "favourites" ? (
         state.favourites.length === 0 ? (
