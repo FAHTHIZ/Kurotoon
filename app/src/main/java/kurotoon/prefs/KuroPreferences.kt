@@ -15,4 +15,7 @@ class KuroPreferences(preferenceStore: PreferenceStore) {
 
     /** Ambient embers behind the UI and sparks on key moments. */
     val particles = preferenceStore.getBoolean("kurotoon_particles", true)
+
+    /** Tint a series' page with colours from its cover. */
+    val coverColors = preferenceStore.getBoolean("kurotoon_cover_colors", true)
 }

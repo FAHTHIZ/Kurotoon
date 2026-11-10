@@ -1187,6 +1187,8 @@
     <string name="kurotoon.ach.firstPack_desc">Import your first pack</string>
     <string name="kurotoon.settings.particles">Particle effects</string>
     <string name="kurotoon.settings.particlesSummary">Drifting embers and sparks when you add to your library</string>
+    <string name="kurotoon.settings.coverColors">Colours from covers</string>
+    <string name="kurotoon.settings.coverColorsSummary">Tint each series page with the main colour of its cover</string>
     <string name="kurotoon.me.onDevice">No account. Your data stays on this device.</string>
     <string name="kurotoon.me.chaptersRead">%d chapters read</string>
     <string name="kurotoon.me.inLibrary">In library</string>
