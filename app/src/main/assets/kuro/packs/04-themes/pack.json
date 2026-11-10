@@ -1,0 +1,81 @@
+{
+  "id": "kuro.themes",
+  "name": "Themes",
+  "author": "KuroToon",
+  "version": 1,
+  "description": "Recolour KuroToon. Works when the app theme is KuroToon.",
+  "items": [
+    {
+      "id": "midnight",
+      "kind": "theme",
+      "name": "Midnight Crimson",
+      "description": "The classic, a touch deeper.",
+      "price": 300,
+      "rarity": "common",
+      "colors": [
+        "#E83A4A",
+        "#B81E33"
+      ]
+    },
+    {
+      "id": "aurora",
+      "kind": "theme",
+      "name": "Aurora",
+      "description": "Aurora-blue accents and glow.",
+      "price": 600,
+      "rarity": "rare",
+      "colors": [
+        "#2FB0E6",
+        "#1683B8"
+      ]
+    },
+    {
+      "id": "galaxy",
+      "kind": "theme",
+      "name": "Galaxy",
+      "description": "Galaxy-purple accents and glow.",
+      "price": 600,
+      "rarity": "rare",
+      "colors": [
+        "#A35BE8",
+        "#7A33C4"
+      ]
+    },
+    {
+      "id": "sakura",
+      "kind": "theme",
+      "name": "Sakura",
+      "description": "Soft blossom pink.",
+      "price": 800,
+      "rarity": "epic",
+      "colors": [
+        "#FF7AB6",
+        "#E0468E"
+      ]
+    },
+    {
+      "id": "emerald",
+      "kind": "theme",
+      "name": "Emerald",
+      "description": "Deep forest green.",
+      "price": 800,
+      "rarity": "epic",
+      "colors": [
+        "#34D399",
+        "#159F6E"
+      ]
+    },
+    {
+      "id": "gold",
+      "kind": "theme",
+      "name": "Soft Gold",
+      "description": "Warm gold for a premium mood.",
+      "price": 1200,
+      "rarity": "legendary",
+      "colors": [
+        "#F2C14E",
+        "#C9932B"
+      ]
+    }
+  ]
+}

@@ -94,6 +94,8 @@ interface AppGraph : ViewModelGraph {
     val securityPreferences: SecurityPreferences
     val downloadPreferences: DownloadPreferences
     val kuroPreferences: kurotoon.prefs.KuroPreferences
+    val rewardsStore: kurotoon.rewards.RewardsStore
+    val packRepository: kurotoon.shop.PackRepository
 
     val crashLogUtil: CrashLogUtil
 

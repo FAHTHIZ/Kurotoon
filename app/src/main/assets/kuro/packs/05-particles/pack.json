@@ -1,0 +1,75 @@
+{
+  "id": "kuro.particles",
+  "name": "Particles",
+  "author": "KuroToon",
+  "version": 1,
+  "description": "Change the embers that drift behind the app and the sparks when you tap.",
+  "items": [
+    {
+      "id": "embers",
+      "kind": "particles",
+      "name": "Embers",
+      "description": "Warm sparks from a campfire.",
+      "price": 300,
+      "rarity": "common",
+      "colors": [
+        "#FB923C",
+        "#FF4D4D",
+        "#F2C14E"
+      ]
+    },
+    {
+      "id": "frost",
+      "kind": "particles",
+      "name": "Frost",
+      "description": "Cold blue glitter.",
+      "price": 500,
+      "rarity": "rare",
+      "colors": [
+        "#BFE8FF",
+        "#2FB0E6",
+        "#FFFFFF"
+      ]
+    },
+    {
+      "id": "sakura",
+      "kind": "particles",
+      "name": "Petals",
+      "description": "Pink petals on the wind.",
+      "price": 700,
+      "rarity": "rare",
+      "colors": [
+        "#FFB7D5",
+        "#FF7AB6",
+        "#FFFFFF"
+      ]
+    },
+    {
+      "id": "fireflies",
+      "kind": "particles",
+      "name": "Fireflies",
+      "description": "Little green lights in the dark.",
+      "price": 900,
+      "rarity": "epic",
+      "colors": [
+        "#D9F99D",
+        "#84CC16",
+        "#FDE68A"
+      ]
+    },
+    {
+      "id": "cosmos",
+      "kind": "particles",
+      "name": "Cosmos",
+      "description": "Every colour of a far-away galaxy.",
+      "price": 1800,
+      "rarity": "legendary",
+      "colors": [
+        "#A35BE8",
+        "#2FB0E6",
+        "#FF4D9A",
+        "#F2C14E"
+      ]
+    }
+  ]
+}
