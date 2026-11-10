@@ -1214,4 +1214,8 @@
     <string name="kurotoon.browse.clearAll">Clear (%d)</string>
     <string name="kurotoon.browse.showAll">Show all</string>
     <string name="kurotoon.browse.showLess">Show less</string>
+    <string name="kurotoon.browse.saveSearch">Save search</string>
+    <string name="kurotoon.browse.editSavedSearch">Saved search</string>
+    <string name="kurotoon.browse.showOnHome">Show on Home</string>
+    <string name="kurotoon.browse.showOnHomeSummary">Get a row of fresh results every time you open Home</string>
 </resources>

@@ -31,6 +31,8 @@ A private, local-first manga, manhwa and webtoon reader for Android, written in 
   comes from packs, and you can import your own `.kpack` files ([pack format](docs/shop-packs.md)).
 - **Browse the way each catalogue is built.** Every source shows its own facets (genres, themes, status, type,
   demographic) as tabs of one-tap tags. Stack them, long-press to exclude, clear them one by one.
+- **Save the searches you keep coming back to.** Save any query plus tags as a chip on that source and pin it
+  to Home as its own row.
 - **Everything else you'd expect.** Universal search across sources, offline downloads,
   tracker sync, source migration, backups and reading stats.
 

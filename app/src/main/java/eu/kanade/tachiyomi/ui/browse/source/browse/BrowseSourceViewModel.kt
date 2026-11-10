@@ -46,9 +46,13 @@ import kotlinx.coroutines.launch
 import kurotoon.catalogue.ActiveFacet
 import kurotoon.catalogue.CatalogFacet
 import kurotoon.catalogue.CatalogFacets
+import kurotoon.catalogue.SavedSearch
+import kurotoon.catalogue.SavedSearches
 import kurotoon.catalogue.copyStateFrom
+import kurotoon.prefs.KuroPreferences
 import mihon.core.metro.AppCoroutineScope
 import tachiyomi.core.common.preference.CheckboxState
+import tachiyomi.core.common.preference.getAndSet
 import tachiyomi.core.common.preference.mapAsCheckboxState
 import tachiyomi.domain.category.interactor.GetCategories
 import tachiyomi.domain.category.interactor.SetMangaCategories
@@ -84,6 +88,7 @@ class BrowseSourceViewModel(
     private val updateManga: UpdateManga,
     private val addTracks: AddTracks,
     getIncognitoState: GetIncognitoState,
+    private val kuroPreferences: KuroPreferences,
 ) : ViewModel() {
 
     val state: StateFlow<BrowseSourceViewModel.State>
@@ -122,6 +127,12 @@ class BrowseSourceViewModel(
                     facets = CatalogFacets.from(defaults),
                     quickSorts = defaults.sortFilter()?.values?.toList().orEmpty(),
                 )
+            }
+
+            launch {
+                kuroPreferences.savedSearches.changes().collect { all ->
+                    state.update { it.copy(savedSearches = all.filter { search -> search.sourceId == sourceId }) }
+                }
             }
 
             if (!getIncognitoState.await(source.id)) {
@@ -241,6 +252,46 @@ class BrowseSourceViewModel(
             val sort = filters.sortFilter()?.state
             filters.copyStateFrom(defaults)
             filters.sortFilter()?.state = sort
+        }
+    }
+
+    /** Keeps what is on screen (text, sort and filters) as a saved search for this source. */
+    fun saveCurrentSearch(name: String, onHome: Boolean) {
+        val current = state.value
+        val listing = current.listing as? Listing.Search ?: return
+        val search = SavedSearch(
+            id = Clock.System.now().toEpochMilliseconds(),
+            sourceId = sourceId,
+            name = name,
+            query = listing.query?.takeIf { it.isNotBlank() },
+            filters = SavedSearches.snapshot(listing.filters),
+            onHome = onHome,
+        )
+        kuroPreferences.savedSearches.getAndSet { it + search }
+    }
+
+    fun updateSavedSearch(id: Long, name: String, onHome: Boolean) {
+        kuroPreferences.savedSearches.getAndSet { all ->
+            all.map { if (it.id == id) it.copy(name = name, onHome = onHome) else it }
+        }
+    }
+
+    fun deleteSavedSearch(id: Long) {
+        kuroPreferences.savedSearches.getAndSet { all -> all.filterNot { it.id == id } }
+    }
+
+    fun openSavedSearch(search: SavedSearch) {
+        val source = source ?: return
+        val filters = SavedSearches.restore(source.getFilterList(), search.filters)
+        val defaultSort = source.getFilterList().sortFilter()?.state
+        val sort = filters.sortFilter()?.state?.takeIf { it != defaultSort }?.index
+        state.update {
+            it.copy(
+                filters = filters,
+                listing = Listing.Search(query = search.query, filters = filters),
+                toolbarQuery = search.query,
+                selectedSort = sort,
+            )
         }
     }
 
@@ -429,6 +480,8 @@ class BrowseSourceViewModel(
 
     sealed interface Dialog {
         data object Filter : Dialog
+        data object SaveSearch : Dialog
+        data class EditSavedSearch(val search: SavedSearch) : Dialog
         data class RemoveManga(val manga: Manga) : Dialog
         data class AddDuplicateManga(val manga: Manga, val duplicates: List<MangaWithChapterCount>) : Dialog
         data class ChangeMangaCategory(
@@ -448,6 +501,7 @@ class BrowseSourceViewModel(
         val facets: List<CatalogFacet> = emptyList(),
         val quickSorts: List<String> = emptyList(),
         val selectedSort: Int? = null,
+        val savedSearches: List<SavedSearch> = emptyList(),
     ) {
         val isUserQuery get() = listing is Listing.Search && !listing.query.isNullOrEmpty()
 
@@ -455,6 +509,18 @@ class BrowseSourceViewModel(
         val appliedFilters: FilterList? get() = (listing as? Listing.Search)?.filters?.takeIf { it.isNotEmpty() }
 
         val activeFacets: List<ActiveFacet> get() = appliedFilters?.let { CatalogFacets.active(facets, it) }.orEmpty()
+
+        /** Anything beyond the plain popular or latest feed is worth saving. */
+        val canSaveSearch: Boolean get() = listing is Listing.Search && (isUserQuery || appliedFilters != null)
+
+        /** The saved search matching what is on screen, if any. */
+        val currentSavedSearchId: Long?
+            get() {
+                val search = listing as? Listing.Search ?: return null
+                val snapshot = SavedSearches.snapshot(search.filters)
+                val query = search.query?.takeIf { it.isNotBlank() }
+                return savedSearches.firstOrNull { it.query == query && it.filters == snapshot }?.id
+            }
     }
 }
 

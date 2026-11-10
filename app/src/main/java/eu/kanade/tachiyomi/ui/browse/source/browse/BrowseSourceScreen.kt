@@ -50,9 +50,12 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import kurotoon.catalogue.SavedSearches
 import kurotoon.ui.browse.BrowseChips
 import kurotoon.ui.browse.BrowseSort
 import kurotoon.ui.browse.FacetActions
+import kurotoon.ui.browse.SavedSearchDialog
+import kurotoon.ui.browse.SavedSearchRow
 import mihon.feature.migration.dialog.MigrateMangaDialog
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.FilterList
@@ -168,6 +171,16 @@ data class BrowseSourceScreen(
                         },
                         onSort = { viewModel.applySort(it.takeUnless { index -> index == state.selectedSort }) },
                         onFilters = viewModel::openFilterSheet,
+                        extraRow = {
+                            SavedSearchRow(
+                                saved = state.savedSearches,
+                                selectedId = state.currentSavedSearchId,
+                                canSave = state.canSaveSearch && state.currentSavedSearchId == null,
+                                onSave = { viewModel.setDialog(BrowseSourceViewModel.Dialog.SaveSearch) },
+                                onOpen = viewModel::openSavedSearch,
+                                onEdit = { viewModel.setDialog(BrowseSourceViewModel.Dialog.EditSavedSearch(it)) },
+                            )
+                        },
                         facets = state.facets,
                         applied = state.appliedFilters,
                         active = state.activeFacets,
@@ -221,6 +234,34 @@ data class BrowseSourceScreen(
                     onReset = viewModel::resetFilters,
                     onFilter = { viewModel.search(filters = state.filters) },
                     onUpdate = viewModel::setFilters,
+                )
+            }
+            BrowseSourceViewModel.Dialog.SaveSearch -> {
+                SavedSearchDialog(
+                    initialName = SavedSearches.suggestName(state.listing.query, state.activeFacets),
+                    initialOnHome = true,
+                    editing = false,
+                    onDismiss = onDismissRequest,
+                    onConfirm = { name, onHome ->
+                        viewModel.saveCurrentSearch(name, onHome)
+                        onDismissRequest()
+                    },
+                )
+            }
+            is BrowseSourceViewModel.Dialog.EditSavedSearch -> {
+                SavedSearchDialog(
+                    initialName = dialog.search.name,
+                    initialOnHome = dialog.search.onHome,
+                    editing = true,
+                    onDismiss = onDismissRequest,
+                    onConfirm = { name, onHome ->
+                        viewModel.updateSavedSearch(dialog.search.id, name, onHome)
+                        onDismissRequest()
+                    },
+                    onDelete = {
+                        viewModel.deleteSavedSearch(dialog.search.id)
+                        onDismissRequest()
+                    },
                 )
             }
             is BrowseSourceViewModel.Dialog.AddDuplicateManga -> {
