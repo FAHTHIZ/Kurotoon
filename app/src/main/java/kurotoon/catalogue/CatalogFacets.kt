@@ -119,6 +119,29 @@ object CatalogFacets {
         }
     }
 
+    /**
+     * Switches on the tag named [name] (ignoring case) in the first tag group that has it.
+     * Single-choice filters are left alone so a genre name never changes sorting or status.
+     * Mutates [filters] in place; returns false when the source has no such tag.
+     */
+    fun includeTag(filters: FilterList, name: String): Boolean {
+        val wanted = name.trim()
+        filters.forEach { filter ->
+            if (filter !is Filter.Group<*>) return@forEach
+            filter.state.forEach { child ->
+                if (child is Filter<*> && child.name.trim().equals(wanted, ignoreCase = true)) {
+                    when (child) {
+                        is Filter.TriState -> child.state = Filter.TriState.STATE_INCLUDE
+                        is Filter.CheckBox -> child.state = true
+                        else -> return@forEach
+                    }
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
     /** The selected index of a single-choice facet. */
     fun choiceOf(filters: FilterList, filterIndex: Int): Int =
         (filters.getOrNull(filterIndex) as? Filter.Select<*>)?.state ?: 0

@@ -97,4 +97,15 @@ class CatalogFacetsTest {
         CatalogFacets.cycleTag(fresh, genres.filterIndex, 1)
         CatalogFacets.stateOf(applied, genres.filterIndex, 1) shouldBe FacetState.Off
     }
+
+    @Test
+    fun `includes a tag by name in tag groups only`() {
+        val filters = webtoonSite()
+        CatalogFacets.includeTag(filters, " murim") shouldBe true
+        CatalogFacets.stateOf(filters, 4, 1) shouldBe FacetState.Included
+        CatalogFacets.includeTag(filters, "romance") shouldBe true
+        CatalogFacets.stateOf(filters, 5, 1) shouldBe FacetState.Included
+        CatalogFacets.includeTag(filters, "Completed") shouldBe false
+        CatalogFacets.includeTag(filters, "Horror") shouldBe false
+    }
 }

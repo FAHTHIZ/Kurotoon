@@ -104,6 +104,22 @@ class KuroScreenshots {
     }
 
     @Test
+    fun homePickRow() = shot("home_pick_row") {
+        kurotoon.ui.home.HomeSourceRow(
+            row = KuroHomeViewModel.SourceRow(
+                sourceId = 1L,
+                name = "Murim",
+                items = null,
+                sourceName = "Asura Scans",
+                pickTag = "Murim",
+            ),
+            onSeeAll = {},
+            onMangaClick = {},
+            onRetry = {},
+        )
+    }
+
+    @Test
     fun homeNewChapters() = shot("home_new_chapters") {
         kurotoon.ui.home.HomeNewChapters(
             items = listOf("Solo Leveling" to 3, "Tower of God" to 1, "Omniscient Reader" to 12).mapIndexed {

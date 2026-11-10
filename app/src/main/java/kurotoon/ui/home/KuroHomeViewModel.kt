@@ -30,9 +30,11 @@ import kotlinx.coroutines.withContext
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.minus
+import kurotoon.catalogue.CatalogFacets
 import kurotoon.catalogue.HiddenTags
 import kurotoon.catalogue.SavedSearch
 import kurotoon.catalogue.SavedSearches
+import kurotoon.library.LibraryTags
 import kurotoon.prefs.KuroPreferences
 import logcat.LogPriority
 import mihon.domain.manga.model.toDomainManga
@@ -42,6 +44,7 @@ import tachiyomi.domain.chapter.model.Chapter
 import tachiyomi.domain.history.interactor.GetHistory
 import tachiyomi.domain.history.interactor.GetNextChapters
 import tachiyomi.domain.history.model.HistoryWithRelations
+import tachiyomi.domain.manga.interactor.GetLibraryManga
 import tachiyomi.domain.manga.interactor.NetworkToLocalManga
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.source.service.SourceManager
@@ -61,6 +64,7 @@ class KuroHomeViewModel(
     private val networkToLocalManga: NetworkToLocalManga,
     private val kuroPreferences: KuroPreferences,
     getUpdates: GetUpdates,
+    private val getLibraryManga: GetLibraryManga,
 ) : ViewModel() {
 
     /** Unread chapters fetched lately, one entry per series, newest first. */
@@ -83,6 +87,7 @@ class KuroHomeViewModel(
 
     private val rows = MutableStateFlow<List<SourceRow>>(emptyList())
     private val savedRows = MutableStateFlow<List<SourceRow>>(emptyList())
+    private val pickRows = MutableStateFlow<List<SourceRow>>(emptyList())
     private val homeSearches = kuroPreferences.savedSearches.changes()
         .catch { logcat(LogPriority.ERROR, it) }
         .map { all -> all.filter { it.onHome }.take(HOME_SAVED_SEARCHES) }
@@ -101,15 +106,16 @@ class KuroHomeViewModel(
         getHistory.subscribe("").catch { logcat(LogPriority.ERROR, it) },
         sourceIds,
         rows,
-        savedRows,
+        combine(savedRows, pickRows) { saved, picks -> saved to picks },
         newChapters,
-    ) { history, ids, rows, savedRows, newChapters ->
+    ) { history, ids, rows, (savedRows, pickRows), newChapters ->
         State(
             isLoading = false,
             continueReading = history.distinctBy { it.mangaId }.take(CONTINUE_READING_LIMIT),
             hasSources = ids.isNotEmpty(),
             rows = rows,
             savedRows = savedRows,
+            pickRows = pickRows,
             newChapters = newChapters,
         )
     }
@@ -117,7 +123,12 @@ class KuroHomeViewModel(
 
     init {
         viewModelScope.launch {
-            sourceIds.collectLatest { ids -> loadRows(ids) }
+            sourceIds.collectLatest { ids ->
+                coroutineScope {
+                    launch { loadRows(ids) }
+                    launch { loadPickRows(ids) }
+                }
+            }
         }
         viewModelScope.launch {
             homeSearches.collectLatest { searches -> loadSavedRows(searches) }
@@ -132,6 +143,31 @@ class KuroHomeViewModel(
             }
         }
         savedRows.value.forEach { row -> launch { loadRow(row) } }
+    }
+
+    /**
+     * "Because you read X" rows: the library's most common tags, each searched on the first
+     * Home source that has that tag as a filter, so picks follow the user's own taste.
+     */
+    private suspend fun loadPickRows(ids: List<Long>) = coroutineScope {
+        val library = runCatching { withContext(Dispatchers.IO) { getLibraryManga.await() } }
+            .onFailure { logcat(LogPriority.WARN, it) }
+            .getOrNull()
+            .orEmpty()
+        val hidden = HiddenTags.parse(kuroPreferences.hiddenTags.get())
+        val tags = LibraryTags.top(library.map { it.manga.genre }, PICK_TAG_CANDIDATES)
+            .filter { it.count >= PICK_MIN_COUNT && !HiddenTags.hides(listOf(it.name), hidden) }
+        val sources = ids.mapNotNull { sourceManager.get(it) as? CatalogueSource }
+        val picks = mutableListOf<SourceRow>()
+        for (tag in tags) {
+            if (picks.size >= PICK_ROWS) break
+            val source = sources.firstOrNull { source ->
+                runCatching { CatalogFacets.includeTag(source.getFilterList(), tag.name) }.getOrDefault(false)
+            } ?: continue
+            picks += SourceRow(source.id, tag.name, items = null, sourceName = source.name, pickTag = tag.name)
+        }
+        pickRows.value = picks
+        picks.forEach { row -> launch { loadRow(row) } }
     }
 
     /** Fetches each source's popular list, like the web app's home rows. */
@@ -171,10 +207,16 @@ class KuroHomeViewModel(
         val source = sourceManager.get(row.sourceId) ?: return
         updateRow(row.key) { it.copy(items = null, failed = false) }
         val search = row.savedSearch
+        val pickTag = row.pickTag
         val hidden = HiddenTags.parse(kuroPreferences.hiddenTags.get())
         val result = runCatching {
             val page = withContext(Dispatchers.IO) {
-                if (search != null && source is CatalogueSource) {
+                if (pickTag != null && source is CatalogueSource) {
+                    val filters = source.getFilterList()
+                    CatalogFacets.includeTag(filters, pickTag)
+                    HiddenTags.excludeIn(filters, hidden)
+                    source.getSearchManga(1, "", filters)
+                } else if (search != null && source is CatalogueSource) {
                     val filters = SavedSearches.restore(source.getFilterList(), search.filters)
                     HiddenTags.excludeIn(filters, hidden)
                     source.getSearchManga(1, search.query.orEmpty(), filters)
@@ -189,6 +231,8 @@ class KuroHomeViewModel(
                 .distinctBy { it.url }
                 .let { networkToLocalManga(it) }
                 .filterNot { HiddenTags.hides(it.genre, hidden) }
+                // Picks are for discovery, so leave out what's already in the library
+                .filterNot { pickTag != null && it.favorite }
                 .take(ROW_LIMIT)
         }
         result.exceptionOrNull()?.let { logcat(LogPriority.WARN, it) { "Home row failed for ${source.name}" } }
@@ -196,7 +240,11 @@ class KuroHomeViewModel(
     }
 
     private fun updateRow(key: String, block: (SourceRow) -> SourceRow) {
-        val target = if (key.startsWith(SAVED_PREFIX)) savedRows else rows
+        val target = when {
+            key.startsWith(SAVED_PREFIX) -> savedRows
+            key.startsWith(PICK_PREFIX) -> pickRows
+            else -> rows
+        }
         target.update { list -> list.map { if (it.key == key) block(it) else it } }
     }
 
@@ -216,6 +264,8 @@ class KuroHomeViewModel(
         val rows: List<SourceRow> = emptyList(),
         /** Rows for saved searches the user pinned to Home. */
         val savedRows: List<SourceRow> = emptyList(),
+        /** "Because you read X" rows built from the library's favourite tags. */
+        val pickRows: List<SourceRow> = emptyList(),
         val newChapters: List<NewChapters> = emptyList(),
     ) {
         /** Top titles for the hero carousel, taking turns between sources so each gets a slot. */
@@ -251,8 +301,13 @@ class KuroHomeViewModel(
         val supportsLatest: Boolean = false,
         /** Shows latest updates instead of popular titles. */
         val latest: Boolean = false,
+        /** Set when the row shows titles with a tag the user reads a lot. */
+        val pickTag: String? = null,
     ) {
-        val key: String get() = savedSearch?.let { "$SAVED_PREFIX${it.id}" } ?: "source-$sourceId"
+        val key: String
+            get() = savedSearch?.let { "$SAVED_PREFIX${it.id}" }
+                ?: pickTag?.let { "$PICK_PREFIX$sourceId-${LibraryTags.keyOf(it)}" }
+                ?: "source-$sourceId"
     }
 
     private companion object {
@@ -262,9 +317,13 @@ class KuroHomeViewModel(
         const val HOME_SAVED_SEARCHES = 6
         const val NEW_CHAPTER_DAYS = 14
         const val NEW_CHAPTERS_LIMIT = 20
+        const val PICK_ROWS = 2
+        const val PICK_TAG_CANDIDATES = 6
+        const val PICK_MIN_COUNT = 2
     }
 }
 
 private const val SAVED_PREFIX = "saved-"
+private const val PICK_PREFIX = "pick-"
 
 private const val HERO_COUNT = 6

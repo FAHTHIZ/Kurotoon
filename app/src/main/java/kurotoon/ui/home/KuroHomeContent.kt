@@ -109,7 +109,7 @@ fun KuroHomeContent(
                     HomeNewChapters(items = state.newChapters, onMangaClick = onMangaClick, onSeeAll = onUpdatesClick)
                 }
             }
-            items(state.savedRows + state.rows, key = { it.key }) { row ->
+            items(state.savedRows + state.pickRows + state.rows, key = { it.key }) { row ->
                 HomeSourceRow(
                     row = row,
                     onSeeAll = { onRowClick(row) },
