@@ -34,6 +34,7 @@ import kurotoon.catalogue.CatalogFacets
 import kurotoon.catalogue.HiddenTags
 import kurotoon.catalogue.SavedSearch
 import kurotoon.catalogue.SavedSearches
+import kurotoon.library.BingeList
 import kurotoon.library.LibraryTags
 import kurotoon.prefs.KuroPreferences
 import logcat.LogPriority
@@ -44,6 +45,7 @@ import tachiyomi.domain.chapter.model.Chapter
 import tachiyomi.domain.history.interactor.GetHistory
 import tachiyomi.domain.history.interactor.GetNextChapters
 import tachiyomi.domain.history.model.HistoryWithRelations
+import tachiyomi.domain.library.model.LibraryManga
 import tachiyomi.domain.manga.interactor.GetLibraryManga
 import tachiyomi.domain.manga.interactor.NetworkToLocalManga
 import tachiyomi.domain.manga.model.Manga
@@ -85,6 +87,12 @@ class KuroHomeViewModel(
         }
         .distinctUntilChanged()
 
+    /** Finished series in the library that haven't been started. */
+    private val binge = getLibraryManga.subscribe()
+        .catch { logcat(LogPriority.ERROR, it) }
+        .map { library -> BingeList.of(library) }
+        .distinctUntilChanged()
+
     private val rows = MutableStateFlow<List<SourceRow>>(emptyList())
     private val savedRows = MutableStateFlow<List<SourceRow>>(emptyList())
     private val pickRows = MutableStateFlow<List<SourceRow>>(emptyList())
@@ -107,8 +115,8 @@ class KuroHomeViewModel(
         sourceIds,
         rows,
         combine(savedRows, pickRows) { saved, picks -> saved to picks },
-        newChapters,
-    ) { history, ids, rows, (savedRows, pickRows), newChapters ->
+        combine(newChapters, binge) { new, binge -> new to binge },
+    ) { history, ids, rows, (savedRows, pickRows), (newChapters, binge) ->
         State(
             isLoading = false,
             continueReading = history.distinctBy { it.mangaId }.take(CONTINUE_READING_LIMIT),
@@ -117,6 +125,7 @@ class KuroHomeViewModel(
             savedRows = savedRows,
             pickRows = pickRows,
             newChapters = newChapters,
+            binge = binge,
         )
     }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), State())
@@ -267,6 +276,7 @@ class KuroHomeViewModel(
         /** "Because you read X" rows built from the library's favourite tags. */
         val pickRows: List<SourceRow> = emptyList(),
         val newChapters: List<NewChapters> = emptyList(),
+        val binge: List<LibraryManga> = emptyList(),
     ) {
         /** Top titles for the hero carousel, taking turns between sources so each gets a slot. */
         val heroes: List<Pair<SourceRow, Manga>>
