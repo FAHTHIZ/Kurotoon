@@ -51,6 +51,8 @@ A private, local-first manga, manhwa and webtoon reader for Android, written in 
 | <img src=".github/assets/screenshots/progress_orb.png" alt="Progress orb at 12, 48 and 100 percent" width="400"> | <img src=".github/assets/screenshots/profile.png" alt="Profile with avatar, frame and badges" width="400"> |
 | **Kuro Shop** | **Daily missions** |
 | <img src=".github/assets/screenshots/shop.png" alt="Kuro Shop" width="400"> | <img src=".github/assets/screenshots/shop_missions.png" alt="Daily missions" width="400"> |
+| **Progress on covers** | **Reading activity** |
+| <img src=".github/assets/screenshots/library_progress.png" alt="Library covers with read progress bars" width="400"> | <img src=".github/assets/screenshots/reading_activity.png" alt="Reading activity heatmap" width="400"> |
 
 These are rendered from the real Compose code by the screenshot tests (see [Development](#development)).
 

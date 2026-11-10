@@ -35,6 +35,10 @@ All notable changes to KuroToon are documented here. Versions follow
 - Hidden tags (Settings > Browse): tags you never want to see are excluded from filtered searches and
   Home's saved-search rows, and titles listing them are dropped from results.
 - Popular / Latest switch on each Home source row, remembered per source.
+- Tags on a series page work from anywhere: they open the series' source filtered by that tag.
+- Continue reading launcher shortcut: long-press the app icon to jump back into your last chapter.
+- Read progress bars on library covers (Settings > Appearance).
+- Reading activity heatmap in Statistics with chapters, active days and streaks.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.
