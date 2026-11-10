@@ -34,6 +34,7 @@ fun SourceFilterField(
     query: String,
     onQueryChange: (String) -> Unit,
     modifier: Modifier = Modifier,
+    placeholder: String = stringResource(MR.strings.kurotoon_browse_filterSources),
 ) {
     Row(
         modifier = modifier
@@ -57,7 +58,7 @@ fun SourceFilterField(
         ) {
             if (query.isEmpty()) {
                 Text(
-                    text = stringResource(MR.strings.kurotoon_browse_filterSources),
+                    text = placeholder,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

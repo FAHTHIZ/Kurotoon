@@ -1271,6 +1271,7 @@
     <string name="kurotoon.browse.noSourceMatch">No sources match “%s”</string>
     <string name="kurotoon.browse.recentSearches">Recent searches</string>
     <string name="kurotoon.browse.clearRecent">Clear</string>
+    <string name="kurotoon.browse.findTag">Find among %d tags</string>
     <string name="kurotoon.browse.hiddenTags">Hidden tags</string>
     <string name="kurotoon.browse.hiddenTagsSummary">Tags you never want to see in browse, search or Home</string>
     <string name="kurotoon.hiddenTags.info">Hidden tags are excluded from filtered searches and titles that list them are dropped from results and Home rows.</string>

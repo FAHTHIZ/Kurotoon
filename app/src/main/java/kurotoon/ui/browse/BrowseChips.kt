@@ -184,7 +184,18 @@ private fun CatalogFacetPanel(facets: List<CatalogFacet>, applied: FilterList?, 
     val canExpand = options.size > COLLAPSED_LIMIT
 
     if (expanded && canExpand) {
+        // Long lists (MangaDex has 70+ tags) get a box to find one by typing
+        var find by rememberSaveable(facet.filterIndex) { mutableStateOf("") }
+        val shown = if (find.isBlank()) options else options.filter { it.second.contains(find.trim(), true) }
         Column(modifier = Modifier.fillMaxWidth()) {
+            if (options.size > FIND_LIMIT) {
+                SourceFilterField(
+                    query = find,
+                    onQueryChange = { find = it },
+                    placeholder = stringResource(MR.strings.kurotoon_browse_findTag, options.size),
+                    modifier = Modifier.padding(start = 12.dp, end = 12.dp, bottom = 8.dp),
+                )
+            }
             FlowRow(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -194,7 +205,7 @@ private fun CatalogFacetPanel(facets: List<CatalogFacet>, applied: FilterList?, 
                 horizontalArrangement = Arrangement.spacedBy(6.dp),
                 verticalArrangement = Arrangement.spacedBy(6.dp),
             ) {
-                options.forEach { (index, name) ->
+                shown.forEach { (index, name) ->
                     FacetOptionPill(facet, index, name, applied, actions)
                 }
             }
@@ -507,3 +518,6 @@ internal fun Pill(
 
 /** Facets with more values than this get a button to show them all at once. */
 private const val COLLAPSED_LIMIT = 12
+
+/** Facets with more values than this get a find box when expanded. */
+private const val FIND_LIMIT = 24
