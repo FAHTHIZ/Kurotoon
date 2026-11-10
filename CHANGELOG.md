@@ -57,6 +57,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Hidden tags are now managed as chips in Settings > Browse, with one-tap suggestions from your library tags.
 - Ready to binge row on Home: finished series in your library that you have not started yet.
 - Saved searches on Home work like feeds: titles that are new since the last visit get a NEW badge and a count.
+- Pick back up row on Home: series you started that still have chapters left but have not been opened in three weeks.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.

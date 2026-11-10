@@ -37,6 +37,7 @@ import kurotoon.catalogue.SavedSearches
 import kurotoon.catalogue.SearchFeed
 import kurotoon.library.BingeList
 import kurotoon.library.LibraryTags
+import kurotoon.library.StalledList
 import kurotoon.prefs.KuroPreferences
 import logcat.LogPriority
 import mihon.domain.manga.model.toDomainManga
@@ -89,9 +90,9 @@ class KuroHomeViewModel(
         .distinctUntilChanged()
 
     /** Finished series in the library that haven't been started. */
-    private val binge = getLibraryManga.subscribe()
+    private val shelves = getLibraryManga.subscribe()
         .catch { logcat(LogPriority.ERROR, it) }
-        .map { library -> BingeList.of(library) }
+        .map { library -> BingeList.of(library) to StalledList.of(library, Clock.System.now()) }
         .distinctUntilChanged()
 
     private val rows = MutableStateFlow<List<SourceRow>>(emptyList())
@@ -116,8 +117,8 @@ class KuroHomeViewModel(
         sourceIds,
         rows,
         combine(savedRows, pickRows) { saved, picks -> saved to picks },
-        combine(newChapters, binge) { new, binge -> new to binge },
-    ) { history, ids, rows, (savedRows, pickRows), (newChapters, binge) ->
+        combine(newChapters, shelves) { new, shelves -> new to shelves },
+    ) { history, ids, rows, (savedRows, pickRows), (newChapters, shelves) ->
         State(
             isLoading = false,
             continueReading = history.distinctBy { it.mangaId }.take(CONTINUE_READING_LIMIT),
@@ -126,7 +127,8 @@ class KuroHomeViewModel(
             savedRows = savedRows,
             pickRows = pickRows,
             newChapters = newChapters,
-            binge = binge,
+            binge = shelves.first,
+            stalled = shelves.second,
         )
     }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), State())
@@ -288,6 +290,8 @@ class KuroHomeViewModel(
         val pickRows: List<SourceRow> = emptyList(),
         val newChapters: List<NewChapters> = emptyList(),
         val binge: List<LibraryManga> = emptyList(),
+        /** Started series left alone for a few weeks. */
+        val stalled: List<LibraryManga> = emptyList(),
     ) {
         /** Top titles for the hero carousel, taking turns between sources so each gets a slot. */
         val heroes: List<Pair<SourceRow, Manga>>
