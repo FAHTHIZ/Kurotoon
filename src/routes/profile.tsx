@@ -6,6 +6,7 @@ import { Kuro } from "@/components/Kuro";
 import { getBookmarks, getContinueReading } from "@/lib/local-library";
 import { useRewards } from "@/lib/rewards";
 import { useEngine } from "@/engine/store";
+import { BackupCard } from "@/components/BackupCard";
 
 export const Route = createFileRoute("/profile")({
   head: () => ({
@@ -129,6 +130,8 @@ function Profile() {
           </Link>
         ))}
       </div>
+
+      <BackupCard />
     </div>
   );
 }
