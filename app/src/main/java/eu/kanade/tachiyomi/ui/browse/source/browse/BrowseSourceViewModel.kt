@@ -46,6 +46,7 @@ import kotlinx.coroutines.launch
 import kurotoon.catalogue.ActiveFacet
 import kurotoon.catalogue.CatalogFacet
 import kurotoon.catalogue.CatalogFacets
+import kurotoon.catalogue.HiddenTags
 import kurotoon.catalogue.SavedSearch
 import kurotoon.catalogue.SavedSearches
 import kurotoon.catalogue.copyStateFrom
@@ -150,8 +151,14 @@ class BrowseSourceViewModel(
         .map { (_, listing) -> listing }
         .distinctUntilChanged()
         .map { listing ->
+            val hidden = HiddenTags.parse(kuroPreferences.hiddenTags.get())
+            val filters = source?.takeIf { hidden.isNotEmpty() && listing is Listing.Search }
+                ?.getFilterList()
+                ?.copyStateFrom(listing.filters)
+                ?.also { HiddenTags.excludeIn(it, hidden) }
+                ?: listing.filters
             Pager(PagingConfig(pageSize = 25)) {
-                getRemoteManga(sourceId, listing.query ?: "", listing.filters)
+                getRemoteManga(sourceId, listing.query ?: "", filters)
             }.flow.map { pagingData ->
                 pagingData.map { manga ->
                     getManga.subscribe(manga.url, manga.source)
@@ -159,6 +166,7 @@ class BrowseSourceViewModel(
                         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5.seconds), manga)
                 }
                     .filter { !hideInLibraryItems || !it.value.favorite }
+                    .filter { !HiddenTags.hides(it.value.genre, hidden) }
             }
                 .cachedIn(viewModelScope)
         }

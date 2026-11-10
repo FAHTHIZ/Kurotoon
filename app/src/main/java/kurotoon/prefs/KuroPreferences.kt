@@ -40,4 +40,7 @@ class KuroPreferences(preferenceStore: PreferenceStore) {
         serializer = RecentSearches::encode,
         deserializer = RecentSearches::decode,
     )
+
+    /** Tags to keep out of browsing, comma separated. See [kurotoon.catalogue.HiddenTags]. */
+    val hiddenTags = preferenceStore.getString("kurotoon_hidden_tags", "")
 }
