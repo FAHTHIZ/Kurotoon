@@ -104,6 +104,16 @@ class KuroScreenshots {
     }
 
     @Test
+    fun hiddenTags() = shot("hidden_tags") {
+        kurotoon.ui.browse.HiddenTagsContent(
+            hidden = listOf("Gore", "Ecchi", "Harem"),
+            suggestions = listOf("Action", "Murim", "Ecchi", "Regression", "Fantasy", "Romance", "System"),
+            onAdd = {},
+            onRemove = {},
+        )
+    }
+
+    @Test
     fun homePickRow() = shot("home_pick_row") {
         kurotoon.ui.home.HomeSourceRow(
             row = KuroHomeViewModel.SourceRow(
