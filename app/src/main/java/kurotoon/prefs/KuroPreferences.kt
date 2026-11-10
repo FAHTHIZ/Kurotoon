@@ -43,4 +43,7 @@ class KuroPreferences(preferenceStore: PreferenceStore) {
 
     /** Tags to keep out of browsing, comma separated. See [kurotoon.catalogue.HiddenTags]. */
     val hiddenTags = preferenceStore.getString("kurotoon_hidden_tags", "")
+
+    /** Source ids whose Home row shows latest updates instead of popular titles. */
+    val homeLatestSources = preferenceStore.getStringSet("kurotoon_home_latest_sources", emptySet())
 }

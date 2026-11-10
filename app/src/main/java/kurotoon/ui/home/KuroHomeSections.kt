@@ -252,15 +252,44 @@ internal fun HomeHeroCarousel(
 
 private const val HERO_INTERVAL_MS = 5_000L
 
-/** A source's popular titles in a horizontal row. */
+/** Popular / Latest switch next to a source row's title. */
+@Composable
+private fun ListingToggle(latest: Boolean, onClick: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .padding(start = 8.dp)
+            .clip(CircleShape)
+            .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+            .clickable(onClick = onClick)
+            .padding(2.dp),
+    ) {
+        listOf(false, true).forEach { option ->
+            val selected = option == latest
+            Text(
+                text = stringResource(if (option) MR.strings.latest else MR.strings.popular),
+                style = MaterialTheme.typography.labelSmall,
+                fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
+                color = if (selected) Color.White else MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .background(if (selected) KuroColors.Crimson else Color.Transparent)
+                    .padding(horizontal = 10.dp, vertical = 4.dp),
+            )
+        }
+    }
+}
+
+/** A source's popular or latest titles in a horizontal row. */
 @Composable
 internal fun HomeSourceRow(
     row: KuroHomeViewModel.SourceRow,
     onSeeAll: () -> Unit,
     onMangaClick: (Manga) -> Unit,
     onRetry: () -> Unit,
+    onToggleLatest: () -> Unit = {},
 ) {
-    if (row.items?.isEmpty() == true) return
+    // Keep an empty Latest row so its switch can bring Popular back
+    if (row.items?.isEmpty() == true && !row.latest) return
     Column {
         Row(
             modifier = Modifier
@@ -296,12 +325,21 @@ internal fun HomeSourceRow(
                     .padding(start = 8.dp)
                     .weight(1f, fill = false),
             )
-            Text(
-                text = " · " + if (row.savedSearch != null) row.sourceName else stringResource(MR.strings.popular),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.weight(1f),
-            )
+            Box(Modifier.weight(1f)) {
+                when {
+                    row.savedSearch != null -> Text(
+                        text = " · " + row.sourceName,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    row.supportsLatest -> ListingToggle(latest = row.latest, onClick = onToggleLatest)
+                    else -> Text(
+                        text = " · " + stringResource(MR.strings.popular),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
             Row(
                 modifier = Modifier
                     .clip(CircleShape)
