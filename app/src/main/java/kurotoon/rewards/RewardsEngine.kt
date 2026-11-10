@@ -42,6 +42,7 @@ sealed interface GrantReason {
     data class Daily(val streak: Int) : GrantReason
     data class MissionDone(val code: String) : GrantReason
     data class AchievementUnlocked(val code: String) : GrantReason
+    data class GoalMet(val goal: Int) : GrantReason
 }
 
 data class RewardGrant(val points: Int, val reason: GrantReason)
@@ -95,7 +96,12 @@ class RewardsEngine(
             RewardEvent.CHAPTER_READ -> {
                 val read = current.chaptersRead + 1
                 val bumped = bump(bump(current, RewardsCatalog.MISSION_READ), RewardsCatalog.MISSION_READ_MORE)
-                var outcome = Outcome(bumped.copy(chaptersRead = read))
+                val today = (current.progress[RewardsCatalog.CHAPTERS_TODAY] ?: 0) + 1
+                val counted = bumped.copy(
+                    chaptersRead = read,
+                    progress = bumped.progress + (RewardsCatalog.CHAPTERS_TODAY to today),
+                )
+                var outcome = Outcome(counted)
                     .then { unlock(it, RewardsCatalog.ACHIEVEMENT_FIRST_CHAPTER) }
                 if (now().atZone(zone()).hour < 4) {
                     outcome = outcome.then { unlock(it, RewardsCatalog.ACHIEVEMENT_NIGHT_READER) }
@@ -111,6 +117,23 @@ class RewardsEngine(
             RewardEvent.PACK_IMPORTED -> unlock(current, RewardsCatalog.ACHIEVEMENT_FIRST_PACK)
         }
     }
+
+    /**
+     * Pays once a day when today's chapters reach [goal], and unlocks the first-goal achievement.
+     * A goal of 0 means none is set.
+     */
+    fun meetDailyGoal(state: RewardsState, goal: Int): Outcome {
+        val current = rollDay(state)
+        if (goal <= 0) return Outcome(current)
+        if ((current.progress[RewardsCatalog.CHAPTERS_TODAY] ?: 0) < goal) return Outcome(current)
+        if ((current.progress[RewardsCatalog.GOAL_MET] ?: 0) > 0) return Outcome(current)
+        val marked = current.copy(progress = current.progress + (RewardsCatalog.GOAL_MET to 1))
+        return grant(marked, RewardGrant(goalReward(goal), GrantReason.GoalMet(goal)))
+            .then { unlock(it, RewardsCatalog.ACHIEVEMENT_FIRST_GOAL) }
+    }
+
+    /** Bigger goals pay more, up to 100. */
+    fun goalReward(goal: Int): Int = (15 + goal * 5).coerceAtMost(100)
 
     /** Missions that are done but not yet claimed. */
     fun claimable(state: RewardsState): List<Mission> = rollDay(state).let { current ->

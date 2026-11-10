@@ -1217,6 +1217,8 @@
     <string name="kurotoon.ach.collector_desc">Unlock 10 shop items</string>
     <string name="kurotoon.ach.firstPack">Pack rat</string>
     <string name="kurotoon.ach.firstPack_desc">Import your first pack</string>
+    <string name="kurotoon.ach.firstGoal">On target</string>
+    <string name="kurotoon.ach.firstGoal_desc">Reach your daily reading goal</string>
     <string name="kurotoon.settings.particles">Particle effects</string>
     <string name="kurotoon.settings.particlesSummary">Drifting embers and sparks when you add to your library</string>
     <string name="kurotoon.settings.coverColors">Colours from covers</string>

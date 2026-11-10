@@ -38,6 +38,11 @@ object RewardsCatalog {
     const val ACHIEVEMENT_THOUSAND_CHAPTERS = "thousand_chapters"
     const val ACHIEVEMENT_COLLECTOR = "collector_10"
     const val ACHIEVEMENT_FIRST_PACK = "first_pack"
+    const val ACHIEVEMENT_FIRST_GOAL = "first_goal"
+
+    /** Daily counters kept next to mission progress; they reset at midnight too. */
+    const val CHAPTERS_TODAY = "chapters_today"
+    const val GOAL_MET = "goal_met"
 
     /** Items to own before [ACHIEVEMENT_COLLECTOR] unlocks (free ones don't count). */
     const val COLLECTOR_TARGET = 10
@@ -118,6 +123,13 @@ object RewardsCatalog {
             MR.strings.kurotoon_ach_firstPack,
             MR.strings.kurotoon_ach_firstPack_desc,
             "📦",
+            50,
+        ),
+        Achievement(
+            ACHIEVEMENT_FIRST_GOAL,
+            MR.strings.kurotoon_ach_firstGoal,
+            MR.strings.kurotoon_ach_firstGoal_desc,
+            "🎯",
             50,
         ),
     )

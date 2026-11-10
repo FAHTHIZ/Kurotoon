@@ -132,6 +132,7 @@ class ReaderViewModel(
     private val chapterCache: ChapterCache,
     private val downloadCache: DownloadCache,
     private val rewardsStore: RewardsStore,
+    private val kuroPreferences: kurotoon.prefs.KuroPreferences,
 ) : ViewModel() {
 
     @AssistedFactory
@@ -658,7 +659,10 @@ class ReaderViewModel(
 
         val wasRead = readerChapter.chapter.read
         val read = wasRead || readerChapter.pages?.lastIndex == pageIndex
-        if (read && !wasRead) rewardsStore.track(RewardEvent.CHAPTER_READ)
+        if (read && !wasRead) {
+            rewardsStore.track(RewardEvent.CHAPTER_READ)
+            rewardsStore.meetDailyGoal(kuroPreferences.dailyGoal.get())
+        }
         // A page change in another chapter would replace that chapter's pending save
         if (pendingProgressChapter != readerChapter) saveChapterProgress()
         readerChapter.update { it.copy(lastPageRead = pageIndex, read = read) }

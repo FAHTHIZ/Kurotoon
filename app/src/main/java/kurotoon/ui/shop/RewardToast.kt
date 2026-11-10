@@ -99,6 +99,7 @@ private fun GrantPill(grant: RewardGrant) {
         is GrantReason.AchievementUnlocked -> RewardsCatalog.achievement(r.code)
             ?.let { stringResource(MR.strings.kurotoon_rewards_unlocked, "${it.icon} ${stringResource(it.title)}") }
             .orEmpty()
+        is GrantReason.GoalMet -> stringResource(MR.strings.kurotoon_goal_done)
     }
     Row(
         modifier = Modifier
