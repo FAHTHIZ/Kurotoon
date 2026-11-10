@@ -16,6 +16,16 @@ All notable changes to KuroToon are documented here. Versions follow
 - Catalogue-aware browsing: each source's own facets (genres, themes, status, type, demographic…)
   appear as tabs above the results, with stackable tags that include or exclude and a row of what
   is applied.
+- Kuro Points, daily missions, achievements and the Kuro Shop: earn points by reading and spend them on
+  avatars, frames, themes, particle colours, stickers and badges. Items come from packs and you can import
+  your own ([format](docs/shop-packs.md)).
+- Local chapter reconciliation for series you keep on the device.
+- Webtoon detection: manhwa, manhua and webtoons open in long-strip mode unless you picked a mode.
+- Series pages take their accent colours from the cover (Settings > Appearance).
+- More like this: a Similar button on series pages lists AniList recommendations and searches your
+  sources for any of them.
+- Reader extras: hands-free auto-scroll, a reading progress orb, a small celebration when you finish a
+  chapter, and tap sparks across the app.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.
