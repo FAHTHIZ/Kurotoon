@@ -44,6 +44,8 @@ All notable changes to KuroToon are documented here. Versions follow
   to series that have all of them.
 - Tag menu on series pages: Search all sources, or Hide this tag in one tap.
 - Series pages show how many chapters you have read and how long you have spent on the series.
+- Daily reading goal in Statistics: a ring fills as you read today's chapters, and the reading reminder
+  keeps nudging until the goal is met.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.

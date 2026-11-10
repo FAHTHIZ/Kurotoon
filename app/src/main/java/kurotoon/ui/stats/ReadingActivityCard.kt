@@ -36,11 +36,17 @@ import tachiyomi.presentation.core.i18n.stringResource
  * in left to right the first time the card shows. Below it: chapters, active days and streaks.
  */
 @Composable
-fun ReadingActivityCard(activity: ReadingActivity, modifier: Modifier = Modifier) {
+fun ReadingActivityCard(
+    activity: ReadingActivity,
+    modifier: Modifier = Modifier,
+    goal: Int = 0,
+    onGoalChange: (Int) -> Unit = {},
+) {
     val reveal = remember { Animatable(0f) }
     LaunchedEffect(Unit) { reveal.animateTo(1f, tween(durationMillis = 700)) }
 
     Column(modifier = modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        DailyGoalRow(today = activity.today, goal = goal, onGoalChange = onGoalChange)
         BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
             val columns = activity.weeks.size.coerceAtLeast(1)
             val gap = 3.dp

@@ -20,10 +20,11 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.util.concurrent.TimeUnit
+import kotlin.time.Instant
 import kotlin.time.toJavaInstant
 
 /**
- * Fires once a day at the chosen hour. Stays quiet when something was already read today,
+ * Fires once a day at the chosen hour. Stays quiet once today's reading (or the daily goal) is done,
  * when there is nothing to continue, or while incognito mode is on.
  */
 class ReadingReminderWorker(context: Context, params: WorkerParameters) : CoroutineWorker(context, params) {
@@ -35,8 +36,15 @@ class ReadingReminderWorker(context: Context, params: WorkerParameters) : Corout
 
         val zone = ZoneId.systemDefault()
         val last = graph.historyRepository.getLastHistory() ?: return Result.success()
-        val readToday = last.readAt?.toJavaInstant()?.atZone(zone)?.toLocalDate() == LocalDate.now(zone)
-        if (readToday) return Result.success()
+        val goal = graph.kuroPreferences.dailyGoal.get()
+        val readToday = if (goal > 0) {
+            val midnight = LocalDate.now(zone).atStartOfDay(zone).toInstant()
+            graph.historyRepository.getReadActivity(Instant.fromEpochMilliseconds(midnight.toEpochMilli())).size
+        } else {
+            val lastDay = last.readAt?.toJavaInstant()?.atZone(zone)?.toLocalDate()
+            if (lastDay == LocalDate.now(zone)) 1 else 0
+        }
+        if (readToday >= goal.coerceAtLeast(1)) return Result.success()
 
         val next = graph.getNextChapters.await(onlyUnread = true).firstOrNull() ?: return Result.success()
 
@@ -65,7 +73,13 @@ class ReadingReminderWorker(context: Context, params: WorkerParameters) : Corout
                     context.stringResource(MR.strings.kurotoon_reminder_title)
                 },
             )
-            setContentText(context.stringResource(MR.strings.kurotoon_reminder_text, last.title, next.name))
+            setContentText(
+                if (goal > 0) {
+                    context.stringResource(MR.strings.kurotoon_reminder_goal, readToday, goal, last.title)
+                } else {
+                    context.stringResource(MR.strings.kurotoon_reminder_text, last.title, next.name)
+                },
+            )
             setContentIntent(pending)
             addAction(0, context.stringResource(MR.strings.kurotoon_reminder_continue), pending)
             setAutoCancel(true)

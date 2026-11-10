@@ -38,6 +38,7 @@ class ReadingActivityTest {
         activity.activeDays shouldBe 5
         activity.currentStreak shouldBe 3
         activity.longestStreak shouldBe 3
+        activity.today shouldBe 1
         activity.busiest shouldBe 2
     }
 

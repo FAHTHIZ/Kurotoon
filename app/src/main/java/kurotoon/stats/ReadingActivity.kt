@@ -20,6 +20,8 @@ data class ReadingActivity(
     val currentStreak: Int,
     val longestStreak: Int,
     val busiest: Int,
+    /** Chapters read so far today. */
+    val today: Int = 0,
 ) {
     companion object {
         const val WEEKS = 17
@@ -74,6 +76,7 @@ data class ReadingActivity(
                 currentStreak = current,
                 longestStreak = longest,
                 busiest = days.maxOfOrNull { it.chapters } ?: 0,
+                today = byDay[today]?.first ?: 0,
             )
         }
     }
