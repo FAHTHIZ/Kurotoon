@@ -36,13 +36,8 @@ class AppUpdateChecker(
     }
 }
 
-val GITHUB_REPO: String by lazy {
-    if (isNightlyBuildType) {
-        "mihonapp/mihon-preview"
-    } else {
-        "mihonapp/mihon"
-    }
-}
+// KuroToon publishes stable and preview builds from the same repository
+val GITHUB_REPO: String = "FAHTHIZ/Kurotoon"
 
 val RELEASE_TAG: String by lazy {
     if (isNightlyBuildType) {
