@@ -72,6 +72,7 @@ data object KuroHomeTab : Tab {
                             BrowseSourceViewModel.Listing.Popular.query
                         },
                         savedSearchId = row.savedSearch?.id,
+                        initialGenre = row.pickTag,
                     ),
                 )
             },

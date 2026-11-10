@@ -307,6 +307,8 @@ internal fun HomeSourceRow(
                 Icon(
                     if (row.savedSearch != null) {
                         MaterialSymbols.Rounded.Bookmark
+                    } else if (row.pickTag != null) {
+                        MaterialSymbols.Rounded.AutoAwesome
                     } else {
                         MaterialSymbols.Rounded.LocalFireDepartment
                     },
@@ -316,28 +318,33 @@ internal fun HomeSourceRow(
                 )
             }
             Text(
-                text = row.name,
+                text = row.pickTag?.let { stringResource(MR.strings.kurotoon_home_becauseYouRead, it) } ?: row.name,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
                     .padding(start = 8.dp)
-                    .weight(1f, fill = false),
+                    // "Because you read X" takes the whole line; See all names the source
+                    .weight(1f, fill = row.pickTag != null),
             )
-            Box(Modifier.weight(1f)) {
-                when {
-                    row.savedSearch != null -> Text(
-                        text = " · " + row.sourceName,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                    row.supportsLatest -> ListingToggle(latest = row.latest, onClick = onToggleLatest)
-                    else -> Text(
-                        text = " · " + stringResource(MR.strings.popular),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
+            if (row.pickTag == null) {
+                Box(Modifier.weight(1f)) {
+                    when {
+                        row.savedSearch != null -> Text(
+                            text = " · " + row.sourceName,
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                        )
+                        row.supportsLatest -> ListingToggle(latest = row.latest, onClick = onToggleLatest)
+                        else -> Text(
+                            text = " · " + stringResource(MR.strings.popular),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
                 }
             }
             Row(
