@@ -34,6 +34,7 @@ All notable changes to KuroToon are documented here. Versions follow
   screen.
 - Hidden tags (Settings > Browse): tags you never want to see are excluded from filtered searches and
   Home's saved-search rows, and titles listing them are dropped from results.
+- Popular / Latest switch on each Home source row, remembered per source.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.

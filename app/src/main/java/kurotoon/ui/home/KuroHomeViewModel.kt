@@ -33,6 +33,7 @@ import kurotoon.catalogue.SavedSearches
 import kurotoon.prefs.KuroPreferences
 import logcat.LogPriority
 import mihon.domain.manga.model.toDomainManga
+import tachiyomi.core.common.preference.getAndSet
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.chapter.model.Chapter
 import tachiyomi.domain.history.interactor.GetHistory
@@ -108,12 +109,31 @@ class KuroHomeViewModel(
 
     /** Fetches each source's popular list, like the web app's home rows. */
     private suspend fun loadRows(ids: List<Long>) = coroutineScope {
+        val latest = kuroPreferences.homeLatestSources.get()
         rows.value = ids.mapNotNull { id ->
-            sourceManager.get(id)?.let { SourceRow(it.id, it.name, items = null) }
+            sourceManager.get(id)?.let {
+                SourceRow(
+                    it.id,
+                    it.name,
+                    items = null,
+                    supportsLatest = it.supportsLatest,
+                    latest = it.supportsLatest && it.id.toString() in latest,
+                )
+            }
         }
         rows.value.forEach { row ->
             launch { loadRow(row) }
         }
+    }
+
+    /** Switches a source's Home row between popular titles and latest updates, and remembers it. */
+    fun toggleLatest(row: SourceRow) {
+        if (row.savedSearch != null || !row.supportsLatest) return
+        val updated = row.copy(latest = !row.latest)
+        val key = row.sourceId.toString()
+        kuroPreferences.homeLatestSources.getAndSet { if (updated.latest) it + key else it - key }
+        updateRow(row.key) { it.copy(latest = updated.latest) }
+        viewModelScope.launch { loadRow(updated) }
     }
 
     fun retry(row: SourceRow) {
@@ -131,6 +151,8 @@ class KuroHomeViewModel(
                     val filters = SavedSearches.restore(source.getFilterList(), search.filters)
                     HiddenTags.excludeIn(filters, hidden)
                     source.getSearchManga(1, search.query.orEmpty(), filters)
+                } else if (row.latest) {
+                    source.getLatestUpdates(1)
                 } else {
                     source.getPopularManga(1)
                 }
@@ -194,6 +216,9 @@ class KuroHomeViewModel(
         /** Set when the row shows a saved search instead of the source's popular list. */
         val savedSearch: SavedSearch? = null,
         val sourceName: String = name,
+        val supportsLatest: Boolean = false,
+        /** Shows latest updates instead of popular titles. */
+        val latest: Boolean = false,
     ) {
         val key: String get() = savedSearch?.let { "$SAVED_PREFIX${it.id}" } ?: "source-$sourceId"
     }

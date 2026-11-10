@@ -73,6 +73,26 @@ class KuroScreenshots {
     }
 
     @Test
+    fun homeRowHeaders() = shot("home_row_headers") {
+        androidx.compose.foundation.layout.Column {
+            listOf(false, true).forEach { latest ->
+                kurotoon.ui.home.HomeSourceRow(
+                    row = KuroHomeViewModel.SourceRow(
+                        sourceId = 1L,
+                        name = "Asura Scans",
+                        items = null,
+                        supportsLatest = true,
+                        latest = latest,
+                    ),
+                    onSeeAll = {},
+                    onMangaClick = {},
+                    onRetry = {},
+                )
+            }
+        }
+    }
+
+    @Test
     fun sourceFilter() = shot("source_filter") {
         androidx.compose.foundation.layout.Column {
             kurotoon.ui.browse.SourceFilterField(query = "", onQueryChange = {})
@@ -198,6 +218,8 @@ class KuroScreenshots {
                 sourceId = r.toLong(),
                 name = name,
                 items = (0 until 8).map { manga(r * 10L + it, titles[it % titles.size]) },
+                supportsLatest = true,
+                latest = r == 1,
             )
         }
         val history = (0 until 4).map {

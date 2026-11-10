@@ -66,12 +66,17 @@ data object KuroHomeTab : Tab {
                 navigator.push(
                     BrowseSourceScreen(
                         sourceId = row.sourceId,
-                        listingQuery = BrowseSourceViewModel.Listing.Popular.query,
+                        listingQuery = if (row.latest) {
+                            BrowseSourceViewModel.Listing.Latest.query
+                        } else {
+                            BrowseSourceViewModel.Listing.Popular.query
+                        },
                         savedSearchId = row.savedSearch?.id,
                     ),
                 )
             },
             onRetryRow = viewModel::retry,
+            onToggleLatest = viewModel::toggleLatest,
             onResumeClick = viewModel::resume,
             onExtensionsClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.Browse(toExtensions = true)) } },
             onHistoryClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.History) } },

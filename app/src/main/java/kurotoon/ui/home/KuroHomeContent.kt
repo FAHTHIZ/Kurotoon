@@ -61,6 +61,7 @@ fun KuroHomeContent(
     onBrowseMangaClick: (Manga) -> Unit,
     onRowClick: (KuroHomeViewModel.SourceRow) -> Unit,
     onRetryRow: (KuroHomeViewModel.SourceRow) -> Unit,
+    onToggleLatest: (KuroHomeViewModel.SourceRow) -> Unit = {},
     onResumeClick: (HistoryWithRelations) -> Unit,
     onExtensionsClick: () -> Unit,
     onHistoryClick: () -> Unit,
@@ -108,6 +109,7 @@ fun KuroHomeContent(
                     onSeeAll = { onRowClick(row) },
                     onMangaClick = onBrowseMangaClick,
                     onRetry = { onRetryRow(row) },
+                    onToggleLatest = { onToggleLatest(row) },
                 )
             }
         }
