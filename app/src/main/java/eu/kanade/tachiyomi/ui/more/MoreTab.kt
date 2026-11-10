@@ -40,9 +40,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kurotoon.prefs.KuroPreferences
-import kurotoon.ui.catalogue.ChapterReconciliationScreen
 import kurotoon.rewards.RewardsStore
 import kurotoon.shop.ShopKind
+import kurotoon.ui.catalogue.ChapterReconciliationScreen
 import kurotoon.ui.profile.ProfileLook
 import kurotoon.ui.profile.ProfileStats
 import kurotoon.ui.shop.KuroShopScreen
