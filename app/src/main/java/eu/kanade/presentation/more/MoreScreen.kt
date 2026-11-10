@@ -39,6 +39,7 @@ fun MoreScreen(
     onClickCategories: () -> Unit,
     onClickStats: () -> Unit,
     onClickDataAndStorage: () -> Unit,
+    onClickChapterReconciliation: () -> Unit,
     onClickSettings: () -> Unit,
     onClickAbout: () -> Unit,
     nickname: String,
@@ -122,6 +123,13 @@ fun MoreScreen(
                     title = stringResource(MR.strings.label_stats),
                     icon = MaterialSymbols.Rounded.QueryStats,
                     onPreferenceClick = onClickStats,
+                )
+            }
+            item {
+                TextPreferenceWidget(
+                    title = "Local chapter reconciliation",
+                    subtitle = "Merge and review chapter lists from files already on this device.",
+                    onPreferenceClick = onClickChapterReconciliation,
                 )
             }
             item {

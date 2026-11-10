@@ -39,6 +39,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kurotoon.prefs.KuroPreferences
+import kurotoon.ui.catalogue.ChapterReconciliationScreen
 import kurotoon.ui.profile.ProfileStats
 import logcat.LogPriority
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -85,6 +86,7 @@ data object MoreTab : Tab {
             onClickCategories = { navigator.push(CategoryScreen()) },
             onClickStats = { navigator.push(StatsScreen()) },
             onClickDataAndStorage = { navigator.push(SettingsScreen(SettingsScreen.Destination.DataAndStorage)) },
+            onClickChapterReconciliation = { navigator.push(ChapterReconciliationScreen()) },
             onClickSettings = { navigator.push(SettingsScreen()) },
             onClickAbout = { navigator.push(SettingsScreen(SettingsScreen.Destination.About)) },
             nickname = viewModel.nickname,
