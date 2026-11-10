@@ -1,13 +1,13 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { Home, LibraryBig, PawPrint, Bookmark, User } from "lucide-react";
+import { Home, LibraryBig, BellRing, Bookmark, User } from "lucide-react";
 import { motion } from "framer-motion";
 import { spring } from "@/lib/motion";
 
 const items = [
   { to: "/", icon: Home, label: "Home" },
   { to: "/browse", icon: LibraryBig, label: "Browse" },
-  { to: "/rewards", icon: PawPrint, label: "Rewards" },
   { to: "/library", icon: Bookmark, label: "Library" },
+  { to: "/updates", icon: BellRing, label: "Updates" },
   { to: "/profile", icon: User, label: "Me" },
 ] as const;
 

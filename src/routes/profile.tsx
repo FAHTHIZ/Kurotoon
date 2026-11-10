@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Bookmark, BookOpen, Flame, Gift, ShoppingBag, Compass, Boxes, Library, Pencil, ShieldCheck } from "lucide-react";
+import { BellRing, Bookmark, BookOpen, Flame, Gift, ShoppingBag, Compass, Boxes, Library, Pencil, ShieldCheck } from "lucide-react";
 import { KuroCoin } from "@/components/KuroBalance";
 import { Kuro } from "@/components/Kuro";
 import { getBookmarks, getContinueReading } from "@/lib/local-library";
@@ -24,6 +24,7 @@ export const Route = createFileRoute("/profile")({
 
 const LINKS = [
   { to: "/library", icon: Library, label: "Library", hint: "Your saved series and history" },
+  { to: "/updates", icon: BellRing, label: "Updates", hint: "New chapters from your library" },
   { to: "/extensions", icon: Boxes, label: "Extensions", hint: "Repositories, sources & content filters" },
   { to: "/search", icon: Compass, label: "Universal Search", hint: "Search every source at once" },
   { to: "/rewards", icon: Gift, label: "Rewards", hint: "Missions, achievements & collection" },
