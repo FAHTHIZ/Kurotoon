@@ -60,6 +60,7 @@ import androidx.core.content.getSystemService
 import androidx.core.net.toUri
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -111,6 +112,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kurotoon.reader.AutoScrollDriver
+import kurotoon.reader.AutoScrollState
 import logcat.LogPriority
 import mihon.app.di.AppGraph
 import mihon.core.metro.metroGraph
@@ -162,6 +165,8 @@ class ReaderActivity : BaseActivity() {
 
     var isScrollingThroughPages = false
         private set
+
+    private val autoScroll = AutoScrollState()
 
     /**
      * Called when the activity is created. Initializes the presenter and configuration.
@@ -216,6 +221,22 @@ class ReaderActivity : BaseActivity() {
             val focusRequester = remember { FocusRequester() }
             LaunchedEffect(Unit) { focusRequester.requestFocus() }
 
+            val autoScrollSpeed by readerPreferences.autoScrollSpeed.collectAsState()
+            val lifecycleState by lifecycle.currentStateFlow.collectAsState()
+            AutoScrollDriver(
+                state = autoScroll,
+                viewer = viewerFlow.collectAsState().value,
+                speed = autoScrollSpeed,
+                paused = state.menuVisible ||
+                    state.dialog != null ||
+                    state.isLoadingAdjacentChapter ||
+                    !lifecycleState.isAtLeast(Lifecycle.State.RESUMED),
+                onReachedEnd = {
+                    menuToggleToast?.cancel()
+                    menuToggleToast = toast(MR.strings.kurotoon_reader_autoScrollEnd)
+                },
+            )
+
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -227,9 +248,17 @@ class ReaderActivity : BaseActivity() {
                         awaitEachGesture {
                             awaitFirstDown(requireUnconsumed = false, pass = PointerEventPass.Initial)
                             navigationOverlayState.hide()
+                            autoScroll.holding = true
+                            try {
+                                do {
+                                    val event = awaitPointerEvent(PointerEventPass.Initial)
+                                } while (event.changes.any { it.pressed })
+                            } finally {
+                                autoScroll.holding = false
+                            }
                         }
                     }
-                    .then(if (general.keepScreenOn) Modifier.keepScreenOn() else Modifier),
+                    .then(if (general.keepScreenOn || autoScroll.enabled) Modifier.keepScreenOn() else Modifier),
             ) {
                 ReaderViewer()
 
@@ -610,7 +639,18 @@ class ReaderActivity : BaseActivity() {
                 menuToggleToast = toast(if (enabled) MR.strings.on else MR.strings.off)
             },
             onClickSettings = viewModel::openSettingsDialog,
+            autoScrolling = autoScroll.enabled,
+            onClickAutoScroll = ::toggleAutoScroll,
         )
+    }
+
+    private fun toggleAutoScroll() {
+        autoScroll.enabled = !autoScroll.enabled
+        menuToggleToast?.cancel()
+        if (autoScroll.enabled) {
+            menuToggleToast = toast(MR.strings.kurotoon_reader_autoScrollOn)
+            setMenuVisibility(false)
+        }
     }
 
     /**

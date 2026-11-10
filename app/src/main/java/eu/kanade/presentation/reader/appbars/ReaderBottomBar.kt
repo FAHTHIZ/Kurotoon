@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,7 +16,9 @@ import mihon.icons.custommaterialsymbols.CustomMaterialSymbols
 import mihon.icons.custommaterialsymbols.rounded.CropOff
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Crop
+import mihon.icons.materialsymbols.rounded.PlayArrow
 import mihon.icons.materialsymbols.rounded.Settings
+import mihon.icons.materialsymbols.roundedfilled.Pause
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -27,6 +31,8 @@ fun ReaderBottomBar(
     cropEnabled: Boolean,
     onClickCropBorder: () -> Unit,
     onClickSettings: () -> Unit,
+    autoScrolling: Boolean,
+    onClickAutoScroll: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -53,6 +59,18 @@ fun ReaderBottomBar(
             Icon(
                 imageVector = if (cropEnabled) MaterialSymbols.Rounded.Crop else CustomMaterialSymbols.Rounded.CropOff,
                 contentDescription = stringResource(MR.strings.pref_crop_borders),
+            )
+        }
+
+        IconButton(onClick = onClickAutoScroll) {
+            Icon(
+                imageVector = if (autoScrolling) {
+                    MaterialSymbols.RoundedFilled.Pause
+                } else {
+                    MaterialSymbols.Rounded.PlayArrow
+                },
+                contentDescription = stringResource(MR.strings.kurotoon_reader_autoScroll),
+                tint = if (autoScrolling) MaterialTheme.colorScheme.primary else LocalContentColor.current,
             )
         }
 

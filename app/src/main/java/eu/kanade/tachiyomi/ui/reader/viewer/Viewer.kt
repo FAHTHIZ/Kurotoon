@@ -45,6 +45,12 @@ interface Viewer {
      * Moves backward through the pages.
      */
     fun moveBackward()
+
+    /**
+     * Scrolls forward by [distance] pixels for continuous auto-scroll. Returns false when this viewer
+     * turns whole pages instead, or when there is nothing left to scroll to.
+     */
+    fun autoScrollBy(distance: Int): Boolean = false
 }
 
 /**
