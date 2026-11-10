@@ -47,6 +47,15 @@ internal fun ColumnScope.GeneralPage(viewModel: ReaderSettingsViewModel) {
     val flashColorPref = viewModel.preferences.flashColor
     val flashColor by flashColorPref.collectAsState()
 
+    val autoScrollSpeedPref = viewModel.preferences.autoScrollSpeed
+    val autoScrollSpeed by autoScrollSpeedPref.collectAsState()
+    SliderItem(
+        label = stringResource(MR.strings.kurotoon_reader_autoScrollSpeed),
+        value = autoScrollSpeed,
+        valueRange = 1..10,
+        onChange = { autoScrollSpeedPref.set(it) },
+    )
+
     SettingsChipRow(MR.strings.pref_reader_theme) {
         themes.map { (labelRes, value) ->
             FilterChip(

@@ -259,6 +259,13 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         }
     }
 
+    override fun autoScrollBy(distance: Int): Boolean {
+        if (!recycler.canScrollVertically(1)) return false
+        // Let a fling or a page-turn animation finish before gliding again
+        if (distance > 0 && recycler.scrollState == RecyclerView.SCROLL_STATE_IDLE) recycler.scrollBy(0, distance)
+        return true
+    }
+
     /**
      * Notifies adapter of changes around the current page to trigger a relayout in the recycler.
      * Used when an image configuration is changed.
