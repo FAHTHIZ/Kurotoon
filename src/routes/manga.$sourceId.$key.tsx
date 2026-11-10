@@ -1,7 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
-import { ArrowDownUp, ArrowLeft, Bookmark, BookmarkCheck, CheckCheck, ExternalLink, Heart, Lock, Play, RefreshCcw, Tags, Download } from "lucide-react";
+import {
+  ArrowDownUp,
+  ArrowLeft,
+  Bookmark,
+  BookmarkCheck,
+  CheckCheck,
+  ExternalLink,
+  Heart,
+  Lock,
+  Play,
+  RefreshCcw,
+  Tags,
+  Download,
+  Repeat,
+} from "lucide-react";
 import { toast } from "sonner";
 import { Cover } from "@/components/Cover";
 import { KuroTip } from "@/components/Kuro";
@@ -26,6 +40,7 @@ import { getCategories } from "@/lib/categories";
 import { enqueueDownloads } from "@/lib/downloads";
 import { DownloadButton } from "@/components/DownloadButton";
 import { CategoryPicker, Sheet } from "@/components/LibraryShelf";
+import { MigrateSheet } from "@/components/MigrateSheet";
 
 export const Route = createFileRoute("/manga/$sourceId/$key")({
   head: () => ({
@@ -68,14 +83,21 @@ function MangaPage() {
 
   const [saved, setSaved] = useState(false);
   const [pickCats, setPickCats] = useState(false);
+  const [migrate, setMigrate] = useState(false);
   const [fav, setFav] = useState(false);
   useEffect(() => {
     setSaved(isBookmarked(id));
     setFav(isFavourite(id));
   }, [id, tick]);
 
-  const progress = useMemo(() => (typeof window === "undefined" ? null : getProgress(id)), [id, tick]);
-  const readSet = useMemo(() => new Set(typeof window === "undefined" ? [] : getReadChapters(id)), [id, tick]);
+  const progress = useMemo(
+    () => (typeof window === "undefined" ? null : getProgress(id)),
+    [id, tick],
+  );
+  const readSet = useMemo(
+    () => new Set(typeof window === "undefined" ? [] : getReadChapters(id)),
+    [id, tick],
+  );
 
   const list = chapters.data ?? [];
   const ordered = asc ? [...list].reverse() : list;
@@ -84,15 +106,40 @@ function MangaPage() {
   const firstUnread = [...list].reverse().find((c) => !readSet.has(c.key) && !c.locked) ?? null;
   const start = resume ?? firstUnread ?? list[list.length - 1] ?? null;
 
-  const readParams = (c: ChapterRow) => ({ sourceId, mangaKey: encoded, chapterKey: encodeKey(c.key) });
+  const readParams = (c: ChapterRow) => ({
+    sourceId,
+    mangaKey: encoded,
+    chapterKey: encodeKey(c.key),
+  });
 
   if (engine.ready && !meta) {
     return (
       <div className="space-y-3">
         <KuroTip mood="sleepy">The source for this series isn't installed on this device.</KuroTip>
-        <Link to="/extensions" className="inline-block rounded-full bg-primary px-4 py-2 text-xs font-bold text-primary-foreground">
-          Open Extensions
-        </Link>
+        <div className="flex flex-wrap gap-2">
+          <Link
+            to="/extensions"
+            className="inline-block rounded-full bg-primary px-4 py-2 text-xs font-bold text-primary-foreground"
+          >
+            Open Extensions
+          </Link>
+          {seen && (
+            <button
+              onClick={() => setMigrate(true)}
+              className="inline-flex items-center gap-1.5 rounded-full bg-[color:var(--surface)] px-4 py-2 text-xs font-bold ring-1 ring-border"
+            >
+              <Repeat className="h-3.5 w-3.5" /> Migrate to another source
+            </button>
+          )}
+        </div>
+        {seen && (
+          <MigrateSheet
+            open={migrate}
+            onClose={() => setMigrate(false)}
+            from={seen}
+            fromChapters={[]}
+          />
+        )}
       </div>
     );
   }
@@ -102,6 +149,14 @@ function MangaPage() {
       <Sheet open={pickCats} onClose={() => setPickCats(false)} title="Categories">
         <CategoryPicker seriesId={id} onClose={() => setPickCats(false)} />
       </Sheet>
+      {card && (
+        <MigrateSheet
+          open={migrate}
+          onClose={() => setMigrate(false)}
+          from={card}
+          fromChapters={list}
+        />
+      )}
       <div className="relative -mx-3 overflow-hidden md:-mx-6 md:rounded-3xl">
         <div className="absolute inset-0 -z-10">
           {card && (
@@ -127,7 +182,11 @@ function MangaPage() {
             transition={spring.surface}
             className="relative h-44 w-32 shrink-0 overflow-hidden rounded-xl ring-1 ring-border shadow-[var(--shadow-depth-3)] md:h-64 md:w-44"
           >
-            {card ? <Cover sourceId={sourceId} url={card.cover} alt={card.title} eager /> : <span className="kt-shimmer absolute inset-0" />}
+            {card ? (
+              <Cover sourceId={sourceId} url={card.cover} alt={card.title} eager />
+            ) : (
+              <span className="kt-shimmer absolute inset-0" />
+            )}
           </motion.div>
           <div className="flex min-w-0 flex-col justify-end">
             {card ? (
@@ -135,13 +194,23 @@ function MangaPage() {
             ) : (
               <div className="kt-shimmer h-6 w-48 rounded" />
             )}
-            {card && card.authors.length > 0 && <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">{card.authors.join(", ")}</p>}
+            {card && card.authors.length > 0 && (
+              <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">
+                {card.authors.join(", ")}
+              </p>
+            )}
             <div className="mt-2 flex flex-wrap items-center gap-2 text-[11px]">
               {card?.status != null && card.status > 0 && (
-                <span className="rounded-full bg-[color:var(--surface)] px-2 py-0.5">{STATUS_LABEL[card.status]}</span>
+                <span className="rounded-full bg-[color:var(--surface)] px-2 py-0.5">
+                  {STATUS_LABEL[card.status]}
+                </span>
               )}
               {meta && (
-                <Link to="/source/$sourceId" params={{ sourceId }} className="rounded-full bg-primary/15 px-2 py-0.5 font-semibold text-primary ring-1 ring-primary/25">
+                <Link
+                  to="/source/$sourceId"
+                  params={{ sourceId }}
+                  className="rounded-full bg-primary/15 px-2 py-0.5 font-semibold text-primary ring-1 ring-primary/25"
+                >
                   {meta.name}
                 </Link>
               )}
@@ -155,74 +224,104 @@ function MangaPage() {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        {start && (
-          <Link to="/read/$sourceId/$mangaKey/$chapterKey" params={readParams(start)}>
-            <motion.span
-              whileTap={{ scale: 0.95 }}
-              transition={spring.tap}
-              className="inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-accent)] px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)]"
+      <div className="space-y-2">
+        <div className="flex gap-2">
+          {start && (
+            <Link
+              to="/read/$sourceId/$mangaKey/$chapterKey"
+              params={readParams(start)}
+              className="min-w-0 flex-1"
             >
-              <Play className="h-4 w-4" />
-              {resume ? `Continue ${chapterLabel(resume)}` : `Start ${chapterLabel(start)}`}
-            </motion.span>
-          </Link>
-        )}
-        <motion.button
-          whileTap={{ scale: 0.95 }}
-          transition={spring.tap}
-          disabled={!card}
-          onClick={() => {
-            if (!card) return;
-            const now = toggleBookmark(card);
-            setSaved(now);
-            if (now && chapters.data) seedKnownChapters(id, chapters.data.map((c) => c.key));
-            if (now && getCategories().length) setPickCats(true);
-            toast.success(now ? "Added to library" : "Removed from library");
-          }}
-          className="inline-flex items-center gap-2 rounded-full bg-[color:var(--surface)] px-4 py-2.5 text-sm font-semibold ring-1 ring-border"
-        >
-          {saved ? <BookmarkCheck className="h-4 w-4 text-primary" /> : <Bookmark className="h-4 w-4" />}
-          {saved ? "In library" : "Add to library"}
-        </motion.button>
-        {saved && (
+              <motion.span
+                whileTap={{ scale: 0.95 }}
+                transition={spring.tap}
+                className="flex w-full items-center justify-center gap-2 truncate rounded-full bg-[image:var(--gradient-accent)] px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)]"
+              >
+                <Play className="h-4 w-4 shrink-0" />
+                {resume ? `Continue ${chapterLabel(resume)}` : `Start ${chapterLabel(start)}`}
+              </motion.span>
+            </Link>
+          )}
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            transition={spring.tap}
+            disabled={!card}
+            onClick={() => {
+              if (!card) return;
+              const now = toggleBookmark(card);
+              setSaved(now);
+              if (now && chapters.data)
+                seedKnownChapters(
+                  id,
+                  chapters.data.map((c) => c.key),
+                );
+              if (now && getCategories().length) setPickCats(true);
+              toast.success(now ? "Added to library" : "Removed from library");
+            }}
+            className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-[color:var(--surface)] px-4 py-2.5 text-sm font-semibold ring-1 ring-border"
+          >
+            {saved ? (
+              <BookmarkCheck className="h-4 w-4 text-primary" />
+            ) : (
+              <Bookmark className="h-4 w-4" />
+            )}
+            {saved ? "In library" : "Add to library"}
+          </motion.button>
+        </div>
+        <div className="flex gap-2">
+          {saved && (
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              transition={spring.tap}
+              onClick={() => setPickCats(true)}
+              aria-label="Set categories"
+              className="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--surface)] ring-1 ring-border"
+            >
+              <Tags className="h-4 w-4" />
+            </motion.button>
+          )}
+          <motion.button
+            whileTap={{ scale: 0.85 }}
+            transition={spring.tap}
+            disabled={!card}
+            aria-label={fav ? "Remove favourite" : "Favourite"}
+            onClick={() => card && setFav(toggleFavourite(card))}
+            className="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--surface)] ring-1 ring-border"
+          >
+            <Heart className={`h-4 w-4 ${fav ? "fill-rose-400 text-rose-400" : ""}`} />
+          </motion.button>
           <motion.button
             whileTap={{ scale: 0.9 }}
             transition={spring.tap}
-            onClick={() => setPickCats(true)}
-            aria-label="Set categories"
+            disabled={!card}
+            aria-label="Migrate"
+            title="Migrate to another source"
+            onClick={() => setMigrate(true)}
             className="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--surface)] ring-1 ring-border"
           >
-            <Tags className="h-4 w-4" />
+            <Repeat className="h-4 w-4" />
           </motion.button>
-        )}
-        <motion.button
-          whileTap={{ scale: 0.85 }}
-          transition={spring.tap}
-          disabled={!card}
-          aria-label={fav ? "Remove favourite" : "Favourite"}
-          onClick={() => card && setFav(toggleFavourite(card))}
-          className="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--surface)] ring-1 ring-border"
-        >
-          <Heart className={`h-4 w-4 ${fav ? "fill-rose-400 text-rose-400" : ""}`} />
-        </motion.button>
-        {details.data?.url && (
-          <a
-            href={details.data.url}
-            target="_blank"
-            rel="noreferrer noopener"
-            aria-label="Open on website"
-            className="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--surface)] ring-1 ring-border"
-          >
-            <ExternalLink className="h-4 w-4" />
-          </a>
-        )}
+          {details.data?.url && (
+            <a
+              href={details.data.url}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Open on website"
+              className="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--surface)] ring-1 ring-border"
+            >
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          )}
+        </div>
       </div>
 
       {card && card.tags.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
           {card.tags.map((g) => (
-            <span key={g} className="rounded-full bg-[color:var(--surface)] px-2.5 py-0.5 text-[11px] text-muted-foreground ring-1 ring-border">
+            <span
+              key={g}
+              className="rounded-full bg-[color:var(--surface)] px-2.5 py-0.5 text-[11px] text-muted-foreground ring-1 ring-border"
+            >
               {g}
             </span>
           ))}
@@ -237,12 +336,16 @@ function MangaPage() {
         </div>
       ) : details.data?.description ? (
         <button onClick={() => setDesc((d) => !d)} className="block w-full text-left">
-          <p className={`whitespace-pre-line text-sm leading-relaxed text-muted-foreground ${desc ? "" : "line-clamp-4"}`}>
+          <p
+            className={`whitespace-pre-line text-sm leading-relaxed text-muted-foreground ${desc ? "" : "line-clamp-4"}`}
+          >
             {details.data.description}
           </p>
         </button>
       ) : details.error ? (
-        <p className="text-xs text-destructive">Details failed: {details.error instanceof Error ? details.error.message : "error"}</p>
+        <p className="text-xs text-destructive">
+          Details failed: {details.error instanceof Error ? details.error.message : "error"}
+        </p>
       ) : null}
 
       <section>
@@ -254,9 +357,16 @@ function MangaPage() {
             <button
               onClick={() => {
                 if (!card) return;
-                const unread = [...list].reverse().filter((c) => !readSet.has(c.key) && !c.locked).slice(0, 5);
+                const unread = [...list]
+                  .reverse()
+                  .filter((c) => !readSet.has(c.key) && !c.locked)
+                  .slice(0, 5);
                 const n = enqueueDownloads(card, unread);
-                toast.success(n ? `Downloading ${n} chapter${n === 1 ? "" : "s"}` : "Next unread chapters are already downloaded");
+                toast.success(
+                  n
+                    ? `Downloading ${n} chapter${n === 1 ? "" : "s"}`
+                    : "Next unread chapters are already downloaded",
+                );
               }}
               disabled={!card || !list.length}
               aria-label="Download next 5 unread"
@@ -289,17 +399,23 @@ function MangaPage() {
           </div>
         ) : chapters.error ? (
           <div className="kt-card rounded-xl p-4 text-center text-xs text-muted-foreground">
-            Chapters failed to load: {chapters.error instanceof Error ? chapters.error.message : "error"}
+            Chapters failed to load:{" "}
+            {chapters.error instanceof Error ? chapters.error.message : "error"}
           </div>
         ) : list.length === 0 ? (
-          <p className="kt-card rounded-xl p-6 text-center text-sm text-muted-foreground">No chapters available from this source.</p>
+          <p className="kt-card rounded-xl p-6 text-center text-sm text-muted-foreground">
+            No chapters available from this source.
+          </p>
         ) : (
           <ul className="overflow-hidden rounded-xl ring-1 ring-border">
             {ordered.map((c) => {
               const isRead = readSet.has(c.key);
               const isCurrent = progress?.chapterKey === c.key;
               return (
-                <li key={c.key} className="flex items-center border-b border-border bg-[color:var(--surface)] last:border-b-0">
+                <li
+                  key={c.key}
+                  className="flex items-center border-b border-border bg-[color:var(--surface)] last:border-b-0"
+                >
                   <Link
                     to="/read/$sourceId/$mangaKey/$chapterKey"
                     params={readParams(c)}
@@ -309,12 +425,26 @@ function MangaPage() {
                     <div className="min-w-0 flex-1">
                       <p className="flex items-center gap-1.5 font-semibold">
                         {c.locked && <Lock className="h-3.5 w-3.5 text-amber-400" />}
-                        {chapterLabel(c)}
-                        {c.number != null && c.title ? <span className="truncate font-normal text-muted-foreground">— {c.title}</span> : null}
-                        {isCurrent && <span className="rounded-full bg-primary/15 px-1.5 text-[10px] font-bold text-primary">p.{progress!.page}</span>}
+                        <span className="shrink-0 whitespace-nowrap">{chapterLabel(c)}</span>
+                        {c.number != null && c.title && cleanTitle(c.title) ? (
+                          <span className="truncate font-normal text-muted-foreground">
+                            — {cleanTitle(c.title)}
+                          </span>
+                        ) : null}
+                        {isCurrent && (
+                          <span className="rounded-full bg-primary/15 px-1.5 text-[10px] font-bold text-primary">
+                            p.{progress!.page}
+                          </span>
+                        )}
                       </p>
                       <p className="truncate text-[11px] text-muted-foreground">
-                        {[c.scanlator, c.date ? new Date(c.date * (c.date < 1e12 ? 1000 : 1)).toLocaleDateString() : null, c.lang?.toUpperCase()]
+                        {[
+                          c.scanlator,
+                          c.date
+                            ? new Date(c.date * (c.date < 1e12 ? 1000 : 1)).toLocaleDateString()
+                            : null,
+                          c.lang?.toUpperCase(),
+                        ]
                           .filter(Boolean)
                           .join(" · ")}
                       </p>
@@ -336,4 +466,12 @@ function MangaPage() {
       </section>
     </article>
   );
+}
+
+/** "Chapter 12: Foo" → "Foo" (the number is already shown). */
+function cleanTitle(t: string): string {
+  return t
+    .replace(/^\s*(?:ch(?:apter)?\.?|episode|ep\.?)\s*[\d.]+\s*/i, "")
+    .replace(/^[\s:\-–—|]+/, "")
+    .trim();
 }

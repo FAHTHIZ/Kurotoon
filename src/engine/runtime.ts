@@ -146,7 +146,7 @@ export function toCard(sourceId: string, m: Manga): SeriesCard {
   return {
     sourceId,
     key: m.key,
-    title: (m.title ?? "").trim() || "Untitled",
+    title: decodeEntities((m.title ?? "").trim()) || "Untitled",
     cover: m.cover ?? null,
     authors: m.authors ?? [],
     tags: m.tags ?? [],
@@ -158,7 +158,7 @@ export function toCard(sourceId: string, m: Manga): SeriesCard {
 export function toDetail(sourceId: string, m: Manga): SeriesDetail {
   return {
     ...toCard(sourceId, m),
-    description: (m.description ?? "").trim(),
+    description: decodeEntities((m.description ?? "").trim()),
     artists: m.artists ?? [],
     url: m.url ?? null,
     viewer: typeof m.viewer === "number" ? m.viewer : null,
@@ -168,7 +168,7 @@ export function toDetail(sourceId: string, m: Manga): SeriesDetail {
 export function toChapterRow(c: Chapter): ChapterRow {
   return {
     key: c.key,
-    title: c.title?.trim() || null,
+    title: decodeEntities(c.title?.trim() ?? "") || null,
     number: typeof c.chapterNumber === "number" && c.chapterNumber >= 0 ? c.chapterNumber : null,
     volume: typeof c.volumeNumber === "number" && c.volumeNumber >= 0 ? c.volumeNumber : null,
     scanlator: c.scanlator?.trim() || null,
@@ -308,4 +308,17 @@ export function coverFallback(sourceId: string, url: string | null): string | nu
   const meta = getEngineState().installed.find((s) => s.id === sourceId);
   const headers: Record<string, string> = meta?.baseUrl ? { Referer: `${meta.baseUrl.replace(/\/$/, "")}/` } : {};
   return relayUrl(url, headers);
+}
+
+const ENTITIES: Record<string, string> = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: "\u00a0", "#39": "'" };
+/** Some sources leave HTML entities in text fields ("&quot;Pirate King&quot;"). */
+export function decodeEntities(s: string): string {
+  if (!s.includes("&")) return s;
+  return s.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (m, e: string) => {
+    if (e[0] === "#") {
+      const n = e[1] === "x" || e[1] === "X" ? parseInt(e.slice(2), 16) : parseInt(e.slice(1), 10);
+      return Number.isFinite(n) && n > 0 && n < 0x110000 ? String.fromCodePoint(n) : m;
+    }
+    return ENTITIES[e.toLowerCase()] ?? m;
+  });
 }
