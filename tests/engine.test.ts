@@ -70,3 +70,25 @@ describe("updates diff", async () => {
     expect(diffChapters(["a", "b"], ["c", "b", "a"])).toEqual({ fresh: ["c"], known: ["a", "b", "c"] });
   });
 });
+
+describe("library arrangement", async () => {
+  const c = await import("@/lib/categories");
+  const mk = (key: string, title: string) => ({ sourceId: "s", key, title, cover: null, authors: [], tags: [], status: null, contentRating: 0 as const });
+  test("categories, default bucket and sort", () => {
+    localStorage.clear();
+    const items = [mk("3", "Charlie"), mk("2", "alpha"), mk("1", "Bravo")];
+    expect(c.addCategory("Reading")).toBe(true);
+    expect(c.addCategory("reading")).toBe(false);
+    expect(c.addCategory("Default")).toBe(false);
+    c.setSeriesCategories("s::2", ["Reading"]);
+    const v = { ...c.DEFAULT_VIEW };
+    expect(c.arrangeLibrary(items, v).map((s) => s.key)).toEqual(["3", "2", "1"]);
+    expect(c.arrangeLibrary(items, { ...v, category: "Reading" }).map((s) => s.key)).toEqual(["2"]);
+    expect(c.arrangeLibrary(items, { ...v, category: "__default" }).map((s) => s.key)).toEqual(["3", "1"]);
+    expect(c.arrangeLibrary(items, { ...v, sort: "title", desc: false }).map((s) => s.title)).toEqual(["alpha", "Bravo", "Charlie"]);
+    c.renameCategory("Reading", "Now");
+    expect(c.getSeriesCategories("s::2")).toEqual(["Now"]);
+    c.deleteCategory("Now");
+    expect(c.getSeriesCategories("s::2")).toEqual([]);
+  });
+});
