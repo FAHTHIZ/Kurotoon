@@ -108,8 +108,19 @@ class TagEverywhereViewModel(
         fun create(tag: String): TagEverywhereViewModel
     }
 
-    private companion object {
-        const val PARALLEL = 4
-        const val ROW_LIMIT = 18
+    companion object {
+        private const val PARALLEL = 4
+
+        /** Sources with titles first, then ones still loading, then failures, then empty ones. */
+        fun ordered(rows: List<SourceRow>): List<SourceRow> = rows.sortedBy { row ->
+            when {
+                !row.items.isNullOrEmpty() -> 0
+                row.items == null && !row.failed -> 1
+                row.failed -> 2
+                else -> 3
+            }
+        }
+
+        private const val ROW_LIMIT = 18
     }
 }

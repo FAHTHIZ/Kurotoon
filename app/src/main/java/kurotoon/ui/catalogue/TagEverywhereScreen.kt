@@ -73,8 +73,9 @@ class TagEverywhereScreen(private val tag: String) : Screen() {
                     ),
                     verticalArrangement = Arrangement.spacedBy(20.dp),
                 ) {
-                    items(current, key = { it.key }) { row ->
+                    items(TagEverywhereViewModel.ordered(current), key = { it.key }) { row ->
                         HomeSourceRow(
+                            modifier = Modifier.animateItem(),
                             row = row,
                             onSeeAll = {
                                 navigator.push(
