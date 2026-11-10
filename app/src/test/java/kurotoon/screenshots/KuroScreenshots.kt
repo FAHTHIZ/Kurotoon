@@ -133,6 +133,25 @@ class KuroScreenshots {
     }
 
     @Test
+    fun homeSavedFeed() = shot("home_saved_feed") {
+        kurotoon.ui.home.HomeSourceRow(
+            row = KuroHomeViewModel.SourceRow(
+                sourceId = 1L,
+                name = "Murim regression",
+                items = (0..3).map { i ->
+                    tachiyomi.domain.manga.model.Manga.create().copy(id = i.toLong(), url = "/$i", title = "Title $i")
+                },
+                savedSearch = kurotoon.catalogue.SavedSearch(id = 1L, sourceId = 1L, name = "Murim regression"),
+                sourceName = "Asura Scans",
+                freshUrls = setOf("/0", "/2"),
+            ),
+            onSeeAll = {},
+            onMangaClick = {},
+            onRetry = {},
+        )
+    }
+
+    @Test
     fun homePickRow() = shot("home_pick_row") {
         kurotoon.ui.home.HomeSourceRow(
             row = KuroHomeViewModel.SourceRow(

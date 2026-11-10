@@ -34,6 +34,7 @@ import kurotoon.catalogue.CatalogFacets
 import kurotoon.catalogue.HiddenTags
 import kurotoon.catalogue.SavedSearch
 import kurotoon.catalogue.SavedSearches
+import kurotoon.catalogue.SearchFeed
 import kurotoon.library.BingeList
 import kurotoon.library.LibraryTags
 import kurotoon.prefs.KuroPreferences
@@ -245,7 +246,17 @@ class KuroHomeViewModel(
                 .take(ROW_LIMIT)
         }
         result.exceptionOrNull()?.let { logcat(LogPriority.WARN, it) { "Home row failed for ${source.name}" } }
-        updateRow(row.key) { it.copy(items = result.getOrNull(), failed = result.isFailure) }
+        val fresh = search?.let { saved -> result.getOrNull()?.let { markSeen(saved, it) } }.orEmpty()
+        updateRow(row.key) { it.copy(items = result.getOrNull(), failed = result.isFailure, freshUrls = fresh) }
+    }
+
+    /** Remembers what a saved search showed and returns the urls it didn't show last time. */
+    private fun markSeen(search: SavedSearch, items: List<Manga>): Set<String> {
+        val pref = kuroPreferences.savedSearchSeen(search.id)
+        val seen = SearchFeed.decode(pref.get())
+        val urls = items.map { it.url }
+        pref.set(SearchFeed.encode(SearchFeed.remember(seen, urls)))
+        return SearchFeed.fresh(seen, urls)
     }
 
     private fun updateRow(key: String, block: (SourceRow) -> SourceRow) {
@@ -313,6 +324,8 @@ class KuroHomeViewModel(
         val latest: Boolean = false,
         /** Set when the row shows titles with a tag the user reads a lot. */
         val pickTag: String? = null,
+        /** Urls of saved-search results that weren't there last time. */
+        val freshUrls: Set<String> = emptySet(),
     ) {
         val key: String
             get() = savedSearch?.let { "$SAVED_PREFIX${it.id}" }
