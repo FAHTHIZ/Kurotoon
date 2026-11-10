@@ -25,6 +25,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kurotoon.prefs.KuroPreferences
 import logcat.LogPriority
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.source.model.Pin
@@ -39,6 +40,7 @@ class SourcesViewModel(
     private val getEnabledSources: GetEnabledSources,
     private val toggleSource: ToggleSource,
     private val toggleSourcePin: ToggleSourcePin,
+    private val kuroPreferences: KuroPreferences,
 ) : ViewModel() {
 
     private val _events = Channel<Event>(Int.MAX_VALUE)
@@ -57,13 +59,15 @@ class SourcesViewModel(
         enabledSources,
         dialog,
         query,
-    ) { sources, dialog, query ->
+        kuroPreferences.recentSearches.changes(),
+    ) { sources, dialog, query, recent ->
         State(
             dialog = dialog,
             isLoading = false,
             items = toSourceUiModels(sources.filter { it.matches(query) }),
             sourceCount = sources.size,
             query = query,
+            recentSearches = recent,
         )
     }
         .flowOn(Dispatchers.IO)
@@ -108,6 +112,10 @@ class SourcesViewModel(
         toggleSourcePin.await(source)
     }
 
+    fun clearRecentSearches() {
+        kuroPreferences.recentSearches.delete()
+    }
+
     fun setQuery(query: String) {
         this.query.value = query
     }
@@ -134,6 +142,7 @@ class SourcesViewModel(
         /** Installed sources before [query] narrows them. */
         val sourceCount: Int = items.count { it is SourceUiModel.Item },
         val query: String = "",
+        val recentSearches: List<String> = emptyList(),
     ) {
         val isEmpty = sourceCount == 0
         val showFilter = query.isNotEmpty() || sourceCount >= FILTER_THRESHOLD

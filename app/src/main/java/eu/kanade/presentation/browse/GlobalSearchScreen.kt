@@ -1,10 +1,12 @@
 package eu.kanade.presentation.browse
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.browse.components.GlobalSearchCardRow
 import eu.kanade.presentation.browse.components.GlobalSearchErrorResultItem
 import eu.kanade.presentation.browse.components.GlobalSearchLoadingResultItem
@@ -15,6 +17,7 @@ import eu.kanade.tachiyomi.ui.browse.source.globalsearch.SearchItemResult
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.SearchViewModel
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.SourceFilter
 import eu.kanade.tachiyomi.util.system.LocaleHelper
+import kurotoon.ui.browse.RecentSearchRow
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.presentation.core.components.material.Scaffold
 
@@ -30,6 +33,9 @@ fun GlobalSearchScreen(
     onClickSource: (Source) -> Unit,
     onClickItem: (Manga) -> Unit,
     onLongClickItem: (Manga) -> Unit,
+    recentSearches: List<String> = emptyList(),
+    onRecentSearch: (String) -> Unit = {},
+    onClearRecentSearches: () -> Unit = {},
 ) {
     Scaffold(
         topBar = { scrollBehavior ->
@@ -49,6 +55,16 @@ fun GlobalSearchScreen(
             )
         },
     ) { paddingValues ->
+        if (state.items.isEmpty() && recentSearches.isNotEmpty()) {
+            RecentSearchRow(
+                recent = recentSearches,
+                onSearch = onRecentSearch,
+                onClear = onClearRecentSearches,
+                modifier = Modifier.padding(paddingValues).padding(top = 8.dp),
+                contentPadding = PaddingValues(horizontal = 16.dp),
+            )
+            return@Scaffold
+        }
         GlobalSearchContent(
             items = state.filteredItems,
             contentPadding = paddingValues,

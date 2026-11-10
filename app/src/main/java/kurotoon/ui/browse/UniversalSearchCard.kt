@@ -42,6 +42,8 @@ import tachiyomi.presentation.core.i18n.stringResource
 fun UniversalSearchCard(
     onSearch: (String) -> Unit,
     modifier: Modifier = Modifier,
+    recent: List<String> = emptyList(),
+    onClearRecent: () -> Unit = {},
 ) {
     var query by rememberSaveable { mutableStateOf("") }
     val primary = MaterialTheme.colorScheme.primary
@@ -113,5 +115,11 @@ fun UniversalSearchCard(
                 )
             }
         }
+        RecentSearchRow(
+            recent = recent,
+            onSearch = onSearch,
+            onClear = onClearRecent,
+            modifier = Modifier.padding(top = 4.dp),
+        )
     }
 }

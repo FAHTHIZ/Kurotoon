@@ -30,6 +30,7 @@ class GlobalSearchScreen(
                 create(initialQuery = searchQuery, initialExtensionFilter = extensionFilter)
             }
         val state by viewModel.state.collectAsState()
+        val recent by viewModel.recentSearches.collectAsState(emptyList())
         var showSingleLoadingScreen by remember {
             mutableStateOf(searchQuery.isNotEmpty() && !extensionFilter.isNullOrEmpty() && state.total == 1)
         }
@@ -66,6 +67,9 @@ class GlobalSearchScreen(
                 },
                 onClickItem = { navigator.push(MangaScreen(it.id, true)) },
                 onLongClickItem = { navigator.push(MangaScreen(it.id, true)) },
+                recentSearches = recent,
+                onRecentSearch = viewModel::searchRecent,
+                onClearRecentSearches = viewModel::clearRecentSearches,
             )
         }
     }

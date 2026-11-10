@@ -30,6 +30,8 @@ All notable changes to KuroToon are documented here. Versions follow
   whether it shows on Home.
 - Home rows for saved searches: each pinned search loads as its own row, and See all opens that search.
 - Find a source: once you have a handful of sources, type to narrow the list by name or language.
+- Recent searches: your last Universal Search queries show as one-tap pills in Browse and on the search
+  screen.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.

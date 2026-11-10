@@ -1223,4 +1223,6 @@
     <string name="kurotoon.browse.showOnHomeSummary">Get a row of fresh results every time you open Home</string>
     <string name="kurotoon.browse.filterSources">Find a source</string>
     <string name="kurotoon.browse.noSourceMatch">No sources match “%s”</string>
+    <string name="kurotoon.browse.recentSearches">Recent searches</string>
+    <string name="kurotoon.browse.clearRecent">Clear</string>
 </resources>
