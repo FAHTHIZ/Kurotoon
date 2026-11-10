@@ -25,6 +25,7 @@ import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toJavaLocalDateTime
 import kotlinx.datetime.toLocalDateTime
+import kurotoon.ui.home.HomeSection
 import mihon.app.di.appGraph
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
@@ -166,6 +167,21 @@ object SettingsAppearanceScreen : SearchableSettings {
                 Preference.PreferenceItem.SwitchPreference(
                     preference = uiPreferences.imagesInDescription,
                     title = stringResource(MR.strings.pref_display_images_description),
+                ),
+                Preference.PreferenceItem.MultiSelectListPreference(
+                    preference = context.appGraph.kuroPreferences.homeHiddenSections,
+                    entries = mapOf(
+                        HomeSection.HERO.key to stringResource(MR.strings.kurotoon_section_hero),
+                        HomeSection.SHORTCUTS.key to stringResource(MR.strings.kurotoon_section_shortcuts),
+                        HomeSection.CONTINUE.key to stringResource(MR.strings.kurotoon_home_continueReading),
+                        HomeSection.NEW_CHAPTERS.key to stringResource(MR.strings.kurotoon_home_newChapters),
+                        HomeSection.STALLED.key to stringResource(MR.strings.kurotoon_home_stalled),
+                        HomeSection.BINGE.key to stringResource(MR.strings.kurotoon_home_binge),
+                        HomeSection.PICKS.key to stringResource(MR.strings.kurotoon_section_picks),
+                        HomeSection.SAVED.key to stringResource(MR.strings.kurotoon_section_saved),
+                        HomeSection.SOURCES.key to stringResource(MR.strings.kurotoon_section_sources),
+                    ),
+                    title = stringResource(MR.strings.kurotoon_settings_homeHidden),
                 ),
                 Preference.PreferenceItem.SwitchPreference(
                     preference = context.appGraph.kuroPreferences.particles,

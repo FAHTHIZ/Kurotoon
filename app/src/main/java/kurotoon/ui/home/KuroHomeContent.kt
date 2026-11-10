@@ -68,7 +68,10 @@ fun KuroHomeContent(
     onHistoryClick: () -> Unit,
     onDownloadsClick: () -> Unit,
     onStatsClick: () -> Unit,
+    /** Keys of [HomeSection]s switched off. */
+    hidden: Set<String> = emptySet(),
 ) {
+    fun shown(section: HomeSection) = section.key !in hidden
     Scaffold(
         topBar = { KuroTopBar(onSearchClick = onSearchClick) },
         snackbarHost = { SnackbarHost(snackbarHostState) },
@@ -84,38 +87,45 @@ fun KuroHomeContent(
             if (!state.isLoading && !state.hasSources) {
                 item(key = "welcome") { Welcome(onAddSourcesClick) }
             }
-            if (state.heroes.isNotEmpty()) {
+            if (shown(HomeSection.HERO) && state.heroes.isNotEmpty()) {
                 item(key = "hero") {
                     HomeHeroCarousel(heroes = state.heroes, onClick = onBrowseMangaClick)
                 }
             }
-            item(key = "shortcuts") {
-                Shortcuts(
-                    onExtensionsClick = onExtensionsClick,
-                    onHistoryClick = onHistoryClick,
-                    onDownloadsClick = onDownloadsClick,
-                    onStatsClick = onStatsClick,
-                )
+            if (shown(HomeSection.SHORTCUTS)) {
+                item(key = "shortcuts") {
+                    Shortcuts(
+                        onExtensionsClick = onExtensionsClick,
+                        onHistoryClick = onHistoryClick,
+                        onDownloadsClick = onDownloadsClick,
+                        onStatsClick = onStatsClick,
+                    )
+                }
             }
-            item(key = "continue") {
-                ContinueReading(
-                    items = state.continueReading,
-                    onMangaClick = onMangaClick,
-                    onResumeClick = onResumeClick,
-                )
+            if (shown(HomeSection.CONTINUE)) {
+                item(key = "continue") {
+                    ContinueReading(
+                        items = state.continueReading,
+                        onMangaClick = onMangaClick,
+                        onResumeClick = onResumeClick,
+                    )
+                }
             }
-            if (state.newChapters.isNotEmpty()) {
+            if (shown(HomeSection.NEW_CHAPTERS) && state.newChapters.isNotEmpty()) {
                 item(key = "new-chapters") {
                     HomeNewChapters(items = state.newChapters, onMangaClick = onMangaClick, onSeeAll = onUpdatesClick)
                 }
             }
-            if (state.stalled.isNotEmpty()) {
+            if (shown(HomeSection.STALLED) && state.stalled.isNotEmpty()) {
                 item(key = "stalled") { HomeStalled(items = state.stalled, onMangaClick = onMangaClick) }
             }
-            if (state.binge.isNotEmpty()) {
+            if (shown(HomeSection.BINGE) && state.binge.isNotEmpty()) {
                 item(key = "binge") { HomeBinge(items = state.binge, onMangaClick = onMangaClick) }
             }
-            items(state.savedRows + state.pickRows + state.rows, key = { it.key }) { row ->
+            val rows = state.savedRows.takeIf { shown(HomeSection.SAVED) }.orEmpty() +
+                state.pickRows.takeIf { shown(HomeSection.PICKS) }.orEmpty() +
+                state.rows.takeIf { shown(HomeSection.SOURCES) }.orEmpty()
+            items(rows, key = { it.key }) { row ->
                 HomeSourceRow(
                     row = row,
                     onSeeAll = { onRowClick(row) },

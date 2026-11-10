@@ -1275,6 +1275,12 @@
     <string name="kurotoon.duplicates.info">Series saved more than once, matched by title. The copy you have read most is listed first; open any other to remove or migrate it.</string>
     <string name="kurotoon.duplicates.none">No series is saved twice</string>
     <string name="kurotoon.duplicates.progress">%1$d of %2$d read</string>
+    <string name="kurotoon.settings.homeHidden">Hidden on Home</string>
+    <string name="kurotoon.section.hero">Top titles carousel</string>
+    <string name="kurotoon.section.shortcuts">Shortcuts</string>
+    <string name="kurotoon.section.picks">Because you read</string>
+    <string name="kurotoon.section.saved">Saved searches</string>
+    <string name="kurotoon.section.sources">Source rows</string>
     <string name="kurotoon.browse.findTag">Find among %d tags</string>
     <string name="kurotoon.browse.hiddenTags">Hidden tags</string>
     <string name="kurotoon.browse.hiddenTagsSummary">Tags you never want to see in browse, search or Home</string>

@@ -58,4 +58,7 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
 
     /** Result urls a saved search showed last time, newest first. See [kurotoon.catalogue.SearchFeed]. */
     fun savedSearchSeen(id: Long) = preferenceStore.getString("kurotoon_saved_seen_$id", "")
+
+    /** Keys of [kurotoon.ui.home.HomeSection]s switched off on Home. */
+    val homeHiddenSections = preferenceStore.getStringSet("kurotoon_home_hidden_sections", emptySet())
 }
