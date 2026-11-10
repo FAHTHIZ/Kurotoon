@@ -45,19 +45,26 @@ class SourcesViewModel(
     val events = _events.receiveAsFlow()
 
     private val dialog = MutableStateFlow<Dialog?>(null)
+    private val query = MutableStateFlow("")
 
     private val enabledSources = getEnabledSources.subscribe()
         .catch {
             logcat(LogPriority.ERROR, it)
             _events.send(Event.FailedFetchingSources)
         }
-        .map(::toSourceUiModels)
 
     val state: StateFlow<State> = combine(
         enabledSources,
         dialog,
-    ) { items, dialog ->
-        State(dialog = dialog, isLoading = false, items = items)
+        query,
+    ) { sources, dialog, query ->
+        State(
+            dialog = dialog,
+            isLoading = false,
+            items = toSourceUiModels(sources.filter { it.matches(query) }),
+            sourceCount = sources.size,
+            query = query,
+        )
     }
         .flowOn(Dispatchers.IO)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5.seconds), State())
@@ -101,6 +108,10 @@ class SourcesViewModel(
         toggleSourcePin.await(source)
     }
 
+    fun setQuery(query: String) {
+        this.query.value = query
+    }
+
     fun showSourceDialog(source: Source) {
         dialog.update { Dialog(source) }
     }
@@ -120,12 +131,25 @@ class SourcesViewModel(
         val dialog: Dialog? = null,
         val isLoading: Boolean = true,
         val items: List<SourceUiModel> = listOf(),
+        /** Installed sources before [query] narrows them. */
+        val sourceCount: Int = items.count { it is SourceUiModel.Item },
+        val query: String = "",
     ) {
-        val isEmpty = items.isEmpty()
+        val isEmpty = sourceCount == 0
+        val showFilter = query.isNotEmpty() || sourceCount >= FILTER_THRESHOLD
     }
 
     companion object {
         const val PINNED_KEY = "pinned"
         const val LAST_USED_KEY = "last_used"
+        private const val FILTER_THRESHOLD = 6
     }
+}
+
+/** Name, language code or id contains every word of [query], ignoring case. */
+internal fun Source.matches(query: String): Boolean {
+    val words = query.trim().split(' ').filter { it.isNotBlank() }
+    if (words.isEmpty()) return true
+    val haystack = "$name $lang $id"
+    return words.all { haystack.contains(it, ignoreCase = true) }
 }

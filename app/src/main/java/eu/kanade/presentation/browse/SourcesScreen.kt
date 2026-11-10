@@ -21,6 +21,7 @@ import eu.kanade.presentation.browse.components.BaseSourceItem
 import eu.kanade.tachiyomi.ui.browse.source.SourcesViewModel
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceViewModel.Listing
 import eu.kanade.tachiyomi.util.system.LocaleHelper
+import kurotoon.ui.browse.SourceFilterField
 import kurotoon.ui.browse.UniversalSearchCard
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Keep
@@ -47,6 +48,7 @@ fun SourcesScreen(
     onClickPin: (Source) -> Unit,
     onLongClickItem: (Source) -> Unit,
     onUniversalSearch: (String) -> Unit,
+    onQueryChange: (String) -> Unit = {},
 ) {
     when {
         state.isLoading -> LoadingScreen(Modifier.padding(contentPadding))
@@ -66,6 +68,28 @@ fun SourcesScreen(
                             vertical = MaterialTheme.padding.small,
                         ),
                     )
+                }
+                if (state.showFilter) {
+                    item(key = "source-filter", contentType = "source-filter") {
+                        SourceFilterField(
+                            query = state.query,
+                            onQueryChange = onQueryChange,
+                            modifier = Modifier.padding(
+                                horizontal = MaterialTheme.padding.medium,
+                                vertical = MaterialTheme.padding.small,
+                            ),
+                        )
+                    }
+                }
+                if (state.items.isEmpty()) {
+                    item(key = "no-match", contentType = "no-match") {
+                        Text(
+                            text = stringResource(MR.strings.kurotoon_browse_noSourceMatch, state.query),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(MaterialTheme.padding.medium),
+                        )
+                    }
                 }
                 items(
                     items = state.items,
