@@ -3,8 +3,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { AnimatePresence, motion } from "framer-motion";
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ChevronLeft, ChevronRight, ImageOff, Loader2, Maximize, Minimize, RefreshCcw, Settings2, X } from "lucide-react";
-import { useAuth } from "@/lib/auth";
-import { bumpMission } from "@/lib/kuro";
+import { track } from "@/lib/rewards";
 import { chapterLabel, getProgress, markChapterRead, recordHistory, rememberSeries, setProgress, getSeen } from "@/lib/local-library";
 import { useReaderSettings, useWakeLock, type ReaderMode } from "@/lib/reader-settings";
 import { ProgressOrb } from "@/components/ProgressOrb";
@@ -38,7 +37,6 @@ function Reader() {
   const sid = seriesId(sourceId, mangaKey);
   const navigate = useNavigate();
   const qc = useQueryClient();
-  const { user } = useAuth();
 
   const [settings, update] = useReaderSettings(sid);
   useWakeLock(settings.keepAwake);
@@ -126,12 +124,12 @@ function Reader() {
       celebrated.current = chapter.key;
       markChapterRead(sid, chapter.key);
       setShowComplete(true);
-      if (user && counted.current !== chapter.key) {
+      if (counted.current !== chapter.key) {
         counted.current = chapter.key;
-        bumpMission(user.id, "read_5_chapters").catch(() => {});
+        track("chapter_read");
       }
     }
-  }, [atEnd, current, chapter, pages.length, nextCh, qc, sourceId, mangaKey, sid, user]);
+  }, [atEnd, current, chapter, pages.length, nextCh, qc, sourceId, mangaKey, sid]);
 
   // Paged navigation
   const step = useCallback(

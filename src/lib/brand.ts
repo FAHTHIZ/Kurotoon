@@ -3,7 +3,7 @@
 
 export const APP_NAME = "KuroToon";
 export const APP_DESCRIPTION =
-  "A next-generation manga, manhwa, webcomic, and creator discovery platform.";
+  "An extension-based manga, manhwa and webtoon reader that keeps everything on your device.";
 
 /** Core palette, mirrored by CSS tokens in styles.css. */
 export const brandColors = {
@@ -41,20 +41,6 @@ export const ATMOSPHERES = [
   "tragic",
 ] as const;
 export type Atmosphere = (typeof ATMOSPHERES)[number];
-
-/** Trust ladder shared by contributor + creator surfaces. */
-export const TRUST_LEVELS = [
-  { id: "new", label: "New User", color: "muted" },
-  { id: "trusted_user", label: "Trusted User", color: "aurora" },
-  { id: "contributor", label: "Contributor", color: "aurora" },
-  { id: "trusted_contributor", label: "Trusted Contributor", color: "galaxy" },
-  { id: "creator", label: "Creator", color: "crimson" },
-  { id: "trusted_creator", label: "Trusted Creator", color: "crimson" },
-  { id: "verified_creator", label: "Verified Creator", color: "gold" },
-  { id: "featured_creator", label: "Featured Creator", color: "gold" },
-  { id: "partner_creator", label: "Partner Creator", color: "gold" },
-] as const;
-export type TrustLevelId = (typeof TRUST_LEVELS)[number]["id"];
 
 export const RARITIES = ["common", "rare", "epic", "legendary", "mythic"] as const;
 export type Rarity = (typeof RARITIES)[number];

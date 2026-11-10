@@ -11,12 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BrowseRouteImport } from './routes/browse'
-import { Route as CreatorRouteImport } from './routes/creator'
 import { Route as ExtensionsRouteImport } from './routes/extensions'
 import { Route as LibraryRouteImport } from './routes/library'
-import { Route as LoginRouteImport } from './routes/login'
 import { Route as ProfileRouteImport } from './routes/profile'
-import { Route as ReelsRouteImport } from './routes/reels'
 import { Route as RewardsRouteImport } from './routes/rewards'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as ShopRouteImport } from './routes/shop'
@@ -35,11 +32,6 @@ const BrowseRoute = BrowseRouteImport.update({
   path: '/browse',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CreatorRoute = CreatorRouteImport.update({
-  id: '/creator',
-  path: '/creator',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ExtensionsRoute = ExtensionsRouteImport.update({
   id: '/extensions',
   path: '/extensions',
@@ -50,19 +42,9 @@ const LibraryRoute = LibraryRouteImport.update({
   path: '/library',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ReelsRoute = ReelsRouteImport.update({
-  id: '/reels',
-  path: '/reels',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RewardsRoute = RewardsRouteImport.update({
@@ -105,12 +87,9 @@ const ReadSourceIdMangaKeyChapterKeyRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/browse': typeof BrowseRoute
-  '/creator': typeof CreatorRoute
   '/extensions': typeof ExtensionsRoute
   '/library': typeof LibraryRoute
-  '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
-  '/reels': typeof ReelsRoute
   '/rewards': typeof RewardsRoute
   '/search': typeof SearchRoute
   '/shop': typeof ShopRoute
@@ -122,12 +101,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/browse': typeof BrowseRoute
-  '/creator': typeof CreatorRoute
   '/extensions': typeof ExtensionsRoute
   '/library': typeof LibraryRoute
-  '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
-  '/reels': typeof ReelsRoute
   '/rewards': typeof RewardsRoute
   '/search': typeof SearchRoute
   '/shop': typeof ShopRoute
@@ -140,12 +116,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/browse': typeof BrowseRoute
-  '/creator': typeof CreatorRoute
   '/extensions': typeof ExtensionsRoute
   '/library': typeof LibraryRoute
-  '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
-  '/reels': typeof ReelsRoute
   '/rewards': typeof RewardsRoute
   '/search': typeof SearchRoute
   '/shop': typeof ShopRoute
@@ -159,12 +132,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/browse'
-    | '/creator'
     | '/extensions'
     | '/library'
-    | '/login'
     | '/profile'
-    | '/reels'
     | '/rewards'
     | '/search'
     | '/shop'
@@ -176,12 +146,9 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/browse'
-    | '/creator'
     | '/extensions'
     | '/library'
-    | '/login'
     | '/profile'
-    | '/reels'
     | '/rewards'
     | '/search'
     | '/shop'
@@ -193,12 +160,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/browse'
-    | '/creator'
     | '/extensions'
     | '/library'
-    | '/login'
     | '/profile'
-    | '/reels'
     | '/rewards'
     | '/search'
     | '/shop'
@@ -211,12 +175,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BrowseRoute: typeof BrowseRoute
-  CreatorRoute: typeof CreatorRoute
   ExtensionsRoute: typeof ExtensionsRoute
   LibraryRoute: typeof LibraryRoute
-  LoginRoute: typeof LoginRoute
   ProfileRoute: typeof ProfileRoute
-  ReelsRoute: typeof ReelsRoute
   RewardsRoute: typeof RewardsRoute
   SearchRoute: typeof SearchRoute
   ShopRoute: typeof ShopRoute
@@ -242,13 +203,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrowseRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/creator': {
-      id: '/creator'
-      path: '/creator'
-      fullPath: '/creator'
-      preLoaderRoute: typeof CreatorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/extensions': {
       id: '/extensions'
       path: '/extensions'
@@ -263,25 +217,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LibraryRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/profile': {
       id: '/profile'
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/reels': {
-      id: '/reels'
-      path: '/reels'
-      fullPath: '/reels'
-      preLoaderRoute: typeof ReelsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/rewards': {
@@ -339,12 +279,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BrowseRoute: BrowseRoute,
-  CreatorRoute: CreatorRoute,
   ExtensionsRoute: ExtensionsRoute,
   LibraryRoute: LibraryRoute,
-  LoginRoute: LoginRoute,
   ProfileRoute: ProfileRoute,
-  ReelsRoute: ReelsRoute,
   RewardsRoute: RewardsRoute,
   SearchRoute: SearchRoute,
   ShopRoute: ShopRoute,

@@ -1,8 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { Search, LogIn, User as UserIcon, Loader2, TrendingUp, Clock, X } from "lucide-react";
+import { Search, User as UserIcon, Loader2, TrendingUp, Clock, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useAuth } from "@/lib/auth";
 import { spring, ease } from "@/lib/motion";
 import { getRecentSearches, pushRecentSearch, clearRecentSearches, searchLocal, rememberSeries } from "@/lib/local-library";
 import { encodeKey } from "@/engine/ids";
@@ -18,7 +17,6 @@ export function TopBar() {
   const [focused, setFocused] = useState(false);
   const [recent, setRecent] = useState<string[]>([]);
   const navigate = useNavigate();
-  const { user } = useAuth();
   const boxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -208,18 +206,10 @@ export function TopBar() {
           </AnimatePresence>
         </div>
 
-        {user ? (
-          <>
-            <KuroBalance />
-            <Link to="/profile" className="grid h-9 w-9 place-items-center rounded-full bg-[color:var(--surface)] shadow-[var(--shadow-depth-1)] hover:bg-[color:var(--surface-2)]">
-              <UserIcon className="h-4 w-4" />
-            </Link>
-          </>
-        ) : (
-          <Link to="/login" className="hidden md:flex items-center gap-1.5 rounded-full bg-[image:var(--gradient-accent)] px-3.5 py-1.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-glow-lg)]">
-            <LogIn className="h-4 w-4" /> Sign in
-          </Link>
-        )}
+        <KuroBalance />
+        <Link to="/profile" className="grid h-9 w-9 place-items-center rounded-full bg-[color:var(--surface)] shadow-[var(--shadow-depth-1)] hover:bg-[color:var(--surface-2)]">
+          <UserIcon className="h-4 w-4" />
+        </Link>
       </div>
     </header>
   );
