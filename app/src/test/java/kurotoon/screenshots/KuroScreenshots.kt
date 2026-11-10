@@ -405,6 +405,25 @@ class KuroScreenshots {
         }
     }
 
+    @Test
+    fun yearInReview() = shot("year_in_review") {
+        val review = kurotoon.stats.YearInReview(
+            year = 2026,
+            chapters = 1248,
+            millis = (86L * 60 + 25) * 60_000,
+            series = 37,
+            topSeries = listOf(
+                kurotoon.stats.TopSeries(1, "Solo Leveling", 179, 0),
+                kurotoon.stats.TopSeries(2, "Omniscient Reader's Viewpoint", 142, 0),
+                kurotoon.stats.TopSeries(3, "Tower of God", 96, 0),
+            ),
+            topGenres = listOf("Action" to 21, "Fantasy" to 17, "Martial Arts" to 9),
+            busiestMonth = java.time.Month.AUGUST,
+            busiestMonthChapters = 212,
+        )
+        kurotoon.ui.stats.YearInReviewCard(review)
+    }
+
     private fun shot(name: String, fullScreen: Boolean = false, content: @Composable () -> Unit) {
         captureRoboImage("build/screenshots/$name.png") {
             val covers = AsyncImagePreviewHandler { request -> fakeCover(request.data.hashCode()) }

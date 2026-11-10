@@ -1135,6 +1135,12 @@
     <string name="kurotoon_reader_minutesLeft">~%d min left</string>
     <string name="kurotoon_reader_timeLeft">Time left in chapter</string>
     <string name="kurotoon_reader_timeLeftSummary">Estimate from your reading pace, shown next to the page number</string>
+    <string name="kurotoon_year_title">%d in reading</string>
+    <string name="kurotoon_year_summary">%1$d chapters across %2$d series</string>
+    <string name="kurotoon_year_mostRead">Most read</string>
+    <string name="kurotoon_year_genres">Your genres</string>
+    <string name="kurotoon_year_chapters">%d ch.</string>
+    <string name="kurotoon_year_busiest">Busiest month: %1$s, with %2$d chapters</string>
     <!-- Kuro Points, missions and the shop -->
     <string name="kurotoon.shop.title">Kuro Shop</string>
     <string name="kurotoon.rewards.points">Kuro Points</string>

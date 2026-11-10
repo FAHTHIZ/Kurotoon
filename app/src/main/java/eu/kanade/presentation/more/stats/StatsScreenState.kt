@@ -15,5 +15,6 @@ sealed interface StatsScreenState {
         val chapters: StatsData.Chapters,
         val trackers: StatsData.Trackers,
         val activity: ReadingActivity,
+        val year: kurotoon.stats.YearInReview? = null,
     ) : StatsScreenState
 }

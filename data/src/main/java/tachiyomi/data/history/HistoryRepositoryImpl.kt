@@ -50,6 +50,22 @@ class HistoryRepositoryImpl(
             .mapNotNull { row -> row.read_at?.let { it to row.read_duration } }
     }
 
+    override suspend fun getReadEntries(since: Instant): List<tachiyomi.domain.history.model.ReadEntry> {
+        return database.historyQueries
+            .getReadEntriesSince(since)
+            .awaitAsList()
+            .mapNotNull { row ->
+                val readAt = row.read_at ?: return@mapNotNull null
+                tachiyomi.domain.history.model.ReadEntry(
+                    readAt = readAt,
+                    duration = row.read_duration,
+                    mangaId = row.manga_id,
+                    title = row.remote_title,
+                    genres = row.remote_genre.orEmpty(),
+                )
+            }
+    }
+
     override suspend fun getHistoryByMangaId(mangaId: Long): List<History> {
         return database.historyQueries
             .getHistoryByMangaId(mangaId, HistoryMapper::mapHistory)

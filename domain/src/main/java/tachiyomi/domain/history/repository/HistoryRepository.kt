@@ -16,6 +16,7 @@ interface HistoryRepository {
 
     /** When each chapter read since [since] was last read, with its total read time in milliseconds. */
     suspend fun getReadActivity(since: Instant): List<Pair<Instant, Long>>
+    suspend fun getReadEntries(since: Instant): List<tachiyomi.domain.history.model.ReadEntry>
 
     suspend fun getHistoryByMangaId(mangaId: Long): List<History>
 

@@ -98,6 +98,7 @@ class StatsViewModel(
                     chapters = chaptersStatData,
                     trackers = trackersStatData,
                     activity = readingActivity(),
+                    year = yearInReview(),
                 )
             }
         }
@@ -109,6 +110,14 @@ class StatsViewModel(
         val since = ReadingActivity.startOf(today).atStartOfDay(zone).toInstant().toEpochMilli()
         val entries = getReadActivity.await(Instant.fromEpochMilliseconds(since))
         return ReadingActivity.build(entries, today, zone)
+    }
+
+    private suspend fun yearInReview(): kurotoon.stats.YearInReview? {
+        val zone = ZoneId.systemDefault()
+        val year = LocalDate.now(zone).year
+        val since = kurotoon.stats.YearInReview.startOf(year, zone).toEpochMilli()
+        val entries = getReadActivity.awaitEntries(Instant.fromEpochMilliseconds(since))
+        return kurotoon.stats.YearInReview.build(entries, year, zone)
     }
 
     private fun getGlobalUpdateItemCount(libraryManga: List<LibraryManga>): Int {

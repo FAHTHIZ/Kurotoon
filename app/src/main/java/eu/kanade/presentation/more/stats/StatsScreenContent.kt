@@ -51,6 +51,11 @@ fun StatsScreenContent(
                 ReadingActivityCard(state.activity, goal = goal, onGoalChange = goalPref::set)
             }
         }
+        state.year?.let { review ->
+            item {
+                kurotoon.ui.stats.YearInReviewCard(review)
+            }
+        }
         item {
             TitlesStats(state.titles)
         }
