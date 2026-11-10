@@ -42,6 +42,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Reading activity heatmap in Statistics with chapters, active days and streaks.
 - Library tag chips: your library's most common genres sit above the shelf; tap to stack them and narrow
   to series that have all of them.
+- Tag menu on series pages: Search all sources, or Hide this tag in one tap.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.

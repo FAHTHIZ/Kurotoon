@@ -54,14 +54,20 @@ import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kurotoon.catalogue.TagAction
+import kurotoon.catalogue.addHiddenTag
 import kurotoon.ui.manga.CoverTheme
 import kurotoon.ui.similar.SimilarScreen
 import logcat.LogPriority
+import mihon.app.di.appGraph
 import mihon.feature.migration.config.MigrationConfigScreen
 import mihon.feature.migration.dialog.MigrateMangaDialog
+import tachiyomi.core.common.i18n.stringResource
+import tachiyomi.core.common.preference.getAndSet
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.chapter.model.Chapter
 import tachiyomi.domain.manga.model.Manga
+import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.screens.LoadingScreen
 
 class MangaScreen(
@@ -151,6 +157,15 @@ class MangaScreen(
                     }
                 },
                 onTagSearch = { scope.launch { performGenreSearch(navigator, it, viewModel.source!!) } },
+                onTagAction = { tag, action ->
+                    when (action) {
+                        TagAction.SearchEverywhere -> navigator.push(GlobalSearchScreen(tag))
+                        TagAction.Hide -> {
+                            context.appGraph.kuroPreferences.hiddenTags.getAndSet { addHiddenTag(it, tag) }
+                            context.toast(context.stringResource(MR.strings.kurotoon_tag_hidden, tag))
+                        }
+                    }
+                },
                 onFilterButtonClicked = viewModel::showSettingsDialog,
                 onRefresh = viewModel::fetchAllFromSource,
                 onContinueReading = { continueReading(context, viewModel.getNextUnreadChapter()) },

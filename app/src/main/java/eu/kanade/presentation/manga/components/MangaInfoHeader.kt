@@ -81,6 +81,7 @@ import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.daysUntil
+import kurotoon.catalogue.TagAction
 import kurotoon.ui.fx.fxAnchor
 import kurotoon.ui.fx.rememberFxAnchor
 import mihon.app.di.appGraph
@@ -290,6 +291,7 @@ fun ExpandableMangaDescription(
     onTagSearch: (String) -> Unit,
     onCopyTagToClipboard: (tag: String) -> Unit,
     onEditNotes: () -> Unit,
+    onTagAction: (String, TagAction) -> Unit = { _, _ -> },
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
@@ -328,6 +330,20 @@ fun ExpandableMangaDescription(
                         text = { Text(text = stringResource(MR.strings.action_search)) },
                         onClick = {
                             onTagSearch(tagSelected)
+                            showMenu = false
+                        },
+                    )
+                    DropdownMenuItem(
+                        text = { Text(text = stringResource(MR.strings.kurotoon_tag_searchEverywhere)) },
+                        onClick = {
+                            onTagAction(tagSelected, TagAction.SearchEverywhere)
+                            showMenu = false
+                        },
+                    )
+                    DropdownMenuItem(
+                        text = { Text(text = stringResource(MR.strings.kurotoon_tag_hide)) },
+                        onClick = {
+                            onTagAction(tagSelected, TagAction.Hide)
                             showMenu = false
                         },
                     )
