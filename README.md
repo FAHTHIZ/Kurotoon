@@ -40,6 +40,8 @@ A private, local-first manga, manhwa and webtoon reader for Android, written in 
 | <img src=".github/assets/screenshots/browse_chips.png" alt="Sort and genre pills" width="400"> | <img src=".github/assets/screenshots/chapter_complete.png" alt="Chapter complete card" width="400"> |
 | **Navigation** | **Tap effect** |
 | <img src=".github/assets/screenshots/bottom_bar.png" alt="Bottom navigation" width="400"> | <img src=".github/assets/screenshots/tap_burst.png" alt="Tap burst frames" width="400"> |
+| **Reading progress orb** | |
+| <img src=".github/assets/screenshots/progress_orb.png" alt="Progress orb at 12, 48 and 100 percent" width="400"> | |
 
 These are rendered from the real Compose code by the screenshot tests (see [Development](#development)).
 
@@ -59,7 +61,8 @@ The [guides](docs/) cover [getting started](docs/getting-started.md), [your libr
 
 - Tap the play button in the reader's bottom bar to start **auto-scroll**. Touching the screen pauses it;
   the speed slider lives in the reader settings under General.
-- Volume keys can turn pages (reader settings → Controls).
+- Volume keys can turn pages (reader settings → Controls). While auto-scroll runs they change its speed instead.
+- The orb in the corner shows how far through the chapter you are; tap it for the menu.
 - Long-press a page to save, share or set it as the cover.
 
 ## Development
