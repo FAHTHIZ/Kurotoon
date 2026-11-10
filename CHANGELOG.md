@@ -13,6 +13,10 @@ All notable changes to KuroToon are documented here. Versions follow
 - KuroToon crimson-on-black theme, icon and splash screen.
 - Help guides in [`docs/`](docs/).
 
+- Catalogue-aware browsing: each source's own facets (genres, themes, status, type, demographic…)
+  appear as tabs above the results, with stackable tags that include or exclude and a row of what
+  is applied.
+
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.
 - Everything is private and on-device: no accounts, analytics or crash reporting.

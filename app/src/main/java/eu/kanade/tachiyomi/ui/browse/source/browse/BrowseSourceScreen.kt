@@ -52,6 +52,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kurotoon.ui.browse.BrowseChips
 import kurotoon.ui.browse.BrowseSort
+import kurotoon.ui.browse.FacetActions
 import mihon.feature.migration.dialog.MigrateMangaDialog
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.FilterList
@@ -150,14 +151,12 @@ data class BrowseSourceScreen(
                     BrowseChips(
                         supportsLatest = source.supportsLatest,
                         sorts = state.quickSorts,
-                        genres = state.quickGenres,
                         selectedSort = state.selectedSort?.let(BrowseSort::Sort) ?: when {
                             state.listing == Listing.Popular -> BrowseSort.Popular
                             state.listing == Listing.Latest -> BrowseSort.Latest
-                            state.selectedGenre != null -> BrowseSort.None
+                            state.activeFacets.isNotEmpty() -> BrowseSort.None
                             else -> BrowseSort.Custom
                         },
-                        selectedGenre = state.selectedGenre,
                         hasFilters = state.filters.isNotEmpty(),
                         onPopular = {
                             viewModel.resetFilters()
@@ -167,9 +166,20 @@ data class BrowseSourceScreen(
                             viewModel.resetFilters()
                             viewModel.setListing(Listing.Latest)
                         },
-                        onSort = { viewModel.applyQuickFilters(state.selectedGenre, it) },
-                        onGenre = { viewModel.applyQuickFilters(it, state.selectedSort) },
+                        onSort = { viewModel.applySort(it.takeUnless { index -> index == state.selectedSort }) },
                         onFilters = viewModel::openFilterSheet,
+                        facets = state.facets,
+                        applied = state.appliedFilters,
+                        active = state.activeFacets,
+                        facetActions = remember(viewModel) {
+                            FacetActions(
+                                onTag = viewModel::cycleTag,
+                                onExcludeTag = viewModel::excludeTag,
+                                onChoice = viewModel::selectChoice,
+                                onClear = viewModel::clearFacet,
+                                onClearAll = viewModel::clearFacets,
+                            )
+                        },
                     )
                 }
             },

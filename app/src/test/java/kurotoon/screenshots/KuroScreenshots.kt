@@ -17,6 +17,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
@@ -28,6 +29,10 @@ import coil3.compose.AsyncImagePreviewHandler
 import coil3.compose.LocalAsyncImagePreviewHandler
 import com.github.takahirom.roborazzi.captureRoboImage
 import eu.kanade.presentation.theme.colorscheme.KuroToonColorScheme
+import eu.kanade.tachiyomi.source.model.Filter
+import eu.kanade.tachiyomi.source.model.FilterList
+import kurotoon.catalogue.CatalogFacet
+import kurotoon.catalogue.CatalogFacets
 import kurotoon.shop.toPack
 import kurotoon.ui.KuroBottomBar
 import kurotoon.ui.KuroBottomBarItem
@@ -67,33 +72,42 @@ class KuroScreenshots {
 
     @Test
     fun browseChips() = shot("browse_chips") {
+        val catalogue = remember { sampleCatalogue() }
+        val facets = remember { CatalogFacets.from(catalogue) }
+        val applied = remember {
+            sampleCatalogue().also { filters ->
+                val genres = facets.first() as CatalogFacet.Tags
+                CatalogFacets.cycleTag(filters, genres.filterIndex, 1)
+                CatalogFacets.cycleTag(filters, genres.filterIndex, 4)
+                CatalogFacets.excludeTag(filters, genres.filterIndex, 3)
+                CatalogFacets.selectChoice(filters, facets.first { it.title == "Status" }.filterIndex, 1)
+            }
+        }
         Column {
             BrowseChips(
                 supportsLatest = true,
                 sorts = listOf("Rating", "Title", "Year"),
-                genres = listOf("Action", "Adventure", "Boys' Love", "Comedy", "Crime", "Drama", "Fantasy"),
                 selectedSort = BrowseSort.Latest,
-                selectedGenre = null,
                 hasFilters = true,
                 onPopular = {},
                 onLatest = {},
                 onSort = {},
-                onGenre = {},
                 onFilters = {},
                 modifier = Modifier.padding(top = 12.dp),
+                facets = facets,
             )
             BrowseChips(
                 supportsLatest = false,
                 sorts = emptyList(),
-                genres = listOf("Action", "Adventure", "Comedy", "Drama"),
                 selectedSort = BrowseSort.None,
-                selectedGenre = "Adventure",
                 hasFilters = true,
                 onPopular = {},
                 onLatest = {},
                 onSort = {},
-                onGenre = {},
                 onFilters = {},
+                facets = facets,
+                applied = applied,
+                active = CatalogFacets.active(facets, applied),
             )
         }
     }
@@ -302,3 +316,14 @@ class KuroScreenshots {
         return bitmap.asImage()
     }
 }
+
+private class SampleGenre(name: String) : Filter.TriState(name)
+private class SampleGenres : Filter.Group<SampleGenre>(
+    "Genres",
+    listOf("Action", "Adventure", "Comedy", "Drama", "Fantasy", "Horror", "Isekai", "Murim", "Romance", "Slice of Life")
+        .map(::SampleGenre),
+)
+private class SampleStatus : Filter.Select<String>("Status", arrayOf("Any", "Ongoing", "Completed", "Hiatus"))
+private class SampleType : Filter.Select<String>("Type", arrayOf("All", "Manga", "Manhwa", "Manhua", "Webtoon"))
+
+private fun sampleCatalogue() = FilterList(SampleGenres(), SampleStatus(), SampleType())

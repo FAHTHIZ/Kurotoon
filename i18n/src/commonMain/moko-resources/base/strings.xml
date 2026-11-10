@@ -1206,4 +1206,7 @@
     <string name="kurotoon.home.continueReading">Continue reading</string>
     <string name="kurotoon.home.continueEmpty">Chapters you start reading will show up here.</string>
     <string name="kurotoon.home.downloads">Downloads</string>
+    <string name="kurotoon.browse.clearAll">Clear (%d)</string>
+    <string name="kurotoon.browse.showAll">Show all</string>
+    <string name="kurotoon.browse.showLess">Show less</string>
 </resources>
