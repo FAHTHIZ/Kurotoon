@@ -33,25 +33,24 @@ class GetApplicationRelease(
         // Removes prefixes like "r" or "v"
         val newVersion = versionTag.replace("[^\\d.]".toRegex(), "")
         return if (isNightly) {
-            // Nightly builds: based on releases in "mihonapp/mihon-preview" repo
-            // tagged as something like "r1234"
-            newVersion.toInt() > commitCount
+            // Preview builds are tagged with their commit count, like "r1234"
+            (newVersion.toIntOrNull() ?: return false) > commitCount
         } else {
-            // Release builds: based on releases in "mihonapp/mihon" repo
-            // tagged as something like "v0.1.2"
+            // Stable builds are tagged with their version, like "v0.1.2"
             val oldVersion = versionName.replace("[^\\d.]".toRegex(), "")
-
-            val newSemVer = newVersion.split(".").map { it.toInt() }
-            val oldSemVer = oldVersion.split(".").map { it.toInt() }
-
-            oldSemVer.mapIndexed { index, i ->
-                if (newSemVer[index] > i) {
-                    return true
-                }
-            }
-
-            false
+            compareVersions(newVersion, oldVersion) > 0
         }
+    }
+
+    /** Compares dotted versions part by part, treating missing parts as 0, so 0.22 > 0.21.9. */
+    internal fun compareVersions(a: String, b: String): Int {
+        val left = a.split(".").map { it.toIntOrNull() ?: 0 }
+        val right = b.split(".").map { it.toIntOrNull() ?: 0 }
+        for (i in 0 until maxOf(left.size, right.size)) {
+            val diff = left.getOrElse(i) { 0 }.compareTo(right.getOrElse(i) { 0 })
+            if (diff != 0) return diff
+        }
+        return 0
     }
 
     data class Arguments(
