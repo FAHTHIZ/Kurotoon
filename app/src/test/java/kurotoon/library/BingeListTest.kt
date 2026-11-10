@@ -9,7 +9,14 @@ import kotlin.time.Instant
 
 class BingeListTest {
 
-    private fun entry(id: Long, status: Int, total: Long, read: Long = 0, added: Long = id) = LibraryManga(
+    private fun entry(
+        id: Long,
+        status: Int,
+        total: Long,
+        read: Long = 0,
+        added: Long = id,
+        lastRead: Instant? = null,
+    ) = LibraryManga(
         manga = Manga.create().copy(id = id, status = status.toLong(), favoriteAt = Instant.fromEpochSeconds(added)),
         categories = emptyList(),
         totalChapters = total,
@@ -17,7 +24,7 @@ class BingeListTest {
         bookmarkCount = 0,
         latestUpload = null,
         chapterFetchedAt = null,
-        lastRead = null,
+        lastRead = lastRead,
     )
 
     @Test
@@ -31,5 +38,19 @@ class BingeListTest {
         )
         BingeList.of(library).map { it.id } shouldBe listOf(4L, 1L)
         BingeList.of(library, limit = 1).map { it.id } shouldBe listOf(4L)
+    }
+
+    @Test
+    fun `finds started series left alone for three weeks`() {
+        val now = Instant.fromEpochSeconds(100L * 86_400)
+        fun daysAgo(d: Long) = Instant.fromEpochSeconds((100L - d) * 86_400)
+        val library = listOf(
+            entry(1, SManga.ONGOING, total = 50, read = 10, lastRead = daysAgo(30)),
+            entry(2, SManga.ONGOING, total = 50, read = 10, lastRead = daysAgo(5)),
+            entry(3, SManga.ONGOING, total = 50, read = 50, lastRead = daysAgo(40)),
+            entry(4, SManga.COMPLETED, total = 50, read = 2, lastRead = daysAgo(22)),
+            entry(5, SManga.ONGOING, total = 50, read = 0, lastRead = null),
+        )
+        StalledList.of(library, now).map { it.id } shouldBe listOf(4L, 1L)
     }
 }

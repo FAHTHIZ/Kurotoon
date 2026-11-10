@@ -109,6 +109,9 @@ fun KuroHomeContent(
                     HomeNewChapters(items = state.newChapters, onMangaClick = onMangaClick, onSeeAll = onUpdatesClick)
                 }
             }
+            if (state.stalled.isNotEmpty()) {
+                item(key = "stalled") { HomeStalled(items = state.stalled, onMangaClick = onMangaClick) }
+            }
             if (state.binge.isNotEmpty()) {
                 item(key = "binge") { HomeBinge(items = state.binge, onMangaClick = onMangaClick) }
             }

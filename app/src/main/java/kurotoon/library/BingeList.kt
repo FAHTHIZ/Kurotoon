@@ -2,6 +2,8 @@ package kurotoon.library
 
 import eu.kanade.tachiyomi.source.model.SManga
 import tachiyomi.domain.library.model.LibraryManga
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Instant
 
 /** Finished series sitting in the library unread: the ones worth a weekend. */
 object BingeList {
@@ -16,6 +18,23 @@ object BingeList {
             .distinctBy { it.id }
             // Most recently saved first, as they're freshest in mind
             .sortedByDescending { it.manga.favoriteAt }
+            .take(limit)
+            .toList()
+}
+
+/** Series started, with chapters left, but not opened in a while: easy to forget about. */
+object StalledList {
+
+    const val LIMIT = 15
+    val AFTER = 21.days
+
+    fun of(library: List<LibraryManga>, now: Instant, limit: Int = LIMIT): List<LibraryManga> =
+        library.asSequence()
+            .filter { it.hasStarted && it.unreadCount > 0 }
+            .filter { entry -> entry.lastRead?.let { now - it >= AFTER } == true }
+            .distinctBy { it.id }
+            // Most recently dropped first; the oldest are likely abandoned on purpose
+            .sortedByDescending { it.lastRead }
             .take(limit)
             .toList()
 }

@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -25,6 +26,7 @@ import eu.kanade.presentation.manga.components.MangaCover
 import kurotoon.ui.KuroColors
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.DoneAll
+import mihon.icons.materialsymbols.rounded.History
 import tachiyomi.domain.library.model.LibraryManga
 import tachiyomi.domain.manga.model.asMangaCover
 import tachiyomi.i18n.MR
@@ -34,6 +36,45 @@ import tachiyomi.presentation.core.i18n.stringResource
 /** Finished series saved but not started yet. Draws nothing when there are none. */
 @Composable
 internal fun HomeBinge(items: List<LibraryManga>, onMangaClick: (Long) -> Unit) {
+    HomeLibraryShelf(
+        title = stringResource(MR.strings.kurotoon_home_binge),
+        summary = stringResource(MR.strings.kurotoon_home_bingeSummary),
+        icon = MaterialSymbols.Rounded.DoneAll,
+        items = items,
+        onMangaClick = onMangaClick,
+    ) { item ->
+        pluralStringResource(
+            MR.plurals.kurotoon_history_chapters,
+            item.totalChapters.toInt(),
+            item.totalChapters.toInt(),
+        )
+    }
+}
+
+/** Started series nobody has opened for a few weeks. Draws nothing when there are none. */
+@Composable
+internal fun HomeStalled(items: List<LibraryManga>, onMangaClick: (Long) -> Unit) {
+    HomeLibraryShelf(
+        title = stringResource(MR.strings.kurotoon_home_stalled),
+        summary = stringResource(MR.strings.kurotoon_home_stalledSummary),
+        icon = MaterialSymbols.Rounded.History,
+        items = items,
+        onMangaClick = onMangaClick,
+    ) { item ->
+        stringResource(MR.strings.kurotoon_home_left, item.unreadCount.toInt())
+    }
+}
+
+/** A titled row of library covers with a one-line [caption] under each. */
+@Composable
+private fun HomeLibraryShelf(
+    title: String,
+    summary: String,
+    icon: ImageVector,
+    items: List<LibraryManga>,
+    onMangaClick: (Long) -> Unit,
+    caption: @Composable (LibraryManga) -> String,
+) {
     if (items.isEmpty()) return
     Column {
         Row(
@@ -43,19 +84,19 @@ internal fun HomeBinge(items: List<LibraryManga>, onMangaClick: (Long) -> Unit) 
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
-                MaterialSymbols.Rounded.DoneAll,
+                icon,
                 contentDescription = null,
                 tint = KuroColors.Crimson,
                 modifier = Modifier.size(20.dp),
             )
             Column(modifier = Modifier.padding(start = 8.dp)) {
                 Text(
-                    text = stringResource(MR.strings.kurotoon_home_binge),
+                    text = title,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                 )
                 Text(
-                    text = stringResource(MR.strings.kurotoon_home_bingeSummary),
+                    text = summary,
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -82,11 +123,7 @@ internal fun HomeBinge(items: List<LibraryManga>, onMangaClick: (Long) -> Unit) 
                         modifier = Modifier.padding(top = 6.dp),
                     )
                     Text(
-                        text = pluralStringResource(
-                            MR.plurals.kurotoon_history_chapters,
-                            item.totalChapters.toInt(),
-                            item.totalChapters.toInt(),
-                        ),
+                        text = caption(item),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 1,

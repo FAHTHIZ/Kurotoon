@@ -114,6 +114,25 @@ class KuroScreenshots {
     }
 
     @Test
+    fun homeStalled() = shot("home_stalled") {
+        kurotoon.ui.home.HomeStalled(
+            items = listOf("Omniscient Reader" to 40L, "Lookism" to 3L).mapIndexed { i, (t, n) ->
+                tachiyomi.domain.library.model.LibraryManga(
+                    manga = tachiyomi.domain.manga.model.Manga.create().copy(id = i.toLong(), title = t),
+                    categories = emptyList(),
+                    totalChapters = n + 10,
+                    readCount = 10,
+                    bookmarkCount = 0,
+                    latestUpload = null,
+                    chapterFetchedAt = null,
+                    lastRead = null,
+                )
+            },
+            onMangaClick = {},
+        )
+    }
+
+    @Test
     fun homeBinge() = shot("home_binge") {
         kurotoon.ui.home.HomeBinge(
             items = listOf("Solo Leveling" to 200L, "The Breaker" to 72L, "Noblesse" to 544L).mapIndexed { i, (t, n) ->
