@@ -72,6 +72,11 @@ internal fun ColumnScope.GeneralPage(viewModel: ReaderSettingsViewModel) {
     )
 
     CheckboxItem(
+        label = stringResource(MR.strings.kurotoon_reader_progressOrb),
+        pref = viewModel.preferences.showProgressOrb,
+    )
+
+    CheckboxItem(
         label = stringResource(MR.strings.kurotoon_reader_celebrateChapters),
         pref = viewModel.preferences.celebrateChapters,
     )
