@@ -66,6 +66,12 @@ object Notifications {
     const val ID_INCOGNITO_MODE = -701
 
     /**
+     * Notification channel and id used for the daily reading reminder
+     */
+    const val CHANNEL_READING_REMINDER = "kurotoon_reading_reminder_channel"
+    const val ID_READING_REMINDER = -1301
+
+    /**
      * Notification channel and ids used for extension updates.
      */
     private const val GROUP_APK_UPDATES = "group_apk_updates"
@@ -156,6 +162,9 @@ object Notifications {
                 },
                 buildNotificationChannel(CHANNEL_INCOGNITO_MODE, IMPORTANCE_LOW) {
                     setName(context.stringResource(MR.strings.pref_incognito_mode))
+                },
+                buildNotificationChannel(CHANNEL_READING_REMINDER, IMPORTANCE_DEFAULT) {
+                    setName(context.stringResource(MR.strings.kurotoon_reminder_channel))
                 },
                 buildNotificationChannel(CHANNEL_EXTENSIONS_UPDATE, IMPORTANCE_DEFAULT) {
                     setGroup(GROUP_APK_UPDATES)

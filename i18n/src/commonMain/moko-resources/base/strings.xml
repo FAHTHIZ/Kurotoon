@@ -1114,6 +1114,14 @@
     <string name="kurotoon.stats.bestStreak">Best streak</string>
     <string name="kurotoon.stats.less">Less</string>
     <string name="kurotoon.stats.more">More</string>
+    <string name="kurotoon_reminder_channel">Reading reminder</string>
+    <string name="kurotoon_settings_reminder">Daily reading reminder</string>
+    <string name="kurotoon_settings_reminderSummary">A gentle nudge on days you haven\'t read anything yet</string>
+    <string name="kurotoon_settings_reminderHour">Reminder time</string>
+    <string name="kurotoon_reminder_title">Time for a chapter</string>
+    <string name="kurotoon_reminder_titleStreak">Keep your %d-day streak going</string>
+    <string name="kurotoon_reminder_text">Continue %1$s · %2$s</string>
+    <string name="kurotoon_reminder_continue">Continue</string>
     <!-- Kuro Points, missions and the shop -->
     <string name="kurotoon.shop.title">Kuro Shop</string>
     <string name="kurotoon.rewards.points">Kuro Points</string>

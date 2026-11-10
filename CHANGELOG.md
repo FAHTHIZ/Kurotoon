@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Added
+- Optional daily reading reminder (Settings > Appearance): one quiet notification at your chosen hour, only on days you haven't read yet, with a Continue button straight into your next chapter. Skipped in incognito.
 - Native Android app in Kotlin and Jetpack Compose, replacing the web app.
 - Home tab with a featured title, popular rows from your sources and Continue reading.
 - Universal Search card at the top of Browse.

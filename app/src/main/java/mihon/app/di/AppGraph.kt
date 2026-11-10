@@ -96,6 +96,8 @@ interface AppGraph : ViewModelGraph {
     val kuroPreferences: kurotoon.prefs.KuroPreferences
     val rewardsStore: kurotoon.rewards.RewardsStore
     val packRepository: kurotoon.shop.PackRepository
+    val historyRepository: tachiyomi.domain.history.repository.HistoryRepository
+    val getNextChapters: tachiyomi.domain.history.interactor.GetNextChapters
 
     val crashLogUtil: CrashLogUtil
 
