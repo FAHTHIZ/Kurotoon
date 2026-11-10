@@ -62,6 +62,9 @@ class RewardsStore(
 
     fun track(event: RewardEvent) = update { engine.track(it, event) }
 
+    /** Call after a chapter is read; pays out when today's chapters reach [goal]. */
+    fun meetDailyGoal(goal: Int) = update { engine.meetDailyGoal(it, goal) }
+
     fun claimMission(code: String): Boolean {
         var claimed = false
         update { state ->

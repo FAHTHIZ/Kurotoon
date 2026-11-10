@@ -124,6 +124,27 @@ class RewardsEngineTest {
         engine.track(first.state, RewardEvent.PACK_IMPORTED).grants.size shouldBe 0
     }
 
+    @Test
+    fun `daily goal pays once when today's chapters reach it`() {
+        var state = RewardsState()
+        state = engine.track(state, RewardEvent.CHAPTER_READ).state
+        engine.meetDailyGoal(state, 2).grants.size shouldBe 0
+        state = engine.track(state, RewardEvent.CHAPTER_READ).state
+        val met = engine.meetDailyGoal(state, 2)
+        met.grants.map { it.reason } shouldContain GrantReason.GoalMet(2)
+        met.grants.map { it.reason } shouldContain
+            GrantReason.AchievementUnlocked(RewardsCatalog.ACHIEVEMENT_FIRST_GOAL)
+        state = met.state
+        state = engine.track(state, RewardEvent.CHAPTER_READ).state
+        engine.meetDailyGoal(state, 2).grants.size shouldBe 0
+        engine.meetDailyGoal(state, 0).grants.size shouldBe 0
+
+        // A new day starts the count again
+        now = now.plusSeconds(86_400)
+        state = engine.track(state, RewardEvent.CHAPTER_READ).state
+        state = engine.track(state, RewardEvent.CHAPTER_READ).state
+        engine.meetDailyGoal(state, 2).grants.map { it.reason } shouldContainExactly listOf(GrantReason.GoalMet(2))
+    }
     private fun item(id: String, kind: ShopKind, price: Int) = ShopItem(
         code = "test/$id",
         packId = "test",

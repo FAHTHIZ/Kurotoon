@@ -45,7 +45,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Tag menu on series pages: Search all sources, or Hide this tag in one tap.
 - Series pages show how many chapters you have read and how long you have spent on the series.
 - Daily reading goal in Statistics: a ring fills as you read today's chapters, and the reading reminder
-  keeps nudging until the goal is met.
+  keeps nudging until the goal is met. Meeting it pays Kuro Points once a day and unlocks On target.
 - History day headers show that day's chapters and reading time, like "Today · 5 chapters · 42m".
 
 ### Changed
