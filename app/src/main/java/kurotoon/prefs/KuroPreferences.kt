@@ -25,6 +25,12 @@ class KuroPreferences(preferenceStore: PreferenceStore) {
     /** A thin read-progress bar along the bottom of library covers. */
     val coverProgress = preferenceStore.getBoolean("kurotoon_cover_progress", true)
 
+    /** A daily nudge to keep reading, sent only on days nothing was read. */
+    val readingReminder = preferenceStore.getBoolean("kurotoon_reading_reminder", false)
+
+    /** Hour of the day (0-23) the reading reminder fires. */
+    val readingReminderHour = preferenceStore.getInt("kurotoon_reading_reminder_hour", 20)
+
     /** Searches kept from source browsing, for every source. Shown as chips there and rows on Home. */
     val savedSearches = preferenceStore.getObjectFromString<List<SavedSearch>>(
         key = "kurotoon_saved_searches",

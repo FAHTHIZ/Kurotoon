@@ -110,6 +110,7 @@ object SettingsAppearanceScreen : SearchableSettings {
         val now = remember { Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).toJavaLocalDateTime() }
 
         val dateFormat by uiPreferences.dateFormat.collectAsState()
+        val reminderOn by context.appGraph.kuroPreferences.readingReminder.collectAsState()
         val formattedDateNow = remember(dateFormat) {
             UiPreferences.dateFormat(dateFormat, locale.platformLocale).format(now)
         }
@@ -180,6 +181,25 @@ object SettingsAppearanceScreen : SearchableSettings {
                     preference = context.appGraph.kuroPreferences.coverProgress,
                     title = stringResource(MR.strings.kurotoon_settings_coverProgress),
                     subtitle = stringResource(MR.strings.kurotoon_settings_coverProgressSummary),
+                ),
+                Preference.PreferenceItem.SwitchPreference(
+                    preference = context.appGraph.kuroPreferences.readingReminder,
+                    title = stringResource(MR.strings.kurotoon_settings_reminder),
+                    subtitle = stringResource(MR.strings.kurotoon_settings_reminderSummary),
+                    onValueChanged = {
+                        kurotoon.reminder.ReadingReminderWorker.setupTask(context, enabled = it)
+                        true
+                    },
+                ),
+                Preference.PreferenceItem.ListPreference(
+                    preference = context.appGraph.kuroPreferences.readingReminderHour,
+                    entries = (6..23).associateWith { "%02d:00".format(it) },
+                    title = stringResource(MR.strings.kurotoon_settings_reminderHour),
+                    visible = reminderOn,
+                    onValueChanged = {
+                        kurotoon.reminder.ReadingReminderWorker.setupTask(context, hour = it)
+                        true
+                    },
                 ),
             ),
         )
