@@ -289,10 +289,11 @@ internal fun HomeSourceRow(
     onToggleLatest: () -> Unit = {},
     /** Off where the row's listing is fixed, e.g. one tag browsed on every source. */
     showListing: Boolean = true,
+    modifier: Modifier = Modifier,
 ) {
     // Keep an empty Latest row so its switch can bring Popular back
     if (row.items?.isEmpty() == true && !row.latest) return
-    Column {
+    Column(modifier) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()

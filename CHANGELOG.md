@@ -65,6 +65,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Covers in Home and tag rows show a bookmark badge when the series is already in your library.
 - Updates folds several same-day chapters of one series into a single row with a "+N more" pill to expand it (toggle in the Updates filter sheet).
 - Pull down on Home to reload every row. Hiding the "Because you read" section now also skips its searches.
+- "Browse on all sources" moves sources with results to the top as they load.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.
