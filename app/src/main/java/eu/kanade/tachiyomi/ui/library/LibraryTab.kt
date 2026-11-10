@@ -47,6 +47,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import kurotoon.ui.library.DuplicatesScreen
 import mihon.feature.migration.config.MigrationConfigScreen
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.automirroredrounded.Help
@@ -135,6 +136,7 @@ data object LibraryTab : Tab {
                             }
                         }
                     },
+                    onClickDuplicates = { navigator.push(DuplicatesScreen()) },
                     searchQuery = state.searchQuery,
                     onSearchQueryChange = viewModel::search,
                     // For scroll overlay when no tab
