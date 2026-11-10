@@ -24,6 +24,7 @@ import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import eu.kanade.presentation.util.rememberIs24HourSystem
 import eu.kanade.tachiyomi.ui.history.HistoryViewModel
 import kotlinx.datetime.LocalDate
+import kurotoon.ui.history.label
 import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.DeleteSweep
@@ -115,6 +116,8 @@ private fun HistoryScreenContent(
         UiPreferences.timeFormat(timeFormat, locale.platformLocale, is24HourSystem)
     }
 
+    val dayTotals by kurotoon.ui.history.rememberDayTotals(history.size)
+
     FastScrollLazyColumn(
         contentPadding = contentPadding,
     ) {
@@ -132,7 +135,8 @@ private fun HistoryScreenContent(
                 is HistoryUiModel.Header -> {
                     ListGroupHeader(
                         modifier = Modifier.animateItem(),
-                        text = relativeDateText(item.date),
+                        text = relativeDateText(item.date) +
+                            dayTotals[item.date.toString()]?.let { " · " + it.label(context) }.orEmpty(),
                     )
                 }
                 is HistoryUiModel.Item -> {
