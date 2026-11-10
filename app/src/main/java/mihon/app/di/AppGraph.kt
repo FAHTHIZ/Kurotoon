@@ -98,6 +98,7 @@ interface AppGraph : ViewModelGraph {
     val packRepository: kurotoon.shop.PackRepository
     val historyRepository: tachiyomi.domain.history.repository.HistoryRepository
     val getNextChapters: tachiyomi.domain.history.interactor.GetNextChapters
+    val getLibraryManga: tachiyomi.domain.manga.interactor.GetLibraryManga
 
     val crashLogUtil: CrashLogUtil
 

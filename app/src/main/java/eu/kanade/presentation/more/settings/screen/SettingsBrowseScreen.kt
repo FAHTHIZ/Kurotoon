@@ -12,6 +12,8 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import eu.kanade.presentation.more.settings.Preference
 import eu.kanade.presentation.more.settings.screen.browse.ExtensionStoresScreen
 import eu.kanade.tachiyomi.util.system.AuthenticatorUtil.authenticate
+import kurotoon.catalogue.HiddenTags
+import kurotoon.ui.browse.HiddenTagsScreen
 import mihon.app.di.appGraph
 import mihon.domain.extension.model.ContentWarning
 import tachiyomi.core.common.i18n.stringResource
@@ -34,6 +36,8 @@ object SettingsBrowseScreen : SearchableSettings {
         val getExtensionStoreCountAsFlow = remember { context.appGraph.getExtensionStoreCountAsFlow }
 
         val reposCount by getExtensionStoreCountAsFlow().collectAsState(0)
+        val hiddenTags by remember { context.appGraph.kuroPreferences.hiddenTags.changes() }
+            .collectAsState(context.appGraph.kuroPreferences.hiddenTags.get())
 
         return listOf(
             Preference.PreferenceGroup(
@@ -43,10 +47,12 @@ object SettingsBrowseScreen : SearchableSettings {
                         preference = sourcePreferences.hideInLibraryItems,
                         title = stringResource(MR.strings.pref_hide_in_library_items),
                     ),
-                    Preference.PreferenceItem.EditTextPreference(
-                        preference = context.appGraph.kuroPreferences.hiddenTags,
+                    Preference.PreferenceItem.TextPreference(
                         title = stringResource(MR.strings.kurotoon_browse_hiddenTags),
-                        subtitle = stringResource(MR.strings.kurotoon_browse_hiddenTagsSummary),
+                        subtitle = HiddenTags.names(hiddenTags).joinToString().ifEmpty {
+                            stringResource(MR.strings.kurotoon_browse_hiddenTagsSummary)
+                        },
+                        onClick = { navigator.push(HiddenTagsScreen()) },
                     ),
                     Preference.PreferenceItem.TextPreference(
                         title = stringResource(MR.strings.extensionStores),

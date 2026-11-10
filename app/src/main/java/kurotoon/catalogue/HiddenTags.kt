@@ -14,6 +14,14 @@ object HiddenTags {
     fun parse(raw: String): Set<String> =
         raw.split(',', '\n').map { it.trim().lowercase() }.filter { it.isNotEmpty() }.toSet()
 
+    /** The tags as typed, first spelling kept, for showing as chips. */
+    fun names(raw: String): List<String> =
+        raw.split(',', '\n').map { it.trim() }.filter { it.isNotEmpty() }.distinctBy { it.lowercase() }
+
+    /** [raw] without [tag] (ignoring case), rewritten as a tidy comma list. */
+    fun remove(raw: String, tag: String): String =
+        names(raw).filterNot { it.equals(tag.trim(), ignoreCase = true) }.joinToString(", ")
+
     /** True when any of [genres] is hidden. */
     fun hides(genres: List<String>?, hidden: Set<String>): Boolean =
         hidden.isNotEmpty() && genres.orEmpty().any { it.trim().lowercase() in hidden }

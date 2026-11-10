@@ -1266,7 +1266,11 @@
     <string name="kurotoon.browse.recentSearches">Recent searches</string>
     <string name="kurotoon.browse.clearRecent">Clear</string>
     <string name="kurotoon.browse.hiddenTags">Hidden tags</string>
-    <string name="kurotoon.browse.hiddenTagsSummary">Comma separated, e.g. Ecchi, Gore. Excluded from filtered searches and dropped from results when a title lists them.</string>
+    <string name="kurotoon.browse.hiddenTagsSummary">Tags you never want to see in browse, search or Home</string>
+    <string name="kurotoon.hiddenTags.info">Hidden tags are excluded from filtered searches and titles that list them are dropped from results and Home rows.</string>
+    <string name="kurotoon.hiddenTags.add">Add a tag, e.g. Gore</string>
+    <string name="kurotoon.hiddenTags.none">No hidden tags yet</string>
+    <string name="kurotoon.hiddenTags.fromLibrary">From your library</string>
     <string name="kurotoon.tag.searchEverywhere">Search all sources</string>
     <string name="kurotoon.tag.hide">Hide this tag</string>
     <string name="kurotoon.tag.hidden">“%s” is now hidden while browsing</string>

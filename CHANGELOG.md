@@ -54,6 +54,7 @@ All notable changes to KuroToon are documented here. Versions follow
   and busiest month.
 - New chapters row on Home: library series with unread chapters from the last two weeks, with a count.
 - "Because you read X" rows on Home, built from the most common tags in your library and searched on a source that has that tag.
+- Hidden tags are now managed as chips in Settings > Browse, with one-tap suggestions from your library tags.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.

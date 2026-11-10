@@ -44,4 +44,12 @@ class HiddenTagsTest {
         addHiddenTag("Ecchi,", "Gore") shouldBe "Ecchi, Gore"
         addHiddenTag("Ecchi, gore", "Gore") shouldBe "Ecchi, gore"
     }
+
+    @Test
+    fun `lists and removes tags as typed`() {
+        HiddenTags.names(" Ecchi, Harem\necchi ,, Gore") shouldBe listOf("Ecchi", "Harem", "Gore")
+        HiddenTags.remove("Ecchi, Harem, Gore", " harem") shouldBe "Ecchi, Gore"
+        HiddenTags.remove("Ecchi", "Gore") shouldBe "Ecchi"
+        HiddenTags.remove("Ecchi", "ecchi") shouldBe ""
+    }
 }
