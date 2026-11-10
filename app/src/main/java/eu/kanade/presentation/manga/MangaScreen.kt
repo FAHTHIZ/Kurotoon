@@ -433,6 +433,8 @@ private fun MangaScreenSmallImpl(
                             enabled = !isAnySelected,
                             chapterCount = chapters.size,
                             missingChapterCount = state.missingChapterCount,
+                            mangaId = state.manga.id,
+                            readCount = chapters.count { it.chapter.read },
                             onClick = onFilterClicked,
                         )
                     }
@@ -663,6 +665,8 @@ fun MangaScreenLargeImpl(
                                     enabled = !isAnySelected,
                                     chapterCount = chapters.size,
                                     missingChapterCount = state.missingChapterCount,
+                                    mangaId = state.manga.id,
+                                    readCount = chapters.count { it.chapter.read },
                                     onClick = onFilterButtonClicked,
                                 )
                             }
