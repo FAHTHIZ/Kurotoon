@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import eu.kanade.presentation.manga.components.MangaCover
+import kurotoon.ui.library.CoverReadProgress
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.roundedfilled.PlayArrow
 import tachiyomi.i18n.MR
@@ -79,6 +80,7 @@ fun MangaCompactGridItem(
     coverAlpha: Float = 1f,
     coverBadgeStart: @Composable (RowScope.() -> Unit)? = null,
     coverBadgeEnd: @Composable (RowScope.() -> Unit)? = null,
+    readProgress: Float? = null,
 ) {
     GridItemSelectable(
         isSelected = isSelected,
@@ -96,6 +98,7 @@ fun MangaCompactGridItem(
             },
             badgesStart = coverBadgeStart,
             badgesEnd = coverBadgeEnd,
+            readProgress = readProgress,
             content = {
                 if (title != null) {
                     CoverTextOverlay(
@@ -185,6 +188,7 @@ fun MangaComfortableGridItem(
     coverBadgeStart: (@Composable RowScope.() -> Unit)? = null,
     coverBadgeEnd: (@Composable RowScope.() -> Unit)? = null,
     onClickContinueReading: (() -> Unit)? = null,
+    readProgress: Float? = null,
 ) {
     GridItemSelectable(
         isSelected = isSelected,
@@ -203,6 +207,7 @@ fun MangaComfortableGridItem(
                 },
                 badgesStart = coverBadgeStart,
                 badgesEnd = coverBadgeEnd,
+                readProgress = readProgress,
                 content = {
                     if (onClickContinueReading != null) {
                         ContinueReadingButton(
@@ -236,6 +241,7 @@ private fun MangaGridCover(
     cover: @Composable BoxScope.() -> Unit = {},
     badgesStart: (@Composable RowScope.() -> Unit)? = null,
     badgesEnd: (@Composable RowScope.() -> Unit)? = null,
+    readProgress: Float? = null,
     content: @Composable (BoxScope.() -> Unit)? = null,
 ) {
     Box(
@@ -245,6 +251,9 @@ private fun MangaGridCover(
     ) {
         cover()
         content?.invoke(this)
+        if (readProgress != null) {
+            CoverReadProgress(readProgress, Modifier.matchParentSize())
+        }
         if (badgesStart != null) {
             BadgeGroup(
                 modifier = Modifier
