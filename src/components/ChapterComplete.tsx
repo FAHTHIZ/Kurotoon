@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, ChevronRight, List, RotateCcw } from "lucide-react";
 import { spring, ease } from "@/lib/motion";
@@ -7,8 +6,10 @@ type Props = {
   open: boolean;
   chapterNumber: string;
   seriesTitle?: string | null;
-  seriesSlug?: string | null;
-  nextChapterId?: string | null;
+  /** Go to the next chapter (absent when caught up). */
+  onNext?: (() => void) | null;
+  /** Back to the chapter list. */
+  onChapters?: (() => void) | null;
   onDismiss: () => void;
   onRestart: () => void;
 };
@@ -20,8 +21,8 @@ export function ChapterComplete({
   open,
   chapterNumber,
   seriesTitle,
-  seriesSlug,
-  nextChapterId,
+  onNext,
+  onChapters,
   onDismiss,
   onRestart,
 }: Props) {
@@ -111,8 +112,8 @@ export function ChapterComplete({
               transition={{ delay: 0.36, duration: 0.32, ease: ease.out }}
               className="mt-5 space-y-2"
             >
-              {nextChapterId ? (
-                <Link to="/read/$chapterId" params={{ chapterId: nextChapterId }} onClick={onDismiss} className="block">
+              {onNext ? (
+                <button onClick={() => { onDismiss(); onNext(); }} className="block w-full">
                   <motion.span
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.96 }}
@@ -121,7 +122,7 @@ export function ChapterComplete({
                   >
                     Next chapter <ChevronRight className="h-4 w-4" />
                   </motion.span>
-                </Link>
+                </button>
               ) : (
                 <p className="rounded-full bg-white/5 py-3 text-xs font-semibold text-muted-foreground">
                   You’re all caught up
@@ -136,8 +137,8 @@ export function ChapterComplete({
                 >
                   <RotateCcw className="h-3.5 w-3.5" /> Re-read
                 </motion.button>
-                {seriesSlug && (
-                  <Link to="/series/$slug" params={{ slug: seriesSlug }} onClick={onDismiss} className="flex-1">
+                {onChapters && (
+                  <button onClick={() => { onDismiss(); onChapters(); }} className="flex-1">
                     <motion.span
                       whileTap={{ scale: 0.95 }}
                       transition={spring.tap}
@@ -145,7 +146,7 @@ export function ChapterComplete({
                     >
                       <List className="h-3.5 w-3.5" /> Chapters
                     </motion.span>
-                  </Link>
+                  </button>
                 )}
               </div>
             </motion.div>

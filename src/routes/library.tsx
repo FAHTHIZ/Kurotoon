@@ -11,10 +11,12 @@ import {
   clearHistory,
   type ProgressEntry,
   type HistoryEntry,
+  idOf,
 } from "@/lib/local-library";
-import type { SeriesCard } from "@/lib/catalog";
+import type { SeriesCard } from "@/engine/types";
+import { encodeKey } from "@/engine/ids";
+import { Cover } from "@/components/Cover";
 import { KuroTip } from "@/components/Kuro";
-import { proxied } from "@/lib/image";
 import { revealUp, staggerContainer, spring } from "@/lib/motion";
 
 export const Route = createFileRoute("/library")({
@@ -119,21 +121,19 @@ function Library() {
         ) : (
           <motion.div variants={staggerContainer(0.04)} initial="hidden" animate="show" className="space-y-2.5">
             {state.reading.map(({ series, progress }) => (
-              <motion.div key={series.id} variants={revealUp}>
+              <motion.div key={idOf(series)} variants={revealUp}>
                 <Link
-                  to="/read/$chapterId"
-                  params={{ chapterId: progress.chapterId }}
+                  to="/read/$sourceId/$mangaKey/$chapterKey"
+                  params={{ sourceId: series.sourceId, mangaKey: encodeKey(series.key), chapterKey: encodeKey(progress.chapterKey) }}
                   className="kt-card flex items-center gap-3 rounded-2xl p-3"
                 >
-                  <div className="h-16 w-11 shrink-0 overflow-hidden rounded-lg bg-[color:var(--surface-2)]">
-                    {series.cover_url && (
-                      <img src={proxied(series.cover_url)} alt="" referrerPolicy="no-referrer" className="h-full w-full object-cover" />
-                    )}
+                  <div className="relative h-16 w-11 shrink-0 overflow-hidden rounded-lg bg-[color:var(--surface-2)]">
+                    <Cover sourceId={series.sourceId} url={series.cover} alt="" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-bold">{series.title}</p>
                     <p className="mt-0.5 text-[11px] text-muted-foreground">
-                      Chapter {progress.chapterNumber || "?"} · page {progress.page}
+                      {progress.chapterLabel} · page {progress.page}/{progress.total}
                     </p>
                   </div>
                   <span className="rounded-full bg-primary/15 px-3 py-1 text-[11px] font-bold text-primary ring-1 ring-primary/25">
@@ -168,20 +168,22 @@ function Library() {
           </button>
           {state.history.map((h) => (
             <Link
-              key={`${h.chapterId}-${h.at}`}
-              to="/read/$chapterId"
-              params={{ chapterId: h.chapterId }}
+              key={`${h.seriesId}-${h.chapterKey}-${h.at}`}
+              to="/read/$sourceId/$mangaKey/$chapterKey"
+              params={{
+                sourceId: h.seriesId.split("::")[0]!,
+                mangaKey: encodeKey(h.seriesId.slice(h.seriesId.indexOf("::") + 2)),
+                chapterKey: encodeKey(h.chapterKey),
+              }}
               className="kt-card flex items-center gap-3 rounded-xl p-3"
             >
-              <div className="h-12 w-9 shrink-0 overflow-hidden rounded-md bg-[color:var(--surface-2)]">
-                {h.series?.cover_url && (
-                  <img src={proxied(h.series.cover_url)} alt="" referrerPolicy="no-referrer" className="h-full w-full object-cover" />
-                )}
+              <div className="relative h-12 w-9 shrink-0 overflow-hidden rounded-md bg-[color:var(--surface-2)]">
+                {h.series && <Cover sourceId={h.series.sourceId} url={h.series.cover} alt="" />}
               </div>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-semibold">{h.series?.title ?? "Unknown series"}</p>
                 <p className="text-[11px] text-muted-foreground">
-                  Chapter {h.chapterNumber || "?"} · {new Date(h.at).toLocaleDateString()}
+                  {h.chapterLabel} · {new Date(h.at).toLocaleDateString()}
                 </p>
               </div>
             </Link>
@@ -201,7 +203,7 @@ function Grid({ items }: { items: SeriesCard[] }) {
       className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6"
     >
       {items.map((s, i) => (
-        <MangaCard key={s.id} s={s} index={i} />
+        <MangaCard key={idOf(s)} s={s} index={i} />
       ))}
     </motion.div>
   );
@@ -215,7 +217,7 @@ function Empty({ text }: { text: string }) {
         to="/browse"
         className="inline-block rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)]"
       >
-        Browse manga
+        Browse sources
       </Link>
     </div>
   );
