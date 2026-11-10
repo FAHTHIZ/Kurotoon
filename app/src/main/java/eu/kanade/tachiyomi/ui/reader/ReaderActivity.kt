@@ -521,6 +521,14 @@ class ReaderActivity : BaseActivity() {
         val viewer = viewer ?: return false
         val navigation = settingsViewModel.navigation.value ?: return false
         val isUp = event.type == KeyEventType.KeyUp
+        if (autoScroll.enabled && (event.key == Key.VolumeUp || event.key == Key.VolumeDown)) {
+            val general = settingsViewModel.general.value
+            if (general.volumeKeysEnabled && !viewModel.state.value.menuVisible) {
+                // While auto-scrolling, volume keys set the speed instead of turning pages
+                if (event.type == KeyEventType.KeyDown) changeAutoScrollSpeed(if (event.key == Key.VolumeUp) 1 else -1)
+                return true
+            }
+        }
         val action = when (event.key) {
             Key.VolumeDown, Key.VolumeUp -> {
                 val general = settingsViewModel.general.value
@@ -652,11 +660,24 @@ class ReaderActivity : BaseActivity() {
         )
     }
 
+    private fun changeAutoScrollSpeed(delta: Int) {
+        val pref = readerPreferences.autoScrollSpeed
+        val speed = (pref.get() + delta).coerceIn(1, 10)
+        pref.set(speed)
+        menuToggleToast?.cancel()
+        menuToggleToast = toast(stringResource(MR.strings.kurotoon_reader_autoScrollSpeedNow, speed))
+    }
+
     private fun toggleAutoScroll() {
         autoScroll.enabled = !autoScroll.enabled
         menuToggleToast?.cancel()
         if (autoScroll.enabled) {
-            menuToggleToast = toast(MR.strings.kurotoon_reader_autoScrollOn)
+            val hint = if (settingsViewModel.general.value.volumeKeysEnabled) {
+                MR.strings.kurotoon_reader_autoScrollOnVolume
+            } else {
+                MR.strings.kurotoon_reader_autoScrollOn
+            }
+            menuToggleToast = toast(hint)
             setMenuVisibility(false)
         }
     }
