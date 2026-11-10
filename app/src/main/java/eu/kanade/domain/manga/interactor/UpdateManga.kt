@@ -4,8 +4,6 @@ import dev.zacsweers.metro.Inject
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
-import kurotoon.rewards.RewardEvent
-import kurotoon.rewards.RewardsStore
 import tachiyomi.domain.manga.interactor.FetchInterval
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.manga.model.MangaUpdate
@@ -17,7 +15,6 @@ import kotlin.time.Instant
 class UpdateManga(
     private val mangaRepository: MangaRepository,
     private val fetchInterval: FetchInterval,
-    private val rewardsStore: RewardsStore,
 ) {
 
     suspend fun await(mangaUpdate: MangaUpdate): Boolean {
@@ -69,8 +66,6 @@ class UpdateManga(
             true -> MangaUpdate(mangaId) { favoriteAt = Clock.System.now() }
             false -> MangaUpdate(mangaId) { favoriteAt = null }
         }
-        return mangaRepository.update(update).also { updated ->
-            if (updated && favorite) rewardsStore.track(RewardEvent.BOOKMARK)
-        }
+        return mangaRepository.update(update)
     }
 }

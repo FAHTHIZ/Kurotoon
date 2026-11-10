@@ -40,7 +40,7 @@ data object UpdatesTab : Tab {
             val isSelected = LocalTabNavigator.current.current.key == key
             val image = AnimatedImageVector.animatedVectorResource(R.drawable.animated_updates)
             return TabOptions(
-                index = 1u,
+                index = 3u,
                 title = stringResource(MR.strings.label_recent_updates),
                 icon = rememberAnimatedVectorPainter(image, isSelected),
             )
