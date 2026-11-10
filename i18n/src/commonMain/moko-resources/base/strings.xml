@@ -1100,6 +1100,11 @@
     <string name="kurotoon.reader.celebrateChapters">Celebrate finished chapters</string>
     <string name="kurotoon.reader.autoWebtoon">Detect webtoons</string>
     <string name="kurotoon.reader.autoWebtoonSummary">Open manhwa, manhua and webtoons in long-strip mode unless you picked a mode for that series</string>
+    <string name="kurotoon.similar.action">Similar</string>
+    <string name="kurotoon.similar.title">More like this</string>
+    <string name="kurotoon.similar.basedOn">Readers of %1$s on AniList also liked these. Tap one to find it in your sources.</string>
+    <string name="kurotoon.similar.none">No recommendations found for this series</string>
+    <string name="kurotoon.similar.failed">Couldn\'t load recommendations. Check your connection.</string>
     <!-- Kuro Points, missions and the shop -->
     <string name="kurotoon.shop.title">Kuro Shop</string>
     <string name="kurotoon.rewards.points">Kuro Points</string>

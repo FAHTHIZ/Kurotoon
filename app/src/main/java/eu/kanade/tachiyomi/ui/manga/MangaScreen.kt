@@ -55,6 +55,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kurotoon.ui.manga.CoverTheme
+import kurotoon.ui.similar.SimilarScreen
 import logcat.LogPriority
 import mihon.feature.migration.config.MigrationConfigScreen
 import mihon.feature.migration.dialog.MigrateMangaDialog
@@ -134,6 +135,7 @@ class MangaScreen(
                         viewModel.source,
                     )
                 }.takeIf { isHttpSource },
+                onSimilarClicked = { navigator.push(SimilarScreen(successState.manga.title)) },
                 onWebViewLongClicked = {
                     copyMangaUrl(
                         context,
