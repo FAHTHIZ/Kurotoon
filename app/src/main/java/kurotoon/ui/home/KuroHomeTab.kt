@@ -77,6 +77,7 @@ data object KuroHomeTab : Tab {
             },
             onRetryRow = viewModel::retry,
             onToggleLatest = viewModel::toggleLatest,
+            onUpdatesClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.Updates) } },
             onResumeClick = viewModel::resume,
             onExtensionsClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.Browse(toExtensions = true)) } },
             onHistoryClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.History) } },

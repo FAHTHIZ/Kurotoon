@@ -104,6 +104,36 @@ class KuroScreenshots {
     }
 
     @Test
+    fun homeNewChapters() = shot("home_new_chapters") {
+        kurotoon.ui.home.HomeNewChapters(
+            items = listOf("Solo Leveling" to 3, "Tower of God" to 1, "Omniscient Reader" to 12).mapIndexed {
+                    i,
+                    (title, n),
+                ->
+                KuroHomeViewModel.NewChapters(
+                    tachiyomi.domain.updates.model.UpdatesWithRelations(
+                        mangaId = i.toLong(),
+                        mangaTitle = title,
+                        chapterId = i.toLong(),
+                        chapterName = "Chapter ${200 + i}",
+                        scanlator = null,
+                        chapterUrl = "/$i",
+                        read = false,
+                        bookmark = false,
+                        lastPageRead = 0,
+                        sourceId = 1L,
+                        dateFetch = kotlin.time.Instant.fromEpochMilliseconds(0),
+                        coverData = MangaCover(i.toLong(), 1L, true, "https://example.org/$i.jpg", null),
+                    ),
+                    n,
+                )
+            },
+            onMangaClick = {},
+            onSeeAll = {},
+        )
+    }
+
+    @Test
     fun sourceFilter() = shot("source_filter") {
         androidx.compose.foundation.layout.Column {
             kurotoon.ui.browse.SourceFilterField(query = "", onQueryChange = {})
