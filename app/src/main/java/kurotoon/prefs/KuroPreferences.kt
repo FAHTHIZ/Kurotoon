@@ -31,6 +31,9 @@ class KuroPreferences(preferenceStore: PreferenceStore) {
     /** Hour of the day (0-23) the reading reminder fires. */
     val readingReminderHour = preferenceStore.getInt("kurotoon_reading_reminder_hour", 20)
 
+    /** Chapters a day to aim for. 0 turns the goal off. */
+    val dailyGoal = preferenceStore.getInt("kurotoon_daily_goal", 0)
+
     /** Searches kept from source browsing, for every source. Shown as chips there and rows on Home. */
     val savedSearches = preferenceStore.getObjectFromString<List<SavedSearch>>(
         key = "kurotoon_saved_searches",

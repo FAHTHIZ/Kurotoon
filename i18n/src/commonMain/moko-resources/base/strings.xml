@@ -1123,6 +1123,15 @@
     <string name="kurotoon_reminder_text">Continue %1$s · %2$s</string>
     <string name="kurotoon_reminder_continue">Continue</string>
     <string name="kurotoon_series_readCount">%1$d of %2$d read</string>
+    <string name="kurotoon_goal_title">Daily goal</string>
+    <string name="kurotoon_goal_set">Set a daily goal</string>
+    <string name="kurotoon_goal_setSummary">Pick how many chapters a day you want to read</string>
+    <string name="kurotoon_goal_progress">%1$d of %2$d chapters today</string>
+    <string name="kurotoon_goal_done">Goal reached. Nice work</string>
+    <string name="kurotoon_goal_left">%d more to go</string>
+    <string name="kurotoon_goal_off">No goal</string>
+    <string name="kurotoon_goal_option">%d a day</string>
+    <string name="kurotoon_reminder_goal">%1$d of %2$d chapters today. Continue %3$s</string>
     <!-- Kuro Points, missions and the shop -->
     <string name="kurotoon.shop.title">Kuro Shop</string>
     <string name="kurotoon.rewards.points">Kuro Points</string>

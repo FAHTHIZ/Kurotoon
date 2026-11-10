@@ -396,9 +396,12 @@ class KuroScreenshots {
                 kotlin.time.Instant.fromEpochMilliseconds(date.atTime(20, it).toInstant(zone).toEpochMilli()) to 60_000L
             }
         }
-        val activity = kurotoon.stats.ReadingActivity.build(entries, today, zone)
+        val todays = (0 until 3).map {
+            kotlin.time.Instant.fromEpochMilliseconds(today.atTime(9, it).toInstant(zone).toEpochMilli()) to 60_000L
+        }
+        val activity = kurotoon.stats.ReadingActivity.build(entries + todays, today, zone)
         androidx.compose.foundation.layout.Box(Modifier.padding(16.dp)) {
-            kurotoon.ui.stats.ReadingActivityCard(activity)
+            kurotoon.ui.stats.ReadingActivityCard(activity, goal = 5)
         }
     }
 
