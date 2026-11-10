@@ -430,6 +430,20 @@ internal fun HomeSourceRow(
                                 contentDescription = manga.title,
                                 onClick = { onMangaClick(manga) },
                             )
+                            if (manga.favorite) {
+                                Icon(
+                                    MaterialSymbols.Rounded.Bookmark,
+                                    contentDescription = stringResource(MR.strings.in_library),
+                                    tint = Color.White,
+                                    modifier = Modifier
+                                        .align(Alignment.TopEnd)
+                                        .padding(6.dp)
+                                        .clip(CircleShape)
+                                        .background(KuroColors.Crimson)
+                                        .padding(4.dp)
+                                        .size(12.dp),
+                                )
+                            }
                             if (manga.url in row.freshUrls) {
                                 Text(
                                     text = stringResource(MR.strings.kurotoon_home_newBadge),

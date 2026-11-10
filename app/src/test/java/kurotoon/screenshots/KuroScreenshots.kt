@@ -198,7 +198,16 @@ class KuroScreenshots {
                 sourceId = 1L,
                 name = "Murim regression",
                 items = (0..3).map { i ->
-                    tachiyomi.domain.manga.model.Manga.create().copy(id = i.toLong(), url = "/$i", title = "Title $i")
+                    tachiyomi.domain.manga.model.Manga.create()
+                        .copy(
+                            id = i.toLong(),
+                            url = "/$i",
+                            title = "Title $i",
+                            favoriteAt = kotlin.time.Instant.fromEpochSeconds(1).takeIf {
+                                i ==
+                                    1
+                            },
+                        )
                 },
                 savedSearch = kurotoon.catalogue.SavedSearch(id = 1L, sourceId = 1L, name = "Murim regression"),
                 sourceName = "Asura Scans",
