@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ChevronLeft, ChevronRight, ImageOff, Loader2, Maximize, Minimize, RefreshCcw, Settings2, X } from "lucide-react";
 import { track } from "@/lib/rewards";
+import { isOfflinePage, offlinePages, resolveOfflinePage, useDownloads } from "@/lib/downloads";
 import { chapterLabel, getProgress, markChapterRead, recordHistory, rememberSeries, setProgress, getSeen } from "@/lib/local-library";
 import { useReaderSettings, useWakeLock, type ReaderMode } from "@/lib/reader-settings";
 import { ProgressOrb } from "@/components/ProgressOrb";
@@ -44,15 +45,28 @@ function Reader() {
 
   const chapters = useChapters(sourceId, mangaKey);
   const details = useMangaDetails(sourceId, mangaKey);
-  const list = chapters.data ?? [];
+  const dl = useDownloads();
+  const offline = dl.downloaded[`${sid}|${chapterKey}`] ?? null;
+  // Offline: fall back to the downloaded chapters of this series for navigation.
+  const offlineList = useMemo(
+    () =>
+      Object.values(dl.downloaded)
+        .filter((m) => m.seriesId === sid)
+        .map((m) => ({ ...m.chapter, raw: null as unknown as ChapterRow["raw"] }))
+        .sort((a, b) => (b.number ?? 0) - (a.number ?? 0)),
+    [dl.downloaded, sid],
+  );
+  const list = chapters.data ?? (chapters.error ? offlineList : []);
   const idx = list.findIndex((c) => c.key === chapterKey);
-  const chapter: ChapterRow | null = idx >= 0 ? list[idx]! : null;
+  const chapter: ChapterRow | null =
+    idx >= 0 ? list[idx]! : offline ? { ...offline.chapter, raw: null as unknown as ChapterRow["raw"] } : null;
   // Sources list newest first: "next" in reading order is the previous index.
   const nextCh = idx > 0 ? list.slice(0, idx).reverse().find((c) => !c.locked) ?? null : null;
   const prevCh = idx >= 0 ? list.slice(idx + 1).find((c) => !c.locked) ?? null : null;
 
-  const pagesQ = usePages(sourceId, mangaKey, chapter?.raw ?? null);
-  const pages = pagesQ.data ?? [];
+  const pagesQ = usePages(sourceId, mangaKey, offline || !dl.loaded ? null : (chapter?.raw ?? null));
+  const offlinePageList = useMemo(() => (offline ? offlinePages(offline) : null), [offline]);
+  const pages = offlinePageList ?? pagesQ.data ?? [];
 
   const [hideUI, setHideUI] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -113,7 +127,7 @@ function Reader() {
   const atEnd = pages.length > 0 && current >= pages.length - 1;
   useEffect(() => {
     if (!chapter || !pages.length) return;
-    if (current >= pages.length - 3 && nextCh) {
+    if (current >= pages.length - 3 && nextCh?.raw) {
       void qc.prefetchQuery({
         queryKey: ["src", sourceId, "pages", mangaKey, nextCh.key],
         queryFn: () => pageList(sourceId, mangaKey, nextCh.raw),
@@ -181,8 +195,8 @@ function Reader() {
 
   const onVisible = useCallback((i: number) => setCurrent((c) => (paged ? c : i)), [paged]);
 
-  const loading = chapters.isLoading || (chapter && pagesQ.isLoading);
-  const failed = chapters.error || pagesQ.error || (!chapters.isLoading && !chapter);
+  const loading = !offline && (!dl.loaded || chapters.isLoading || (chapter && pagesQ.isLoading));
+  const failed = !offline && (chapters.error || pagesQ.error || (!chapters.isLoading && !chapter));
   const bg = BG[settings.background];
 
   if (loading) {
@@ -396,7 +410,7 @@ function resolveCached(sourceId: string, page: Page): Promise<ResolvedImage> {
     pageCache.set(k, hit);
     return hit;
   }
-  const p = resolvePage(sourceId, page);
+  const p: Promise<ResolvedImage> = isOfflinePage(page) ? resolveOfflinePage(page) : resolvePage(sourceId, page);
   p.catch(() => pageCache.delete(k));
   pageCache.set(k, p);
   while (pageCache.size > PAGE_CACHE_MAX) {

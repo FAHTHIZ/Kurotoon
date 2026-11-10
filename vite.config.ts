@@ -6,6 +6,19 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
+    // The Aidoku runtime spawns its worker with new URL("./worker.js", import.meta.url);
+    // pre-bundling rewrites that path and the worker 404s in dev.
+    optimizeDeps: {
+      exclude: ["@nemu.pm/aidoku-runtime"],
+      // ...but its CommonJS dependencies still need pre-bundling.
+      include: [
+        "@nemu.pm/aidoku-runtime > cheerio",
+        "@nemu.pm/aidoku-runtime > comlink",
+        "@nemu.pm/aidoku-runtime > fflate",
+        "@nemu.pm/aidoku-runtime > @variegated-coffee/serde-postcard-ts",
+      ],
+    },
+    worker: { format: "es" },
     plugins: [
       VitePWA({
         registerType: "autoUpdate",
@@ -25,15 +38,6 @@ export default defineConfig({
               // device receives the freshest HTML shell + current asset hashes.
               urlPattern: ({ request }) => request.mode === "navigate",
               handler: "NetworkOnly",
-            },
-            {
-              urlPattern: ({ url }) => url.pathname.startsWith("/storage/v1/object/public/"),
-              handler: "CacheFirst",
-              options: {
-                cacheName: "kt-chapter-pages",
-                expiration: { maxEntries: 4000, maxAgeSeconds: 60 * 60 * 24 * 60 },
-                cacheableResponse: { statuses: [0, 200] },
-              },
             },
             {
               urlPattern: ({ url }) =>

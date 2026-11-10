@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
-import { ArrowDownUp, ArrowLeft, Bookmark, BookmarkCheck, CheckCheck, ExternalLink, Heart, Lock, Play, RefreshCcw, Tags } from "lucide-react";
+import { ArrowDownUp, ArrowLeft, Bookmark, BookmarkCheck, CheckCheck, ExternalLink, Heart, Lock, Play, RefreshCcw, Tags, Download } from "lucide-react";
 import { toast } from "sonner";
 import { Cover } from "@/components/Cover";
 import { KuroTip } from "@/components/Kuro";
@@ -23,6 +23,8 @@ import { decodeKey, encodeKey, seriesId } from "@/engine/ids";
 import { STATUS_LABEL, type ChapterRow, type SeriesCard } from "@/engine/types";
 import { seedKnownChapters } from "@/lib/updates";
 import { getCategories } from "@/lib/categories";
+import { enqueueDownloads } from "@/lib/downloads";
+import { DownloadButton } from "@/components/DownloadButton";
 import { CategoryPicker, Sheet } from "@/components/LibraryShelf";
 
 export const Route = createFileRoute("/manga/$sourceId/$key")({
@@ -250,6 +252,20 @@ function MangaPage() {
           </h2>
           <div className="flex gap-1">
             <button
+              onClick={() => {
+                if (!card) return;
+                const unread = [...list].reverse().filter((c) => !readSet.has(c.key) && !c.locked).slice(0, 5);
+                const n = enqueueDownloads(card, unread);
+                toast.success(n ? `Downloading ${n} chapter${n === 1 ? "" : "s"}` : "Next unread chapters are already downloaded");
+              }}
+              disabled={!card || !list.length}
+              aria-label="Download next 5 unread"
+              title="Download next 5 unread"
+              className="grid h-8 w-8 place-items-center rounded-full bg-[color:var(--surface)] ring-1 ring-border disabled:opacity-40"
+            >
+              <Download className="h-3.5 w-3.5" />
+            </button>
+            <button
               onClick={() => setAsc((a) => !a)}
               aria-label="Reverse order"
               className="grid h-8 w-8 place-items-center rounded-full bg-[color:var(--surface)] ring-1 ring-border"
@@ -304,6 +320,7 @@ function MangaPage() {
                       </p>
                     </div>
                   </Link>
+                  {card && !c.locked && <DownloadButton series={card} chapter={c} />}
                   <button
                     onClick={() => markChapterRead(id, c.key, !isRead)}
                     aria-label={isRead ? "Mark unread" : "Mark read"}

@@ -2,8 +2,6 @@
 // Service workers are intentionally NOT registered inside Lovable preview
 // iframes — they cause stale content. They activate on the published site only.
 
-const CHAPTER_CACHE = "kt-offline-chapters";
-
 function isUnsafeHost(): boolean {
   if (typeof window === "undefined") return true;
   const inIframe = (() => {
@@ -45,50 +43,4 @@ export function pwaEnabled() {
   // SW is disabled in production until a real /sw.js ships; offline chapter
   // downloads still work via the Cache API without a service worker.
   return typeof window !== "undefined" && "caches" in window;
-}
-
-/** Pre-cache every page image of a chapter for offline reading. */
-export async function downloadChapter(chapterId: string, urls: string[]) {
-  if (!("caches" in window)) throw new Error("Cache API unavailable");
-  const cache = await caches.open(CHAPTER_CACHE);
-  let done = 0;
-  for (const url of urls) {
-    try {
-      const req = new Request(url, { mode: "cors", credentials: "omit" });
-      const res = await fetch(req);
-      if (res.ok || res.type === "opaque") await cache.put(req, res.clone());
-    } catch (e) {
-      console.warn("[offline] failed to cache", url, e);
-    } finally {
-      done++;
-      window.dispatchEvent(new CustomEvent("kt-download-progress", {
-        detail: { chapterId, done, total: urls.length },
-      }));
-    }
-  }
-  const manifest = await caches.open("kt-offline-manifest");
-  await manifest.put(
-    new Request(`/offline/${chapterId}`),
-    new Response(JSON.stringify({ chapterId, urls, savedAt: Date.now() }), {
-      headers: { "content-type": "application/json" },
-    }),
-  );
-}
-
-export async function isChapterDownloaded(chapterId: string): Promise<boolean> {
-  if (!("caches" in window)) return false;
-  const manifest = await caches.open("kt-offline-manifest");
-  const m = await manifest.match(`/offline/${chapterId}`);
-  return !!m;
-}
-
-export async function removeChapter(chapterId: string) {
-  if (!("caches" in window)) return;
-  const manifest = await caches.open("kt-offline-manifest");
-  const m = await manifest.match(`/offline/${chapterId}`);
-  if (!m) return;
-  const { urls } = await m.json();
-  const cache = await caches.open(CHAPTER_CACHE);
-  await Promise.all((urls as string[]).map((u) => cache.delete(u)));
-  await manifest.delete(`/offline/${chapterId}`);
 }
