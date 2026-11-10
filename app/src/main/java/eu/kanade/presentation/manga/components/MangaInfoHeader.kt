@@ -86,6 +86,7 @@ import kurotoon.ui.fx.rememberFxAnchor
 import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.AttachMoney
+import mihon.icons.materialsymbols.rounded.AutoAwesome
 import mihon.icons.materialsymbols.rounded.Block
 import mihon.icons.materialsymbols.rounded.Check
 import mihon.icons.materialsymbols.rounded.Close
@@ -189,6 +190,7 @@ fun MangaActionRow(
     onAddToLibraryClicked: () -> Unit,
     onWebViewClicked: (() -> Unit)?,
     onWebViewLongClicked: (() -> Unit)?,
+    onSimilarClicked: () -> Unit,
     onTrackingClicked: () -> Unit,
     onEditIntervalClicked: (() -> Unit)?,
     onEditCategory: (() -> Unit)?,
@@ -260,6 +262,12 @@ fun MangaActionRow(
             icon = if (trackingCount == 0) MaterialSymbols.Rounded.Sync else MaterialSymbols.Rounded.Check,
             color = if (trackingCount == 0) defaultActionButtonColor else MaterialTheme.colorScheme.primary,
             onClick = onTrackingClicked,
+        )
+        MangaActionButton(
+            title = stringResource(MR.strings.kurotoon_similar_action),
+            icon = MaterialSymbols.Rounded.AutoAwesome,
+            color = defaultActionButtonColor,
+            onClick = onSimilarClicked,
         )
         if (onWebViewClicked != null) {
             MangaActionButton(
