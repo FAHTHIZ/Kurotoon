@@ -3,6 +3,7 @@ package kurotoon.prefs
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
+import kurotoon.catalogue.RecentSearches
 import kurotoon.catalogue.SavedSearch
 import kurotoon.catalogue.SavedSearches
 import tachiyomi.core.common.preference.PreferenceStore
@@ -30,5 +31,13 @@ class KuroPreferences(preferenceStore: PreferenceStore) {
         defaultValue = emptyList(),
         serializer = SavedSearches::encode,
         deserializer = SavedSearches::decode,
+    )
+
+    /** Recent Universal Search queries, newest first. */
+    val recentSearches = preferenceStore.getObjectFromString<List<String>>(
+        key = "kurotoon_recent_searches",
+        defaultValue = emptyList(),
+        serializer = RecentSearches::encode,
+        deserializer = RecentSearches::decode,
     )
 }

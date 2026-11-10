@@ -49,6 +49,7 @@ fun SourcesScreen(
     onLongClickItem: (Source) -> Unit,
     onUniversalSearch: (String) -> Unit,
     onQueryChange: (String) -> Unit = {},
+    onClearRecentSearches: () -> Unit = {},
 ) {
     when {
         state.isLoading -> LoadingScreen(Modifier.padding(contentPadding))
@@ -63,6 +64,8 @@ fun SourcesScreen(
                 item(key = "universal-search", contentType = "universal-search") {
                     UniversalSearchCard(
                         onSearch = onUniversalSearch,
+                        recent = state.recentSearches,
+                        onClearRecent = onClearRecentSearches,
                         modifier = Modifier.padding(
                             horizontal = MaterialTheme.padding.medium,
                             vertical = MaterialTheme.padding.small,

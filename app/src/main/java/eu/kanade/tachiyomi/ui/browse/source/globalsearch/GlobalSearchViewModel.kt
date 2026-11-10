@@ -10,8 +10,11 @@ import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactoryKey
 import eu.kanade.domain.source.service.SourcePreferences
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.source.Source
+import kurotoon.catalogue.RecentSearches
+import kurotoon.prefs.KuroPreferences
 import kurotoon.rewards.RewardEvent
 import kurotoon.rewards.RewardsStore
+import tachiyomi.core.common.preference.getAndSet
 import tachiyomi.domain.manga.interactor.GetManga
 import tachiyomi.domain.manga.interactor.NetworkToLocalManga
 import tachiyomi.domain.source.service.SourceManager
@@ -27,6 +30,7 @@ class GlobalSearchViewModel(
     getManga: GetManga,
     preferences: SourcePreferences,
     private val rewardsStore: RewardsStore,
+    private val kuroPreferences: KuroPreferences,
 ) : SearchViewModel(
     initialState = State(searchQuery = initialQuery),
     sourcePreferences = sourcePreferences,
@@ -55,8 +59,22 @@ class GlobalSearchViewModel(
         }
     }
 
+    val recentSearches = kuroPreferences.recentSearches.changes()
+
+    fun clearRecentSearches() {
+        kuroPreferences.recentSearches.delete()
+    }
+
+    fun searchRecent(query: String) {
+        updateSearchQuery(query)
+        search()
+    }
+
     override fun onSearch() {
         rewardsStore.track(RewardEvent.SEARCH)
+        state.value.searchQuery?.let { query ->
+            kuroPreferences.recentSearches.getAndSet { RecentSearches.add(it, query) }
+        }
     }
 
     override suspend fun getEnabledSources(): List<Source> {

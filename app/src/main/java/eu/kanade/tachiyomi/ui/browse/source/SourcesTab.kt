@@ -53,6 +53,7 @@ fun Screen.sourcesTab(): TabContent {
                 onLongClickItem = viewModel::showSourceDialog,
                 onUniversalSearch = { navigator.push(GlobalSearchScreen(it)) },
                 onQueryChange = viewModel::setQuery,
+                onClearRecentSearches = viewModel::clearRecentSearches,
             )
 
             state.dialog?.let { dialog ->

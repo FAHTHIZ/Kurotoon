@@ -77,6 +77,10 @@ class KuroScreenshots {
         androidx.compose.foundation.layout.Column {
             kurotoon.ui.browse.SourceFilterField(query = "", onQueryChange = {})
             kurotoon.ui.browse.SourceFilterField(query = "asura", onQueryChange = {})
+            kurotoon.ui.browse.UniversalSearchCard(
+                onSearch = {},
+                recent = listOf("solo leveling", "tower of god", "murim", "return of the mount hua sect"),
+            )
         }
     }
 
