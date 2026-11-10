@@ -76,6 +76,9 @@ class ReaderPreferences(
         ReadingMode.RIGHT_TO_LEFT.flagValue,
     )
 
+    /** Open manhwa, manhua and webtoons in the long-strip reader unless a mode was picked for them. */
+    val autoWebtoonMode: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_reader_auto_webtoon", true)
+
     val defaultOrientationType: Preference<Int> = preferenceStore.getInt(
         "pref_default_orientation_type_key",
         ReaderOrientation.FREE.flagValue,

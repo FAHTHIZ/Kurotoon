@@ -36,6 +36,11 @@ object SettingsReaderScreen : SearchableSettings {
                     .associate { it.flagValue to stringResource(it.stringRes) },
                 title = stringResource(MR.strings.pref_viewer_type),
             ),
+            Preference.PreferenceItem.SwitchPreference(
+                preference = readerPref.autoWebtoonMode,
+                title = stringResource(MR.strings.kurotoon_reader_autoWebtoon),
+                subtitle = stringResource(MR.strings.kurotoon_reader_autoWebtoonSummary),
+            ),
             Preference.PreferenceItem.ListPreference(
                 preference = readerPref.doubleTapAnimSpeed,
                 entries = mapOf(

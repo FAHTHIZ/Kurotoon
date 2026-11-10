@@ -73,6 +73,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
+import kurotoon.reader.WebtoonDetector
 import kurotoon.rewards.RewardEvent
 import kurotoon.rewards.RewardsStore
 import logcat.LogPriority
@@ -821,7 +822,16 @@ class ReaderViewModel(
      * Returns the viewer position used by this manga or the default one.
      */
     fun getMangaReadingMode(resolveDefault: Boolean = true): Int {
-        val default = readerPreferences.defaultReadingMode.get()
+        val manga = manga
+        val default = if (
+            readerPreferences.autoWebtoonMode.get() &&
+            manga != null &&
+            WebtoonDetector.isLongStrip(manga.genre, source?.name)
+        ) {
+            ReadingMode.WEBTOON.flagValue
+        } else {
+            readerPreferences.defaultReadingMode.get()
+        }
         val readingMode = ReadingMode.fromPreference(manga?.readingMode?.toInt())
         return when {
             resolveDefault && readingMode == ReadingMode.DEFAULT -> default
