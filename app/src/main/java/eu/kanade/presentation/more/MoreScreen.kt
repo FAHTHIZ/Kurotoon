@@ -9,6 +9,7 @@ import eu.kanade.presentation.more.settings.widget.SwitchPreferenceWidget
 import eu.kanade.presentation.more.settings.widget.TextPreferenceWidget
 import eu.kanade.tachiyomi.ui.more.DownloadQueueState
 import kurotoon.ui.profile.KuroProfileHeader
+import kurotoon.ui.profile.ProfileLook
 import kurotoon.ui.profile.ProfileStats
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.automirroredrounded.Help
@@ -47,6 +48,8 @@ fun MoreScreen(
     profileStats: ProfileStats,
     onClickLibrary: () -> Unit,
     onClickHistory: () -> Unit,
+    profileLook: ProfileLook = ProfileLook(),
+    onClickShop: () -> Unit = {},
 ) {
     val uriHandler = LocalUriHandler.current
 
@@ -59,6 +62,8 @@ fun MoreScreen(
                     stats = profileStats,
                     onLibraryClick = onClickLibrary,
                     onHistoryClick = onClickHistory,
+                    look = profileLook,
+                    onShopClick = onClickShop,
                 )
             }
             item {
