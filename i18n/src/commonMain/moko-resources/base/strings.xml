@@ -1219,4 +1219,6 @@
     <string name="kurotoon.browse.editSavedSearch">Saved search</string>
     <string name="kurotoon.browse.showOnHome">Show on Home</string>
     <string name="kurotoon.browse.showOnHomeSummary">Get a row of fresh results every time you open Home</string>
+    <string name="kurotoon.browse.filterSources">Find a source</string>
+    <string name="kurotoon.browse.noSourceMatch">No sources match “%s”</string>
 </resources>

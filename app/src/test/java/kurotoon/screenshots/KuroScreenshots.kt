@@ -73,6 +73,14 @@ class KuroScreenshots {
     }
 
     @Test
+    fun sourceFilter() = shot("source_filter") {
+        androidx.compose.foundation.layout.Column {
+            kurotoon.ui.browse.SourceFilterField(query = "", onQueryChange = {})
+            kurotoon.ui.browse.SourceFilterField(query = "asura", onQueryChange = {})
+        }
+    }
+
+    @Test
     fun browseChips() = shot("browse_chips") {
         val catalogue = remember { sampleCatalogue() }
         val facets = remember { CatalogFacets.from(catalogue) }
