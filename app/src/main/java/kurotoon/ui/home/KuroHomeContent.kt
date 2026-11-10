@@ -59,8 +59,8 @@ fun KuroHomeContent(
     onAddSourcesClick: () -> Unit,
     onMangaClick: (Long) -> Unit,
     onBrowseMangaClick: (Manga) -> Unit,
-    onSourceClick: (Long) -> Unit,
-    onRetrySource: (Long) -> Unit,
+    onRowClick: (KuroHomeViewModel.SourceRow) -> Unit,
+    onRetryRow: (KuroHomeViewModel.SourceRow) -> Unit,
     onResumeClick: (HistoryWithRelations) -> Unit,
     onExtensionsClick: () -> Unit,
     onHistoryClick: () -> Unit,
@@ -102,12 +102,12 @@ fun KuroHomeContent(
                     onResumeClick = onResumeClick,
                 )
             }
-            items(state.rows, key = { "source-${it.sourceId}" }) { row ->
+            items(state.savedRows + state.rows, key = { it.key }) { row ->
                 HomeSourceRow(
                     row = row,
-                    onSeeAll = { onSourceClick(row.sourceId) },
+                    onSeeAll = { onRowClick(row) },
                     onMangaClick = onBrowseMangaClick,
-                    onRetry = { onRetrySource(row.sourceId) },
+                    onRetry = { onRetryRow(row) },
                 )
             }
         }

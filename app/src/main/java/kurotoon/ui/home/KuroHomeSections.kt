@@ -54,6 +54,7 @@ import kurotoon.ui.KuroColors
 import kurotoon.ui.kuroCard
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.AutoAwesome
+import mihon.icons.materialsymbols.rounded.Bookmark
 import mihon.icons.materialsymbols.rounded.KeyboardArrowRight
 import mihon.icons.materialsymbols.rounded.LocalFireDepartment
 import tachiyomi.domain.manga.model.Manga
@@ -275,7 +276,11 @@ internal fun HomeSourceRow(
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    MaterialSymbols.Rounded.LocalFireDepartment,
+                    if (row.savedSearch != null) {
+                        MaterialSymbols.Rounded.Bookmark
+                    } else {
+                        MaterialSymbols.Rounded.LocalFireDepartment
+                    },
                     contentDescription = null,
                     tint = KuroColors.Crimson,
                     modifier = Modifier.size(16.dp),
@@ -292,7 +297,7 @@ internal fun HomeSourceRow(
                     .weight(1f, fill = false),
             )
             Text(
-                text = " · " + stringResource(MR.strings.popular),
+                text = " · " + if (row.savedSearch != null) row.sourceName else stringResource(MR.strings.popular),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.weight(1f),

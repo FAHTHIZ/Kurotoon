@@ -201,14 +201,27 @@ class KuroScreenshots {
             )
         }
         KuroHomeContent(
-            state = KuroHomeViewModel.State(isLoading = false, continueReading = history, rows = rows),
+            state = KuroHomeViewModel.State(
+                isLoading = false,
+                continueReading = history,
+                rows = rows,
+                savedRows = listOf(
+                    KuroHomeViewModel.SourceRow(
+                        sourceId = 0L,
+                        name = "Murim",
+                        items = (0 until 8).map { manga(100L + it, titles[(it + 2) % titles.size]) },
+                        savedSearch = kurotoon.catalogue.SavedSearch(1L, 0L, "Murim", "murim", emptyList()),
+                        sourceName = "MangaDex",
+                    ),
+                ),
+            ),
             snackbarHostState = SnackbarHostState(),
             onSearchClick = {},
             onAddSourcesClick = {},
             onMangaClick = {},
             onBrowseMangaClick = {},
-            onSourceClick = {},
-            onRetrySource = {},
+            onRowClick = {},
+            onRetryRow = {},
             onResumeClick = {},
             onExtensionsClick = {},
             onHistoryClick = {},

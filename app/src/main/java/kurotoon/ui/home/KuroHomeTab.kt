@@ -62,8 +62,16 @@ data object KuroHomeTab : Tab {
             onAddSourcesClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.Browse(toExtensions = true)) } },
             onMangaClick = { navigator.push(MangaScreen(it)) },
             onBrowseMangaClick = { navigator.push(MangaScreen(it.id, fromSource = true)) },
-            onSourceClick = { navigator.push(BrowseSourceScreen(it, BrowseSourceViewModel.Listing.Popular.query)) },
-            onRetrySource = viewModel::retry,
+            onRowClick = { row ->
+                navigator.push(
+                    BrowseSourceScreen(
+                        sourceId = row.sourceId,
+                        listingQuery = BrowseSourceViewModel.Listing.Popular.query,
+                        savedSearchId = row.savedSearch?.id,
+                    ),
+                )
+            },
+            onRetryRow = viewModel::retry,
             onResumeClick = viewModel::resume,
             onExtensionsClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.Browse(toExtensions = true)) } },
             onHistoryClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.History) } },

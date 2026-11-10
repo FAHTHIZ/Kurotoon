@@ -79,6 +79,8 @@ data class BrowseSourceScreen(
     private val listingQuery: String?,
     /** A tag to filter by as soon as the source is ready, e.g. one tapped on a series page. */
     private val initialGenre: String? = null,
+    /** Opens this saved search once the source is ready, e.g. from a Home row. */
+    private val savedSearchId: Long? = null,
 ) : Screen(), AssistContentScreen {
 
     private var assistUrl: String? = null
@@ -92,6 +94,15 @@ data class BrowseSourceScreen(
                 create(sourceId = sourceId, listingQuery = listingQuery)
             }
         val state by viewModel.state.collectAsState()
+
+        var savedSearchOpened by rememberSaveable { mutableStateOf(savedSearchId == null) }
+        LaunchedEffect(state.source, state.savedSearches) {
+            if (savedSearchOpened || state.source == null) return@LaunchedEffect
+            state.savedSearches.firstOrNull { it.id == savedSearchId }?.let {
+                viewModel.openSavedSearch(it)
+                savedSearchOpened = true
+            }
+        }
 
         val navigator = LocalNavigator.currentOrThrow
         val navigateUp: () -> Unit = {
