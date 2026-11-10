@@ -1,0 +1,2 @@
+# Kurotoon
+Just for fun 
