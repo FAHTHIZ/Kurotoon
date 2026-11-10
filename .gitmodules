@@ -1,0 +1,3 @@
+[submodule "native/mihon"]
+	path = native/mihon
+	url = https://github.com/mihonapp/mihon.git
