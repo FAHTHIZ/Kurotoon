@@ -10,6 +10,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
@@ -17,6 +18,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
@@ -26,13 +28,11 @@ import coil3.compose.AsyncImagePreviewHandler
 import coil3.compose.LocalAsyncImagePreviewHandler
 import com.github.takahirom.roborazzi.captureRoboImage
 import eu.kanade.presentation.theme.colorscheme.KuroToonColorScheme
-import androidx.compose.foundation.layout.height
-import androidx.compose.ui.geometry.Offset
 import kurotoon.ui.KuroBottomBar
-import kurotoon.ui.fx.drawTapFrame
 import kurotoon.ui.KuroBottomBarItem
 import kurotoon.ui.browse.BrowseChips
 import kurotoon.ui.browse.BrowseSort
+import kurotoon.ui.fx.drawTapFrame
 import kurotoon.ui.home.KuroHomeContent
 import kurotoon.ui.home.KuroHomeViewModel
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -116,6 +116,15 @@ class KuroScreenshots {
                 drawTapFrame(Offset(size.width * (i + 0.5f) / 4, size.height / 2), t)
             }
         }
+    }
+
+    @Test
+    fun chapterComplete() = shot("chapter_complete") {
+        kurotoon.reader.ChapterCompleteCard(
+            chapterName = "Chapter 112 - The Monarch Awakens",
+            modifier = Modifier.padding(24.dp),
+            settled = true,
+        )
     }
 
     @Test

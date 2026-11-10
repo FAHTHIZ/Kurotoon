@@ -30,6 +30,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.core.content.getSystemService
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import mihon.app.di.appGraph
 import tachiyomi.presentation.core.util.collectAsState
@@ -49,7 +50,11 @@ private val BurstColors =
  * idle, honours the system "remove animations" setting and uses fewer particles on low-RAM phones.
  */
 @Composable
-fun ParticleField(ambient: Boolean, modifier: Modifier = Modifier) {
+fun ParticleField(
+    ambient: Boolean,
+    modifier: Modifier = Modifier,
+    events: Flow<FxEvent> = KuroFx.flow,
+) {
     val context = LocalContext.current
     val enabled by remember { context.appGraph.kuroPreferences.particles }.collectAsState()
     val reducedMotion = remember {
@@ -65,8 +70,8 @@ fun ParticleField(ambient: Boolean, modifier: Modifier = Modifier) {
     var frame by remember { mutableLongStateOf(0L) }
     val frameTimeMs = { if (frame != 0L) frame / 1_000_000 else System.nanoTime() / 1_000_000 }
 
-    LaunchedEffect(engine) {
-        KuroFx.flow.collect { event ->
+    LaunchedEffect(engine, events) {
+        events.collect { event ->
             when (event) {
                 is FxEvent.Burst -> engine.burst(event)
                 is FxEvent.Tap -> engine.tap(event, frameTimeMs())

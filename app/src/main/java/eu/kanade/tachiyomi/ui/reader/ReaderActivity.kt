@@ -114,6 +114,8 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kurotoon.reader.AutoScrollDriver
 import kurotoon.reader.AutoScrollState
+import kurotoon.reader.ChapterCompleteHost
+import kurotoon.reader.ChapterCompleteState
 import logcat.LogPriority
 import mihon.app.di.AppGraph
 import mihon.core.metro.metroGraph
@@ -167,6 +169,7 @@ class ReaderActivity : BaseActivity() {
         private set
 
     private val autoScroll = AutoScrollState()
+    private val chapterComplete = ChapterCompleteState()
 
     /**
      * Called when the activity is created. Initializes the presenter and configuration.
@@ -288,6 +291,8 @@ class ReaderActivity : BaseActivity() {
                 }
 
                 ReaderNavigationOverlay(state = navigationOverlayState)
+
+                ChapterCompleteHost(state = chapterComplete, modifier = Modifier.fillMaxSize())
 
                 AppBars(state = state)
             }
@@ -415,6 +420,9 @@ class ReaderActivity : BaseActivity() {
                     }
                     is ReaderViewModel.Event.SetCoverResult -> {
                         onSetAsCoverResult(event.result)
+                    }
+                    is ReaderViewModel.Event.ChapterCompleted -> {
+                        if (readerPreferences.celebrateChapters.get()) chapterComplete.show(event.chapterName)
                     }
                 }
             }
