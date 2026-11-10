@@ -24,8 +24,8 @@ val Project.Config: BuildConfig get() = object : BuildConfig {
         }
         ?: Distribution.LOCAL
 
-    override val includeTelemetry: Boolean = project.flag("include-telemetry")
-        ?: (distribution == Distribution.CI || distribution == Distribution.GITHUB)
+    // KuroToon has no Firebase project of its own, so telemetry is strictly opt-in
+    override val includeTelemetry: Boolean = project.flag("include-telemetry") ?: false
 
     override val uploadCrashlyticsMapping: Boolean = includeTelemetry && (distribution == Distribution.GITHUB)
 
