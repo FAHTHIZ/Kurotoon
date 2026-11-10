@@ -40,14 +40,18 @@ import eu.kanade.tachiyomi.ui.library.LibraryTab
 import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import eu.kanade.tachiyomi.ui.more.MoreTab
 import eu.kanade.tachiyomi.ui.updates.UpdatesTab
+import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import kurotoon.ui.home.KuroHomeTab
+import kurotoon.ui.rewards.RewardsTab
 import mihon.app.di.appGraph
 import soup.compose.material.motion.animation.materialFadeThroughIn
 import soup.compose.material.motion.animation.materialFadeThroughOut
+import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.pluralStringResource
 
@@ -64,10 +68,10 @@ object HomeScreen : Screen() {
     private const val TabNavigatorKey = "HomeTabs"
 
     private val TABS = listOf(
-        LibraryTab,
-        UpdatesTab,
-        HistoryTab,
+        KuroHomeTab,
         BrowseTab,
+        RewardsTab,
+        LibraryTab,
         MoreTab,
     )
 
@@ -75,7 +79,7 @@ object HomeScreen : Screen() {
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
         TabNavigator(
-            tab = LibraryTab,
+            tab = KuroHomeTab,
             key = TabNavigatorKey,
         ) { tabNavigator ->
             // Provide usable navigator to content screen
@@ -129,7 +133,22 @@ object HomeScreen : Screen() {
 
             val goToLibraryTab = { tabNavigator.current = LibraryTab }
 
-            BackHandler(enabled = tabNavigator.current != LibraryTab, onBack = goToLibraryTab)
+            BackHandler(enabled = tabNavigator.current != KuroHomeTab, onBack = { tabNavigator.current = KuroHomeTab })
+
+            val context = LocalContext.current
+            LaunchedEffect(Unit) {
+                val rewards = context.appGraph.rewardsStore
+                rewards.claimDailyOpen()
+                rewards.grants.collect { grant ->
+                    context.toast(
+                        context.stringResource(
+                            MR.strings.kurotoon_rewards_earned,
+                            grant.points,
+                            grant.description ?: grant.title,
+                        ),
+                    )
+                }
+            }
 
             LaunchedEffect(Unit) {
                 launch {
@@ -144,6 +163,8 @@ object HomeScreen : Screen() {
                             is Tab.Library -> LibraryTab
                             Tab.Updates -> UpdatesTab
                             Tab.History -> HistoryTab
+                            Tab.Home -> KuroHomeTab
+                            Tab.Rewards -> RewardsTab
                             is Tab.Browse -> {
                                 if (it.toExtensions) {
                                     BrowseTab.showExtension()
@@ -270,6 +291,8 @@ object HomeScreen : Screen() {
         data class Library(val mangaIdToOpen: Long? = null) : Tab
         data object Updates : Tab
         data object History : Tab
+        data object Home : Tab
+        data object Rewards : Tab
         data class Browse(val toExtensions: Boolean = false) : Tab
         data class More(val toDownloads: Boolean) : Tab
     }
