@@ -2,19 +2,35 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ArrowLeft, ExternalLink, Loader2, RefreshCcw, Search, X } from "lucide-react";
+import {
+  ArrowLeft,
+  ExternalLink,
+  Loader2,
+  RefreshCcw,
+  Search,
+  Settings2,
+  SlidersHorizontal,
+  X,
+} from "lucide-react";
 import { z } from "zod";
 import { CardSkeletons, MangaCard } from "@/components/MangaCard";
 import { SourceIcon } from "@/components/Cover";
 import { KuroTip } from "@/components/Kuro";
 import { spring } from "@/lib/motion";
-import { useEngineReady, useSourceFeed } from "@/engine/hooks";
-import { listListings } from "@/engine/runtime";
+import { useEngineReady, useMounted, useSourceFeed, type FeedMode } from "@/engine/hooks";
+import { listListings, sourceFilters } from "@/engine/runtime";
+import { activeCount, toFilterValues, type FilterState } from "@/engine/filters";
+import { SourceFilterSheet } from "@/components/SourceFilterSheet";
+import { SourceSettingsSheet } from "@/components/SourceSettingsSheet";
 import { allowsRating } from "@/engine/store";
+import { hideAdultOptions } from "@/engine/filters";
 import type { Listing } from "@/engine/types";
 
 export const Route = createFileRoute("/source/$sourceId")({
-  validateSearch: z.object({ q: z.string().optional().catch(undefined), l: z.string().optional().catch(undefined) }),
+  validateSearch: z.object({
+    q: z.string().optional().catch(undefined),
+    l: z.string().optional().catch(undefined),
+  }),
   head: () => ({
     meta: [
       { title: "Source — KuroToon" },
@@ -40,18 +56,61 @@ function SourcePage() {
     retry: 1,
   });
 
+  const filtersQ = useQuery({
+    queryKey: ["src", sourceId, "filters"],
+    queryFn: () => sourceFilters(sourceId),
+    enabled: typeof window !== "undefined" && !!meta,
+    staleTime: 60 * 60_000,
+    retry: 1,
+  });
+  const showAdult = engine.prefs.showAdult;
+  const filters = useMemo(() => {
+    const raw = filtersQ.data ?? [];
+    return showAdult ? raw : hideAdultOptions(raw);
+  }, [filtersQ.data, showAdult]);
+  const mounted = useMounted();
+  const fKey = `kt.filters.${sourceId}`;
+  const [fState, setFState] = useState<FilterState>({});
+  useEffect(() => {
+    if (!mounted) return;
+    try {
+      setFState(JSON.parse(sessionStorage.getItem(fKey) ?? "{}") as FilterState);
+    } catch {
+      setFState({});
+    }
+  }, [mounted, fKey]);
+  const applyFilters = (st: FilterState) => {
+    setFState(st);
+    try {
+      sessionStorage.setItem(fKey, JSON.stringify(st));
+    } catch {
+      /* private mode */
+    }
+  };
+  const nActive = activeCount(filters, fState);
+  const [showFilters, setShowFilters] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+
   const tabs = listings.data ?? [];
-  const activeListing: Listing | null = search.q ? null : (tabs.find((l) => l.id === search.l) ?? tabs[0] ?? null);
-  const mode = useMemo(
-    () => (search.q || !activeListing ? { query: search.q ?? "" } : { listing: activeListing }),
-    [search.q, activeListing],
+  const filtering = nActive > 0;
+  const activeListing: Listing | null =
+    search.q || filtering ? null : (tabs.find((l) => l.id === search.l) ?? tabs[0] ?? null);
+  const mode = useMemo<FeedMode>(
+    () =>
+      search.q || filtering || !activeListing
+        ? { query: search.q ?? "", filters: toFilterValues(filters, fState) }
+        : { listing: activeListing },
+    [search.q, filtering, activeListing, filters, fState],
   );
 
   if (engine.ready && !meta) {
     return (
       <div className="space-y-3">
         <KuroTip mood="sleepy">This source isn't installed on this device.</KuroTip>
-        <Link to="/extensions" className="inline-block rounded-full bg-primary px-4 py-2 text-xs font-bold text-primary-foreground">
+        <Link
+          to="/extensions"
+          className="inline-block rounded-full bg-primary px-4 py-2 text-xs font-bold text-primary-foreground"
+        >
           Open Extensions
         </Link>
       </div>
@@ -61,14 +120,31 @@ function SourcePage() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-3">
-        <Link to="/browse" aria-label="Back" className="grid h-9 w-9 place-items-center rounded-full bg-[color:var(--surface)] ring-1 ring-border">
+        <Link
+          to="/browse"
+          aria-label="Back"
+          className="grid h-9 w-9 place-items-center rounded-full bg-[color:var(--surface)] ring-1 ring-border"
+        >
           <ArrowLeft className="h-4 w-4" />
         </Link>
         {meta && <SourceIcon name={meta.name} url={meta.iconUrl} className="h-9 w-9" />}
         <div className="min-w-0 flex-1">
           <h1 className="truncate text-base font-black">{meta?.name ?? sourceId}</h1>
-          {meta?.baseUrl && <p className="truncate text-[11px] text-muted-foreground">{new URL(meta.baseUrl).hostname}</p>}
+          {meta?.baseUrl && (
+            <p className="truncate text-[11px] text-muted-foreground">
+              {new URL(meta.baseUrl).hostname}
+            </p>
+          )}
         </div>
+        {meta && (
+          <button
+            onClick={() => setShowSettings(true)}
+            aria-label="Source settings"
+            className="grid h-9 w-9 place-items-center rounded-full bg-[color:var(--surface)] ring-1 ring-border"
+          >
+            <Settings2 className="h-4 w-4" />
+          </button>
+        )}
         {meta?.baseUrl && (
           <a
             href={meta.baseUrl}
@@ -82,37 +158,72 @@ function SourcePage() {
         )}
       </div>
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          navigate({ search: { q: q.trim() || undefined }, replace: true });
-        }}
-        className="flex items-center gap-2 rounded-full bg-[color:var(--surface)] px-3 py-2 ring-1 ring-border focus-within:ring-primary/60"
-      >
-        <Search className="h-4 w-4 text-muted-foreground" />
-        <input
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          enterKeyHint="search"
-          placeholder={`Search ${meta?.name ?? "source"}…`}
-          className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
-        />
-        {search.q && (
-          <button
-            type="button"
-            aria-label="Clear search"
-            onClick={() => {
-              setQ("");
-              navigate({ search: {}, replace: true });
-            }}
-            className="grid h-5 w-5 place-items-center rounded-full bg-white/10"
+      {meta && (
+        <>
+          <SourceFilterSheet
+            open={showFilters}
+            onClose={() => setShowFilters(false)}
+            filters={filters}
+            value={fState}
+            onApply={applyFilters}
+          />
+          <SourceSettingsSheet
+            open={showSettings}
+            onClose={() => setShowSettings(false)}
+            sourceId={sourceId}
+            name={meta.name}
+          />
+        </>
+      )}
+      <div className="flex items-center gap-2">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            navigate({ search: { q: q.trim() || undefined }, replace: true });
+          }}
+          className="flex min-w-0 flex-1 items-center gap-2 rounded-full bg-[color:var(--surface)] px-3 py-2 ring-1 ring-border focus-within:ring-primary/60"
+        >
+          <Search className="h-4 w-4 text-muted-foreground" />
+          <input
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            enterKeyHint="search"
+            placeholder={`Search ${meta?.name ?? "source"}…`}
+            className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
+          />
+          {search.q && (
+            <button
+              type="button"
+              aria-label="Clear search"
+              onClick={() => {
+                setQ("");
+                navigate({ search: {}, replace: true });
+              }}
+              className="grid h-5 w-5 place-items-center rounded-full bg-white/10"
+            >
+              <X className="h-3 w-3" />
+            </button>
+          )}
+        </form>
+        {filters.length > 0 && (
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            transition={spring.tap}
+            onClick={() => setShowFilters(true)}
+            aria-label={nActive ? `Filters, ${nActive} active` : "Filters"}
+            className={`relative grid h-9 w-9 shrink-0 place-items-center rounded-full ring-1 ${nActive ? "bg-primary text-primary-foreground ring-primary" : "bg-[color:var(--surface)] ring-border"}`}
           >
-            <X className="h-3 w-3" />
-          </button>
+            <SlidersHorizontal className="h-4 w-4" />
+            {nActive > 0 && (
+              <span className="absolute -right-1 -top-1 grid h-4 min-w-4 place-items-center rounded-full bg-foreground px-1 text-[9px] font-black text-background">
+                {nActive}
+              </span>
+            )}
+          </motion.button>
         )}
-      </form>
+      </div>
 
-      {!search.q && tabs.length > 1 && (
+      {!search.q && !filtering && tabs.length > 1 && (
         <div className="no-scrollbar -mx-3 flex gap-1.5 overflow-x-auto px-3">
           {tabs.map((l) => {
             const on = activeListing?.id === l.id;
@@ -124,7 +235,13 @@ function SourcePage() {
                 onClick={() => navigate({ search: { l: l.id }, replace: true })}
                 className={`relative shrink-0 rounded-full px-3.5 py-1.5 text-[11px] font-bold ${on ? "text-primary-foreground" : "bg-[color:var(--surface)] text-muted-foreground ring-1 ring-border"}`}
               >
-                {on && <motion.span layoutId="kt-listing-tab" transition={spring.glide} className="absolute inset-0 -z-10 rounded-full bg-primary" />}
+                {on && (
+                  <motion.span
+                    layoutId="kt-listing-tab"
+                    transition={spring.glide}
+                    className="absolute inset-0 -z-10 rounded-full bg-primary"
+                  />
+                )}
                 {l.name || l.id}
               </motion.button>
             );
@@ -132,20 +249,24 @@ function SourcePage() {
         </div>
       )}
 
-      {meta && !listings.isLoading && <Feed key={JSON.stringify(mode)} sourceId={sourceId} mode={mode} />}
+      {meta && !listings.isLoading && (
+        <Feed key={JSON.stringify(mode)} sourceId={sourceId} mode={mode} />
+      )}
       {listings.isLoading && (
         <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
           <CardSkeletons />
         </div>
       )}
       {meta && !allowsRating(meta.contentRating, engine.prefs) && (
-        <p className="text-center text-[11px] text-muted-foreground">This source is hidden by your content filters.</p>
+        <p className="text-center text-[11px] text-muted-foreground">
+          This source is hidden by your content filters.
+        </p>
       )}
     </div>
   );
 }
 
-function Feed({ sourceId, mode }: { sourceId: string; mode: { listing: Listing } | { query: string } }) {
+function Feed({ sourceId, mode }: { sourceId: string; mode: FeedMode }) {
   const { prefs } = useEngineReady();
   const feed = useSourceFeed(sourceId, mode);
   const sentinel = useRef<HTMLDivElement>(null);
@@ -155,7 +276,8 @@ function Feed({ sourceId, mode }: { sourceId: string; mode: { listing: Listing }
     if (!el) return;
     const io = new IntersectionObserver(
       (entries) => {
-        if (entries[0]?.isIntersecting && feed.hasNextPage && !feed.isFetchingNextPage) void feed.fetchNextPage();
+        if (entries[0]?.isIntersecting && feed.hasNextPage && !feed.isFetchingNextPage)
+          void feed.fetchNextPage();
       },
       { rootMargin: "800px 0px" },
     );
