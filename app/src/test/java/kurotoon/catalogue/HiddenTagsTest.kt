@@ -37,4 +37,11 @@ class HiddenTagsTest {
         harem.state shouldBe Filter.TriState.STATE_INCLUDE
         action.state shouldBe Filter.TriState.STATE_IGNORE
     }
+
+    @Test
+    fun `adds a hidden tag once`() {
+        addHiddenTag("", "Gore") shouldBe "Gore"
+        addHiddenTag("Ecchi,", "Gore") shouldBe "Ecchi, Gore"
+        addHiddenTag("Ecchi, gore", "Gore") shouldBe "Ecchi, gore"
+    }
 }

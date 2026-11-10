@@ -61,6 +61,7 @@ import eu.kanade.tachiyomi.source.getNameForMangaInfo
 import eu.kanade.tachiyomi.ui.manga.ChapterList
 import eu.kanade.tachiyomi.ui.manga.MangaViewModel
 import eu.kanade.tachiyomi.util.system.copyToClipboard
+import kurotoon.catalogue.TagAction
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.roundedfilled.PlayArrow
 import tachiyomi.domain.chapter.model.Chapter
@@ -97,6 +98,7 @@ fun MangaScreen(
 
     // For tags menu
     onTagSearch: (String) -> Unit,
+    onTagAction: (String, TagAction) -> Unit = { _, _ -> },
 
     onFilterButtonClicked: () -> Unit,
     onRefresh: () -> Unit,
@@ -152,6 +154,7 @@ fun MangaScreen(
             onSimilarClicked = onSimilarClicked,
             onTrackingClicked = onTrackingClicked,
             onTagSearch = onTagSearch,
+            onTagAction = onTagAction,
             onCopyTagToClipboard = onCopyTagToClipboard,
             onFilterClicked = onFilterButtonClicked,
             onRefresh = onRefresh,
@@ -190,6 +193,7 @@ fun MangaScreen(
             onSimilarClicked = onSimilarClicked,
             onTrackingClicked = onTrackingClicked,
             onTagSearch = onTagSearch,
+            onTagAction = onTagAction,
             onCopyTagToClipboard = onCopyTagToClipboard,
             onFilterButtonClicked = onFilterButtonClicked,
             onRefresh = onRefresh,
@@ -233,6 +237,7 @@ private fun MangaScreenSmallImpl(
 
     // For tags menu
     onTagSearch: (String) -> Unit,
+    onTagAction: (String, TagAction) -> Unit = { _, _ -> },
     onCopyTagToClipboard: (tag: String) -> Unit,
 
     onFilterClicked: () -> Unit,
@@ -414,6 +419,7 @@ private fun MangaScreenSmallImpl(
                             tagsProvider = { state.manga.genre },
                             notes = state.manga.notes,
                             onTagSearch = onTagSearch,
+                            onTagAction = onTagAction,
                             onCopyTagToClipboard = onCopyTagToClipboard,
                             onEditNotes = onEditNotesClicked,
                         )
@@ -468,6 +474,7 @@ fun MangaScreenLargeImpl(
 
     // For tags menu
     onTagSearch: (String) -> Unit,
+    onTagAction: (String, TagAction) -> Unit = { _, _ -> },
     onCopyTagToClipboard: (tag: String) -> Unit,
 
     onFilterButtonClicked: () -> Unit,
@@ -629,6 +636,7 @@ fun MangaScreenLargeImpl(
                             tagsProvider = { state.manga.genre },
                             notes = state.manga.notes,
                             onTagSearch = onTagSearch,
+                            onTagAction = onTagAction,
                             onCopyTagToClipboard = onCopyTagToClipboard,
                             onEditNotes = onEditNotesClicked,
                         )
