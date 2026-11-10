@@ -1,5 +1,7 @@
 package eu.kanade.presentation.updates
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,6 +14,7 @@ import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -23,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalHapticFeedback
@@ -82,6 +86,7 @@ internal fun LazyListScope.updatesUiItems(
     onClickCover: (UpdatesItem) -> Unit,
     onClickUpdate: (UpdatesItem) -> Unit,
     onDownloadChapter: (List<UpdatesItem>, ChapterDownloadAction) -> Unit,
+    onToggleGroup: (String) -> Unit = {},
 ) {
     items(
         items = uiModels,
@@ -134,6 +139,9 @@ internal fun LazyListScope.updatesUiItems(
                     }.takeIf { !selectionMode },
                     downloadStateProvider = updatesItem.downloadStateProvider,
                     downloadProgressProvider = updatesItem.downloadProgressProvider,
+                    hidden = item.hidden,
+                    expanded = item.expanded,
+                    onToggleGroup = item.groupKey?.let { key -> { onToggleGroup(key) } },
                 )
             }
         }
@@ -153,6 +161,9 @@ private fun UpdatesUiItem(
     downloadStateProvider: () -> Download.State,
     downloadProgressProvider: () -> Int,
     modifier: Modifier = Modifier,
+    hidden: Int = 0,
+    expanded: Boolean = false,
+    onToggleGroup: (() -> Unit)? = null,
 ) {
     val haptic = LocalHapticFeedback.current
     val textAlpha = if (update.read) DISABLED_ALPHA else 1f
@@ -234,6 +245,23 @@ private fun UpdatesUiItem(
                     )
                 }
             }
+        }
+
+        if (hidden > 0 && onToggleGroup != null) {
+            Text(
+                text = if (expanded) {
+                    stringResource(MR.strings.kurotoon_updates_collapse)
+                } else {
+                    stringResource(MR.strings.kurotoon_updates_more, hidden)
+                },
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .background(MaterialTheme.colorScheme.secondaryContainer)
+                    .clickable(onClick = onToggleGroup)
+                    .padding(horizontal = 10.dp, vertical = 4.dp),
+            )
         }
 
         ChapterDownloadIndicator(

@@ -20,12 +20,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
 import eu.kanade.presentation.category.visualName
 import eu.kanade.presentation.components.TabbedDialog
 import eu.kanade.presentation.components.TabbedDialogPaddings
 import eu.kanade.tachiyomi.ui.updates.UpdatesSettingsViewModel
+import mihon.app.di.appGraph
 import tachiyomi.core.common.preference.TriState
 import tachiyomi.core.common.preference.getAndSet
 import tachiyomi.domain.updates.service.UpdatesPreferences
@@ -118,6 +120,24 @@ private fun ColumnScope.FilterSheet(
             checked = filterExcludedScanlators,
             onCheckedChange = { toggleScanlatorFilter() },
         )
+    }
+
+    val groupPref = LocalContext.current.appGraph.kuroPreferences.updatesGroupSeries
+    val groupSeries by groupPref.collectAsState()
+    Row(
+        modifier = Modifier
+            .clickable { groupPref.getAndSet { !it } }
+            .fillMaxWidth()
+            .padding(horizontal = SettingsItemsPaddings.Horizontal),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+    ) {
+        Text(
+            text = stringResource(MR.strings.kurotoon_updates_groupSeries),
+            color = MaterialTheme.colorScheme.onSurface,
+            style = MaterialTheme.typography.bodyMedium,
+        )
+        Switch(checked = groupSeries, onCheckedChange = { groupPref.set(it) })
     }
 }
 

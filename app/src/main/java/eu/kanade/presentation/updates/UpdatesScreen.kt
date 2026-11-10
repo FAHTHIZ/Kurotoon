@@ -13,10 +13,12 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableStateSetOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.util.fastAll
 import androidx.compose.ui.util.fastAny
 import eu.kanade.presentation.components.AppBar
@@ -29,6 +31,7 @@ import eu.kanade.tachiyomi.ui.updates.UpdatesViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
+import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.CalendarMonth
 import mihon.icons.materialsymbols.rounded.FilterList
@@ -43,6 +46,7 @@ import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.screens.EmptyScreen
 import tachiyomi.presentation.core.screens.LoadingScreen
 import tachiyomi.presentation.core.theme.active
+import tachiyomi.presentation.core.util.collectAsState
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
@@ -131,18 +135,22 @@ fun UpdateScreen(
                             )
                         }
                     } else {
+                        val grouped by LocalContext.current.appGraph.kuroPreferences.updatesGroupSeries
+                            .collectAsState()
+                        val expanded = remember { mutableStateSetOf<String>() }
                         FastScrollLazyColumn(
                             contentPadding = contentPadding,
                         ) {
                             updatesLastUpdatedItem(lastUpdated)
 
                             updatesUiItems(
-                                uiModels = state.getUiModel(),
+                                uiModels = state.getUiModel(grouped, expanded.toSet()),
                                 selectionMode = state.selectionMode,
                                 onUpdateSelected = onUpdateSelected,
                                 onClickCover = onClickCover,
                                 onClickUpdate = onOpenChapter,
                                 onDownloadChapter = onDownloadChapter,
+                                onToggleGroup = { if (!expanded.remove(it)) expanded.add(it) },
                             )
                         }
                     }
@@ -249,5 +257,10 @@ private fun UpdatesBottomBar(
 
 sealed interface UpdatesUiModel {
     data class Header(val date: LocalDate) : UpdatesUiModel
-    data class Item(val item: UpdatesItem) : UpdatesUiModel
+    data class Item(
+        val item: UpdatesItem,
+        val hidden: Int = 0,
+        val groupKey: String? = null,
+        val expanded: Boolean = false,
+    ) : UpdatesUiModel
 }
