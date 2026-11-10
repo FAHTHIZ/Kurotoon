@@ -32,6 +32,8 @@ All notable changes to KuroToon are documented here. Versions follow
 - Find a source: once you have a handful of sources, type to narrow the list by name or language.
 - Recent searches: your last Universal Search queries show as one-tap pills in Browse and on the search
   screen.
+- Hidden tags (Settings > Browse): tags you never want to see are excluded from filtered searches and
+  Home's saved-search rows, and titles listing them are dropped from results.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.

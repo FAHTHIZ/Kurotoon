@@ -27,6 +27,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kurotoon.catalogue.HiddenTags
 import kurotoon.catalogue.SavedSearch
 import kurotoon.catalogue.SavedSearches
 import kurotoon.prefs.KuroPreferences
@@ -51,7 +52,7 @@ class KuroHomeViewModel(
     private val getNextChapters: GetNextChapters,
     private val sourceManager: SourceManager,
     private val networkToLocalManga: NetworkToLocalManga,
-    kuroPreferences: KuroPreferences,
+    private val kuroPreferences: KuroPreferences,
 ) : ViewModel() {
 
     private val rows = MutableStateFlow<List<SourceRow>>(emptyList())
@@ -123,10 +124,12 @@ class KuroHomeViewModel(
         val source = sourceManager.get(row.sourceId) ?: return
         updateRow(row.key) { it.copy(items = null, failed = false) }
         val search = row.savedSearch
+        val hidden = HiddenTags.parse(kuroPreferences.hiddenTags.get())
         val result = runCatching {
             val page = withContext(Dispatchers.IO) {
                 if (search != null && source is CatalogueSource) {
                     val filters = SavedSearches.restore(source.getFilterList(), search.filters)
+                    HiddenTags.excludeIn(filters, hidden)
                     source.getSearchManga(1, search.query.orEmpty(), filters)
                 } else {
                     source.getPopularManga(1)
@@ -136,6 +139,7 @@ class KuroHomeViewModel(
                 .map { it.toDomainManga(source.id) }
                 .distinctBy { it.url }
                 .let { networkToLocalManga(it) }
+                .filterNot { HiddenTags.hides(it.genre, hidden) }
                 .take(ROW_LIMIT)
         }
         result.exceptionOrNull()?.let { logcat(LogPriority.WARN, it) { "Home row failed for ${source.name}" } }
