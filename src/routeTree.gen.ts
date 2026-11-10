@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BrowseRouteImport } from './routes/browse'
+import { Route as DownloadsRouteImport } from './routes/downloads'
 import { Route as ExtensionsRouteImport } from './routes/extensions'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as ProfileRouteImport } from './routes/profile'
@@ -31,6 +32,11 @@ const IndexRoute = IndexRouteImport.update({
 const BrowseRoute = BrowseRouteImport.update({
   id: '/browse',
   path: '/browse',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DownloadsRoute = DownloadsRouteImport.update({
+  id: '/downloads',
+  path: '/downloads',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExtensionsRoute = ExtensionsRouteImport.update({
@@ -93,6 +99,7 @@ const ReadSourceIdMangaKeyChapterKeyRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/browse': typeof BrowseRoute
+  '/downloads': typeof DownloadsRoute
   '/extensions': typeof ExtensionsRoute
   '/library': typeof LibraryRoute
   '/profile': typeof ProfileRoute
@@ -108,6 +115,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/browse': typeof BrowseRoute
+  '/downloads': typeof DownloadsRoute
   '/extensions': typeof ExtensionsRoute
   '/library': typeof LibraryRoute
   '/profile': typeof ProfileRoute
@@ -124,6 +132,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/browse': typeof BrowseRoute
+  '/downloads': typeof DownloadsRoute
   '/extensions': typeof ExtensionsRoute
   '/library': typeof LibraryRoute
   '/profile': typeof ProfileRoute
@@ -141,6 +150,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/browse'
+    | '/downloads'
     | '/extensions'
     | '/library'
     | '/profile'
@@ -156,6 +166,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/browse'
+    | '/downloads'
     | '/extensions'
     | '/library'
     | '/profile'
@@ -171,6 +182,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/browse'
+    | '/downloads'
     | '/extensions'
     | '/library'
     | '/profile'
@@ -187,6 +199,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BrowseRoute: typeof BrowseRoute
+  DownloadsRoute: typeof DownloadsRoute
   ExtensionsRoute: typeof ExtensionsRoute
   LibraryRoute: typeof LibraryRoute
   ProfileRoute: typeof ProfileRoute
@@ -214,6 +227,13 @@ declare module '@tanstack/react-router' {
       path: '/browse'
       fullPath: '/browse'
       preLoaderRoute: typeof BrowseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/downloads': {
+      id: '/downloads'
+      path: '/downloads'
+      fullPath: '/downloads'
+      preLoaderRoute: typeof DownloadsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/extensions': {
@@ -299,6 +319,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BrowseRoute: BrowseRoute,
+  DownloadsRoute: DownloadsRoute,
   ExtensionsRoute: ExtensionsRoute,
   LibraryRoute: LibraryRoute,
   ProfileRoute: ProfileRoute,
