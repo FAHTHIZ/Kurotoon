@@ -15,6 +15,8 @@ import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import dev.zacsweers.metrox.viewmodel.metroViewModel
 import eu.kanade.presentation.util.Tab
+import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceScreen
+import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceViewModel
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchScreen
 import eu.kanade.tachiyomi.ui.download.DownloadQueueScreen
 import eu.kanade.tachiyomi.ui.home.HomeScreen
@@ -59,6 +61,9 @@ data object KuroHomeTab : Tab {
             onSearchClick = { navigator.push(GlobalSearchScreen()) },
             onAddSourcesClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.Browse(toExtensions = true)) } },
             onMangaClick = { navigator.push(MangaScreen(it)) },
+            onBrowseMangaClick = { navigator.push(MangaScreen(it.id, fromSource = true)) },
+            onSourceClick = { navigator.push(BrowseSourceScreen(it, BrowseSourceViewModel.Listing.Popular.query)) },
+            onRetrySource = viewModel::retry,
             onResumeClick = viewModel::resume,
             onUpdatesClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.Updates) } },
             onHistoryClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.History) } },
