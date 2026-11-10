@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.AlertDialog
@@ -116,6 +117,7 @@ import kurotoon.reader.AutoScrollDriver
 import kurotoon.reader.AutoScrollState
 import kurotoon.reader.ChapterCompleteHost
 import kurotoon.reader.ChapterCompleteState
+import kurotoon.reader.ReaderProgressOrb
 import logcat.LogPriority
 import mihon.app.di.AppGraph
 import mihon.core.metro.metroGraph
@@ -200,6 +202,7 @@ class ReaderActivity : BaseActivity() {
             val state by viewModel.state.collectAsState()
             val general by settingsViewModel.general.collectAsState()
             val showPageNumber by readerPreferences.showPageNumber.collectAsState()
+            val showProgressOrb by readerPreferences.showProgressOrb.collectAsState()
             val flashOnPageChange by readerPreferences.flashOnPageChange.collectAsState()
             val colorOverlayEnabled by readerPreferences.colorFilter.collectAsState()
             val colorOverlay by readerPreferences.colorFilterValue.collectAsState()
@@ -283,6 +286,18 @@ class ReaderActivity : BaseActivity() {
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
                             .navigationBarsPadding(),
+                    )
+                }
+
+                if (!state.menuVisible && showProgressOrb) {
+                    ReaderProgressOrb(
+                        currentPage = state.currentPage,
+                        totalPages = state.totalPages,
+                        onClick = { setMenuVisibility(true) },
+                        modifier = Modifier
+                            .align(Alignment.BottomEnd)
+                            .navigationBarsPadding()
+                            .padding(16.dp),
                     )
                 }
 

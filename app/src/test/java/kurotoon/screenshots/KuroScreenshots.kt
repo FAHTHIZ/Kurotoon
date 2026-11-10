@@ -128,6 +128,18 @@ class KuroScreenshots {
     }
 
     @Test
+    fun progressOrb() = shot("progress_orb") {
+        androidx.compose.foundation.layout.Row(
+            modifier = Modifier.padding(24.dp),
+            horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(24.dp),
+        ) {
+            listOf(3, 12, 25).forEach { page ->
+                kurotoon.reader.ReaderProgressOrb(currentPage = page, totalPages = 25, onClick = {})
+            }
+        }
+    }
+
+    @Test
     fun home() = shot("home", fullScreen = true) {
         val titles = listOf("Solo Leveling", "Omniscient Reader", "Tower of God", "The Beginning After the End")
         fun manga(id: Long, title: String) = Manga.create().copy(

@@ -1096,6 +1096,7 @@
     <string name="kurotoon.reader.autoScrollSpeed">Auto-scroll speed</string>
     <string name="kurotoon.reader.autoScrollSpeedNow">Auto-scroll speed %1$d of 10</string>
     <string name="kurotoon.reader.chapterComplete">Chapter complete</string>
+    <string name="kurotoon.reader.progressOrb">Show progress orb</string>
     <string name="kurotoon.reader.celebrateChapters">Celebrate finished chapters</string>
     <string name="kurotoon.settings.particles">Particle effects</string>
     <string name="kurotoon.settings.particlesSummary">Drifting embers and sparks when you add to your library</string>
