@@ -24,12 +24,14 @@ import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.stats.StatsScreen
 import kotlinx.coroutines.launch
+import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Home
 import mihon.icons.materialsymbols.roundedfilled.Home
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
+import tachiyomi.presentation.core.util.collectAsState
 
 data object KuroHomeTab : Tab {
 
@@ -54,6 +56,7 @@ data object KuroHomeTab : Tab {
         val viewModel = metroViewModel<KuroHomeViewModel>()
         val state by viewModel.state.collectAsStateWithLifecycle()
         val snackbarHostState = remember { SnackbarHostState() }
+        val hidden by remember { context.appGraph.kuroPreferences.homeHiddenSections }.collectAsState()
 
         KuroHomeContent(
             state = state,
@@ -84,6 +87,7 @@ data object KuroHomeTab : Tab {
             onHistoryClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.History) } },
             onDownloadsClick = { navigator.push(DownloadQueueScreen) },
             onStatsClick = { navigator.push(StatsScreen()) },
+            hidden = hidden,
         )
 
         LaunchedEffect(Unit) {

@@ -60,6 +60,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Pick back up row on Home: series you started that still have chapters left but have not been opened in three weeks.
 - Find box in the expanded tag panel when a source offers lots of tags, so a genre can be picked by typing.
 - Find duplicates in the Library menu: series saved more than once (matched by title across sources), with the most-read copy first.
+- Choose which Home sections show in Settings > Appearance > Hidden on Home.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.
