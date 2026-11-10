@@ -42,8 +42,8 @@ import kurotoon.ui.KuroTopBar
 import kurotoon.ui.kuroCard
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Download
+import mihon.icons.materialsymbols.rounded.Extension
 import mihon.icons.materialsymbols.rounded.History
-import mihon.icons.materialsymbols.rounded.NewReleases
 import mihon.icons.materialsymbols.rounded.QueryStats
 import tachiyomi.domain.history.model.HistoryWithRelations
 import tachiyomi.domain.manga.model.Manga
@@ -62,7 +62,7 @@ fun KuroHomeContent(
     onSourceClick: (Long) -> Unit,
     onRetrySource: (Long) -> Unit,
     onResumeClick: (HistoryWithRelations) -> Unit,
-    onUpdatesClick: () -> Unit,
+    onExtensionsClick: () -> Unit,
     onHistoryClick: () -> Unit,
     onDownloadsClick: () -> Unit,
     onStatsClick: () -> Unit,
@@ -89,7 +89,7 @@ fun KuroHomeContent(
             }
             item(key = "shortcuts") {
                 Shortcuts(
-                    onUpdatesClick = onUpdatesClick,
+                    onExtensionsClick = onExtensionsClick,
                     onHistoryClick = onHistoryClick,
                     onDownloadsClick = onDownloadsClick,
                     onStatsClick = onStatsClick,
@@ -163,7 +163,7 @@ private fun Welcome(onAddSourcesClick: () -> Unit) {
 
 @Composable
 private fun Shortcuts(
-    onUpdatesClick: () -> Unit,
+    onExtensionsClick: () -> Unit,
     onHistoryClick: () -> Unit,
     onDownloadsClick: () -> Unit,
     onStatsClick: () -> Unit,
@@ -174,9 +174,9 @@ private fun Shortcuts(
             .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        Shortcut(MaterialSymbols.Rounded.NewReleases, stringResource(MR.strings.label_recent_updates), onUpdatesClick)
         Shortcut(MaterialSymbols.Rounded.History, stringResource(MR.strings.label_recent_manga), onHistoryClick)
         Shortcut(MaterialSymbols.Rounded.Download, stringResource(MR.strings.kurotoon_home_downloads), onDownloadsClick)
+        Shortcut(MaterialSymbols.Rounded.Extension, stringResource(MR.strings.label_extensions), onExtensionsClick)
         Shortcut(MaterialSymbols.Rounded.QueryStats, stringResource(MR.strings.label_stats), onStatsClick)
     }
 }
