@@ -124,6 +124,9 @@ abstract class SearchViewModel(
         preferences.globalSearchFilterState.toggle()
     }
 
+    /** Called once for each new search that actually runs. */
+    protected open fun onSearch() = Unit
+
     fun search() {
         val query = state.value.searchQuery
         val sourceFilter = state.value.sourceFilter
@@ -135,6 +138,7 @@ abstract class SearchViewModel(
 
         this.lastQuery = query
         this.lastSourceFilter = sourceFilter
+        onSearch()
 
         searchJob?.cancel()
 
