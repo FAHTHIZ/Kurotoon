@@ -51,6 +51,7 @@ fun Screen.sourcesTab(): TabContent {
                 },
                 onClickPin = viewModel::togglePin,
                 onLongClickItem = viewModel::showSourceDialog,
+                onUniversalSearch = { navigator.push(GlobalSearchScreen(it)) },
             )
 
             state.dialog?.let { dialog ->
