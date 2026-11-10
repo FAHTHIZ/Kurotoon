@@ -8,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.Shader
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -111,6 +112,23 @@ class KuroScreenshots {
             onAdd = {},
             onRemove = {},
         )
+    }
+
+    @Test
+    fun searchEmptyState() = shot("search_empty_state") {
+        Column {
+            kurotoon.ui.browse.RecentSearchRow(
+                recent = listOf("solo leveling", "murim", "regression"),
+                onSearch = {},
+                onClear = {},
+                contentPadding = PaddingValues(horizontal = 16.dp),
+            )
+            kurotoon.ui.browse.TagBrowseRow(
+                tags = listOf("Action", "Murim", "Regression", "Fantasy", "Romance"),
+                onTag = {},
+                contentPadding = PaddingValues(horizontal = 16.dp),
+            )
+        }
     }
 
     @Test

@@ -287,6 +287,8 @@ internal fun HomeSourceRow(
     onMangaClick: (Manga) -> Unit,
     onRetry: () -> Unit,
     onToggleLatest: () -> Unit = {},
+    /** Off where the row's listing is fixed, e.g. one tag browsed on every source. */
+    showListing: Boolean = true,
 ) {
     // Keep an empty Latest row so its switch can bring Popular back
     if (row.items?.isEmpty() == true && !row.latest) return
@@ -322,7 +324,7 @@ internal fun HomeSourceRow(
                 modifier = Modifier
                     .padding(start = 8.dp)
                     // Saved searches and "Because you read X" take the whole line
-                    .weight(1f, fill = saved || row.pickTag != null),
+                    .weight(1f, fill = saved || row.pickTag != null || !showListing),
             ) {
                 Text(
                     text = row.pickTag?.let { stringResource(MR.strings.kurotoon_home_becauseYouRead, it) } ?: row.name,
@@ -343,7 +345,7 @@ internal fun HomeSourceRow(
                     )
                 }
             }
-            if (row.pickTag == null && !saved) {
+            if (row.pickTag == null && !saved && showListing) {
                 Box(Modifier.weight(1f)) {
                     when {
                         row.supportsLatest -> ListingToggle(latest = row.latest, onClick = onToggleLatest)

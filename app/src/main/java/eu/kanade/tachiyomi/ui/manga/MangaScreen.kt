@@ -56,6 +56,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kurotoon.catalogue.TagAction
 import kurotoon.catalogue.addHiddenTag
+import kurotoon.ui.catalogue.TagEverywhereScreen
 import kurotoon.ui.manga.CoverTheme
 import kurotoon.ui.similar.SimilarScreen
 import logcat.LogPriority
@@ -159,7 +160,7 @@ class MangaScreen(
                 onTagSearch = { scope.launch { performGenreSearch(navigator, it, viewModel.source!!) } },
                 onTagAction = { tag, action ->
                     when (action) {
-                        TagAction.SearchEverywhere -> navigator.push(GlobalSearchScreen(tag))
+                        TagAction.SearchEverywhere -> navigator.push(TagEverywhereScreen(tag))
                         TagAction.Hide -> {
                             context.appGraph.kuroPreferences.hiddenTags.getAndSet { addHiddenTag(it, tag) }
                             context.toast(context.stringResource(MR.strings.kurotoon_tag_hidden, tag))

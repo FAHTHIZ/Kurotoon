@@ -1,5 +1,6 @@
 package eu.kanade.presentation.browse
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,6 +19,7 @@ import eu.kanade.tachiyomi.ui.browse.source.globalsearch.SearchViewModel
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.SourceFilter
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import kurotoon.ui.browse.RecentSearchRow
+import kurotoon.ui.browse.TagBrowseRow
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.presentation.core.components.material.Scaffold
 
@@ -36,6 +38,8 @@ fun GlobalSearchScreen(
     recentSearches: List<String> = emptyList(),
     onRecentSearch: (String) -> Unit = {},
     onClearRecentSearches: () -> Unit = {},
+    libraryTags: List<String> = emptyList(),
+    onTag: (String) -> Unit = {},
 ) {
     Scaffold(
         topBar = { scrollBehavior ->
@@ -55,14 +59,20 @@ fun GlobalSearchScreen(
             )
         },
     ) { paddingValues ->
-        if (state.items.isEmpty() && recentSearches.isNotEmpty()) {
-            RecentSearchRow(
-                recent = recentSearches,
-                onSearch = onRecentSearch,
-                onClear = onClearRecentSearches,
-                modifier = Modifier.padding(paddingValues).padding(top = 8.dp),
-                contentPadding = PaddingValues(horizontal = 16.dp),
-            )
+        if (state.items.isEmpty() && (recentSearches.isNotEmpty() || libraryTags.isNotEmpty())) {
+            Column(modifier = Modifier.padding(paddingValues).padding(top = 8.dp)) {
+                RecentSearchRow(
+                    recent = recentSearches,
+                    onSearch = onRecentSearch,
+                    onClear = onClearRecentSearches,
+                    contentPadding = PaddingValues(horizontal = 16.dp),
+                )
+                TagBrowseRow(
+                    tags = libraryTags,
+                    onTag = onTag,
+                    contentPadding = PaddingValues(horizontal = 16.dp),
+                )
+            }
             return@Scaffold
         }
         GlobalSearchContent(

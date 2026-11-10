@@ -1281,6 +1281,7 @@
     <string name="kurotoon.section.picks">Because you read</string>
     <string name="kurotoon.section.saved">Saved searches</string>
     <string name="kurotoon.section.sources">Source rows</string>
+    <string name="kurotoon.browse.yourTags">Browse your tags on every source</string>
     <string name="kurotoon.browse.findTag">Find among %d tags</string>
     <string name="kurotoon.browse.hiddenTags">Hidden tags</string>
     <string name="kurotoon.browse.hiddenTagsSummary">Tags you never want to see in browse, search or Home</string>
@@ -1288,7 +1289,10 @@
     <string name="kurotoon.hiddenTags.add">Add a tag, e.g. Gore</string>
     <string name="kurotoon.hiddenTags.none">No hidden tags yet</string>
     <string name="kurotoon.hiddenTags.fromLibrary">From your library</string>
-    <string name="kurotoon.tag.searchEverywhere">Search all sources</string>
+    <string name="kurotoon.tag.searchEverywhere">Browse on all sources</string>
+    <string name="kurotoon.tagEverywhere.subtitle">On every source that has this tag</string>
+    <string name="kurotoon.tagEverywhere.none">None of your sources has a %s filter</string>
+    <string name="kurotoon.tagEverywhere.searchText">Search titles instead</string>
     <string name="kurotoon.tag.hide">Hide this tag</string>
     <string name="kurotoon.tag.hidden">“%s” is now hidden while browsing</string>
 </resources>
