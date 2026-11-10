@@ -202,6 +202,7 @@ class ReaderActivity : BaseActivity() {
             val state by viewModel.state.collectAsState()
             val general by settingsViewModel.general.collectAsState()
             val showPageNumber by readerPreferences.showPageNumber.collectAsState()
+            val showTimeLeft by readerPreferences.showTimeLeft.collectAsState()
             val showProgressOrb by readerPreferences.showProgressOrb.collectAsState()
             val flashOnPageChange by readerPreferences.flashOnPageChange.collectAsState()
             val colorOverlayEnabled by readerPreferences.colorFilter.collectAsState()
@@ -283,6 +284,7 @@ class ReaderActivity : BaseActivity() {
                     ReaderPageIndicator(
                         currentPage = state.currentPage,
                         totalPages = state.totalPages,
+                        minutesLeft = state.minutesLeft.takeIf { showTimeLeft },
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
                             .navigationBarsPadding(),

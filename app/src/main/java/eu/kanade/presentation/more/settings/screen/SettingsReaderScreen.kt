@@ -41,6 +41,11 @@ object SettingsReaderScreen : SearchableSettings {
                 title = stringResource(MR.strings.kurotoon_reader_autoWebtoon),
                 subtitle = stringResource(MR.strings.kurotoon_reader_autoWebtoonSummary),
             ),
+            Preference.PreferenceItem.SwitchPreference(
+                preference = readerPref.showTimeLeft,
+                title = stringResource(MR.strings.kurotoon_reader_timeLeft),
+                subtitle = stringResource(MR.strings.kurotoon_reader_timeLeftSummary),
+            ),
             Preference.PreferenceItem.ListPreference(
                 preference = readerPref.doubleTapAnimSpeed,
                 entries = mapOf(

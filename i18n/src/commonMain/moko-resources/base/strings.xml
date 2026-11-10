@@ -1132,6 +1132,9 @@
     <string name="kurotoon_goal_off">No goal</string>
     <string name="kurotoon_goal_option">%d a day</string>
     <string name="kurotoon_reminder_goal">%1$d of %2$d chapters today. Continue %3$s</string>
+    <string name="kurotoon_reader_minutesLeft">~%d min left</string>
+    <string name="kurotoon_reader_timeLeft">Time left in chapter</string>
+    <string name="kurotoon_reader_timeLeftSummary">Estimate from your reading pace, shown next to the page number</string>
     <!-- Kuro Points, missions and the shop -->
     <string name="kurotoon.shop.title">Kuro Shop</string>
     <string name="kurotoon.rewards.points">Kuro Points</string>
