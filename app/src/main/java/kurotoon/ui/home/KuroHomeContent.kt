@@ -23,6 +23,11 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,6 +41,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import eu.kanade.presentation.manga.components.MangaCover
 import eu.kanade.presentation.util.formatChapterNumber
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kurotoon.ui.KuroColors
 import kurotoon.ui.KuroTip
 import kurotoon.ui.KuroTopBar
@@ -48,8 +55,10 @@ import mihon.icons.materialsymbols.rounded.QueryStats
 import tachiyomi.domain.history.model.HistoryWithRelations
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.PullRefresh
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
+import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun KuroHomeContent(
@@ -70,69 +79,91 @@ fun KuroHomeContent(
     onStatsClick: () -> Unit,
     /** Keys of [HomeSection]s switched off. */
     hidden: Set<String> = emptySet(),
+    onRefresh: () -> Unit = {},
 ) {
     fun shown(section: HomeSection) = section.key !in hidden
+    val scope = rememberCoroutineScope()
+    var refreshing by remember { mutableStateOf(false) }
     Scaffold(
         topBar = { KuroTopBar(onSearchClick = onSearchClick) },
         snackbarHost = { SnackbarHost(snackbarHostState) },
     ) { contentPadding ->
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(
-                top = contentPadding.calculateTopPadding() + 4.dp,
-                bottom = contentPadding.calculateBottomPadding() + 16.dp,
-            ),
-            verticalArrangement = Arrangement.spacedBy(20.dp),
+        PullRefresh(
+            refreshing = refreshing,
+            onRefresh = {
+                onRefresh()
+                // Rows show their own loading state, so the spinner only acknowledges the pull
+                scope.launch {
+                    refreshing = true
+                    delay(1.seconds)
+                    refreshing = false
+                }
+            },
+            enabled = state.hasSources,
+            indicatorPadding = contentPadding,
         ) {
-            if (!state.isLoading && !state.hasSources) {
-                item(key = "welcome") { Welcome(onAddSourcesClick) }
-            }
-            if (shown(HomeSection.HERO) && state.heroes.isNotEmpty()) {
-                item(key = "hero") {
-                    HomeHeroCarousel(heroes = state.heroes, onClick = onBrowseMangaClick)
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(
+                    top = contentPadding.calculateTopPadding() + 4.dp,
+                    bottom = contentPadding.calculateBottomPadding() + 16.dp,
+                ),
+                verticalArrangement = Arrangement.spacedBy(20.dp),
+            ) {
+                if (!state.isLoading && !state.hasSources) {
+                    item(key = "welcome") { Welcome(onAddSourcesClick) }
                 }
-            }
-            if (shown(HomeSection.SHORTCUTS)) {
-                item(key = "shortcuts") {
-                    Shortcuts(
-                        onExtensionsClick = onExtensionsClick,
-                        onHistoryClick = onHistoryClick,
-                        onDownloadsClick = onDownloadsClick,
-                        onStatsClick = onStatsClick,
+                if (shown(HomeSection.HERO) && state.heroes.isNotEmpty()) {
+                    item(key = "hero") {
+                        HomeHeroCarousel(heroes = state.heroes, onClick = onBrowseMangaClick)
+                    }
+                }
+                if (shown(HomeSection.SHORTCUTS)) {
+                    item(key = "shortcuts") {
+                        Shortcuts(
+                            onExtensionsClick = onExtensionsClick,
+                            onHistoryClick = onHistoryClick,
+                            onDownloadsClick = onDownloadsClick,
+                            onStatsClick = onStatsClick,
+                        )
+                    }
+                }
+                if (shown(HomeSection.CONTINUE)) {
+                    item(key = "continue") {
+                        ContinueReading(
+                            items = state.continueReading,
+                            onMangaClick = onMangaClick,
+                            onResumeClick = onResumeClick,
+                        )
+                    }
+                }
+                if (shown(HomeSection.NEW_CHAPTERS) && state.newChapters.isNotEmpty()) {
+                    item(key = "new-chapters") {
+                        HomeNewChapters(
+                            items = state.newChapters,
+                            onMangaClick = onMangaClick,
+                            onSeeAll = onUpdatesClick,
+                        )
+                    }
+                }
+                if (shown(HomeSection.STALLED) && state.stalled.isNotEmpty()) {
+                    item(key = "stalled") { HomeStalled(items = state.stalled, onMangaClick = onMangaClick) }
+                }
+                if (shown(HomeSection.BINGE) && state.binge.isNotEmpty()) {
+                    item(key = "binge") { HomeBinge(items = state.binge, onMangaClick = onMangaClick) }
+                }
+                val rows = state.savedRows.takeIf { shown(HomeSection.SAVED) }.orEmpty() +
+                    state.pickRows.takeIf { shown(HomeSection.PICKS) }.orEmpty() +
+                    state.rows.takeIf { shown(HomeSection.SOURCES) }.orEmpty()
+                items(rows, key = { it.key }) { row ->
+                    HomeSourceRow(
+                        row = row,
+                        onSeeAll = { onRowClick(row) },
+                        onMangaClick = onBrowseMangaClick,
+                        onRetry = { onRetryRow(row) },
+                        onToggleLatest = { onToggleLatest(row) },
                     )
                 }
-            }
-            if (shown(HomeSection.CONTINUE)) {
-                item(key = "continue") {
-                    ContinueReading(
-                        items = state.continueReading,
-                        onMangaClick = onMangaClick,
-                        onResumeClick = onResumeClick,
-                    )
-                }
-            }
-            if (shown(HomeSection.NEW_CHAPTERS) && state.newChapters.isNotEmpty()) {
-                item(key = "new-chapters") {
-                    HomeNewChapters(items = state.newChapters, onMangaClick = onMangaClick, onSeeAll = onUpdatesClick)
-                }
-            }
-            if (shown(HomeSection.STALLED) && state.stalled.isNotEmpty()) {
-                item(key = "stalled") { HomeStalled(items = state.stalled, onMangaClick = onMangaClick) }
-            }
-            if (shown(HomeSection.BINGE) && state.binge.isNotEmpty()) {
-                item(key = "binge") { HomeBinge(items = state.binge, onMangaClick = onMangaClick) }
-            }
-            val rows = state.savedRows.takeIf { shown(HomeSection.SAVED) }.orEmpty() +
-                state.pickRows.takeIf { shown(HomeSection.PICKS) }.orEmpty() +
-                state.rows.takeIf { shown(HomeSection.SOURCES) }.orEmpty()
-            items(rows, key = { it.key }) { row ->
-                HomeSourceRow(
-                    row = row,
-                    onSeeAll = { onRowClick(row) },
-                    onMangaClick = onBrowseMangaClick,
-                    onRetry = { onRetryRow(row) },
-                    onToggleLatest = { onToggleLatest(row) },
-                )
             }
         }
     }

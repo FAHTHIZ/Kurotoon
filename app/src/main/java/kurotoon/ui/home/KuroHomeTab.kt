@@ -88,6 +88,7 @@ data object KuroHomeTab : Tab {
             onDownloadsClick = { navigator.push(DownloadQueueScreen) },
             onStatsClick = { navigator.push(StatsScreen()) },
             hidden = hidden,
+            onRefresh = viewModel::refresh,
         )
 
         LaunchedEffect(Unit) {
