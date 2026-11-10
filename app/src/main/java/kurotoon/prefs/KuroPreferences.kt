@@ -11,7 +11,7 @@ import tachiyomi.core.common.preference.PreferenceStore
 /** Settings that only exist in KuroToon. */
 @Inject
 @SingleIn(AppScope::class)
-class KuroPreferences(preferenceStore: PreferenceStore) {
+class KuroPreferences(private val preferenceStore: PreferenceStore) {
 
     /** The reader's display name on the Me tab; empty means the default. */
     val nickname = preferenceStore.getString("kurotoon_nickname", "")
@@ -55,4 +55,7 @@ class KuroPreferences(preferenceStore: PreferenceStore) {
 
     /** Source ids whose Home row shows latest updates instead of popular titles. */
     val homeLatestSources = preferenceStore.getStringSet("kurotoon_home_latest_sources", emptySet())
+
+    /** Result urls a saved search showed last time, newest first. See [kurotoon.catalogue.SearchFeed]. */
+    fun savedSearchSeen(id: Long) = preferenceStore.getString("kurotoon_saved_seen_$id", "")
 }

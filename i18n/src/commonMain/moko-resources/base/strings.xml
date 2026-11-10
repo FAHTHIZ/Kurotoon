@@ -1244,6 +1244,7 @@
     <string name="kurotoon.home.newChapters">New chapters</string>
     <string name="kurotoon.home.newCount">%d new</string>
     <string name="kurotoon.home.becauseYouRead">Because you read %s</string>
+    <string name="kurotoon.home.newBadge">NEW</string>
     <string name="kurotoon.home.binge">Ready to binge</string>
     <string name="kurotoon.home.bingeSummary">Finished series in your library you haven\'t started</string>
     <string name="kurotoon.home.sourceUnavailable">%s is unavailable right now.</string>

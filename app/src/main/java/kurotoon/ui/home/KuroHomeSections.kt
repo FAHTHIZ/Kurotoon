@@ -317,27 +317,35 @@ internal fun HomeSourceRow(
                     modifier = Modifier.size(16.dp),
                 )
             }
-            Text(
-                text = row.pickTag?.let { stringResource(MR.strings.kurotoon_home_becauseYouRead, it) } ?: row.name,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+            val saved = row.savedSearch != null
+            Column(
                 modifier = Modifier
                     .padding(start = 8.dp)
-                    // "Because you read X" takes the whole line; See all names the source
-                    .weight(1f, fill = row.pickTag != null),
-            )
-            if (row.pickTag == null) {
+                    // Saved searches and "Because you read X" take the whole line
+                    .weight(1f, fill = saved || row.pickTag != null),
+            ) {
+                Text(
+                    text = row.pickTag?.let { stringResource(MR.strings.kurotoon_home_becauseYouRead, it) } ?: row.name,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                if (saved) {
+                    Text(
+                        text = row.sourceName + row.freshUrls.size.takeIf { it > 0 }
+                            ?.let { " · " + stringResource(MR.strings.kurotoon_home_newCount, it) }
+                            .orEmpty(),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
+            }
+            if (row.pickTag == null && !saved) {
                 Box(Modifier.weight(1f)) {
                     when {
-                        row.savedSearch != null -> Text(
-                            text = " · " + row.sourceName,
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                        )
                         row.supportsLatest -> ListingToggle(latest = row.latest, onClick = onToggleLatest)
                         else -> Text(
                             text = " · " + stringResource(MR.strings.popular),
@@ -413,12 +421,28 @@ internal fun HomeSourceRow(
             ) {
                 items(row.items, key = { it.id }) { manga ->
                     Column(modifier = Modifier.width(112.dp)) {
-                        MangaCover.Book(
-                            data = manga.asMangaCover(),
-                            shape = RoundedCornerShape(12.dp),
-                            contentDescription = manga.title,
-                            onClick = { onMangaClick(manga) },
-                        )
+                        Box {
+                            MangaCover.Book(
+                                data = manga.asMangaCover(),
+                                shape = RoundedCornerShape(12.dp),
+                                contentDescription = manga.title,
+                                onClick = { onMangaClick(manga) },
+                            )
+                            if (manga.url in row.freshUrls) {
+                                Text(
+                                    text = stringResource(MR.strings.kurotoon_home_newBadge),
+                                    color = Color.White,
+                                    style = MaterialTheme.typography.labelSmall,
+                                    fontWeight = FontWeight.Bold,
+                                    modifier = Modifier
+                                        .align(Alignment.TopStart)
+                                        .padding(6.dp)
+                                        .clip(CircleShape)
+                                        .background(KuroColors.Crimson)
+                                        .padding(horizontal = 8.dp, vertical = 2.dp),
+                                )
+                            }
+                        }
                         Text(
                             text = manga.title,
                             style = MaterialTheme.typography.bodySmall,
