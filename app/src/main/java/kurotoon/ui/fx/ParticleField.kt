@@ -32,6 +32,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import kurotoon.shop.KuroCosmetics
 import mihon.app.di.appGraph
 import tachiyomi.presentation.core.util.collectAsState
 import kotlin.math.PI
@@ -156,7 +157,7 @@ private class ParticleEngine(private val density: Float, lowRam: Boolean) {
 
     fun burst(event: FxEvent.Burst) {
         val n = (event.count * scale).roundToInt()
-        val colors = event.colors ?: BurstColors
+        val colors = event.colors ?: KuroCosmetics.particleColors?.plus(Color.White) ?: BurstColors
         repeat(n) {
             val angle = -PI.toFloat() / 2 + (Random.nextFloat() - 0.5f) * event.spread
             val speed = event.power * (0.35f + Random.nextFloat() * 0.75f) * density
@@ -200,7 +201,7 @@ private class ParticleEngine(private val density: Float, lowRam: Boolean) {
             vy = -(0.25f + Random.nextFloat() * 0.45f) * density,
             max = 600f + Random.nextFloat() * 500f,
             size = (0.8f + Random.nextFloat() * 1.8f) * density,
-            color = AmbientColors.random(),
+            color = (KuroCosmetics.particleColors ?: AmbientColors).random(),
             gravity = 0f,
             spin = 0f,
             rotation = 0f,

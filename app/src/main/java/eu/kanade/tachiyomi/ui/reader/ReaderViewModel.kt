@@ -73,6 +73,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
+import kurotoon.rewards.RewardEvent
+import kurotoon.rewards.RewardsStore
 import logcat.LogPriority
 import mihon.core.metro.AppCoroutineScope
 import mihon.data.cache.ChapterCache
@@ -127,6 +129,7 @@ class ReaderViewModel(
     private val coverCache: CoverCache,
     private val chapterCache: ChapterCache,
     private val downloadCache: DownloadCache,
+    private val rewardsStore: RewardsStore,
 ) : ViewModel() {
 
     @AssistedFactory
@@ -653,6 +656,7 @@ class ReaderViewModel(
 
         val wasRead = readerChapter.chapter.read
         val read = wasRead || readerChapter.pages?.lastIndex == pageIndex
+        if (read && !wasRead) rewardsStore.track(RewardEvent.CHAPTER_READ)
         // A page change in another chapter would replace that chapter's pending save
         if (pendingProgressChapter != readerChapter) saveChapterProgress()
         readerChapter.update { it.copy(lastPageRead = pageIndex, read = read) }

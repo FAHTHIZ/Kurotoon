@@ -24,6 +24,7 @@ import eu.kanade.presentation.theme.colorscheme.TidalWaveColorScheme
 import eu.kanade.presentation.theme.colorscheme.TokyoNightColorScheme
 import eu.kanade.presentation.theme.colorscheme.YinYangColorScheme
 import eu.kanade.presentation.theme.colorscheme.YotsubaColorScheme
+import kurotoon.shop.KuroCosmetics
 import mihon.app.di.appGraph
 
 @Composable
@@ -57,13 +58,15 @@ private fun BaseTachiyomiTheme(
     val context = LocalContext.current
     val isDark = isSystemInDarkTheme()
     MaterialExpressiveTheme(
-        colorScheme = remember(appTheme, isDark, isAmoled) {
-            getThemeColorScheme(
+        colorScheme = remember(appTheme, isDark, isAmoled, KuroCosmetics.accent) {
+            val scheme = getThemeColorScheme(
                 context = context,
                 appTheme = appTheme,
                 isDark = isDark,
                 isAmoled = isAmoled,
             )
+            // Shop themes recolour KuroToon's own scheme only
+            if (appTheme == AppTheme.DEFAULT) KuroCosmetics.tint(scheme, isDark) else scheme
         },
         content = content,
     )

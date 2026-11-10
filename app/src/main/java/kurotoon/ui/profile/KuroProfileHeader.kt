@@ -42,12 +42,17 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kurotoon.shop.ShopItem
 import kurotoon.ui.KuroColors
 import kurotoon.ui.kuroCard
+import kurotoon.ui.shop.KuroAvatar
+import kurotoon.ui.shop.KuroBadge
+import kurotoon.ui.shop.ShopItemArt
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.CollectionsBookmark
 import mihon.icons.materialsymbols.rounded.Edit
 import mihon.icons.materialsymbols.rounded.History
+import mihon.icons.materialsymbols.rounded.Storefront
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -59,6 +64,16 @@ data class ProfileStats(
     val unread: Long = 0,
 )
 
+/** What the reader is wearing from the shop, plus their balance. */
+@Immutable
+data class ProfileLook(
+    val points: Int = 0,
+    val avatar: ShopItem? = null,
+    val frame: ShopItem? = null,
+    val sticker: ShopItem? = null,
+    val badges: List<ShopItem> = emptyList(),
+)
+
 @Composable
 fun KuroProfileHeader(
     nickname: String,
@@ -67,6 +82,8 @@ fun KuroProfileHeader(
     onLibraryClick: () -> Unit,
     onHistoryClick: () -> Unit,
     modifier: Modifier = Modifier,
+    look: ProfileLook = ProfileLook(),
+    onShopClick: () -> Unit = {},
 ) {
     Column(
         modifier = modifier.padding(horizontal = 16.dp, vertical = 12.dp),
@@ -75,9 +92,11 @@ fun KuroProfileHeader(
         ProfileCard(
             nickname = nickname.ifBlank { stringResource(MR.strings.kurotoon_me_defaultNickname) },
             chaptersRead = stats.chaptersRead,
+            look = look,
+            onAvatarClick = onShopClick,
             onNicknameChange = { onNicknameChange(it.trim().take(NICKNAME_MAX)) },
         )
-        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             StatTile(
                 icon = MaterialSymbols.Rounded.CollectionsBookmark,
                 value = stats.inLibrary.toLong(),
@@ -92,6 +111,14 @@ fun KuroProfileHeader(
                 onClick = onHistoryClick,
                 modifier = Modifier.weight(1f),
             )
+            StatTile(
+                icon = MaterialSymbols.Rounded.Storefront,
+                value = look.points.toLong(),
+                label = stringResource(MR.strings.kurotoon_rewards_points),
+                onClick = onShopClick,
+                modifier = Modifier.weight(1f),
+                tint = KuroColors.Gold,
+            )
         }
     }
 }
@@ -100,6 +127,8 @@ fun KuroProfileHeader(
 private fun ProfileCard(
     nickname: String,
     chaptersRead: Long,
+    look: ProfileLook,
+    onAvatarClick: () -> Unit,
     onNicknameChange: (String) -> Unit,
 ) {
     var editing by remember { mutableStateOf(false) }
@@ -119,12 +148,20 @@ private fun ProfileCard(
     ) {
         Box(
             modifier = Modifier
-                .size(64.dp)
-                .dropShadow(CircleShape, Shadow(radius = 18.dp, color = KuroColors.Crimson.copy(alpha = 0.45f)))
-                .background(Brush.linearGradient(listOf(KuroColors.Crimson, KuroColors.CrimsonDeep)), CircleShape),
-            contentAlignment = Alignment.Center,
+                .size(76.dp)
+                .clip(CircleShape)
+                .clickable(onClick = onAvatarClick),
         ) {
-            Text(text = "😸", fontSize = 30.sp)
+            KuroAvatar(avatar = look.avatar, frame = look.frame, modifier = Modifier.matchParentSize())
+            look.sticker?.let { sticker ->
+                ShopItemArt(
+                    sticker,
+                    Modifier
+                        .align(Alignment.BottomEnd)
+                        .size(26.dp),
+                    animated = false,
+                )
+            }
         }
         Column(modifier = Modifier.weight(1f)) {
             if (editing) {
@@ -171,6 +208,14 @@ private fun ProfileCard(
                 letterSpacing = 1.5.sp,
                 modifier = Modifier.padding(top = 4.dp),
             )
+            if (look.badges.isNotEmpty()) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    modifier = Modifier.padding(top = 8.dp),
+                ) {
+                    look.badges.forEach { KuroBadge(it, Modifier.size(width = 22.dp, height = 24.dp)) }
+                }
+            }
         }
     }
 }
@@ -215,6 +260,7 @@ private fun StatTile(
     label: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    tint: Color = KuroColors.Crimson,
 ) {
     val shape = RoundedCornerShape(16.dp)
     Column(
@@ -224,10 +270,11 @@ private fun StatTile(
             .clickable(onClick = onClick)
             .padding(16.dp),
     ) {
-        Icon(icon, contentDescription = null, tint = KuroColors.Crimson, modifier = Modifier.size(20.dp))
+        Icon(icon, contentDescription = null, tint = tint, modifier = Modifier.size(20.dp))
         Text(
             text = "%,d".format(value),
-            fontSize = 24.sp,
+            fontSize = 22.sp,
+            maxLines = 1,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(top = 8.dp),
         )
@@ -235,6 +282,8 @@ private fun StatTile(
             text = label,
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
         )
     }
 }

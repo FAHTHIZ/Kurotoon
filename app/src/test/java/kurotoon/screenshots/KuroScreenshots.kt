@@ -28,6 +28,7 @@ import coil3.compose.AsyncImagePreviewHandler
 import coil3.compose.LocalAsyncImagePreviewHandler
 import com.github.takahirom.roborazzi.captureRoboImage
 import eu.kanade.presentation.theme.colorscheme.KuroToonColorScheme
+import kurotoon.shop.toPack
 import kurotoon.ui.KuroBottomBar
 import kurotoon.ui.KuroBottomBarItem
 import kurotoon.ui.browse.BrowseChips
@@ -187,6 +188,87 @@ class KuroScreenshots {
     }
 
     @OptIn(ExperimentalCoilApi::class)
+    private val packs by lazy {
+        java.io.File("src/main/assets/kuro/packs").listFiles { file -> file.isDirectory }.orEmpty()
+            .sortedBy { it.name }
+            .mapNotNull { folder ->
+                kurotoon.shop.packJson
+                    .decodeFromString<kurotoon.shop.PackManifest>(java.io.File(folder, "pack.json").readText())
+                    .toPack(kurotoon.shop.PackOrigin.BUILT_IN) { it }
+            }
+    }
+
+    private val rewards = kurotoon.rewards.RewardsState(
+        points = 1240,
+        lifetimePoints = 3810,
+        streak = 6,
+        bestStreak = 12,
+        progress = mapOf("read_3" to 3, "read_10" to 4, "search_1" to 1),
+        claimed = setOf("search_1"),
+        owned = setOf(
+            "kuro.avatars/galaxy",
+            "kuro.frames/mythic",
+            "kuro.themes/aurora",
+            "kuro.badges/night",
+            "kuro.badges/sage",
+        ),
+        equipped = mapOf(
+            "avatar" to "kuro.avatars/galaxy",
+            "frame" to "kuro.frames/mythic",
+            "sticker" to "kuro.starter/fire",
+        ),
+        badges = listOf("kuro.badges/night", "kuro.badges/sage"),
+        achievements = mapOf("first_chapter" to 1_762_000_000_000, "first_bookmark" to 1_762_100_000_000),
+    )
+
+    private fun shopShot(name: String, section: kurotoon.ui.shop.ShopSection) = shot(name, fullScreen = true) {
+        kurotoon.ui.shop.ShopContent(
+            state = rewards,
+            packs = packs,
+            contentPadding = androidx.compose.foundation.layout.PaddingValues(),
+            onClaim = {},
+            onClaimAll = {},
+            onBuy = { kurotoon.rewards.PurchaseResult.Success },
+            onEquip = {},
+            onUnequip = {},
+            onImport = {},
+            onRemovePack = {},
+            initialSection = section,
+            animated = false,
+        )
+    }
+
+    @Test
+    fun shop() = shopShot("shop", kurotoon.ui.shop.ShopSection.SHOP)
+
+    @Test
+    fun shopMissions() = shopShot("shop_missions", kurotoon.ui.shop.ShopSection.MISSIONS)
+
+    @Test
+    fun shopCollection() = shopShot("shop_collection", kurotoon.ui.shop.ShopSection.COLLECTION)
+
+    @Test
+    fun shopPacks() = shopShot("shop_packs", kurotoon.ui.shop.ShopSection.PACKS)
+
+    @Test
+    fun profile() = shot("profile") {
+        val items = packs.flatMap { it.items }.associateBy { it.code }
+        kurotoon.ui.profile.KuroProfileHeader(
+            nickname = "Kuro reader",
+            onNicknameChange = {},
+            stats = kurotoon.ui.profile.ProfileStats(inLibrary = 42, chaptersRead = 1288, unread = 97),
+            onLibraryClick = {},
+            onHistoryClick = {},
+            look = kurotoon.ui.profile.ProfileLook(
+                points = rewards.points,
+                avatar = items["kuro.avatars/galaxy"],
+                frame = items["kuro.frames/mythic"],
+                sticker = items["kuro.starter/fire"],
+                badges = rewards.badges.mapNotNull(items::get),
+            ),
+        )
+    }
+
     private fun shot(name: String, fullScreen: Boolean = false, content: @Composable () -> Unit) {
         captureRoboImage("build/screenshots/$name.png") {
             val covers = AsyncImagePreviewHandler { request -> fakeCover(request.data.hashCode()) }

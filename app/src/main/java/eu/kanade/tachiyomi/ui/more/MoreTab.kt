@@ -35,12 +35,17 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kurotoon.prefs.KuroPreferences
 import kurotoon.ui.catalogue.ChapterReconciliationScreen
+import kurotoon.rewards.RewardsStore
+import kurotoon.shop.ShopKind
+import kurotoon.ui.profile.ProfileLook
 import kurotoon.ui.profile.ProfileStats
+import kurotoon.ui.shop.KuroShopScreen
 import logcat.LogPriority
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Person
@@ -76,6 +81,7 @@ data object MoreTab : Tab {
         val viewModel = metroViewModel<MoreViewModel>()
         val downloadQueueState by viewModel.downloadQueueState.collectAsState()
         val profileStats by viewModel.profileStats.collectAsState()
+        val profileLook by viewModel.profileLook.collectAsState()
         MoreScreen(
             downloadQueueStateProvider = { downloadQueueState },
             downloadedOnly = viewModel.downloadedOnly,
@@ -94,6 +100,8 @@ data object MoreTab : Tab {
             profileStats = profileStats,
             onClickLibrary = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.Library()) } },
             onClickHistory = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.History) } },
+            profileLook = profileLook,
+            onClickShop = { navigator.push(KuroShopScreen()) },
         )
     }
 }
@@ -106,7 +114,25 @@ class MoreViewModel(
     preferences: BasePreferences,
     kuroPreferences: KuroPreferences,
     getLibraryManga: GetLibraryManga,
+    rewardsStore: RewardsStore,
 ) : ViewModel() {
+
+    val profileLook: StateFlow<ProfileLook> = combine(
+        rewardsStore.state,
+        rewardsStore.packs.packs.filterNotNull(),
+    ) { state, _ ->
+        val packs = rewardsStore.packs
+        fun worn(kind: ShopKind) = state.equipped[kind.key]?.let(packs::item)?.takeIf(state::owns)
+        ProfileLook(
+            points = state.points,
+            avatar = worn(ShopKind.AVATAR),
+            frame = worn(ShopKind.FRAME),
+            sticker = worn(ShopKind.STICKER),
+            badges = state.badges.mapNotNull(packs::item).filter(state::owns),
+        )
+    }
+        .catch { logcat(LogPriority.ERROR, it) }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), ProfileLook())
 
     var nickname by kuroPreferences.nickname.asState(viewModelScope)
 
