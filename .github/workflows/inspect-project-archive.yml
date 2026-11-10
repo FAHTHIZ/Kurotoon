@@ -1,0 +1,68 @@
+name: Inspect uploaded project archive
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/inspect-project-archive.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Validate archive and write manifest
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import PurePosixPath
+          from zipfile import ZipFile
+          from pathlib import Path
+          import stat
+
+          archive = Path("KuroToon-project.zip")
+          if not archive.is_file():
+              raise SystemExit("Expected KuroToon-project.zip at repository root.")
+
+          with ZipFile(archive) as zf:
+              entries = zf.infolist()
+              unsafe = []
+              links = []
+              files = []
+              for info in entries:
+                  name = info.filename
+                  p = PurePosixPath(name)
+                  mode = info.external_attr >> 16
+                  if p.is_absolute() or ".." in p.parts or "\\" in name:
+                      unsafe.append(name)
+                  if stat.S_ISLNK(mode):
+                      links.append(name)
+                  if not info.is_dir():
+                      files.append(info)
+              if unsafe or links:
+                  raise SystemExit(f"Unsafe archive paths/symlinks found: {unsafe} {links}")
+              bad = zf.testzip()
+              if bad:
+                  raise SystemExit(f"Archive CRC validation failed at: {bad}")
+
+              print(f"ZIP_ENTRIES={len(entries)}")
+              print(f"FILES={len(files)}")
+              print(f"UNCOMPRESSED_BYTES={sum(x.file_size for x in files)}")
+              print("----- ARCHIVE CONTENTS -----")
+              for info in sorted(files, key=lambda x: x.filename.lower()):
+                  print(f"{info.file_size:>10}  {info.filename}")
+              print("----- END CONTENTS -----")
+          PY
+      - name: Preserve source archive for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: kurotoon-source-archive
+          path: KuroToon-project.zip
+          if-no-files-found: error
+          retention-days: 1
