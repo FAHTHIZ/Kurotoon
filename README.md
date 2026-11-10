@@ -45,8 +45,9 @@ These are rendered from the real Compose code by the screenshot tests (see [Deve
 
 ## Get started
 
-1. Install the APK from the latest [Actions run](https://github.com/FAHTHIZ/Kurotoon/actions/workflows/build.yml)
-   (or build it yourself, below).
+1. Install the APK from the [latest release](https://github.com/FAHTHIZ/Kurotoon/releases/latest), or from the
+   newest [Actions run](https://github.com/FAHTHIZ/Kurotoon/actions/workflows/build.yml) for the bleeding edge.
+   Most phones want the `arm64-v8a` file; `universal` works everywhere.
 2. Open **Browse → Extensions** and add a repository you trust.
 3. Install a source, find a series and tap **Add to library**.
 
@@ -73,7 +74,9 @@ Requirements: JDK 21 and the Android SDK.
                                         # render UI screenshots to app/build/screenshots/
 ```
 
-Every push to `main` is built by GitHub Actions and the APK is attached to the run.
+Every push to `main` is built by GitHub Actions and the APK is attached to the run. Pushing a `v*` tag (or running
+the Release workflow by hand) publishes a GitHub release with per-ABI APKs and checksums. Add the `SIGNING_KEY`
+(base64 keystore), `ALIAS`, `KEY_STORE_PASSWORD` and `KEY_PASSWORD` secrets to sign them with your own key.
 
 ## License
 

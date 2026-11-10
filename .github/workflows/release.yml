@@ -1,0 +1,77 @@
+name: Release
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release, e.g. v0.22.0 (created on the current commit if missing)'
+        required: true
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build & publish release
+    runs-on: 'ubuntu-26.04'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK
+        uses: actions/setup-java@77dd5b2ce225ea11469928ac317850245a74ae78 # v6.2.0
+        with:
+          java-version-file: .github/.java-version
+          distribution: temurin
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@8da46b539cd8fe6ab27ca75128919a18d757604c # v6.4.1
+        with:
+          cache-encryption-key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
+
+      - name: Prepare signing key
+        id: signing
+        env:
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+        run: |
+          if [ -n "$SIGNING_KEY" ]; then
+            echo "$SIGNING_KEY" | base64 -d > "$RUNNER_TEMP/release.jks"
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::SIGNING_KEY secret not set; the APKs will be signed with the debug key."
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build release APKs
+        env:
+          KUROTOON_GITHUB_RELEASE: ${{ steps.signing.outputs.enabled }}
+          storeFile: ${{ runner.temp }}/release.jks
+          storePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyAlias: ${{ secrets.ALIAS }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+        run: ./gradlew assembleRelease -Pdist=ci
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.inputs.tag || github.ref_name }}
+        run: |
+          cd app/build/outputs/apk/release
+          for apk in app-*-release.apk; do
+            abi="${apk#app-}"; abi="${abi%-release.apk}"
+            mv "$apk" "kurotoon-${TAG}-${abi}.apk"
+          done
+          sha256sum kurotoon-*.apk > checksums.txt
+          gh release create "$TAG" kurotoon-*.apk checksums.txt \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "KuroToon $TAG" --generate-notes \
+            || gh release upload "$TAG" kurotoon-*.apk checksums.txt --repo "$GITHUB_REPOSITORY" --clobber

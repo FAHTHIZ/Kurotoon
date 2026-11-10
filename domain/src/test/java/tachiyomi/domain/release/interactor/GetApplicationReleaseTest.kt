@@ -96,4 +96,12 @@ class GetApplicationReleaseTest {
 
         result shouldBe GetApplicationRelease.Result.NoNewUpdate
     }
+
+    @Test
+    fun `Versions compare part by part`() {
+        getApplicationRelease.compareVersions("0.22.0", "0.21.3") shouldBe 1
+        getApplicationRelease.compareVersions("0.20.9", "0.21.3") shouldBe -1
+        getApplicationRelease.compareVersions("1.0", "1.0.0") shouldBe 0
+        getApplicationRelease.compareVersions("1.0.1", "1.0") shouldBe 1
+    }
 }
