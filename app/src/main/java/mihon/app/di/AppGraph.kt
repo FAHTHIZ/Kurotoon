@@ -41,7 +41,6 @@ import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.CrashLogUtil
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.protobuf.ProtoBuf
-import kurotoon.rewards.RewardsStore
 import mihon.core.metro.IsDebugBuild
 import mihon.data.cache.ChapterCache
 import mihon.domain.extension.interactor.GetExtensionStoreCountAsFlow
@@ -125,8 +124,6 @@ interface AppGraph : ViewModelGraph {
     val upsertTrack: UpsertTrack
 
     val getExtensionStoreCountAsFlow: GetExtensionStoreCountAsFlow
-
-    val rewardsStore: RewardsStore
 
     @DependencyGraph.Factory
     fun interface Factory {

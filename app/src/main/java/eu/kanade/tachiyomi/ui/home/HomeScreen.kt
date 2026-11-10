@@ -51,7 +51,6 @@ import eu.kanade.tachiyomi.ui.library.LibraryTab
 import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import eu.kanade.tachiyomi.ui.more.MoreTab
 import eu.kanade.tachiyomi.ui.updates.UpdatesTab
-import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
@@ -60,11 +59,9 @@ import kotlinx.coroutines.launch
 import kurotoon.ui.KuroBottomBar
 import kurotoon.ui.KuroBottomBarItem
 import kurotoon.ui.home.KuroHomeTab
-import kurotoon.ui.rewards.RewardsTab
 import mihon.app.di.appGraph
 import soup.compose.material.motion.animation.materialFadeThroughIn
 import soup.compose.material.motion.animation.materialFadeThroughOut
-import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.pluralStringResource
 
@@ -83,8 +80,8 @@ object HomeScreen : Screen() {
     private val TABS = listOf(
         KuroHomeTab,
         BrowseTab,
-        RewardsTab,
         LibraryTab,
+        UpdatesTab,
         MoreTab,
     )
 
@@ -163,21 +160,6 @@ object HomeScreen : Screen() {
 
             BackHandler(enabled = tabNavigator.current != KuroHomeTab, onBack = { tabNavigator.current = KuroHomeTab })
 
-            val context = LocalContext.current
-            LaunchedEffect(Unit) {
-                val rewards = context.appGraph.rewardsStore
-                rewards.claimDailyOpen()
-                rewards.grants.collect { grant ->
-                    context.toast(
-                        context.stringResource(
-                            MR.strings.kurotoon_rewards_earned,
-                            grant.points,
-                            grant.description ?: grant.title,
-                        ),
-                    )
-                }
-            }
-
             LaunchedEffect(Unit) {
                 launch {
                     librarySearchEvent.receiveAsFlow().collectLatest {
@@ -192,7 +174,6 @@ object HomeScreen : Screen() {
                             Tab.Updates -> UpdatesTab
                             Tab.History -> HistoryTab
                             Tab.Home -> KuroHomeTab
-                            Tab.Rewards -> RewardsTab
                             is Tab.Browse -> {
                                 if (it.toExtensions) {
                                     BrowseTab.showExtension()
@@ -228,7 +209,7 @@ object HomeScreen : Screen() {
         }
         KuroBottomBar(
             items = items,
-            selectedKey = TABS.first { it::class == tabNavigator.current::class },
+            selectedKey = TABS.firstOrNull { it::class == tabNavigator.current::class } ?: Unit,
             onClick = { item ->
                 val tab = item.key as eu.kanade.presentation.util.Tab
                 if (tabNavigator.current::class != tab::class) {
@@ -346,7 +327,6 @@ object HomeScreen : Screen() {
         data object Updates : Tab
         data object History : Tab
         data object Home : Tab
-        data object Rewards : Tab
         data class Browse(val toExtensions: Boolean = false) : Tab
         data class More(val toDownloads: Boolean) : Tab
     }

@@ -26,7 +26,6 @@ import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -34,8 +33,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
-import kurotoon.rewards.RewardEvent
-import kurotoon.rewards.RewardsStore
 import logcat.LogPriority
 import mihon.core.metro.AppCoroutineScope
 import mihon.domain.extension.interactor.UpdateExtensionStores
@@ -64,7 +61,6 @@ class ExtensionManager(
     private val updateExtensionStores: UpdateExtensionStores,
     private val installer: ExtensionInstaller,
     private val extensionUpdateNotifier: ExtensionUpdateNotifier,
-    private val rewardsStore: RewardsStore,
 ) {
 
     private val initialized = CompletableDeferred<Unit>()
@@ -275,7 +271,6 @@ class ExtensionManager(
      */
     fun installExtension(extension: Extension.Available): Flow<InstallStep> {
         return installer.downloadAndInstall(extension)
-            .onEach { if (it == InstallStep.Installed) rewardsStore.track(RewardEvent.SOURCE_INSTALLED) }
     }
 
     /**

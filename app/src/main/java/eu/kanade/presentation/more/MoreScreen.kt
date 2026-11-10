@@ -8,6 +8,8 @@ import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.more.settings.widget.SwitchPreferenceWidget
 import eu.kanade.presentation.more.settings.widget.TextPreferenceWidget
 import eu.kanade.tachiyomi.ui.more.DownloadQueueState
+import kurotoon.ui.profile.KuroProfileHeader
+import kurotoon.ui.profile.ProfileStats
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.automirroredrounded.Help
 import mihon.icons.materialsymbols.automirroredrounded.Label
@@ -40,14 +42,23 @@ fun MoreScreen(
     onClickSettings: () -> Unit,
     onClickSupport: () -> Unit,
     onClickAbout: () -> Unit,
+    nickname: String,
+    onNicknameChange: (String) -> Unit,
+    profileStats: ProfileStats,
+    onClickLibrary: () -> Unit,
+    onClickHistory: () -> Unit,
 ) {
     val uriHandler = LocalUriHandler.current
 
     Scaffold { contentPadding ->
         ScrollbarLazyColumn(contentPadding = contentPadding) {
             item {
-                LogoHeader(
-                    iconPadding = PaddingValues(vertical = 32.dp),
+                KuroProfileHeader(
+                    nickname = nickname,
+                    onNicknameChange = onNicknameChange,
+                    stats = profileStats,
+                    onLibraryClick = onClickLibrary,
+                    onHistoryClick = onClickHistory,
                 )
             }
             item {
