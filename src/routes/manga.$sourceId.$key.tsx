@@ -32,7 +32,7 @@ import {
   toggleBookmark,
   toggleFavourite,
 } from "@/lib/local-library";
-import { useChapters, useEngineReady, useMangaDetails } from "@/engine/hooks";
+import { useChapters, useEngineReady, useMangaDetails, useMounted } from "@/engine/hooks";
 import { decodeKey, encodeKey, seriesId } from "@/engine/ids";
 import { STATUS_LABEL, type ChapterRow, type SeriesCard } from "@/engine/types";
 import { seedKnownChapters } from "@/lib/updates";
@@ -74,7 +74,9 @@ function MangaPage() {
   const [desc, setDesc] = useState(false);
   const [asc, setAsc] = useState(false);
 
-  const seen = useMemo(() => (typeof window === "undefined" ? null : getSeen(id)), [id]);
+  const mounted = useMounted();
+  // Device-only data waits for mount so the SSR HTML and first client render match.
+  const seen = useMemo(() => (mounted ? getSeen(id) : null), [id, mounted]);
   const card: SeriesCard | null = details.data ?? seen;
 
   useEffect(() => {
@@ -90,14 +92,8 @@ function MangaPage() {
     setFav(isFavourite(id));
   }, [id, tick]);
 
-  const progress = useMemo(
-    () => (typeof window === "undefined" ? null : getProgress(id)),
-    [id, tick],
-  );
-  const readSet = useMemo(
-    () => new Set(typeof window === "undefined" ? [] : getReadChapters(id)),
-    [id, tick],
-  );
+  const progress = useMemo(() => (mounted ? getProgress(id) : null), [id, tick, mounted]);
+  const readSet = useMemo(() => new Set(mounted ? getReadChapters(id) : []), [id, tick, mounted]);
 
   const list = chapters.data ?? [];
   const ordered = asc ? [...list].reverse() : list;
