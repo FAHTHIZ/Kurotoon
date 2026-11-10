@@ -1130,6 +1130,9 @@
     <string name="kurotoon.rewards.unlocked">%s unlocked</string>
     <string name="kurotoon.rewards.notEnoughPoints">Not enough Kuro Points</string>
     <string name="kurotoon.home.search">Search manga…</string>
+    <string name="kurotoon.browse.universalSearch">Universal Search</string>
+    <string name="kurotoon.browse.universalSearchBody">One search across every installed source.</string>
+    <string name="kurotoon.browse.universalSearchHint">Search every source…</string>
     <string name="kurotoon.home.welcomeTitle">Welcome to KuroToon</string>
     <string name="kurotoon.home.welcomeBody">KuroToon is a reader, like Mihon and Aidoku. It comes with no content — you choose the sources.</string>
     <string name="kurotoon.home.addSources">Add sources</string>
