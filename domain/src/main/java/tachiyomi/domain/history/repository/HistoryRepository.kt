@@ -4,6 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import tachiyomi.domain.history.model.History
 import tachiyomi.domain.history.model.HistoryUpdate
 import tachiyomi.domain.history.model.HistoryWithRelations
+import kotlin.time.Instant
 
 interface HistoryRepository {
 
@@ -12,6 +13,9 @@ interface HistoryRepository {
     suspend fun getLastHistory(): HistoryWithRelations?
 
     suspend fun getTotalReadDuration(): Long
+
+    /** When each chapter read since [since] was last read, with its total read time in milliseconds. */
+    suspend fun getReadActivity(since: Instant): List<Pair<Instant, Long>>
 
     suspend fun getHistoryByMangaId(mangaId: Long): List<History>
 
