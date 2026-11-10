@@ -2,7 +2,7 @@ import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { browseListing, chapterList, mangaDetails, pageList, popular, search } from "./runtime";
 import { bootEngine, useEngine } from "./store";
-import type { Chapter, Listing } from "./types";
+import type { Chapter, FilterValue, Listing } from "./types";
 
 /** Boots persisted engine state on mount and returns it reactively. */
 export function useEngineReady() {
@@ -25,16 +25,18 @@ export function usePopular(sourceId: string | null, enabled = true) {
   });
 }
 
-export function useSourceFeed(sourceId: string, mode: { listing: Listing } | { query: string }) {
+export type FeedMode = { listing: Listing } | { query: string; filters?: FilterValue[] };
+
+export function useSourceFeed(sourceId: string, mode: FeedMode) {
   const mounted = useMounted();
-  const key = "listing" in mode ? ["listing", mode.listing.id] : ["search", mode.query];
+  const key = "listing" in mode ? ["listing", mode.listing.id] : ["search", mode.query, JSON.stringify(mode.filters ?? [])];
   return useInfiniteQuery({
     queryKey: ["src", sourceId, ...key],
     initialPageParam: 1,
     queryFn: ({ pageParam }) =>
       "listing" in mode
         ? browseListing(sourceId, mode.listing, pageParam)
-        : search(sourceId, mode.query || null, pageParam),
+        : search(sourceId, mode.query || null, pageParam, mode.filters ?? []),
     getNextPageParam: (last, all) =>
       last.hasNextPage && last.items.length > 0 ? all.length + 1 : undefined,
     enabled: mounted,

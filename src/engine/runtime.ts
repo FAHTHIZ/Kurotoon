@@ -8,6 +8,8 @@
  * another) and recorded for health monitoring.
  */
 import type { AsyncAidokuSource } from "@nemu.pm/aidoku-runtime";
+import { normalizeFilters, normalizeRuntimeFilters, type UiFilter } from "./filters";
+import { normalizeSettings, settingDefaults, type SettingItem } from "./source-settings";
 import {
   getEngineState,
   readSourcePackage,
@@ -59,6 +61,9 @@ if (typeof window !== "undefined") {
   });
 }
 
+/** Stored setting overrides per source (defaults come from settings.json). */
+const settingsCache = new Map<string, Record<string, unknown>>();
+
 export async function getSource(id: string): Promise<AsyncAidokuSource> {
   if (typeof window === "undefined") throw new SourceUnavailableError("Sources run in the browser only");
   const hit = live.get(id);
@@ -75,15 +80,16 @@ export async function getSource(id: string): Promise<AsyncAidokuSource> {
     if (!meta) throw new SourceUnavailableError(`Source "${id}" is not installed`);
     const bytes = await readSourcePackage(id);
     if (!bytes) throw new SourceUnavailableError(`Package for "${meta.name}" is missing — reinstall it`);
-    let values = await readSourceSettings(id);
+    settingsCache.set(id, await readSourceSettings(id));
     const { loadSource } = await import("@nemu.pm/aidoku-runtime");
     const source = await loadSource(bytes, id, {
       proxyUrl: relayBase(),
       settings: {
-        get: () => values,
+        get: () => settingsCache.get(id) ?? {},
         set: (key, value) => {
-          values = { ...values, [key]: value };
-          void writeSourceSettings(id, values);
+          const next = { ...(settingsCache.get(id) ?? {}), [key]: value };
+          settingsCache.set(id, next);
+          void writeSourceSettings(id, next);
         },
       },
     });
@@ -185,6 +191,34 @@ export function toChapterRow(c: Chapter): ChapterRow {
 export type MangaPage = { items: SeriesCard[]; hasNextPage: boolean };
 
 const minimal = (key: string): Manga => ({ key });
+
+/** Filters for a source's search screen: filters.json first, else get_filters. */
+export async function sourceFilters(id: string): Promise<UiFilter[]> {
+  const src = await getSource(id);
+  const fromManifest = normalizeFilters(src.manifest.filters);
+  if (fromManifest.length) return fromManifest;
+  try {
+    return normalizeRuntimeFilters(await src.getFilters());
+  } catch {
+    return [];
+  }
+}
+
+export async function sourceSettings(id: string): Promise<{ items: SettingItem[]; values: Record<string, unknown> }> {
+  const src = await getSource(id);
+  const items = normalizeSettings(src.settingsJson);
+  return { items, values: { ...settingDefaults(items), ...(settingsCache.get(id) ?? {}) } };
+}
+
+/** Save one setting and push it to the running source. */
+export async function setSourceSetting(id: string, key: string, value: unknown): Promise<void> {
+  const src = await getSource(id);
+  const next = { ...(settingsCache.get(id) ?? (await readSourceSettings(id))), [key]: value };
+  settingsCache.set(id, next);
+  await writeSourceSettings(id, next);
+  const items = normalizeSettings(src.settingsJson);
+  src.updateSettings({ ...settingDefaults(items), ...next });
+}
 
 export async function listListings(id: string): Promise<Listing[]> {
   return call(id, "listings", (s) => s.getListings());
