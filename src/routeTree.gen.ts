@@ -17,6 +17,7 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RewardsRouteImport } from './routes/rewards'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as UpdatesRouteImport } from './routes/updates'
 import { Route as ApiRelayRouteImport } from './routes/api/relay'
 import { Route as SourceSourceIdRouteImport } from './routes/source.$sourceId'
 import { Route as MangaSourceIdKeyRouteImport } from './routes/manga.$sourceId.$key'
@@ -62,6 +63,11 @@ const ShopRoute = ShopRouteImport.update({
   path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UpdatesRoute = UpdatesRouteImport.update({
+  id: '/updates',
+  path: '/updates',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiRelayRoute = ApiRelayRouteImport.update({
   id: '/api/relay',
   path: '/api/relay',
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/rewards': typeof RewardsRoute
   '/search': typeof SearchRoute
   '/shop': typeof ShopRoute
+  '/updates': typeof UpdatesRoute
   '/api/relay': typeof ApiRelayRoute
   '/source/$sourceId': typeof SourceSourceIdRoute
   '/manga/$sourceId/$key': typeof MangaSourceIdKeyRoute
@@ -107,6 +114,7 @@ export interface FileRoutesByTo {
   '/rewards': typeof RewardsRoute
   '/search': typeof SearchRoute
   '/shop': typeof ShopRoute
+  '/updates': typeof UpdatesRoute
   '/api/relay': typeof ApiRelayRoute
   '/source/$sourceId': typeof SourceSourceIdRoute
   '/manga/$sourceId/$key': typeof MangaSourceIdKeyRoute
@@ -122,6 +130,7 @@ export interface FileRoutesById {
   '/rewards': typeof RewardsRoute
   '/search': typeof SearchRoute
   '/shop': typeof ShopRoute
+  '/updates': typeof UpdatesRoute
   '/api/relay': typeof ApiRelayRoute
   '/source/$sourceId': typeof SourceSourceIdRoute
   '/manga/$sourceId/$key': typeof MangaSourceIdKeyRoute
@@ -138,6 +147,7 @@ export interface FileRouteTypes {
     | '/rewards'
     | '/search'
     | '/shop'
+    | '/updates'
     | '/api/relay'
     | '/source/$sourceId'
     | '/manga/$sourceId/$key'
@@ -152,6 +162,7 @@ export interface FileRouteTypes {
     | '/rewards'
     | '/search'
     | '/shop'
+    | '/updates'
     | '/api/relay'
     | '/source/$sourceId'
     | '/manga/$sourceId/$key'
@@ -166,6 +177,7 @@ export interface FileRouteTypes {
     | '/rewards'
     | '/search'
     | '/shop'
+    | '/updates'
     | '/api/relay'
     | '/source/$sourceId'
     | '/manga/$sourceId/$key'
@@ -181,6 +193,7 @@ export interface RootRouteChildren {
   RewardsRoute: typeof RewardsRoute
   SearchRoute: typeof SearchRoute
   ShopRoute: typeof ShopRoute
+  UpdatesRoute: typeof UpdatesRoute
   ApiRelayRoute: typeof ApiRelayRoute
   SourceSourceIdRoute: typeof SourceSourceIdRoute
   MangaSourceIdKeyRoute: typeof MangaSourceIdKeyRoute
@@ -245,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/updates': {
+      id: '/updates'
+      path: '/updates'
+      fullPath: '/updates'
+      preLoaderRoute: typeof UpdatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/relay': {
       id: '/api/relay'
       path: '/api/relay'
@@ -285,6 +305,7 @@ const rootRouteChildren: RootRouteChildren = {
   RewardsRoute: RewardsRoute,
   SearchRoute: SearchRoute,
   ShopRoute: ShopRoute,
+  UpdatesRoute: UpdatesRoute,
   ApiRelayRoute: ApiRelayRoute,
   SourceSourceIdRoute: SourceSourceIdRoute,
   MangaSourceIdKeyRoute: MangaSourceIdKeyRoute,

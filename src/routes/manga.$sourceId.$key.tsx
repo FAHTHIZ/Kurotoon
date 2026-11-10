@@ -21,6 +21,7 @@ import {
 import { useChapters, useEngineReady, useMangaDetails } from "@/engine/hooks";
 import { decodeKey, encodeKey, seriesId } from "@/engine/ids";
 import { STATUS_LABEL, type ChapterRow, type SeriesCard } from "@/engine/types";
+import { seedKnownChapters } from "@/lib/updates";
 
 export const Route = createFileRoute("/manga/$sourceId/$key")({
   head: () => ({
@@ -167,6 +168,7 @@ function MangaPage() {
             if (!card) return;
             const now = toggleBookmark(card);
             setSaved(now);
+            if (now && chapters.data) seedKnownChapters(id, chapters.data.map((c) => c.key));
             toast.success(now ? "Added to library" : "Removed from library");
           }}
           className="inline-flex items-center gap-2 rounded-full bg-[color:var(--surface)] px-4 py-2.5 text-sm font-semibold ring-1 ring-border"

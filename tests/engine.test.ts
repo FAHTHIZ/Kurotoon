@@ -60,3 +60,13 @@ describe("ids", () => {
     expect(seriesId("multi.mangaplus", "100")).toBe("multi.mangaplus::100");
   });
 });
+
+describe("updates diff", async () => {
+  const { diffChapters } = await import("@/lib/updates");
+  test("first check only seeds", () => {
+    expect(diffChapters(undefined, ["a", "b"])).toEqual({ fresh: [], known: ["a", "b"] });
+  });
+  test("later checks report new keys", () => {
+    expect(diffChapters(["a", "b"], ["c", "b", "a"])).toEqual({ fresh: ["c"], known: ["a", "b", "c"] });
+  });
+});
