@@ -109,6 +109,9 @@ fun KuroHomeContent(
                     HomeNewChapters(items = state.newChapters, onMangaClick = onMangaClick, onSeeAll = onUpdatesClick)
                 }
             }
+            if (state.binge.isNotEmpty()) {
+                item(key = "binge") { HomeBinge(items = state.binge, onMangaClick = onMangaClick) }
+            }
             items(state.savedRows + state.pickRows + state.rows, key = { it.key }) { row ->
                 HomeSourceRow(
                     row = row,

@@ -114,6 +114,25 @@ class KuroScreenshots {
     }
 
     @Test
+    fun homeBinge() = shot("home_binge") {
+        kurotoon.ui.home.HomeBinge(
+            items = listOf("Solo Leveling" to 200L, "The Breaker" to 72L, "Noblesse" to 544L).mapIndexed { i, (t, n) ->
+                tachiyomi.domain.library.model.LibraryManga(
+                    manga = tachiyomi.domain.manga.model.Manga.create().copy(id = i.toLong(), title = t),
+                    categories = emptyList(),
+                    totalChapters = n,
+                    readCount = 0,
+                    bookmarkCount = 0,
+                    latestUpload = null,
+                    chapterFetchedAt = null,
+                    lastRead = null,
+                )
+            },
+            onMangaClick = {},
+        )
+    }
+
+    @Test
     fun homePickRow() = shot("home_pick_row") {
         kurotoon.ui.home.HomeSourceRow(
             row = KuroHomeViewModel.SourceRow(
