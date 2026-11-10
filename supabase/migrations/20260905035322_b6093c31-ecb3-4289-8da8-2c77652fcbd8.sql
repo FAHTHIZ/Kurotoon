@@ -1,0 +1,1 @@
+ALTER TABLE public.repo_sources ADD COLUMN IF NOT EXISTS spec jsonb NOT NULL DEFAULT '{}'::jsonb;
