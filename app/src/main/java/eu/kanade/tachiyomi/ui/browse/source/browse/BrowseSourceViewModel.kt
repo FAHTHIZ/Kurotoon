@@ -43,6 +43,10 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kurotoon.catalogue.ActiveFacet
+import kurotoon.catalogue.CatalogFacet
+import kurotoon.catalogue.CatalogFacets
+import kurotoon.catalogue.copyStateFrom
 import mihon.core.metro.AppCoroutineScope
 import tachiyomi.core.common.preference.CheckboxState
 import tachiyomi.core.common.preference.mapAsCheckboxState
@@ -115,7 +119,7 @@ class BrowseSourceViewModel(
                     listing = listing,
                     filters = defaults,
                     toolbarQuery = query,
-                    quickGenres = defaults.genreGroup()?.genreNames().orEmpty(),
+                    facets = CatalogFacets.from(defaults),
                     quickSorts = defaults.sortFilter()?.values?.toList().orEmpty(),
                 )
             }
@@ -165,47 +169,78 @@ class BrowseSourceViewModel(
     }
 
     fun setListing(listing: Listing) {
-        state.update { it.copy(listing = listing, toolbarQuery = null, selectedGenre = null, selectedSort = null) }
+        state.update { it.copy(listing = listing, toolbarQuery = null, selectedSort = null) }
     }
 
     /**
-     * Browses with one genre and/or one sort order picked from the quick chips, starting from the
-     * source's default filters. Clearing both goes back to the popular listing.
+     * Edits the applied filters from the catalogue chips: starts from a fresh copy of the
+     * source's filters carrying over what is applied now, so the chips always match the results.
+     * Clearing everything goes back to the popular listing.
      */
-    fun applyQuickFilters(genre: String?, sort: Int?) {
+    private fun editApplied(sort: Int? = state.value.selectedSort, edit: (FilterList) -> Unit) {
         val source = source ?: return
-        if (genre == null && sort == null) {
+        val current = state.value
+        val filters = source.getFilterList()
+        current.appliedFilters?.let(filters::copyStateFrom)
+        edit(filters)
+        val query = (current.listing as? Listing.Search)?.query?.takeIf { it.isNotEmpty() }
+        if (query == null && sort == null && CatalogFacets.active(current.facets, filters).isEmpty()) {
             resetFilters()
             setListing(Listing.Popular)
             return
         }
-        val filters = source.getFilterList()
-        if (genre != null) {
-            filters.genreGroup()?.state?.forEach { filter ->
-                if (filter is SourceModelFilter<*> && filter.name == genre) {
-                    when (filter) {
-                        is SourceModelFilter.TriState -> filter.state = SourceModelFilter.TriState.STATE_INCLUDE
-                        is SourceModelFilter.CheckBox -> filter.state = true
-                        else -> {}
-                    }
-                }
-            }
+        state.update {
+            it.copy(
+                filters = filters,
+                listing = Listing.Search(query = query, filters = filters),
+                toolbarQuery = query,
+                selectedSort = sort,
+            )
         }
-        if (sort != null) {
-            filters.sortFilter()?.let { filter ->
+    }
+
+    /** Picks one of the source's sort orders, keeping any catalogue chips that are applied. */
+    fun applySort(sort: Int?) {
+        editApplied(sort) { filters ->
+            val filter = filters.sortFilter() ?: return@editApplied
+            if (sort == null) {
+                source?.getFilterList()?.sortFilter()?.let { filter.state = it.state }
+            } else {
                 val name = filter.values.getOrNull(sort).orEmpty()
                 val ascending = AscendingSortHints.any { name.contains(it, ignoreCase = true) }
                 filter.state = SourceModelFilter.Sort.Selection(sort, ascending)
             }
         }
-        state.update {
-            it.copy(
-                filters = filters,
-                listing = Listing.Search(query = null, filters = filters),
-                toolbarQuery = null,
-                selectedGenre = genre,
-                selectedSort = sort,
-            )
+    }
+
+    /** Tap on a tag chip: include, then exclude when the source allows it, then off. */
+    fun cycleTag(filterIndex: Int, childIndex: Int) {
+        editApplied { CatalogFacets.cycleTag(it, filterIndex, childIndex) }
+    }
+
+    /** Long press on a tag chip: exclude it straight away. */
+    fun excludeTag(filterIndex: Int, childIndex: Int) {
+        editApplied { CatalogFacets.excludeTag(it, filterIndex, childIndex) }
+    }
+
+    fun selectChoice(filterIndex: Int, valueIndex: Int) {
+        val facet = state.value.facets.firstOrNull { it.filterIndex == filterIndex } as? CatalogFacet.Choice
+        editApplied { CatalogFacets.selectChoice(it, filterIndex, valueIndex, facet?.defaultIndex ?: 0) }
+    }
+
+    fun clearFacet(active: ActiveFacet) {
+        val facet = state.value.facets.firstOrNull { it.filterIndex == active.filterIndex } as? CatalogFacet.Choice
+        editApplied { CatalogFacets.clear(it, active.filterIndex, active.childIndex, facet?.defaultIndex ?: 0) }
+    }
+
+    /** Drops every catalogue chip but keeps the text query and sort. */
+    fun clearFacets() {
+        val source = source ?: return
+        val defaults = source.getFilterList()
+        editApplied { filters ->
+            val sort = filters.sortFilter()?.state
+            filters.copyStateFrom(defaults)
+            filters.sortFilter()?.state = sort
         }
     }
 
@@ -228,8 +263,7 @@ class BrowseSourceViewModel(
                     filters = filters ?: input.filters,
                 ),
                 toolbarQuery = query ?: input.query,
-                selectedGenre = null,
-                selectedSort = null,
+                selectedSort = if (filters != null) null else it.selectedSort,
             )
         }
     }
@@ -273,7 +307,6 @@ class BrowseSourceViewModel(
                 filters = defaultFilters,
                 listing = listing,
                 toolbarQuery = listing.query,
-                selectedGenre = it.quickGenres.firstOrNull { name -> name.equals(genreName, true) },
                 selectedSort = null,
             )
         }
@@ -412,37 +445,21 @@ class BrowseSourceViewModel(
         val filters: FilterList = FilterList(),
         val toolbarQuery: String? = null,
         val dialog: Dialog? = null,
-        val quickGenres: List<String> = emptyList(),
+        val facets: List<CatalogFacet> = emptyList(),
         val quickSorts: List<String> = emptyList(),
-        val selectedGenre: String? = null,
         val selectedSort: Int? = null,
     ) {
         val isUserQuery get() = listing is Listing.Search && !listing.query.isNullOrEmpty()
+
+        /** The filters behind the results on screen, or null for the popular and latest feeds. */
+        val appliedFilters: FilterList? get() = (listing as? Listing.Search)?.filters?.takeIf { it.isNotEmpty() }
+
+        val activeFacets: List<ActiveFacet> get() = appliedFilters?.let { CatalogFacets.active(facets, it) }.orEmpty()
     }
 }
 
 /** Sort names that read best A to Z or oldest first. */
 private val AscendingSortHints = listOf("title", "name", "alphabet", "a-z")
-
-/** The filter group that lists genres, so they can be offered as one-tap chips. */
-private fun FilterList.genreGroup(): SourceModelFilter.Group<*>? {
-    val groups = filterIsInstance<SourceModelFilter.Group<*>>()
-        .filter { group ->
-            group.state.count { it is SourceModelFilter.CheckBox || it is SourceModelFilter.TriState } >=
-                3
-        }
-    return groups.firstOrNull { it.name.contains("genre", ignoreCase = true) }
-        ?: groups.firstOrNull { group -> GenreGroupHints.any { group.name.contains(it, ignoreCase = true) } }
-        ?: groups.singleOrNull()
-}
-
-private val GenreGroupHints = listOf("tag", "categor", "theme", "género", "genero", "жанр")
-
-private fun SourceModelFilter.Group<*>.genreNames(): List<String> = state
-    .filter { it is SourceModelFilter.CheckBox || it is SourceModelFilter.TriState }
-    .map { (it as SourceModelFilter<*>).name }
-    .filter { it.isNotBlank() }
-    .distinct()
 
 private fun FilterList.sortFilter(): SourceModelFilter.Sort? =
     firstNotNullOfOrNull { it as? SourceModelFilter.Sort }
