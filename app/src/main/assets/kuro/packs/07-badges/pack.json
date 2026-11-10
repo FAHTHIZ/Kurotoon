@@ -1,0 +1,87 @@
+{
+  "id": "kuro.badges",
+  "name": "Badges",
+  "author": "KuroToon",
+  "version": 1,
+  "description": "Wear up to three on your profile.",
+  "items": [
+    {
+      "id": "scout",
+      "kind": "badge",
+      "name": "Kuro Scout",
+      "description": "For early explorers.",
+      "price": 150,
+      "rarity": "common",
+      "emoji": "🧭",
+      "colors": [
+        "#2FB0E6",
+        "#1683B8"
+      ]
+    },
+    {
+      "id": "night",
+      "kind": "badge",
+      "name": "Night Reader",
+      "description": "For those who read past midnight.",
+      "price": 400,
+      "rarity": "rare",
+      "emoji": "🌙",
+      "colors": [
+        "#3B2A72",
+        "#A35BE8"
+      ]
+    },
+    {
+      "id": "binge",
+      "kind": "badge",
+      "name": "Binger",
+      "description": "Ten chapters? Just getting started.",
+      "price": 600,
+      "rarity": "rare",
+      "emoji": "⚡",
+      "colors": [
+        "#FB923C",
+        "#FF4D4D"
+      ]
+    },
+    {
+      "id": "heart",
+      "kind": "badge",
+      "name": "Big Heart",
+      "description": "Love every story.",
+      "price": 600,
+      "rarity": "rare",
+      "emoji": "💗",
+      "colors": [
+        "#FF7AB6",
+        "#E0468E"
+      ]
+    },
+    {
+      "id": "sage",
+      "kind": "badge",
+      "name": "Galaxy Sage",
+      "description": "A purple shimmer for deep readers.",
+      "price": 1800,
+      "rarity": "legendary",
+      "emoji": "🔮",
+      "colors": [
+        "#A35BE8",
+        "#2FB0E6"
+      ]
+    },
+    {
+      "id": "legend",
+      "kind": "badge",
+      "name": "Living Legend",
+      "description": "The rarest badge of all.",
+      "price": 4000,
+      "rarity": "mythic",
+      "emoji": "👑",
+      "colors": [
+        "#F2C14E",
+        "#FF4D4D"
+      ]
+    }
+  ]
+}

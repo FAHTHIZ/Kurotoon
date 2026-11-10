@@ -1,0 +1,17 @@
+{
+  "id": "kuro.boosts",
+  "name": "Boosts",
+  "author": "KuroToon",
+  "version": 1,
+  "description": "Temporary perks.",
+  "items": [
+    {
+      "id": "double",
+      "kind": "boost",
+      "name": "Double Points",
+      "description": "Double points from missions for 7 days.",
+      "price": 1500,
+      "rarity": "epic"
+    }
+  ]
+}

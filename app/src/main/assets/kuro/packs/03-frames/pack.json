@@ -1,0 +1,75 @@
+{
+  "id": "kuro.frames",
+  "name": "Profile frames",
+  "author": "KuroToon",
+  "version": 1,
+  "description": "Animated rings for your avatar.",
+  "items": [
+    {
+      "id": "starfield",
+      "kind": "frame",
+      "name": "Starfield",
+      "description": "Quiet drifting stars around your avatar.",
+      "price": 250,
+      "rarity": "common",
+      "style": "starfield",
+      "colors": [
+        "#FFFFFF",
+        "#BFE8FF",
+        "#F2C14E"
+      ]
+    },
+    {
+      "id": "aurora",
+      "kind": "frame",
+      "name": "Aurora",
+      "description": "Northern lights that never sit still.",
+      "price": 500,
+      "rarity": "rare",
+      "style": "aurora",
+      "colors": [
+        "#2FB0E6",
+        "#34D399",
+        "#A35BE8"
+      ]
+    },
+    {
+      "id": "nebula",
+      "kind": "frame",
+      "name": "Nebula",
+      "description": "A slow-swirling ring of cosmic purple.",
+      "price": 700,
+      "rarity": "rare",
+      "style": "nebula",
+      "colors": [
+        "#A35BE8",
+        "#FF4D9A",
+        "#2FB0E6"
+      ]
+    },
+    {
+      "id": "coins",
+      "kind": "frame",
+      "name": "Coin Holder",
+      "description": "A ring of orbiting K coins.",
+      "price": 1400,
+      "rarity": "epic",
+      "style": "coins"
+    },
+    {
+      "id": "mythic",
+      "kind": "frame",
+      "name": "Mythic",
+      "description": "A shifting, layered mythic gradient.",
+      "price": 3000,
+      "rarity": "mythic",
+      "style": "mythic",
+      "colors": [
+        "#FF4D4D",
+        "#F2C14E",
+        "#A35BE8",
+        "#2FB0E6"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "id": "kuro.starter",
+  "name": "Starter kit",
+  "author": "KuroToon",
+  "version": 1,
+  "description": "A few free things to get you going.",
+  "items": [
+    {
+      "id": "sparkle",
+      "kind": "sticker",
+      "name": "Sparkle Eyes",
+      "description": "A free starter sticker.",
+      "price": 0,
+      "rarity": "common",
+      "emoji": "✨"
+    },
+    {
+      "id": "heart",
+      "kind": "sticker",
+      "name": "Heart Burst",
+      "description": "A free starter sticker.",
+      "price": 0,
+      "rarity": "common",
+      "emoji": "💖"
+    },
+    {
+      "id": "fire",
+      "kind": "sticker",
+      "name": "Fire",
+      "description": "For chapters that hit hard.",
+      "price": 0,
+      "rarity": "common",
+      "emoji": "🔥"
+    },
+    {
+      "id": "kuro",
+      "kind": "avatar",
+      "name": "Kuro",
+      "description": "The KuroToon cat, as it comes.",
+      "price": 0,
+      "rarity": "common",
+      "style": "kuro"
+    },
+    {
+      "id": "ring",
+      "kind": "frame",
+      "name": "Crimson Ring",
+      "description": "A soft spinning ring in your accent colour.",
+      "price": 0,
+      "rarity": "common",
+      "style": "ring",
+      "colors": [
+        "#FF4D4D",
+        "#A35BE8",
+        "#FF4D4D"
+      ]
+    }
+  ]
+}
