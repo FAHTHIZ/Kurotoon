@@ -20,8 +20,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInput
@@ -74,6 +77,8 @@ import tachiyomi.source.local.LocalSource
 data class BrowseSourceScreen(
     val sourceId: Long,
     private val listingQuery: String?,
+    /** A tag to filter by as soon as the source is ready, e.g. one tapped on a series page. */
+    private val initialGenre: String? = null,
 ) : Screen(), AssistContentScreen {
 
     private var assistUrl: String? = null
@@ -304,6 +309,14 @@ data class BrowseSourceScreen(
                 )
             }
             else -> {}
+        }
+
+        var initialGenreApplied by rememberSaveable { mutableStateOf(false) }
+        LaunchedEffect(Unit) {
+            if (initialGenre != null && !initialGenreApplied) {
+                initialGenreApplied = true
+                viewModel.searchGenre(initialGenre)
+            }
         }
 
         LaunchedEffect(Unit) {
