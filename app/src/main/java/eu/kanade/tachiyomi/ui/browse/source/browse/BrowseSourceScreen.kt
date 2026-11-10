@@ -50,6 +50,8 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import kurotoon.ui.browse.BrowseChips
+import kurotoon.ui.browse.BrowseSort
 import mihon.feature.migration.dialog.MigrateMangaDialog
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.FilterList
@@ -145,70 +147,30 @@ data class BrowseSourceScreen(
                         onSearch = viewModel::search,
                     )
 
-                    Row(
-                        modifier = Modifier
-                            .horizontalScroll(rememberScrollState())
-                            .padding(horizontal = MaterialTheme.padding.small),
-                        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small),
-                    ) {
-                        FilterChip(
-                            selected = state.listing == Listing.Popular,
-                            onClick = {
-                                viewModel.resetFilters()
-                                viewModel.setListing(Listing.Popular)
-                            },
-                            leadingIcon = {
-                                Icon(
-                                    imageVector = MaterialSymbols.RoundedFilled.Favorite,
-                                    contentDescription = null,
-                                    modifier = Modifier
-                                        .size(FilterChipDefaults.IconSize),
-                                )
-                            },
-                            label = {
-                                Text(text = stringResource(MR.strings.popular))
-                            },
-                        )
-                        if (source.supportsLatest) {
-                            FilterChip(
-                                selected = state.listing == Listing.Latest,
-                                onClick = {
-                                    viewModel.resetFilters()
-                                    viewModel.setListing(Listing.Latest)
-                                },
-                                leadingIcon = {
-                                    Icon(
-                                        imageVector = MaterialSymbols.Rounded.Verified,
-                                        contentDescription = null,
-                                        modifier = Modifier
-                                            .size(FilterChipDefaults.IconSize),
-                                    )
-                                },
-                                label = {
-                                    Text(text = stringResource(MR.strings.latest))
-                                },
-                            )
-                        }
-                        if (state.filters.isNotEmpty()) {
-                            FilterChip(
-                                selected = state.listing is Listing.Search,
-                                onClick = viewModel::openFilterSheet,
-                                leadingIcon = {
-                                    Icon(
-                                        imageVector = MaterialSymbols.Rounded.FilterList,
-                                        contentDescription = null,
-                                        modifier = Modifier
-                                            .size(FilterChipDefaults.IconSize),
-                                    )
-                                },
-                                label = {
-                                    Text(text = stringResource(MR.strings.action_filter))
-                                },
-                            )
-                        }
-                    }
-
-                    HorizontalDivider()
+                    BrowseChips(
+                        supportsLatest = source.supportsLatest,
+                        sorts = state.quickSorts,
+                        genres = state.quickGenres,
+                        selectedSort = state.selectedSort?.let(BrowseSort::Sort) ?: when {
+                            state.listing == Listing.Popular -> BrowseSort.Popular
+                            state.listing == Listing.Latest -> BrowseSort.Latest
+                            state.selectedGenre != null -> BrowseSort.None
+                            else -> BrowseSort.Custom
+                        },
+                        selectedGenre = state.selectedGenre,
+                        hasFilters = state.filters.isNotEmpty(),
+                        onPopular = {
+                            viewModel.resetFilters()
+                            viewModel.setListing(Listing.Popular)
+                        },
+                        onLatest = {
+                            viewModel.resetFilters()
+                            viewModel.setListing(Listing.Latest)
+                        },
+                        onSort = { viewModel.applyQuickFilters(state.selectedGenre, it) },
+                        onGenre = { viewModel.applyQuickFilters(it, state.selectedSort) },
+                        onFilters = viewModel::openFilterSheet,
+                    )
                 }
             },
             snackbarHost = { SnackbarHost(hostState = snackbarHostState) },

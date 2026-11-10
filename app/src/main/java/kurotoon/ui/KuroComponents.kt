@@ -21,43 +21,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-/** The gold "K" coin used next to every Kuro Points amount. */
-@Composable
-fun KuroCoin(modifier: Modifier = Modifier, size: Dp = 16.dp) {
-    Box(
-        modifier = modifier
-            .size(size)
-            .background(
-                Brush.linearGradient(listOf(Color(0xFFFFE08A), KuroColors.Gold, Color(0xFFC9932B))),
-                CircleShape,
-            )
-            .border(1.dp, Color(0x33000000), CircleShape),
-        contentAlignment = Alignment.Center,
-    ) {
-        Text(
-            text = "K",
-            color = Color(0xFF3A2600),
-            fontWeight = FontWeight.Black,
-            fontSize = (size.value * 0.58f).sp,
-        )
-    }
-}
-
-/** A coin followed by an amount, e.g. "+30". */
-@Composable
-fun KuroAmount(text: String, modifier: Modifier = Modifier) {
-    Row(
-        modifier = modifier
-            .background(Color.Black.copy(alpha = 0.3f), CircleShape)
-            .padding(horizontal = 8.dp, vertical = 2.dp),
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        KuroCoin(size = 14.dp)
-        Text(text = text, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
-    }
-}
-
 /** Kuro, the mascot, offering a short hint. */
 @Composable
 fun KuroTip(text: String, modifier: Modifier = Modifier, mood: String = "😺") {
