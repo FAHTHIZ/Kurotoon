@@ -21,6 +21,7 @@ import { Route as ReelsRouteImport } from './routes/reels'
 import { Route as ReposRouteImport } from './routes/repos'
 import { Route as RewardsRouteImport } from './routes/rewards'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as ApiRelayRouteImport } from './routes/api/relay'
 import { Route as ReadChapterIdRouteImport } from './routes/read.$chapterId'
 import { Route as SeriesSlugRouteImport } from './routes/series.$slug'
 import { Route as ApiPublicProxyImageRouteImport } from './routes/api/public/proxy-image'
@@ -90,6 +91,11 @@ const ShopRoute = ShopRouteImport.update({
   path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiRelayRoute = ApiRelayRouteImport.update({
+  id: '/api/relay',
+  path: '/api/relay',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReadChapterIdRoute = ReadChapterIdRouteImport.update({
   id: '/read/$chapterId',
   path: '/read/$chapterId',
@@ -145,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/repos': typeof ReposRoute
   '/rewards': typeof RewardsRoute
   '/shop': typeof ShopRoute
+  '/api/relay': typeof ApiRelayRoute
   '/read/$chapterId': typeof ReadChapterIdRoute
   '/series/$slug': typeof SeriesSlugRoute
   '/api/public/proxy-image': typeof ApiPublicProxyImageRoute
@@ -167,6 +174,7 @@ export interface FileRoutesByTo {
   '/repos': typeof ReposRoute
   '/rewards': typeof RewardsRoute
   '/shop': typeof ShopRoute
+  '/api/relay': typeof ApiRelayRoute
   '/read/$chapterId': typeof ReadChapterIdRoute
   '/series/$slug': typeof SeriesSlugRoute
   '/api/public/proxy-image': typeof ApiPublicProxyImageRoute
@@ -190,6 +198,7 @@ export interface FileRoutesById {
   '/repos': typeof ReposRoute
   '/rewards': typeof RewardsRoute
   '/shop': typeof ShopRoute
+  '/api/relay': typeof ApiRelayRoute
   '/read/$chapterId': typeof ReadChapterIdRoute
   '/series/$slug': typeof SeriesSlugRoute
   '/api/public/proxy-image': typeof ApiPublicProxyImageRoute
@@ -214,6 +223,7 @@ export interface FileRouteTypes {
     | '/repos'
     | '/rewards'
     | '/shop'
+    | '/api/relay'
     | '/read/$chapterId'
     | '/series/$slug'
     | '/api/public/proxy-image'
@@ -236,6 +246,7 @@ export interface FileRouteTypes {
     | '/repos'
     | '/rewards'
     | '/shop'
+    | '/api/relay'
     | '/read/$chapterId'
     | '/series/$slug'
     | '/api/public/proxy-image'
@@ -258,6 +269,7 @@ export interface FileRouteTypes {
     | '/repos'
     | '/rewards'
     | '/shop'
+    | '/api/relay'
     | '/read/$chapterId'
     | '/series/$slug'
     | '/api/public/proxy-image'
@@ -281,6 +293,7 @@ export interface RootRouteChildren {
   ReposRoute: typeof ReposRoute
   RewardsRoute: typeof RewardsRoute
   ShopRoute: typeof ShopRoute
+  ApiRelayRoute: typeof ApiRelayRoute
   ReadChapterIdRoute: typeof ReadChapterIdRoute
   SeriesSlugRoute: typeof SeriesSlugRoute
   ApiPublicProxyImageRoute: typeof ApiPublicProxyImageRoute
@@ -377,6 +390,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/relay': {
+      id: '/api/relay'
+      path: '/api/relay'
+      fullPath: '/api/relay'
+      preLoaderRoute: typeof ApiRelayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/read/$chapterId': {
       id: '/read/$chapterId'
       path: '/read/$chapterId'
@@ -449,6 +469,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReposRoute: ReposRoute,
   RewardsRoute: RewardsRoute,
   ShopRoute: ShopRoute,
+  ApiRelayRoute: ApiRelayRoute,
   ReadChapterIdRoute: ReadChapterIdRoute,
   SeriesSlugRoute: SeriesSlugRoute,
   ApiPublicProxyImageRoute: ApiPublicProxyImageRoute,
