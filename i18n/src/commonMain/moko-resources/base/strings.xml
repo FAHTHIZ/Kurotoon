@@ -1122,6 +1122,7 @@
     <string name="kurotoon_reminder_titleStreak">Keep your %d-day streak going</string>
     <string name="kurotoon_reminder_text">Continue %1$s · %2$s</string>
     <string name="kurotoon_reminder_continue">Continue</string>
+    <string name="kurotoon_series_readCount">%1$d of %2$d read</string>
     <!-- Kuro Points, missions and the shop -->
     <string name="kurotoon.shop.title">Kuro Shop</string>
     <string name="kurotoon.rewards.points">Kuro Points</string>

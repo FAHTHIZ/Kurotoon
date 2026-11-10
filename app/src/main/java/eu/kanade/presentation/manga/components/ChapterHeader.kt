@@ -24,6 +24,8 @@ fun ChapterHeader(
     missingChapterCount: Int,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    mangaId: Long? = null,
+    readCount: Int = 0,
 ) {
     Column(
         modifier = modifier
@@ -44,6 +46,10 @@ fun ChapterHeader(
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onBackground,
         )
+
+        if (mangaId != null && chapterCount != null) {
+            kurotoon.ui.manga.SeriesReadSummary(mangaId, readCount, chapterCount)
+        }
 
         MissingChaptersWarning(missingChapterCount)
     }
