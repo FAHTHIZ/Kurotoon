@@ -1095,4 +1095,45 @@
     <string name="donationCampaign.paragraph3">Regardless, Mihon will continue to be maintained by me and the volunteers, and it will stay open source.</string>
     <string name="donationCampaign.contactPlatform">Discord</string>
     <string name="donationCampaign.dismiss">Dismiss</string>
+
+    <!-- KuroToon -->
+    <string name="kurotoon.tab.home">Home</string>
+    <string name="kurotoon.tab.rewards">Rewards</string>
+    <string name="kurotoon.tab.me">Me</string>
+    <string name="kurotoon.rewards.points">Kuro Points</string>
+    <string name="kurotoon.rewards.streak">%d day streak</string>
+    <string name="kurotoon.rewards.section.missions">Missions</string>
+    <string name="kurotoon.rewards.section.shop">Shop</string>
+    <string name="kurotoon.rewards.section.achievements">Achievements</string>
+    <string name="kurotoon.rewards.section.collection">Collection</string>
+    <string name="kurotoon.rewards.todaysMissions">Today\'s missions</string>
+    <string name="kurotoon.rewards.boostActive">Double Points is active — mission rewards are doubled.</string>
+    <string name="kurotoon.rewards.claim">Claim</string>
+    <string name="kurotoon.rewards.claimed">Claimed</string>
+    <string name="kurotoon.rewards.inProgress">In progress</string>
+    <string name="kurotoon.rewards.missionsFooter">Missions reset every day. Your points and unlocks are stored on this device and included in backups.</string>
+    <string name="kurotoon.rewards.shopTip">Every item here is earned by reading — never bought with money.</string>
+    <string name="kurotoon.rewards.free">Free</string>
+    <string name="kurotoon.rewards.unlock">Unlock</string>
+    <string name="kurotoon.rewards.owned">Owned</string>
+    <string name="kurotoon.rewards.kind.sticker">Stickers</string>
+    <string name="kurotoon.rewards.kind.avatar">Avatars</string>
+    <string name="kurotoon.rewards.kind.frame">Profile frames</string>
+    <string name="kurotoon.rewards.kind.theme">Reader themes</string>
+    <string name="kurotoon.rewards.kind.badge">Badges</string>
+    <string name="kurotoon.rewards.kind.boost">Boosts</string>
+    <string name="kurotoon.rewards.stickerCollection">Sticker collection (%1$d/%2$d)</string>
+    <string name="kurotoon.rewards.unlockedItems">Unlocked items</string>
+    <string name="kurotoon.rewards.unlockedEmpty">Badges, themes and frames you unlock will live here.</string>
+    <string name="kurotoon.rewards.collectionFooter">Unlocks are kept on this device. Create a backup from Me → Data and storage to move them.</string>
+    <string name="kurotoon.rewards.earned">+%1$d Kuro Points · %2$s</string>
+    <string name="kurotoon.rewards.unlocked">%s unlocked</string>
+    <string name="kurotoon.rewards.notEnoughPoints">Not enough Kuro Points</string>
+    <string name="kurotoon.home.search">Search manga…</string>
+    <string name="kurotoon.home.welcomeTitle">Welcome to KuroToon</string>
+    <string name="kurotoon.home.welcomeBody">KuroToon is a reader, like Mihon and Aidoku. It comes with no content — you choose the sources.</string>
+    <string name="kurotoon.home.addSources">Add sources</string>
+    <string name="kurotoon.home.continueReading">Continue reading</string>
+    <string name="kurotoon.home.continueEmpty">Chapters you start reading will show up here.</string>
+    <string name="kurotoon.home.downloads">Downloads</string>
 </resources>
