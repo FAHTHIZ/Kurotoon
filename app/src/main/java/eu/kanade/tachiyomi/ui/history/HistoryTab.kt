@@ -30,6 +30,7 @@ import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
+import kurotoon.shortcuts.ContinueShortcut
 import mihon.feature.migration.dialog.MigrateMangaDialog
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.domain.chapter.model.Chapter
@@ -137,8 +138,10 @@ data object HistoryTab : Tab {
                 when (e) {
                     HistoryViewModel.Event.InternalError ->
                         snackbarHostState.showSnackbar(context.stringResource(MR.strings.internal_error))
-                    HistoryViewModel.Event.HistoryCleared ->
+                    HistoryViewModel.Event.HistoryCleared -> {
+                        ContinueShortcut.remove(context)
                         snackbarHostState.showSnackbar(context.stringResource(MR.strings.clear_history_completed))
+                    }
                     is HistoryViewModel.Event.OpenChapter -> openChapter(context, e.chapter)
                 }
             }

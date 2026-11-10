@@ -76,6 +76,7 @@ import kotlinx.coroutines.withContext
 import kurotoon.reader.WebtoonDetector
 import kurotoon.rewards.RewardEvent
 import kurotoon.rewards.RewardsStore
+import kurotoon.shortcuts.ContinueShortcut
 import logcat.LogPriority
 import mihon.core.metro.AppCoroutineScope
 import mihon.data.cache.ChapterCache
@@ -754,6 +755,9 @@ class ReaderViewModel(
             chapterReadStartTime = null
 
             upsertHistory.await(HistoryUpdate(chapterId, endTime, sessionReadDuration))
+            manga?.let { manga ->
+                appScope.launch(Dispatchers.IO) { ContinueShortcut.update(context, manga, chapterId) }
+            }
         }
     }
 
