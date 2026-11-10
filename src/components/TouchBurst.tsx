@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { haptic as fxHaptic, sfx } from "@/lib/fx";
 
 /**
  * Global premium tap/click burst:
@@ -25,11 +26,7 @@ export function TouchBurst() {
     };
 
     const haptic = () => {
-      try {
-        if ("vibrate" in navigator) navigator.vibrate(8);
-      } catch {
-        /* noop */
-      }
+      fxHaptic("light");
     };
 
     const spawn = (x: number, y: number) => {
@@ -60,6 +57,7 @@ export function TouchBurst() {
     const onPointerDown = (e: PointerEvent) => {
       if (!isInteractive(e.target)) return;
       spawn(e.clientX, e.clientY);
+      sfx("tap");
       if (e.pointerType === "touch") haptic();
     };
 

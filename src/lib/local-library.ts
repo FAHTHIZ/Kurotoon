@@ -3,6 +3,7 @@
 import type { SeriesCard } from "@/engine/types";
 import { track } from "./rewards";
 import { seriesId } from "@/engine/ids";
+import { sfx } from "@/lib/fx";
 
 export { seriesId };
 
@@ -74,6 +75,7 @@ export function toggleBookmark(series: SeriesCard): boolean {
   write(BOOKMARKS, exists ? list.filter((s) => idOf(s) !== id) : [slim(series), ...list]);
   rememberSeries(series);
   if (!exists) track("bookmark");
+  sfx(exists ? "toggleOff" : "toggleOn");
   return !exists;
 }
 
@@ -172,6 +174,7 @@ export function toggleFavourite(series: SeriesCard): boolean {
   write(FAVOURITES, exists ? ids.filter((x) => x !== id) : [id, ...ids]);
   rememberSeries(series);
   if (!exists) track("bookmark");
+  sfx(exists ? "toggleOff" : "toggleOn");
   return !exists;
 }
 
