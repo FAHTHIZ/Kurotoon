@@ -39,6 +39,8 @@ All notable changes to KuroToon are documented here. Versions follow
 - Continue reading launcher shortcut: long-press the app icon to jump back into your last chapter.
 - Read progress bars on library covers (Settings > Appearance).
 - Reading activity heatmap in Statistics with chapters, active days and streaks.
+- Library tag chips: your library's most common genres sit above the shelf; tap to stack them and narrow
+  to series that have all of them.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.

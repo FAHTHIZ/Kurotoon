@@ -45,6 +45,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 import kotlinx.coroutines.withContext
+import kurotoon.library.LibraryTag
+import kurotoon.library.LibraryTags
 import mihon.core.common.utils.mutate
 import mihon.core.metro.AppCoroutineScope
 import mihon.domain.library.model.search.QueryNode
@@ -104,6 +106,9 @@ class LibraryViewModel(
 
     private val searchQuery = MutableStateFlow<String?>(null)
 
+    /** Library tag chips that are switched on, as [LibraryTags.keyOf] keys. */
+    private val selectedTags = MutableStateFlow(emptySet<String>())
+
     private val selection = MutableStateFlow(emptySet</* Manga */ Long>())
 
     private val dialog = MutableStateFlow<Dialog?>(null)
@@ -146,15 +151,17 @@ class LibraryViewModel(
     // Shared separately so search, selection and dialog changes still reach [state] before the
     // first query result
     private val library = combine(
-        searchQuery.debounce(0.25.seconds),
+        combine(searchQuery.debounce(0.25.seconds), selectedTags, ::Pair),
         getCategories.subscribe(),
         getFavoritesFlow(),
         combine(tracks, getTrackingFiltersFlow(), ::Pair),
         getLibraryItemPreferencesFlow(),
-    ) { searchQuery, categories, favorites, (tracksMap, trackingFilters), itemPreferences ->
+    ) { (searchQuery, selectedTags), categories, favorites, (tracksMap, trackingFilters), itemPreferences ->
         val showSystemCategory = favorites.any { it.libraryManga.categories.contains(0) }
-        val filteredFavorites = favorites
-            .applyFilters(tracksMap, trackingFilters, itemPreferences)
+        val filtered = favorites.applyFilters(tracksMap, trackingFilters, itemPreferences)
+        val tags = LibraryTags.top(filtered.map { it.libraryManga.manga.genre })
+        val filteredFavorites = filtered
+            .filter { LibraryTags.matches(it.libraryManga.manga.genre, selectedTags) }
             .let { libraryItems ->
                 if (searchQuery.isNullOrEmpty()) {
                     libraryItems
@@ -171,6 +178,8 @@ class LibraryViewModel(
             favorites = filteredFavorites,
             tracksMap = tracksMap,
             loggedInTrackerIds = trackingFilters.keys,
+            tags = tags,
+            selectedTags = selectedTags,
         )
     }
         .distinctUntilChanged()
@@ -706,6 +715,14 @@ class LibraryViewModel(
         }
     }
 
+    fun toggleTag(key: String) {
+        selectedTags.update { if (key in it) it - key else it + key }
+    }
+
+    fun clearTags() {
+        selectedTags.value = emptySet()
+    }
+
     fun search(query: String?) {
         searchQuery.update { query }
     }
@@ -785,6 +802,9 @@ class LibraryViewModel(
         val favorites: List<LibraryItem> = emptyList(),
         val tracksMap: Map</* Manga */ Long, List<Track>> = emptyMap(),
         val loggedInTrackerIds: Set<Long> = emptySet(),
+        /** The library's most common genres, offered as chips. */
+        val tags: List<LibraryTag> = emptyList(),
+        val selectedTags: Set<String> = emptySet(),
     ) {
         val favoritesById by lazy { favorites.associateBy { it.id } }
     }

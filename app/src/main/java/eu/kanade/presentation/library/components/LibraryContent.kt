@@ -19,6 +19,8 @@ import eu.kanade.core.preference.PreferenceMutableState
 import eu.kanade.tachiyomi.ui.library.LibraryItem
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kurotoon.library.LibraryTag
+import kurotoon.ui.library.LibraryTagRow
 import tachiyomi.domain.category.model.Category
 import tachiyomi.domain.library.model.LibraryDisplayMode
 import tachiyomi.domain.library.model.LibraryManga
@@ -45,6 +47,10 @@ fun LibraryContent(
     getDisplayMode: (Int) -> PreferenceMutableState<LibraryDisplayMode>,
     getColumnsForOrientation: (Boolean) -> PreferenceMutableState<Int>,
     getItemsForCategory: (Category) -> List<LibraryItem>,
+    tags: List<LibraryTag> = emptyList(),
+    selectedTags: Set<String> = emptySet(),
+    onToggleTag: (String) -> Unit = {},
+    onClearTags: () -> Unit = {},
 ) {
     Column(
         modifier = Modifier.padding(
@@ -75,6 +81,13 @@ fun LibraryContent(
                 },
             )
         }
+
+        LibraryTagRow(
+            tags = tags,
+            selected = selectedTags,
+            onToggle = onToggleTag,
+            onClear = onClearTags,
+        )
 
         PullRefresh(
             refreshing = isRefreshing,

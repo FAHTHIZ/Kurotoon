@@ -93,6 +93,17 @@ class KuroScreenshots {
     }
 
     @Test
+    fun libraryTags() = shot("library_tags") {
+        kurotoon.ui.library.LibraryTagRow(
+            tags = listOf("Action" to 42, "Fantasy" to 31, "Murim" to 12, "Romance" to 9, "Isekai" to 7)
+                .map { (name, count) -> kurotoon.library.LibraryTag(name.lowercase(), name, count) },
+            selected = setOf("murim"),
+            onToggle = {},
+            onClear = {},
+        )
+    }
+
+    @Test
     fun sourceFilter() = shot("source_filter") {
         androidx.compose.foundation.layout.Column {
             kurotoon.ui.browse.SourceFilterField(query = "", onQueryChange = {})
