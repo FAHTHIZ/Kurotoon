@@ -34,6 +34,8 @@ val keystorePropertiesFile = layout.settingsDirectory.file("keystore.properties"
 android {
     namespace = "eu.kanade.tachiyomi"
 
+    testOptions.unitTests.isIncludeAndroidResources = true
+
     defaultConfig {
         applicationId = "app.kurotoon"
 
@@ -332,6 +334,27 @@ dependencies {
     implementation(libs.leakCanary.plumber)
 
     testImplementation(libs.kotlinx.coroutines.test)
+
+    // Off-device screenshots of KuroToon screens: ./gradlew :app:testDebugUnitTest -Pscreenshots
+    testImplementation(libs.junit4)
+    testRuntimeOnly(libs.junit.vintage)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.roborazzi)
+    testImplementation(libs.roborazzi.compose)
+    testImplementation(platform(libs.androidx.compose.bom))
+    testImplementation(libs.androidx.compose.uiTestJunit4)
+    debugImplementation(libs.androidx.compose.uiTestManifest)
+}
+
+val recordScreenshots = providers.gradleProperty("screenshots").isPresent
+tasks.withType<Test>().configureEach {
+    if (!recordScreenshots) filter.excludeTestsMatching("kurotoon.screenshots.*")
+    filter.isFailOnNoMatchingTests = false
+    systemProperty("kurotoon.screenshots", recordScreenshots.toString())
+    systemProperty("roborazzi.test.record", recordScreenshots.toString())
+    systemProperty("robolectric.graphicsMode", "NATIVE")
+    systemProperty("robolectric.conscryptMode", "OFF")
+    systemProperty("robolectric.pixelCopyRenderMode", "hardware")
 }
 
 apollo {
