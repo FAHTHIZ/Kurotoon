@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -47,6 +46,7 @@ import mihon.icons.materialsymbols.rounded.History
 import mihon.icons.materialsymbols.rounded.NewReleases
 import mihon.icons.materialsymbols.rounded.QueryStats
 import tachiyomi.domain.history.model.HistoryWithRelations
+import tachiyomi.domain.manga.model.Manga
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
@@ -58,6 +58,9 @@ fun KuroHomeContent(
     onSearchClick: () -> Unit,
     onAddSourcesClick: () -> Unit,
     onMangaClick: (Long) -> Unit,
+    onBrowseMangaClick: (Manga) -> Unit,
+    onSourceClick: (Long) -> Unit,
+    onRetrySource: (Long) -> Unit,
     onResumeClick: (HistoryWithRelations) -> Unit,
     onUpdatesClick: () -> Unit,
     onHistoryClick: () -> Unit,
@@ -79,6 +82,11 @@ fun KuroHomeContent(
             if (!state.isLoading && !state.hasSources) {
                 item(key = "welcome") { Welcome(onAddSourcesClick) }
             }
+            state.hero?.let { (row, manga) ->
+                item(key = "hero") {
+                    HomeHero(sourceName = row.name, manga = manga, onClick = { onBrowseMangaClick(manga) })
+                }
+            }
             item(key = "shortcuts") {
                 Shortcuts(
                     onUpdatesClick = onUpdatesClick,
@@ -92,6 +100,14 @@ fun KuroHomeContent(
                     items = state.continueReading,
                     onMangaClick = onMangaClick,
                     onResumeClick = onResumeClick,
+                )
+            }
+            items(state.rows, key = { "source-${it.sourceId}" }) { row ->
+                HomeSourceRow(
+                    row = row,
+                    onSeeAll = { onSourceClick(row.sourceId) },
+                    onMangaClick = onBrowseMangaClick,
+                    onRetry = { onRetrySource(row.sourceId) },
                 )
             }
         }
@@ -272,6 +288,5 @@ private fun ContinueReading(
                 }
             }
         }
-        Spacer(Modifier.size(0.dp))
     }
 }

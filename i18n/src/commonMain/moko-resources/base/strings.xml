@@ -1130,6 +1130,10 @@
     <string name="kurotoon.rewards.unlocked">%s unlocked</string>
     <string name="kurotoon.rewards.notEnoughPoints">Not enough Kuro Points</string>
     <string name="kurotoon.home.search">Search manga…</string>
+    <string name="kurotoon.home.topOn">Top on %s</string>
+    <string name="kurotoon.home.readNow">Read now</string>
+    <string name="kurotoon.home.seeAll">See all</string>
+    <string name="kurotoon.home.sourceUnavailable">%s is unavailable right now.</string>
     <string name="kurotoon.browse.universalSearch">Universal Search</string>
     <string name="kurotoon.browse.universalSearchBody">One search across every installed source.</string>
     <string name="kurotoon.browse.universalSearchHint">Search every source…</string>
