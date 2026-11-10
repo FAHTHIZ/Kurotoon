@@ -163,7 +163,10 @@ data object LibraryTab : Tab {
                 state.isLoading -> {
                     LoadingScreen(Modifier.padding(contentPadding))
                 }
-                state.searchQuery.isNullOrEmpty() && !state.hasActiveFilters && state.isLibraryEmpty -> {
+                state.searchQuery.isNullOrEmpty() &&
+                    !state.hasActiveFilters &&
+                    state.libraryData.selectedTags.isEmpty() &&
+                    state.isLibraryEmpty -> {
                     val handler = LocalUriHandler.current
                     EmptyScreen(
                         stringRes = MR.strings.information_empty_library,
@@ -184,7 +187,11 @@ data object LibraryTab : Tab {
                         selection = state.selection,
                         contentPadding = contentPadding,
                         currentPage = state.coercedActiveCategoryIndex,
-                        hasActiveFilters = state.hasActiveFilters,
+                        hasActiveFilters = state.hasActiveFilters || state.libraryData.selectedTags.isNotEmpty(),
+                        tags = state.libraryData.tags,
+                        selectedTags = state.libraryData.selectedTags,
+                        onToggleTag = viewModel::toggleTag,
+                        onClearTags = viewModel::clearTags,
                         showPageTabs = state.showCategoryTabs || !state.searchQuery.isNullOrEmpty(),
                         onChangeCurrentPage = viewModel::updateActiveCategoryIndex,
                         onClickManga = { navigator.push(MangaScreen(it)) },
