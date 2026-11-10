@@ -9,6 +9,7 @@ import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import dev.zacsweers.metrox.viewmodel.ViewModelKey
 import eu.kanade.domain.source.interactor.GetEnabledSources
+import eu.kanade.tachiyomi.source.CatalogueSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.coroutineScope
@@ -26,6 +27,9 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kurotoon.catalogue.SavedSearch
+import kurotoon.catalogue.SavedSearches
+import kurotoon.prefs.KuroPreferences
 import logcat.LogPriority
 import mihon.domain.manga.model.toDomainManga
 import tachiyomi.core.common.util.system.logcat
@@ -47,9 +51,15 @@ class KuroHomeViewModel(
     private val getNextChapters: GetNextChapters,
     private val sourceManager: SourceManager,
     private val networkToLocalManga: NetworkToLocalManga,
+    kuroPreferences: KuroPreferences,
 ) : ViewModel() {
 
     private val rows = MutableStateFlow<List<SourceRow>>(emptyList())
+    private val savedRows = MutableStateFlow<List<SourceRow>>(emptyList())
+    private val homeSearches = kuroPreferences.savedSearches.changes()
+        .catch { logcat(LogPriority.ERROR, it) }
+        .map { all -> all.filter { it.onHome }.take(HOME_SAVED_SEARCHES) }
+        .distinctUntilChanged()
     private val sourceIds = getEnabledSources.subscribe()
         .catch { logcat(LogPriority.ERROR, it) }
         .map { sources -> sources.filterNot { it.id == LocalSource.ID }.map { it.id }.take(HOME_SOURCES) }
@@ -64,12 +74,14 @@ class KuroHomeViewModel(
         getHistory.subscribe("").catch { logcat(LogPriority.ERROR, it) },
         sourceIds,
         rows,
-    ) { history, ids, rows ->
+        savedRows,
+    ) { history, ids, rows, savedRows ->
         State(
             isLoading = false,
             continueReading = history.distinctBy { it.mangaId }.take(CONTINUE_READING_LIMIT),
             hasSources = ids.isNotEmpty(),
             rows = rows,
+            savedRows = savedRows,
         )
     }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), State())
@@ -78,6 +90,19 @@ class KuroHomeViewModel(
         viewModelScope.launch {
             sourceIds.collectLatest { ids -> loadRows(ids) }
         }
+        viewModelScope.launch {
+            homeSearches.collectLatest { searches -> loadSavedRows(searches) }
+        }
+    }
+
+    /** Saved searches pinned to Home, each as its own row (like a feed). */
+    private suspend fun loadSavedRows(searches: List<SavedSearch>) = coroutineScope {
+        savedRows.value = searches.mapNotNull { search ->
+            sourceManager.get(search.sourceId)?.let { source ->
+                SourceRow(source.id, search.name, items = null, savedSearch = search, sourceName = source.name)
+            }
+        }
+        savedRows.value.forEach { row -> launch { loadRow(row) } }
     }
 
     /** Fetches each source's popular list, like the web app's home rows. */
@@ -86,19 +111,27 @@ class KuroHomeViewModel(
             sourceManager.get(id)?.let { SourceRow(it.id, it.name, items = null) }
         }
         rows.value.forEach { row ->
-            launch { loadRow(row.sourceId) }
+            launch { loadRow(row) }
         }
     }
 
-    fun retry(sourceId: Long) {
-        viewModelScope.launch { loadRow(sourceId) }
+    fun retry(row: SourceRow) {
+        viewModelScope.launch { loadRow(row) }
     }
 
-    private suspend fun loadRow(sourceId: Long) {
-        val source = sourceManager.get(sourceId) ?: return
-        updateRow(sourceId) { it.copy(items = null, failed = false) }
+    private suspend fun loadRow(row: SourceRow) {
+        val source = sourceManager.get(row.sourceId) ?: return
+        updateRow(row.key) { it.copy(items = null, failed = false) }
+        val search = row.savedSearch
         val result = runCatching {
-            val page = withContext(Dispatchers.IO) { source.getPopularManga(1) }
+            val page = withContext(Dispatchers.IO) {
+                if (search != null && source is CatalogueSource) {
+                    val filters = SavedSearches.restore(source.getFilterList(), search.filters)
+                    source.getSearchManga(1, search.query.orEmpty(), filters)
+                } else {
+                    source.getPopularManga(1)
+                }
+            }
             page.mangas
                 .map { it.toDomainManga(source.id) }
                 .distinctBy { it.url }
@@ -106,11 +139,12 @@ class KuroHomeViewModel(
                 .take(ROW_LIMIT)
         }
         result.exceptionOrNull()?.let { logcat(LogPriority.WARN, it) { "Home row failed for ${source.name}" } }
-        updateRow(sourceId) { it.copy(items = result.getOrNull(), failed = result.isFailure) }
+        updateRow(row.key) { it.copy(items = result.getOrNull(), failed = result.isFailure) }
     }
 
-    private fun updateRow(sourceId: Long, block: (SourceRow) -> SourceRow) {
-        rows.update { list -> list.map { if (it.sourceId == sourceId) block(it) else it } }
+    private fun updateRow(key: String, block: (SourceRow) -> SourceRow) {
+        val target = if (key.startsWith(SAVED_PREFIX)) savedRows else rows
+        target.update { list -> list.map { if (it.key == key) block(it) else it } }
     }
 
     fun resume(item: HistoryWithRelations) {
@@ -127,6 +161,8 @@ class KuroHomeViewModel(
         val continueReading: List<HistoryWithRelations> = emptyList(),
         val hasSources: Boolean = true,
         val rows: List<SourceRow> = emptyList(),
+        /** Rows for saved searches the user pinned to Home. */
+        val savedRows: List<SourceRow> = emptyList(),
     ) {
         /** Top titles for the hero carousel, taking turns between sources so each gets a slot. */
         val heroes: List<Pair<SourceRow, Manga>>
@@ -151,13 +187,21 @@ class KuroHomeViewModel(
         /** Null while loading. */
         val items: List<Manga>?,
         val failed: Boolean = false,
-    )
+        /** Set when the row shows a saved search instead of the source's popular list. */
+        val savedSearch: SavedSearch? = null,
+        val sourceName: String = name,
+    ) {
+        val key: String get() = savedSearch?.let { "$SAVED_PREFIX${it.id}" } ?: "source-$sourceId"
+    }
 
     private companion object {
         const val CONTINUE_READING_LIMIT = 15
         const val HOME_SOURCES = 4
         const val ROW_LIMIT = 18
+        const val HOME_SAVED_SEARCHES = 6
     }
 }
+
+private const val SAVED_PREFIX = "saved-"
 
 private const val HERO_COUNT = 6

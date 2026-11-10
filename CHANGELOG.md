@@ -28,6 +28,7 @@ All notable changes to KuroToon are documented here. Versions follow
   chapter, and tap sparks across the app.
 - Saved searches per source: keep a query and its tags as a one-tap chip, rename or delete it, and choose
   whether it shows on Home.
+- Home rows for saved searches: each pinned search loads as its own row, and See all opens that search.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.
