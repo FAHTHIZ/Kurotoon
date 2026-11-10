@@ -79,6 +79,9 @@ class ReaderPreferences(
     /** Open manhwa, manhua and webtoons in the long-strip reader unless a mode was picked for them. */
     val autoWebtoonMode: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_reader_auto_webtoon", true)
 
+    /** Show an estimate of the time left in the chapter next to the page number. */
+    val showTimeLeft: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_reader_time_left", true)
+
     val defaultOrientationType: Preference<Int> = preferenceStore.getInt(
         "pref_default_orientation_type_key",
         ReaderOrientation.FREE.flagValue,

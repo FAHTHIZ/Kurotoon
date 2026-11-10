@@ -135,6 +135,8 @@ class ReaderViewModel(
     private val kuroPreferences: kurotoon.prefs.KuroPreferences,
 ) : ViewModel() {
 
+    private val readingPace = kurotoon.reader.ReadingPace()
+
     @AssistedFactory
     @ViewModelAssistedFactoryKey(ReaderViewModel::class)
     @ContributesIntoMap(AppScope::class)
@@ -547,6 +549,10 @@ class ReaderViewModel(
 
         // Save last page read and mark as read if needed
         updateChapterProgress(selectedChapter, page)
+
+        readingPace.onPageTurn(System.currentTimeMillis())
+        val minutesLeft = readingPace.minutesLeft(pages.size - 1 - page.index)
+        if (mutableState.value.minutesLeft != minutesLeft) mutableState.update { it.copy(minutesLeft = minutesLeft) }
 
         if (selectedChapter != getCurrentChapter()) {
             logcat { "Setting ${selectedChapter.chapter.url} as active" }
@@ -1120,6 +1126,8 @@ class ReaderViewModel(
         val currentPage: Int = -1,
         val dialog: Dialog? = null,
         val menuVisible: Boolean = false,
+        /** Estimated minutes left in the chapter, once the reading pace is known. */
+        val minutesLeft: Int? = null,
     ) {
         val currentChapter: ReaderChapter?
             get() = viewerChapters?.currChapter
