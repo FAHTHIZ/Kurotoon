@@ -162,6 +162,11 @@ class KuroHomeViewModel(
      * Home source that has that tag as a filter, so picks follow the user's own taste.
      */
     private suspend fun loadPickRows(ids: List<Long>) = coroutineScope {
+        // Picks cost one search per row; skip them when the reader switched the section off
+        if (HomeSection.PICKS.key in kuroPreferences.homeHiddenSections.get()) {
+            pickRows.value = emptyList()
+            return@coroutineScope
+        }
         val library = runCatching { withContext(Dispatchers.IO) { getLibraryManga.await() } }
             .onFailure { logcat(LogPriority.WARN, it) }
             .getOrNull()
@@ -209,6 +214,14 @@ class KuroHomeViewModel(
         kuroPreferences.homeLatestSources.getAndSet { if (updated.latest) it + key else it - key }
         updateRow(row.key) { it.copy(latest = updated.latest) }
         viewModelScope.launch { loadRow(updated) }
+    }
+
+    /** Pull-to-refresh: reloads every row, and rebuilds picks so new library tags show up. */
+    fun refresh() {
+        viewModelScope.launch {
+            launch { loadPickRows(rows.value.map { it.sourceId }) }
+            (savedRows.value + rows.value).forEach { row -> launch { loadRow(row) } }
+        }
     }
 
     fun retry(row: SourceRow) {
