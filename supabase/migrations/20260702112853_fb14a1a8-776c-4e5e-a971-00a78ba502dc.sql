@@ -1,0 +1,2 @@
+UPDATE public.sync_jobs SET status='pending', locked_at=NULL, run_after=now() WHERE status='processing' AND locked_at < now() - interval '5 minutes';
+DELETE FROM public.series s WHERE NOT EXISTS (SELECT 1 FROM public.chapters c WHERE c.series_id=s.id);
