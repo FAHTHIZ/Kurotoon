@@ -2,9 +2,6 @@ package kurotoon.catalogue
 
 import android.content.Context
 import android.util.AtomicFile
-import java.io.File
-import java.io.FileNotFoundException
-import java.util.UUID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -12,6 +9,9 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import java.io.File
+import java.io.FileNotFoundException
+import java.util.UUID
 
 /** Stores chapter snapshots in a KuroToon-owned private file, outside tachiyomi.db. */
 class LocalChapterSnapshotStore(context: Context) {

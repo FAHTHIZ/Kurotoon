@@ -30,14 +30,14 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import eu.kanade.presentation.util.Screen
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kurotoon.catalogue.ChapterReconciler
 import kurotoon.catalogue.ChapterSourceSnapshot
 import kurotoon.catalogue.LocalChapterSnapshotStore
 import kurotoon.catalogue.ReconciledChapter
 import kurotoon.catalogue.ReconciledSeries
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ChapterReconciliationScreen : Screen() {
 
@@ -115,8 +115,8 @@ class ChapterReconciliationScreen : Screen() {
                             Text(
                                 "Import one JSON snapshot per local catalogue. KuroToon combines matching chapter " +
                                     "numbers, keeps every original title and source label, and reports " +
-                                        "numbering gaps. This screen reads imported files only; it does not " +
-                                        "contact extensions or providers.",
+                                    "numbering gaps. This screen reads imported files only; it does not " +
+                                    "contact extensions or providers.",
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
