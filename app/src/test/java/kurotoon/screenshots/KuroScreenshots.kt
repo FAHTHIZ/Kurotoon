@@ -114,6 +114,28 @@ class KuroScreenshots {
     }
 
     @Test
+    fun duplicates() = shot("duplicates") {
+        fun entry(id: Long, title: String, source: Long, read: Long) = tachiyomi.domain.library.model.LibraryManga(
+            manga = tachiyomi.domain.manga.model.Manga.create().copy(id = id, title = title, source = source),
+            categories = emptyList(),
+            totalChapters = 120,
+            readCount = read,
+            bookmarkCount = 0,
+            latestUpload = null,
+            chapterFetchedAt = null,
+            lastRead = null,
+        )
+        kurotoon.ui.library.DuplicatesList(
+            groups = listOf(
+                listOf(entry(1, "Solo Leveling", 1, 80), entry(2, "Solo Leveling (Official)", 2, 3)),
+                listOf(entry(3, "Tower of God", 2, 40), entry(4, "Tower Of God", 3, 0), entry(5, "Tower of God", 1, 0)),
+            ),
+            sourceName = { mapOf(1L to "Asura Scans", 2L to "MangaDex", 3L to "Webtoons")[it].orEmpty() },
+            onClick = {},
+        )
+    }
+
+    @Test
     fun homeStalled() = shot("home_stalled") {
         kurotoon.ui.home.HomeStalled(
             items = listOf("Omniscient Reader" to 40L, "Lookism" to 3L).mapIndexed { i, (t, n) ->
