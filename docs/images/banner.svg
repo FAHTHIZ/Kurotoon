@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-label="KuroToon — every source, one calm home">
+  <defs>
+    <radialGradient id="glow" cx="22%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#FF4757" stop-opacity="0.55"/>
+      <stop offset="0.45" stop-color="#D7263D" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#09090B" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="88%" cy="90%" r="55%">
+      <stop offset="0" stop-color="#FFC548" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#09090B" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="logo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF6B78"/>
+      <stop offset="1" stop-color="#D7263D"/>
+    </linearGradient>
+    <linearGradient id="c1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A1C71"/><stop offset="1" stop-color="#D76D77"/></linearGradient>
+    <linearGradient id="c2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0F2027"/><stop offset="1" stop-color="#2C5364"/></linearGradient>
+    <linearGradient id="c3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF4757"/><stop offset="1" stop-color="#2B0A10"/></linearGradient>
+    <linearGradient id="c4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7B733"/><stop offset="1" stop-color="#4A1C0A"/></linearGradient>
+    <linearGradient id="scrim" x1="0" y1="0" x2="0" y2="1"><stop offset="0.5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.75"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity="0.6"/></filter>
+  </defs>
+  <rect width="1280" height="420" rx="32" fill="#09090B"/>
+  <rect width="1280" height="420" rx="32" fill="url(#glow)"/>
+  <rect width="1280" height="420" rx="32" fill="url(#glow2)"/>
+  <rect x="0.5" y="0.5" width="1279" height="419" rx="31.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.06"/>
+
+  <g transform="translate(88 104)">
+    <rect width="76" height="76" rx="22" fill="url(#logo)"/>
+    <text x="38" y="54" text-anchor="middle" font-family="'Plus Jakarta Sans','Segoe UI',Inter,Helvetica,Arial,sans-serif" font-size="44" font-weight="800" fill="#fff">K</text>
+    <text x="0" y="156" font-family="'Plus Jakarta Sans','Segoe UI',Inter,Helvetica,Arial,sans-serif" font-size="72" font-weight="800" letter-spacing="-2" fill="#FFFFFF">KuroToon</text>
+    <text x="2" y="204" font-family="'Plus Jakarta Sans','Segoe UI',Inter,Helvetica,Arial,sans-serif" font-size="26" font-weight="600" fill="#9D9DA8">Every source. One calm home.</text>
+    <g transform="translate(0 236)" font-family="'Plus Jakarta Sans','Segoe UI',Inter,Helvetica,Arial,sans-serif" font-size="16" font-weight="700">
+      <rect width="96" height="34" rx="17" fill="#FF4757"/><text x="48" y="22" text-anchor="middle" fill="#fff">Manga</text>
+      <rect x="106" width="104" height="34" rx="17" fill="#1B1B21"/><text x="158" y="22" text-anchor="middle" fill="#EDEDF0">Manhwa</text>
+      <rect x="220" width="116" height="34" rx="17" fill="#1B1B21"/><text x="278" y="22" text-anchor="middle" fill="#EDEDF0">Webtoon</text>
+    </g>
+  </g>
+
+  <g transform="translate(700 58)" filter="url(#shadow)">
+    <g transform="rotate(-8 90 150)"><rect x="0" y="40" width="176" height="264" rx="20" fill="url(#c1)"/><rect x="0" y="40" width="176" height="264" rx="20" fill="url(#scrim)"/></g>
+    <g transform="rotate(6 450 150)"><rect x="372" y="34" width="176" height="264" rx="20" fill="url(#c4)"/><rect x="372" y="34" width="176" height="264" rx="20" fill="url(#scrim)"/></g>
+    <g><rect x="186" y="10" width="196" height="294" rx="22" fill="url(#c3)"/><rect x="186" y="10" width="196" height="294" rx="22" fill="url(#scrim)"/>
+      <text x="206" y="282" font-family="'Plus Jakarta Sans','Segoe UI',Inter,Helvetica,Arial,sans-serif" font-size="64" font-weight="800" fill="#fff" fill-opacity="0.95">1</text>
+      <rect x="296" y="26" width="72" height="26" rx="13" fill="#000" fill-opacity="0.55"/>
+      <path transform="translate(306 32) scale(0.6)" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7.1L12 17.3 5.8 21l1.6-7.1L2 9.2l7.1-.6z" fill="#FFC548"/>
+      <text x="324" y="44" font-family="'Plus Jakarta Sans','Segoe UI',Inter,Helvetica,Arial,sans-serif" font-size="14" font-weight="800" fill="#FFC548">9.6</text>
+    </g>
+  </g>
+</svg>

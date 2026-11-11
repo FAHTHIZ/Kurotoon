@@ -31,6 +31,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -40,6 +42,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kurotoon.shop.ShopItem
+import kurotoon.ui.animatedCount
+import kurotoon.ui.kuroBounceClickable
+import kurotoon.ui.kuroCard
 import kurotoon.ui.shop.KuroAvatar
 import kurotoon.ui.shop.KuroBadge
 import kurotoon.ui.shop.ShopItemArt
@@ -129,7 +134,15 @@ private fun ProfileCard(
         modifier = Modifier
             .fillMaxWidth()
             .clip(shape)
-            .background(MaterialTheme.colorScheme.surfaceContainer)
+            .kuroCard(shape)
+            // A crimson glow behind the avatar, like a spotlight on the reader
+            .background(
+                Brush.radialGradient(
+                    colors = listOf(MaterialTheme.colorScheme.primary.copy(alpha = 0.28f), Color.Transparent),
+                    center = Offset(120f, 60f),
+                    radius = 520f,
+                ),
+            )
             .padding(20.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -173,8 +186,8 @@ private fun ProfileCard(
                 ) {
                     Text(
                         text = nickname,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.ExtraBold,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.weight(1f, fill = false),
@@ -250,17 +263,17 @@ private fun StatTile(
     val shape = RoundedCornerShape(16.dp)
     Column(
         modifier = modifier
+            .kuroBounceClickable(onClick = onClick)
             .clip(shape)
-            .background(MaterialTheme.colorScheme.surfaceContainer)
-            .clickable(onClick = onClick)
+            .kuroCard(shape)
             .padding(16.dp),
     ) {
         Icon(icon, contentDescription = null, tint = tint, modifier = Modifier.size(20.dp))
         Text(
-            text = "%,d".format(value),
-            fontSize = 22.sp,
+            text = "%,d".format(animatedCount(value)),
+            style = MaterialTheme.typography.headlineSmall,
             maxLines = 1,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.ExtraBold,
             modifier = Modifier.padding(top = 8.dp),
         )
         Text(

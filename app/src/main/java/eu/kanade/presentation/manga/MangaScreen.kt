@@ -44,6 +44,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastAll
 import androidx.compose.ui.util.fastAny
@@ -357,7 +358,7 @@ private fun MangaScreenSmallImpl(
                 )
                 SmallExtendedFloatingActionButton(
                     text = {
-                        Text(text = continueReadingLabel(state))
+                        Text(text = continueReadingLabel(state), fontWeight = FontWeight.Bold)
                     },
                     icon = { Icon(imageVector = MaterialSymbols.RoundedFilled.PlayArrow, contentDescription = null) },
                     onClick = onContinueReading,
@@ -616,7 +617,7 @@ fun MangaScreenLargeImpl(
                 )
                 SmallExtendedFloatingActionButton(
                     text = {
-                        Text(text = continueReadingLabel(state))
+                        Text(text = continueReadingLabel(state), fontWeight = FontWeight.Bold)
                     },
                     icon = { Icon(imageVector = MaterialSymbols.RoundedFilled.PlayArrow, contentDescription = null) },
                     onClick = onContinueReading,

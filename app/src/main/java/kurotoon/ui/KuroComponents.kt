@@ -53,20 +53,23 @@ fun KuroTip(text: String, modifier: Modifier = Modifier, icon: ImageVector = Mat
 @Composable
 fun Modifier.kuroCard(
     shape: androidx.compose.ui.graphics.Shape = RoundedCornerShape(16.dp),
-    borderColor: Color = Color.Transparent,
+    borderColor: Color = KuroCardHairline,
 ): Modifier = this
     .background(MaterialTheme.colorScheme.surfaceContainer, shape)
     .then(if (borderColor == Color.Transparent) Modifier else Modifier.border(1.dp, borderColor, shape))
 
-/** Section heading: quiet, sentence case, so groups read without shouting. */
+/** A faint white edge so cards lift off the ink background without a shadow. */
+val KuroCardHairline = Color.White.copy(alpha = 0.05f)
+
+/** Section heading: bold sentence case in the page colour, so groups read like chapters of the page. */
 @Composable
 fun KuroSectionTitle(text: String, modifier: Modifier = Modifier) {
     Text(
         text = text,
         modifier = modifier,
-        style = MaterialTheme.typography.titleSmall,
-        fontWeight = FontWeight.SemiBold,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        style = MaterialTheme.typography.titleMedium,
+        fontWeight = FontWeight.ExtraBold,
+        color = MaterialTheme.colorScheme.onSurface,
     )
 }
 

@@ -27,6 +27,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -56,6 +57,7 @@ import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
@@ -138,10 +140,12 @@ fun MangaInfoBox(
         kurotoon.library.OneShot.matches(manga.genre, manga.status, chapterCount)
     }
     Box(modifier = modifier) {
-        // Backdrop
-        val backdropGradientColors = listOf(
-            Color.Transparent,
-            MaterialTheme.colorScheme.background,
+        // Backdrop: the cover itself, blown up and blurred, fading into the page like a poster
+        val background = MaterialTheme.colorScheme.background
+        val backdropGradient = Brush.verticalGradient(
+            0f to background.copy(alpha = 0.25f),
+            0.5f to background.copy(alpha = 0.7f),
+            1f to background,
         )
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
@@ -152,14 +156,13 @@ fun MangaInfoBox(
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .matchParentSize()
-                .drawWithContent {
-                    drawContent()
-                    drawRect(
-                        brush = Brush.verticalGradient(colors = backdropGradientColors),
-                    )
-                }
-                .blur(4.dp)
-                .alpha(0.2f),
+                .blur(24.dp)
+                .alpha(0.55f),
+        )
+        Box(
+            modifier = Modifier
+                .matchParentSize()
+                .background(backdropGradient),
         )
 
         // Manga & source info
@@ -455,17 +458,19 @@ private fun MangaAndSourceTitlesSmall(
     onCoverClick: () -> Unit,
     doSearch: (query: String, global: Boolean) -> Unit,
 ) {
-    Row(
+    // Poster layout: a large centred cover over the blurred backdrop, then the title and meta
+    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 16.dp, top = appBarPadding + 16.dp, end = 16.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
+            .padding(start = 20.dp, top = appBarPadding + 12.dp, end = 20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(2.dp),
     ) {
         MangaCover.Book(
             modifier = Modifier
-                .sizeIn(maxWidth = 100.dp)
-                .align(Alignment.Top),
+                .width(148.dp)
+                .shadow(elevation = 18.dp, shape = RoundedCornerShape(16.dp), clip = false),
+            shape = RoundedCornerShape(16.dp),
             data = ImageRequest.Builder(LocalContext.current)
                 .data(manga)
                 .crossfade(true)
@@ -473,21 +478,19 @@ private fun MangaAndSourceTitlesSmall(
             contentDescription = stringResource(MR.strings.manga_cover),
             onClick = onCoverClick,
         )
-        Column(
-            verticalArrangement = Arrangement.spacedBy(2.dp),
-        ) {
-            MangaContentInfo(
-                title = manga.title,
-                author = manga.author,
-                artist = manga.artist,
-                status = manga.status,
-                oneShot = oneShot,
-                source = source,
-                sourceName = sourceName,
-                isStubSource = isStubSource,
-                doSearch = doSearch,
-            )
-        }
+        Spacer(modifier = Modifier.height(14.dp))
+        MangaContentInfo(
+            title = manga.title,
+            author = manga.author,
+            artist = manga.artist,
+            status = manga.status,
+            oneShot = oneShot,
+            source = source,
+            sourceName = sourceName,
+            isStubSource = isStubSource,
+            doSearch = doSearch,
+            textAlign = TextAlign.Center,
+        )
     }
 }
 
@@ -507,7 +510,8 @@ private fun ColumnScope.MangaContentInfo(
     val context = LocalContext.current
     Text(
         text = title.ifBlank { stringResource(MR.strings.unknown_title) },
-        style = MaterialTheme.typography.titleLarge,
+        style = MaterialTheme.typography.headlineSmall,
+        fontWeight = FontWeight.ExtraBold,
         modifier = Modifier.clickableNoIndication(
             onLongClick = {
                 if (title.isNotBlank()) {

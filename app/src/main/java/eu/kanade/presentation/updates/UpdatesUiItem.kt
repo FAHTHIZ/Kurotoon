@@ -252,7 +252,7 @@ private fun UpdatesUiItem(
                     haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                 },
             )
-            .height(76.dp)
+            .height(84.dp)
             .padding(horizontal = MaterialTheme.padding.medium),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -260,7 +260,8 @@ private fun UpdatesUiItem(
             modifier = Modifier
                 .padding(vertical = 8.dp)
                 .fillMaxHeight()
-                .clip(RoundedCornerShape(10.dp)),
+                .clip(RoundedCornerShape(12.dp)),
+            shape = RoundedCornerShape(12.dp),
             data = update.coverData,
             onClick = onClickCover,
         )
@@ -280,15 +281,16 @@ private fun UpdatesUiItem(
                         maxLines = 1,
                         modifier = Modifier
                             .padding(end = 6.dp)
-                            .clip(RoundedCornerShape(6.dp))
+                            .clip(CircleShape)
                             .background(MaterialTheme.colorScheme.primary)
-                            .padding(horizontal = 5.dp, vertical = 1.dp),
+                            .padding(horizontal = 7.dp, vertical = 1.dp),
                     )
                 }
                 Text(
                     text = update.mangaTitle,
                     maxLines = 1,
                     style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.Bold,
                     color = LocalContentColor.current.copy(alpha = textAlpha),
                     overflow = TextOverflow.Ellipsis,
                 )
