@@ -92,6 +92,12 @@ class ReaderPreferences(
     /** A soft paper swish when a page turns in the paged readers. */
     val soundPageTurn: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_sound_page_turn", false)
 
+    /** Loudness of the page-turn swish, 0..100. */
+    val soundEffectsVolume: Preference<Int> = preferenceStore.getInt("kurotoon_sound_effects_volume", 60)
+
+    /** Keep other apps' music playing and mix the reader's sound with it instead of pausing them. */
+    val soundMixWithOthers: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_sound_mix_with_others", false)
+
     /** Send pages through an image proxy that shrinks them: off, mobile (only off Wi-Fi) or always. */
     val dataSaver: Preference<String> = preferenceStore.getString("kurotoon_data_saver", "off")
 

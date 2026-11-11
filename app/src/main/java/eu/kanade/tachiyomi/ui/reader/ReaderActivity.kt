@@ -326,8 +326,13 @@ class ReaderActivity : BaseActivity() {
                 ChapterCompleteHost(state = chapterComplete, modifier = Modifier.fillMaxSize())
 
                 ReaderSoundBadge(
-                    visible = !state.menuVisible && soundtrack.musicHere,
+                    visible = !state.menuVisible && (
+                        soundtrack.musicHere ||
+                            (soundtrack.interruption != null && soundtrack.activeScape != Soundscape.OFF)
+                        ),
                     muted = soundtrack.muted,
+                    buffering = soundtrack.buffering,
+                    interrupted = soundtrack.interruption != null,
                     onClick = soundtrack::toggleMute,
                     modifier = Modifier
                         .align(Alignment.TopEnd)
@@ -468,9 +473,7 @@ class ReaderActivity : BaseActivity() {
                     ReaderViewModel.Event.PageChanged -> {
                         displayRefreshHost.flash()
                         if (viewer is PagerViewer && readerPreferences.soundPageTurn.get()) {
-                            soundtrack.playPageTurn(
-                                readerPreferences.soundAmbienceVolume.get().coerceAtLeast(30) / 100f,
-                            )
+                            soundtrack.playPageTurn(readerPreferences.soundEffectsVolume.get() / 100f)
                         }
                     }
                     is ReaderViewModel.Event.SetOrientation -> {
@@ -755,6 +758,8 @@ class ReaderActivity : BaseActivity() {
         LaunchedEffect(musicVolume, ambienceVolume) {
             soundtrack.setVolumes(musicVolume / 100f, ambienceVolume / 100f)
         }
+        val mixWithOthers by readerPreferences.soundMixWithOthers.collectAsState()
+        LaunchedEffect(mixWithOthers) { soundtrack.setMixWithOthers(mixWithOthers) }
         LaunchedEffect(episodeMusic) { soundtrack.enableMusic(episodeMusic) }
         LaunchedEffect(chapter?.chapter?.id, chapter?.pages?.size, episodeMusic) {
             if (chapter?.pages == null) return@LaunchedEffect
@@ -776,7 +781,7 @@ class ReaderActivity : BaseActivity() {
     /** The sleep timer ran out: stop moving, go quiet and let the curtain ask what's next. */
     private fun onSleepTimer() {
         autoScroll.enabled = false
-        if (!soundtrack.muted) soundtrack.toggleMute()
+        soundtrack.mute(true)
         setMenuVisibility(false)
     }
 
