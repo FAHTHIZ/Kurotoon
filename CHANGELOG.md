@@ -73,7 +73,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Group library by: Library menu > Group library by switches the tabs from your categories to one tab per source, one per publishing status, or a single list.
 - Source badge: Library settings > Display > Source name shows which source each cover comes from.
 - Add several titles at once: in a source, menu > Select several, tap the covers you want, then Add to library.
-- Switch extension repos off: each repo in Settings > Browse > Extension repos has a switch to hide its extensions without removing it.
+- Switch extension stores off: each store in Browse > Extensions > menu > Extension stores has a switch that hides its extensions without removing it.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.
