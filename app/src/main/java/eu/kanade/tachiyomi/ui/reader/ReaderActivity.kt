@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.AlertDialog
@@ -98,6 +99,7 @@ import eu.kanade.tachiyomi.ui.reader.viewer.LocalPageColorFilter
 import eu.kanade.tachiyomi.ui.reader.viewer.Viewer
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation.Action
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation.NavigationRegion
+import eu.kanade.tachiyomi.ui.reader.viewer.pager.PagerViewer
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.system.openInBrowser
 import eu.kanade.tachiyomi.util.system.readerBackgroundColor
@@ -118,6 +120,10 @@ import kurotoon.reader.AutoScrollState
 import kurotoon.reader.ChapterCompleteHost
 import kurotoon.reader.ChapterCompleteState
 import kurotoon.reader.ReaderProgressOrb
+import kurotoon.reader.sound.ReaderSoundtrack
+import kurotoon.reader.sound.Soundscape
+import kurotoon.ui.reader.ReaderSoundBadge
+import kurotoon.ui.reader.ReaderSoundSheet
 import logcat.LogPriority
 import mihon.app.di.AppGraph
 import mihon.core.metro.metroGraph
@@ -172,6 +178,7 @@ class ReaderActivity : BaseActivity() {
 
     private val autoScroll = AutoScrollState()
     private val chapterComplete = ChapterCompleteState()
+    private val soundtrack by lazy { ReaderSoundtrack(this) }
 
     /**
      * Called when the activity is created. Initializes the presenter and configuration.
@@ -227,6 +234,8 @@ class ReaderActivity : BaseActivity() {
 
             val focusRequester = remember { FocusRequester() }
             LaunchedEffect(Unit) { focusRequester.requestFocus() }
+
+            ReaderSoundEffects(state)
 
             val autoScrollSpeed by readerPreferences.autoScrollSpeed.collectAsState()
             val lifecycleState by lifecycle.currentStateFlow.collectAsState()
@@ -311,6 +320,16 @@ class ReaderActivity : BaseActivity() {
 
                 ChapterCompleteHost(state = chapterComplete, modifier = Modifier.fillMaxSize())
 
+                ReaderSoundBadge(
+                    visible = !state.menuVisible && soundtrack.musicHere,
+                    muted = soundtrack.muted,
+                    onClick = soundtrack::toggleMute,
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .statusBarsPadding()
+                        .padding(12.dp),
+                )
+
                 AppBars(state = state)
             }
 
@@ -368,6 +387,13 @@ class ReaderActivity : BaseActivity() {
                         onSetAsCover = viewModel::setAsCover,
                         onShare = viewModel::shareImage,
                         onSave = viewModel::saveImage,
+                    )
+                }
+                is ReaderViewModel.Dialog.Sound -> {
+                    ReaderSoundSheet(
+                        preferences = readerPreferences,
+                        soundtrack = soundtrack,
+                        onDismissRequest = onDismissRequest,
                     )
                 }
                 is ReaderViewModel.Dialog.ChapterList -> {
@@ -432,6 +458,11 @@ class ReaderActivity : BaseActivity() {
                     }
                     ReaderViewModel.Event.PageChanged -> {
                         displayRefreshHost.flash()
+                        if (viewer is PagerViewer && readerPreferences.soundPageTurn.get()) {
+                            soundtrack.playPageTurn(
+                                readerPreferences.soundAmbienceVolume.get().coerceAtLeast(30) / 100f,
+                            )
+                        }
                     }
                     is ReaderViewModel.Event.SetOrientation -> {
                         setOrientation(event.orientation)
@@ -461,6 +492,7 @@ class ReaderActivity : BaseActivity() {
      */
     override fun onDestroy() {
         super.onDestroy()
+        soundtrack.release()
         viewer?.destroy()
         menuToggleToast?.cancel()
         readingModeToast?.cancel()
@@ -468,6 +500,7 @@ class ReaderActivity : BaseActivity() {
 
     override fun onPause() {
         viewModel.saveHistory()
+        soundtrack.onPause()
         super.onPause()
     }
 
@@ -478,6 +511,7 @@ class ReaderActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         viewModel.restartReadTimer()
+        soundtrack.onResume()
         setMenuVisibility(viewModel.state.value.menuVisible)
     }
 
@@ -685,7 +719,41 @@ class ReaderActivity : BaseActivity() {
             autoScrolling = autoScroll.enabled,
             onClickAutoScroll = ::toggleAutoScroll,
             onClickChapterList = viewModel::openChapterList,
+            soundActive = soundtrack.playing != null || soundtrack.activeScape != Soundscape.OFF,
+            soundMuted = soundtrack.muted,
+            onClickSound = viewModel::openSoundDialog,
         )
+    }
+
+    /** Keeps the soundtrack in step with the chapter, the page and the sound settings. */
+    @Composable
+    private fun ReaderSoundEffects(state: ReaderViewModel.State) {
+        val episodeMusic by readerPreferences.soundEpisodeMusic.collectAsState()
+        val ambience by readerPreferences.soundAmbience.collectAsState()
+        val musicVolume by readerPreferences.soundMusicVolume.collectAsState()
+        val ambienceVolume by readerPreferences.soundAmbienceVolume.collectAsState()
+        val chapter = state.currentChapter
+        val source = state.source as? HttpSource
+
+        LaunchedEffect(musicVolume, ambienceVolume) {
+            soundtrack.setVolumes(musicVolume / 100f, ambienceVolume / 100f)
+        }
+        LaunchedEffect(episodeMusic) { soundtrack.enableMusic(episodeMusic) }
+        LaunchedEffect(chapter?.chapter?.id, chapter?.pages?.size, episodeMusic) {
+            if (chapter?.pages == null) return@LaunchedEffect
+            soundtrack.loadChapter(
+                baseUrl = source?.baseUrl,
+                chapterUrl = chapter.chapter.url,
+                pageUrls = chapter.pages.orEmpty().map { it.imageUrl },
+                client = source?.client,
+            )
+        }
+        LaunchedEffect(state.currentPage) {
+            if (state.currentPage > 0) soundtrack.onPage(state.currentPage - 1)
+        }
+        LaunchedEffect(ambience, state.manga?.genre) {
+            soundtrack.setSoundscape(Soundscape.of(ambience), state.manga?.genre)
+        }
     }
 
     private fun changeAutoScrollSpeed(delta: Int) {

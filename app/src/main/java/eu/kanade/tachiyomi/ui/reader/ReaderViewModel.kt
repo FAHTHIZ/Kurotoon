@@ -965,6 +965,10 @@ class ReaderViewModel(
         loadAdjacent(chapter)
     }
 
+    fun openSoundDialog() {
+        mutableState.update { it.copy(dialog = Dialog.Sound) }
+    }
+
     fun openSettingsDialog() {
         mutableState.update { it.copy(dialog = Dialog.Settings) }
     }
@@ -1153,6 +1157,7 @@ class ReaderViewModel(
         data object OrientationModeSelect : Dialog
         data class PageActions(val page: ReaderPage) : Dialog
         data class ChapterList(val chapters: List<Chapter>) : Dialog
+        data object Sound : Dialog
     }
 
     sealed interface Event {
