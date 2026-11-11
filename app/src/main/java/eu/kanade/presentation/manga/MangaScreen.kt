@@ -2,6 +2,7 @@ package eu.kanade.presentation.manga
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -42,6 +43,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastAll
 import androidx.compose.ui.util.fastAny
 import androidx.compose.ui.util.fastMap
@@ -62,6 +64,7 @@ import eu.kanade.tachiyomi.ui.manga.ChapterList
 import eu.kanade.tachiyomi.ui.manga.MangaViewModel
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import kurotoon.catalogue.TagAction
+import kurotoon.ui.manga.JumpToChapterButton
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.roundedfilled.PlayArrow
 import tachiyomi.domain.chapter.model.Chapter
@@ -338,18 +341,30 @@ private fun MangaScreenSmallImpl(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         floatingActionButton = {
             val isFABVisible = state.hasUnreadChapters && !isAnySelected
-            SmallExtendedFloatingActionButton(
-                text = {
-                    Text(text = continueReadingLabel(state))
-                },
-                icon = { Icon(imageVector = MaterialSymbols.RoundedFilled.PlayArrow, contentDescription = null) },
-                onClick = onContinueReading,
-                expanded = chapterListState.shouldExpandFAB(),
-                modifier = Modifier.animateFloatingActionButton(
-                    visible = isFABVisible,
-                    alignment = Alignment.BottomEnd,
-                ),
-            )
+            Column(
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                JumpToChapterButton(
+                    listState = chapterListState,
+                    chapters = listItem,
+                    targetId = state.nextUnreadChapter?.id,
+                    headerCount = 4,
+                    enabled = isFABVisible,
+                )
+                SmallExtendedFloatingActionButton(
+                    text = {
+                        Text(text = continueReadingLabel(state))
+                    },
+                    icon = { Icon(imageVector = MaterialSymbols.RoundedFilled.PlayArrow, contentDescription = null) },
+                    onClick = onContinueReading,
+                    expanded = chapterListState.shouldExpandFAB(),
+                    modifier = Modifier.animateFloatingActionButton(
+                        visible = isFABVisible,
+                        alignment = Alignment.BottomEnd,
+                    ),
+                )
+            }
         },
     ) { contentPadding ->
         val topPadding = contentPadding.calculateTopPadding()
@@ -573,18 +588,30 @@ fun MangaScreenLargeImpl(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         floatingActionButton = {
             val isFABVisible = state.hasUnreadChapters && !isAnySelected
-            SmallExtendedFloatingActionButton(
-                text = {
-                    Text(text = continueReadingLabel(state))
-                },
-                icon = { Icon(imageVector = MaterialSymbols.RoundedFilled.PlayArrow, contentDescription = null) },
-                onClick = onContinueReading,
-                expanded = chapterListState.shouldExpandFAB(),
-                modifier = Modifier.animateFloatingActionButton(
-                    visible = isFABVisible,
-                    alignment = Alignment.BottomEnd,
-                ),
-            )
+            Column(
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                JumpToChapterButton(
+                    listState = chapterListState,
+                    chapters = listItem,
+                    targetId = state.nextUnreadChapter?.id,
+                    headerCount = 1,
+                    enabled = isFABVisible,
+                )
+                SmallExtendedFloatingActionButton(
+                    text = {
+                        Text(text = continueReadingLabel(state))
+                    },
+                    icon = { Icon(imageVector = MaterialSymbols.RoundedFilled.PlayArrow, contentDescription = null) },
+                    onClick = onContinueReading,
+                    expanded = chapterListState.shouldExpandFAB(),
+                    modifier = Modifier.animateFloatingActionButton(
+                        visible = isFABVisible,
+                        alignment = Alignment.BottomEnd,
+                    ),
+                )
+            }
         },
     ) { contentPadding ->
         PullRefresh(

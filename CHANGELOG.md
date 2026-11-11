@@ -13,6 +13,7 @@ All notable changes to KuroToon are documented here. Versions follow
 
 ### Added
 - README redesign: a new hero, a twelve-screen tour and a five-app comparison, all from real screenshots of the current build with Webtoons.com, MangaDex and Asura Scans installed
+- A jump button on long chapter lists scrolls straight to the chapter you're up to
 - Lock zoom in the long strip so a stray two-finger touch never zooms (Settings > Reader or the reading-mode sheet)
 - The end of the latest chapter says you're all caught up and which day new chapters usually arrive
 - Undo after swiping a chapter to read, unread or bookmarked

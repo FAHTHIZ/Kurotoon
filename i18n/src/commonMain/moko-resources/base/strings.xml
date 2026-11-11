@@ -1213,6 +1213,7 @@
     <string name="kurotoon_reader_clockBatterySummary">Show the clock and battery level next to the page number, since the reader hides the status bar</string>
     <string name="kurotoon_reader_resumedAt">Picked up on page %d</string>
     <string name="kurotoon_reader_startOver">Start over</string>
+    <string name="kurotoon_manga_jumpToChapter">Jump to where you left off</string>
     <string name="kurotoon_reader_zoomLocked">Lock zoom</string>
     <string name="kurotoon_reader_zoomLockedSummary">Ignore pinch and double-tap zoom so a stray touch never zooms the strip</string>
     <string name="kurotoon_reader_caughtUp">You\'re all caught up</string>
