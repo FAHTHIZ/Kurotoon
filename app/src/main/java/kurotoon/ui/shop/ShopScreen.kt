@@ -84,7 +84,9 @@ import kurotoon.rewards.Mission
 import kurotoon.rewards.PurchaseResult
 import kurotoon.rewards.RewardEvent
 import kurotoon.rewards.RewardsCatalog
+import kurotoon.rewards.RewardsEngine
 import kurotoon.rewards.RewardsState
+import kurotoon.rewards.Seasons
 import kurotoon.shop.Pack
 import kurotoon.shop.PackOrigin
 import kurotoon.shop.PackRepository.ImportResult
@@ -105,13 +107,17 @@ import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
 import java.text.NumberFormat
+import java.time.DayOfWeek
 import java.time.Instant
+import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import java.time.temporal.TemporalAdjusters
 
 enum class ShopSection(val label: StringResource) {
     MISSIONS(MR.strings.kurotoon_rewards_section_missions),
+    EVENTS(MR.strings.kurotoon_rewards_section_events),
     SHOP(MR.strings.kurotoon_rewards_section_shop),
     ACHIEVEMENTS(MR.strings.kurotoon_rewards_section_achievements),
     COLLECTION(MR.strings.kurotoon_rewards_section_collection),
@@ -161,11 +167,19 @@ class KuroShopScreen(private val initial: ShopSection = ShopSection.SHOP) : Scre
                 initialSection = initial,
                 onClaim = { store.claimMission(it) },
                 onClaimAll = { store.claimAll() },
+                onClaimWeekly = { store.claimWeekly(it) },
                 onBuy = { item ->
                     val result = store.buy(item.code)
                     when (result) {
                         PurchaseResult.Success -> KuroFx.celebrate()
                         PurchaseResult.NotEnoughPoints -> context.toast(MR.strings.kurotoon_rewards_notEnoughPoints)
+                        PurchaseResult.FreezesFull -> context.toast(MR.strings.kurotoon_rewards_freezeFull)
+                        PurchaseResult.OutOfSeason -> context.toast(
+                            context.stringResource(
+                                MR.strings.kurotoon_rewards_outOfSeason,
+                                Seasons.eventsFor(item.code).joinToString { context.stringResource(it.title) },
+                            ),
+                        )
                         else -> Unit
                     }
                     result
@@ -213,6 +227,7 @@ fun ShopContent(
     onImport: () -> Unit,
     onRemovePack: (Pack) -> Unit,
     initialSection: ShopSection = ShopSection.SHOP,
+    onClaimWeekly: (String) -> Unit = {},
     nowMillis: Long = System.currentTimeMillis(),
     animated: Boolean = true,
 ) {
@@ -221,6 +236,7 @@ fun ShopContent(
     var selected by rememberSaveable { mutableStateOf<String?>(null) }
     var removing by remember { mutableStateOf<Pack?>(null) }
     val itemsByCode = remember(packs) { packs.flatMap { it.items }.associateBy { it.code } }
+    val today = remember(nowMillis) { Instant.ofEpochMilli(nowMillis).atZone(ZoneId.systemDefault()).toLocalDate() }
 
     LazyVerticalGrid(
         columns = GridCells.Adaptive(104.dp),
@@ -240,8 +256,9 @@ fun ShopContent(
         }
         full("sections") { SectionPills(section) { section = it } }
         when (section) {
-            ShopSection.MISSIONS -> missions(state, nowMillis, onClaim, onClaimAll)
-            ShopSection.SHOP -> shop(state, packs, kind, { kind = it }, { selected = it.code })
+            ShopSection.MISSIONS -> missions(state, nowMillis, today, onClaim, onClaimAll, onClaimWeekly)
+            ShopSection.EVENTS -> events(state, today, itemsByCode::get) { selected = it.code }
+            ShopSection.SHOP -> shop(state, packs, today, kind, { kind = it }, { selected = it.code })
             ShopSection.ACHIEVEMENTS -> achievements(state)
             ShopSection.COLLECTION -> collection(state, packs) { selected = it.code }
             ShopSection.PACKS -> packList(packs, onImport) { removing = it }
@@ -259,6 +276,7 @@ fun ShopContent(
                 pack = packs.firstOrNull { it.id == item.packId },
                 state = state,
                 nowMillis = nowMillis,
+                today = today,
                 onBuy = { onBuy(item) },
                 onEquip = { onEquip(item) },
                 onUnequip = { onUnequip(item) },
@@ -369,6 +387,7 @@ private fun WalletCard(
                     modifier = Modifier.padding(top = 2.dp),
                 )
             }
+            LevelBar(state, Modifier.padding(top = 10.dp))
         }
     }
 }
@@ -419,12 +438,20 @@ private fun Pill(text: String, selected: Boolean, onClick: () -> Unit) {
 private fun LazyGridScope.missions(
     state: RewardsState,
     nowMillis: Long,
+    today: LocalDate,
     onClaim: (String) -> Unit,
     onClaimAll: () -> Unit,
+    onClaimWeekly: (String) -> Unit,
 ) {
+    val boosted = state.isBoosted(nowMillis)
+    val engine = RewardsEngine(now = { Instant.ofEpochMilli(nowMillis) })
+    val monday = today.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY)).toString()
+    val weekProgress = if (state.week == monday) state.weekProgress else emptyMap()
+    val weekClaimed = if (state.week == monday) state.weekClaimed else emptySet()
     val claimable = RewardsCatalog.missions.count {
         (state.progress[it.code] ?: 0) >= it.target && it.code !in state.claimed
-    }
+    } + RewardsCatalog.weeklyMissions.count { (weekProgress[it.code] ?: 0) >= it.target && it.code !in weekClaimed }
+    full("streakTracker") { StreakTracker(state, today, engine.daysToChest(state)) }
     full("missionsTitle") {
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 4.dp)) {
             KuroSectionTitle(stringResource(MR.strings.kurotoon_rewards_todaysMissions), Modifier.weight(1f))
@@ -433,7 +460,7 @@ private fun LazyGridScope.missions(
             }
         }
     }
-    if (state.isBoosted(nowMillis)) {
+    if (boosted) {
         full("boost") {
             Text(
                 stringResource(MR.strings.kurotoon_rewards_boostActive),
@@ -448,12 +475,89 @@ private fun LazyGridScope.missions(
                 mission = mission,
                 progress = state.progress[mission.code] ?: 0,
                 claimed = mission.code in state.claimed,
-                boosted = state.isBoosted(nowMillis),
+                boosted = boosted,
                 onClaim = { onClaim(mission.code) },
             )
         }
     }
+    full("weeklyTitle") {
+        val nextMonday = today.with(TemporalAdjusters.next(DayOfWeek.MONDAY))
+        val days = java.time.temporal.ChronoUnit.DAYS.between(today, nextMonday).toInt()
+        Row(verticalAlignment = Alignment.Bottom, modifier = Modifier.padding(top = 8.dp)) {
+            KuroSectionTitle(stringResource(MR.strings.kurotoon_rewards_weeklyMissions), Modifier.weight(1f))
+            Text(
+                stringResource(
+                    MR.strings.kurotoon_rewards_resetsIn,
+                    stringResource(MR.strings.kurotoon_rewards_daysShort, days),
+                ),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+    }
+    RewardsCatalog.weeklyMissions.forEach { mission ->
+        full("weekly:${mission.code}") {
+            MissionRow(
+                mission = mission,
+                progress = weekProgress[mission.code] ?: 0,
+                claimed = mission.code in weekClaimed,
+                boosted = boosted,
+                onClaim = { onClaimWeekly(mission.code) },
+            )
+        }
+    }
+    full("tracker") { Box(Modifier.padding(top = 8.dp)) { ReadingTracker(state, today) } }
     full("missionsFooter") { Footer(stringResource(MR.strings.kurotoon_rewards_missionsFooter)) }
+}
+
+private fun LazyGridScope.events(
+    state: RewardsState,
+    today: LocalDate,
+    item: (String) -> ShopItem?,
+    onSelect: (ShopItem) -> Unit,
+) {
+    val active = Seasons.active(today)
+    if (active.isEmpty()) {
+        full("noEvent") {
+            Column(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                KuroMascot(size = 96.dp, mood = KuroMood.SLEEPY)
+                Text(
+                    stringResource(MR.strings.kurotoon_rewards_noEvent),
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 12.dp),
+                )
+            }
+        }
+    }
+    active.forEach { run ->
+        full("event:${run.key}") { SeasonCard(run, state, item(run.event.reward), today) }
+    }
+    val upcoming = Seasons.upcoming(today, limit = 4)
+    if (upcoming.isNotEmpty()) {
+        full("upcomingTitle") {
+            KuroSectionTitle(stringResource(MR.strings.kurotoon_rewards_upcoming), Modifier.padding(top = 8.dp))
+        }
+        upcoming.forEach { run ->
+            full("upcoming:${run.key}") { UpcomingRow(run, item(run.event.reward), today) }
+        }
+    }
+    val seasonal = Seasons.events.mapNotNull { item(it.reward) }.distinctBy { it.code }
+    if (seasonal.isNotEmpty()) {
+        full("seasonalTitle") {
+            KuroSectionTitle(stringResource(MR.strings.kurotoon_rewards_seasonal), Modifier.padding(top = 8.dp))
+        }
+        items(seasonal, key = { "seasonal:${it.code}" }, contentType = { "item" }) { shopItem ->
+            ItemTile(shopItem, state, Modifier.animateItem(), inSeason = Seasons.isInSeason(shopItem.code, today)) {
+                onSelect(shopItem)
+            }
+        }
+    }
 }
 
 @Composable
@@ -527,6 +631,7 @@ private fun MissionRow(mission: Mission, progress: Int, claimed: Boolean, booste
 private fun LazyGridScope.shop(
     state: RewardsState,
     packs: List<Pack>,
+    today: LocalDate,
     kind: ShopKind?,
     onKind: (ShopKind?) -> Unit,
     onSelect: (ShopItem) -> Unit,
@@ -549,7 +654,7 @@ private fun LazyGridScope.shop(
         if (items.isEmpty()) return@forEach
         full("pack:${pack.id}") { PackHeader(pack) }
         items(items, key = { "item:${it.code}" }, contentType = { "item" }) { item ->
-            ItemTile(item, state, Modifier.animateItem()) { onSelect(item) }
+            ItemTile(item, state, Modifier.animateItem(), Seasons.isInSeason(item.code, today)) { onSelect(item) }
         }
     }
 }
@@ -586,7 +691,13 @@ private fun PackHeader(pack: Pack) {
 }
 
 @Composable
-fun ItemTile(item: ShopItem, state: RewardsState, modifier: Modifier = Modifier, onClick: () -> Unit) {
+fun ItemTile(
+    item: ShopItem,
+    state: RewardsState,
+    modifier: Modifier = Modifier,
+    inSeason: Boolean = true,
+    onClick: () -> Unit,
+) {
     val owned = state.owns(item) && item.kind != ShopKind.BOOST
     val equipped = state.isEquipped(item)
     val shape = RoundedCornerShape(18.dp)
@@ -610,8 +721,14 @@ fun ItemTile(item: ShopItem, state: RewardsState, modifier: Modifier = Modifier,
                 .padding(12.dp),
             contentAlignment = Alignment.Center,
         ) {
-            ShopItemArt(item, Modifier.fillMaxSize(), animated = false)
-            if (!owned && state.points < item.price) {
+            ShopItemArt(
+                item,
+                Modifier
+                    .fillMaxSize()
+                    .alpha(if (!owned && !inSeason) 0.45f else 1f),
+                animated = false,
+            )
+            if (!owned && (state.points < item.price || !inSeason)) {
                 Icon(
                     MaterialSymbols.Rounded.Lock,
                     null,
@@ -630,7 +747,11 @@ fun ItemTile(item: ShopItem, state: RewardsState, modifier: Modifier = Modifier,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.padding(top = 6.dp),
         )
-        PriceLabel(item, state, owned, equipped)
+        if (!owned && !inSeason) {
+            Text(stringResource(MR.strings.kurotoon_rewards_seasonal), color = KuroColors.Galaxy, fontSize = 11.sp)
+        } else {
+            PriceLabel(item, state, owned, equipped)
+        }
     }
 }
 
@@ -701,32 +822,7 @@ private fun AchievementRow(achievement: Achievement, unlockedAt: Long?) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Box(
-            modifier = Modifier
-                .size(44.dp)
-                .background(
-                    if (unlocked) {
-                        Brush.linearGradient(
-                            listOf(KuroColors.Gold.copy(alpha = 0.5f), KuroColors.Crimson.copy(alpha = 0.35f)),
-                        )
-                    } else {
-                        Brush.linearGradient(listOf(Color.White.copy(alpha = 0.06f), Color.White.copy(alpha = 0.03f)))
-                    },
-                    CircleShape,
-                ),
-            contentAlignment = Alignment.Center,
-        ) {
-            if (unlocked) {
-                Text(achievement.icon, fontSize = 22.sp)
-            } else {
-                Icon(
-                    MaterialSymbols.Rounded.Lock,
-                    null,
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.size(20.dp),
-                )
-            }
-        }
+        AchievementMedal(achievement, unlocked)
         Column(Modifier.weight(1f)) {
             Text(stringResource(achievement.title), fontWeight = FontWeight.SemiBold)
             Text(
@@ -855,6 +951,7 @@ private fun ItemDetail(
     pack: Pack?,
     state: RewardsState,
     nowMillis: Long,
+    today: LocalDate,
     onBuy: () -> PurchaseResult,
     onEquip: () -> Unit,
     onUnequip: () -> Unit,
@@ -918,7 +1015,28 @@ private fun ItemDetail(
                 modifier = Modifier.padding(top = 8.dp),
             )
         }
-        if (item.kind == ShopKind.BOOST && state.isBoosted(nowMillis)) {
+        val events = Seasons.eventsFor(item.code)
+        val inSeason = Seasons.isInSeason(item.code, today)
+        if (events.isNotEmpty()) {
+            Text(
+                stringResource(
+                    MR.strings.kurotoon_rewards_seasonOnly,
+                    events.map { stringResource(it.title) }.joinToString(),
+                ),
+                color = KuroColors.Galaxy,
+                style = MaterialTheme.typography.labelMedium,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(top = 8.dp),
+            )
+        }
+        if (item.style == kurotoon.rewards.FREEZE_STYLE) {
+            Text(
+                stringResource(MR.strings.kurotoon_rewards_freezes, state.freezes),
+                color = KuroColors.Aurora,
+                style = MaterialTheme.typography.labelMedium,
+                modifier = Modifier.padding(top = 8.dp),
+            )
+        } else if (item.kind == ShopKind.BOOST && state.isBoosted(nowMillis)) {
             Text(
                 stringResource(MR.strings.kurotoon_rewards_boostUntil, formatTime(state.boostUntil)),
                 color = KuroColors.Gold,
@@ -928,7 +1046,7 @@ private fun ItemDetail(
         }
         Spacer(Modifier.height(20.dp))
         AnimatedContent(
-            targetState = Triple(owned, equipped, state.points >= item.price),
+            targetState = Triple(owned, equipped, state.points >= item.price && inSeason),
             transitionSpec = { fadeIn(spring()) togetherWith fadeOut(spring()) },
             label = "itemAction",
         ) { (isOwned, isEquipped, affordable) ->
@@ -974,6 +1092,15 @@ private fun ItemDetail(
                             Spacer(Modifier.width(4.dp))
                             Text(formatNumber(item.price), fontWeight = FontWeight.Bold)
                         }
+                    } else if (!inSeason) {
+                        Text(
+                            stringResource(
+                                MR.strings.kurotoon_rewards_outOfSeason,
+                                events.map { stringResource(it.title) }.joinToString(),
+                            ),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                        )
                     } else {
                         Text(stringResource(MR.strings.kurotoon_rewards_needMore, item.price - state.points))
                     }

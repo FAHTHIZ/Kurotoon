@@ -2,8 +2,8 @@
   "id": "kuro.boosts",
   "name": "Boosts",
   "author": "KuroToon",
-  "version": 1,
-  "description": "Temporary perks.",
+  "version": 2,
+  "description": "Temporary perks and streak protection.",
   "items": [
     {
       "id": "double",
@@ -11,7 +11,18 @@
       "name": "Double Points",
       "description": "Double points from missions for 7 days.",
       "price": 1500,
-      "rarity": "epic"
+      "rarity": "epic",
+      "image": "double.webp"
+    },
+    {
+      "id": "freeze",
+      "kind": "boost",
+      "name": "Streak Freeze",
+      "description": "Keeps your streak alive through one missed day. Hold up to three.",
+      "price": 300,
+      "rarity": "rare",
+      "image": "freeze.webp",
+      "style": "freeze"
     }
   ]
 }
