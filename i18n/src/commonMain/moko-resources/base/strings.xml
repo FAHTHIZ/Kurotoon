@@ -1209,6 +1209,9 @@
     <string name="kurotoon_reader_clockBatterySummary">Show the clock and battery level next to the page number, since the reader hides the status bar</string>
     <string name="kurotoon_reader_resumedAt">Picked up on page %d</string>
     <string name="kurotoon_reader_startOver">Start over</string>
+    <string name="kurotoon_reader_goToPage">Go to page</string>
+    <string name="kurotoon_reader_goToPageRange">1 to %d</string>
+    <string name="kurotoon_reader_goToPageAction">Go</string>
     <string name="kurotoon_reader_resumeLastOpened">Resume where you left off</string>
     <string name="kurotoon_reader_resumeLastOpenedSummary">Resume opens the last chapter you opened, even if you skipped ahead, instead of the first unread one</string>
     <string name="kurotoon_reader_volumeKeyDelay">Ignore repeated presses</string>
