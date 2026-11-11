@@ -775,6 +775,18 @@ class ReaderActivity : BaseActivity() {
         val verticalNavigatorOnLeft by readerPreferences.verticalNavigatorOnLeft.collectAsState()
         val verticalNavigatorHeight by readerPreferences.verticalNavigatorHeight.collectAsState()
 
+        var editingNote by remember { mutableStateOf(false) }
+        if (editingNote) {
+            kurotoon.ui.reader.BookmarkNoteDialog(
+                initial = viewModel.bookmarkNote().orEmpty(),
+                onDismiss = { editingNote = false },
+                onSave = {
+                    editingNote = false
+                    viewModel.setBookmarkNote(it)
+                },
+            )
+        }
+
         ReaderAppBars(
             visible = state.menuVisible,
 
@@ -798,6 +810,7 @@ class ReaderActivity : BaseActivity() {
             onOpenInWebView = ::openChapterInWebView.takeIf { isHttpSource },
             onOpenInBrowser = ::openChapterInBrowser.takeIf { isHttpSource },
             onShare = ::shareChapter.takeIf { isHttpSource },
+            onBookmarkNote = { editingNote = true },
 
             chapterNavigatorType = if (!verticalNavigator) {
                 if (readingMode == ReadingMode.RIGHT_TO_LEFT) {

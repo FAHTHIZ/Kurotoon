@@ -22,6 +22,7 @@ fun ReaderTopBar(
     onOpenInBrowser: (() -> Unit)?,
     onShare: (() -> Unit)?,
     modifier: Modifier = Modifier,
+    onBookmarkNote: (() -> Unit)? = null,
 ) {
     AppBar(
         modifier = modifier,
@@ -49,6 +50,14 @@ fun ReaderTopBar(
                             onClick = onToggleBookmarked,
                         ),
                     )
+                    onBookmarkNote?.let {
+                        add(
+                            AppBar.OverflowAction(
+                                title = stringResource(MR.strings.kurotoon_bookmarkNote_title),
+                                onClick = it,
+                            ),
+                        )
+                    }
                     onOpenInWebView?.let {
                         add(
                             AppBar.OverflowAction(

@@ -64,6 +64,7 @@ fun MangaChapterListItem(
     onDownloadClick: ((ChapterDownloadAction) -> Unit)?,
     onChapterSwipe: (LibraryPreferences.ChapterSwipeAction) -> Unit,
     modifier: Modifier = Modifier,
+    note: String? = null,
 ) {
     val start = getSwipeAction(
         action = chapterSwipeStartAction,
@@ -168,6 +169,15 @@ fun MangaChapterListItem(
                             )
                         }
                     }
+                }
+                if (note != null) {
+                    Text(
+                        text = "\u201C$note\u201D",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.primary,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                    )
                 }
             }
 
