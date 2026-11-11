@@ -57,9 +57,12 @@ fun OnboardingScreen(
                 MR.strings.onboarding_action_next
             },
         ),
-        canAccept = steps[currentStep].isComplete,
+        // Next always answers: on an unfinished step it opens what's missing instead of sitting there greyed out
+        canAccept = true,
         onAcceptClick = {
-            if (isLastStep) {
+            if (!steps[currentStep].isComplete) {
+                steps[currentStep].onIncompleteAccept()
+            } else if (isLastStep) {
                 onComplete()
             } else {
                 currentStep++

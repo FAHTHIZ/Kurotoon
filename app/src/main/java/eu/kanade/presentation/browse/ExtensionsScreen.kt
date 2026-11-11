@@ -103,14 +103,14 @@ fun ExtensionScreen(
                 val msg = if (!searchQuery.isNullOrEmpty()) {
                     MR.strings.no_results_found
                 } else {
-                    MR.strings.empty_screen
+                    MR.strings.kurotoon_extensions_empty
                 }
                 EmptyScreen(
                     stringRes = msg,
                     modifier = Modifier.padding(contentPadding),
                     actions = listOf(
                         EmptyScreenAction(
-                            stringRes = MR.strings.extensionStores,
+                            stringRes = MR.strings.kurotoon_extensions_addStore,
                             icon = MaterialSymbols.Rounded.Settings,
                             onClick = { navigator.push(ExtensionStoresScreen()) },
                         ),
