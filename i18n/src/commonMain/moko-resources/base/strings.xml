@@ -1093,6 +1093,8 @@
     <string name="kurotoon.sound.title">Sound</string>
     <string name="kurotoon.extensions.empty">No extensions yet. Add an extension store to browse and install the sources you want to read from.</string>
     <string name="kurotoon.extensions.addStore">Add an extension store</string>
+    <string name="kurotoon.more.reconcile">Local chapter reconciliation</string>
+    <string name="kurotoon.more.reconcileSummary">Merge and review chapter lists from files already on this device</string>
     <string name="kurotoon.panels.title">Saved panels</string>
     <string name="kurotoon.home.panels">Your panels</string>
     <string name="kurotoon.panels.summary">Pages you kept from the reader</string>
