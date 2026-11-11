@@ -35,11 +35,11 @@
     {
       "id": "kuro",
       "kind": "avatar",
-      "name": "Kuro",
-      "description": "The KuroToon cat, as it comes.",
+      "name": "Kuru",
+      "description": "The cosmic companion of KuroToon, hugging his K coin.",
       "price": 0,
       "rarity": "common",
-      "style": "kuro"
+      "image": "kuru.webp"
     },
     {
       "id": "ring",
@@ -55,5 +55,6 @@
         "#FF4D4D"
       ]
     }
-  ]
+  ],
+  "cover": "kuru.webp"
 }
