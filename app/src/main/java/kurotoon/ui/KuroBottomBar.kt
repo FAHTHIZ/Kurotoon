@@ -28,11 +28,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.dropShadow
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -152,7 +150,6 @@ private fun KuroBottomBarEntry(
                     .align(Alignment.TopCenter)
                     .width(32.dp)
                     .height(2.dp)
-                    .dropShadow(RoundedCornerShape(50), Shadow(radius = 12.dp, spread = 2.dp, color = primary))
                     .background(primary, RoundedCornerShape(50)),
             )
         }

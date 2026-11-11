@@ -36,7 +36,6 @@ import eu.kanade.presentation.util.formatChapterNumber
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kurotoon.manga.MergedChapters
-import kurotoon.ui.KuroColors
 import kurotoon.ui.kuroCard
 import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -99,13 +98,13 @@ fun MergedChaptersCard(
         Box(
             modifier = Modifier
                 .size(36.dp)
-                .background(KuroColors.Crimson.copy(alpha = 0.14f), CircleShape),
+                .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.14f), CircleShape),
             contentAlignment = Alignment.Center,
         ) {
             Icon(
                 MaterialSymbols.Rounded.FormatListNumbered,
                 contentDescription = null,
-                tint = KuroColors.Crimson,
+                tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(20.dp),
             )
         }
@@ -196,13 +195,13 @@ private fun MergedRow(entry: MergedChapters.Entry, onClick: () -> Unit) {
             style = MaterialTheme.typography.labelSmall,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            color = if (entry.here) MaterialTheme.colorScheme.onSurfaceVariant else KuroColors.Crimson,
+            color = if (entry.here) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.primary,
             modifier = Modifier
                 .background(
                     if (entry.here) {
                         MaterialTheme.colorScheme.surfaceContainerHigh
                     } else {
-                        KuroColors.Crimson.copy(alpha = 0.12f)
+                        MaterialTheme.colorScheme.primary.copy(alpha = 0.12f)
                     },
                     RoundedCornerShape(50),
                 )

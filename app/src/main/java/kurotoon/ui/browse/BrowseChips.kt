@@ -55,7 +55,6 @@ import kurotoon.catalogue.ActiveFacet
 import kurotoon.catalogue.CatalogFacet
 import kurotoon.catalogue.CatalogFacets
 import kurotoon.catalogue.FacetState
-import kurotoon.ui.KuroColors
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Block
 import mihon.icons.materialsymbols.rounded.Check
@@ -299,13 +298,13 @@ private fun ActiveFacetRow(active: List<ActiveFacet>, actions: FacetActions) {
                 background = if (item.excluded) {
                     MaterialTheme.colorScheme.surfaceContainerHighest
                 } else {
-                    KuroColors.Crimson.copy(alpha = 0.22f)
+                    MaterialTheme.colorScheme.primary.copy(alpha = 0.22f)
                 },
             ) {
                 Text(
                     text = item.label,
                     style = MaterialTheme.typography.labelMedium,
-                    color = if (item.excluded) MaterialTheme.colorScheme.onSurfaceVariant else KuroColors.Crimson,
+                    color = MaterialTheme.colorScheme.run { if (item.excluded) onSurfaceVariant else primary },
                     textDecoration = if (item.excluded) TextDecoration.LineThrough else null,
                     fontWeight = FontWeight.SemiBold,
                     maxLines = 1,
@@ -347,7 +346,7 @@ private fun FacetTab(title: String, count: Int, selected: Boolean, onClick: () -
                     modifier = Modifier
                         .size(16.dp)
                         .clip(CircleShape)
-                        .background(KuroColors.Crimson),
+                        .background(MaterialTheme.colorScheme.primary),
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
@@ -365,7 +364,7 @@ private fun FacetTab(title: String, count: Int, selected: Boolean, onClick: () -
                 .padding(top = 3.dp)
                 .size(width = if (selected) 18.dp else 0.dp, height = 2.dp)
                 .clip(CircleShape)
-                .background(KuroColors.Crimson),
+                .background(MaterialTheme.colorScheme.primary),
         )
     }
 }
@@ -392,7 +391,7 @@ private fun ExpandToggle(expanded: Boolean, onClick: () -> Unit, modifier: Modif
 @Composable
 private fun SortPill(text: String, selected: Boolean, onClick: () -> Unit, icon: ImageVector? = null) {
     val background by animateColorAsState(
-        if (selected) KuroColors.Crimson else MaterialTheme.colorScheme.surfaceContainerHigh,
+        if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceContainerHigh,
         label = "sortPillBackground",
     )
     val content by animateColorAsState(
@@ -423,7 +422,7 @@ internal fun TagPill(
 ) {
     val background by animateColorAsState(
         when (state) {
-            FacetState.Included -> KuroColors.Crimson.copy(alpha = 0.18f)
+            FacetState.Included -> MaterialTheme.colorScheme.primary.copy(alpha = 0.18f)
             FacetState.Excluded -> MaterialTheme.colorScheme.surfaceContainerHighest
             FacetState.Off -> MaterialTheme.colorScheme.surfaceContainer
         },
@@ -431,14 +430,14 @@ internal fun TagPill(
     )
     val content by animateColorAsState(
         when (state) {
-            FacetState.Included -> KuroColors.Crimson
+            FacetState.Included -> MaterialTheme.colorScheme.primary
             else -> MaterialTheme.colorScheme.onSurfaceVariant
         },
         label = "tagPillContent",
     )
     val border by animateColorAsState(
         when (state) {
-            FacetState.Included -> KuroColors.Crimson.copy(alpha = 0.6f)
+            FacetState.Included -> MaterialTheme.colorScheme.primary.copy(alpha = 0.6f)
             FacetState.Excluded -> MaterialTheme.colorScheme.outline
             FacetState.Off -> Color.Transparent
         },
