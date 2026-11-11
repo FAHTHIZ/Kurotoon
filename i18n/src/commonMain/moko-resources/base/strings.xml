@@ -1311,4 +1311,5 @@
     <string name="kurotoon.category.unhide">Stop hiding this category</string>
     <string name="kurotoon.category.showHidden">Show hidden categories</string>
     <string name="kurotoon.category.concealHidden">Hide hidden categories again</string>
+    <string name="kurotoon.reader.chapterList">Chapters</string>
 </resources>

@@ -15,6 +15,7 @@ import eu.kanade.tachiyomi.ui.reader.setting.ReadingMode
 import mihon.icons.custommaterialsymbols.CustomMaterialSymbols
 import mihon.icons.custommaterialsymbols.rounded.CropOff
 import mihon.icons.materialsymbols.MaterialSymbols
+import mihon.icons.materialsymbols.automirroredrounded.FormatListBulleted
 import mihon.icons.materialsymbols.rounded.Crop
 import mihon.icons.materialsymbols.rounded.PlayArrow
 import mihon.icons.materialsymbols.rounded.Settings
@@ -34,6 +35,7 @@ fun ReaderBottomBar(
     autoScrolling: Boolean,
     onClickAutoScroll: () -> Unit,
     modifier: Modifier = Modifier,
+    onClickChapterList: () -> Unit = {},
 ) {
     Row(
         modifier = modifier
@@ -41,6 +43,13 @@ fun ReaderBottomBar(
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically,
     ) {
+        IconButton(onClick = onClickChapterList) {
+            Icon(
+                imageVector = MaterialSymbols.AutoMirroredRounded.FormatListBulleted,
+                contentDescription = stringResource(MR.strings.kurotoon_reader_chapterList),
+            )
+        }
+
         IconButton(onClick = onClickReadingMode) {
             Icon(
                 imageVector = readingMode.icon,

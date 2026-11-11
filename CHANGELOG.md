@@ -69,6 +69,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Release schedule (Updates > clock icon): library series laid out by the weekday they usually update on, worked out from their recent chapter dates, opening on today. An "Out today" row on Home lists today's series.
 - Long-press a cover in any Home source, saved-search or "Because you read" row to add it to your library, or remove it if it's already there.
 - Hidden categories: Library menu > Hide this category keeps a category's tab out of sight. Show hidden categories brings them back until the app restarts.
+- Chapter list inside the reader: tap the list button in the reader menu to jump to any chapter without leaving the reader.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.
