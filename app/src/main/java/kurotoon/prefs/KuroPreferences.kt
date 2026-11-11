@@ -48,6 +48,9 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
         seriesPagedScale.set(if (scale == null) rest else rest + "$mangaId=${scale.first},${scale.second}")
     }
 
+    /** Order of the installed extension lists, a [kurotoon.extension.ExtensionSort] ordinal (mihon#2744). */
+    val extensionSort = preferenceStore.getInt("kurotoon_extension_sort", 0)
+
     /** Per-source default library category as "sourceId=categoryId" (mihon#336). */
     val sourceDefaultCategories = preferenceStore.getStringSet("kurotoon_source_default_categories", emptySet())
 
