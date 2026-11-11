@@ -1272,7 +1272,7 @@
     <string name="kurotoon.shop.title">Kuro Shop</string>
     <string name="kurotoon.rewards.points">Kuro Points</string>
     <string name="kurotoon.rewards.streak">%d day streak</string>
-    <string name="kurotoon.rewards.bestStreak">Best: %d days</string>
+    <string name="kurotoon.rewards.bestStreak">Best streak: %d</string>
     <string name="kurotoon.rewards.lifetime">%s earned in total</string>
     <string name="kurotoon.rewards.section.missions">Missions</string>
     <string name="kurotoon.rewards.section.events">Events</string>
