@@ -104,6 +104,20 @@ def run(path):
                 else:
                     say(f"  !! not found: {args[0]}")
                     shot("notfound")
+            elif cmd == "tapuntil":
+                # tapuntil LABEL EXPECT [tries]: tap LABEL until EXPECT shows up (slow emulators drop taps)
+                for _ in range(int(args[2]) if len(args) > 2 else 5):
+                    if find(args[1]):
+                        break
+                    pos = find(args[0], exact=True) or find(args[0])
+                    if pos:
+                        adb("shell", "input", "tap", str(pos[0]), str(pos[1]))
+                    time.sleep(4)
+                say("  found" if find(args[1]) else f"  !! never reached {args[1]}")
+            elif cmd == "tapif":
+                pos = find(args[0], exact=True) or find(args[0])
+                if pos:
+                    adb("shell", "input", "tap", str(pos[0]), str(pos[1])); time.sleep(2)
             elif cmd == "tapxy":
                 adb("shell", "input", "tap", args[0], args[1]); time.sleep(1.5)
             elif cmd == "long":
