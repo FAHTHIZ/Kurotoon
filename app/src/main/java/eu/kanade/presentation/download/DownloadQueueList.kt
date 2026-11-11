@@ -55,7 +55,6 @@ import eu.kanade.tachiyomi.ui.download.DownloadQueueSection
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
-import kurotoon.ui.KuroColors
 import kurotoon.ui.KuroSectionHeader
 import kurotoon.ui.kuroCard
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -581,7 +580,7 @@ private fun DownloadSummaryCard(sections: List<DownloadQueueSection>) {
                     .fillMaxWidth()
                     .padding(top = 6.dp)
                     .height(6.dp),
-                color = KuroColors.Crimson,
+                color = MaterialTheme.colorScheme.primary,
                 strokeCap = StrokeCap.Round,
                 drawStopIndicator = {},
             )

@@ -32,7 +32,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalHapticFeedback
@@ -89,7 +88,6 @@ internal fun UpdatesLastUpdatedHeader(
     onCheckNow: (() -> Unit)? = null,
 ) {
     val primary = MaterialTheme.colorScheme.primary
-    val tertiary = MaterialTheme.colorScheme.tertiary
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -102,7 +100,7 @@ internal fun UpdatesLastUpdatedHeader(
             modifier = Modifier
                 .size(44.dp)
                 .clip(RoundedCornerShape(14.dp))
-                .background(Brush.linearGradient(listOf(primary, tertiary))),
+                .background(primary),
             contentAlignment = Alignment.Center,
         ) {
             Icon(

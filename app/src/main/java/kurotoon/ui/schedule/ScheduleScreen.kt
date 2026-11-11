@@ -46,7 +46,6 @@ import kotlinx.datetime.isoDayNumber
 import kotlinx.datetime.toJavaDayOfWeek
 import kurotoon.schedule.ScheduledSeries
 import kurotoon.schedule.WeeklySchedule
-import kurotoon.ui.KuroColors
 import tachiyomi.domain.manga.model.asMangaCover
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold
@@ -137,7 +136,7 @@ private fun DayTabLabel(day: DayOfWeek, isToday: Boolean, count: Int) {
                 modifier = Modifier
                     .padding(end = 6.dp)
                     .size(6.dp)
-                    .background(KuroColors.Crimson, CircleShape),
+                    .background(MaterialTheme.colorScheme.primary, CircleShape),
             )
         }
         Text(
@@ -216,7 +215,7 @@ internal fun ScheduleCover(entry: ScheduledSeries, today: LocalDate, onClick: (L
                     modifier = Modifier
                         .align(Alignment.TopEnd)
                         .padding(6.dp)
-                        .background(KuroColors.Crimson, RoundedCornerShape(6.dp))
+                        .background(MaterialTheme.colorScheme.primary, RoundedCornerShape(6.dp))
                         .padding(horizontal = 6.dp, vertical = 1.dp),
                 )
             }
@@ -238,7 +237,7 @@ internal fun ScheduleCover(entry: ScheduledSeries, today: LocalDate, onClick: (L
             },
             style = MaterialTheme.typography.labelSmall,
             fontWeight = if (since == 0) FontWeight.Bold else FontWeight.Normal,
-            color = if (since == 0) KuroColors.Crimson else MaterialTheme.colorScheme.onSurfaceVariant,
+            color = if (since == 0) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
             maxLines = 1,
         )
     }
