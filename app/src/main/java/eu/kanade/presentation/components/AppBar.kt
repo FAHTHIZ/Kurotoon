@@ -38,7 +38,6 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
@@ -307,13 +306,14 @@ fun SearchToolbar(
             val keyboardController = LocalSoftwareKeyboardController.current
             val focusManager = LocalFocusManager.current
 
-            val searchAndClearFocus: () -> Unit = f@{
+            // Enter always puts the keyboard away. Focus isn't moved on afterwards: the next focusable was often
+            // this field again, which reopened the keyboard, and coming back from a series restored it too
+            // (mihon#3124)
+            val searchAndClearFocus: () -> Unit = {
                 val query = searchFieldState.text.toString()
-                if (query.isBlank()) return@f
-                onSearch(query)
+                if (query.isNotBlank()) onSearch(query)
                 focusManager.clearFocus()
                 keyboardController?.hide()
-                focusManager.moveFocus(FocusDirection.Next)
             }
 
             BasicTextField(

@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Fixed
+- Search bars put the keyboard away on Enter, and it no longer pops back up after leaving a series opened from the results ([mihon#3124](https://github.com/mihonapp/mihon/issues/3124))
 - Chapters hidden by a filter (e.g. Unread) are no longer reported as missing chapters ([mihon#87](https://github.com/mihonapp/mihon/issues/87))
 - Adding a series to the library from the reader now links enhanced trackers, like the series page does
 - Rotating the screen no longer cancels the sleep timer or stops auto-scroll
