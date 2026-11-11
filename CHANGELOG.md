@@ -66,6 +66,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Updates folds several same-day chapters of one series into a single row with a "+N more" pill to expand it (toggle in the Updates filter sheet).
 - Pull down on Home to reload every row. Hiding the "Because you read" section now also skips its searches.
 - "Browse on all sources" moves sources with results to the top as they load.
+- Release schedule (Updates > clock icon): library series laid out by the weekday they usually update on, worked out from their recent chapter dates, opening on today. An "Out today" row on Home lists today's series.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.
