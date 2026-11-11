@@ -22,7 +22,7 @@ and tells you what's out today. Private by default: no accounts, no ads, no trac
 **[Get started](#get-started)** ·
 **[Guides](docs/)**
 
-<img src=".github/assets/hero.jpg" alt="KuroToon on a phone: Home, a Webtoons.com series, the reader with its soundtrack, and the library" width="100%">
+<img src=".github/assets/hero.jpg" alt="KuroToon: Home, browsing Webtoons.com, the Sound sheet, a chapter with episode music playing, and a series page" width="100%">
 
 <sub>Every picture on this page is a real screenshot of the current build, taken on an Android emulator with the
 Webtoons.com, MangaDex and Asura Scans sources installed from a public extension store.</sub>
@@ -52,8 +52,10 @@ calendar and music while you read. KuroToon is the first to give you both, plus 
 | Home | Browse a source | Series page |
 | :---: | :---: | :---: |
 | <img src=".github/assets/screenshots/home.jpg" alt="Home feed with a featured title and shortcuts" width="250"> | <img src=".github/assets/screenshots/browse.jpg" alt="Browsing Webtoons.com" width="250"> | <img src=".github/assets/screenshots/series.jpg" alt="Angel Wings series page with music-marked episodes" width="250"> |
-| **The reader** | **Keep a panel** | **Continue reading** |
-| <img src=".github/assets/screenshots/reader.jpg" alt="Reading Angel Wings in long-strip mode with clock and battery" width="250"> | <img src=".github/assets/screenshots/keep_panel.jpg" alt="Page actions with Keep panel" width="250"> | <img src=".github/assets/screenshots/home_continue.jpg" alt="Continue reading and source rows on Home" width="250"> |
+| **Episode music playing** | **Reader menu** | **Soundtrack and sleep timer** |
+| <img src=".github/assets/screenshots/reader.jpg" alt="Reading Angel Wings with the music badge on" width="250"> | <img src=".github/assets/screenshots/reader_menu.jpg" alt="Reader menu with chapters left" width="250"> | <img src=".github/assets/screenshots/sound.jpg" alt="Sound sheet: episode music, ambience, sleep timer" width="250"> |
+| **Keep a panel** | **Long-strip reading** | **Continue reading** |
+| <img src=".github/assets/screenshots/keep_panel.jpg" alt="Page actions with Keep panel" width="250"> | <img src=".github/assets/screenshots/strip.jpg" alt="Long-strip reading with clock and battery" width="250"> | <img src=".github/assets/screenshots/home_continue.jpg" alt="Continue reading and source rows on Home" width="250"> |
 | **Library** | **Updates** | **Me** |
 | <img src=".github/assets/screenshots/library.jpg" alt="Library" width="250"> | <img src=".github/assets/screenshots/updates.jpg" alt="Updates with release schedule" width="250"> | <img src=".github/assets/screenshots/me.jpg" alt="Me tab with profile and stats" width="250"> |
 | **Sources** | **Extensions** | **First run** |
