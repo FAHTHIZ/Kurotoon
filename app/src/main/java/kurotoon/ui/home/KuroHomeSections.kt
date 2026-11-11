@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -24,6 +25,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
@@ -52,17 +54,27 @@ import androidx.compose.ui.util.lerp
 import coil3.compose.AsyncImage
 import eu.kanade.presentation.manga.components.MangaCover
 import kotlinx.coroutines.delay
+import kurotoon.ui.KuroMetaLine
+import kurotoon.ui.KuroPrimaryButton
+import kurotoon.ui.KuroRankNumeral
+import kurotoon.ui.KuroTag
+import kurotoon.ui.kuroBottomScrim
+import kurotoon.ui.onArtwork
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.AutoAwesome
 import mihon.icons.materialsymbols.rounded.Bookmark
 import mihon.icons.materialsymbols.rounded.LocalFireDepartment
+import mihon.icons.materialsymbols.roundedfilled.PlayArrow
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.manga.model.asMangaCover
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 import kotlin.math.absoluteValue
 
-/** A source's top title, presented like the web app's hero banner. */
+/**
+ * A source's top title as a full-bleed artwork banner, the way WEBTOON and MANGA Plus open their home tab: the
+ * cover fills the card, ink fades up from the bottom, and the title, tags and one Read button sit on the art.
+ */
 @Composable
 internal fun HomeHero(
     sourceName: String,
@@ -70,91 +82,54 @@ internal fun HomeHero(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val shape = RoundedCornerShape(24.dp)
+    val shape = RoundedCornerShape(28.dp)
     Box(
         modifier = modifier
             .fillMaxWidth()
+            .aspectRatio(0.8f)
             .clip(shape)
             .background(MaterialTheme.colorScheme.surfaceContainer)
             .clickable(onClick = onClick),
     ) {
         AsyncImage(
             model = manga.asMangaCover(),
-            contentDescription = null,
+            contentDescription = manga.title,
             contentScale = ContentScale.Crop,
+            modifier = Modifier.matchParentSize(),
+        )
+        Box(Modifier.matchParentSize().kuroBottomScrim(start = 0.3f, strength = 0.96f))
+        Column(
             modifier = Modifier
-                .matchParentSize()
-                .blur(32.dp)
-                .alpha(0.45f),
-        )
-        Box(
-            Modifier
-                .matchParentSize()
-                .background(
-                    Brush.verticalGradient(
-                        listOf(Color.Transparent, MaterialTheme.colorScheme.surface.copy(alpha = 0.7f)),
-                    ),
-                ),
-        )
-        Row(
-            modifier = Modifier.padding(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
+                .align(Alignment.BottomStart)
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp, vertical = 20.dp),
         ) {
-            MangaCover.Book(
-                data = manga.asMangaCover(),
-                shape = RoundedCornerShape(12.dp),
-                modifier = Modifier.width(96.dp),
-                contentDescription = manga.title,
+            KuroTag(
+                text = stringResource(MR.strings.kurotoon_home_topOn, sourceName),
+                container = Color.White.copy(alpha = 0.18f),
+                content = Color.White,
             )
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .height(144.dp),
-                verticalArrangement = Arrangement.Bottom,
-            ) {
-                Text(
-                    text = stringResource(MR.strings.kurotoon_home_topOn, sourceName),
-                    style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
+            Text(
+                text = manga.title,
+                style = onArtwork(MaterialTheme.typography.headlineMedium),
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.padding(top = 10.dp),
+            )
+            val tags = manga.genre.orEmpty().take(3)
+            if (tags.isNotEmpty()) {
+                KuroMetaLine(
+                    parts = tags,
+                    color = Color.White.copy(alpha = 0.78f),
+                    modifier = Modifier.padding(top = 6.dp),
                 )
-                Text(
-                    text = manga.title,
-                    fontSize = 20.sp,
-                    lineHeight = 24.sp,
-                    fontWeight = FontWeight.Bold,
-                    maxLines = 3,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.padding(top = 8.dp),
-                )
-                val tags = manga.genre.orEmpty().take(4)
-                if (tags.isNotEmpty()) {
-                    Text(
-                        text = tags.joinToString(" • "),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.padding(top = 4.dp),
-                    )
-                }
-                Box(
-                    modifier = Modifier
-                        .padding(top = 12.dp)
-                        .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.primary)
-                        .clickable(onClick = onClick)
-                        .padding(horizontal = 20.dp, vertical = 8.dp),
-                ) {
-                    Text(
-                        text = stringResource(MR.strings.kurotoon_home_readNow),
-                        color = MaterialTheme.colorScheme.onPrimary,
-                        style = MaterialTheme.typography.labelMedium,
-                        fontWeight = FontWeight.Bold,
-                    )
-                }
             }
+            KuroPrimaryButton(
+                text = stringResource(MR.strings.kurotoon_home_readNow),
+                icon = MaterialSymbols.RoundedFilled.PlayArrow,
+                onClick = onClick,
+                modifier = Modifier.padding(top = 16.dp),
+            )
         }
     }
 }
@@ -188,8 +163,8 @@ internal fun HomeHeroCarousel(
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         HorizontalPager(
             state = pagerState,
-            contentPadding = PaddingValues(horizontal = 16.dp),
-            pageSpacing = 12.dp,
+            contentPadding = PaddingValues(horizontal = 24.dp),
+            pageSpacing = 10.dp,
             key = { heroes[it].second.url + heroes[it].first.sourceId },
         ) { page ->
             val (row, manga) = heroes[page]
@@ -199,17 +174,17 @@ internal fun HomeHeroCarousel(
                 onClick = { onClick(manga) },
                 modifier = Modifier.graphicsLayer {
                     val offset = pagerState.getOffsetDistanceInPages(page).absoluteValue.coerceIn(0f, 1f)
-                    val scale = lerp(1f, 0.92f, offset)
+                    val scale = lerp(1f, 0.9f, offset)
                     scaleX = scale
                     scaleY = scale
-                    alpha = lerp(1f, 0.55f, offset)
+                    alpha = lerp(1f, 0.45f, offset)
                 },
             )
         }
         if (heroes.size > 1) {
             Row(
-                modifier = Modifier.padding(top = 10.dp),
-                horizontalArrangement = Arrangement.spacedBy(6.dp),
+                modifier = Modifier.padding(top = 12.dp),
+                horizontalArrangement = Arrangement.spacedBy(5.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 val primary = MaterialTheme.colorScheme.primary
@@ -217,7 +192,7 @@ internal fun HomeHeroCarousel(
                 repeat(heroes.size) { i ->
                     val selected = pagerState.currentPage == i
                     val width by animateDpAsState(
-                        targetValue = if (selected) 20.dp else 6.dp,
+                        targetValue = if (selected) 22.dp else 5.dp,
                         animationSpec = spring(dampingRatio = 0.7f, stiffness = Spring.StiffnessMediumLow),
                         label = "heroDot",
                     )
@@ -227,7 +202,7 @@ internal fun HomeHeroCarousel(
                     )
                     Box(
                         Modifier
-                            .height(6.dp)
+                            .height(5.dp)
                             .width(width)
                             .clip(CircleShape)
                             .background(color),
@@ -350,7 +325,7 @@ internal fun HomeSourceRow(
                 items(6) {
                     Box(
                         Modifier
-                            .width(112.dp)
+                            .width(HomeCoverWidth)
                             .height(168.dp)
                             .background(MaterialTheme.colorScheme.surfaceContainerHigh, RoundedCornerShape(12.dp)),
                     )
@@ -360,8 +335,10 @@ internal fun HomeSourceRow(
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                items(row.items.distinctBy { it.id }, key = { it.id }) { manga ->
-                    Column(modifier = Modifier.width(112.dp)) {
+                // Popular rows read as a ranked Top list, like MANGA Plus' Hottest shelf
+                val ranked = !row.latest && row.pickTag == null && !saved && showListing
+                itemsIndexed(row.items.distinctBy { it.id }, key = { _, it -> it.id }) { index, manga ->
+                    Column(modifier = Modifier.width(HomeCoverWidth)) {
                         Box {
                             MangaCover.Book(
                                 data = manga.asMangaCover(),
@@ -374,6 +351,15 @@ internal fun HomeSourceRow(
                                         onLongClick = onMangaLongClick?.let { { it(manga) } },
                                     ),
                             )
+                            if (ranked && index < 10) {
+                                Box(
+                                    Modifier
+                                        .matchParentSize()
+                                        .clip(RoundedCornerShape(12.dp))
+                                        .kuroBottomScrim(start = 0.55f, strength = 0.7f),
+                                )
+                                KuroRankNumeral(rank = index + 1, modifier = Modifier.padding(start = 6.dp))
+                            }
                             if (manga.favorite) {
                                 Icon(
                                     MaterialSymbols.Rounded.Bookmark,

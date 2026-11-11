@@ -69,6 +69,7 @@ private fun BaseTachiyomiTheme(
             if (appTheme == AppTheme.DEFAULT) KuroCosmetics.tint(scheme, isDark) else scheme
         },
         typography = KuroTypography,
+        shapes = KuroShapes,
         content = content,
     )
 }

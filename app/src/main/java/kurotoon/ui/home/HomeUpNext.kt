@@ -28,7 +28,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import eu.kanade.presentation.manga.components.MangaCover
 import eu.kanade.presentation.util.formatChapterNumber
@@ -52,7 +51,7 @@ internal fun HomeUpNext(
     onResume: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val shape = RoundedCornerShape(24.dp)
+    val shape = RoundedCornerShape(28.dp)
     Box(
         modifier = modifier
             .padding(horizontal = 16.dp)
@@ -67,15 +66,18 @@ internal fun HomeUpNext(
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .matchParentSize()
-                .blur(40.dp)
-                .alpha(0.5f),
+                .blur(28.dp)
+                .alpha(0.7f),
         )
         Box(
             Modifier
                 .matchParentSize()
                 .background(
-                    Brush.verticalGradient(
-                        listOf(Color.Transparent, MaterialTheme.colorScheme.surface.copy(alpha = 0.75f)),
+                    Brush.horizontalGradient(
+                        listOf(
+                            MaterialTheme.colorScheme.surface.copy(alpha = 0.35f),
+                            MaterialTheme.colorScheme.surface.copy(alpha = 0.85f),
+                        ),
                     ),
                 ),
         )
@@ -99,13 +101,11 @@ internal fun HomeUpNext(
                     text = stringResource(MR.strings.kurotoon_home_upNext),
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.primary,
-                    fontWeight = FontWeight.SemiBold,
+                    fontWeight = FontWeight.ExtraBold,
                 )
                 Text(
                     text = item.title,
-                    fontSize = 22.sp,
-                    lineHeight = 26.sp,
-                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.headlineSmall,
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.padding(top = 6.dp),
@@ -134,7 +134,7 @@ internal fun HomeUpNext(
                         .clip(CircleShape)
                         .background(MaterialTheme.colorScheme.primary)
                         .clickable(onClick = onResume)
-                        .padding(start = 12.dp, end = 18.dp, top = 8.dp, bottom = 8.dp),
+                        .padding(start = 14.dp, end = 20.dp, top = 10.dp, bottom = 10.dp),
                 ) {
                     Icon(
                         imageVector = MaterialSymbols.Rounded.PlayArrow,

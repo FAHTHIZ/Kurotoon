@@ -615,7 +615,11 @@ class KuroScreenshots {
                 LocalInspectionMode provides true,
                 LocalAsyncImagePreviewHandler provides covers,
             ) {
-                MaterialTheme(colorScheme = KuroToonColorScheme.getColorScheme(isDark = true, isAmoled = false, true)) {
+                MaterialTheme(
+                    colorScheme = KuroToonColorScheme.getColorScheme(isDark = true, isAmoled = false, true),
+                    typography = eu.kanade.presentation.theme.KuroTypography,
+                    shapes = eu.kanade.presentation.theme.KuroShapes,
+                ) {
                     Surface(
                         modifier = Modifier
                             .fillMaxWidth()
