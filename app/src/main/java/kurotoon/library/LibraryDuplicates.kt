@@ -6,7 +6,7 @@ import java.text.Normalizer
 /** Series saved more than once, usually from different sources, found by their titles. */
 object LibraryDuplicates {
 
-    private val BRACKETS = Regex("""\([^)]*\)|\[[^]]*]|\{[^}]*}""")
+    private val BRACKETS = Regex("""\([^)]*\)|\[[^\]]*\]|\{[^}]*\}""")
     private val MARKS = Regex("""\p{M}+""")
     private val NOT_WORD = Regex("""[^\p{L}\p{N}]+""")
 
