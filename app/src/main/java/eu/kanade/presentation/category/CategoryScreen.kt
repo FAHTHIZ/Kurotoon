@@ -37,6 +37,8 @@ fun CategoryScreen(
     onClickDelete: (Category) -> Unit,
     onChangeOrder: (Category, Int) -> Unit,
     navigateUp: () -> Unit,
+    incognitoIds: Set<String> = emptySet(),
+    onToggleIncognito: (Category, Boolean) -> Unit = { _, _ -> },
 ) {
     val lazyListState = rememberLazyListState()
     Scaffold(
@@ -69,6 +71,8 @@ fun CategoryScreen(
             onClickRename = onClickRename,
             onClickDelete = onClickDelete,
             onChangeOrder = onChangeOrder,
+            incognitoIds = incognitoIds,
+            onToggleIncognito = onToggleIncognito,
         )
     }
 }
@@ -81,6 +85,8 @@ private fun CategoryContent(
     onClickRename: (Category) -> Unit,
     onClickDelete: (Category) -> Unit,
     onChangeOrder: (Category, Int) -> Unit,
+    incognitoIds: Set<String>,
+    onToggleIncognito: (Category, Boolean) -> Unit,
 ) {
     val categoriesState = remember { categories.toMutableStateList() }
     val reorderableState = rememberReorderableLazyListState(lazyListState, paddingValues) { from, to ->
@@ -114,6 +120,8 @@ private fun CategoryContent(
                     category = category,
                     onRename = { onClickRename(category) },
                     onDelete = { onClickDelete(category) },
+                    incognito = category.id.toString() in incognitoIds,
+                    onToggleIncognito = { onToggleIncognito(category, it) },
                 )
             }
         }

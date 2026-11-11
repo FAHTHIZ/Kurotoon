@@ -358,7 +358,11 @@ class ReaderViewModel(
             try {
                 val manga = getManga.await(mangaId) ?: error("Requested manga of id $mangaId not found")
                 val source = sourceManager.getOrStub(manga.source)
-                incognitoMode = getIncognitoState.await(manga.source)
+                incognitoMode = getIncognitoState.await(manga.source) || run {
+                    val incognitoCategories = kuroPreferences.incognitoCategories.get()
+                    incognitoCategories.isNotEmpty() &&
+                        getCategories.await(manga.id).any { it.id.toString() in incognitoCategories }
+                }
                 mutableState.update { it.copy(manga = manga, source = source) }
                 if (chapterId == -1L) chapterId = initialChapterId
 
