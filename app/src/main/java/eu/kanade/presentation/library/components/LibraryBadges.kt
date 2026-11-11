@@ -47,6 +47,18 @@ internal fun LanguageBadge(
     }
 }
 
+/** The source's name, shortened so it doesn't cover the art. Komikku-style, off by default. */
+@Composable
+internal fun SourceBadge(name: String) {
+    if (name.isNotEmpty()) {
+        Badge(
+            text = if (name.length > 12) name.take(11) + "…" else name,
+            color = MaterialTheme.colorScheme.secondary,
+            textColor = MaterialTheme.colorScheme.onSecondary,
+        )
+    }
+}
+
 @PreviewLightDark
 @Composable
 private fun BadgePreview() {

@@ -19,6 +19,7 @@ import eu.kanade.presentation.components.TabbedDialog
 import eu.kanade.presentation.components.TabbedDialogPaddings
 import eu.kanade.tachiyomi.ui.library.LibrarySettingsViewModel
 import eu.kanade.tachiyomi.util.system.isReleaseBuildType
+import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Refresh
 import tachiyomi.core.common.preference.TriState
@@ -280,6 +281,11 @@ private fun ColumnScope.DisplayPage(
     CheckboxItem(
         label = stringResource(MR.strings.action_display_language_badge),
         pref = viewModel.libraryPreferences.languageBadge,
+    )
+    val context = androidx.compose.ui.platform.LocalContext.current
+    CheckboxItem(
+        label = stringResource(MR.strings.kurotoon_library_sourceBadge),
+        pref = remember { context.appGraph.kuroPreferences.sourceBadge },
     )
     CheckboxItem(
         label = stringResource(MR.strings.action_display_show_continue_reading_button),

@@ -69,5 +69,8 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
     /** How the library splits into tabs, see [kurotoon.library.LibraryGroupBy]. */
     val libraryGroupBy = preferenceStore.getString("kurotoon_library_group_by", "category")
 
+    /** Shows the source's name on library covers. */
+    val sourceBadge = preferenceStore.getBoolean("kurotoon_source_badge", false)
+
     val updatesGroupSeries = preferenceStore.getBoolean("kurotoon_updates_group_series", true)
 }

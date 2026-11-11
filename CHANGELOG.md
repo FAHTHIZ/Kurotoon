@@ -71,6 +71,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Hidden categories: Library menu > Hide this category keeps a category's tab out of sight. Show hidden categories brings them back until the app restarts.
 - Chapter list inside the reader: tap the list button in the reader menu to jump to any chapter without leaving the reader.
 - Group library by: Library menu > Group library by switches the tabs from your categories to one tab per source, one per publishing status, or a single list.
+- Source badge: Library settings > Display > Source name shows which source each cover comes from.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.
