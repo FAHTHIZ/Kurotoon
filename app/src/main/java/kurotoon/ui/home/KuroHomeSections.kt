@@ -9,6 +9,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.collectIsDraggedAsState
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
@@ -287,6 +288,8 @@ internal fun HomeSourceRow(
     onMangaClick: (Manga) -> Unit,
     onRetry: () -> Unit,
     onToggleLatest: () -> Unit = {},
+    /** Long-press on a cover; null keeps covers tap-only. */
+    onMangaLongClick: ((Manga) -> Unit)? = null,
     /** Off where the row's listing is fixed, e.g. one tag browsed on every source. */
     showListing: Boolean = true,
     modifier: Modifier = Modifier,
@@ -429,7 +432,12 @@ internal fun HomeSourceRow(
                                 data = manga.asMangaCover(),
                                 shape = RoundedCornerShape(12.dp),
                                 contentDescription = manga.title,
-                                onClick = { onMangaClick(manga) },
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(12.dp))
+                                    .combinedClickable(
+                                        onClick = { onMangaClick(manga) },
+                                        onLongClick = onMangaLongClick?.let { { it(manga) } },
+                                    ),
                             )
                             if (manga.favorite) {
                                 Icon(

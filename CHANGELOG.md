@@ -67,6 +67,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Pull down on Home to reload every row. Hiding the "Because you read" section now also skips its searches.
 - "Browse on all sources" moves sources with results to the top as they load.
 - Release schedule (Updates > clock icon): library series laid out by the weekday they usually update on, worked out from their recent chapter dates, opening on today. An "Out today" row on Home lists today's series.
+- Long-press a cover in any Home source, saved-search or "Because you read" row to add it to your library, or remove it if it's already there.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.

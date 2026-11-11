@@ -82,6 +82,7 @@ data object KuroHomeTab : Tab {
             },
             onRetryRow = viewModel::retry,
             onToggleLatest = viewModel::toggleLatest,
+            onMangaLongClick = viewModel::toggleLibrary,
             onUpdatesClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.Updates) } },
             onScheduleClick = { navigator.push(ScheduleScreen()) },
             onResumeClick = viewModel::resume,
@@ -92,6 +93,17 @@ data object KuroHomeTab : Tab {
             hidden = hidden,
             onRefresh = viewModel::refresh,
         )
+
+        LaunchedEffect(Unit) {
+            viewModel.libraryToggled.collect { (title, added) ->
+                snackbarHostState.showSnackbar(
+                    context.stringResource(
+                        if (added) MR.strings.kurotoon_home_addedToLibrary else MR.strings.kurotoon_home_removedFromLibrary,
+                        title,
+                    ),
+                )
+            }
+        }
 
         LaunchedEffect(Unit) {
             viewModel.openChapter.collect { chapter ->

@@ -1305,4 +1305,6 @@
     <string name="kurotoon.schedule.homeTitle">Out today</string>
     <string name="kurotoon.schedule.homeSummary">Series that usually update on %s</string>
     <string name="kurotoon.section.schedule">Out today</string>
+    <string name="kurotoon.home.addedToLibrary">Added “%s” to your library</string>
+    <string name="kurotoon.home.removedFromLibrary">Removed “%s” from your library</string>
 </resources>

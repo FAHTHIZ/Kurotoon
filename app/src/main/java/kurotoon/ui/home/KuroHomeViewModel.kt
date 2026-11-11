@@ -72,6 +72,7 @@ class KuroHomeViewModel(
     getUpdates: GetUpdates,
     private val getLibraryManga: GetLibraryManga,
     scheduleLoader: ScheduleLoader,
+    private val updateManga: eu.kanade.domain.manga.interactor.UpdateManga,
 ) : ViewModel() {
 
     /** Unread chapters fetched lately, one entry per series, newest first. */
@@ -279,6 +280,24 @@ class KuroHomeViewModel(
         val urls = items.map { it.url }
         pref.set(SearchFeed.encode(SearchFeed.remember(seen, urls)))
         return SearchFeed.fresh(seen, urls)
+    }
+
+    private val libraryEvents = Channel<Pair<String, Boolean>>(Channel.UNLIMITED)
+
+    /** Title and new library state after a long-press toggled it, for a snackbar. */
+    val libraryToggled: Flow<Pair<String, Boolean>> = libraryEvents.receiveAsFlow()
+
+    /** Long-press on a cover: save it to the library, or take it out if it's already there. */
+    fun toggleLibrary(manga: Manga) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val favorite = !manga.favorite
+            if (!updateManga.awaitUpdateFavorite(manga.id, favorite)) return@launch
+            val swap: (SourceRow) -> SourceRow = { row ->
+                row.copy(items = row.items?.map { if (it.id == manga.id) it.copy(favoriteAt = if (favorite) kotlin.time.Clock.System.now() else null) else it })
+            }
+            listOf(rows, savedRows, pickRows).forEach { flow -> flow.update { list -> list.map(swap) } }
+            libraryEvents.send(manga.title to favorite)
+        }
     }
 
     private fun updateRow(key: String, block: (SourceRow) -> SourceRow) {
