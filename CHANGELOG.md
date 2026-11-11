@@ -20,6 +20,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Saved pages can go to any folder you pick, including one on an SD card, in Settings > Reader ([mihon#295](https://github.com/mihonapp/mihon/issues/295))
 - Sort installed extensions by name, most recently installed or updated, or language ([mihon#2744](https://github.com/mihonapp/mihon/issues/2744))
 - Paged readers can keep a scale type and zoom start just for one series ([mihon#1622](https://github.com/mihonapp/mihon/issues/1622))
 - Hide series you never want to see: select them while browsing and tap Hide; they stay out of Browse and Search until unhidden in Settings > Browse ([mihon#2322](https://github.com/mihonapp/mihon/issues/2322))

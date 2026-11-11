@@ -51,6 +51,9 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
     /** Order of the installed extension lists, a [kurotoon.extension.ExtensionSort] ordinal (mihon#2744). */
     val extensionSort = preferenceStore.getInt("kurotoon_extension_sort", 0)
 
+    /** A folder (tree URI) saved pages go to instead of Pictures; empty for Pictures (mihon#295). */
+    val pageSaveFolder = preferenceStore.getString("kurotoon_page_save_folder", "")
+
     /** Per-source default library category as "sourceId=categoryId" (mihon#336). */
     val sourceDefaultCategories = preferenceStore.getStringSet("kurotoon_source_default_categories", emptySet())
 

@@ -491,6 +491,7 @@ object SettingsReaderScreen : SearchableSettings {
                     title = stringResource(MR.strings.pref_create_folder_per_manga),
                     subtitle = stringResource(MR.strings.pref_create_folder_per_manga_summary),
                 ),
+                kurotoon.ui.reader.pageSaveFolderPreference(),
             ),
         )
     }

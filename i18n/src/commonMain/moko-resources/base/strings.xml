@@ -1213,6 +1213,9 @@
     <string name="kurotoon_reader_clockBatterySummary">Show the clock and battery level next to the page number, since the reader hides the status bar</string>
     <string name="kurotoon_reader_resumedAt">Picked up on page %d</string>
     <string name="kurotoon_reader_startOver">Start over</string>
+    <string name="kurotoon_reader_saveFolder">Save pages to</string>
+    <string name="kurotoon_reader_saveFolderDefault">Pictures folder. Tap to pick another folder, such as one on an SD card</string>
+    <string name="kurotoon_reader_saveFolderCustom">%s. Tap to go back to the Pictures folder</string>
     <string name="kurotoon_extensions_sort">Sort installed</string>
     <string name="kurotoon_extensions_sortName">Name</string>
     <string name="kurotoon_extensions_sortRecent">Recently installed or updated</string>
