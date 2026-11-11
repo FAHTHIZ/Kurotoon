@@ -41,7 +41,6 @@ import eu.kanade.presentation.more.settings.screen.about.AboutScreen
 import eu.kanade.presentation.more.settings.widget.TextPreferenceWidget
 import eu.kanade.presentation.util.LocalBackPress
 import eu.kanade.presentation.util.Screen
-import kurotoon.ui.KuroColors
 import kurotoon.ui.kuroCard
 import kurotoon.ui.profile.MeGroup
 import kurotoon.ui.profile.MeRow
@@ -250,7 +249,6 @@ object SettingsMainScreen : Screen() {
         val formatSubtitle: @Composable () -> String? = { subtitleRes?.let { stringResource(it) } },
         val icon: ImageVector,
         val screen: VoyagerScreen,
-        val tint: () -> Color = { KuroColors.Crimson },
     )
 
     private val items = listOf(
@@ -259,63 +257,54 @@ object SettingsMainScreen : Screen() {
             subtitleRes = MR.strings.pref_appearance_summary,
             icon = MaterialSymbols.Rounded.Palette,
             screen = SettingsAppearanceScreen,
-            tint = { KuroColors.Galaxy },
         ),
         Item(
             titleRes = MR.strings.pref_category_library,
             subtitleRes = MR.strings.pref_library_summary,
             icon = MaterialSymbols.Rounded.CollectionsBookmark,
             screen = SettingsLibraryScreen,
-            tint = { KuroColors.Crimson },
         ),
         Item(
             titleRes = MR.strings.pref_category_reader,
             subtitleRes = MR.strings.pref_reader_summary,
             icon = MaterialSymbols.AutoMirroredRounded.ChromeReaderMode,
             screen = SettingsReaderScreen,
-            tint = { KuroColors.Aurora },
         ),
         Item(
             titleRes = MR.strings.pref_category_downloads,
             subtitleRes = MR.strings.pref_downloads_summary,
             icon = MaterialSymbols.Rounded.Download,
             screen = SettingsDownloadScreen,
-            tint = { KuroColors.Aurora },
         ),
         Item(
             titleRes = MR.strings.pref_category_tracking,
             subtitleRes = MR.strings.pref_tracking_summary,
             icon = MaterialSymbols.Rounded.Sync,
             screen = SettingsTrackingScreen,
-            tint = { KuroColors.Flame },
         ),
         Item(
             titleRes = MR.strings.browse,
             subtitleRes = MR.strings.pref_browse_summary,
             icon = MaterialSymbols.Rounded.Explore,
             screen = SettingsBrowseScreen,
-            tint = { KuroColors.Gold },
         ),
         Item(
             titleRes = MR.strings.label_data_storage,
             subtitleRes = MR.strings.pref_backup_summary,
             icon = MaterialSymbols.Rounded.Storage,
             screen = SettingsDataScreen,
-            tint = { KuroColors.Aurora },
         ),
         Item(
             titleRes = MR.strings.pref_category_security,
             subtitleRes = MR.strings.pref_security_summary,
             icon = MaterialSymbols.Rounded.Security,
             screen = SettingsSecurityScreen,
-            tint = { KuroColors.Flame },
         ),
         Item(
             titleRes = MR.strings.pref_category_advanced,
             subtitleRes = MR.strings.pref_advanced_summary,
             icon = MaterialSymbols.Rounded.Code,
             screen = SettingsAdvancedScreen,
-            tint = { KuroColors.Galaxy },
         ),
         Item(
             titleRes = MR.strings.pref_category_about,
@@ -324,7 +313,6 @@ object SettingsMainScreen : Screen() {
             },
             icon = MaterialSymbols.Rounded.Info,
             screen = AboutScreen,
-            tint = { KuroColors.Crimson },
         ),
     )
 }
