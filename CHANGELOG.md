@@ -5,7 +5,11 @@ All notable changes to KuroToon are documented here. Versions follow
 
 ## [Unreleased]
 
+### Fixed
+- Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
+
 ### Added
+- Reader clock and battery: the time and battery level sit next to the page number, since the reader hides the status bar (Settings > Reader > Time and battery)
 - Long-strip chapters reopen on the exact panel you left, not the top of a page that can be many screens tall
 - Sound overhaul: episode music now plays through ExoPlayer (reliable HLS on every phone), crossfades between tracks, is buffered two panels early so it lands on its panel, retries broken streams with a fresh token, and is cached so downloaded chapters play their music offline. Calls and other apps pause it (and a short alert resumes it), unplugging headphones never blasts the speaker, Bluetooth hiccups recover by themselves, and the volume sliders follow how loud things actually sound. New: Play alongside other apps, a page-turn volume, loading and retry states, and a resume badge after interruptions.
 - Edit info on series pages (overflow menu): change the title, author, artist, tags and description; your edits survive every library refresh

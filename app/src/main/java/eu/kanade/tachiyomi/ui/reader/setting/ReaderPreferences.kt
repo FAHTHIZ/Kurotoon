@@ -106,6 +106,9 @@ class ReaderPreferences(
     /** Show an estimate of the time left in the chapter next to the page number. */
     val showTimeLeft: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_reader_time_left", true)
 
+    /** The time and battery level next to the page number, since the reader hides the status bar. */
+    val showClockBattery: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_reader_clock_battery", true)
+
     val defaultOrientationType: Preference<Int> = preferenceStore.getInt(
         "pref_default_orientation_type_key",
         ReaderOrientation.FREE.flagValue,

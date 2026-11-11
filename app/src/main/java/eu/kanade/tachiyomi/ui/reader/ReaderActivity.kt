@@ -214,6 +214,9 @@ class ReaderActivity : BaseActivity() {
             val general by settingsViewModel.general.collectAsState()
             val showPageNumber by readerPreferences.showPageNumber.collectAsState()
             val showTimeLeft by readerPreferences.showTimeLeft.collectAsState()
+            val showClockBattery by readerPreferences.showClockBattery.collectAsState()
+            val clock = kurotoon.reader.rememberReaderClock(showPageNumber && showClockBattery)
+            val battery = kurotoon.reader.rememberBatteryLevel(showPageNumber && showClockBattery)
             val showProgressOrb by readerPreferences.showProgressOrb.collectAsState()
             val flashOnPageChange by readerPreferences.flashOnPageChange.collectAsState()
             val colorOverlayEnabled by readerPreferences.colorFilter.collectAsState()
@@ -299,6 +302,9 @@ class ReaderActivity : BaseActivity() {
                         currentPage = state.currentPage,
                         totalPages = state.totalPages,
                         minutesLeft = state.minutesLeft.takeIf { showTimeLeft },
+                        clock = clock,
+                        batteryPercent = battery?.percent,
+                        charging = battery?.charging == true,
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
                             .navigationBarsPadding(),
@@ -342,7 +348,12 @@ class ReaderActivity : BaseActivity() {
 
                 AppBars(state = state)
 
-                SleepTimerCurtain(state = sleepTimer, onClose = ::finish)
+                SleepTimerCurtain(
+                    state = sleepTimer,
+                    onClose = ::finish,
+                    // The timer muted the soundtrack; carrying on should bring it back
+                    onKeepReading = { soundtrack.mute(false) },
+                )
             }
 
             if (state.isLoadingAdjacentChapter) {

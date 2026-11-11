@@ -23,11 +23,15 @@ fun ReaderPageIndicator(
     totalPages: Int,
     modifier: Modifier = Modifier,
     minutesLeft: Int? = null,
+    clock: String? = null,
+    batteryPercent: Int? = null,
+    charging: Boolean = false,
 ) {
     if (currentPage <= 0 || totalPages <= 0) return
 
     val timeLeft = minutesLeft?.let { stringResource(MR.strings.kurotoon_reader_minutesLeft, it) }
-    val text = if (timeLeft != null) "$currentPage / $totalPages · $timeLeft" else "$currentPage / $totalPages"
+    val battery = batteryPercent?.let { if (charging) "$it%+" else "$it%" }
+    val text = listOfNotNull("$currentPage / $totalPages", timeLeft, clock, battery).joinToString(" · ")
 
     val style = TextStyle(
         color = Color(235, 235, 235),
