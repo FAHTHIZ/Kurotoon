@@ -133,6 +133,8 @@ class ReaderViewModel(
     private val downloadCache: DownloadCache,
     private val rewardsStore: RewardsStore,
     private val kuroPreferences: kurotoon.prefs.KuroPreferences,
+    private val getCategories: tachiyomi.domain.category.interactor.GetCategories,
+    private val setMangaCategories: tachiyomi.domain.category.interactor.SetMangaCategories,
 ) : ViewModel() {
 
     private val readingPace = kurotoon.reader.ReadingPace()
@@ -1150,6 +1152,25 @@ class ReaderViewModel(
             // Progress writes started before leaving may still enqueue the chapter just finished
             progressWrites.withLock {}
             downloadManager.deletePendingChapters()
+        }
+    }
+
+    /**
+     * Adds the series to the library from the end-of-chapter card, the way WEBTOON offers Subscribe
+     * when an episode ends. Uses the default category when one is set; "always ask" falls back to
+     * the default one, which can be changed later from the series page.
+     */
+    fun addToLibrary() {
+        val manga = manga ?: return
+        if (manga.favorite) return
+        viewModelScope.launch(kotlinx.coroutines.Dispatchers.IO) {
+            if (!updateManga.awaitUpdateFavorite(manga.id, true)) return@launch
+            val defaultId = libraryPreferences.defaultCategory.get().toLong()
+            getCategories.await().find { it.id == defaultId && it.id != 0L }?.let {
+                setMangaCategories.await(manga.id, listOf(it.id))
+            }
+            val updated = getManga.await(manga.id) ?: return@launch
+            mutableState.update { it.copy(manga = updated) }
         }
     }
 
