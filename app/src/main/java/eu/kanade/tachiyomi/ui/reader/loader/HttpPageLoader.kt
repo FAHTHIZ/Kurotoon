@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.reader.loader
 
 import eu.kanade.domain.chapter.model.toSChapter
+import eu.kanade.tachiyomi.network.HttpException
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
@@ -12,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -218,7 +220,26 @@ internal class HttpPageLoader(
      *
      * @param page the page whose source image has to be downloaded.
      */
+    /**
+     * Loads [page], quietly trying again a couple of times on network hiccups and server overload
+     * so a single dropped request doesn't turn into a Retry button mid-chapter.
+     */
     private suspend fun internalLoadPage(page: ReaderPage, force: Boolean = false) {
+        var attempt = 0
+        while (true) {
+            val error = loadPageOnce(page, force && attempt == 0) ?: return
+            if (attempt >= AUTO_RETRIES || !error.isTransient()) {
+                page.status = Page.State.Error(error)
+                return
+            }
+            attempt++
+            page.status = Page.State.DownloadImage
+            delay(AUTO_RETRY_DELAY_MS * attempt)
+        }
+    }
+
+    /** One load attempt. Returns the error it failed with, or null once the page is ready. */
+    private suspend fun loadPageOnce(page: ReaderPage, force: Boolean): Throwable? {
         try {
             if (page.imageUrl.isNullOrEmpty()) {
                 page.status = Page.State.LoadPage
@@ -250,6 +271,7 @@ internal class HttpPageLoader(
                 }
             }
             page.status = Page.State.Ready
+            return null
         } catch (e: Throwable) {
             page.downloadStream = null
             if (e is CancellationException) {
@@ -258,9 +280,18 @@ internal class HttpPageLoader(
                 page.status = Page.State.Queue
                 throw e
             }
-            page.status = Page.State.Error(e)
+            return e
         }
     }
 }
 
 private const val LIMITED_PAGES_AHEAD = 4
+private const val AUTO_RETRIES = 2
+private const val AUTO_RETRY_DELAY_MS = 1_500L
+
+/** Timeouts, resets and busy servers are worth another go; a 404 or a parse failure isn't. */
+private fun Throwable.isTransient(): Boolean = when (this) {
+    is HttpException -> code == 408 || code == 429 || code >= 500
+    is java.io.IOException -> true
+    else -> cause?.let { it !== this && it.isTransient() } ?: false
+}
