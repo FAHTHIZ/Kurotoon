@@ -641,8 +641,11 @@ class MangaViewModel(
         val message = when (swipeAction) {
             LibraryPreferences.ChapterSwipeAction.ToggleRead ->
                 if (before.read) MR.strings.kurotoon_manga_swipedUnread else MR.strings.kurotoon_manga_swipedRead
-            LibraryPreferences.ChapterSwipeAction.ToggleBookmark ->
-                if (before.bookmark) MR.strings.kurotoon_manga_swipedUnbookmarked else MR.strings.kurotoon_manga_swipedBookmarked
+            LibraryPreferences.ChapterSwipeAction.ToggleBookmark -> if (before.bookmark) {
+                MR.strings.kurotoon_manga_swipedUnbookmarked
+            } else {
+                MR.strings.kurotoon_manga_swipedBookmarked
+            }
             else -> return
         }
         snackbarHostState.currentSnackbarData?.dismiss()
