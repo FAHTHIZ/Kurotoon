@@ -1,0 +1,112 @@
+# Showcase: more catalogues, the shop and the rest of the app, after 10_kurotoon set things up
+start app.kurotoon.dev
+sleep 4
+tapx Home
+tap "Add sources"
+sleep 8
+tap Search
+type Webtoons.com
+sleep 4
+shot ext_webtoons
+tapx Install
+sleep 12
+tapx Install
+sleep 20
+key 123
+sh input keyevent 67 67 67 67 67 67 67 67 67 67 67 67 67 67 67
+type Asura
+sleep 4
+shot ext_asura
+tapx Install
+sleep 12
+tapx Install
+sleep 20
+shot ext_installed
+back
+back
+tapx Browse
+sleep 3
+shot sources_list
+tap Webtoons.com
+sleep 10
+shot webtoons_popular
+tapx Latest
+sleep 8
+shot webtoons_latest
+tapxy 270 1000
+sleep 10
+shot webtoons_series
+tap "Add to library"
+sleep 3
+back
+back
+tap "Asura Scans"
+sleep 12
+shot asura_popular
+tapxy 270 1000
+sleep 10
+shot asura_series
+tap "Add to library"
+sleep 3
+tap Start
+sleep 15
+shot asura_reader
+tapxy 540 1200
+sleep 2
+shot asura_reader_menu
+tap Chapters
+sleep 3
+shot reader_chapter_list
+back
+back
+back
+back
+back
+tapx Library
+sleep 3
+shot library_full
+tap "More options"
+shot library_menu
+tap "Group library by"
+sleep 2
+shot group_by
+tap Source
+sleep 3
+shot library_by_source
+tapx Updates
+sleep 3
+shot updates
+tap "Release schedule"
+sleep 3
+shot schedule
+back
+tapx Me
+sleep 2
+shot me
+tap "Kuro Points"
+sleep 3
+shot shop_missions
+tapx Shop
+sleep 2
+shot shop
+scrollup
+shot shop_scrolled
+tapx Achievements
+sleep 2
+shot achievements
+tapx Collection
+sleep 2
+shot collection
+tapx Packs
+sleep 2
+shot packs
+back
+tap Statistics
+sleep 3
+shot stats
+back
+tapx Home
+sleep 6
+shot home_final
+scrollup
+shot home_final_scrolled
