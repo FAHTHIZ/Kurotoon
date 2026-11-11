@@ -238,6 +238,7 @@ fun LibraryBottomActionMenu(
     onDeleteClicked: () -> Unit,
     onMigrateClicked: () -> Unit,
     modifier: Modifier = Modifier,
+    onUpdateClicked: (() -> Unit)? = null,
 ) {
     AnimatedVisibility(
         visible = visible,
@@ -262,7 +263,7 @@ fun LibraryBottomActionMenu(
                     if (isActive) confirm[toConfirmIndex] = false
                 }
             }
-            val itemOverflow = onDownloadClicked != null
+            val itemOverflow = onDownloadClicked != null || onUpdateClicked != null
             Row(
                 modifier = Modifier
                     .windowInsetsPadding(
@@ -338,6 +339,15 @@ fun LibraryBottomActionMenu(
                             onDismissRequest = { overflowMenuOpen = false },
                             offset = BottomBarMenuDpOffset,
                         ) {
+                            if (onUpdateClicked != null) {
+                                DropdownMenuItem(
+                                    text = { Text(stringResource(MR.strings.kurotoon_library_updateSelected)) },
+                                    onClick = {
+                                        overflowMenuOpen = false
+                                        onUpdateClicked()
+                                    },
+                                )
+                            }
                             DropdownMenuItem(
                                 text = { Text(stringResource(MR.strings.migrate)) },
                                 onClick = onMigrateClicked,
