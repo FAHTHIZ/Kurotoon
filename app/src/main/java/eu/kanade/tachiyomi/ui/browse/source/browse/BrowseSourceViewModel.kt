@@ -391,6 +391,26 @@ class BrowseSourceViewModel(
         }
     }
 
+    /**
+     * Adds every title in [mangas] that isn't already in the library, straight into the default
+     * category (or no category) instead of asking once per title.
+     */
+    fun addFavorites(mangas: Collection<Manga>) {
+        viewModelScope.launch {
+            val categories = getCategories()
+            val defaultCategoryId = libraryPreferences.defaultCategory.get()
+            val defaultCategory = categories.find { it.id == defaultCategoryId.toLong() }
+            mangas.filterNot { it.favorite }.forEach { manga ->
+                if (defaultCategory != null) {
+                    moveMangaToCategories(manga, defaultCategory)
+                } else {
+                    moveMangaToCategories(manga)
+                }
+                changeMangaFavorite(manga)
+            }
+        }
+    }
+
     fun addFavorite(manga: Manga) {
         viewModelScope.launch {
             val categories = getCategories()
