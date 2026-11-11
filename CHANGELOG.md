@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Added
+- **Up next** leads Home: the series you read last as a large artwork card with its chapter, page and a Resume button
 - **Collection** replaces the Kuro Shop: avatars, frames, stickers, badges, themes and effect colours are all free. Tap one to see it large, then Use or Stop using. Stickers can be pinned to your picture or shared in a chat. Packs still import from the top bar
 - **One-shots**: a series tagged Oneshot by its source, or with a single chapter and finished, says One-shot on its page, and the library has a One-shots quick filter
 - **Merged chapters across sources**: when a series is in your library from more than one source, its page offers one chapter list combined by chapter number, so 1–4 and 9 from one site plus 5–7 and 10 from another read as 1–10. Each chapter opens from the source that has it. See [docs/merged-chapters.md](docs/merged-chapters.md)
@@ -15,6 +16,11 @@ All notable changes to KuroToon are documented here. Versions follow
 - **Library combines copies**: a series saved from several sources shows once, with a ×N badge, led by the copy you read last. Turn it off in Library settings
 
 ### Changed
+- A firmer type scale: semibold titles and tighter large text across the app
+- The bottom bar marks the open tab with one soft pill instead of a pill, ring and top line
+- Every remaining hard-coded crimson and gold (stats, reader hints, tags, tracking, duplicates, migration, schedule, downloads, onboarding) follows the theme's accent
+- Adding a series to the library gives the heart a small pop, without sparks
+- The README is text-first, without screenshots
 - A calmer look from first run to the reader: one accent colour instead of crimson, purple, blue and gold mixed together; cards without borders or gradients; sentence-case section titles; no glow under the bottom bar
 - Home puts your series first: Continue reading, New chapters and Due today come before the featured banner and source rows. Shortcuts and Saved panels start hidden (turn them on in Settings › Appearance)
 - Finishing a chapter shows a small card with a check; no confetti, rays or glow
@@ -26,6 +32,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - The old JSON chapter reconciliation tool in the Me tab is replaced by merged chapters
 
 ### Fixed
+- An extension search with no match now says that none of your stores lists it (Keiyoushi no longer carries Hitomi) and points to adding a store
 - Searching extensions for `hitomi.la` (or any 18+ site) found nothing because adult extensions are hidden by default. The search now says what's hidden and offers Allow 18+, and pasted addresses like `https://www.hitomi.la/` match in both Extensions and Sources
 - Kuro labels that didn't match their art (Shy → Manga Time, Kuru legend → Kuro legend)
 
