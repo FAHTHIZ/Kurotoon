@@ -61,3 +61,43 @@ fun KuroSectionTitle(text: String, modifier: Modifier = Modifier) {
         color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
 }
+
+/**
+ * List section header used on Updates, Sources and other long lists: a short accent bar followed by
+ * the [KuroSectionTitle] style, with an optional [count] pill.
+ */
+@Composable
+fun KuroSectionHeader(
+    text: String,
+    modifier: Modifier = Modifier,
+    count: Int? = null,
+) {
+    Row(
+        modifier = modifier.padding(start = 16.dp, end = 16.dp, top = 18.dp, bottom = 6.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Box(
+            modifier = Modifier
+                .size(width = 3.dp, height = 14.dp)
+                .background(
+                    Brush.verticalGradient(
+                        listOf(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.tertiary),
+                    ),
+                    CircleShape,
+                ),
+        )
+        KuroSectionTitle(text = text, modifier = Modifier.padding(start = 8.dp))
+        if (count != null) {
+            Text(
+                text = count.toString(),
+                style = MaterialTheme.typography.labelSmall,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
+                modifier = Modifier
+                    .padding(start = 8.dp)
+                    .background(MaterialTheme.colorScheme.secondaryContainer, CircleShape)
+                    .padding(horizontal = 7.dp, vertical = 1.dp),
+            )
+        }
+    }
+}
