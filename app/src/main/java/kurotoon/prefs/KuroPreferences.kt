@@ -152,6 +152,14 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
         deserializer = RecentSearches::decode,
     )
 
+    /** Recent searches inside one source, newest first (mihon#1409). */
+    fun sourceRecentSearches(sourceId: Long) = preferenceStore.getObjectFromString<List<String>>(
+        key = "kurotoon_recent_searches_$sourceId",
+        defaultValue = emptyList(),
+        serializer = RecentSearches::encode,
+        deserializer = RecentSearches::decode,
+    )
+
     /** Tags to keep out of browsing, comma separated. See [kurotoon.catalogue.HiddenTags]. */
     val hiddenTags = preferenceStore.getString("kurotoon_hidden_tags", "")
 

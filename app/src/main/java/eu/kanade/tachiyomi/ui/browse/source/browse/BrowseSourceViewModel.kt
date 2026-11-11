@@ -325,7 +325,16 @@ class BrowseSourceViewModel(
         }
     }
 
+    val recentSearches get() = kuroPreferences.sourceRecentSearches(sourceId)
+
+    fun clearRecentSearches() = kuroPreferences.sourceRecentSearches(sourceId).delete()
+
     fun search(query: String? = null, filters: FilterList? = null) {
+        if (!query.isNullOrBlank()) {
+            kuroPreferences.sourceRecentSearches(sourceId).getAndSet {
+                kurotoon.catalogue.RecentSearches.add(it, query)
+            }
+        }
         val input = state.value.listing as? Listing.Search
             ?: Listing.Search(query = null, filters = source?.getFilterList() ?: FilterList())
 
