@@ -94,7 +94,7 @@ calendar and music while you read. KuroToon is the first to give you both, plus 
 - Every source's own genres and themes as one-tap tags; long-press to exclude
 - **Saved searches** you can pin to Home
 - Universal search across every source, with each series shown **once** and tags gathered from all your sources
-- **Merged chapters**: the same series from several sources read as one list ([how it works](docs/merged-chapters.md))
+- **Merged chapters**: the same series from several sources read as one list, and the reader offers the next chapter from whichever source has it ([how it works](docs/merged-chapters.md))
 - **More like this** from AniList recommendations
 
 </td>
@@ -102,6 +102,7 @@ calendar and music while you read. KuroToon is the first to give you both, plus 
 
 #### Keep
 - Library grouped by category, source or status, with **hidden categories**
+- A series saved from several sources shows **once**, with a ×N badge
 - Progress bars and source badges on covers
 - **Edit info**: your own title, people, tags and description that survive refreshes
 - Duplicates finder, bulk add, random pick
@@ -116,6 +117,7 @@ calendar and music while you read. KuroToon is the first to give you both, plus 
 #### Make it yours
 - Crimson-on-black KuroToon theme, dynamic colour and more
 - Series pages tinted by their cover
+- Quiet by default: plain touch ripples, small sparks only for big moments, optional background embers
 - Avatars, animated frames, particle colours and badges from the **Kuro Shop**
 - Import your own [`.kpack` files](docs/shop-packs.md)
 
