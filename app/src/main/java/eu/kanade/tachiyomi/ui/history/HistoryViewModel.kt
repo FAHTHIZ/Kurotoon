@@ -66,6 +66,7 @@ class HistoryViewModel(
     private val getManga: GetManga,
     private val getNextChapters: GetNextChapters,
     private val libraryPreferences: LibraryPreferences,
+    private val kuroPreferences: kurotoon.prefs.KuroPreferences,
     private val removeHistory: RemoveHistory,
     private val setMangaCategories: SetMangaCategories,
     private val updateManga: UpdateManga,
@@ -213,7 +214,10 @@ class HistoryViewModel(
         viewModelScope.launch {
             // Move to default category if applicable
             val categories = getCategories()
-            val defaultCategoryId = libraryPreferences.defaultCategory.get().toLong()
+            val defaultCategoryId = kuroPreferences.defaultCategoryFor(
+                manga.source,
+                libraryPreferences.defaultCategory.get().toLong(),
+            )
             val defaultCategory = categories.find { it.id == defaultCategoryId }
 
             when {

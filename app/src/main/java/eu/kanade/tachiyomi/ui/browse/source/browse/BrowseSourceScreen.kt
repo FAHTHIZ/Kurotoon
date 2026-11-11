@@ -150,6 +150,7 @@ data class BrowseSourceScreen(
 
         val context = androidx.compose.ui.platform.LocalContext.current
         var selecting by remember { mutableStateOf(false) }
+        var pickingDefaultCategory by remember { mutableStateOf(false) }
         var selected by remember { mutableStateOf(emptyMap<Long, tachiyomi.domain.manga.model.Manga>()) }
         val toggleSelected = { manga: tachiyomi.domain.manga.model.Manga ->
             selected = if (manga.id in selected) selected - manga.id else selected + (manga.id to manga)
@@ -210,7 +211,11 @@ data class BrowseSourceScreen(
                         onSettingsClick = { navigator.push(SourcePreferencesScreen(sourceId)) },
                         onSearch = viewModel::search,
                         onSelectClick = { selecting = true },
+                        onDefaultCategoryClick = { pickingDefaultCategory = true },
                     )
+                    if (pickingDefaultCategory) {
+                        kurotoon.ui.browse.SourceDefaultCategoryDialog(sourceId) { pickingDefaultCategory = false }
+                    }
 
                     BrowseChips(
                         supportsLatest = source.supportsLatest,

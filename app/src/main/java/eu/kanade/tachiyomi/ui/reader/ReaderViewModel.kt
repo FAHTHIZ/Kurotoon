@@ -1166,7 +1166,10 @@ class ReaderViewModel(
         if (manga.favorite) return
         viewModelScope.launch(kotlinx.coroutines.Dispatchers.IO) {
             if (!updateManga.awaitUpdateFavorite(manga.id, true)) return@launch
-            val defaultId = libraryPreferences.defaultCategory.get().toLong()
+            val defaultId = kuroPreferences.defaultCategoryFor(
+                manga.source,
+                libraryPreferences.defaultCategory.get().toLong(),
+            )
             getCategories.await().find { it.id == defaultId && it.id != 0L }?.let {
                 setMangaCategories.await(manga.id, listOf(it.id))
             }
