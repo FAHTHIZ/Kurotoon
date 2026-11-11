@@ -31,7 +31,6 @@ import mihon.icons.materialsymbols.rounded.DeleteSweep
 import tachiyomi.domain.history.model.HistoryWithRelations
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.FastScrollLazyColumn
-import tachiyomi.presentation.core.components.ListGroupHeader
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.screens.EmptyScreen
@@ -133,7 +132,7 @@ private fun HistoryScreenContent(
         ) { item ->
             when (item) {
                 is HistoryUiModel.Header -> {
-                    ListGroupHeader(
+                    kurotoon.ui.KuroSectionHeader(
                         modifier = Modifier.animateItem(),
                         text = relativeDateText(item.date) +
                             dayTotals[item.date.toString()]?.let { " · " + it.label(context) }.orEmpty(),

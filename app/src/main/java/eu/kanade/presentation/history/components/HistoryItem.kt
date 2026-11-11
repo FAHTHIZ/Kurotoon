@@ -1,11 +1,17 @@
 package eu.kanade.presentation.history.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -15,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -24,9 +31,11 @@ import eu.kanade.presentation.manga.components.MangaCover
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import eu.kanade.presentation.util.formatChapterNumber
 import eu.kanade.tachiyomi.util.lang.toTimestampString
+import kurotoon.ui.kuroCard
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Delete
 import mihon.icons.materialsymbols.rounded.Favorite
+import mihon.icons.materialsymbols.roundedfilled.PlayArrow
 import tachiyomi.domain.history.model.HistoryWithRelations
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.padding
@@ -34,8 +43,12 @@ import tachiyomi.presentation.core.i18n.stringResource
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
-private val HistoryItemHeight = 96.dp
+private val HistoryItemHeight = 112.dp
 
+/**
+ * A history entry as a card: rounded cover, title, chapter and time, a progress chip, and a Resume
+ * pill. Add-to-library and remove sit as small icons so the card stays calm.
+ */
 @Composable
 fun HistoryItem(
     history: HistoryWithRelations,
@@ -46,30 +59,36 @@ fun HistoryItem(
     onClickFavorite: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val shape = RoundedCornerShape(18.dp)
     Row(
         modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = MaterialTheme.padding.medium, vertical = 4.dp)
+            .clip(shape)
+            .kuroCard(shape)
             .clickable(onClick = onClickResume)
             .height(HistoryItemHeight)
-            .padding(horizontal = MaterialTheme.padding.medium, vertical = MaterialTheme.padding.small),
+            .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         MangaCover.Book(
-            modifier = Modifier.fillMaxHeight(),
+            modifier = Modifier
+                .fillMaxHeight()
+                .clip(RoundedCornerShape(12.dp)),
             data = history.coverData,
             onClick = onClickCover,
         )
         Column(
             modifier = Modifier
                 .weight(1f)
-                .padding(start = MaterialTheme.padding.medium, end = MaterialTheme.padding.small),
+                .padding(start = 12.dp, end = 4.dp),
         ) {
-            val textStyle = MaterialTheme.typography.bodyMedium
             Text(
                 text = history.title,
+                style = MaterialTheme.typography.titleSmall,
                 fontWeight = FontWeight.SemiBold,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
-                style = textStyle,
             )
             val readAt = remember(timeFormatter, history.readAt) {
                 history.readAt?.toTimestampString(timeFormatter) ?: ""
@@ -85,28 +104,73 @@ fun HistoryItem(
                 readAt
             }
             Text(
-                text = if (progress != null) "$line · $progress" else line,
-                modifier = Modifier.padding(top = 4.dp),
-                style = textStyle,
+                text = line,
+                modifier = Modifier.padding(top = 2.dp),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
             )
-        }
-
-        if (!history.coverData.isMangaFavorite) {
-            IconButton(onClick = onClickFavorite) {
-                Icon(
-                    imageVector = MaterialSymbols.Rounded.Favorite,
-                    contentDescription = stringResource(MR.strings.add_to_library),
-                    tint = MaterialTheme.colorScheme.onSurface,
-                )
+            Row(
+                modifier = Modifier.padding(top = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                Row(
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .background(MaterialTheme.colorScheme.primary)
+                        .clickable(onClick = onClickResume)
+                        .padding(start = 8.dp, end = 12.dp, top = 4.dp, bottom = 4.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Icon(
+                        imageVector = MaterialSymbols.RoundedFilled.PlayArrow,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onPrimary,
+                        modifier = Modifier.size(16.dp),
+                    )
+                    Text(
+                        text = stringResource(MR.strings.action_resume),
+                        style = MaterialTheme.typography.labelMedium,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        modifier = Modifier.padding(start = 2.dp),
+                    )
+                }
+                if (progress != null) {
+                    Text(
+                        text = progress,
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier
+                            .clip(CircleShape)
+                            .background(MaterialTheme.colorScheme.secondaryContainer)
+                            .padding(horizontal = 10.dp, vertical = 4.dp),
+                    )
+                }
             }
         }
 
-        IconButton(onClick = onClickDelete) {
-            Icon(
-                imageVector = MaterialSymbols.Rounded.Delete,
-                contentDescription = stringResource(MR.strings.action_delete),
-                tint = MaterialTheme.colorScheme.onSurface,
-            )
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            if (!history.coverData.isMangaFavorite) {
+                IconButton(onClick = onClickFavorite) {
+                    Icon(
+                        imageVector = MaterialSymbols.Rounded.Favorite,
+                        contentDescription = stringResource(MR.strings.add_to_library),
+                        tint = MaterialTheme.colorScheme.primary,
+                    )
+                }
+            }
+            IconButton(onClick = onClickDelete) {
+                Icon(
+                    imageVector = MaterialSymbols.Rounded.Delete,
+                    contentDescription = stringResource(MR.strings.action_delete),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
     }
 }
