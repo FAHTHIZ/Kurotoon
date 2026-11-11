@@ -63,6 +63,7 @@ import androidx.core.net.toUri
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -538,6 +539,13 @@ class ReaderActivity : BaseActivity() {
                         }
                     }
                 }
+            }
+            .launchIn(lifecycleScope)
+
+        kurotoon.reader.PageAutoRetry.online(this)
+            .flowWithLifecycle(lifecycle)
+            .onEach { online ->
+                if (online) kurotoon.reader.PageAutoRetry.retryFailed(viewModel.state.value.viewerChapters)
             }
             .launchIn(lifecycleScope)
     }
