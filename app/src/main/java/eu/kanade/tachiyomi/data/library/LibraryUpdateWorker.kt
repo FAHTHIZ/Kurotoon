@@ -42,6 +42,7 @@ import kotlinx.coroutines.sync.withPermit
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import kurotoon.updates.UpdateErrors
 import logcat.LogPriority
 import mihon.app.di.AppGraph
 import mihon.app.di.appGraph
@@ -327,6 +328,13 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
                 downloadManager.startDownloads()
             }
         }
+
+        UpdateErrors.get(context).record(
+            checked = mangaToUpdate.mapTo(HashSet()) { it.manga.id },
+            failures = failedUpdates.map { (manga, error) ->
+                UpdateErrors.entry(manga.id, manga.title, sourceManager.getOrStub(manga.source).name, error)
+            },
+        )
 
         if (failedUpdates.isNotEmpty()) {
             val errorFile = writeErrorFile(failedUpdates)

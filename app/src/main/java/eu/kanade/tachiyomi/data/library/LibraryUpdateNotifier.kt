@@ -171,7 +171,13 @@ class LibraryUpdateNotifier(
             setContentText(context.stringResource(MR.strings.action_show_errors))
             setSmallIcon(R.drawable.ic_kurotoon)
 
-            setContentIntent(NotificationReceiver.openErrorLogPendingActivity(context, uri))
+            // Open the in-app list (mihon#132); the raw log stays one action away
+            setContentIntent(NotificationReceiver.openUpdateErrorsPendingActivity(context))
+            addAction(
+                R.drawable.ic_kurotoon,
+                context.stringResource(MR.strings.kurotoon_updateErrors_log),
+                NotificationReceiver.openErrorLogPendingActivity(context, uri),
+            )
         }
     }
 

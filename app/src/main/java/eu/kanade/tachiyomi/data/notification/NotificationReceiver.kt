@@ -526,6 +526,19 @@ class NotificationReceiver : BroadcastReceiver() {
          * @param uri uri of error log file
          * @return [PendingIntent]
          */
+        internal fun openUpdateErrorsPendingActivity(context: Context): PendingIntent {
+            val intent = Intent(context, MainActivity::class.java)
+                .setAction(MainActivity.INTENT_UPDATE_ERRORS)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                .putExtra("notificationId", Notifications.ID_LIBRARY_ERROR)
+            return PendingIntent.getActivity(
+                context,
+                Notifications.ID_LIBRARY_ERROR,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+            )
+        }
+
         internal fun openErrorLogPendingActivity(context: Context, uri: Uri): PendingIntent {
             val intent = Intent().apply {
                 action = Intent.ACTION_VIEW

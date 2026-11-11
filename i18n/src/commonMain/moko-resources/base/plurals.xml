@@ -139,4 +139,8 @@
         <item quantity="one">Added %d title to the library</item>
         <item quantity="other">Added %d titles to the library</item>
     </plurals>
+    <plurals name="kurotoon_updateErrors_banner">
+        <item quantity="one">%d series didn\'t update</item>
+        <item quantity="other">%d series didn\'t update</item>
+    </plurals>
 </resources>
