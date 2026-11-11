@@ -81,15 +81,10 @@ class RewardsEngineTest {
     }
 
     @Test
-    fun `buying spends points, wears the item and refuses repeats`() {
-        val rich = RewardsState(points = 150)
-        val (outcome, result) = engine.buy(rich, "test/theme")
-        result shouldBe PurchaseResult.Success
-        outcome.state.points shouldBe 50
-        outcome.state.equipped[ShopKind.THEME.key] shouldBe "test/theme"
-        engine.buy(outcome.state, "test/theme").second shouldBe PurchaseResult.AlreadyOwned
-        engine.buy(outcome.state, "test/theme2").second shouldBe PurchaseResult.NotEnoughPoints
-        engine.buy(outcome.state, "nope/nope").second shouldBe PurchaseResult.UnknownItem
+    fun `everything in the collection is free to use`() {
+        engine.buy(RewardsState(), "test/theme").second shouldBe PurchaseResult.AlreadyOwned
+        engine.equip(RewardsState(), "test/theme").equipped[ShopKind.THEME.key] shouldBe "test/theme"
+        engine.equip(RewardsState(), "nope/nope").equipped shouldBe emptyMap()
     }
 
     @Test
@@ -111,15 +106,10 @@ class RewardsEngineTest {
 
     @Test
     fun `badges stack up to three and drop the oldest`() {
-        var state = RewardsState(points = 10)
-        listOf("b1", "b2", "b3", "b4").forEach { state = engine.buy(state, "test/$it").first.state }
+        var state = RewardsState()
+        listOf("b1", "b2", "b3", "b4").forEach { state = engine.equip(state, "test/$it") }
         state.badges shouldContainExactly listOf("test/b2", "test/b3", "test/b4")
         engine.unequip(state, "test/b3").badges shouldContainExactly listOf("test/b2", "test/b4")
-    }
-
-    @Test
-    fun `items that are not owned can't be worn`() {
-        engine.equip(RewardsState(), "test/theme").equipped shouldBe emptyMap()
     }
 
     @Test
@@ -198,13 +188,6 @@ class RewardsEngineTest {
         val state = engine.track(RewardsState(), RewardEvent.CHAPTER_READ).state
         val read = run.event.chores.first { it.kind == ChoreKind.READ }
         state.seasonProgress[run.choreKey(read)] shouldBe 1
-    }
-
-    @Test
-    fun `seasonal items only sell in season`() {
-        engine.buy(RewardsState(points = 500), "kuro.seasonal/halloween").second shouldBe PurchaseResult.OutOfSeason
-        now = Instant.parse("2026-10-20T12:00:00Z")
-        engine.buy(RewardsState(points = 500), "kuro.seasonal/halloween").second shouldBe PurchaseResult.Success
     }
 
     @Test

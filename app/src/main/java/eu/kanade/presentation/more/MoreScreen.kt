@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import eu.kanade.tachiyomi.ui.more.DownloadQueueState
-import kurotoon.ui.KuroColors
 import kurotoon.ui.profile.KuroProfileHeader
 import kurotoon.ui.profile.MeGroup
 import kurotoon.ui.profile.MeModeTile
@@ -31,6 +30,7 @@ import mihon.icons.materialsymbols.rounded.CollectionsBookmark
 import mihon.icons.materialsymbols.rounded.Download
 import mihon.icons.materialsymbols.rounded.Eyeglasses2
 import mihon.icons.materialsymbols.rounded.Info
+import mihon.icons.materialsymbols.rounded.Palette
 import mihon.icons.materialsymbols.rounded.QueryStats
 import mihon.icons.materialsymbols.rounded.Settings
 import mihon.icons.materialsymbols.rounded.Storage
@@ -141,21 +141,24 @@ fun MoreScreen(
                             }
                         },
                         icon = MaterialSymbols.Rounded.Download,
-                        tint = KuroColors.Aurora,
                         onClick = onClickDownloadQueue,
                     )
                     MeRow(
                         title = stringResource(MR.strings.label_stats),
                         icon = MaterialSymbols.Rounded.QueryStats,
-                        tint = KuroColors.Galaxy,
                         onClick = onClickStats,
                     )
                     MeRow(
                         title = stringResource(MR.strings.kurotoon_panels_title),
                         subtitle = stringResource(MR.strings.kurotoon_panels_summary),
                         icon = MaterialSymbols.Rounded.CollectionsBookmark,
-                        tint = KuroColors.Crimson,
                         onClick = onClickSavedPanels,
+                    )
+                    MeRow(
+                        title = stringResource(MR.strings.kurotoon_collection_title),
+                        subtitle = stringResource(MR.strings.kurotoon_collection_summary),
+                        icon = MaterialSymbols.Rounded.Palette,
+                        onClick = onClickShop,
                         showDivider = false,
                     )
                 }
@@ -166,13 +169,11 @@ fun MoreScreen(
                     MeRow(
                         title = stringResource(MR.strings.categories),
                         icon = MaterialSymbols.AutoMirroredRounded.Label,
-                        tint = KuroColors.Gold,
                         onClick = onClickCategories,
                     )
                     MeRow(
                         title = stringResource(MR.strings.label_data_storage),
                         icon = MaterialSymbols.Rounded.Storage,
-                        tint = KuroColors.Galaxy,
                         onClick = onClickDataAndStorage,
                         showDivider = false,
                     )
