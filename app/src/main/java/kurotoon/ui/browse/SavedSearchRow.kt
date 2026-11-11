@@ -28,7 +28,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import kurotoon.catalogue.SavedSearch
-import kurotoon.ui.KuroColors
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Bookmark
 import mihon.icons.materialsymbols.rounded.BookmarkAdd
@@ -60,17 +59,17 @@ fun SavedSearchRow(
                     onClick = onSave,
                     height = 30.dp,
                     background = Color.Transparent,
-                    border = BorderStroke(1.dp, KuroColors.Crimson.copy(alpha = 0.6f)),
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.6f)),
                 ) {
                     Icon(
                         MaterialSymbols.Rounded.BookmarkAdd,
                         contentDescription = null,
-                        tint = KuroColors.Crimson,
+                        tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(16.dp),
                     )
                     Text(
                         text = stringResource(MR.strings.kurotoon_browse_saveSearch),
-                        color = KuroColors.Crimson,
+                        color = MaterialTheme.colorScheme.primary,
                         style = MaterialTheme.typography.labelMedium,
                         fontWeight = FontWeight.SemiBold,
                         maxLines = 1,
@@ -84,12 +83,12 @@ fun SavedSearchRow(
                 onClick = { onOpen(search) },
                 onLongClick = { onEdit(search) },
                 height = 30.dp,
-                background = if (selected) KuroColors.Crimson else MaterialTheme.colorScheme.surfaceContainerHigh,
+                background = MaterialTheme.colorScheme.run { if (selected) primary else surfaceContainerHigh },
             ) {
                 Icon(
                     MaterialSymbols.Rounded.Bookmark,
                     contentDescription = null,
-                    tint = if (selected) Color.White else KuroColors.Crimson,
+                    tint = if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.primary,
                     modifier = Modifier.size(14.dp),
                 )
                 Text(
