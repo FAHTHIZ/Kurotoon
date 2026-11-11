@@ -1213,6 +1213,8 @@
     <string name="kurotoon_reader_clockBatterySummary">Show the clock and battery level next to the page number, since the reader hides the status bar</string>
     <string name="kurotoon_reader_resumedAt">Picked up on page %d</string>
     <string name="kurotoon_reader_startOver">Start over</string>
+    <string name="kurotoon_reader_sidePaddingLandscapeOwn">Different side padding in landscape</string>
+    <string name="kurotoon_reader_sidePaddingLandscape">Side padding in landscape</string>
     <string name="kurotoon_home_recentlyAdded">Recently added</string>
     <string name="kurotoon_home_recentlyAddedSummary">Saved to your library this month</string>
     <string name="kurotoon_download_chapterDelay">Pause between chapters</string>

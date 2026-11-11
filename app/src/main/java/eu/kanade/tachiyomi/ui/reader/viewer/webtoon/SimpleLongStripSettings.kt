@@ -17,9 +17,13 @@ data class SimpleLongStripSettings(
      */
     data class Page(
         val sidePadding: Int,
+        /** Used instead of [sidePadding] in landscape, when set. */
+        val sidePaddingLandscape: Int? = null,
         override val dualPageSplit: Boolean,
         override val dualPageInvert: Boolean,
         override val dualPageRotateToFit: Boolean,
         override val dualPageRotateToFitInvert: Boolean,
-    ) : DualPageSettings
+    ) : DualPageSettings {
+        fun sidePaddingFor(landscape: Boolean) = if (landscape) sidePaddingLandscape ?: sidePadding else sidePadding
+    }
 }

@@ -181,6 +181,8 @@ class ReaderSettingsViewModel(
      */
     val simpleLongStrip = settings(
         preferences.webtoonSidePadding,
+        preferences.webtoonSidePaddingLandscapeEnabled,
+        preferences.webtoonSidePaddingLandscape,
         preferences.dualPageSplitWebtoon,
         preferences.dualPageInvertWebtoon,
         preferences.dualPageRotateToFitWebtoon,
@@ -192,6 +194,8 @@ class ReaderSettingsViewModel(
         SimpleLongStripSettings(
             page = SimpleLongStripSettings.Page(
                 sidePadding = webtoonSidePadding.get(),
+                sidePaddingLandscape = webtoonSidePaddingLandscape.get()
+                    .takeIf { webtoonSidePaddingLandscapeEnabled.get() },
                 dualPageSplit = dualPageSplitWebtoon.get(),
                 dualPageInvert = dualPageInvertWebtoon.get(),
                 dualPageRotateToFit = dualPageRotateToFitWebtoon.get(),

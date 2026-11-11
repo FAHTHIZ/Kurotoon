@@ -149,6 +149,13 @@ class ReaderPreferences(
 
     val webtoonSidePadding: Preference<Int> = preferenceStore.getInt("webtoon_side_padding", WEBTOON_PADDING_MIN)
 
+    /** A separate side padding when the phone is sideways, where full-width pages get huge (mihon#155). */
+    val webtoonSidePaddingLandscapeEnabled: Preference<Boolean> =
+        preferenceStore.getBoolean("kurotoon_webtoon_side_padding_landscape_enabled", false)
+
+    val webtoonSidePaddingLandscape: Preference<Int> =
+        preferenceStore.getInt("kurotoon_webtoon_side_padding_landscape", 15)
+
     val readerHideThreshold: Preference<ReaderHideThreshold> = preferenceStore.getEnum(
         "reader_hide_threshold",
         ReaderHideThreshold.LOW,

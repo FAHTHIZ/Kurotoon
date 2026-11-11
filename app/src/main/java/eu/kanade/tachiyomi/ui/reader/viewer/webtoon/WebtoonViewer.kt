@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 
+import android.content.res.Configuration
 import android.graphics.ColorFilter
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
@@ -106,7 +107,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
     )
 
     init {
-        recycler.sidePaddingPercent = simpleLongStrip.page.sidePadding
+        recycler.sidePaddingPercent = simpleLongStrip.page.sidePaddingFor(isLandscape)
         recycler.setItemViewCacheSize(RECYCLER_VIEW_CACHE_SIZE)
         recycler.isVisible = false // Don't let the recycler layout yet
         recycler.layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
@@ -176,7 +177,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         }
         settingsViewModel.simpleLongStrip.collectChanges(scope) { old, new ->
             if (old != null && old.page != new.page) {
-                recycler.sidePaddingPercent = new.page.sidePadding
+                recycler.sidePaddingPercent = new.page.sidePaddingFor(isLandscape)
                 refreshAdapter()
             }
             if (old?.doubleTapZoom != new.doubleTapZoom) {
@@ -188,6 +189,10 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         frame.descendantFocusability = ViewGroup.FOCUS_BLOCK_DESCENDANTS
         frame.addView(recycler)
     }
+
+    // Rotating recreates the reader, so the orientation it was made in is the one it shows
+    private val isLandscape: Boolean
+        get() = activity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
     /** The page images' colours, for pages bound later - see [LocalPageColorFilter]. */
     var pageColorFilter: ColorFilter? = null
