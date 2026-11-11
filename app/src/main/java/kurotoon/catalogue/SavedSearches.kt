@@ -81,7 +81,10 @@ object SavedSearches {
         when (filter) {
             is Filter.Header, is Filter.Separator -> {}
             is Filter.CheckBox -> state.jsonPrimitive.booleanOrNull?.let { filter.state = it }
-            is Filter.TriState -> state.jsonPrimitive.intOrNull?.let { filter.state = it }
+            is Filter.TriState ->
+                state.jsonPrimitive.intOrNull
+                    ?.takeIf { it in Filter.TriState.STATE_IGNORE..Filter.TriState.STATE_EXCLUDE }
+                    ?.let { filter.state = it }
             is Filter.Select<*> ->
                 state.jsonPrimitive.intOrNull
                     ?.takeIf { it in filter.values.indices }
