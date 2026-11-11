@@ -18,6 +18,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Settings → Downloads → Pause when this many are unread: stop auto-downloading new chapters for a series with a big unread backlog ([mihon#122](https://github.com/mihonapp/mihon/issues/122))
 - Settings → Data and storage → Remove downloads not in library, with a list of what will go first ([mihon#565](https://github.com/mihonapp/mihon/issues/565))
 - In-app list of series that failed to update, grouped by error, with Open, Migrate and Hide; reachable from the error notification and a banner in Updates ([mihon#132](https://github.com/mihonapp/mihon/issues/132))
 - Long-press the music badge to open the sound settings; the badge is also easier to hit

@@ -52,6 +52,12 @@ class DownloadPreferences(
         false,
     )
 
+    /** Skip auto-downloading new chapters once a series already has this many unread (0 = no limit). */
+    val downloadNewChaptersUnreadLimit: Preference<Int> = preferenceStore.getInt(
+        "kurotoon_download_new_unread_limit",
+        0,
+    )
+
     val parallelSourceLimit: Preference<Int> = preferenceStore.getInt("download_parallel_source_limit", 5)
 
     val parallelPageLimit: Preference<Int> = preferenceStore.getInt("download_parallel_page_limit", 5)

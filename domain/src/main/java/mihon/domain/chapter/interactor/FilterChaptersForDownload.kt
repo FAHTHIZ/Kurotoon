@@ -37,9 +37,22 @@ class FilterChaptersForDownload(
             return emptyList()
         }
 
-        if (!downloadPreferences.downloadNewUnreadChaptersOnly.get()) return newChapters
+        val unreadLimit = downloadPreferences.downloadNewChaptersUnreadLimit.get()
+        val unreadOnly = downloadPreferences.downloadNewUnreadChaptersOnly.get()
+        if (!unreadOnly && unreadLimit <= 0) return newChapters
 
-        val readChapterNumbers = getChaptersByMangaId.await(manga.id)
+        val allChapters = getChaptersByMangaId.await(manga.id)
+
+        // A big unread backlog means the reader isn't keeping up; don't pile on more files (mihon#122)
+        if (unreadLimit > 0) {
+            val newIds = newChapters.mapTo(HashSet()) { it.id }
+            val backlog = allChapters.count { !it.read && it.id !in newIds }
+            if (backlog >= unreadLimit) return emptyList()
+        }
+
+        if (!unreadOnly) return newChapters
+
+        val readChapterNumbers = allChapters
             .asSequence()
             .filter { it.read && it.isRecognizedNumber }
             .map { it.chapterNumber }

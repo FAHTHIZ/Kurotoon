@@ -151,4 +151,8 @@
         <item quantity="one">Removed downloads of %d series</item>
         <item quantity="other">Removed downloads of %d series</item>
     </plurals>
+    <plurals name="kurotoon_download_unreadLimit_n">
+        <item quantity="one">%d unread chapter</item>
+        <item quantity="other">%d unread chapters</item>
+    </plurals>
 </resources>

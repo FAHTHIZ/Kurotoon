@@ -159,6 +159,18 @@ object SettingsDownloadScreen : SearchableSettings {
                     title = stringResource(MR.strings.pref_download_new_unread_chapters_only),
                     visible = downloadNewChapters,
                 ),
+                Preference.PreferenceItem.ListPreference(
+                    preference = downloadPreferences.downloadNewChaptersUnreadLimit,
+                    entries = listOf(0, 3, 5, 10, 20, 50).associateWith {
+                        if (it == 0) {
+                            stringResource(MR.strings.kurotoon_download_unreadLimit_off)
+                        } else {
+                            pluralStringResource(MR.plurals.kurotoon_download_unreadLimit_n, it, it)
+                        }
+                    },
+                    title = stringResource(MR.strings.kurotoon_download_unreadLimit_title),
+                    visible = downloadNewChapters,
+                ),
                 Preference.PreferenceItem.TextPreference(
                     title = stringResource(MR.strings.categories),
                     subtitle = getCategoriesLabel(
