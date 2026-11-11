@@ -3,28 +3,36 @@ package eu.kanade.presentation.more.settings.screen.about
 import android.content.Context
 import android.text.format.DateFormat
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import eu.kanade.domain.ui.UiPreferences
 import eu.kanade.presentation.components.AppBar
-import eu.kanade.presentation.more.LogoHeader
 import eu.kanade.presentation.more.settings.widget.TextPreferenceWidget
 import eu.kanade.presentation.util.LocalBackPress
 import eu.kanade.presentation.util.Screen
@@ -43,6 +51,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import kurotoon.ui.profile.MeGroup
+import kurotoon.ui.shop.KuroMascot
+import kurotoon.ui.shop.KuroMood
 import logcat.LogPriority
 import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -89,89 +100,79 @@ object AboutScreen : Screen() {
             ScrollbarLazyColumn(
                 contentPadding = contentPadding,
             ) {
-                item {
-                    LogoHeader(
-                        iconPadding = PaddingValues(vertical = 56.dp),
-                    )
-                }
+                item { KuroAboutHero(version = getVersionName(buildTime = null)) }
 
                 item {
-                    TextPreferenceWidget(
-                        title = stringResource(MR.strings.version),
-                        // Keyed on the system 12/24h setting, which can change while the app is backgrounded.
-                        // Date/time prefs only change in Appearance, which recreates this screen on return.
-                        subtitle = remember(is24HourSystem) {
-                            getVersionName(buildTime = getFormattedBuildTime(context))
-                        },
-                        onPreferenceClick = {
-                            val deviceInfo = crashLogUtil.getDebugInfo()
-                            context.copyToClipboard("Debug information", deviceInfo)
-                        },
-                    )
-                }
-
-                if (updaterEnabled) {
-                    item {
+                    MeGroup(title = stringResource(MR.strings.pref_category_about)) {
                         TextPreferenceWidget(
-                            title = stringResource(MR.strings.check_for_updates),
-                            widget = {
-                                AnimatedVisibility(visible = isCheckingUpdates) {
-                                    CircularProgressIndicator(
-                                        modifier = Modifier.size(28.dp),
-                                        strokeWidth = 3.dp,
-                                    )
-                                }
+                            title = stringResource(MR.strings.version),
+                            // Keyed on the system 12/24h setting, which can change while the app is backgrounded.
+                            // Date/time prefs only change in Appearance, which recreates this screen on return.
+                            subtitle = remember(is24HourSystem) {
+                                getVersionName(buildTime = getFormattedBuildTime(context))
                             },
                             onPreferenceClick = {
-                                if (!isCheckingUpdates) {
-                                    scope.launch {
-                                        isCheckingUpdates = true
+                                val deviceInfo = crashLogUtil.getDebugInfo()
+                                context.copyToClipboard("Debug information", deviceInfo)
+                            },
+                        )
 
-                                        checkVersion(
-                                            context = context,
-                                            onAvailableUpdate = { result ->
-                                                val updateScreen = NewUpdateScreen(
-                                                    versionName = result.release.version,
-                                                    changelogInfo = result.release.info,
-                                                    releaseLink = result.release.releaseLink,
-                                                    downloadLink = result.release.downloadLink,
-                                                )
-                                                navigator.push(updateScreen)
-                                            },
-                                            onFinish = {
-                                                isCheckingUpdates = false
-                                            },
+                        if (updaterEnabled) {
+                            TextPreferenceWidget(
+                                title = stringResource(MR.strings.check_for_updates),
+                                widget = {
+                                    AnimatedVisibility(visible = isCheckingUpdates) {
+                                        CircularProgressIndicator(
+                                            modifier = Modifier.size(28.dp),
+                                            strokeWidth = 3.dp,
                                         )
                                     }
-                                }
+                                },
+                                onPreferenceClick = {
+                                    if (!isCheckingUpdates) {
+                                        scope.launch {
+                                            isCheckingUpdates = true
+
+                                            checkVersion(
+                                                context = context,
+                                                onAvailableUpdate = { result ->
+                                                    val updateScreen = NewUpdateScreen(
+                                                        versionName = result.release.version,
+                                                        changelogInfo = result.release.info,
+                                                        releaseLink = result.release.releaseLink,
+                                                        downloadLink = result.release.downloadLink,
+                                                    )
+                                                    navigator.push(updateScreen)
+                                                },
+                                                onFinish = {
+                                                    isCheckingUpdates = false
+                                                },
+                                            )
+                                        }
+                                    }
+                                },
+                            )
+                        }
+
+                        if (!BuildConfig.DEBUG) {
+                            TextPreferenceWidget(
+                                title = stringResource(MR.strings.whats_new),
+                                onPreferenceClick = { uriHandler.openUri(RELEASE_URL) },
+                            )
+                        }
+
+                        TextPreferenceWidget(
+                            title = stringResource(MR.strings.licenses),
+                            onPreferenceClick = { navigator.push(OpenSourceLicensesScreen()) },
+                        )
+
+                        TextPreferenceWidget(
+                            title = stringResource(MR.strings.privacy_policy),
+                            onPreferenceClick = {
+                                uriHandler.openUri("https://github.com/FAHTHIZ/Kurotoon/blob/main/docs/privacy.md")
                             },
                         )
                     }
-                }
-
-                if (!BuildConfig.DEBUG) {
-                    item {
-                        TextPreferenceWidget(
-                            title = stringResource(MR.strings.whats_new),
-                            onPreferenceClick = { uriHandler.openUri(RELEASE_URL) },
-                        )
-                    }
-                }
-
-                item {
-                    TextPreferenceWidget(
-                        title = stringResource(MR.strings.licenses),
-                        onPreferenceClick = { navigator.push(OpenSourceLicensesScreen()) },
-                    )
-                }
-
-                item {
-                    TextPreferenceWidget(
-                        title = stringResource(MR.strings.privacy_policy),
-                        onPreferenceClick = {
-                            uriHandler.openUri("https://github.com/FAHTHIZ/Kurotoon/blob/main/docs/privacy.md")
-                        },
-                    )
                 }
 
                 item {
@@ -272,5 +273,42 @@ object AboutScreen : Screen() {
         } catch (_: Exception) {
             BuildConfig.BUILD_TIME
         }
+    }
+}
+
+/** KuroToon's About header: Kuro, the name, the tagline and the version as a pill. */
+@Composable
+private fun KuroAboutHero(version: String) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 24.dp, bottom = 16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(6.dp),
+    ) {
+        KuroMascot(size = 120.dp, mood = KuroMood.HAPPY)
+        Text(
+            text = stringResource(MR.strings.app_name),
+            style = MaterialTheme.typography.headlineSmall,
+            fontWeight = FontWeight.Bold,
+        )
+        Text(
+            text = stringResource(MR.strings.kurotoon_about_tagline),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(horizontal = 32.dp),
+        )
+        Text(
+            text = version,
+            style = MaterialTheme.typography.labelMedium,
+            fontWeight = FontWeight.SemiBold,
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier
+                .padding(top = 4.dp)
+                .clip(CircleShape)
+                .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.14f))
+                .padding(horizontal = 12.dp, vertical = 4.dp),
+        )
     }
 }
