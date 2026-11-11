@@ -1,99 +1,226 @@
 {
   "id": "kuro.stickers",
-  "name": "Kuro stickers",
+  "name": "Premium Kuru stickers",
   "author": "KuroToon",
-  "version": 1,
-  "description": "Show off how a chapter made you feel.",
+  "version": 2,
+  "description": "Chat with Kuru in every emotion.",
   "items": [
     {
       "id": "happy",
       "kind": "sticker",
-      "name": "Happy Kuro",
+      "name": "Happy",
       "description": "A big chibi smile.",
       "price": 100,
       "rarity": "common",
-      "emoji": "😺"
+      "image": "happy.webp"
     },
     {
-      "id": "reading",
+      "id": "laughing",
       "kind": "sticker",
-      "name": "Reading Kuro",
-      "description": "Nose in a chapter. The classic.",
-      "price": 150,
+      "name": "Laughing",
+      "description": "Laughing too hard to read.",
+      "price": 100,
       "rarity": "common",
-      "emoji": "📖"
-    },
-    {
-      "id": "sleepy",
-      "kind": "sticker",
-      "name": "Sleepy Kuro",
-      "description": "One more chapter... zzz.",
-      "price": 150,
-      "rarity": "common",
-      "emoji": "😴"
+      "image": "laughing.webp"
     },
     {
       "id": "love",
       "kind": "sticker",
-      "name": "Love Kuro",
-      "description": "Heart eyes for your favourite series.",
+      "name": "Love",
+      "description": "Hearts for your favourite series.",
       "price": 200,
       "rarity": "rare",
-      "emoji": "😻"
+      "image": "love.webp"
     },
     {
       "id": "shock",
       "kind": "sticker",
-      "name": "Shock Kuro",
+      "name": "Shock",
       "description": "That cliffhanger reaction, bottled.",
       "price": 200,
       "rarity": "rare",
-      "emoji": "🙀"
+      "image": "shock.webp"
     },
     {
-      "id": "sakura",
+      "id": "angry",
       "kind": "sticker",
-      "name": "Sakura",
-      "description": "Blossom season.",
+      "name": "Angry",
+      "description": "When the chapter ends too soon.",
+      "price": 150,
+      "rarity": "common",
+      "image": "angry.webp"
+    },
+    {
+      "id": "cry",
+      "kind": "sticker",
+      "name": "Cry",
+      "description": "That death scene got you.",
+      "price": 150,
+      "rarity": "common",
+      "image": "cry.webp"
+    },
+    {
+      "id": "sleepy",
+      "kind": "sticker",
+      "name": "Sleepy",
+      "description": "One more chapter... zzz.",
+      "price": 150,
+      "rarity": "common",
+      "image": "sleepy.webp"
+    },
+    {
+      "id": "reading",
+      "kind": "sticker",
+      "name": "Reading",
+      "description": "Nose in a chapter. The classic.",
+      "price": 150,
+      "rarity": "common",
+      "image": "reading.webp"
+    },
+    {
+      "id": "excited",
+      "kind": "sticker",
+      "name": "Excited",
+      "description": "New chapter just dropped.",
+      "price": 200,
+      "rarity": "rare",
+      "image": "excited.webp"
+    },
+    {
+      "id": "thinking",
+      "kind": "sticker",
+      "name": "Thinking",
+      "description": "Working out the plot twist.",
+      "price": 150,
+      "rarity": "common",
+      "image": "thinking.webp"
+    },
+    {
+      "id": "salute",
+      "kind": "sticker",
+      "name": "Salute",
+      "description": "Respect to the author.",
+      "price": 200,
+      "rarity": "rare",
+      "image": "salute.webp"
+    },
+    {
+      "id": "byebye",
+      "kind": "sticker",
+      "name": "Bye Bye",
+      "description": "See you next chapter.",
+      "price": 100,
+      "rarity": "common",
+      "image": "byebye.webp"
+    },
+    {
+      "id": "clap",
+      "kind": "sticker",
+      "name": "Clap",
+      "description": "What an arc.",
+      "price": 150,
+      "rarity": "common",
+      "image": "clap.webp"
+    },
+    {
+      "id": "hug",
+      "kind": "sticker",
+      "name": "Hug",
+      "description": "A big warm hug.",
       "price": 250,
       "rarity": "rare",
-      "emoji": "🌸"
+      "image": "hug.webp"
     },
     {
-      "id": "crown",
+      "id": "cheer",
       "kind": "sticker",
-      "name": "Crown",
-      "description": "Royalty of the reading list.",
-      "price": 400,
+      "name": "Cheer",
+      "description": "Cheering on your favourite.",
+      "price": 250,
+      "rarity": "rare",
+      "image": "cheer.webp"
+    },
+    {
+      "id": "wow",
+      "kind": "sticker",
+      "name": "Wow",
+      "description": "Speechless.",
+      "price": 200,
+      "rarity": "rare",
+      "image": "wow.webp"
+    },
+    {
+      "id": "oops",
+      "kind": "sticker",
+      "name": "Oops",
+      "description": "Spoiled it. Sorry.",
+      "price": 150,
+      "rarity": "common",
+      "image": "oops.webp"
+    },
+    {
+      "id": "thankyou",
+      "kind": "sticker",
+      "name": "Thank You",
+      "description": "Thanks for the recommendation.",
+      "price": 200,
+      "rarity": "rare",
+      "image": "thankyou.webp"
+    },
+    {
+      "id": "support",
+      "kind": "sticker",
+      "name": "Support",
+      "description": "Sending good vibes.",
+      "price": 300,
       "rarity": "epic",
-      "emoji": "👑"
+      "image": "support.webp"
     },
     {
-      "id": "rich",
+      "id": "creator",
       "kind": "sticker",
-      "name": "Rich Kuro",
-      "description": "Showered in K coins.",
+      "name": "Creator Mode",
+      "description": "Drawing your own story.",
+      "price": 600,
+      "rarity": "epic",
+      "image": "creator.webp"
+    },
+    {
+      "id": "levelup",
+      "kind": "sticker",
+      "name": "Level Up!",
+      "description": "Another milestone reached.",
       "price": 800,
       "rarity": "epic",
-      "emoji": "🪙"
-    },
-    {
-      "id": "dragon",
-      "kind": "sticker",
-      "name": "Dragon",
-      "description": "Legendary reader energy.",
-      "price": 1000,
-      "rarity": "legendary",
-      "emoji": "🐉"
+      "image": "levelup.webp"
     },
     {
       "id": "galaxy",
       "kind": "sticker",
-      "name": "Galaxy",
-      "description": "Lost among the stars.",
+      "name": "Galaxy Mode",
+      "description": "Kuru at full cosmic power.",
       "price": 2000,
       "rarity": "mythic",
-      "emoji": "🌌"
+      "image": "galaxy.webp"
+    },
+    {
+      "id": "rich",
+      "kind": "sticker",
+      "name": "Rich Kuru",
+      "description": "Swimming in K coins.",
+      "price": 1200,
+      "rarity": "legendary",
+      "image": "rich.webp"
+    },
+    {
+      "id": "nomnom",
+      "kind": "sticker",
+      "name": "Nom Nom",
+      "description": "Snacks and chapters.",
+      "price": 300,
+      "rarity": "epic",
+      "image": "nomnom.webp"
     }
-  ]
+  ],
+  "cover": "happy.webp"
 }
