@@ -1307,4 +1307,8 @@
     <string name="kurotoon.section.schedule">Out today</string>
     <string name="kurotoon.home.addedToLibrary">Added “%s” to your library</string>
     <string name="kurotoon.home.removedFromLibrary">Removed “%s” from your library</string>
+    <string name="kurotoon.category.hide">Hide this category</string>
+    <string name="kurotoon.category.unhide">Stop hiding this category</string>
+    <string name="kurotoon.category.showHidden">Show hidden categories</string>
+    <string name="kurotoon.category.concealHidden">Hide hidden categories again</string>
 </resources>

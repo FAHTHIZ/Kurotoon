@@ -63,5 +63,8 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
     val homeHiddenSections = preferenceStore.getStringSet("kurotoon_home_hidden_sections", emptySet())
 
     /** Fold same-day chapters of one series into a single Updates row. See [kurotoon.updates.UpdateGroups]. */
+    /** Ids of library categories kept out of sight until "Show hidden categories" is tapped. */
+    val hiddenCategories = preferenceStore.getStringSet("kurotoon_hidden_categories", emptySet())
+
     val updatesGroupSeries = preferenceStore.getBoolean("kurotoon_updates_group_series", true)
 }

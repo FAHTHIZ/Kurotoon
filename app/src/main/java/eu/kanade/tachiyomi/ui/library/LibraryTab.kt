@@ -91,6 +91,8 @@ data object LibraryTab : Tab {
         val viewModel = metroViewModel<LibraryViewModel>()
         val settingsViewModel = metroViewModel<LibrarySettingsViewModel>()
         val state by viewModel.state.collectAsStateWithLifecycle()
+        val hiddenCategories by viewModel.hiddenCategoryIds.collectAsStateWithLifecycle()
+        val revealingHidden by viewModel.revealHidden.collectAsStateWithLifecycle()
 
         val snackbarHostState = remember { SnackbarHostState() }
 
@@ -137,6 +139,12 @@ data object LibraryTab : Tab {
                         }
                     },
                     onClickDuplicates = { navigator.push(DuplicatesScreen()) },
+                    onClickHideCategory = state.activeCategory?.let { category ->
+                        { viewModel.toggleCategoryHidden(category) }
+                    },
+                    activeCategoryHidden = state.activeCategory?.id in hiddenCategories,
+                    onClickRevealHidden = viewModel::toggleRevealHidden.takeIf { hiddenCategories.isNotEmpty() },
+                    revealingHidden = revealingHidden,
                     searchQuery = state.searchQuery,
                     onSearchQueryChange = viewModel::search,
                     // For scroll overlay when no tab

@@ -37,6 +37,12 @@ fun LibraryToolbar(
     onClickGlobalUpdate: () -> Unit,
     onClickOpenRandomManga: () -> Unit,
     onClickDuplicates: () -> Unit = {},
+    /** Null when there's no category on screen to hide. */
+    onClickHideCategory: (() -> Unit)? = null,
+    activeCategoryHidden: Boolean = false,
+    /** Null when no category is hidden. */
+    onClickRevealHidden: (() -> Unit)? = null,
+    revealingHidden: Boolean = false,
     searchQuery: String?,
     onSearchQueryChange: (String?) -> Unit,
     scrollBehavior: TopAppBarScrollBehavior?,
@@ -57,6 +63,10 @@ fun LibraryToolbar(
         onClickGlobalUpdate = onClickGlobalUpdate,
         onClickOpenRandomManga = onClickOpenRandomManga,
         onClickDuplicates = onClickDuplicates,
+        onClickHideCategory = onClickHideCategory,
+        activeCategoryHidden = activeCategoryHidden,
+        onClickRevealHidden = onClickRevealHidden,
+        revealingHidden = revealingHidden,
         scrollBehavior = scrollBehavior,
     )
 }
@@ -72,6 +82,10 @@ private fun LibraryRegularToolbar(
     onClickGlobalUpdate: () -> Unit,
     onClickOpenRandomManga: () -> Unit,
     onClickDuplicates: () -> Unit = {},
+    onClickHideCategory: (() -> Unit)? = null,
+    activeCategoryHidden: Boolean = false,
+    onClickRevealHidden: (() -> Unit)? = null,
+    revealingHidden: Boolean = false,
     scrollBehavior: TopAppBarScrollBehavior?,
 ) {
     val pillAlpha = if (isSystemInDarkTheme()) 0.12f else 0.08f
@@ -121,6 +135,31 @@ private fun LibraryRegularToolbar(
                         title = stringResource(MR.strings.kurotoon_duplicates_title),
                         onClick = onClickDuplicates,
                     ),
+                ) + listOfNotNull(
+                    onClickHideCategory?.let {
+                        AppBar.OverflowAction(
+                            title = stringResource(
+                                if (activeCategoryHidden) {
+                                    MR.strings.kurotoon_category_unhide
+                                } else {
+                                    MR.strings.kurotoon_category_hide
+                                },
+                            ),
+                            onClick = it,
+                        )
+                    },
+                    onClickRevealHidden?.let {
+                        AppBar.OverflowAction(
+                            title = stringResource(
+                                if (revealingHidden) {
+                                    MR.strings.kurotoon_category_concealHidden
+                                } else {
+                                    MR.strings.kurotoon_category_showHidden
+                                },
+                            ),
+                            onClick = it,
+                        )
+                    },
                 ),
             )
         },
