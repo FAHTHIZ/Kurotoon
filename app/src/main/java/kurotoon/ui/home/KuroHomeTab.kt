@@ -24,6 +24,7 @@ import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.stats.StatsScreen
 import kotlinx.coroutines.launch
+import kurotoon.ui.panels.SavedPanelsScreen
 import kurotoon.ui.schedule.ScheduleScreen
 import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -90,6 +91,7 @@ data object KuroHomeTab : Tab {
             onHistoryClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.History) } },
             onDownloadsClick = { navigator.push(DownloadQueueScreen) },
             onStatsClick = { navigator.push(StatsScreen()) },
+            onSavedPanelsClick = { navigator.push(SavedPanelsScreen()) },
             hidden = hidden,
             onRefresh = viewModel::refresh,
         )
