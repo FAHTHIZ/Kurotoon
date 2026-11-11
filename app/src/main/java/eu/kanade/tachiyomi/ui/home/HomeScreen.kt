@@ -64,6 +64,7 @@ import soup.compose.material.motion.animation.materialFadeThroughIn
 import soup.compose.material.motion.animation.materialFadeThroughOut
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.pluralStringResource
+import tachiyomi.presentation.core.util.collectAsState
 
 object HomeScreen : Screen() {
 
@@ -77,19 +78,28 @@ object HomeScreen : Screen() {
     @Suppress("ConstPropertyName")
     private const val TabNavigatorKey = "HomeTabs"
 
-    private val TABS = listOf(
-        KuroHomeTab,
-        BrowseTab,
-        LibraryTab,
-        UpdatesTab,
-        MoreTab,
+    private val OPTIONAL_TABS = listOf(
+        "browse" to BrowseTab,
+        "library" to LibraryTab,
+        "updates" to UpdatesTab,
+        "history" to HistoryTab,
     )
+
+    private fun tabsFor(shown: Set<String>): List<eu.kanade.presentation.util.Tab> =
+        listOf(KuroHomeTab) + OPTIONAL_TABS.filter { it.first in shown }.map { it.second } + MoreTab
+
+    private fun startTabFor(key: String, shown: Set<String>): eu.kanade.presentation.util.Tab =
+        OPTIONAL_TABS.firstOrNull { it.first == key && key in shown }?.second ?: KuroHomeTab
 
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
+        val kuroPreferences = LocalContext.current.appGraph.kuroPreferences
+        val shownTabs by kuroPreferences.navTabs.collectAsState()
+        val tabs = remember(shownTabs) { tabsFor(shownTabs) }
+        val startTab = remember { startTabFor(kuroPreferences.startTab.get(), kuroPreferences.navTabs.get()) }
         TabNavigator(
-            tab = KuroHomeTab,
+            tab = startTab,
             key = TabNavigatorKey,
         ) { tabNavigator ->
             // Provide usable navigator to content screen
@@ -126,7 +136,7 @@ object HomeScreen : Screen() {
                         ),
                         navigationItemVerticalArrangement = Arrangement.Center,
                         navigationItems = {
-                            TABS.fastForEach { NavigationSuiteItem(it, NavigationSuiteType.NavigationRail) }
+                            tabs.fastForEach { NavigationSuiteItem(it, NavigationSuiteType.NavigationRail) }
                         },
                         content = tabContent,
                     )
@@ -150,7 +160,7 @@ object HomeScreen : Screen() {
                             enter = expandVertically(),
                             exit = shrinkVertically(),
                         ) {
-                            KuroNavigationBar(tabNavigator)
+                            KuroNavigationBar(tabNavigator, tabs)
                         }
                     }
                 }
@@ -158,7 +168,10 @@ object HomeScreen : Screen() {
 
             val goToLibraryTab = { tabNavigator.current = LibraryTab }
 
-            BackHandler(enabled = tabNavigator.current != KuroHomeTab, onBack = { tabNavigator.current = KuroHomeTab })
+            BackHandler(
+                enabled = tabNavigator.current::class != startTab::class,
+                onBack = { tabNavigator.current = startTab },
+            )
 
             LaunchedEffect(Unit) {
                 launch {
@@ -196,10 +209,10 @@ object HomeScreen : Screen() {
     }
 
     @Composable
-    private fun KuroNavigationBar(tabNavigator: TabNavigator) {
+    private fun KuroNavigationBar(tabNavigator: TabNavigator, tabs: List<eu.kanade.presentation.util.Tab>) {
         val navigator = LocalNavigator.currentOrThrow
         val scope = rememberCoroutineScope()
-        val items = TABS.map { tab ->
+        val items = tabs.map { tab ->
             KuroBottomBarItem(
                 key = tab,
                 title = tab.options.title,
@@ -209,7 +222,7 @@ object HomeScreen : Screen() {
         }
         KuroBottomBar(
             items = items,
-            selectedKey = TABS.firstOrNull { it::class == tabNavigator.current::class } ?: Unit,
+            selectedKey = tabs.firstOrNull { it::class == tabNavigator.current::class } ?: Unit,
             onClick = { item ->
                 val tab = item.key as eu.kanade.presentation.util.Tab
                 if (tabNavigator.current::class != tab::class) {

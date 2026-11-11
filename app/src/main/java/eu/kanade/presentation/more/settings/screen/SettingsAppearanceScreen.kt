@@ -186,6 +186,28 @@ object SettingsAppearanceScreen : SearchableSettings {
                     ),
                     title = stringResource(MR.strings.kurotoon_settings_homeHidden),
                 ),
+                Preference.PreferenceItem.MultiSelectListPreference(
+                    preference = context.appGraph.kuroPreferences.navTabs,
+                    entries = mapOf(
+                        "browse" to stringResource(MR.strings.browse),
+                        "library" to stringResource(MR.strings.label_library),
+                        "updates" to stringResource(MR.strings.label_recent_updates),
+                        "history" to stringResource(MR.strings.label_recent_manga),
+                    ),
+                    title = stringResource(MR.strings.kurotoon_settings_navTabs),
+                ),
+                Preference.PreferenceItem.ListPreference(
+                    preference = context.appGraph.kuroPreferences.startTab,
+                    entries = mapOf(
+                        "home" to stringResource(MR.strings.kurotoon_tab_home),
+                        "browse" to stringResource(MR.strings.browse),
+                        "library" to stringResource(MR.strings.label_library),
+                        "updates" to stringResource(MR.strings.label_recent_updates),
+                        "history" to stringResource(MR.strings.label_recent_manga),
+                    ),
+                    title = stringResource(MR.strings.kurotoon_settings_startTab),
+                    subtitle = stringResource(MR.strings.kurotoon_settings_startTabSummary),
+                ),
                 Preference.PreferenceItem.SwitchPreference(
                     preference = context.appGraph.kuroPreferences.particles,
                     title = stringResource(MR.strings.kurotoon_settings_particles),
