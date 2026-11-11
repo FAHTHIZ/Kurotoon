@@ -79,6 +79,7 @@ fun KuroHomeContent(
     onHistoryClick: () -> Unit,
     onDownloadsClick: () -> Unit,
     onStatsClick: () -> Unit,
+    onSavedPanelsClick: () -> Unit = {},
     /** Keys of [HomeSection]s switched off. */
     hidden: Set<String> = emptySet(),
     onRefresh: () -> Unit = {},
@@ -163,6 +164,9 @@ fun KuroHomeContent(
                 }
                 if (shown(HomeSection.BINGE) && state.binge.isNotEmpty()) {
                     item(key = "binge") { HomeBinge(items = state.binge, onMangaClick = onMangaClick) }
+                }
+                if (shown(HomeSection.PANELS)) {
+                    item(key = "panels") { HomePanels(onSeeAll = onSavedPanelsClick) }
                 }
                 val rows = state.savedRows.takeIf { shown(HomeSection.SAVED) }.orEmpty() +
                     state.pickRows.takeIf { shown(HomeSection.PICKS) }.orEmpty() +

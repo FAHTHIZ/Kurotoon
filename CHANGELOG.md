@@ -15,6 +15,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Go to page: tap the page number in the reader menu to type the page you want
 - Pages that failed when the connection dropped reload by themselves as soon as you're back online, and timeouts or busy servers get two quiet retries before a Retry button appears
 - Resume where you left off (Settings > Reader): Resume opens the last chapter you opened, even after skipping ahead, instead of an earlier unread one
+- Your panels on Home: the latest pages you kept from the reader as a poster row; tap one to jump back into its chapter, See all opens the gallery (hide it in Settings > Appearance > Home)
 - Ignore repeated volume-key presses (Settings > Reader > Navigation): one page per press on bouncy buttons
 - The reader's top bar says how many chapters are left after this one ("Chapter 37 · 13 chapters left")
 - The Resume / Start button on a series names the chapter it opens ("Resume · Ch. 37")
