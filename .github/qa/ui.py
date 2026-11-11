@@ -114,6 +114,21 @@ def run(path):
                         adb("shell", "input", "tap", str(pos[0]), str(pos[1]))
                     time.sleep(4)
                 say("  found" if find(args[1]) else f"  !! never reached {args[1]}")
+            elif cmd == "tapnear":
+                # tapnear LABEL TARGET: tap the TARGET (text or description) on the same row as LABEL
+                root = dump()
+                anchor = find(args[0], exact=True, root=root) or find(args[0], root=root)
+                hits = [(abs(y - anchor[1]), x, y) for t, d, x, y, n in nodes(root)
+                        if anchor and args[1].lower() in (t.lower(), d.lower())]
+                if hits:
+                    _, x, y = min(hits)
+                    adb("shell", "input", "tap", str(x), str(y)); time.sleep(1.5)
+                else:
+                    say(f"  !! not found: {args[1]} near {args[0]}")
+            elif cmd == "coords":
+                for t, d, x, y, n in nodes(dump()):
+                    if t or d:
+                        say(f"  {x},{y} {(t or d)[:50]}")
             elif cmd == "tapif":
                 pos = find(args[0], exact=True) or find(args[0])
                 if pos:
