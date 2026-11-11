@@ -6,6 +6,8 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Added
+- **Collection** replaces the Kuro Shop: avatars, frames, stickers, badges, themes and effect colours are all free. Tap one to see it large, then Use or Stop using. Stickers can be pinned to your picture or shared in a chat. Packs still import from the top bar
+- **One-shots**: a series tagged Oneshot by its source, or with a single chapter and finished, says One-shot on its page, and the library has a One-shots quick filter
 - **Merged chapters across sources**: when a series is in your library from more than one source, its page offers one chapter list combined by chapter number, so 1–4 and 9 from one site plus 5–7 and 10 from another read as 1–10. Each chapter opens from the source that has it. See [docs/merged-chapters.md](docs/merged-chapters.md)
 - Global search opens with **On several sources**: each series found on two or more sources shown once with a ×N badge
 - Global search suggests **tags from every installed source**, merged and deduplicated, filtered as you type. The list updates as soon as you install or remove a source
@@ -13,7 +15,12 @@ All notable changes to KuroToon are documented here. Versions follow
 - **Library combines copies**: a series saved from several sources shows once, with a ×N badge, led by the copy you read last. Turn it off in Library settings
 
 ### Changed
-- Kuro's real artwork everywhere: the code-drawn cat, the emoji welcome and the off-model chibi pack are gone, and empty screens show Kuro dozing
+- A calmer look from first run to the reader: one accent colour instead of crimson, purple, blue and gold mixed together; cards without borders or gradients; sentence-case section titles; no glow under the bottom bar
+- Home puts your series first: Continue reading, New chapters and Due today come before the featured banner and source rows. Shortcuts and Saved panels start hidden (turn them on in Settings › Appearance)
+- Finishing a chapter shows a small card with a check; no confetti, rays or glow
+- The Me tab shows a plain letter avatar until you pick one, neutral rows and a Chapters read tile instead of points
+- The mascot is out of everyday screens: empty states, tips, onboarding, the crash screen and downloads use simple icons. Kuro's artwork lives on as stickers and avatars in the Collection
+- Points, missions, streak chests, achievements and reward toasts are gone from the app
 - Cleaner effects: taps use the normal touch ripple only, celebration sparks are smaller and softer, and the background embers are off by default (Settings › Appearance › Background embers)
 - Home reads as one page: every shelf shares the same header (icon, title, subtitle, See all) and cover size. Continue reading gains See all
 - The old JSON chapter reconciliation tool in the Me tab is replaced by merged chapters
