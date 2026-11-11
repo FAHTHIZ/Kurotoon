@@ -51,6 +51,16 @@ jobs:
             echo "enabled=false" >> "$GITHUB_OUTPUT"
           fi
 
+      # Release gate: nothing is published unless formatting, unit tests and database migrations pass
+      - name: Gate - code format
+        run: ./gradlew spotlessCheck
+
+      - name: Gate - unit tests
+        run: ./gradlew testDebugUnitTest
+
+      - name: Gate - database migrations
+        run: ./gradlew verifySqlDelightMigration
+
       - name: Build release APKs
         env:
           KUROTOON_GITHUB_RELEASE: ${{ steps.signing.outputs.enabled }}

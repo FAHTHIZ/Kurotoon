@@ -5,6 +5,10 @@ All notable changes to KuroToon are documented here. Versions follow
 
 ## [Unreleased]
 
+## [0.22.0] - 2026-11-11
+
+The redesign release: KuroToon's own look across every main screen.
+
 ### Redesigned
 KuroToon's own look replaces the stock Mihon screens, one at a time:
 - Empty screens show a sleeping Kuro instead of a kaomoji
