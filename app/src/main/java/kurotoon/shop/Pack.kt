@@ -111,7 +111,7 @@ internal val packJson = Json {
     ignoreUnknownKeys = true
 }
 
-private val idPattern = Regex("[A-Za-z0-9._-]{1,64}")
+private val idPattern = Regex("[A-Za-z0-9][A-Za-z0-9._-]{0,63}")
 
 /** Whether [id] is safe to use as a pack or item id (and as a folder name). */
 internal fun isValidId(id: String): Boolean = idPattern.matches(id)
