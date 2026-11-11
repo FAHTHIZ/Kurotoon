@@ -120,6 +120,9 @@ import kurotoon.reader.AutoScrollState
 import kurotoon.reader.ChapterCompleteHost
 import kurotoon.reader.ChapterCompleteState
 import kurotoon.reader.ReaderProgressOrb
+import kurotoon.reader.SleepTimerCurtain
+import kurotoon.reader.SleepTimerDriver
+import kurotoon.reader.SleepTimerState
 import kurotoon.reader.sound.ReaderSoundtrack
 import kurotoon.reader.sound.Soundscape
 import kurotoon.ui.reader.ReaderSoundBadge
@@ -179,6 +182,7 @@ class ReaderActivity : BaseActivity() {
     private val autoScroll = AutoScrollState()
     private val chapterComplete = ChapterCompleteState()
     private val soundtrack by lazy { ReaderSoundtrack(this) }
+    private val sleepTimer = SleepTimerState()
 
     /**
      * Called when the activity is created. Initializes the presenter and configuration.
@@ -236,6 +240,7 @@ class ReaderActivity : BaseActivity() {
             LaunchedEffect(Unit) { focusRequester.requestFocus() }
 
             ReaderSoundEffects(state)
+            SleepTimerDriver(sleepTimer, onFire = ::onSleepTimer)
 
             val autoScrollSpeed by readerPreferences.autoScrollSpeed.collectAsState()
             val lifecycleState by lifecycle.currentStateFlow.collectAsState()
@@ -331,6 +336,8 @@ class ReaderActivity : BaseActivity() {
                 )
 
                 AppBars(state = state)
+
+                SleepTimerCurtain(state = sleepTimer, onClose = ::finish)
             }
 
             if (state.isLoadingAdjacentChapter) {
@@ -393,6 +400,7 @@ class ReaderActivity : BaseActivity() {
                     ReaderSoundSheet(
                         preferences = readerPreferences,
                         soundtrack = soundtrack,
+                        sleepTimer = sleepTimer,
                         onDismissRequest = onDismissRequest,
                     )
                 }
@@ -480,7 +488,12 @@ class ReaderActivity : BaseActivity() {
                         onSetAsCoverResult(event.result)
                     }
                     is ReaderViewModel.Event.ChapterCompleted -> {
-                        if (readerPreferences.celebrateChapters.get()) chapterComplete.show(event.chapterName)
+                        if (sleepTimer.endOfChapter) {
+                            sleepTimer.fire()
+                            onSleepTimer()
+                        } else if (readerPreferences.celebrateChapters.get()) {
+                            chapterComplete.show(event.chapterName)
+                        }
                     }
                 }
             }
@@ -754,6 +767,13 @@ class ReaderActivity : BaseActivity() {
         LaunchedEffect(ambience, state.manga?.genre) {
             soundtrack.setSoundscape(Soundscape.of(ambience), state.manga?.genre)
         }
+    }
+
+    /** The sleep timer ran out: stop moving, go quiet and let the curtain ask what's next. */
+    private fun onSleepTimer() {
+        autoScroll.enabled = false
+        if (!soundtrack.muted) soundtrack.toggleMute()
+        setMenuVisibility(false)
     }
 
     private fun changeAutoScrollSpeed(delta: Int) {
