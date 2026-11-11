@@ -1317,4 +1317,5 @@
     <string name="kurotoon.library.groupBy.source">Source</string>
     <string name="kurotoon.library.groupBy.status">Publishing status</string>
     <string name="kurotoon.library.groupBy.none">Nothing (one list)</string>
+    <string name="kurotoon.library.sourceBadge">Source name</string>
 </resources>

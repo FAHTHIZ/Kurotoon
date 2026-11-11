@@ -367,7 +367,7 @@ class LibraryViewModel(
     ): Map<Category, List</* LibraryItem */ Long>> {
         if (groupBy != LibraryGroupBy.CATEGORY) {
             return LibraryGrouping.group(
-                entries = map { GroupableEntry(it.id, it.sourceName, it.libraryManga.manga.status) },
+                entries = map { GroupableEntry(it.id, it.sourceTitle, it.libraryManga.manga.status) },
                 mode = groupBy,
                 sortFlags = libraryPreferences.sortingMode.get().flag,
                 allLabel = application.stringResource(MR.strings.all),
@@ -479,6 +479,7 @@ class LibraryViewModel(
             libraryPreferences.filterBookmarked.changes(),
             libraryPreferences.filterCompleted.changes(),
             libraryPreferences.filterIntervalCustom.changes(),
+            kuroPreferences.sourceBadge.changes(),
         ) {
             ItemPreferences(
                 downloadBadge = it[0] as Boolean,
@@ -493,6 +494,7 @@ class LibraryViewModel(
                 filterBookmarked = it[9] as TriState,
                 filterCompleted = it[10] as TriState,
                 filterIntervalCustom = it[11] as TriState,
+                sourceBadge = it[12] as Boolean,
             )
         }
     }
@@ -538,7 +540,9 @@ class LibraryViewModel(
                         } else {
                             ""
                         },
+                        sourceName = if (preferences.sourceBadge && !manga.manga.isLocal()) source.name else "",
                     ),
+                    sourceTitle = source.name,
                 )
             }
         }
@@ -857,6 +861,7 @@ class LibraryViewModel(
         val unreadBadge: Boolean,
         val localBadge: Boolean,
         val languageBadge: Boolean,
+        val sourceBadge: Boolean = false,
         val skipOutsideReleasePeriod: Boolean,
 
         val globalFilterDownloaded: Boolean,
