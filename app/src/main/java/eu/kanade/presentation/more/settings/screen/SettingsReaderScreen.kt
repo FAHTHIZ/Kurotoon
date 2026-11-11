@@ -395,6 +395,11 @@ object SettingsReaderScreen : SearchableSettings {
                     preference = readerPreferences.webtoonDisableZoomOut,
                     title = stringResource(MR.strings.pref_webtoon_disable_zoom_out),
                 ),
+                Preference.PreferenceItem.SwitchPreference(
+                    preference = readerPreferences.webtoonZoomLocked,
+                    title = stringResource(MR.strings.kurotoon_reader_zoomLocked),
+                    subtitle = stringResource(MR.strings.kurotoon_reader_zoomLockedSummary),
+                ),
             ),
         )
     }

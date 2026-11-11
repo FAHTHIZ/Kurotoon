@@ -12,6 +12,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Lock zoom in the long strip so a stray two-finger touch never zooms (Settings > Reader or the reading-mode sheet)
 - The end of the latest chapter says you're all caught up and which day new chapters usually arrive
 - Undo after swiping a chapter to read, unread or bookmarked
 - Home's Continue reading cards show the page you stopped on ("Chapter 37 · p. 12")

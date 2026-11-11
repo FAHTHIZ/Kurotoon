@@ -145,10 +145,12 @@ class ReaderSettingsViewModel(
     val longStrip = settings(
         preferences.cropBordersWebtoon,
         preferences.webtoonDisableZoomOut,
+        preferences.webtoonZoomLocked,
     ) {
         LongStripSettings(
             cropBorders = cropBordersWebtoon.get(),
             zoomOutDisabled = webtoonDisableZoomOut.get(),
+            zoomLocked = webtoonZoomLocked.get(),
         )
     }
 

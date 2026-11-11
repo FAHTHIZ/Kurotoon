@@ -6,4 +6,5 @@ package eu.kanade.tachiyomi.ui.reader.viewer
 data class LongStripSettings(
     val cropBorders: Boolean,
     val zoomOutDisabled: Boolean,
+    val zoomLocked: Boolean = false,
 )
