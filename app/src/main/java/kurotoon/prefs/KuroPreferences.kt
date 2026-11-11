@@ -27,6 +27,9 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
     /** Updates fetched at or before this time (epoch ms) are hidden from the Updates tab (mihon#1534). */
     val updatesClearedAt = preferenceStore.getLong("kurotoon_updates_cleared_at", 0L)
 
+    /** The category the library opens on; -1 means wherever you left it (mihon#2165). */
+    val libraryStartCategory = preferenceStore.getLong("kurotoon_library_start_category", -1L)
+
     /** Per-source default library category as "sourceId=categoryId" (mihon#336). */
     val sourceDefaultCategories = preferenceStore.getStringSet("kurotoon_source_default_categories", emptySet())
 

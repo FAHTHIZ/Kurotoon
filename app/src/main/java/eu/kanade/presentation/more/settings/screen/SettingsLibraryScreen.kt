@@ -91,6 +91,14 @@ object SettingsLibraryScreen : SearchableSettings {
                     entries = ids.zip(labels).toMap(),
                     title = stringResource(MR.strings.default_category),
                 ),
+                Preference.PreferenceItem.ListPreference(
+                    preference = context.appGraph.kuroPreferences.libraryStartCategory,
+                    entries = (
+                        listOf(-1L to stringResource(MR.strings.kurotoon_library_startCategory_last)) +
+                            allCategories.fastMap { it.id to it.visualName }
+                        ).toMap(),
+                    title = stringResource(MR.strings.kurotoon_library_startCategory),
+                ),
                 Preference.PreferenceItem.SwitchPreference(
                     preference = libraryPreferences.categorizedDisplaySettings,
                     title = stringResource(MR.strings.categorized_display_settings),

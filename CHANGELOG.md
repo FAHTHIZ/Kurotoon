@@ -20,6 +20,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Choose the category the library always opens on, in Settings > Library ([mihon#2165](https://github.com/mihonapp/mihon/issues/2165))
 - Clear the Updates list from its menu, with Undo; new chapters still appear and cleared ones can be shown again ([mihon#1534](https://github.com/mihonapp/mihon/issues/1534))
 - Long strip can use a different side padding in landscape, so sideways pages stop filling the whole screen ([mihon#155](https://github.com/mihonapp/mihon/issues/155))
 - A "Recently added" shelf on Home lists what you saved this month, newest first, so a fresh add is easy to find again ([mihon#2529](https://github.com/mihonapp/mihon/issues/2529))
