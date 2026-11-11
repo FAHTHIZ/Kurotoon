@@ -6,8 +6,10 @@ import androidx.compose.animation.graphics.res.animatedVectorResource
 import androidx.compose.animation.graphics.res.rememberAnimatedVectorPainter
 import androidx.compose.animation.graphics.vector.AnimatedImageVector
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -118,7 +120,12 @@ data object LibraryTab : Tab {
                     category != null -> MR.strings.updating_category
                     else -> MR.strings.updating_library
                 }
-                snackbarHostState.showSnackbar(context.stringResource(msgRes))
+                val result = snackbarHostState.showSnackbar(
+                    message = context.stringResource(msgRes),
+                    actionLabel = context.stringResource(MR.strings.kurotoon_action_stopUpdate),
+                    duration = SnackbarDuration.Short,
+                )
+                if (result == SnackbarResult.ActionPerformed) LibraryUpdateWorker.stop(context)
             }
             started
         }
