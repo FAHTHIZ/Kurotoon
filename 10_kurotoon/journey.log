@@ -1,0 +1,63 @@
+> start app.kurotoon.dev
+> sleep 3
+> shot welcome
+  [shot 001_welcome] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx Next
+> shot storage
+  !! error Command '['adb', 'exec-out', 'screencap', '-p']' timed out after 60 seconds
+> tap "Select a folder"
+  !! not found: Select a folder
+  [shot 003_notfound] visible: []
+> sleep 3
+> shot picker
+  [shot 004_picker] visible: []
+> tap "More options"
+  !! not found: More options
+  [shot 005_notfound] visible: []
+> shot picker_menu
+  [shot 006_picker_menu] visible: []
+> tap "New folder"
+  !! not found: New folder
+  [shot 007_notfound] visible: []
+> shot newfolder
+  [shot 008_newfolder] visible: []
+> type Kurotoon
+> tapx OK
+  !! not found: OK
+  [shot 009_notfound] visible: []
+> sleep 2
+> shot infolder
+  [shot 010_infolder] visible: []
+> tap "Use this folder"
+  !! not found: Use this folder
+  [shot 011_notfound] visible: []
+> sleep 2
+> tap Allow
+  !! not found: Allow
+  [shot 012_notfound] visible: []
+> sleep 2
+> shot storage_done
+  [shot 013_storage_done] visible: []
+> tapx Next
+  !! not found: Next
+  [shot 014_notfound] visible: []
+> shot permissions
+  [shot 015_permissions] visible: []
+> tapx Next
+  !! not found: Next
+  [shot 016_notfound] visible: []
+> shot guides
+  [shot 017_guides] visible: []
+> tap "Get started"
+  !! not found: Get started
+  [shot 018_notfound] visible: []
+> sleep 3
+> shot home
+  [shot 019_home] visible: []
+> tapx Browse
+  !! not found: Browse
+  [shot 020_notfound] visible: []
+> sleep 2
+> shot browse
+  [shot 021_browse] visible: []
+> tapx Library
