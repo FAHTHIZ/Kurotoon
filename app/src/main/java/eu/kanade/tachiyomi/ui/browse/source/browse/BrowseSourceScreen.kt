@@ -62,6 +62,7 @@ import kurotoon.ui.browse.SavedSearchRow
 import mihon.feature.migration.dialog.MigrateMangaDialog
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.FilterList
+import mihon.icons.materialsymbols.rounded.Refresh
 import mihon.icons.materialsymbols.rounded.Verified
 import mihon.icons.materialsymbols.roundedfilled.Favorite
 import mihon.presentation.core.util.collectAsLazyPagingItems
@@ -172,6 +173,33 @@ data class BrowseSourceScreen(
                         isActionMode = true,
                         onCancelActionMode = stopSelecting,
                         actions = {
+                            // Library series picked here can be checked for new chapters on their own (mihon#834)
+                            if (selected.values.any { it.favorite }) {
+                                androidx.compose.material3.IconButton(
+                                    onClick = {
+                                        val ids = selected.values.filter { it.favorite }.map { it.id }
+                                        stopSelecting()
+                                        scope.launch {
+                                            val started = eu.kanade.tachiyomi.data.library.LibraryUpdateWorker.startNow(
+                                                androidx.work.WorkManager.getInstance(context),
+                                                mangaIds = ids,
+                                            )
+                                            val message = if (started) {
+                                                val res = MR.plurals.kurotoon_library_updatingSelected
+                                                context.pluralStringResource(res, ids.size, ids.size)
+                                            } else {
+                                                context.stringResource(MR.strings.update_already_running)
+                                            }
+                                            snackbarHostState.showSnackbar(message)
+                                        }
+                                    },
+                                ) {
+                                    androidx.compose.material3.Icon(
+                                        imageVector = mihon.icons.materialsymbols.MaterialSymbols.Rounded.Refresh,
+                                        contentDescription = stringResource(MR.strings.kurotoon_library_updateSelected),
+                                    )
+                                }
+                            }
                             androidx.compose.material3.TextButton(
                                 enabled = selected.values.any { !it.favorite },
                                 onClick = {
