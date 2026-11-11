@@ -1213,6 +1213,10 @@
     <string name="kurotoon_reader_clockBatterySummary">Show the clock and battery level next to the page number, since the reader hides the status bar</string>
     <string name="kurotoon_reader_resumedAt">Picked up on page %d</string>
     <string name="kurotoon_reader_startOver">Start over</string>
+    <string name="kurotoon_track_massTitle">Track on…</string>
+    <string name="kurotoon_track_massSummary">Each series is linked to the closest title match. Series already on that tracker are skipped. You can fix any wrong match from the series page.</string>
+    <string name="kurotoon_track_massNoTrackers">Sign in to a tracker in Settings › Tracking first</string>
+    <string name="kurotoon_track_massDone">Tracking done: %1$d linked, %2$d without a match, %3$d already tracked</string>
     <string name="kurotoon_settings_navTabs">Navigation bar tabs</string>
     <string name="kurotoon_settings_startTab">Open app on</string>
     <string name="kurotoon_settings_startTabSummary">%s · takes effect next launch; hidden tabs fall back to Home</string>

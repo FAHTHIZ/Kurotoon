@@ -20,6 +20,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Track many library series at once: select them, then More › Track on…, and each is linked to its closest match ([mihon#2441](https://github.com/mihonapp/mihon/issues/2441))
 - Searching inside a source remembers recent queries as one-tap pills ([mihon#1409](https://github.com/mihonapp/mihon/issues/1409))
 - Choose which tabs the bottom bar shows (History can be added) and which tab the app opens on ([mihon#2678](https://github.com/mihonapp/mihon/issues/2678))
 - Optional single bookmark that follows your progress: finishing a chapter moves the bookmark onto it ([mihon#2386](https://github.com/mihonapp/mihon/issues/2386))

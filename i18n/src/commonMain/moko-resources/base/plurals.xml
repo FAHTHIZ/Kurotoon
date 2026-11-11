@@ -171,4 +171,8 @@
         <item quantity="one">%d series kept out of results</item>
         <item quantity="other">%d series kept out of results</item>
     </plurals>
+    <plurals name="kurotoon_track_massStarted">
+        <item quantity="one">Linking %1$d series to %2$s…</item>
+        <item quantity="other">Linking %1$d series to %2$s…</item>
+    </plurals>
 </resources>

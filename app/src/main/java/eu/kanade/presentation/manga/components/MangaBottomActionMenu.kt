@@ -239,6 +239,7 @@ fun LibraryBottomActionMenu(
     onMigrateClicked: () -> Unit,
     modifier: Modifier = Modifier,
     onUpdateClicked: (() -> Unit)? = null,
+    onTrackClicked: (() -> Unit)? = null,
 ) {
     AnimatedVisibility(
         visible = visible,
@@ -345,6 +346,15 @@ fun LibraryBottomActionMenu(
                                     onClick = {
                                         overflowMenuOpen = false
                                         onUpdateClicked()
+                                    },
+                                )
+                            }
+                            if (onTrackClicked != null) {
+                                DropdownMenuItem(
+                                    text = { Text(stringResource(MR.strings.kurotoon_track_massTitle)) },
+                                    onClick = {
+                                        overflowMenuOpen = false
+                                        onTrackClicked()
                                     },
                                 )
                             }
