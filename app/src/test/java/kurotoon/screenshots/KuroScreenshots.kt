@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
@@ -20,7 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
@@ -42,7 +40,6 @@ import kurotoon.ui.KuroBottomBarItem
 import kurotoon.ui.browse.BrowseChips
 import kurotoon.ui.browse.BrowseSort
 import kurotoon.ui.browse.SavedSearchRow
-import kurotoon.ui.fx.drawTapFrame
 import kurotoon.ui.home.KuroHomeContent
 import kurotoon.ui.home.KuroHomeViewModel
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -344,15 +341,6 @@ class KuroScreenshots {
             "Me" to MaterialSymbols.Rounded.Person,
         ).map { (title, icon) -> KuroBottomBarItem(title, title, rememberVectorPainter(icon), null) }
         KuroBottomBar(items = items, selectedKey = "Browse", onClick = {})
-    }
-
-    @Test
-    fun tapBurst() = shot("tap_burst") {
-        androidx.compose.foundation.Canvas(Modifier.fillMaxWidth().height(160.dp)) {
-            listOf(0.15f, 0.3f, 0.5f, 0.75f).forEachIndexed { i, t ->
-                drawTapFrame(Offset(size.width * (i + 0.5f) / 4, size.height / 2), t)
-            }
-        }
     }
 
     @Test

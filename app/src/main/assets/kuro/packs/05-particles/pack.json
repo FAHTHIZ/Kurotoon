@@ -3,7 +3,7 @@
   "name": "Particles",
   "author": "KuroToon",
   "version": 1,
-  "description": "Change the embers that drift behind the app and the sparks when you tap.",
+  "description": "Change the colour of the embers behind the app and the sparks on big moments, like finishing a chapter.",
   "items": [
     {
       "id": "embers",

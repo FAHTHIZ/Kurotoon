@@ -1,16 +1,11 @@
 package kurotoon.ui.fx
 
-import androidx.compose.foundation.gestures.awaitEachGesture
-import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.PointerEventPass
-import androidx.compose.ui.input.pointer.PointerType
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.boundsInWindow
 import androidx.compose.ui.layout.onGloballyPositioned
 import kotlinx.coroutines.channels.BufferOverflow
@@ -34,9 +29,6 @@ sealed interface FxEvent {
 
     /** Confetti from the middle of the screen, then from both sides. */
     data object Celebrate : FxEvent
-
-    /** The small aura, ring and sparks under a finger. */
-    data class Tap(val x: Float, val y: Float) : FxEvent
 }
 
 /** Fires one-shot effects drawn by [ParticleField]. Safe to call from anywhere. */
@@ -56,20 +48,6 @@ object KuroFx {
 
     fun celebrate() {
         events.tryEmit(FxEvent.Celebrate)
-    }
-
-    fun tap(at: Offset) {
-        events.tryEmit(FxEvent.Tap(at.x, at.y))
-    }
-}
-
-/** Shows a tap burst wherever a finger lands inside this layout, without taking the touch. */
-fun Modifier.tapBursts(): Modifier = pointerInput(Unit) {
-    awaitEachGesture {
-        val down = awaitFirstDown(requireUnconsumed = false, pass = PointerEventPass.Initial)
-        if (down.type == PointerType.Touch || down.type == PointerType.Stylus) {
-            KuroFx.tap(down.position)
-        }
     }
 }
 
