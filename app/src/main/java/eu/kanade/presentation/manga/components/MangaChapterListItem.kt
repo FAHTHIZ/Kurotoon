@@ -21,10 +21,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import eu.kanade.tachiyomi.data.download.model.Download
 import me.saket.swipe.SwipeableActionsBox
@@ -37,7 +43,6 @@ import mihon.icons.materialsymbols.rounded.Download
 import mihon.icons.materialsymbols.rounded.FileDownloadOff
 import mihon.icons.materialsymbols.rounded.RemoveDone
 import mihon.icons.materialsymbols.roundedfilled.Bookmark
-import mihon.icons.materialsymbols.roundedfilled.Circle
 import tachiyomi.domain.library.service.LibraryPreferences
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.DISABLED_ALPHA
@@ -90,6 +95,7 @@ fun MangaChapterListItem(
         swipeThreshold = swipeActionThreshold,
         backgroundUntilSwipeThreshold = MaterialTheme.colorScheme.surfaceContainerLowest,
     ) {
+        val rail = MaterialTheme.colorScheme.primary
         Row(
             modifier = modifier
                 .selectedBackground(selected)
@@ -97,7 +103,20 @@ fun MangaChapterListItem(
                     onClick = onClick,
                     onLongClick = onLongClick,
                 )
-                .padding(start = 16.dp, top = 12.dp, end = 8.dp, bottom = 12.dp),
+                // Unread chapters carry an accent rail on the leading edge instead of a dot
+                .drawBehind {
+                    if (!read) {
+                        val inset = 12.dp.toPx()
+                        val x = if (layoutDirection == LayoutDirection.Ltr) 6.dp.toPx() else size.width - 9.dp.toPx()
+                        drawRoundRect(
+                            color = rail,
+                            topLeft = Offset(x, inset),
+                            size = Size(3.dp.toPx(), size.height - inset * 2),
+                            cornerRadius = CornerRadius(2.dp.toPx()),
+                        )
+                    }
+                }
+                .padding(start = 18.dp, top = 12.dp, end = 8.dp, bottom = 12.dp),
         ) {
             Column(
                 modifier = Modifier.weight(1f),
@@ -108,16 +127,6 @@ fun MangaChapterListItem(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     var textHeight by remember { mutableIntStateOf(0) }
-                    if (!read) {
-                        Icon(
-                            imageVector = MaterialSymbols.RoundedFilled.Circle,
-                            contentDescription = stringResource(MR.strings.unread),
-                            modifier = Modifier
-                                .height(8.dp)
-                                .padding(end = 4.dp),
-                            tint = MaterialTheme.colorScheme.primary,
-                        )
-                    }
                     if (bookmark) {
                         Icon(
                             imageVector = MaterialSymbols.RoundedFilled.Bookmark,
@@ -130,6 +139,7 @@ fun MangaChapterListItem(
                     Text(
                         text = title,
                         style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = if (read) FontWeight.Normal else FontWeight.SemiBold,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         onTextLayout = { textHeight = it.size.height },
