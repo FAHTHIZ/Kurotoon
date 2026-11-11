@@ -922,6 +922,8 @@
     <string name="kurotoon_ext_hidden_18">%1$s is hidden because it\'s marked 18+.</string>
     <string name="kurotoon_ext_hidden_many">%1$s and %2$d more</string>
     <string name="kurotoon_ext_hidden_allow">Allow 18+</string>
+    <string name="kurotoon_browse_sourceTags">Tags across your sources (%1$d)</string>
+    <string name="kurotoon_browse_matchingTags">Matching tags</string>
     <string name="kurotoon_updates_checked">Checked %s</string>
     <string name="kurotoon_updates_summary">%1$d unread of %2$d new chapters</string>
     <string name="kurotoon_updates_pull_hint">Pull down or tap Check now to look for new chapters</string>
