@@ -174,6 +174,17 @@ fun ReaderSoundSheet(
                 modifier = Modifier.padding(horizontal = 24.dp),
             )
 
+            CheckboxItem(
+                label = stringResource(MR.strings.kurotoon_sound_respectSilent),
+                pref = preferences.soundRespectSilent,
+            )
+            Text(
+                text = stringResource(MR.strings.kurotoon_sound_respectSilentSummary),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(horizontal = 24.dp),
+            )
+
             SleepTimerChips(sleepTimer)
         }
     }

@@ -195,9 +195,10 @@ class ReaderSoundtrack(context: Context) {
         if (interruption != null) resumeAfterInterruption() else mute(!muted)
     }
 
-    fun mute(mute: Boolean) {
+    /** [fade] off mutes on the spot, for muting before anything has been heard. */
+    fun mute(mute: Boolean, fade: Boolean = true) {
         if (!mute) focus.clearInterruption()
-        if (mute && !muted) {
+        if (mute && !muted && fade) {
             // Stay audible long enough for the music and ambience to fade out instead of cutting off
             mutedAt = SystemClock.uptimeMillis()
             main.removeCallbacks(muteSettled)

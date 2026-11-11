@@ -567,6 +567,22 @@ class ReaderActivity : BaseActivity() {
         readingModeToast?.cancel()
     }
 
+    private var silentChecked = false
+
+    /**
+     * Media audio plays even with the ringer off, so a reader opened on a silent phone starts muted
+     * instead of surprising a quiet room. Checked once per visit; the mute badge brings sound back.
+     */
+    private fun muteIfPhoneSilent() {
+        if (silentChecked) return
+        silentChecked = true
+        if (!readerPreferences.soundRespectSilent.get()) return
+        val audio = getSystemService(android.media.AudioManager::class.java) ?: return
+        if (audio.ringerMode != android.media.AudioManager.RINGER_MODE_NORMAL) {
+            soundtrack.mute(true, fade = false)
+        }
+    }
+
     override fun onPause() {
         viewModel.saveHistory()
         soundtrack.onPause()
@@ -580,6 +596,7 @@ class ReaderActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         viewModel.restartReadTimer()
+        muteIfPhoneSilent()
         soundtrack.onResume()
         setMenuVisibility(viewModel.state.value.menuVisible)
     }
