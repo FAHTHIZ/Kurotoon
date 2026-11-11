@@ -82,6 +82,10 @@ fun LibraryContent(
             )
         }
 
+        if (selection.isEmpty()) {
+            kurotoon.ui.library.LibraryQuickFilters()
+        }
+
         LibraryTagRow(
             tags = tags,
             selected = selectedTags,
