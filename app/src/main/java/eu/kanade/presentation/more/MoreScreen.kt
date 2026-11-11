@@ -1,8 +1,16 @@
 package eu.kanade.presentation.more
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.more.settings.widget.SwitchPreferenceWidget
@@ -22,6 +30,7 @@ import mihon.icons.materialsymbols.rounded.Info
 import mihon.icons.materialsymbols.rounded.QueryStats
 import mihon.icons.materialsymbols.rounded.Settings
 import mihon.icons.materialsymbols.rounded.Storage
+import mihon.icons.materialsymbols.rounded.Sync
 import mihon.icons.materialsymbols.roundedfilled.VolunteerActivism
 import tachiyomi.core.common.Constants
 import tachiyomi.i18n.MR
@@ -55,7 +64,17 @@ fun MoreScreen(
 ) {
     val uriHandler = LocalUriHandler.current
 
-    Scaffold { contentPadding ->
+    Scaffold(
+        // The profile has no app bar; keep the list from scrolling under the clock and battery
+        topBar = {
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colorScheme.surface)
+                    .windowInsetsTopHeight(WindowInsets.statusBars),
+            )
+        },
+    ) { contentPadding ->
         ScrollbarLazyColumn(contentPadding = contentPadding) {
             item {
                 KuroProfileHeader(
@@ -142,8 +161,9 @@ fun MoreScreen(
             }
             item {
                 TextPreferenceWidget(
-                    title = "Local chapter reconciliation",
-                    subtitle = "Merge and review chapter lists from files already on this device.",
+                    title = stringResource(MR.strings.kurotoon_more_reconcile),
+                    subtitle = stringResource(MR.strings.kurotoon_more_reconcileSummary),
+                    icon = MaterialSymbols.Rounded.Sync,
                     onPreferenceClick = onClickChapterReconciliation,
                 )
             }
