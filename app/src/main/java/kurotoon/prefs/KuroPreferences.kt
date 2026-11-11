@@ -39,6 +39,14 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
         sourceDefaultCategories.set(if (categoryId == null) rest.toSet() else rest.toSet() + "$sourceId=$categoryId")
     }
 
+    /** Categories whose series are read without history or progress being saved (mihon#3367). */
+    val incognitoCategories = preferenceStore.getStringSet("kurotoon_incognito_categories", emptySet())
+
+    fun setIncognitoCategory(categoryId: Long, incognito: Boolean) {
+        val id = categoryId.toString()
+        incognitoCategories.set(incognitoCategories.get().let { if (incognito) it + id else it - id })
+    }
+
     /** Reading modes picked for every series of a source, as "sourceId=flagValue" (mihon#2140). */
     val sourceReadingModes = preferenceStore.getStringSet("kurotoon_source_reading_modes", emptySet())
 

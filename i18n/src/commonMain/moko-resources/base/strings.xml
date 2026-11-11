@@ -1213,6 +1213,7 @@
     <string name="kurotoon_reader_clockBatterySummary">Show the clock and battery level next to the page number, since the reader hides the status bar</string>
     <string name="kurotoon_reader_resumedAt">Picked up on page %d</string>
     <string name="kurotoon_reader_startOver">Start over</string>
+    <string name="kurotoon_category_incognito">Read incognito</string>
     <string name="kurotoon_reader_modeForSource">Use for every series from %1$s</string>
     <string name="kurotoon_download_finishMissing">Keep with missing pages</string>
     <string name="kurotoon_bookmarkNote_title">Bookmark note</string>

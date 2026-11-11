@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.category
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.util.fastMap
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -16,7 +17,9 @@ import eu.kanade.presentation.category.components.CategoryRenameDialog
 import eu.kanade.presentation.util.Screen
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.collectLatest
+import mihon.app.di.appGraph
 import tachiyomi.presentation.core.screens.LoadingScreen
+import tachiyomi.presentation.core.util.collectAsState
 
 class CategoryScreen : Screen() {
 
@@ -35,8 +38,12 @@ class CategoryScreen : Screen() {
 
         val successState = state as CategoryScreenState.Success
 
+        val kuroPreferences = remember { context.appGraph.kuroPreferences }
+        val incognitoIds by kuroPreferences.incognitoCategories.collectAsState()
         CategoryScreen(
             state = successState,
+            incognitoIds = incognitoIds,
+            onToggleIncognito = { category, on -> kuroPreferences.setIncognitoCategory(category.id, on) },
             onClickCreate = { viewModel.showDialog(CategoryDialog.Create) },
             onClickRename = { viewModel.showDialog(CategoryDialog.Rename(it)) },
             onClickDelete = { viewModel.showDialog(CategoryDialog.Delete(it)) },

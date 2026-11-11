@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconToggleButton
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +18,7 @@ import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Delete
 import mihon.icons.materialsymbols.rounded.DragHandle
 import mihon.icons.materialsymbols.rounded.Edit
+import mihon.icons.materialsymbols.rounded.Eyeglasses2
 import sh.calvin.reorderable.ReorderableCollectionItemScope
 import tachiyomi.domain.category.model.Category
 import tachiyomi.i18n.MR
@@ -28,6 +31,8 @@ fun ReorderableCollectionItemScope.CategoryListItem(
     onRename: () -> Unit,
     onDelete: () -> Unit,
     modifier: Modifier = Modifier,
+    incognito: Boolean = false,
+    onToggleIncognito: ((Boolean) -> Unit)? = null,
 ) {
     ElevatedCard(modifier = modifier) {
         Row(
@@ -52,6 +57,15 @@ fun ReorderableCollectionItemScope.CategoryListItem(
                 text = category.name,
                 modifier = Modifier.weight(1f),
             )
+            if (onToggleIncognito != null) {
+                IconToggleButton(checked = incognito, onCheckedChange = onToggleIncognito) {
+                    Icon(
+                        imageVector = MaterialSymbols.Rounded.Eyeglasses2,
+                        contentDescription = stringResource(MR.strings.kurotoon_category_incognito),
+                        tint = if (incognito) MaterialTheme.colorScheme.primary else LocalContentColor.current,
+                    )
+                }
+            }
             IconButton(onClick = onRename) {
                 Icon(
                     imageVector = MaterialSymbols.Rounded.Edit,
