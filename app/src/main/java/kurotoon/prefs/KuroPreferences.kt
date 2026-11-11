@@ -185,6 +185,9 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
     /** Shows the source's name on library covers. */
     val sourceBadge = preferenceStore.getBoolean("kurotoon_source_badge", false)
 
+    /** Shows a series saved from several sources once, see [kurotoon.library.LibraryCombine]. */
+    val combineCopies = preferenceStore.getBoolean("kurotoon_combine_copies", true)
+
     /** Index urls of extension repos switched off: their extensions aren't listed until switched back on. */
     val disabledExtensionStores = preferenceStore.getStringSet("kurotoon_disabled_extension_stores", emptySet())
 

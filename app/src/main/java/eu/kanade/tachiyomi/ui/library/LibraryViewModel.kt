@@ -47,6 +47,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 import kotlinx.coroutines.withContext
 import kurotoon.library.GroupableEntry
+import kurotoon.library.LibraryCombine
 import kurotoon.library.LibraryGroupBy
 import kurotoon.library.LibraryGrouping
 import kurotoon.library.LibraryTag
@@ -225,6 +226,7 @@ class LibraryViewModel(
         ->
         val showSystemCategory = favorites.any { it.libraryManga.categories.contains(0) }
         val filtered = favorites.applyFilters(tracksMap, trackingFilters, itemPreferences)
+            .let { if (itemPreferences.combineCopies) LibraryCombine.combine(it) else it }
         val tags = LibraryTags.top(filtered.map { it.libraryManga.manga.genre })
         val filteredFavorites = filtered
             .filter { LibraryTags.matches(it.libraryManga.manga.genre, selectedTags) }
@@ -493,6 +495,7 @@ class LibraryViewModel(
             libraryPreferences.filterCompleted.changes(),
             libraryPreferences.filterIntervalCustom.changes(),
             kuroPreferences.sourceBadge.changes(),
+            kuroPreferences.combineCopies.changes(),
         ) {
             ItemPreferences(
                 downloadBadge = it[0] as Boolean,
@@ -508,6 +511,7 @@ class LibraryViewModel(
                 filterCompleted = it[10] as TriState,
                 filterIntervalCustom = it[11] as TriState,
                 sourceBadge = it[12] as Boolean,
+                combineCopies = it[13] as Boolean,
             )
         }
     }
@@ -875,6 +879,7 @@ class LibraryViewModel(
         val localBadge: Boolean,
         val languageBadge: Boolean,
         val sourceBadge: Boolean = false,
+        val combineCopies: Boolean = true,
         val skipOutsideReleasePeriod: Boolean,
 
         val globalFilterDownloaded: Boolean,

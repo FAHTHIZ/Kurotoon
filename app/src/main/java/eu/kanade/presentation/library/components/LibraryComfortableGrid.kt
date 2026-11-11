@@ -69,6 +69,7 @@ internal fun LibraryComfortableGrid(
                             sourceLanguage = libraryItem.badges.sourceLanguage,
                         )
                         SourceBadge(name = libraryItem.badges.sourceName)
+                        CopiesBadge(count = libraryItem.badges.copies)
                     },
                     onLongClick = { onLongClick(libraryItem.libraryManga) },
                     onClick = { onClick(libraryItem.libraryManga) },
