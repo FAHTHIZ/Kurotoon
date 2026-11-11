@@ -9,6 +9,9 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.platform.LocalDensity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.compose.currentStateAsState
 import eu.kanade.tachiyomi.ui.reader.viewer.Viewer
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -37,8 +40,12 @@ fun AutoScrollDriver(
 ) {
     val density = LocalDensity.current.density
     val reachedEnd by rememberUpdatedState(onReachedEnd)
-    LaunchedEffect(viewer, state.enabled, paused, state.holding, speed) {
-        if (viewer == null || !state.enabled || paused || state.holding) return@LaunchedEffect
+    // The paged timer isn't tied to frames, so without this it kept turning pages (and marking
+    // chapters read) with the app in the background or the screen off
+    val lifecycleState by LocalLifecycleOwner.current.lifecycle.currentStateAsState()
+    val visible = lifecycleState.isAtLeast(Lifecycle.State.RESUMED)
+    LaunchedEffect(viewer, state.enabled, paused, state.holding, speed, visible) {
+        if (viewer == null || !state.enabled || paused || state.holding || !visible) return@LaunchedEffect
         delay(RESUME_DELAY_MS)
 
         if (viewer.autoScrollBy(0)) {
