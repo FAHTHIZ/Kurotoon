@@ -71,6 +71,7 @@ fun ReaderSoundSheet(
     soundtrack: ReaderSoundtrack,
     sleepTimer: SleepTimerState,
     onDismissRequest: () -> Unit,
+    onAmbiencePicked: (key: String) -> Unit = {},
 ) {
     AdaptiveSheet(onDismissRequest = onDismissRequest) {
         Column(
@@ -135,7 +136,7 @@ fun ReaderSoundSheet(
                 onChange = { preferences.soundMusicVolume.set(it * 10) },
             )
 
-            AmbienceChips(preferences)
+            AmbienceChips(preferences, onPicked = onAmbiencePicked)
 
             val ambienceVolume by preferences.soundAmbienceVolume.collectAsState()
             SliderItem(
@@ -180,7 +181,7 @@ fun ReaderSoundSheet(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun AmbienceChips(preferences: ReaderPreferences) {
+fun AmbienceChips(preferences: ReaderPreferences, onPicked: (key: String) -> Unit = {}) {
     val ambience by preferences.soundAmbience.collectAsState()
     Text(
         text = stringResource(MR.strings.kurotoon_sound_ambience),
@@ -196,7 +197,10 @@ fun AmbienceChips(preferences: ReaderPreferences) {
         Soundscape.entries.forEach { scape ->
             FilterChip(
                 selected = Soundscape.of(ambience) == scape,
-                onClick = { preferences.soundAmbience.set(scape.key) },
+                onClick = {
+                    preferences.soundAmbience.set(scape.key)
+                    onPicked(scape.key)
+                },
                 label = { Text(stringResource(scape.label)) },
             )
         }

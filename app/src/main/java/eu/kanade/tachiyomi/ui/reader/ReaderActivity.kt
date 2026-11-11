@@ -185,6 +185,7 @@ class ReaderActivity : BaseActivity() {
     private val chapterComplete = ChapterCompleteState()
     private val resumeHint = kurotoon.reader.ResumeHintState()
     private val wakefulness = kurotoon.reader.ReaderWakefulness()
+    private val seriesAmbience by lazy { kurotoon.reader.sound.SeriesAmbience(this) }
 
     /** The resume hint is offered once per opening, not after rotation or chapter changes. */
     private var resumeHintChecked = false
@@ -444,6 +445,7 @@ class ReaderActivity : BaseActivity() {
                         soundtrack = soundtrack,
                         sleepTimer = sleepTimer,
                         onDismissRequest = onDismissRequest,
+                        onAmbiencePicked = { key -> state.manga?.id?.let { seriesAmbience.put(it, key) } },
                     )
                 }
                 is ReaderViewModel.Dialog.ChapterList -> {
@@ -833,6 +835,11 @@ class ReaderActivity : BaseActivity() {
         }
         LaunchedEffect(state.currentPage) {
             if (state.currentPage > 0) soundtrack.onPage(state.currentPage - 1)
+        }
+        LaunchedEffect(state.manga?.id) {
+            // This series' own ambience, if one was picked for it before
+            val saved = state.manga?.id?.let(seriesAmbience::get) ?: return@LaunchedEffect
+            if (saved != readerPreferences.soundAmbience.get()) readerPreferences.soundAmbience.set(saved)
         }
         LaunchedEffect(ambience, state.manga?.genre) {
             soundtrack.setSoundscape(Soundscape.of(ambience), state.manga?.genre)
