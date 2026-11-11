@@ -39,6 +39,10 @@ object SettingsBrowseScreen : SearchableSettings {
         val hiddenTags by remember { context.appGraph.kuroPreferences.hiddenTags.changes() }
             .collectAsState(context.appGraph.kuroPreferences.hiddenTags.get())
 
+        val hiddenSeries by remember { context.appGraph.kuroPreferences.hiddenSeries.changes() }
+            .collectAsState(context.appGraph.kuroPreferences.hiddenSeries.get())
+        val hiddenSeriesCount = hiddenSeries.size
+
         return listOf(
             Preference.PreferenceGroup(
                 title = stringResource(MR.strings.label_sources),
@@ -53,6 +57,15 @@ object SettingsBrowseScreen : SearchableSettings {
                             stringResource(MR.strings.kurotoon_browse_hiddenTagsSummary)
                         },
                         onClick = { navigator.push(HiddenTagsScreen()) },
+                    ),
+                    Preference.PreferenceItem.TextPreference(
+                        title = stringResource(MR.strings.kurotoon_browse_hiddenSeries),
+                        subtitle = pluralStringResource(
+                            MR.plurals.kurotoon_browse_hiddenSeriesCount,
+                            hiddenSeriesCount,
+                            hiddenSeriesCount,
+                        ),
+                        onClick = { navigator.push(kurotoon.ui.browse.HiddenSeriesScreen()) },
                     ),
                     Preference.PreferenceItem.TextPreference(
                         title = stringResource(MR.strings.extensionStores),

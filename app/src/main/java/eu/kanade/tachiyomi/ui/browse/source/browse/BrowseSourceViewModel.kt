@@ -35,6 +35,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.WhileSubscribed
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.filter
@@ -150,7 +151,8 @@ class BrowseSourceViewModel(
         .filter { (source, _) -> source != null }
         .map { (_, listing) -> listing }
         .distinctUntilChanged()
-        .map { listing ->
+        .combine(kuroPreferences.hiddenSeries.changes()) { listing, hiddenSeries -> listing to hiddenSeries }
+        .map { (listing, hiddenSeries) ->
             val hidden = HiddenTags.parse(kuroPreferences.hiddenTags.get())
             val filters = source?.takeIf { hidden.isNotEmpty() && listing is Listing.Search }
                 ?.getFilterList()
@@ -167,10 +169,22 @@ class BrowseSourceViewModel(
                 }
                     .filter { !hideInLibraryItems || !it.value.favorite }
                     .filter { !HiddenTags.hides(it.value.genre, hidden) }
+                    .filter { it.value.favorite || it.value.id.toString() !in hiddenSeries }
             }
                 .cachedIn(viewModelScope)
         }
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyFlow())
+
+    /** Keeps these series out of Browse and Search until they are unhidden in settings. */
+    fun hideSeries(mangas: Collection<Manga>) {
+        val ids = mangas.filterNot { it.favorite }.map { it.id.toString() }
+        if (ids.isNotEmpty()) kuroPreferences.hiddenSeries.getAndSet { it + ids }
+    }
+
+    fun unhideSeries(mangas: Collection<Manga>) {
+        val ids = mangas.map { it.id.toString() }.toSet()
+        kuroPreferences.hiddenSeries.getAndSet { it - ids }
+    }
 
     fun getColumnsPreference(orientation: Int): GridCells {
         val isLandscape = orientation == Configuration.ORIENTATION_LANDSCAPE

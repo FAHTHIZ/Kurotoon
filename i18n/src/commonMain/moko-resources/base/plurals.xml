@@ -163,4 +163,12 @@
         <item quantity="one">Checking %d series for new chapters</item>
         <item quantity="other">Checking %d series for new chapters</item>
     </plurals>
+    <plurals name="kurotoon_browse_hiddenMany">
+        <item quantity="one">%d series hidden from Browse and Search</item>
+        <item quantity="other">%d series hidden from Browse and Search</item>
+    </plurals>
+    <plurals name="kurotoon_browse_hiddenSeriesCount">
+        <item quantity="one">%d series kept out of results</item>
+        <item quantity="other">%d series kept out of results</item>
+    </plurals>
 </resources>

@@ -38,6 +38,9 @@ abstract class SearchViewModel(
     private val preferences: SourcePreferences,
 ) : ViewModel() {
 
+    /** Manga ids the reader hid from results; migration search shows everything. */
+    protected open fun hiddenSeriesIds(): Set<String> = emptySet()
+
     val state: StateFlow<State>
         field = MutableStateFlow<State>(initialState)
 
@@ -174,6 +177,10 @@ abstract class SearchViewModel(
                             .map { it.toDomainManga(source.id) }
                             .distinctBy { it.url }
                             .let { networkToLocalManga(it) }
+                            .let { found ->
+                                val hidden = hiddenSeriesIds()
+                                found.filter { it.favorite || it.id.toString() !in hidden }
+                            }
 
                         if (isActive) {
                             updateItem(source, SearchItemResult.Success(titles))
