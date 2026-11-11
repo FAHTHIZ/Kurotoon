@@ -12,6 +12,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Stop a running library update right from the "Updating library" snackbar in Library and Updates
 - Downloads that stopped because the connection dropped (or Wi-Fi went away with Wi-Fi only on) resume by themselves when it's back
 - A one-time hint when episode music starts but your media volume is at zero
 - The reader opens muted when your phone is on silent or vibrate (turn off in the sound sheet)
