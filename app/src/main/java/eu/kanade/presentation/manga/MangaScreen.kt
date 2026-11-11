@@ -65,6 +65,7 @@ import eu.kanade.tachiyomi.ui.manga.ChapterList
 import eu.kanade.tachiyomi.ui.manga.MangaViewModel
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import kurotoon.catalogue.TagAction
+import kurotoon.manga.ChapterTitles
 import kurotoon.ui.manga.JumpToChapterButton
 import kurotoon.ui.manga.MergedChaptersCard
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -821,7 +822,7 @@ private fun LazyListScope.sharedChapterItems(
                             formatChapterNumber(item.chapter.chapterNumber),
                         )
                     } else {
-                        item.chapter.name
+                        ChapterTitles.tidy(item.chapter.name)
                     },
                     date = relativeDateText(item.chapter.dateUpload),
                     readProgress = item.chapter.lastPageRead
