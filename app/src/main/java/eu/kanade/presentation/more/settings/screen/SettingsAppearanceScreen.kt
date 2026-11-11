@@ -214,6 +214,11 @@ object SettingsAppearanceScreen : SearchableSettings {
                     subtitle = stringResource(MR.strings.kurotoon_settings_particlesSummary),
                 ),
                 Preference.PreferenceItem.SwitchPreference(
+                    preference = context.appGraph.kuroPreferences.ambientEmbers,
+                    title = stringResource(MR.strings.kurotoon_settings_embers),
+                    subtitle = stringResource(MR.strings.kurotoon_settings_embersSummary),
+                ),
+                Preference.PreferenceItem.SwitchPreference(
                     preference = context.appGraph.kuroPreferences.coverColors,
                     title = stringResource(MR.strings.kurotoon_settings_coverColors),
                     subtitle = stringResource(MR.strings.kurotoon_settings_coverColorsSummary),

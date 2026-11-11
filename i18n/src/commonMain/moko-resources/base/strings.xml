@@ -1524,7 +1524,9 @@
     <string name="kurotoon.chore.bookmark">Add %d series to your library</string>
     <string name="kurotoon.chore.search">Search %d times</string>
     <string name="kurotoon.settings.particles">Particle effects</string>
-    <string name="kurotoon.settings.particlesSummary">Drifting embers and sparks when you add to your library</string>
+    <string name="kurotoon.settings.particlesSummary">Sparks when you finish a chapter or add to your library</string>
+    <string name="kurotoon.settings.embers">Background embers</string>
+    <string name="kurotoon.settings.embersSummary">Faint embers drifting behind the app</string>
     <string name="kurotoon.settings.coverColors">Colours from covers</string>
     <string name="kurotoon.settings.coverColorsSummary">Tint each series page with the main colour of its cover</string>
     <string name="kurotoon.settings.coverProgress">Progress on covers</string>
