@@ -288,6 +288,10 @@ private fun ColumnScope.DisplayPage(
         pref = remember { context.appGraph.kuroPreferences.sourceBadge },
     )
     CheckboxItem(
+        label = stringResource(MR.strings.kurotoon_library_combineCopies),
+        pref = remember { context.appGraph.kuroPreferences.combineCopies },
+    )
+    CheckboxItem(
         label = stringResource(MR.strings.action_display_show_continue_reading_button),
         pref = viewModel.libraryPreferences.showContinueReadingButton,
     )

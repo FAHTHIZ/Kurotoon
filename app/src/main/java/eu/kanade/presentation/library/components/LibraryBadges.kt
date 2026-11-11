@@ -59,6 +59,18 @@ internal fun SourceBadge(name: String) {
     }
 }
 
+/** "×2" when the cover stands for the same series saved from several sources. */
+@Composable
+internal fun CopiesBadge(count: Int) {
+    if (count > 1) {
+        Badge(
+            text = "×$count",
+            color = MaterialTheme.colorScheme.tertiary,
+            textColor = MaterialTheme.colorScheme.onTertiary,
+        )
+    }
+}
+
 @PreviewLightDark
 @Composable
 private fun BadgePreview() {

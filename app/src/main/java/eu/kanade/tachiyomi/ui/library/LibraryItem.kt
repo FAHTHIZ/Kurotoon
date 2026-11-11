@@ -22,5 +22,7 @@ data class LibraryItem(
         val sourceLanguage: String,
         /** Empty unless the source badge is turned on. */
         val sourceName: String = "",
+        /** How many library entries this cover stands for when copies are combined. */
+        val copies: Int = 1,
     )
 }
