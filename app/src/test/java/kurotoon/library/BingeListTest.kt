@@ -53,4 +53,17 @@ class BingeListTest {
         )
         StalledList.of(library, now).map { it.id } shouldBe listOf(4L, 1L)
     }
+
+    @Test
+    fun `lists series saved in the last month, newest first`() {
+        val now = Instant.fromEpochSeconds(100L * 86_400)
+        fun daysAgo(d: Long) = (100L - d) * 86_400
+        val library = listOf(
+            entry(1, SManga.ONGOING, total = 5, added = daysAgo(3)),
+            entry(2, SManga.ONGOING, total = 5, added = daysAgo(45)),
+            entry(3, SManga.COMPLETED, total = 5, added = daysAgo(1)),
+            entry(4, SManga.ONGOING, total = 5, added = 0),
+        )
+        RecentlyAddedList.of(library, now).map { it.id } shouldBe listOf(3L, 1L)
+    }
 }

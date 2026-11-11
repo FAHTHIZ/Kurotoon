@@ -166,6 +166,11 @@ fun KuroHomeContent(
                 if (shown(HomeSection.BINGE) && state.binge.isNotEmpty()) {
                     item(key = "binge") { HomeBinge(items = state.binge, onMangaClick = onMangaClick) }
                 }
+                if (shown(HomeSection.RECENTLY_ADDED) && state.recentlyAdded.isNotEmpty()) {
+                    item(key = "recently_added") {
+                        HomeRecentlyAdded(items = state.recentlyAdded, onMangaClick = onMangaClick)
+                    }
+                }
                 if (shown(HomeSection.PANELS)) {
                     item(key = "panels") { HomePanels(onSeeAll = onSavedPanelsClick) }
                 }

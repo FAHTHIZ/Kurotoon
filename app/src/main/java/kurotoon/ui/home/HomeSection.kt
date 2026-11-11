@@ -9,6 +9,7 @@ enum class HomeSection(val key: String) {
     SCHEDULE("schedule"),
     STALLED("stalled"),
     BINGE("binge"),
+    RECENTLY_ADDED("recently_added"),
     PANELS("panels"),
     PICKS("picks"),
     SAVED("saved"),
