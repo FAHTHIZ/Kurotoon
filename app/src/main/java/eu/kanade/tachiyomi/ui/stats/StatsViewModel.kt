@@ -124,6 +124,7 @@ class StatsViewModel(
         val includedCategories = preferences.updateCategories.get().map { it.toLong() }
         val excludedCategories = preferences.updateCategoriesExclude.get().map { it.toLong() }
         val updateRestrictions = preferences.autoUpdateMangaRestrictions.get()
+        val unreadThreshold = preferences.autoUpdateUnreadThreshold.get().coerceAtLeast(1).toLong()
 
         return libraryManga.filter {
             val included = includedCategories.isEmpty() || it.categories.intersect(includedCategories).isNotEmpty()
@@ -132,7 +133,7 @@ class StatsViewModel(
         }
             .fastCountNot {
                 (MANGA_NON_COMPLETED in updateRestrictions && it.manga.status.toInt() == SManga.COMPLETED) ||
-                    (MANGA_HAS_UNREAD in updateRestrictions && it.unreadCount != 0L) ||
+                    (MANGA_HAS_UNREAD in updateRestrictions && it.unreadCount >= unreadThreshold) ||
                     (MANGA_NON_READ in updateRestrictions && it.totalChapters > 0 && !it.hasStarted)
             }
     }

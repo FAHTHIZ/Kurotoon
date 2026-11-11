@@ -155,4 +155,8 @@
         <item quantity="one">%d unread chapter</item>
         <item quantity="other">%d unread chapters</item>
     </plurals>
+    <plurals name="kurotoon_update_unreadThreshold_n">
+        <item quantity="one">%d or more unread</item>
+        <item quantity="other">%d or more unread</item>
+    </plurals>
 </resources>
