@@ -101,6 +101,7 @@ interface AppGraph : ViewModelGraph {
     val historyRepository: tachiyomi.domain.history.repository.HistoryRepository
     val getNextChapters: tachiyomi.domain.history.interactor.GetNextChapters
     val getLibraryManga: tachiyomi.domain.manga.interactor.GetLibraryManga
+    val getChaptersByMangaId: tachiyomi.domain.chapter.interactor.GetChaptersByMangaId
 
     val crashLogUtil: CrashLogUtil
 
