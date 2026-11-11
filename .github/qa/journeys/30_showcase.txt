@@ -1,72 +1,102 @@
-# Showcase: more catalogues, the shop and the rest of the app, after 10_kurotoon set things up
+# More catalogues, reading, the library and the shop, after 10_kurotoon set things up
 start app.kurotoon.dev
 sleep 4
-tapx Home
-tap "Add sources"
-sleep 8
-tap Search
-type Webtoons.com
+tapx Browse
+tapx Extensions
 sleep 4
+tap Search
+type Webtoons
+sleep 5
 shot ext_webtoons
 tapx Install
-sleep 12
-tapx Install
-sleep 20
-key 123
-sh input keyevent 67 67 67 67 67 67 67 67 67 67 67 67 67 67 67
+sleep 15
+tapif INSTALL
+tapif Install
+sleep 25
+shot ext_webtoons_done
+tapif Reset
+tapif "Navigate up"
+tap Search
 type Asura
-sleep 4
+sleep 5
 shot ext_asura
 tapx Install
-sleep 12
-tapx Install
-sleep 20
-shot ext_installed
-back
-back
+sleep 15
+tapif INSTALL
+tapif Install
+sleep 25
+shot ext_asura_done
+start app.kurotoon.dev
 tapx Browse
+tapx Sources
 sleep 3
-shot sources_list
-tap Webtoons.com
-sleep 10
-shot webtoons_popular
+shot sources
+# MangaDex
+tap MangaDex
+sleep 12
+shot mangadex_popular
 tapx Latest
-sleep 8
-shot webtoons_latest
-tapxy 270 1000
 sleep 10
+shot mangadex_latest
+tapxy 270 1000
+sleep 12
+shot mangadex_series
+tap "Add to library"
+sleep 3
+shot mangadex_added
+tap Start
+sleep 20
+shot reader
+tapxy 540 1200
+sleep 2
+shot reader_menu
+tap Chapters
+sleep 3
+shot reader_chapters
+back
+back
+sleep 2
+back
+sleep 2
+back
+sleep 2
+# Webtoons.com
+start app.kurotoon.dev
+tapx Browse
+tapx Sources
+tap Webtoons.com
+sleep 12
+shot webtoons_popular
+tapxy 270 1000
+sleep 12
 shot webtoons_series
 tap "Add to library"
 sleep 3
 back
+sleep 2
 back
+sleep 2
+# Asura Scans
+start app.kurotoon.dev
+tapx Browse
+tapx Sources
 tap "Asura Scans"
-sleep 12
+sleep 15
 shot asura_popular
 tapxy 270 1000
-sleep 10
+sleep 12
 shot asura_series
 tap "Add to library"
 sleep 3
-tap Start
-sleep 15
-shot asura_reader
-tapxy 540 1200
+back
 sleep 2
-shot asura_reader_menu
-tap Chapters
-sleep 3
-shot reader_chapter_list
 back
-back
-back
-back
-back
+sleep 2
+start app.kurotoon.dev
 tapx Library
 sleep 3
-shot library_full
+shot library
 tap "More options"
-shot library_menu
 tap "Group library by"
 sleep 2
 shot group_by
@@ -80,6 +110,13 @@ tap "Release schedule"
 sleep 3
 shot schedule
 back
+tapx Home
+sleep 8
+shot home
+scrollup
+shot home_scrolled
+scrollup
+shot home_scrolled2
 tapx Me
 sleep 2
 shot me
@@ -104,9 +141,3 @@ back
 tap Statistics
 sleep 3
 shot stats
-back
-tapx Home
-sleep 6
-shot home_final
-scrollup
-shot home_final_scrolled
