@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -97,49 +99,98 @@ fun ExtensionScreen(
     onOpenExtension: (Extension.Loaded) -> Unit,
     onClickUpdateAll: () -> Unit,
     onRefresh: () -> Unit,
+    onAllowHidden: (List<Extension.Available>) -> Unit = {},
 ) {
     val navigator = LocalNavigator.currentOrThrow
+    val hidden = state.hiddenMatches.takeIf { !searchQuery.isNullOrBlank() }.orEmpty()
+    val layoutDirection = androidx.compose.ui.platform.LocalLayoutDirection.current
+    val outerPadding = contentPadding
+    val contentPadding = if (hidden.isEmpty()) {
+        outerPadding
+    } else {
+        PaddingValues(
+            start = outerPadding.calculateStartPadding(layoutDirection),
+            end = outerPadding.calculateEndPadding(layoutDirection),
+            bottom = outerPadding.calculateBottomPadding(),
+        )
+    }
 
     PullRefresh(
         refreshing = state.isRefreshing,
         onRefresh = onRefresh,
         enabled = !state.isLoading,
     ) {
-        when {
-            state.isLoading -> LoadingScreen(Modifier.padding(contentPadding))
-            state.isEmpty -> {
-                val msg = if (!searchQuery.isNullOrEmpty()) {
-                    MR.strings.no_results_found
-                } else {
-                    MR.strings.kurotoon_extensions_empty
-                }
-                EmptyScreen(
-                    stringRes = msg,
-                    modifier = Modifier.padding(contentPadding),
-                    actions = listOf(
-                        EmptyScreenAction(
-                            stringRes = MR.strings.kurotoon_extensions_addStore,
-                            icon = MaterialSymbols.Rounded.Settings,
-                            onClick = { navigator.push(ExtensionStoresScreen()) },
+        androidx.compose.foundation.layout.Column(
+            Modifier.padding(top = if (hidden.isEmpty()) 0.dp else outerPadding.calculateTopPadding()),
+        ) {
+            if (hidden.isNotEmpty()) {
+                HiddenMatchesCard(hidden = hidden, onAllow = { onAllowHidden(hidden) })
+            }
+            when {
+                state.isLoading -> LoadingScreen(Modifier.padding(contentPadding))
+                state.isEmpty -> {
+                    val msg = if (!searchQuery.isNullOrEmpty()) {
+                        MR.strings.no_results_found
+                    } else {
+                        MR.strings.kurotoon_extensions_empty
+                    }
+                    EmptyScreen(
+                        stringRes = msg,
+                        modifier = Modifier.padding(contentPadding),
+                        actions = listOf(
+                            EmptyScreenAction(
+                                stringRes = MR.strings.kurotoon_extensions_addStore,
+                                icon = MaterialSymbols.Rounded.Settings,
+                                onClick = { navigator.push(ExtensionStoresScreen()) },
+                            ),
                         ),
-                    ),
-                )
+                    )
+                }
+                else -> {
+                    ExtensionContent(
+                        state = state,
+                        contentPadding = contentPadding,
+                        onLongClickItem = onLongClickItem,
+                        onClickItemCancel = onClickItemCancel,
+                        onOpenWebView = onOpenWebView,
+                        onInstallExtension = onInstallExtension,
+                        onUninstallExtension = onUninstallExtension,
+                        onUpdateExtension = onUpdateExtension,
+                        onTrustExtension = onTrustExtension,
+                        onOpenExtension = onOpenExtension,
+                        onClickUpdateAll = onClickUpdateAll,
+                    )
+                }
             }
-            else -> {
-                ExtensionContent(
-                    state = state,
-                    contentPadding = contentPadding,
-                    onLongClickItem = onLongClickItem,
-                    onClickItemCancel = onClickItemCancel,
-                    onOpenWebView = onOpenWebView,
-                    onInstallExtension = onInstallExtension,
-                    onUninstallExtension = onUninstallExtension,
-                    onUpdateExtension = onUpdateExtension,
-                    onTrustExtension = onTrustExtension,
-                    onOpenExtension = onOpenExtension,
-                    onClickUpdateAll = onClickUpdateAll,
-                )
-            }
+        }
+    }
+}
+
+/** Says which matching extensions the content settings hide, with a way to let them through. */
+@Composable
+private fun HiddenMatchesCard(hidden: List<Extension.Available>, onAllow: () -> Unit) {
+    val names = hidden.map { it.name }.distinct()
+    val label = if (names.size == 1) {
+        names.first()
+    } else {
+        stringResource(MR.strings.kurotoon_ext_hidden_many, names.first(), names.size - 1)
+    }
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .kuroCard(RoundedCornerShape(18.dp))
+            .padding(horizontal = 16.dp, vertical = 12.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Text(
+            text = stringResource(MR.strings.kurotoon_ext_hidden_18, label),
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.weight(1f),
+        )
+        androidx.compose.material3.FilledTonalButton(onClick = onAllow) {
+            Text(stringResource(MR.strings.kurotoon_ext_hidden_allow))
         }
     }
 }

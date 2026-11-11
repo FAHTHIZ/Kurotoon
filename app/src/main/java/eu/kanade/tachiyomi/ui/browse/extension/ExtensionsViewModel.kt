@@ -113,6 +113,22 @@ class ExtensionsViewModel(
         .flowOn(Dispatchers.Default)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5.seconds), null)
 
+    /**
+     * Store extensions that match the search but are hidden by the allowed content warnings (18+ by default), so the
+     * screen can say why a site like hitomi.la doesn't show up instead of looking empty.
+     */
+    private val hiddenMatches = combine(
+        searchQuery.debounce(0.25.seconds),
+        extensionManager.availableExtensionsFlow,
+        preferences.enabledContentWarnings.changes(),
+    ) { query, available, allowed ->
+        if (query.isNullOrBlank()) return@combine emptyList()
+        val predicate = searchQueryPredicate(query)
+        available.filter { it.contentWarning !in allowed && predicate(it) }
+    }
+        .flowOn(Dispatchers.Default)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5.seconds), emptyList())
+
     val state: StateFlow<State> = combine(
         items,
         searchQuery,
@@ -129,7 +145,14 @@ class ExtensionsViewModel(
             searchQuery = searchQuery,
         )
     }
+        .combine(hiddenMatches) { state, hidden -> state.copy(hiddenMatches = hidden) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5.seconds), State())
+
+    /** Lets the content warnings of [extensions] through, after the caller has confirmed it's the owner. */
+    fun allowContentWarnings(extensions: List<Extension.Available>) {
+        val pref = preferences.enabledContentWarnings
+        pref.set(pref.get() + extensions.map { it.contentWarning })
+    }
 
     init {
 
@@ -138,7 +161,7 @@ class ExtensionsViewModel(
 
     fun searchQueryPredicate(query: String): (Extension) -> Boolean {
         val subqueries = query.split(",")
-            .map { it.trim() }
+            .map { normalizeQuery(it) }
             .filterNot { it.isBlank() }
 
         if (subqueries.isEmpty()) return { true }
@@ -165,6 +188,14 @@ class ExtensionsViewModel(
             }
         }
     }
+
+    /** Trims a pasted site address down to its host, so "https://www.hitomi.la/" matches "hitomi.la". */
+    private fun normalizeQuery(raw: String): String = raw.trim()
+        .removePrefix("https://")
+        .removePrefix("http://")
+        .removePrefix("www.")
+        .substringBefore('/')
+        .ifBlank { raw.trim() }
 
     fun search(query: String?) {
         searchQuery.update { query }
@@ -241,6 +272,7 @@ class ExtensionsViewModel(
         val updates: Int = 0,
         val installer: BasePreferences.ExtensionInstaller? = null,
         val searchQuery: String? = null,
+        val hiddenMatches: List<Extension.Available> = emptyList(),
     ) {
         val isEmpty = items.isEmpty()
     }
