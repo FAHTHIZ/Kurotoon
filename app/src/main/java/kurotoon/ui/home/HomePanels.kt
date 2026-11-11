@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,7 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,11 +29,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import kurotoon.panels.SavedPanels
-import kurotoon.ui.KuroColors
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.CollectionsBookmark
 import tachiyomi.i18n.MR
@@ -50,44 +46,12 @@ internal fun HomePanels(onSeeAll: () -> Unit) {
     if (all.isEmpty()) return
     val panels = all.take(MAX)
     Column {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 4.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Icon(
-                MaterialSymbols.Rounded.CollectionsBookmark,
-                contentDescription = null,
-                tint = KuroColors.Crimson,
-                modifier = Modifier.size(20.dp),
-            )
-            Column(
-                modifier = Modifier
-                    .padding(start = 8.dp)
-                    .weight(1f),
-            ) {
-                Text(
-                    text = stringResource(MR.strings.kurotoon_home_panels),
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-                Text(
-                    text = stringResource(MR.strings.kurotoon_panels_summary),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-            Text(
-                text = stringResource(MR.strings.kurotoon_home_seeAll),
-                style = MaterialTheme.typography.labelLarge,
-                color = KuroColors.Crimson,
-                modifier = Modifier
-                    .clip(RoundedCornerShape(50))
-                    .clickable(onClick = onSeeAll)
-                    .padding(horizontal = 10.dp, vertical = 6.dp),
-            )
-        }
+        HomeShelfHeader(
+            title = stringResource(MR.strings.kurotoon_home_panels),
+            icon = MaterialSymbols.Rounded.CollectionsBookmark,
+            subtitle = stringResource(MR.strings.kurotoon_panels_summary),
+            onSeeAll = onSeeAll,
+        )
         LazyRow(
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.spacedBy(10.dp),

@@ -56,7 +56,6 @@ import kurotoon.ui.kuroCard
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.AutoAwesome
 import mihon.icons.materialsymbols.rounded.Bookmark
-import mihon.icons.materialsymbols.rounded.KeyboardArrowRight
 import mihon.icons.materialsymbols.rounded.LocalFireDepartment
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.manga.model.asMangaCover
@@ -297,90 +296,38 @@ internal fun HomeSourceRow(
     // Keep an empty Latest row so its switch can bring Popular back
     if (row.items?.isEmpty() == true && !row.latest) return
     Column(modifier) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 4.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(28.dp)
-                    .background(KuroColors.Crimson.copy(alpha = 0.12f), RoundedCornerShape(8.dp))
-                    .border(1.dp, KuroColors.Crimson.copy(alpha = 0.2f), RoundedCornerShape(8.dp)),
-                contentAlignment = Alignment.Center,
-            ) {
-                Icon(
-                    if (row.savedSearch != null) {
-                        MaterialSymbols.Rounded.Bookmark
-                    } else if (row.pickTag != null) {
-                        MaterialSymbols.Rounded.AutoAwesome
+        val saved = row.savedSearch != null
+        HomeShelfHeader(
+            title = row.pickTag?.let { stringResource(MR.strings.kurotoon_home_becauseYouRead, it) } ?: row.name,
+            icon = when {
+                saved -> MaterialSymbols.Rounded.Bookmark
+                row.pickTag != null -> MaterialSymbols.Rounded.AutoAwesome
+                else -> MaterialSymbols.Rounded.LocalFireDepartment
+            },
+            subtitle = if (saved) {
+                row.sourceName + row.freshUrls.size.takeIf { it > 0 }
+                    ?.let { " · " + stringResource(MR.strings.kurotoon_home_newCount, it) }
+                    .orEmpty()
+            } else {
+                null
+            },
+            onSeeAll = onSeeAll,
+            extra = if (row.pickTag == null && !saved && showListing) {
+                {
+                    if (row.supportsLatest) {
+                        ListingToggle(latest = row.latest, onClick = onToggleLatest)
                     } else {
-                        MaterialSymbols.Rounded.LocalFireDepartment
-                    },
-                    contentDescription = null,
-                    tint = KuroColors.Crimson,
-                    modifier = Modifier.size(16.dp),
-                )
-            }
-            val saved = row.savedSearch != null
-            Column(
-                modifier = Modifier
-                    .padding(start = 8.dp)
-                    // Saved searches and "Because you read X" take the whole line
-                    .weight(1f, fill = saved || row.pickTag != null || !showListing),
-            ) {
-                Text(
-                    text = row.pickTag?.let { stringResource(MR.strings.kurotoon_home_becauseYouRead, it) } ?: row.name,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-                if (saved) {
-                    Text(
-                        text = row.sourceName + row.freshUrls.size.takeIf { it > 0 }
-                            ?.let { " · " + stringResource(MR.strings.kurotoon_home_newCount, it) }
-                            .orEmpty(),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
-                }
-            }
-            if (row.pickTag == null && !saved && showListing) {
-                Box(Modifier.weight(1f)) {
-                    when {
-                        row.supportsLatest -> ListingToggle(latest = row.latest, onClick = onToggleLatest)
-                        else -> Text(
-                            text = " · " + stringResource(MR.strings.popular),
+                        Text(
+                            text = stringResource(MR.strings.popular),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
                 }
-            }
-            Row(
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .clickable(onClick = onSeeAll)
-                    .padding(start = 8.dp, top = 4.dp, bottom = 4.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Text(
-                    text = stringResource(MR.strings.kurotoon_home_seeAll),
-                    style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                Icon(
-                    MaterialSymbols.Rounded.KeyboardArrowRight,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.size(16.dp),
-                )
-            }
-        }
+            } else {
+                null
+            },
+        )
         when {
             row.failed -> Row(
                 modifier = Modifier

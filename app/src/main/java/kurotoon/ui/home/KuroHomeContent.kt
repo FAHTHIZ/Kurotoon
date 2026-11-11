@@ -55,6 +55,8 @@ import mihon.icons.materialsymbols.rounded.QueryStats
 import tachiyomi.domain.history.model.HistoryWithRelations
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.KuroArt
+import tachiyomi.presentation.core.components.KuroPose
 import tachiyomi.presentation.core.components.material.PullRefresh
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
@@ -138,6 +140,7 @@ fun KuroHomeContent(
                             pages = state.continuePages,
                             onMangaClick = onMangaClick,
                             onResumeClick = onResumeClick,
+                            onSeeAll = onHistoryClick,
                         )
                     }
                 }
@@ -210,7 +213,7 @@ private fun Welcome(onAddSourcesClick: () -> Unit) {
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(text = "😸", fontSize = 64.sp)
+        KuroArt(pose = KuroPose.WAVING, size = 120.dp)
         Text(
             text = stringResource(MR.strings.kurotoon_home_welcomeTitle),
             fontSize = 22.sp,
@@ -302,13 +305,13 @@ private fun ContinueReading(
     pages: Map<Long, Int>,
     onMangaClick: (Long) -> Unit,
     onResumeClick: (HistoryWithRelations) -> Unit,
+    onSeeAll: () -> Unit,
 ) {
     Column {
-        Text(
-            text = stringResource(MR.strings.kurotoon_home_continueReading),
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
+        HomeShelfHeader(
+            title = stringResource(MR.strings.kurotoon_home_continueReading),
+            icon = MaterialSymbols.Rounded.History,
+            onSeeAll = onSeeAll,
         )
         if (items.isEmpty()) {
             KuroTip(
@@ -324,7 +327,7 @@ private fun ContinueReading(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             items(items, key = { it.mangaId }) { item ->
-                Column(modifier = Modifier.width(112.dp)) {
+                Column(modifier = Modifier.width(HomeCoverWidth)) {
                     Box {
                         MangaCover.Book(
                             data = item.coverData,
