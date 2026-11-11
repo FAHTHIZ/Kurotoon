@@ -1,15 +1,21 @@
 <div align="center">
 
-# KuroToon
+<img src="docs/images/banner.svg" alt="KuroToon — every source, one calm home" width="100%">
 
-**Every source. One calm home.**
+<br>
 
 A manga, manhwa and webtoon reader for Android that puts the series you're reading first,<br>
 plays the episode music, and never asks for an account, a coin or a wait.
 
-[**Download the latest APK**](https://github.com/FAHTHIZ/Kurotoon/releases/latest)
+<br>
 
-[Why](#why-kurotoon) &nbsp;·&nbsp; [Features](#features) &nbsp;·&nbsp; [Design](#design) &nbsp;·&nbsp;
+[![Download](https://img.shields.io/github/v/release/FAHTHIZ/Kurotoon?style=for-the-badge&label=Download&color=FF4757&labelColor=141418)](https://github.com/FAHTHIZ/Kurotoon/releases/latest)
+&nbsp;
+[![Build](https://img.shields.io/github/actions/workflow/status/FAHTHIZ/Kurotoon/build.yml?branch=main&style=for-the-badge&label=Build&labelColor=141418)](https://github.com/FAHTHIZ/Kurotoon/actions)
+&nbsp;
+[![License](https://img.shields.io/badge/License-Apache--2.0-1B1B21?style=for-the-badge&labelColor=141418)](LICENSE)
+
+[Why](#why-kurotoon) &nbsp;·&nbsp; [Screens](#screens) &nbsp;·&nbsp; [Features](#features) &nbsp;·&nbsp; [Design](#design) &nbsp;·&nbsp;
 [Compare](#how-it-compares) &nbsp;·&nbsp; [Install](#install) &nbsp;·&nbsp; [Guides](docs/) &nbsp;·&nbsp;
 [Changelog](CHANGELOG.md)
 
@@ -67,6 +73,33 @@ one, tap Use.
 </td>
 </tr>
 </table>
+
+<br>
+
+## Screens
+
+<table>
+<tr>
+<td width="33%" valign="top"><img src="docs/images/home.png" alt="Home: Up next card, Continue reading shelf and featured banner"><br><sub><b>Home</b> · your series first</sub></td>
+<td width="33%" valign="top"><img src="docs/images/schedule.png" alt="Weekly schedule with day pills"><br><sub><b>Schedule</b> · what's out each day</sub></td>
+<td width="33%" valign="top"><img src="docs/images/collection.png" alt="Collection of free avatars and frames"><br><sub><b>Collection</b> · free looks, no coins</sub></td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td width="50%" valign="top"><img src="docs/images/home_schedule.png" alt="Out today shelf on Home"><br><sub><b>Out today</b> · what your library releases today</sub></td>
+<td width="50%" valign="top"><img src="docs/images/browse_chips.png" alt="Browse sort pills and genre tags"><br><sub><b>Browse</b> · sort pills and tags from the source</sub></td>
+</tr>
+<tr>
+<td valign="top"><img src="docs/images/profile.png" alt="Me tab profile card with reading numbers"><br><sub><b>Me</b> · your reading, on your phone</sub></td>
+<td valign="top"><img src="docs/images/empty_state.png" alt="Empty library with a floating icon and a Getting started button"><br><sub><b>Empty screens</b> · one helpful line and a way forward</sub></td>
+</tr>
+</table>
+
+<p align="center"><img src="docs/images/bottom_bar.png" alt="Floating bottom dock with the Browse tab selected" width="70%"></p>
+
+<sub>Rendered from the real Compose screens with Roborazzi, using placeholder gradient covers.</sub>
 
 <br>
 
@@ -165,13 +198,29 @@ one, tap Use.
 KuroToon keeps Mihon's engine (sources, downloads, backups, trackers) and replaces the screens on top with its own
 design language.
 
-|                  | Principle                                                                                   |
-| ---------------- | ------------------------------------------------------------------------------------------- |
-| **Content first** | Covers and artwork carry the colour. Chrome stays neutral: soft surfaces, no borders, no glows |
-| **One accent**    | A single accent colour marks what's actionable and what's new. It follows the theme you pick |
-| **Calm motion**   | Plain touch ripples, short springs, no confetti. Celebrations are a small check            |
-| **Your order**    | What you're reading beats what's promoted, on every screen                                  |
-| **Quiet copy**    | Sentence-case titles, one helpful line per empty screen, no mascots in everyday views        |
+|                       | Principle                                                                                      |
+| --------------------- | ---------------------------------------------------------------------------------------------- |
+| **Content first**     | Covers and artwork carry the colour. Chrome is ink-black with hairline edges, never loud        |
+| **One accent**        | A single crimson marks what's actionable and what's new. It follows the Collection theme you pick |
+| **Physical motion**   | Covers and buttons squish when pressed and spring back; shelves cascade in; tabs pop. Never confetti |
+| **Your order**        | What you're reading beats what's promoted, on every screen                                     |
+| **Quiet copy**        | Sentence-case titles, one helpful line per empty screen, no mascots in everyday views           |
+
+<details>
+<summary><b>Design tokens</b></summary>
+
+<br>
+
+| Token | Value |
+| --- | --- |
+| Typeface | [Plus Jakarta Sans](https://github.com/tokotype/PlusJakartaSans) (SIL OFL 1.1, [licence](docs/licenses/PlusJakartaSans-OFL.txt)), ExtraBold display with tight tracking |
+| Background | `#09090B` ink, surfaces stepping up `#0F0F12` → `#24242B` |
+| Accent | Crimson `#FF4757` (light theme `#D7263D`), gold `#FFC548` for ratings |
+| Shapes | 8 / 12 / 16 / 22 / 28 dp corners; covers 14 dp, hero cards 28 dp |
+| Navigation | A floating 64 dp dock; the open tab sits in a solid accent pill that springs wider |
+| Motion | Press scale 0.95 with a damped spring, 45 ms stagger for shelves, 1.3 s shimmer for loading |
+
+</details>
 
 <details>
 <summary><b>Screen by screen, compared with Mihon</b></summary>
@@ -182,12 +231,12 @@ design language.
 | --- | --- | --- |
 | Home | Not there; opens on Library | Up next card, your shelves, then a featured banner and source rows |
 | Library | Tabs and a filter sheet | Category pills, quick filters, rounded covers, combined copies |
-| Updates | Plain dated list | Day headers, NEW badges, release schedule |
+| Updates | Plain dated list | Day headers, NEW pills, a day-pill release schedule |
 | Browse | List rows | Universal search, merged tags, source and extension cards |
-| Series page | Icon-and-label buttons | Action tiles, tag pills, read progress, merged chapter list |
+| Series page | Icon-and-label buttons | Poster cover over a blurred backdrop, action tiles, tag pills, merged chapter list |
 | Reader | Full-width bars | Floating dock, soundtrack, sleep timer, progress orb |
-| Me and Settings | Flat preference lists | Grouped cards and a settings search bar |
-| Empty screens | Kaomoji | A simple icon and one helpful line |
+| Me and Settings | Flat preference lists | Spotlight profile card, counting stats, settings grouped into rounded cards |
+| Empty screens | Kaomoji | A gently floating icon on a soft glow and one helpful line |
 
 </details>
 

@@ -31,7 +31,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -74,6 +73,8 @@ import kurotoon.shop.PackOrigin
 import kurotoon.shop.PackRepository.ImportResult
 import kurotoon.shop.ShopItem
 import kurotoon.shop.ShopKind
+import kurotoon.ui.kuroBounceClickable
+import kurotoon.ui.kuroCard
 import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Check
@@ -199,16 +200,17 @@ fun CollectionContent(
                     .horizontalScroll(rememberScrollState()),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                FilterChip(
+                kurotoon.ui.KuroFilterPill(
+                    text = stringResource(MR.strings.kurotoon_rewards_all),
                     selected = kind == null,
                     onClick = { kind = null },
-                    label = { Text(stringResource(MR.strings.kurotoon_rewards_all)) },
                 )
-                byKind.keys.forEach { k ->
-                    FilterChip(
+                byKind.forEach { (k, list) ->
+                    kurotoon.ui.KuroFilterPill(
+                        text = stringResource(k.label),
                         selected = kind == k,
                         onClick = { kind = if (kind == k) null else k },
-                        label = { Text(stringResource(k.label)) },
+                        count = list.size,
                     )
                 }
             }
@@ -284,7 +286,7 @@ private fun SectionHeader(title: String, count: Int) {
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(top = 12.dp),
     ) {
-        Text(title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+        Text(title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.ExtraBold)
         Text(
             count.toString(),
             style = MaterialTheme.typography.labelMedium,
@@ -299,8 +301,8 @@ private fun CollectionTile(item: ShopItem, inUse: Boolean, onClick: () -> Unit) 
     val shape = RoundedCornerShape(16.dp)
     Column(
         Modifier
-            .clip(shape)
-            .clickable(onClick = onClick),
+            .kuroBounceClickable(onClick = onClick)
+            .clip(shape),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Box(
@@ -308,9 +310,22 @@ private fun CollectionTile(item: ShopItem, inUse: Boolean, onClick: () -> Unit) 
                 .fillMaxWidth()
                 .aspectRatio(1f)
                 .clip(shape)
-                .background(MaterialTheme.colorScheme.surfaceContainer)
+                .kuroCard(shape)
                 .then(
-                    if (inUse) Modifier.border(2.dp, MaterialTheme.colorScheme.primary, shape) else Modifier,
+                    if (inUse) {
+                        Modifier
+                            .background(
+                                androidx.compose.ui.graphics.Brush.radialGradient(
+                                    listOf(
+                                        MaterialTheme.colorScheme.primary.copy(alpha = 0.22f),
+                                        androidx.compose.ui.graphics.Color.Transparent,
+                                    ),
+                                ),
+                            )
+                            .border(2.dp, MaterialTheme.colorScheme.primary, shape)
+                    } else {
+                        Modifier
+                    },
                 )
                 .padding(12.dp),
             contentAlignment = Alignment.Center,
@@ -337,6 +352,7 @@ private fun CollectionTile(item: ShopItem, inUse: Boolean, onClick: () -> Unit) 
         Text(
             item.name,
             style = MaterialTheme.typography.labelMedium,
+            fontWeight = if (inUse) FontWeight.Bold else FontWeight.SemiBold,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.padding(top = 6.dp, bottom = 2.dp),
