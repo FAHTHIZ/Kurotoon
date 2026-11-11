@@ -20,6 +20,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- A "Recently added" shelf on Home lists what you saved this month, newest first, so a fresh add is easy to find again ([mihon#2529](https://github.com/mihonapp/mihon/issues/2529))
 - Staggered downloads: Settings > Downloads > Pause between chapters makes each source download one chapter at a time, waiting up to a minute between them ([mihon#1958](https://github.com/mihonapp/mihon/issues/1958))
 - Settings > Library can name local chapters after their files instead of the ComicInfo.xml title, so renaming a file renames the chapter ([mihon#2393](https://github.com/mihonapp/mihon/issues/2393))
 - Check only some series for new chapters: select them in the library and pick "Check for new chapters" from the overflow menu ([mihon#2933](https://github.com/mihonapp/mihon/issues/2933))

@@ -1,5 +1,6 @@
 package kurotoon.ui.home
 
+import android.text.format.DateUtils
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,6 +16,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -25,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import eu.kanade.presentation.manga.components.MangaCover
 import kurotoon.ui.KuroColors
 import mihon.icons.materialsymbols.MaterialSymbols
+import mihon.icons.materialsymbols.rounded.BookmarkAdd
 import mihon.icons.materialsymbols.rounded.DoneAll
 import mihon.icons.materialsymbols.rounded.History
 import tachiyomi.domain.library.model.LibraryManga
@@ -62,6 +65,22 @@ internal fun HomeStalled(items: List<LibraryManga>, onMangaClick: (Long) -> Unit
         onMangaClick = onMangaClick,
     ) { item ->
         stringResource(MR.strings.kurotoon_home_left, item.unreadCount.toInt())
+    }
+}
+
+/** Series saved in the last month, newest first. Draws nothing when there are none. */
+@Composable
+internal fun HomeRecentlyAdded(items: List<LibraryManga>, onMangaClick: (Long) -> Unit) {
+    val now = remember { System.currentTimeMillis() }
+    HomeLibraryShelf(
+        title = stringResource(MR.strings.kurotoon_home_recentlyAdded),
+        summary = stringResource(MR.strings.kurotoon_home_recentlyAddedSummary),
+        icon = MaterialSymbols.Rounded.BookmarkAdd,
+        items = items,
+        onMangaClick = onMangaClick,
+    ) { item ->
+        val added = item.manga.favoriteAt?.toEpochMilliseconds() ?: now
+        DateUtils.getRelativeTimeSpanString(added, now, DateUtils.DAY_IN_MILLIS).toString()
     }
 }
 

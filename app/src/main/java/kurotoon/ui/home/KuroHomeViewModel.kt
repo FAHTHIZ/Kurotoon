@@ -41,6 +41,7 @@ import kurotoon.catalogue.SavedSearches
 import kurotoon.catalogue.SearchFeed
 import kurotoon.library.BingeList
 import kurotoon.library.LibraryTags
+import kurotoon.library.RecentlyAddedList
 import kurotoon.library.StalledList
 import kurotoon.prefs.KuroPreferences
 import kurotoon.schedule.ScheduleLoader
@@ -110,7 +111,10 @@ class KuroHomeViewModel(
     /** Finished series in the library that haven't been started. */
     private val shelves = getLibraryManga.subscribe()
         .catch { logcat(LogPriority.ERROR, it) }
-        .map { library -> BingeList.of(library) to StalledList.of(library, Clock.System.now()) }
+        .map { library ->
+            val now = Clock.System.now()
+            Triple(BingeList.of(library), StalledList.of(library, now), RecentlyAddedList.of(library, now))
+        }
         .distinctUntilChanged()
 
     /** This week's release schedule, for the "Out today" row. */
@@ -156,6 +160,7 @@ class KuroHomeViewModel(
             newChapters = newChapters,
             binge = shelves.first,
             stalled = shelves.second,
+            recentlyAdded = shelves.third,
             schedule = schedule,
         )
     }
@@ -389,6 +394,7 @@ class KuroHomeViewModel(
         val binge: List<LibraryManga> = emptyList(),
         /** Started series left alone for a few weeks. */
         val stalled: List<LibraryManga> = emptyList(),
+        val recentlyAdded: List<LibraryManga> = emptyList(),
         val schedule: WeeklySchedule = WeeklySchedule.EMPTY,
     ) {
         /** Top titles for the hero carousel, taking turns between sources so each gets a slot. */

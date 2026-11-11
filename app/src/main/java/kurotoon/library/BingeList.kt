@@ -2,6 +2,7 @@ package kurotoon.library
 
 import eu.kanade.tachiyomi.source.model.SManga
 import tachiyomi.domain.library.model.LibraryManga
+import tachiyomi.domain.manga.model.Manga
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Instant
 
@@ -35,6 +36,24 @@ object StalledList {
             .distinctBy { it.id }
             // Most recently dropped first; the oldest are likely abandoned on purpose
             .sortedByDescending { it.lastRead }
+            .take(limit)
+            .toList()
+}
+
+/** Series saved in the last few weeks, newest first, so a fresh add is easy to find again (mihon#2529). */
+object RecentlyAddedList {
+
+    const val LIMIT = 15
+    val WITHIN = 30.days
+
+    fun of(library: List<LibraryManga>, now: Instant, limit: Int = LIMIT): List<LibraryManga> =
+        library.asSequence()
+            .filter { entry ->
+                val added = entry.manga.favoriteAt ?: return@filter false
+                added != Manga.UNKNOWN_FAVORITE_AT && now - added <= WITHIN
+            }
+            .distinctBy { it.id }
+            .sortedByDescending { it.manga.favoriteAt }
             .take(limit)
             .toList()
 }
