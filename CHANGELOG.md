@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Added
+- Reader sleep timer (15/30/45/60 min or end of chapter) in the Sound sheet: stops auto-scroll, mutes the soundtrack and shows a dim "Time to rest" card
 - Reader soundtrack: WEBTOON episode music plays in KuroToon, starting and stopping on the same panels as the official app, with a music badge to mute it. Ambience for any chapter (rain, night, fireplace, ocean, focus, or matched to the series' genres), generated on the phone, plus an optional page-turn sound. Open it from the music button in the reader menu.
 - Optional daily reading reminder (Settings > Appearance): one quiet notification at your chosen hour, only on days you haven't read yet, with a Continue button straight into your next chapter. Skipped in incognito.
 - Native Android app in Kotlin and Jetpack Compose, replacing the web app.

@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.StringResource
 import eu.kanade.presentation.components.AdaptiveSheet
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderPreferences
+import kurotoon.reader.SleepTimerState
 import kurotoon.reader.sound.ReaderSoundtrack
 import kurotoon.reader.sound.Soundscape
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -63,6 +64,7 @@ val Soundscape.label: StringResource
 fun ReaderSoundSheet(
     preferences: ReaderPreferences,
     soundtrack: ReaderSoundtrack,
+    sleepTimer: SleepTimerState,
     onDismissRequest: () -> Unit,
 ) {
     AdaptiveSheet(onDismissRequest = onDismissRequest) {
@@ -142,6 +144,8 @@ fun ReaderSoundSheet(
                 label = stringResource(MR.strings.kurotoon_sound_pageTurn),
                 pref = preferences.soundPageTurn,
             )
+
+            SleepTimerChips(sleepTimer)
         }
     }
 }
@@ -243,6 +247,38 @@ fun ReaderSoundBadge(
                     if (muted) MR.strings.kurotoon_sound_unmute else MR.strings.kurotoon_sound_mute,
                 ),
                 modifier = Modifier.padding(9.dp),
+            )
+        }
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun SleepTimerChips(timer: SleepTimerState) {
+    Text(
+        text = stringResource(MR.strings.kurotoon_sleep_timer),
+        style = MaterialTheme.typography.titleSmall,
+        modifier = Modifier.padding(start = 24.dp, end = 24.dp, top = 12.dp),
+    )
+    FlowRow(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp, vertical = 4.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        SleepTimerState.CHOICES.forEach { minutes ->
+            FilterChip(
+                selected = timer.choice == minutes,
+                onClick = { timer.set(minutes) },
+                label = {
+                    Text(
+                        when (minutes) {
+                            0 -> stringResource(MR.strings.kurotoon_sound_off)
+                            SleepTimerState.END_OF_CHAPTER -> stringResource(MR.strings.kurotoon_sleep_endOfChapter)
+                            else -> stringResource(MR.strings.kurotoon_sleep_minutes, minutes)
+                        },
+                    )
+                },
             )
         }
     }

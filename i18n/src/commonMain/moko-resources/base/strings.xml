@@ -1091,6 +1091,14 @@
     <string name="kurotoon.me.defaultNickname">Reader</string>
     <string name="kurotoon.me.editNickname">Edit nickname</string>
     <string name="kurotoon.sound.title">Sound</string>
+    <string name="kurotoon.sleep.timer">Sleep timer</string>
+    <string name="kurotoon.sleep.minutes">%1$d min</string>
+    <string name="kurotoon.sleep.endOfChapter">End of chapter</string>
+    <string name="kurotoon.sleep.title">Time to rest</string>
+    <string name="kurotoon.sleep.body">Your sleep timer ran out. Your place is saved, so you can pick up right here tomorrow.</string>
+    <string name="kurotoon.sleep.close">Close the reader</string>
+    <string name="kurotoon.sleep.keepReading">Keep reading</string>
+    <string name="kurotoon.sleep.set">Sleep timer set</string>
     <string name="kurotoon.sound.episodeMusic">Episode music</string>
     <string name="kurotoon.sound.episodeMusicSummary">Plays the soundtrack WEBTOON gives some episodes, starting on the same panel</string>
     <string name="kurotoon.sound.musicVolume">Music volume</string>
