@@ -33,7 +33,6 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import kurotoon.ui.KuroColors
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -68,7 +67,7 @@ fun DailyGoalRow(today: Int, goal: Int, onGoalChange: (Int) -> Unit, modifier: M
                         stringResource(MR.strings.kurotoon_goal_left, goal - today)
                     },
                     style = MaterialTheme.typography.bodySmall,
-                    color = if (today >= goal) KuroColors.Crimson else MaterialTheme.colorScheme.onSurfaceVariant,
+                    color = MaterialTheme.colorScheme.run { if (today >= goal) primary else onSurfaceVariant },
                 )
             } else {
                 Text(
@@ -96,7 +95,7 @@ fun DailyGoalRow(today: Int, goal: Int, onGoalChange: (Int) -> Unit, modifier: M
 @Composable
 private fun GoalRing(fraction: Float, label: String) {
     val track = MaterialTheme.colorScheme.surfaceContainerHighest
-    val accent = KuroColors.Crimson
+    val accent = MaterialTheme.colorScheme.primary
     Box(contentAlignment = Alignment.Center, modifier = Modifier.size(52.dp)) {
         Canvas(modifier = Modifier.size(52.dp)) {
             val stroke = 6.dp.toPx()

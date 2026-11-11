@@ -41,7 +41,6 @@ import kotlinx.coroutines.withContext
 import kurotoon.catalogue.HiddenTags
 import kurotoon.catalogue.addHiddenTag
 import kurotoon.library.LibraryTags
-import kurotoon.ui.KuroColors
 import logcat.LogPriority
 import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -171,7 +170,7 @@ internal fun HiddenTagsContent(
                 text = stringResource(MR.strings.kurotoon_hiddenTags_fromLibrary),
                 style = MaterialTheme.typography.titleSmall,
                 fontWeight = FontWeight.Bold,
-                color = KuroColors.Crimson,
+                color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(top = 8.dp),
             )
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {

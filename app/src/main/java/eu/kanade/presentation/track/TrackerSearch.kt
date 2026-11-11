@@ -71,7 +71,6 @@ import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.util.system.openInBrowser
 import kotlinx.coroutines.launch
-import kurotoon.ui.KuroColors
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.automirroredrounded.ArrowBack
 import mihon.icons.materialsymbols.rounded.Close
@@ -251,7 +250,7 @@ private fun SearchResultItem(
     val status = trackSearch.publishing_status.toLowerCase(locale).capitalize(locale)
     val description = trackSearch.summary.trim()
     val shape = RoundedCornerShape(18.dp)
-    val borderColor = if (selected) KuroColors.Crimson else Color.White.copy(alpha = 0.06f)
+    val borderColor = if (selected) MaterialTheme.colorScheme.primary else Color.White.copy(alpha = 0.06f)
     var dropDownMenuExpanded by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     Box(
@@ -279,7 +278,7 @@ private fun SearchResultItem(
                 imageVector = MaterialSymbols.RoundedFilled.CheckCircle,
                 contentDescription = null,
                 modifier = Modifier.align(Alignment.TopEnd),
-                tint = KuroColors.Crimson,
+                tint = MaterialTheme.colorScheme.primary,
             )
         }
         Column {

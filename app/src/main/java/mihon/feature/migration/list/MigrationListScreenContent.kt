@@ -46,7 +46,6 @@ import eu.kanade.presentation.manga.components.MangaCover
 import eu.kanade.presentation.util.formatChapterNumber
 import eu.kanade.presentation.util.rememberResourceBitmapPainter
 import eu.kanade.tachiyomi.R
-import kurotoon.ui.KuroColors
 import kurotoon.ui.kuroCard
 import mihon.feature.migration.list.models.MigratingManga
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -150,7 +149,7 @@ fun MigrationListScreenContent(
                     Icon(
                         imageVector = MaterialSymbols.AutoMirroredRounded.ArrowForward,
                         contentDescription = null,
-                        tint = KuroColors.Crimson,
+                        tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.weight(0.2f),
                     )
 

@@ -27,7 +27,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import kurotoon.stats.ReadingActivity
 import kurotoon.stats.ReadingDay
-import kurotoon.ui.KuroColors
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -88,7 +87,7 @@ private fun DayCell(day: ReadingDay?, busiest: Int, size: androidx.compose.ui.un
     val color = when {
         day == null -> Color.Transparent
         day.chapters == 0 -> MaterialTheme.colorScheme.surfaceContainerHighest
-        else -> KuroColors.Crimson.copy(alpha = levelAlpha(day.chapters, busiest))
+        else -> MaterialTheme.colorScheme.primary.copy(alpha = levelAlpha(day.chapters, busiest))
     }
     Spacer(
         modifier = Modifier
@@ -107,7 +106,7 @@ private fun Legend() {
         )
         Spacer(Modifier.width(2.dp))
         LegendSquare(MaterialTheme.colorScheme.surfaceContainerHighest)
-        LEVELS.forEach { alpha -> LegendSquare(KuroColors.Crimson.copy(alpha = alpha)) }
+        LEVELS.forEach { alpha -> LegendSquare(MaterialTheme.colorScheme.primary.copy(alpha = alpha)) }
         Spacer(Modifier.width(2.dp))
         Text(
             text = stringResource(MR.strings.kurotoon_stats_more),

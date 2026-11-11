@@ -13,11 +13,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.unit.dp
-import kurotoon.ui.KuroColors
 
 /**
  * A thin bar along the bottom edge of a cover showing how much of the series has been read. It sits
@@ -38,11 +35,7 @@ fun CoverReadProgress(progress: Float, modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxHeight()
                     .fillMaxWidth(animated)
-                    .background(
-                        Brush.horizontalGradient(
-                            listOf(KuroColors.Crimson, lerp(KuroColors.Crimson, Color.White, 0.35f)),
-                        ),
-                    ),
+                    .background(MaterialTheme.colorScheme.primary),
             )
         }
     }

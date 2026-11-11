@@ -46,7 +46,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kurotoon.stats.YearInReview
-import kurotoon.ui.KuroColors
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Share
 import tachiyomi.i18n.MR
@@ -114,17 +113,17 @@ private fun Content(review: YearInReview, time: String, shape: RoundedCornerShap
             .clip(shape)
             .background(
                 Brush.linearGradient(
-                    listOf(KuroColors.CrimsonDeep.copy(alpha = 0.55f), Color(0xFF16090C), Color(0xFF0E0E10)),
+                    listOf(MaterialTheme.colorScheme.primary.copy(alpha = 0.55f), Color(0xFF16090C), Color(0xFF0E0E10)),
                 ),
             )
-            .border(1.dp, KuroColors.Crimson.copy(alpha = 0.35f), shape)
+            .border(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.35f), shape)
             .padding(20.dp),
     ) {
         Column {
             Text(
                 text = stringResource(MR.strings.kurotoon_year_title, review.year),
                 style = MaterialTheme.typography.labelLarge,
-                color = KuroColors.Crimson,
+                color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold,
             )
             Text(
@@ -150,7 +149,7 @@ private fun Content(review: YearInReview, time: String, shape: RoundedCornerShap
                             text = "${index + 1}",
                             fontSize = 22.sp,
                             fontWeight = FontWeight.Black,
-                            color = if (index == 0) KuroColors.Gold else Color.White.copy(alpha = 0.45f),
+                            color = if (index == 0) MaterialTheme.colorScheme.primary else Color.White.copy(0.45f),
                             modifier = Modifier.width(28.dp),
                         )
                         Text(
@@ -185,8 +184,8 @@ private fun Content(review: YearInReview, time: String, shape: RoundedCornerShap
                             style = MaterialTheme.typography.labelLarge,
                             color = Color.White,
                             modifier = Modifier
-                                .background(KuroColors.Crimson.copy(alpha = 0.22f), CircleShape)
-                                .border(1.dp, KuroColors.Crimson.copy(alpha = 0.5f), CircleShape)
+                                .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.22f), CircleShape)
+                                .border(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.5f), CircleShape)
                                 .padding(horizontal = 12.dp, vertical = 6.dp),
                         )
                     }

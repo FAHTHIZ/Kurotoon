@@ -32,7 +32,6 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import kurotoon.ui.KuroColors
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.KeyboardArrowRight
 import mihon.icons.materialsymbols.roundedfilled.Error
@@ -65,7 +64,7 @@ fun GlobalSearchResultItem(
                 ),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            val crimson = KuroColors.Crimson
+            val crimson = MaterialTheme.colorScheme.primary
             Box(
                 modifier = Modifier
                     .size(width = 4.dp, height = 28.dp)

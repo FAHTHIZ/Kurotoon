@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import kurotoon.ui.KuroColors
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.automirroredrounded.Label
 import tachiyomi.i18n.MR
@@ -55,7 +54,7 @@ fun TagBrowseRow(
                     Icon(
                         MaterialSymbols.AutoMirroredRounded.Label,
                         contentDescription = null,
-                        tint = KuroColors.Crimson,
+                        tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(14.dp),
                     )
                     Text(
