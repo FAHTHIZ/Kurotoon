@@ -51,6 +51,16 @@ class MissingChaptersTest {
         calculateChapterGap(99.0, -1.0) shouldBe 0
     }
 
+    @Test
+    fun `filtered gap ignores chapters that exist but are hidden`() {
+        // 1..10 exist except 6; the filter shows only 3 and 9
+        val known = (1..10).toSet() - 6
+        calculateChapterGap(9.0, 3.0, known) shouldBe 1
+        calculateChapterGap(3.0, null, known) shouldBe 0
+        calculateChapterGap(9.0, 3.0, emptySet()) shouldBe 5
+        calculateChapterGap(9.0, -1.0, known) shouldBe 0
+    }
+
     private fun chapter(number: Double) = Chapter.create().copy(
         chapterNumber = number,
     )

@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Fixed
+- Chapters hidden by a filter (e.g. Unread) are no longer reported as missing chapters ([mihon#87](https://github.com/mihonapp/mihon/issues/87))
 - Adding a series to the library from the reader now links enhanced trackers, like the series page does
 - Rotating the screen no longer cancels the sleep timer or stops auto-scroll
 - Rotating the screen no longer unmutes the reader's music
