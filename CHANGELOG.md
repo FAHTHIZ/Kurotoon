@@ -11,7 +11,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
-- Pages that failed when the connection dropped reload by themselves as soon as you're back online
+- Pages that failed when the connection dropped reload by themselves as soon as you're back online, and timeouts or busy servers get two quiet retries before a Retry button appears
 - Resume where you left off (Settings > Reader): Resume opens the last chapter you opened, even after skipping ahead, instead of an earlier unread one
 - Ignore repeated volume-key presses (Settings > Reader > Navigation): one page per press on bouncy buttons
 - The reader's top bar says how many chapters are left after this one ("Chapter 37 · 13 chapters left")
