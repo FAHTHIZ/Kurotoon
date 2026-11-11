@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Fixed
+- Adding a series to the library from the reader now links enhanced trackers, like the series page does
 - Rotating the screen no longer cancels the sleep timer or stops auto-scroll
 - Rotating the screen no longer unmutes the reader's music
 - The sound sheet now says when an episode's music couldn't be checked (offline) and offers Retry, instead of showing nothing
