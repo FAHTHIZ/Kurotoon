@@ -130,12 +130,12 @@ fun ExtensionScreen(
                 state.isLoading -> LoadingScreen(Modifier.padding(contentPadding))
                 state.isEmpty -> {
                     val msg = if (!searchQuery.isNullOrEmpty()) {
-                        MR.strings.no_results_found
+                        stringResource(MR.strings.kurotoon_extensions_notListed, searchQuery.trim())
                     } else {
-                        MR.strings.kurotoon_extensions_empty
+                        stringResource(MR.strings.kurotoon_extensions_empty)
                     }
                     EmptyScreen(
-                        stringRes = msg,
+                        message = msg,
                         modifier = Modifier.padding(contentPadding),
                         actions = listOf(
                             EmptyScreenAction(
