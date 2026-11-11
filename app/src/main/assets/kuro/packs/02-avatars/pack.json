@@ -1,98 +1,55 @@
 {
   "id": "kuro.avatars",
-  "name": "Kuro avatars",
+  "name": "Kuru avatars",
   "author": "KuroToon",
-  "version": 1,
-  "description": "Kuro in every mood and colour.",
+  "version": 2,
+  "description": "Profile icons, perfect for your identity.",
   "items": [
     {
       "id": "classic",
       "kind": "avatar",
-      "name": "Classic Kuro",
-      "description": "The original night-black Kuro.",
+      "name": "Classic Kuru",
+      "description": "The original, under a starry sky.",
       "price": 200,
       "rarity": "common",
-      "style": "kuro",
-      "colors": [
-        "#3A2F4D",
-        "#15111C",
-        "#2FB0E6"
-      ]
-    },
-    {
-      "id": "hood",
-      "kind": "avatar",
-      "name": "Hood-Up Kuro",
-      "description": "Night reading mode.",
-      "price": 400,
-      "rarity": "rare",
-      "style": "kuro",
-      "colors": [
-        "#4A1F2B",
-        "#1A0A10",
-        "#FF4D4D",
-        "#FF4D4D"
-      ]
-    },
-    {
-      "id": "snow",
-      "kind": "avatar",
-      "name": "Winter Kuro",
-      "description": "Snow-dusted and cosy.",
-      "price": 1500,
-      "rarity": "epic",
-      "style": "kuro",
-      "colors": [
-        "#E8EEF7",
-        "#9AA9C2",
-        "#2FB0E6",
-        "#BFE8FF"
-      ]
-    },
-    {
-      "id": "ginger",
-      "kind": "avatar",
-      "name": "Ginger Kuro",
-      "description": "Warm, orange and always hungry.",
-      "price": 600,
-      "rarity": "rare",
-      "style": "kuro",
-      "colors": [
-        "#F59E57",
-        "#9A4A12",
-        "#3A2600",
-        "#FB923C"
-      ]
+      "image": "classic.webp"
     },
     {
       "id": "galaxy",
       "kind": "avatar",
-      "name": "Galaxy Kuro",
-      "description": "Kuro dissolving into cosmic dust.",
-      "price": 2500,
-      "rarity": "mythic",
-      "style": "kuro",
-      "colors": [
-        "#6B3FD1",
-        "#120A2E",
-        "#F2C14E",
-        "#A35BE8"
-      ]
+      "name": "Galaxy Kuru",
+      "description": "Kuru wrapped in a violet nebula.",
+      "price": 1500,
+      "rarity": "epic",
+      "image": "galaxy.webp"
     },
     {
-      "id": "mint",
+      "id": "royal",
       "kind": "avatar",
-      "name": "Mint Kuro",
-      "description": "Fresh as a new chapter.",
+      "name": "Royal Kuru",
+      "description": "Crowned, with his lucky K coin.",
+      "price": 2500,
+      "rarity": "legendary",
+      "image": "royal.webp"
+    },
+    {
+      "id": "cool",
+      "kind": "avatar",
+      "name": "Cool Kuru",
+      "description": "Shades on. Nothing can spoil this arc.",
+      "price": 600,
+      "rarity": "rare",
+      "image": "cool.webp"
+    },
+    {
+      "id": "pumpkin",
+      "kind": "avatar",
+      "name": "Pumpkin Kuru",
+      "description": "Spooky season, Kuru style.",
       "price": 800,
-      "rarity": "epic",
-      "style": "kuro",
-      "colors": [
-        "#7EE0C3",
-        "#1F6B5A",
-        "#0D2E27",
-        "#34D399"
-      ]
+      "rarity": "rare",
+      "image": "pumpkin.webp"
     }
-  ]
+  ],
+  "cover": "classic.webp"
 }
