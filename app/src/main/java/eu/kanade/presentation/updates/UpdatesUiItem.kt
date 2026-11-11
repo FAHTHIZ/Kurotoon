@@ -244,6 +244,19 @@ private fun UpdatesUiItem(
                         overflow = TextOverflow.Ellipsis,
                     )
                 }
+                // Who released it, so a series followed from several groups shows which one did (mihon#1914)
+                val scanlator = update.scanlator?.takeIf { it.isNotBlank() }
+                if (scanlator != null) {
+                    DotSeparatorText()
+                    Text(
+                        text = scanlator,
+                        maxLines = 1,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = LocalContentColor.current.copy(alpha = DISABLED_ALPHA),
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(weight = 1f, fill = false),
+                    )
+                }
             }
         }
 
