@@ -6,6 +6,16 @@
 - Update the extension in **Browse → Extensions**.
 - Websites change often; if the site itself is down there is nothing the app can do until it is back.
 
+## A site is missing from Extensions
+
+Search **Browse › Extensions** for the site's name or paste its address (for example `https://hitomi.la/`).
+
+- If the site is 18+ and hidden by your content settings, a card names it and offers **Allow 18+**, behind your
+  device lock.
+- If the search says none of your stores lists it, the store has dropped that site. Stores remove sites from time
+  to time; as of November 2026 the Keiyoushi store no longer carries Hitomi. Add another store that has it, or
+  install the extension's APK from a file.
+
 ## Cloudflare
 
 Some sites protect themselves with Cloudflare. If a source keeps failing with a Cloudflare error:
