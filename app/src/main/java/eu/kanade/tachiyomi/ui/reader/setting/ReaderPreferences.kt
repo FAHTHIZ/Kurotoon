@@ -98,6 +98,9 @@ class ReaderPreferences(
     /** Keep other apps' music playing and mix the reader's sound with it instead of pausing them. */
     val soundMixWithOthers: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_sound_mix_with_others", false)
 
+    /** Open the reader muted while the phone is on silent or vibrate, since media audio ignores the ringer. */
+    val soundRespectSilent: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_sound_respect_silent", true)
+
     /** Send pages through an image proxy that shrinks them: off, mobile (only off Wi-Fi) or always. */
     val dataSaver: Preference<String> = preferenceStore.getString("kurotoon_data_saver", "off")
 
