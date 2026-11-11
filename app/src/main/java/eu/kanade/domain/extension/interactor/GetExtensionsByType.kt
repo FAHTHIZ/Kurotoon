@@ -15,14 +15,13 @@ class GetExtensionsByType(
 ) {
 
     fun subscribe(): Flow<Extensions> {
-        val enabledContentWarnings = preferences.enabledContentWarnings.get()
-
         return combine(
             preferences.enabledLanguages.changes(),
             extensionManager.loadedExtensionsFlow,
             extensionManager.notLoadedExtensionsFlow,
             extensionManager.availableExtensionsFlow,
-        ) { enabledLanguages, _loaded, _notLoaded, _available ->
+            preferences.enabledContentWarnings.changes(),
+        ) { enabledLanguages, _loaded, _notLoaded, _available, enabledContentWarnings ->
             val byName = compareBy<Extension, String>(String.CASE_INSENSITIVE_ORDER) { it.name }
 
             val (loadedUpdates, loaded) = _loaded.partition { it.hasUpdate }
