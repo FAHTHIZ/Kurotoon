@@ -61,6 +61,7 @@ import logcat.LogPriority
 import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.automirroredrounded.Help
+import tachiyomi.core.common.i18n.pluralStringResource
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.core.common.storage.displayablePath
 import tachiyomi.core.common.util.system.logcat
@@ -289,6 +290,22 @@ object SettingsDataScreen : SearchableSettings {
             value = chapterCache.readableSize()
         }
 
+        var orphans by remember { mutableStateOf<List<kurotoon.library.OrphanDownloads.Orphan>?>(null) }
+        orphans?.let { found ->
+            kurotoon.ui.library.OrphanDownloadsDialog(
+                orphans = found,
+                onDismiss = { orphans = null },
+                onConfirm = {
+                    orphans = null
+                    scope.launch {
+                        val removed = kurotoon.library.OrphanDownloads.delete(context, found)
+                        val plural = MR.plurals.kurotoon_orphans_removed
+                        context.toast(context.pluralStringResource(plural, removed, removed))
+                    }
+                },
+            )
+        }
+
         return Preference.PreferenceGroup(
             title = stringResource(MR.strings.pref_storage_usage),
             preferenceItems = listOf(
@@ -317,6 +334,20 @@ object SettingsDataScreen : SearchableSettings {
                                 if (e is CancellationException) throw e
                                 logcat(LogPriority.ERROR, e)
                                 context.toast(MR.strings.cache_delete_error)
+                            }
+                        }
+                    },
+                ),
+                Preference.PreferenceItem.TextPreference(
+                    title = stringResource(MR.strings.kurotoon_orphans_title),
+                    subtitle = stringResource(MR.strings.kurotoon_orphans_summary),
+                    onClick = {
+                        scope.launch {
+                            val found = kurotoon.library.OrphanDownloads.find(context)
+                            if (found.isEmpty()) {
+                                context.toast(MR.strings.kurotoon_orphans_none)
+                            } else {
+                                orphans = found
                             }
                         }
                     },
