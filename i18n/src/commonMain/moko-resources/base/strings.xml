@@ -948,6 +948,7 @@
     <string name="kurotoon.collection.hint.theme">Changes the app\'s colours.</string>
     <string name="kurotoon.collection.hint.particles">Colours for the little effects when you finish a chapter.</string>
     <string name="kurotoon.collection.summary">Avatars, frames and stickers</string>
+    <string name="kurotoon.updates.notChecked">Not checked yet</string>
     <string name="kurotoon.home.upNext">Up next</string>
     <string name="kurotoon.extensions.notListed">None of your extension stores lists “%s”. Stores drop sites from time to time; add another store that has it, or install its APK from a file.</string>
     <string name="kurotoon_updates_checked">Checked %s</string>
