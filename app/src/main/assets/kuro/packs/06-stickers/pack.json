@@ -1,9 +1,9 @@
 {
   "id": "kuro.stickers",
-  "name": "Premium Kuru stickers",
+  "name": "Premium Kuro stickers",
   "author": "KuroToon",
   "version": 2,
-  "description": "Chat with Kuru in every emotion.",
+  "description": "Chat with Kuro in every emotion.",
   "items": [
     {
       "id": "happy",
@@ -198,7 +198,7 @@
       "id": "galaxy",
       "kind": "sticker",
       "name": "Galaxy Mode",
-      "description": "Kuru at full cosmic power.",
+      "description": "Kuro at full cosmic power.",
       "price": 2000,
       "rarity": "mythic",
       "image": "galaxy.webp"
@@ -206,7 +206,7 @@
     {
       "id": "rich",
       "kind": "sticker",
-      "name": "Rich Kuru",
+      "name": "Rich Kuro",
       "description": "Swimming in K coins.",
       "price": 1200,
       "rarity": "legendary",

@@ -312,11 +312,12 @@ fun KuroAvatar(
                     contentScale = ContentScale.Crop,
                 )
                 avatar?.emoji != null -> EmojiArt(avatar.emoji, Modifier.fillMaxSize())
-                else -> KuroMascot(
-                    modifier = Modifier.fillMaxSize(0.86f).graphicsLayer { translationY = size.height * 0.06f },
-                    mood = KuroMood.HAPPY,
-                    colors = avatar?.colors.orEmpty(),
-                    animated = animated,
+                // No avatar picked yet: Kuro's classic portrait
+                else -> AsyncImage(
+                    DEFAULT_AVATAR,
+                    null,
+                    Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop,
                 )
             }
         }
@@ -331,6 +332,8 @@ fun KuroAvatar(
         }
     }
 }
+
+private const val DEFAULT_AVATAR = "file:///android_asset/kuro/packs/02-avatars/classic.webp"
 
 private fun DrawScope.drawFrame(frame: ShopItem, spin: Float) {
     val colors = frame.colors.ifEmpty { listOf(KuroColors.Crimson, KuroColors.Galaxy, KuroColors.Aurora) }

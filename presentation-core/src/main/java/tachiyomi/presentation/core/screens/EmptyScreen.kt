@@ -22,6 +22,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEach
 import dev.icerock.moko.resources.StringResource
+import tachiyomi.presentation.core.components.KuroArt
+import tachiyomi.presentation.core.components.KuroPose
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -58,7 +60,7 @@ fun EmptyScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        EmptyStateArt()
+        KuroArt(pose = KuroPose.DOZING, size = 128.dp)
 
         Text(
             text = message,

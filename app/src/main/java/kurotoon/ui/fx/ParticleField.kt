@@ -173,7 +173,7 @@ private class ParticleEngine(private val density: Float, lowRam: Boolean) {
     var size = Size.Zero
 
     private val particles = ArrayList<Particle>(128)
-    private val maxAmbient = if (lowRam) 14 else 28
+    private val maxAmbient = if (lowRam) 6 else 12
     private val scale = if (lowRam) 0.5f else 1f
     private var lastAmbientMs = 0L
 
@@ -219,9 +219,9 @@ private class ParticleEngine(private val density: Float, lowRam: Boolean) {
         val y = size.height * 0.42f
         burst(
             when (wave) {
-                0 -> FxEvent.Burst(x, y, count = 90, power = 9f, gravity = 0.16f)
-                1 -> FxEvent.Burst(x * 0.5f, y * 1.1f, count = 40, power = 7f, gravity = 0.18f)
-                else -> FxEvent.Burst(x * 1.5f, y * 1.1f, count = 40, power = 7f, gravity = 0.18f)
+                0 -> FxEvent.Burst(x, y, count = 46, power = 7f, gravity = 0.16f)
+                1 -> FxEvent.Burst(x * 0.5f, y * 1.1f, count = 20, power = 6f, gravity = 0.18f)
+                else -> FxEvent.Burst(x * 1.5f, y * 1.1f, count = 20, power = 6f, gravity = 0.18f)
             },
         )
     }
@@ -245,7 +245,7 @@ private class ParticleEngine(private val density: Float, lowRam: Boolean) {
 
     fun update(nowMs: Long, step: Float, ambientOn: Boolean) {
         if (size == Size.Zero) return
-        if (ambientOn && nowMs - lastAmbientMs > 280 && particles.count { it.ambient } < maxAmbient) {
+        if (ambientOn && nowMs - lastAmbientMs > 700 && particles.count { it.ambient } < maxAmbient) {
             lastAmbientMs = nowMs
             spawnAmbient()
         }
@@ -278,7 +278,7 @@ private class ParticleEngine(private val density: Float, lowRam: Boolean) {
         for (tap in taps) drawTap(tap, ((nowMs - tap.startMs) / TAP_DURATION_MS.toFloat()).coerceIn(0f, 1f))
         for (p in particles) {
             val k = (p.life / p.max).coerceIn(0f, 1f)
-            val alpha = if (p.ambient) sin(PI.toFloat() * k) * 0.35f else 1f - k * k
+            val alpha = if (p.ambient) sin(PI.toFloat() * k) * 0.16f else 1f - k * k
             if (alpha <= 0f) continue
             val center = Offset(p.x, p.y)
             if (p.confetti) {
@@ -306,104 +306,33 @@ private class ParticleEngine(private val density: Float, lowRam: Boolean) {
 
 private class TapBurst(val x: Float, val y: Float, val startMs: Long)
 
-private const val TAP_DURATION_MS = 600L
+private const val TAP_DURATION_MS = 420L
 
-private val TapPurple = Color(0xFFA855F7)
-private val TapPurpleDeep = Color(0xFF7C3AED)
-private val TapBlue = Color(0xFF38BDF8)
-private val SparkAngles = floatArrayOf(12f, 78f, 152f, 228f, 304f)
 private val TapEase = CubicBezierEasing(0.2f, 0.7f, 0.2f, 1f)
 
-/** Opacity that rises to [peak] by [rise] of the way through, then fades out. */
-private fun riseAndFade(t: Float, rise: Float, peak: Float = 1f) =
-    if (t < rise) t / rise * peak else (1f - (t - rise) / (1f - rise)) * peak
-
-/** The web app's tap effect: a purple aura, a white-blue core, an expanding ring and five sparks. */
+/**
+ * A quiet touch ripple: one thin ring in the accent that grows a little and fades. Kept small on purpose so it
+ * confirms the touch without competing with the content.
+ */
 private fun DrawScope.drawTap(tap: TapBurst, t: Float) {
     val center = Offset(tap.x, tap.y)
     val eased = TapEase.transform(t)
-    val dp = density
-
-    val auraRadius = 60 * dp * (0.35f + 0.9f * eased)
+    val accent = KuroCosmetics.particleColors?.firstOrNull() ?: TapAccent
+    val alpha = (1f - t) * 0.45f
     drawCircle(
-        brush = Brush.radialGradient(
-            0f to TapPurple.copy(alpha = 0.55f),
-            0.28f to TapPurpleDeep.copy(alpha = 0.35f),
-            0.55f to TapBlue.copy(alpha = 0.18f),
-            0.72f to Color.Transparent,
-            center = center,
-            radius = auraRadius,
-        ),
-        radius = auraRadius,
+        color = accent.copy(alpha = alpha * 0.35f),
+        radius = 10 * density * (0.6f + 1.6f * eased),
         center = center,
-        alpha = riseAndFade(t, 0.35f, 0.95f),
-        blendMode = BlendMode.Plus,
-    )
-
-    val coreT = (t / 0.63f).coerceAtMost(1f)
-    if (coreT < 1f) {
-        val coreScale = if (coreT < 0.3f) 0.2f + coreT / 0.3f * 0.9f else 1.1f + (coreT - 0.3f) / 0.7f * 1.1f
-        val coreRadius = 9 * dp * coreScale
-        drawCircle(
-            brush = Brush.radialGradient(
-                0f to Color.White,
-                0.4f to TapBlue.copy(alpha = 0.9f),
-                0.75f to TapPurple.copy(alpha = 0.6f),
-                1f to Color.Transparent,
-                center = center,
-                radius = coreRadius,
-            ),
-            radius = coreRadius,
-            center = center,
-            alpha = riseAndFade(coreT, 0.3f),
-            blendMode = BlendMode.Plus,
-        )
-    }
-
-    val ringRadius = 12 * dp * (0.4f + 3f * eased)
-    val ringAlpha = riseAndFade(t, 0.3f)
-    drawCircle(
-        color = TapPurple.copy(alpha = 0.35f * ringAlpha),
-        radius = ringRadius,
-        center = center,
-        style = Stroke(width = 6 * dp),
-        blendMode = BlendMode.Plus,
     )
     drawCircle(
-        color = TapBlue.copy(alpha = 0.85f * ringAlpha),
-        radius = ringRadius,
+        color = accent.copy(alpha = alpha),
+        radius = 10 * density * (0.6f + 1.6f * eased),
         center = center,
-        style = Stroke(width = 1.5f * dp),
+        style = Stroke(width = 1.25f * density),
     )
-
-    val sparkT = (t / 0.87f).coerceAtMost(1f)
-    if (sparkT < 1f) {
-        val travel = 38 * dp * TapEase.transform(sparkT)
-        val length = if (sparkT < 0.25f) 22 * dp * sparkT / 0.25f else (22 - 18 * (sparkT - 0.25f) / 0.75f) * dp
-        val alpha = riseAndFade(sparkT, 0.25f)
-        for (angle in SparkAngles) {
-            val rad = Math.toRadians(angle.toDouble())
-            val dir = Offset(-sin(rad).toFloat(), cos(rad).toFloat())
-            val start = center + dir * travel
-            val end = start + dir * length
-            drawLine(
-                brush = Brush.linearGradient(
-                    0f to Color.White.copy(alpha = 0.95f),
-                    0.45f to TapBlue.copy(alpha = 0.9f),
-                    1f to TapPurple.copy(alpha = 0f),
-                    start = start,
-                    end = end,
-                ),
-                start = start,
-                end = end,
-                strokeWidth = 2 * dp,
-                cap = StrokeCap.Round,
-                alpha = alpha,
-                blendMode = BlendMode.Plus,
-            )
-        }
-    }
 }
+
+private val TapAccent = Color(0xFFE83A4A)
 
 /** Draws one frame of the tap effect, [progress] from 0 to 1. For previews and screenshots. */
 internal fun DrawScope.drawTapFrame(center: Offset, progress: Float) =

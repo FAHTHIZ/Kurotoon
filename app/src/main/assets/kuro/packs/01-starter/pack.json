@@ -3,13 +3,13 @@
   "name": "Starter kit",
   "author": "KuroToon",
   "version": 2,
-  "description": "Kuru, his expression set and a frame, free to get you going.",
+  "description": "Kuro, his expression set and a frame, free to get you going.",
   "items": [
     {
       "id": "ex_neutral",
       "kind": "sticker",
       "name": "Neutral",
-      "description": "A free Kuru expression.",
+      "description": "A free Kuro expression.",
       "price": 0,
       "rarity": "common",
       "image": "ex_neutral.webp"
@@ -18,7 +18,7 @@
       "id": "ex_happy",
       "kind": "sticker",
       "name": "Happy",
-      "description": "A free Kuru expression.",
+      "description": "A free Kuro expression.",
       "price": 0,
       "rarity": "common",
       "image": "ex_happy.webp"
@@ -27,7 +27,7 @@
       "id": "ex_laughing",
       "kind": "sticker",
       "name": "Laughing",
-      "description": "A free Kuru expression.",
+      "description": "A free Kuro expression.",
       "price": 0,
       "rarity": "common",
       "image": "ex_laughing.webp"
@@ -36,7 +36,7 @@
       "id": "ex_love",
       "kind": "sticker",
       "name": "Love",
-      "description": "A free Kuru expression.",
+      "description": "A free Kuro expression.",
       "price": 0,
       "rarity": "common",
       "image": "ex_love.webp"
@@ -45,7 +45,7 @@
       "id": "ex_surprised",
       "kind": "sticker",
       "name": "Surprised",
-      "description": "A free Kuru expression.",
+      "description": "A free Kuro expression.",
       "price": 0,
       "rarity": "common",
       "image": "ex_surprised.webp"
@@ -54,7 +54,7 @@
       "id": "ex_sad",
       "kind": "sticker",
       "name": "Sad / Crying",
-      "description": "A free Kuru expression.",
+      "description": "A free Kuro expression.",
       "price": 0,
       "rarity": "common",
       "image": "ex_sad.webp"
@@ -63,7 +63,7 @@
       "id": "ex_angry",
       "kind": "sticker",
       "name": "Angry",
-      "description": "A free Kuru expression.",
+      "description": "A free Kuro expression.",
       "price": 0,
       "rarity": "common",
       "image": "ex_angry.webp"
@@ -72,7 +72,7 @@
       "id": "ex_thinking",
       "kind": "sticker",
       "name": "Thinking",
-      "description": "A free Kuru expression.",
+      "description": "A free Kuro expression.",
       "price": 0,
       "rarity": "common",
       "image": "ex_thinking.webp"
@@ -81,7 +81,7 @@
       "id": "ex_sleepy",
       "kind": "sticker",
       "name": "Sleepy",
-      "description": "A free Kuru expression.",
+      "description": "A free Kuro expression.",
       "price": 0,
       "rarity": "common",
       "image": "ex_sleepy.webp"
@@ -90,7 +90,7 @@
       "id": "ex_excited",
       "kind": "sticker",
       "name": "Excited",
-      "description": "A free Kuru expression.",
+      "description": "A free Kuro expression.",
       "price": 0,
       "rarity": "common",
       "image": "ex_excited.webp"
@@ -98,7 +98,7 @@
     {
       "id": "kuro",
       "kind": "avatar",
-      "name": "Kuru",
+      "name": "Kuro",
       "description": "The cosmic companion of KuroToon, hugging his K coin.",
       "price": 0,
       "rarity": "common",

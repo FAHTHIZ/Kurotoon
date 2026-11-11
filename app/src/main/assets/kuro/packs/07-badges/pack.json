@@ -3,7 +3,7 @@
   "name": "Outfit & accessories",
   "author": "KuroToon",
   "version": 2,
-  "description": "Kuru's signature look and details. Wear up to three on your profile.",
+  "description": "Kuro's signature look and details. Wear up to three on your profile.",
   "items": [
     {
       "id": "coin",
@@ -74,7 +74,7 @@
       "id": "aura",
       "kind": "badge",
       "name": "Galaxy Aura",
-      "description": "Kuru's signature cosmic glow.",
+      "description": "Kuro's signature cosmic glow.",
       "price": 4000,
       "rarity": "mythic",
       "image": "aura.webp",
