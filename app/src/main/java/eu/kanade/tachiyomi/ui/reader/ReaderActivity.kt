@@ -633,6 +633,8 @@ class ReaderActivity : BaseActivity() {
     /**
      * Handles a key [event] before anything else in the reader. Movement happens on key up.
      */
+    private var lastVolumeTurn = 0L
+
     private fun onKeyEvent(event: KeyEvent): Boolean {
         val viewer = viewer ?: return false
         val navigation = settingsViewModel.navigation.value ?: return false
@@ -649,6 +651,11 @@ class ReaderActivity : BaseActivity() {
             Key.VolumeDown, Key.VolumeUp -> {
                 val general = settingsViewModel.general.value
                 if (!general.volumeKeysEnabled || viewModel.state.value.menuVisible) return false
+                if (isUp) {
+                    val now = android.os.SystemClock.uptimeMillis()
+                    if (now - lastVolumeTurn < readerPreferences.volumeKeyDelay.get()) return true
+                    lastVolumeTurn = now
+                }
                 if ((event.key == Key.VolumeDown) != general.volumeKeysInverted) Action.FORWARD else Action.BACKWARD
             }
             Key.DirectionRight -> if (event.isCtrlPressed) {
