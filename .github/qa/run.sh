@@ -4,6 +4,9 @@ set -x
 adb wait-for-device
 until [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" = "1" ]; do sleep 2; done
 adb shell settings put global window_animation_scale 1
+# Let the launcher and Play services finish their first-boot work
+sleep 90
+adb shell input keyevent 3
 adb install -r -g "$APK"
 [ -f /tmp/mihon.apk ] && adb install -r -g /tmp/mihon.apk
 adb logcat -c
