@@ -52,6 +52,7 @@ import kurotoon.library.LibraryGroupBy
 import kurotoon.library.LibraryGrouping
 import kurotoon.library.LibraryTag
 import kurotoon.library.LibraryTags
+import kurotoon.library.OneShot
 import kurotoon.prefs.KuroPreferences
 import mihon.core.common.utils.mutate
 import mihon.core.metro.AppCoroutineScope
@@ -146,6 +147,7 @@ class LibraryViewModel(
             prefs.filterStarted,
             prefs.filterBookmarked,
             prefs.filterCompleted,
+            prefs.filterOneShot,
             prefs.filterIntervalCustom,
             *trackFilters.values.toTypedArray(),
         )
@@ -317,6 +319,7 @@ class LibraryViewModel(
         val filterStarted = preferences.filterStarted
         val filterBookmarked = preferences.filterBookmarked
         val filterCompleted = preferences.filterCompleted
+        val filterOneShot = preferences.filterOneShot
         val filterIntervalCustom = preferences.filterIntervalCustom
 
         val isNotLoggedInAnyTrack = trackingFilter.isEmpty()
@@ -345,6 +348,13 @@ class LibraryViewModel(
             applyFilter(filterCompleted) { it.libraryManga.manga.status.toInt() == SManga.COMPLETED }
         }
 
+        val filterFnOneShot: (LibraryItem) -> Boolean = {
+            applyFilter(filterOneShot) {
+                val manga = it.libraryManga.manga
+                OneShot.matches(manga.genre, manga.status, it.libraryManga.totalChapters)
+            }
+        }
+
         val filterFnIntervalCustom: (LibraryItem) -> Boolean = {
             if (skipOutsideReleasePeriod) {
                 applyFilter(filterIntervalCustom) { it.libraryManga.manga.fetchInterval < 0 }
@@ -370,6 +380,7 @@ class LibraryViewModel(
                 filterFnStarted(it) &&
                 filterFnBookmarked(it) &&
                 filterFnCompleted(it) &&
+                filterFnOneShot(it) &&
                 filterFnIntervalCustom(it) &&
                 filterFnTracking(it)
         }
@@ -496,6 +507,7 @@ class LibraryViewModel(
             libraryPreferences.filterIntervalCustom.changes(),
             kuroPreferences.sourceBadge.changes(),
             kuroPreferences.combineCopies.changes(),
+            libraryPreferences.filterOneShot.changes(),
         ) {
             ItemPreferences(
                 downloadBadge = it[0] as Boolean,
@@ -512,6 +524,7 @@ class LibraryViewModel(
                 filterIntervalCustom = it[11] as TriState,
                 sourceBadge = it[12] as Boolean,
                 combineCopies = it[13] as Boolean,
+                filterOneShot = it[14] as TriState,
             )
         }
     }
@@ -889,6 +902,7 @@ class LibraryViewModel(
         val filterBookmarked: TriState,
         val filterCompleted: TriState,
         val filterIntervalCustom: TriState,
+        val filterOneShot: TriState = TriState.DISABLED,
     )
 
     @Immutable

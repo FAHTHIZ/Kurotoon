@@ -106,6 +106,11 @@ class LibraryPreferences(
         TriState.DISABLED,
     )
 
+    val filterOneShot: Preference<TriState> = preferenceStore.getEnum(
+        "kurotoon_filter_library_oneshot",
+        TriState.DISABLED,
+    )
+
     val filterIntervalCustom: Preference<TriState> = preferenceStore.getEnum(
         "pref_filter_library_interval_custom",
         TriState.DISABLED,

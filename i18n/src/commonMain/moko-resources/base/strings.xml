@@ -896,6 +896,8 @@
     <string name="kurotoon_library_quick_downloaded">Downloaded</string>
     <string name="kurotoon_library_quick_bookmarked">Bookmarked</string>
     <string name="kurotoon_library_quick_completed">Completed</string>
+    <string name="kurotoon_library_quick_oneShot">One-shots</string>
+    <string name="kurotoon.series.oneShot">One-shot</string>
     <string name="kurotoon_me_group_reading">Reading</string>
     <string name="kurotoon_me_group_library">Library tools</string>
     <string name="kurotoon_me_group_app">App</string>
