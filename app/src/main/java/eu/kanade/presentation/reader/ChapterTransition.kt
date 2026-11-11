@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
+import kurotoon.reader.caughtUpLabel
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Info
 import mihon.icons.materialsymbols.roundedfilled.CheckCircle
@@ -74,7 +75,11 @@ fun ChapterTransition(
                     bottomLabel = stringResource(MR.strings.transition_next),
                     bottomChapter = goingToChapter,
                     bottomChapterDownloaded = goingToChapterDownloaded,
-                    fallbackLabel = stringResource(MR.strings.transition_no_next),
+                    fallbackLabel = if (goingToChapter == null) {
+                        caughtUpLabel(currChapter.mangaId)
+                    } else {
+                        stringResource(MR.strings.transition_no_next)
+                    },
                     chapterGap = calculateChapterGap(goingToChapter, currChapter),
                 )
             }
