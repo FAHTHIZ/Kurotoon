@@ -182,6 +182,7 @@ class MangaScreen(
                     navigator.push(MigrationConfigScreen(successState.manga.id))
                 }.takeIf { successState.manga.favorite },
                 onEditNotesClicked = { navigator.push(MangaNotesScreen(manga = successState.manga)) },
+                onEditInfoClicked = { navigator.push(kurotoon.ui.manga.EditMangaInfoScreen(successState.manga.id)) },
                 onMultiBookmarkClicked = viewModel::bookmarkChapters,
                 onMultiMarkAsReadClicked = viewModel::markChaptersRead,
                 onMarkPreviousAsReadClicked = viewModel::markPreviousChapterRead,

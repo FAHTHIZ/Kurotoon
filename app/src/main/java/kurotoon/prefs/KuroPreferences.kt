@@ -13,6 +13,17 @@ import tachiyomi.core.common.preference.PreferenceStore
 @SingleIn(AppScope::class)
 class KuroPreferences(private val preferenceStore: PreferenceStore) {
 
+    /** Your own edits of series details, by manga id, as JSON (see [kurotoon.manga.MangaEdit]). */
+    val mangaEdits = preferenceStore.getString("kurotoon_manga_edits", "{}")
+
+    fun mangaEdit(id: Long): kurotoon.manga.MangaEdit? = kurotoon.manga.MangaEdit.decodeAll(mangaEdits.get())[id]
+
+    fun setMangaEdit(id: Long, edit: kurotoon.manga.MangaEdit?) {
+        val all = kurotoon.manga.MangaEdit.decodeAll(mangaEdits.get()).toMutableMap()
+        if (edit == null || edit.cleaned().isEmpty) all.remove(id) else all[id] = edit.cleaned()
+        mangaEdits.set(kurotoon.manga.MangaEdit.encodeAll(all))
+    }
+
     /** The reader's display name on the Me tab; empty means the default. */
     val nickname = preferenceStore.getString("kurotoon_nickname", "")
 
