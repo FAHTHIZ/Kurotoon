@@ -15,6 +15,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.WebtoonLayoutManager
+import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
@@ -27,6 +28,7 @@ import eu.kanade.tachiyomi.ui.reader.viewer.Viewer
 import eu.kanade.tachiyomi.ui.reader.viewer.collectChanges
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
+import kurotoon.reader.StripPosition
 import mihon.app.di.appGraph
 import tachiyomi.core.common.util.system.logcat
 import java.util.Collections
@@ -87,6 +89,11 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
 
     private val webtoonItems = WebtoonItems()
 
+    /** Exact spot inside a page, so a chapter reopens on the panel it was left on. */
+    private val stripPosition = StripPosition(activity)
+    private var lastAnchorSave = 0L
+    private var restoring: Runnable? = null
+
     /**
      * Adapter of the recycler view.
      */
@@ -109,8 +116,14 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         recycler.adapter = adapter
         recycler.addOnScrollListener(
             object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    if (newState == RecyclerView.SCROLL_STATE_DRAGGING) cancelRestore()
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) saveAnchor(force = true)
+                }
+
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     onScrolled()
+                    if (restoring == null) saveAnchor(force = false)
                     tracker.onScrolledBy(
                         dy = dy.toFloat(),
                         firstVisible = layoutManager.findFirstVisibleItemPosition(),
@@ -199,6 +212,8 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
      * Destroys this viewer. Called when leaving the reader or swapping viewers.
      */
     override fun destroy() {
+        saveAnchor(force = true)
+        cancelRestore()
         super.destroy()
         scope.cancel()
     }
@@ -213,8 +228,12 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         if (recycler.isGone) {
             logcat { "Recycler first layout" }
             val pages = chapters.currChapter.pages ?: return
-            moveToPage(pages[min(chapters.currChapter.requestedPage, pages.lastIndex)])
+            val requested = min(chapters.currChapter.requestedPage, pages.lastIndex)
+            val anchor = stripPosition.get(chapters.currChapter.chapter.id!!)
+                ?.takeIf { it.page in (requested - 3)..requested && it.page in pages.indices }
+            moveToPage(pages[anchor?.page ?: requested])
             recycler.isVisible = true
+            if (anchor != null && anchor.fraction > 0.01f) restoreAnchor(pages[anchor.page], anchor.fraction)
         }
     }
 
@@ -231,6 +250,60 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         } else {
             logcat { "Page $page not found in adapter" }
         }
+    }
+
+    /** Remembers the first visible page and how far into it the top of the screen is. */
+    private fun saveAnchor(force: Boolean) {
+        val now = System.currentTimeMillis()
+        if (!force && now - lastAnchorSave < ANCHOR_SAVE_MS) return
+        lastAnchorSave = now
+        val position = layoutManager.findFirstVisibleItemPosition().takeIf { it >= 0 } ?: return
+        val page = adapter.items.getOrNull(position) as? ReaderPage ?: return
+        if (page.status != Page.State.Ready) return
+        val view = layoutManager.findViewByPosition(position) ?: return
+        if (view.height <= 0) return
+        val id = page.chapter.chapter.id ?: return
+        stripPosition.put(id, page.index, (-view.top).toFloat() / view.height)
+    }
+
+    /**
+     * Scrolls into [page] by [fraction] of its height once its image has loaded and settled.
+     * Gives up if the reader starts scrolling first or the image takes too long.
+     */
+    private fun restoreAnchor(page: ReaderPage, fraction: Float) {
+        cancelRestore()
+        var tries = 0
+        var lastHeight = -1
+        val task = object : Runnable {
+            override fun run() {
+                val position = adapter.items.indexOf(page)
+                val view = layoutManager.findViewByPosition(position)
+                val placeholder = (recycler.height * 0.8).toInt()
+                val height = view?.height ?: -1
+                val settled =
+                    page.status == Page.State.Ready && height > 0 && height != placeholder && height == lastHeight
+                if (settled && position >= 0) {
+                    layoutManager.scrollToPositionWithOffset(position, -(fraction * height).toInt())
+                    restoring = null
+                    return
+                }
+                lastHeight = height
+                if (++tries < RESTORE_TRIES &&
+                    position >= 0
+                ) {
+                    recycler.postDelayed(this, RESTORE_POLL_MS)
+                } else {
+                    restoring = null
+                }
+            }
+        }
+        restoring = task
+        recycler.postDelayed(task, RESTORE_POLL_MS)
+    }
+
+    private fun cancelRestore() {
+        restoring?.let { recycler.removeCallbacks(it) }
+        restoring = null
     }
 
     private fun onScrolled(pos: Int? = null) {
@@ -282,3 +355,6 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
 
 // Double the cache size to reduce rebinds/recycles incurred by the extra layout space on scroll direction changes
 private const val RECYCLER_VIEW_CACHE_SIZE = 4
+private const val ANCHOR_SAVE_MS = 500L
+private const val RESTORE_POLL_MS = 120L
+private const val RESTORE_TRIES = 50
