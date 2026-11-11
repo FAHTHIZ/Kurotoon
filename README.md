@@ -209,7 +209,8 @@ readers people usually switch from.
 
 The [guides](docs/) cover [getting started](docs/getting-started.md), [your library](docs/library.md),
 [tracking](docs/tracking.md), [storage](docs/storage.md), [moving between sources](docs/source-migration.md),
-[privacy](docs/privacy.md) and [troubleshooting](docs/troubleshooting.md).
+[privacy](docs/privacy.md) and [troubleshooting](docs/troubleshooting.md). To check every feature yourself, follow
+[Try every feature](docs/testing.md), a 20-minute walkthrough with a checkbox per step.
 
 ## Reader tips
 
