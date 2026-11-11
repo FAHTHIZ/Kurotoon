@@ -32,7 +32,6 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kurotoon.library.LibraryDuplicates
-import kurotoon.ui.KuroColors
 import logcat.LogPriority
 import mihon.app.di.appGraph
 import tachiyomi.core.common.util.system.logcat
@@ -146,7 +145,7 @@ internal fun DuplicatesList(
                                 color = if (entry ===
                                     group.first()
                                 ) {
-                                    KuroColors.Crimson
+                                    MaterialTheme.colorScheme.primary
                                 } else {
                                     MaterialTheme.colorScheme.onSurface
                                 },

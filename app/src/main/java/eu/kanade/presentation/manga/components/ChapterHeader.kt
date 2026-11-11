@@ -23,7 +23,6 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import kurotoon.ui.KuroColors
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.SECONDARY_ALPHA
 import tachiyomi.presentation.core.components.material.padding
@@ -52,7 +51,7 @@ fun ChapterHeader(
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.padding.extraSmall),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            val crimson = KuroColors.Crimson
+            val crimson = MaterialTheme.colorScheme.primary
             Box(
                 modifier = Modifier
                     .padding(end = 10.dp)

@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -38,7 +39,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kurotoon.ui.KuroColors
 
 /**
  * A small floating ring that fills as the chapter goes on and turns gold at the end, with a core
@@ -60,7 +60,7 @@ fun ReaderProgressOrb(
     )
     val complete = currentPage >= totalPages
     val accent by animateColorAsState(
-        targetValue = if (complete) KuroColors.Gold else KuroColors.Crimson,
+        targetValue = MaterialTheme.colorScheme.run { if (complete) tertiary else primary },
         animationSpec = tween(400),
         label = "orbAccent",
     )

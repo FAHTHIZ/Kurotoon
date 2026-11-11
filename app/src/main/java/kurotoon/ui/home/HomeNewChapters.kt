@@ -22,7 +22,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.manga.components.MangaCover
-import kurotoon.ui.KuroColors
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.NewReleases
 import tachiyomi.i18n.MR
@@ -64,7 +63,7 @@ internal fun HomeNewChapters(
                                 .align(Alignment.TopStart)
                                 .padding(6.dp)
                                 .clip(CircleShape)
-                                .background(KuroColors.Crimson)
+                                .background(MaterialTheme.colorScheme.primary)
                                 .padding(horizontal = 8.dp, vertical = 2.dp),
                         )
                     }
