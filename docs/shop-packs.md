@@ -1,11 +1,11 @@
-# Kuro Shop packs
+# Collection packs
 
-Everything in the Kuro Shop comes from **packs**. A pack is a folder with a `pack.json` and,
-optionally, images. KuroToon ships a few packs built in, and you can import more from a `.kpack`
-file (Me → Kuro Points → Packs → Import pack).
+Everything in the Collection (Me → Collection) comes from **packs**. A pack is a folder with a
+`pack.json` and, optionally, images. KuroToon ships a few packs built in, and you can import more
+from a `.kpack` file with the upload button at the top of the Collection.
 
-Points are earned on the device by reading, finishing missions and unlocking achievements.
-Nothing in the shop costs money, and nothing is sent anywhere.
+Every item is free to use. Older packs may still list a `price`; it's ignored. Nothing is sent
+anywhere.
 
 ## Where packs live
 
@@ -47,7 +47,7 @@ names exists.
 | --- | --- |
 | `id` | Letters, digits, `.`, `_` and `-`; up to 64 characters. Pack ids must be unique, and item ids must be unique within a pack. Purchases are stored as `<pack id>/<item id>`, so don't rename ids after release. |
 | `kind` | `avatar`, `frame`, `theme`, `particles`, `sticker`, `badge` or `boost`. Items with an unknown kind are skipped. |
-| `price` | Kuro Points. `0` makes the item free. |
+| `price` | Ignored; everything is free. Kept so older packs still load. |
 | `rarity` | `common`, `rare`, `epic`, `legendary` or `mythic`. Sets the tile's glow colour. |
 | `image` | Optional. A path inside the pack (PNG, WebP, JPEG or GIF). Paths that leave the pack are ignored. |
 | `emoji` | Optional. Used when there is no image (stickers, badges, avatars). |
@@ -62,15 +62,15 @@ Unknown fields are ignored, so newer packs still load on older versions of the a
 | --- | --- | --- |
 | `avatar` | Shown in a circle, cropped to fill. Square images work best (512×512). | `emoji`, or Kuro drawn in `colors`: body light, body dark, eyes, aura. |
 | `frame` | Drawn **over** the avatar, so use a transparent PNG with a clear middle (512×512, the avatar takes up the middle 80%). Add `"style": "spin"` to make it rotate. | `style` is `ring`, `starfield`, `nebula`, `coins`, `mythic` or `aurora`, coloured by `colors`. |
-| `theme` | The image is only used as the shop preview. | `colors[0]` is the accent and `colors[1]` its darker shade. Recolours KuroToon when the app theme is set to KuroToon. |
+| `theme` | The image is only used as the Collection preview. | `colors[0]` is the accent and `colors[1]` its darker shade. Recolours KuroToon when the app theme is set to KuroToon. |
 | `particles` | — | `colors` are used for the drifting embers and the tap sparks. |
 | `sticker` | Shown as is, fitted to the tile. | `emoji`. |
 | `badge` | Shown on a shield in `colors`. Up to three badges show on the profile. | `emoji` on the shield. |
-| `boost` | Shop preview only. | Each purchase adds 7 days of double mission points. With `"style": "freeze"` it's a streak freeze instead: one missed day is forgiven per freeze, and a reader can hold up to three. |
+| `boost` | Not shown. Boosts belonged to the old points shop. | — |
 
 ## Seasonal items
 
-Items whose code is the reward of a seasonal event (see `kurotoon/rewards/Seasons.kt`) can only be bought while that event runs. Outside the event the tile is dimmed and shows "Seasonal". Finishing every chore of an event also gives its item for free plus a 150 point bonus. Built-in events: New Year, Valentine's, Spring, Eid al-Fitr, Pohela Boishakh, Eid al-Adha, Summer, Monsoon, Halloween, Kurotoon Anniversary (10 to 24 November) and Winter. Eid dates are approximate and listed per year.
+Seasonal items are free all year like everything else.
 
 ## Achievement medals
 
@@ -99,6 +99,6 @@ imported replaces it, which is how you ship an update. Built-in pack ids can't b
 
 ## Backups
 
-Points, purchases and what you're wearing are stored in app preferences, so they're included in
+What you're using is stored in app preferences, so they're included in
 KuroToon backups. Imported pack files are not; keep your `.kpack` files and import them again on a
 new device.

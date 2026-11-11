@@ -43,8 +43,8 @@ calendar and music while you read. KuroToon is the first to give you both, plus 
   jumps straight back to the chapter.
 - **It's kind to your data plan.** Data saver shrinks pages to WebP on mobile data (or always), with a quality
   slider and automatic fallback for sites that refuse it.
-- **It feels alive.** A Home feed, a weekly release schedule, a Continue reading widget, a daily goal, a year in
-  review and a shop you fill by reading, never by paying.
+- **It puts your series first.** Home opens on what you're reading, what came out and what's due today. No
+  coins, no timers, no wait-for-free walls, no promo feed. Discovery comes after your own shelves.
 
 ## A quick tour
 
@@ -59,8 +59,8 @@ calendar and music while you read. KuroToon is the first to give you both, plus 
 | <img src=".github/assets/screenshots/keep_panel.jpg" alt="Page actions with Keep panel" width="250"> | <img src=".github/assets/screenshots/strip.jpg" alt="Long-strip reading with clock and battery" width="250"> | <img src=".github/assets/screenshots/home_continue.jpg" alt="Continue reading and source rows on Home" width="250"> |
 | **Library** | **Updates** | **Me** |
 | <img src=".github/assets/screenshots/library.jpg" alt="Library" width="250"> | <img src=".github/assets/screenshots/updates.jpg" alt="Updates with release schedule" width="250"> | <img src=".github/assets/screenshots/me.jpg" alt="Me tab with profile and stats" width="250"> |
-| **Kuro Points shop** | **Statistics** | **Knows the release days** |
-| <img src=".github/assets/screenshots/shop.jpg" alt="Kuro Points shop with avatars earned by reading" width="250"> | <img src=".github/assets/screenshots/stats.jpg" alt="Statistics with reading heatmap and streaks" width="250"> | <img src=".github/assets/screenshots/series_schedule.jpg" alt="Series page showing its usual release days" width="250"> |
+| **Collection** | **Statistics** | **Knows the release days** |
+| <img src=".github/assets/screenshots/shop.jpg" alt="Collection of avatars, frames and stickers" width="250"> | <img src=".github/assets/screenshots/stats.jpg" alt="Statistics with reading heatmap and streaks" width="250"> | <img src=".github/assets/screenshots/series_schedule.jpg" alt="Series page showing its usual release days" width="250"> |
 | **Sources** | **Extensions** | **First run** |
 | <img src=".github/assets/screenshots/sources.jpg" alt="Installed sources and Universal Search" width="250"> | <img src=".github/assets/screenshots/extensions.jpg" alt="Installed extensions" width="250"> | <img src=".github/assets/screenshots/onboarding.jpg" alt="First-run theme picker" width="250"> |
 
@@ -83,13 +83,13 @@ calendar and music while you read. KuroToon is the first to give you both, plus 
 - **Bedtime warmth** that eases pages warmer and dimmer at night
 - **Keep panel**, save, share or set any page as the cover
 - **Data saver** with a quality slider
-- A small celebration when you finish a chapter
+- A small card with a check when you finish a chapter
 
 </td>
 <td width="33%" valign="top">
 
 #### Discover
-- Home: hero carousel, Continue reading, New chapters, **Out today**, "Because you read…" and rows per source
+- Home: Continue reading, New chapters and **Out today** first, then a featured banner, "Because you read…" and rows per source
 - **Weekly release schedule** learned from your library
 - Every source's own genres and themes as one-tap tags; long-press to exclude
 - **Saved searches** you can pin to Home
@@ -102,6 +102,7 @@ calendar and music while you read. KuroToon is the first to give you both, plus 
 
 #### Keep
 - Library grouped by category, source or status, with **hidden categories**
+- **One-shots** labelled on the series page, with their own library filter
 - A series saved from several sources shows **once**, with a ×N badge
 - Progress bars and source badges on covers
 - **Edit info**: your own title, people, tags and description that survive refreshes
@@ -117,8 +118,8 @@ calendar and music while you read. KuroToon is the first to give you both, plus 
 #### Make it yours
 - Crimson-on-black KuroToon theme, dynamic colour and more
 - Series pages tinted by their cover
-- Quiet by default: plain touch ripples, small sparks only for big moments, optional background embers
-- Avatars, animated frames, particle colours and badges from the **Kuro Shop**
+- Quiet by default: plain touch ripples, one accent colour, no glows; background embers only if you want them
+- A free **Collection** of avatars, frames, stickers, badges and themes. Tap one, tap Use. Share stickers in chats
 - Import your own [`.kpack` files](docs/shop-packs.md)
 
 </td>
@@ -126,7 +127,6 @@ calendar and music while you read. KuroToon is the first to give you both, plus 
 
 #### Build a habit
 - Daily goal and an optional reminder at your hour
-- Kuro Points, daily missions and achievements
 - Reading heatmap, pace and **year in review**
 - **Continue reading** home-screen widget
 - **Your panels** row on Home
@@ -148,11 +148,11 @@ calendar and music while you read. KuroToon is the first to give you both, plus 
 ## Designed, not reskinned
 
 KuroToon started from Mihon's engine (sources, downloads, backups, trackers) and keeps it. The screens on top are
-its own: one design language of rounded cards, accent section headers, pills and a crimson-on-black palette.
+its own: one calm design language of soft cards, sentence-case headers, pills and a single accent colour.
 
 | Screen | Mihon | KuroToon |
 | --- | --- | --- |
-| Home | Not there; opens on Library | Hero carousel, Continue reading, Out today, Because you read, your panels |
+| Home | Not there; opens on Library | Continue reading, New chapters, Out today, then a featured banner and source rows |
 | Library | Tabs and a filter sheet | Category pills, one-tap quick filters, rounded covers, list mode as cards |
 | Updates | Plain dated list | Status card, day headers, NEW badges, release schedule |
 | History | Plain rows | Cards with a Resume pill and progress |
@@ -160,14 +160,13 @@ its own: one design language of rounded cards, accent section headers, pills and
 | Global search | Spinner per source | Accent headers, See all pills, pulsing cover placeholders |
 | Series page | Icon-and-label buttons, outlined chips | Rounded action tiles, tag pills, a read progress bar, accent rail on unread chapters |
 | Reader | Full-width bars | Floating rounded dock, soundtrack badge, sleep timer, progress orb |
-| Me and Settings | Flat preference lists | Mode tiles and grouped cards with colored icons, settings search bar |
-| Empty screens | Kaomoji | A sleeping Kuro |
+| Me and Settings | Flat preference lists | Mode tiles and grouped cards, settings search bar |
+| Empty screens | Kaomoji | A simple icon and one helpful line |
 | Settings sheets | Underlined tab rows | Segmented pill tabs |
-| About | Logo and a list | Kuro, the tagline and a version pill above grouped cards |
-| Downloads | A plain queue | A summary card with Kuro and live progress, chapters as cards with rounded progress bars |
+| About | Logo and a list | The logo, the tagline and a version pill above grouped cards |
+| Downloads | A plain queue | A summary card with live progress, chapters as cards with rounded progress bars |
 | Migration | Bare rows | Source cards for picking, and each old-to-new pair in one card |
 | Tracker search | Grey result boxes | Rounded cards with a crimson outline on the pick |
-| Feature discovery | None | A Home tip card where Kuro shows off one KuroToon feature at a time |
 
 Details for each redesign are in the [changelog](CHANGELOG.md).
 
@@ -192,7 +191,8 @@ readers people usually switch from.
 | Hidden categories | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ |
 | Continue reading widget | ✅ | ➖ updates | ➖ updates | ➖ updates | ✅ | ✅ |
 | Daily goal, stats, year in review | ✅ | ➖ stats | ➖ stats | ➖ stats | ➖ stats | ❌ |
-| Rewards earned by reading | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ paid coins |
+| Free avatars, frames and stickers | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ paid coins |
+| Labels one-shots | ✅ | ❌ | ❌ | ❌ | ❌ | ➖ |
 
 <sub>✅ yes · ➖ partly · ❌ no. Based on each project's public features and changelogs in November 2026:
 [Mihon](https://mihon.app/changelogs/), [TachiyomiSY](https://github.com/jobobby04/TachiyomiSY),

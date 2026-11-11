@@ -68,7 +68,7 @@ step number and a screenshot.
   History: nothing was recorded. Turn it off again.
 - [ ] **7.2** Stats shows the reading heatmap; set a daily goal and see "x of y chapters today".
 - [ ] **7.3** Settings → type in the search bar. Matching settings show up as you type.
-- [ ] **7.4** Kuro Shop: Points earned from reading buy an avatar or frame; it shows on your profile.
+- [ ] **7.4** Collection: tap an avatar or frame, tap Use; it shows on your profile. Share a sticker into a chat app.
 - [ ] **7.5** Settings → Data and storage → Create backup. Restore it on another install; library, categories and
   history come back.
 
