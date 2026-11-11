@@ -1,0 +1,118 @@
+{
+  "id": "kuro.readerlife",
+  "name": "Reader life",
+  "author": "KuroToon",
+  "version": 1,
+  "description": "Every reader mood, from binge mode to waiting for updates.",
+  "cover": "binge.webp",
+  "items": [
+    {
+      "id": "binge",
+      "kind": "sticker",
+      "name": "Binge Mode",
+      "description": "Just one more volume.",
+      "price": 300,
+      "rarity": "rare",
+      "image": "binge.webp"
+    },
+    {
+      "id": "bookmark",
+      "kind": "sticker",
+      "name": "Bookmarked",
+      "description": "Saving the good part.",
+      "price": 150,
+      "rarity": "common",
+      "image": "bookmark.webp"
+    },
+    {
+      "id": "cliffhanger",
+      "kind": "sticker",
+      "name": "Cliffhanger",
+      "description": "Hanging on until next week.",
+      "price": 400,
+      "rarity": "epic",
+      "image": "cliffhanger.webp"
+    },
+    {
+      "id": "coffee",
+      "kind": "sticker",
+      "name": "Late Night Read",
+      "description": "Coffee, moonlight and chapters.",
+      "price": 300,
+      "rarity": "rare",
+      "image": "coffee.webp"
+    },
+    {
+      "id": "facepalm",
+      "kind": "sticker",
+      "name": "Facepalm",
+      "description": "The main character did it again.",
+      "price": 150,
+      "rarity": "common",
+      "image": "facepalm.webp"
+    },
+    {
+      "id": "fire",
+      "kind": "sticker",
+      "name": "Fired Up",
+      "description": "The final arc begins.",
+      "price": 600,
+      "rarity": "epic",
+      "image": "fire.webp"
+    },
+    {
+      "id": "plottwist",
+      "kind": "sticker",
+      "name": "Plot Twist",
+      "description": "Mind officially blown.",
+      "price": 400,
+      "rarity": "epic",
+      "image": "plottwist.webp"
+    },
+    {
+      "id": "popcorn",
+      "kind": "sticker",
+      "name": "Popcorn",
+      "description": "The drama is unfolding.",
+      "price": 200,
+      "rarity": "common",
+      "image": "popcorn.webp"
+    },
+    {
+      "id": "shy",
+      "kind": "sticker",
+      "name": "Shy",
+      "description": "Too cute to look at.",
+      "price": 200,
+      "rarity": "common",
+      "image": "shy.webp"
+    },
+    {
+      "id": "sparkle",
+      "kind": "sticker",
+      "name": "Sparkle Eyes",
+      "description": "Best panel of the year.",
+      "price": 250,
+      "rarity": "rare",
+      "image": "sparkle.webp"
+    },
+    {
+      "id": "victory",
+      "kind": "sticker",
+      "name": "Victory",
+      "description": "Finished the whole series.",
+      "price": 500,
+      "rarity": "epic",
+      "image": "victory.webp"
+    },
+    {
+      "id": "waiting",
+      "kind": "sticker",
+      "name": "Waiting for Updates",
+      "description": "Refreshing every five minutes.",
+      "price": 250,
+      "rarity": "rare",
+      "image": "waiting.webp"
+    }
+  ]
+}

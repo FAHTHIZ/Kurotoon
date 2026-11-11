@@ -2,7 +2,7 @@
   "id": "kuro.seasonal",
   "name": "Seasonal & event Kuru",
   "author": "KuroToon",
-  "version": 1,
+  "version": 2,
   "description": "Limited editions that return every year.",
   "cover": "anniversary.webp",
   "items": [
@@ -68,6 +68,33 @@
       "price": 2500,
       "rarity": "legendary",
       "image": "anniversary.webp"
+    },
+    {
+      "id": "eid",
+      "kind": "sticker",
+      "name": "Eid Kuru",
+      "description": "Eid Mubarak. Lanterns and sweets.",
+      "price": 800,
+      "rarity": "epic",
+      "image": "eid.webp"
+    },
+    {
+      "id": "boishakh",
+      "kind": "sticker",
+      "name": "Boishakh Kuru",
+      "description": "Shubho Noboborsho. Pohela Boishakh in April.",
+      "price": 800,
+      "rarity": "epic",
+      "image": "boishakh.webp"
+    },
+    {
+      "id": "monsoon",
+      "kind": "sticker",
+      "name": "Monsoon Kuru",
+      "description": "Rainy-season reading weather.",
+      "price": 500,
+      "rarity": "rare",
+      "image": "monsoon.webp"
     }
   ]
 }
