@@ -54,6 +54,13 @@ object SettingsDownloadScreen : SearchableSettings {
                 title = stringResource(MR.strings.pref_download_concurrent_pages),
                 subtitle = stringResource(MR.strings.pref_download_concurrent_pages_summary),
             ),
+            Preference.PreferenceItem.SliderPreference(
+                preference = downloadPreferences.chapterDelaySeconds,
+                valueRange = 0..60 step 5,
+                title = stringResource(MR.strings.kurotoon_download_chapterDelay),
+                subtitle = stringResource(MR.strings.kurotoon_download_chapterDelaySummary),
+                valueText = { if (it == 0) stringResource(MR.strings.off) else "${it}s" },
+            ),
             getDeleteChaptersGroup(
                 downloadPreferences = downloadPreferences,
                 categories = allCategories,

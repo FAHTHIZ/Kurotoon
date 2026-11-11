@@ -304,6 +304,12 @@ class Downloader(
                 pagesStarted.complete(Unit)
             }
             pagesStarted.await()
+            // Staggered: one chapter at a time with a pause between, for sources that block bulk downloads
+            val pause = downloadPreferences.chapterDelaySeconds.get()
+            if (pause > 0) {
+                job.join()
+                delay(pause.seconds)
+            }
         }
     }
 
