@@ -31,22 +31,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import eu.kanade.presentation.manga.components.MangaCover
 import eu.kanade.presentation.util.formatChapterNumber
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kurotoon.ui.KuroColors
 import kurotoon.ui.KuroTip
 import kurotoon.ui.KuroTopBar
-import kurotoon.ui.kuroCard
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Download
 import mihon.icons.materialsymbols.rounded.Extension
@@ -116,22 +111,7 @@ fun KuroHomeContent(
                 if (!state.isLoading && !state.hasSources) {
                     item(key = "welcome") { Welcome(onAddSourcesClick) }
                 }
-                if (shown(HomeSection.HERO) && state.heroes.isNotEmpty()) {
-                    item(key = "hero") {
-                        HomeHeroCarousel(heroes = state.heroes, onClick = onBrowseMangaClick)
-                    }
-                }
-                if (shown(HomeSection.SHORTCUTS)) {
-                    item(key = "shortcuts") {
-                        Shortcuts(
-                            onExtensionsClick = onExtensionsClick,
-                            onHistoryClick = onHistoryClick,
-                            onDownloadsClick = onDownloadsClick,
-                            onStatsClick = onStatsClick,
-                        )
-                    }
-                }
-                if (shown(HomeSection.CONTINUE)) {
+                if (shown(HomeSection.CONTINUE) && state.continueReading.isNotEmpty()) {
                     item(key = "continue") {
                         ContinueReading(
                             items = state.continueReading,
@@ -141,9 +121,6 @@ fun KuroHomeContent(
                             onSeeAll = onHistoryClick,
                         )
                     }
-                }
-                if (state.hasSources) {
-                    item(key = "tip") { HomeTip() }
                 }
                 if (shown(HomeSection.NEW_CHAPTERS) && state.newChapters.isNotEmpty()) {
                     item(key = "new-chapters") {
@@ -161,6 +138,21 @@ fun KuroHomeContent(
                             today = state.schedule.today,
                             onMangaClick = onMangaClick,
                             onSeeAll = onScheduleClick,
+                        )
+                    }
+                }
+                if (shown(HomeSection.HERO) && state.heroes.isNotEmpty()) {
+                    item(key = "hero") {
+                        HomeHeroCarousel(heroes = state.heroes, onClick = onBrowseMangaClick)
+                    }
+                }
+                if (shown(HomeSection.SHORTCUTS)) {
+                    item(key = "shortcuts") {
+                        Shortcuts(
+                            onExtensionsClick = onExtensionsClick,
+                            onHistoryClick = onHistoryClick,
+                            onDownloadsClick = onDownloadsClick,
+                            onStatsClick = onStatsClick,
                         )
                     }
                 }
@@ -203,19 +195,16 @@ private fun Welcome(onAddSourcesClick: () -> Unit) {
         modifier = Modifier
             .padding(horizontal = 16.dp)
             .fillMaxWidth()
-            .kuroCard(shape)
             .clip(shape)
-            .background(
-                Brush.verticalGradient(listOf(KuroColors.Crimson.copy(alpha = 0.16f), Color.Transparent)),
-            )
+            .background(MaterialTheme.colorScheme.surfaceContainer)
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         kurotoon.ui.KuroLogo(size = 56.dp)
         Text(
             text = stringResource(MR.strings.kurotoon_home_welcomeTitle),
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Black,
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.SemiBold,
             modifier = Modifier.padding(top = 12.dp),
         )
         Text(
@@ -229,13 +218,13 @@ private fun Welcome(onAddSourcesClick: () -> Unit) {
             modifier = Modifier
                 .padding(top = 20.dp)
                 .clip(CircleShape)
-                .background(Brush.linearGradient(listOf(KuroColors.Crimson, KuroColors.CrimsonDeep)))
+                .background(MaterialTheme.colorScheme.primary)
                 .clickable(onClick = onAddSourcesClick)
                 .padding(horizontal = 24.dp, vertical = 10.dp),
         ) {
             Text(
                 text = stringResource(MR.strings.kurotoon_home_addSources),
-                color = Color.White,
+                color = MaterialTheme.colorScheme.onPrimary,
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.labelLarge,
             )
@@ -273,7 +262,7 @@ private fun androidx.compose.foundation.layout.RowScope.Shortcut(
         modifier = Modifier
             .weight(1f)
             .clip(RoundedCornerShape(16.dp))
-            .kuroCard()
+            .background(MaterialTheme.colorScheme.surfaceContainer)
             .clickable(onClick = onClick)
             .padding(vertical = 12.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -281,10 +270,10 @@ private fun androidx.compose.foundation.layout.RowScope.Shortcut(
         Box(
             modifier = Modifier
                 .size(32.dp)
-                .background(KuroColors.Crimson.copy(alpha = 0.12f), RoundedCornerShape(10.dp)),
+                .background(MaterialTheme.colorScheme.surfaceContainerHighest, RoundedCornerShape(10.dp)),
             contentAlignment = Alignment.Center,
         ) {
-            Icon(icon, contentDescription = null, tint = KuroColors.Crimson, modifier = Modifier.size(18.dp))
+            Icon(icon, null, tint = MaterialTheme.colorScheme.onSurface, modifier = Modifier.size(18.dp))
         }
         Text(
             text = label,
@@ -338,13 +327,13 @@ private fun ContinueReading(
                                 .align(Alignment.BottomEnd)
                                 .padding(6.dp)
                                 .clip(CircleShape)
-                                .background(KuroColors.Crimson)
+                                .background(MaterialTheme.colorScheme.primary)
                                 .clickable { onResumeClick(item) }
                                 .padding(horizontal = 10.dp, vertical = 4.dp),
                         ) {
                             Text(
                                 text = stringResource(MR.strings.action_resume),
-                                color = Color.White,
+                                color = MaterialTheme.colorScheme.onPrimary,
                                 style = MaterialTheme.typography.labelSmall,
                                 fontWeight = FontWeight.Bold,
                             )

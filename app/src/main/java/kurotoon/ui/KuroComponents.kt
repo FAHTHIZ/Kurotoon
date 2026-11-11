@@ -53,27 +53,26 @@ fun KuroTip(text: String, modifier: Modifier = Modifier, icon: ImageVector = Mat
 @Composable
 fun Modifier.kuroCard(
     shape: androidx.compose.ui.graphics.Shape = RoundedCornerShape(16.dp),
-    borderColor: Color = Color.White.copy(alpha = 0.06f),
+    borderColor: Color = Color.Transparent,
 ): Modifier = this
     .background(MaterialTheme.colorScheme.surfaceContainer, shape)
-    .border(1.dp, borderColor, shape)
+    .then(if (borderColor == Color.Transparent) Modifier else Modifier.border(1.dp, borderColor, shape))
 
-/** Section heading in the small uppercase style of the web app. */
+/** Section heading: quiet, sentence case, so groups read without shouting. */
 @Composable
 fun KuroSectionTitle(text: String, modifier: Modifier = Modifier) {
     Text(
-        text = text.uppercase(),
+        text = text,
         modifier = modifier,
-        style = MaterialTheme.typography.labelLarge,
-        fontWeight = FontWeight.Bold,
-        letterSpacing = 1.2.sp,
+        style = MaterialTheme.typography.titleSmall,
+        fontWeight = FontWeight.SemiBold,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
 }
 
 /**
- * List section header used on Updates, Sources and other long lists: a short accent bar followed by
- * the [KuroSectionTitle] style, with an optional [count] pill.
+ * List section header used on Updates, Sources and other long lists: the [KuroSectionTitle] style
+ * with an optional [count] pill.
  */
 @Composable
 fun KuroSectionHeader(
@@ -85,17 +84,7 @@ fun KuroSectionHeader(
         modifier = modifier.padding(start = 16.dp, end = 16.dp, top = 18.dp, bottom = 6.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Box(
-            modifier = Modifier
-                .size(width = 3.dp, height = 14.dp)
-                .background(
-                    Brush.verticalGradient(
-                        listOf(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.tertiary),
-                    ),
-                    CircleShape,
-                ),
-        )
-        KuroSectionTitle(text = text, modifier = Modifier.padding(start = 8.dp))
+        KuroSectionTitle(text = text)
         if (count != null) {
             Text(
                 text = count.toString(),

@@ -177,7 +177,7 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
     fun savedSearchSeen(id: Long) = preferenceStore.getString("kurotoon_saved_seen_$id", "")
 
     /** Keys of [kurotoon.ui.home.HomeSection]s switched off on Home. */
-    val homeHiddenSections = preferenceStore.getStringSet("kurotoon_home_hidden_sections", emptySet())
+    val homeHiddenSections = preferenceStore.getStringSet("kurotoon_home_hidden_sections", setOf("shortcuts", "panels"))
 
     /** Ids of library categories kept out of sight until "Show hidden categories" is tapped. */
     val hiddenCategories = preferenceStore.getStringSet("kurotoon_hidden_categories", emptySet())
