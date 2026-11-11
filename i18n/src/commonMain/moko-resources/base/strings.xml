@@ -1213,6 +1213,12 @@
     <string name="kurotoon_reader_clockBatterySummary">Show the clock and battery level next to the page number, since the reader hides the status bar</string>
     <string name="kurotoon_reader_resumedAt">Picked up on page %d</string>
     <string name="kurotoon_reader_startOver">Start over</string>
+    <string name="kurotoon_updateErrors_title">Update problems</string>
+    <string name="kurotoon_updateErrors_empty">Everything updated fine last time</string>
+    <string name="kurotoon_updateErrors_clear">Clear</string>
+    <string name="kurotoon_updateErrors_dismiss">Hide this one</string>
+    <string name="kurotoon_updateErrors_review">Review</string>
+    <string name="kurotoon_updateErrors_log">Full log</string>
     <string name="kurotoon_sound_openSettings">Sound settings</string>
     <string name="kurotoon_reader_addToLibrary">Enjoying it? Add to library</string>
     <string name="kurotoon_history_finished">Finished</string>

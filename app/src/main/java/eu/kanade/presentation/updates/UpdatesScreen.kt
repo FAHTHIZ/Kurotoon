@@ -128,6 +128,7 @@ fun UpdateScreen(
                                 .fillMaxSize(),
                         ) {
                             UpdatesLastUpdatedHeader(lastUpdated = lastUpdated)
+                            kurotoon.ui.updates.UpdateErrorsBanner()
                             EmptyScreen(
                                 stringRes = if (hasActiveFilters) {
                                     MR.strings.error_no_match
@@ -145,6 +146,7 @@ fun UpdateScreen(
                             contentPadding = contentPadding,
                         ) {
                             updatesLastUpdatedItem(lastUpdated)
+                            item(key = "updates-errors") { kurotoon.ui.updates.UpdateErrorsBanner() }
 
                             updatesUiItems(
                                 uiModels = state.getUiModel(grouped, expanded.toSet()),

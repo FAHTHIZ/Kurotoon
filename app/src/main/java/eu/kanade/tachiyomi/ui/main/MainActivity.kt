@@ -509,6 +509,11 @@ class MainActivity : BaseActivity() {
                 }
                 null
             }
+            INTENT_UPDATE_ERRORS -> {
+                navigator.popUntilRoot()
+                navigator.push(kurotoon.ui.updates.UpdateErrorsScreen())
+                null
+            }
             INTENT_SEARCH -> {
                 val query = intent.getStringExtra(INTENT_SEARCH_QUERY)
                 if (!query.isNullOrEmpty()) {
@@ -551,6 +556,7 @@ class MainActivity : BaseActivity() {
 
     companion object {
         const val INTENT_SEARCH = "eu.kanade.tachiyomi.SEARCH"
+        const val INTENT_UPDATE_ERRORS = "kurotoon.SHOW_UPDATE_ERRORS"
         const val INTENT_SEARCH_QUERY = "query"
         const val INTENT_SEARCH_FILTER = "filter"
     }
