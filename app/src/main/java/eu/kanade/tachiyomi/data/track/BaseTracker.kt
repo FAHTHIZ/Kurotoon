@@ -36,6 +36,14 @@ abstract class BaseTracker(
     private val addTracks: AddTracks by dependencies.addTracks
     private val upsertTrack: UpsertTrack by dependencies.upsertTrack
 
+    /**
+     * Tells the reader this tracker's sign-in ran out, so progress stops syncing silently otherwise
+     * (mihon#1700). Tapping it opens Settings > Tracking to sign in again.
+     */
+    fun notifySignedOut() {
+        kurotoon.track.TrackerAuthAlert.signedOut(context, id, name)
+    }
+
     override val client: OkHttpClient
         get() = networkService.client
 
@@ -104,6 +112,7 @@ abstract class BaseTracker(
 
     override fun saveCredentials(username: String, password: String) {
         trackPreferences.setCredentials(this, username, password)
+        if (username.isNotEmpty()) kurotoon.track.TrackerAuthAlert.reset(id)
     }
 
     override suspend fun register(item: Track, mangaId: Long) {

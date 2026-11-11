@@ -509,6 +509,11 @@ class MainActivity : BaseActivity() {
                 }
                 null
             }
+            INTENT_TRACKING_SETTINGS -> {
+                navigator.popUntilRoot()
+                navigator.push(SettingsScreen(SettingsScreen.Destination.Tracking))
+                null
+            }
             INTENT_UPDATE_ERRORS -> {
                 navigator.popUntilRoot()
                 navigator.push(kurotoon.ui.updates.UpdateErrorsScreen())
@@ -557,6 +562,7 @@ class MainActivity : BaseActivity() {
     companion object {
         const val INTENT_SEARCH = "eu.kanade.tachiyomi.SEARCH"
         const val INTENT_UPDATE_ERRORS = "kurotoon.SHOW_UPDATE_ERRORS"
+        const val INTENT_TRACKING_SETTINGS = "kurotoon.SHOW_TRACKING_SETTINGS"
         const val INTENT_SEARCH_QUERY = "query"
         const val INTENT_SEARCH_FILTER = "filter"
     }
