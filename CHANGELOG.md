@@ -19,6 +19,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Re-reading a finished chapter remembers your page: History and the reader resume there instead of skipping to the next chapter or page 1 ([mihon#698](https://github.com/mihonapp/mihon/issues/698))
 - Per-source default category: in a source's menu, choose where series added from it land; used by the series page, browse, history, home and the reader ([mihon#336](https://github.com/mihonapp/mihon/issues/336))
 - Turn incognito on or off from the library's overflow menu ([mihon#1577](https://github.com/mihonapp/mihon/issues/1577))
 - Series page shows when you last read it, e.g. "12 of 80 read · 3h 20m · last read 2 weeks ago" ([mihon#1123](https://github.com/mihonapp/mihon/issues/1123))

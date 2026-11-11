@@ -392,6 +392,10 @@ class ReaderViewModel(
         loader: ChapterLoader,
         chapter: ReaderChapter,
     ): ViewerChapters {
+        // A finished chapter left part-way through a re-read picks up on that page
+        if (chapter.chapter.read && kuroPreferences.isRereading(chapter.chapter.id)) {
+            chapter.requestedPage = chapter.chapter.lastPageRead
+        }
         loader.loadChapter(chapter)
 
         val chapterPos = chapterList.indexOf(chapter)
@@ -669,6 +673,10 @@ class ReaderViewModel(
 
         val wasRead = readerChapter.chapter.read
         val read = wasRead || readerChapter.pages?.lastIndex == pageIndex
+        if (wasRead) {
+            val lastIndex = readerChapter.pages?.lastIndex ?: 0
+            kuroPreferences.setRereading(readerChapter.chapter.id, pageIndex in 1..<lastIndex)
+        }
         if (read && !wasRead) {
             rewardsStore.track(RewardEvent.CHAPTER_READ)
             rewardsStore.meetDailyGoal(kuroPreferences.dailyGoal.get())
