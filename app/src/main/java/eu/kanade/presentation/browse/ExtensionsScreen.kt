@@ -1,6 +1,7 @@
 package eu.kanade.presentation.browse
 
 import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
@@ -10,10 +11,12 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -30,9 +33,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -52,6 +58,8 @@ import eu.kanade.tachiyomi.ui.browse.extension.ExtensionsViewModel
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import eu.kanade.tachiyomi.util.system.launchRequestPackageInstallsPermission
+import kurotoon.ui.KuroSectionHeader
+import kurotoon.ui.kuroCard
 import mihon.domain.extension.model.ExtensionStore
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Close
@@ -305,8 +313,13 @@ private fun ExtensionItem(
         is Extension.Installed -> extension.store
     }
 
+    val shape = RoundedCornerShape(18.dp)
     BaseBrowseItem(
-        modifier = modifier,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = MaterialTheme.padding.medium, vertical = 4.dp)
+            .clip(shape)
+            .kuroCard(shape),
         onClickItem = { onClickItem(extension) },
         onLongClickItem = { onLongClickItem(extension) },
         icon = {
@@ -345,7 +358,7 @@ private fun ExtensionItemContent(
             text = extension.name,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.titleSmall,
         )
 
         if (store != null) {
@@ -388,7 +401,8 @@ private fun ExtensionItemIcon(
             extension = extension,
             modifier = Modifier
                 .matchParentSize()
-                .padding(padding),
+                .padding(padding)
+                .clip(RoundedCornerShape(12.dp)),
         )
     }
 }
@@ -502,9 +516,11 @@ private fun ExtensionItemActions(
             else -> null
         }
         action?.let { (icon, label) ->
-            IconButton(onClick = { onClickItemAction(extension) }) {
-                Icon(imageVector = icon, contentDescription = stringResource(label))
-            }
+            ExtensionActionPill(
+                icon = icon,
+                text = stringResource(label),
+                onClick = { onClickItemAction(extension) },
+            )
         }
     }
 }
@@ -529,17 +545,40 @@ private fun ExtensionHeader(
     action: @Composable RowScope.() -> Unit = {},
 ) {
     Row(
-        modifier = modifier.padding(horizontal = MaterialTheme.padding.medium),
+        modifier = modifier.padding(end = MaterialTheme.padding.medium),
         verticalAlignment = Alignment.CenterVertically,
     ) {
+        KuroSectionHeader(text = text, modifier = Modifier.weight(1f))
+        action()
+    }
+}
+
+/** The one thing to do with an extension right now (install, update, retry) as a filled pill. */
+@Composable
+private fun ExtensionActionPill(
+    icon: ImageVector,
+    text: String,
+    onClick: () -> Unit,
+) {
+    val colors = MaterialTheme.colorScheme
+    Row(
+        modifier = Modifier
+            .padding(end = 4.dp)
+            .clip(CircleShape)
+            .background(colors.primary)
+            .clickable(onClick = onClick)
+            .padding(start = 10.dp, end = 14.dp, top = 6.dp, bottom = 6.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+    ) {
+        Icon(imageVector = icon, contentDescription = null, tint = colors.onPrimary, modifier = Modifier.size(18.dp))
         Text(
             text = text,
-            modifier = Modifier
-                .padding(vertical = 8.dp)
-                .weight(1f),
-            style = MaterialTheme.typography.header,
+            style = MaterialTheme.typography.labelLarge,
+            fontWeight = FontWeight.SemiBold,
+            color = colors.onPrimary,
+            maxLines = 1,
         )
-        action()
     }
 }
 
