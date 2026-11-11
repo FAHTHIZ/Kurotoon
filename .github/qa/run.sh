@@ -8,7 +8,6 @@ adb shell settings put global window_animation_scale 1
 sleep 90
 adb shell input keyevent 3
 adb install -r -g "$APK"
-[ -f /tmp/mihon.apk ] && adb install -r -g /tmp/mihon.apk
 adb logcat -c
 adb logcat -v time > qa-out/logcat.txt 2>&1 &
 for j in .github/qa/journeys/*.txt; do

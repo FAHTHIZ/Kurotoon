@@ -24,7 +24,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           echo "APK=$(ls app/build/outputs/apk/debug/*x86_64*.apk | head -1)" >> "$GITHUB_ENV"
-          gh release download -R mihonapp/mihon -p 'mihon-x86_64-*.apk' -O /tmp/mihon.apk || true
           mkdir -p qa-out
       - name: Enable KVM
         run: |
