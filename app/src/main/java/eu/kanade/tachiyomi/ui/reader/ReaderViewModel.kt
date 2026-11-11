@@ -1022,6 +1022,28 @@ class ReaderViewModel(
         }
     }
 
+    /** Keeps the selected page in Saved panels, the in-app gallery of favourite pages. */
+    fun keepPanel() {
+        val page = (state.value.dialog as? Dialog.PageActions)?.page
+        if (page?.status != Page.State.Ready) return
+        val manga = manga ?: return
+        val chapter = page.chapter.chapter
+        val stream = page.stream ?: return
+        appScope.launch {
+            val panel = runCatching {
+                kurotoon.panels.SavedPanels.get(context).save(
+                    mangaId = manga.id,
+                    chapterId = chapter.id!!,
+                    mangaTitle = manga.title,
+                    chapterName = chapter.name,
+                    page = page.index,
+                    open = stream,
+                )
+            }.getOrNull()
+            eventChannel.send(Event.PanelKept(panel != null))
+        }
+    }
+
     /**
      * Shares the image of the selected page and notifies the UI with the path of the file to share.
      * The image must be first copied to the internal partition because there are many possible
@@ -1169,6 +1191,7 @@ class ReaderViewModel(
         data class SavedImage(val result: SaveImageResult) : Event
         data class ShareImage(val uri: Uri, val page: ReaderPage) : Event
         data class CopyImage(val uri: Uri) : Event
+        data class PanelKept(val ok: Boolean) : Event
 
         /** The reader reached the last page of a chapter that wasn't read before. */
         data class ChapterCompleted(val chapterName: String) : Event

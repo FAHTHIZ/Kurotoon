@@ -91,6 +91,7 @@ data object MoreTab : Tab {
             onClickDownloadQueue = { navigator.push(DownloadQueueScreen) },
             onClickCategories = { navigator.push(CategoryScreen()) },
             onClickStats = { navigator.push(StatsScreen()) },
+            onClickSavedPanels = { navigator.push(kurotoon.ui.panels.SavedPanelsScreen()) },
             onClickDataAndStorage = { navigator.push(SettingsScreen(SettingsScreen.Destination.DataAndStorage)) },
             onClickChapterReconciliation = { navigator.push(ChapterReconciliationScreen()) },
             onClickSettings = { navigator.push(SettingsScreen()) },

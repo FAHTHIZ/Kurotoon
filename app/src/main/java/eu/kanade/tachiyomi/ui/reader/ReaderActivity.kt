@@ -394,6 +394,7 @@ class ReaderActivity : BaseActivity() {
                         onSetAsCover = viewModel::setAsCover,
                         onShare = viewModel::shareImage,
                         onSave = viewModel::saveImage,
+                        onKeepPanel = viewModel::keepPanel,
                     )
                 }
                 is ReaderViewModel.Dialog.Sound -> {
@@ -480,6 +481,9 @@ class ReaderActivity : BaseActivity() {
                     }
                     is ReaderViewModel.Event.ShareImage -> {
                         onShareImageResult(event.uri, event.page)
+                    }
+                    is ReaderViewModel.Event.PanelKept -> {
+                        toast(if (event.ok) MR.strings.kurotoon_panels_kept else MR.strings.kurotoon_panels_failed)
                     }
                     is ReaderViewModel.Event.CopyImage -> {
                         onCopyImageResult(event.uri)

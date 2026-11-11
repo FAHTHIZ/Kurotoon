@@ -15,6 +15,7 @@ import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.automirroredrounded.Help
 import mihon.icons.materialsymbols.automirroredrounded.Label
 import mihon.icons.materialsymbols.rounded.CloudOff
+import mihon.icons.materialsymbols.rounded.CollectionsBookmark
 import mihon.icons.materialsymbols.rounded.Download
 import mihon.icons.materialsymbols.rounded.Eyeglasses2
 import mihon.icons.materialsymbols.rounded.Info
@@ -39,6 +40,7 @@ fun MoreScreen(
     onClickDownloadQueue: () -> Unit,
     onClickCategories: () -> Unit,
     onClickStats: () -> Unit,
+    onClickSavedPanels: () -> Unit = {},
     onClickDataAndStorage: () -> Unit,
     onClickChapterReconciliation: () -> Unit,
     onClickSettings: () -> Unit,
@@ -128,6 +130,14 @@ fun MoreScreen(
                     title = stringResource(MR.strings.label_stats),
                     icon = MaterialSymbols.Rounded.QueryStats,
                     onPreferenceClick = onClickStats,
+                )
+            }
+            item {
+                TextPreferenceWidget(
+                    title = stringResource(MR.strings.kurotoon_panels_title),
+                    subtitle = stringResource(MR.strings.kurotoon_panels_summary),
+                    icon = MaterialSymbols.Rounded.CollectionsBookmark,
+                    onPreferenceClick = onClickSavedPanels,
                 )
             }
             item {

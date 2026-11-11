@@ -6,6 +6,8 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Added
+- Saved panels: long-press a page and Keep panel to collect favourite pages in a gallery (Me > Saved panels) that jumps straight back to the chapter
+- Onboarding: Next on the storage step now opens the folder picker instead of sitting greyed out; friendlier empty Extensions screen
 - Data saver (off / on mobile data / always) with a quality slider: pages are shrunk to WebP through the wsrv.nl proxy, with automatic fallback for sites that refuse it
 - Reader sleep timer (15/30/45/60 min or end of chapter) in the Sound sheet: stops auto-scroll, mutes the soundtrack and shows a dim "Time to rest" card
 - Reader soundtrack: WEBTOON episode music plays in KuroToon, starting and stopping on the same panels as the official app, with a music badge to mute it. Ambience for any chapter (rain, night, fireplace, ocean, focus, or matched to the series' genres), generated on the phone, plus an optional page-turn sound. Open it from the music button in the reader menu.
