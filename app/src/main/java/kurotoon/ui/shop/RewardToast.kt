@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CircleShape
@@ -42,6 +43,7 @@ import kotlinx.coroutines.launch
 import kurotoon.rewards.GrantReason
 import kurotoon.rewards.RewardGrant
 import kurotoon.rewards.RewardsCatalog
+import kurotoon.rewards.Seasons
 import kurotoon.ui.KuroColors
 import kurotoon.ui.fx.KuroFx
 import mihon.app.di.appGraph
@@ -93,13 +95,30 @@ fun RewardToastHost(modifier: Modifier = Modifier) {
 @Composable
 private fun GrantPill(grant: RewardGrant) {
     val reason = when (val r = grant.reason) {
-        is GrantReason.Daily -> stringResource(MR.strings.kurotoon_rewards_dailyReason) +
-            " · " + stringResource(MR.strings.kurotoon_rewards_streak, r.streak)
+        is GrantReason.Daily -> if (r.frozen > 0) {
+            stringResource(MR.strings.kurotoon_rewards_freezeUsed, r.streak)
+        } else {
+            stringResource(MR.strings.kurotoon_rewards_dailyReason) +
+                " · " + stringResource(MR.strings.kurotoon_rewards_streak, r.streak)
+        }
         is GrantReason.MissionDone -> RewardsCatalog.mission(r.code)?.let { stringResource(it.title) }.orEmpty()
+        is GrantReason.WeeklyDone -> RewardsCatalog.weeklyMission(r.code)?.let { stringResource(it.title) }.orEmpty()
         is GrantReason.AchievementUnlocked -> RewardsCatalog.achievement(r.code)
-            ?.let { stringResource(MR.strings.kurotoon_rewards_unlocked, "${it.icon} ${stringResource(it.title)}") }
+            ?.let { stringResource(MR.strings.kurotoon_rewards_unlocked, stringResource(it.title)) }
             .orEmpty()
         is GrantReason.GoalMet -> stringResource(MR.strings.kurotoon_goal_done)
+        is GrantReason.StreakChest -> stringResource(MR.strings.kurotoon_rewards_streakChest, r.streak)
+        is GrantReason.LevelUp -> stringResource(MR.strings.kurotoon_rewards_levelUp, r.level)
+        is GrantReason.SeasonChoreDone -> Seasons.event(r.event)?.let { stringResource(it.title) }.orEmpty()
+        is GrantReason.SeasonComplete -> Seasons.event(r.event)
+            ?.let { stringResource(MR.strings.kurotoon_rewards_seasonDone, stringResource(it.title)) }
+            .orEmpty()
+    }
+    val art = when (val r = grant.reason) {
+        is GrantReason.AchievementUnlocked -> RewardsCatalog.achievement(r.code)?.art
+        is GrantReason.StreakChest -> "file:///android_asset/kuro/ui/chest.webp"
+        is GrantReason.Daily -> if (r.frozen > 0) "file:///android_asset/kuro/ui/freeze.webp" else null
+        else -> null
     }
     Row(
         modifier = Modifier
@@ -112,7 +131,11 @@ private fun GrantPill(grant: RewardGrant) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
-        KuroCoin(size = 30.dp)
+        if (art != null) {
+            coil3.compose.AsyncImage(art, null, Modifier.size(36.dp))
+        } else {
+            KuroCoin(size = 30.dp)
+        }
         Column {
             Text(
                 "+${grant.points} " + stringResource(MR.strings.kurotoon_rewards_points),

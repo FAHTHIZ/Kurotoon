@@ -73,12 +73,25 @@ class RewardsStore(
         return claimed
     }
 
-    /** Claims every finished mission at once. */
+    fun claimWeekly(code: String): Boolean {
+        var claimed = false
+        update { state ->
+            engine.claimWeekly(state, code)?.also { claimed = true } ?: RewardsEngine.Outcome(state)
+        }
+        return claimed
+    }
+
+    /** Claims every finished daily and weekly mission at once. */
     fun claimAll(): Int {
         var count = 0
         update { state ->
-            engine.claimable(state).fold(RewardsEngine.Outcome(state)) { acc, mission ->
+            val daily = engine.claimable(state).fold(RewardsEngine.Outcome(state)) { acc, mission ->
                 val next = engine.claimMission(acc.state, mission.code) ?: return@fold acc
+                count++
+                RewardsEngine.Outcome(next.state, acc.grants + next.grants)
+            }
+            engine.claimableWeekly(daily.state).fold(daily) { acc, mission ->
+                val next = engine.claimWeekly(acc.state, mission.code) ?: return@fold acc
                 count++
                 RewardsEngine.Outcome(next.state, acc.grants + next.grants)
             }

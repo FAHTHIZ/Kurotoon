@@ -23,6 +23,11 @@ class RewardsEngineTest {
         item("b2", ShopKind.BADGE, 1),
         item("b3", ShopKind.BADGE, 1),
         item("b4", ShopKind.BADGE, 1),
+        item("freeze", ShopKind.BOOST, 300, FREEZE_STYLE),
+        ShopItem(
+            "kuro.seasonal/halloween", "kuro.seasonal", ShopKind.STICKER, "Halloween", "", 100,
+            Rarity.RARE, null, null, emptyList(), null,
+        ),
     ).associateBy { it.code }
 
     private val engine = RewardsEngine(items = items::get, now = { now }, zone = { ZoneOffset.UTC })
@@ -145,7 +150,74 @@ class RewardsEngineTest {
         state = engine.track(state, RewardEvent.CHAPTER_READ).state
         engine.meetDailyGoal(state, 2).grants.map { it.reason } shouldContainExactly listOf(GrantReason.GoalMet(2))
     }
-    private fun item(id: String, kind: ShopKind, price: Int) = ShopItem(
+
+    @Test
+    fun `streak freezes cover missed days`() {
+        val state = RewardsState(lastDay = "2026-11-08", streak = 5, bestStreak = 5, freezes = 1)
+        val out = engine.claimDailyOpen(state)
+        out.state.streak shouldBe 6
+        out.state.freezes shouldBe 0
+        out.grants.map { it.reason } shouldContain GrantReason.Daily(6, 1)
+        // Without a freeze the streak starts over
+        engine.claimDailyOpen(state.copy(freezes = 0)).state.streak shouldBe 1
+    }
+
+    @Test
+    fun `freezes are bought up to the cap`() {
+        val (out, result) = engine.buy(RewardsState(points = 1000), "test/freeze")
+        result shouldBe PurchaseResult.Success
+        out.state.freezes shouldBe 1
+        engine.buy(RewardsState(points = 1000, freezes = RewardsCatalog.MAX_FREEZES), "test/freeze").second shouldBe
+            PurchaseResult.FreezesFull
+    }
+
+    @Test
+    fun `every seventh day opens a streak chest`() {
+        val state = RewardsState(lastDay = "2026-11-09", streak = 6, bestStreak = 6)
+        engine.daysToChest(state) shouldBe 0
+        engine.claimDailyOpen(state).grants.map { it.reason } shouldContain GrantReason.StreakChest(7)
+        engine.daysToChest(state.copy(streak = 2)) shouldBe 4
+    }
+
+    @Test
+    fun `weekly missions pay once and reset on monday`() {
+        var state = RewardsState()
+        repeat(25) { state = engine.track(state, RewardEvent.CHAPTER_READ).state }
+        engine.claimableWeekly(state).map { it.code } shouldContain RewardsCatalog.WEEK_READ
+        state = engine.claimWeekly(state, RewardsCatalog.WEEK_READ)!!.state
+        engine.claimWeekly(state, RewardsCatalog.WEEK_READ) shouldBe null
+        now = Instant.parse("2026-11-16T12:00:00Z")
+        engine.rollDay(state).weekProgress shouldBe emptyMap()
+    }
+
+    @Test
+    fun `seasonal events track chores while running`() {
+        // 10 November falls in the anniversary event
+        val run = engine.activeSeasons().single()
+        run.event.id shouldBe "anniversary"
+        val state = engine.track(RewardsState(), RewardEvent.CHAPTER_READ).state
+        val read = run.event.chores.first { it.kind == ChoreKind.READ }
+        state.seasonProgress[run.choreKey(read)] shouldBe 1
+    }
+
+    @Test
+    fun `seasonal items only sell in season`() {
+        engine.buy(RewardsState(points = 500), "kuro.seasonal/halloween").second shouldBe PurchaseResult.OutOfSeason
+        now = Instant.parse("2026-10-20T12:00:00Z")
+        engine.buy(RewardsState(points = 500), "kuro.seasonal/halloween").second shouldBe PurchaseResult.Success
+    }
+
+    @Test
+    fun `levels grow with lifetime points`() {
+        Levels.of(0).level shouldBe 1
+        Levels.of(99).level shouldBe 1
+        Levels.of(100).level shouldBe 2
+        Levels.of(250).level shouldBe 3
+        Levels.of(Int.MAX_VALUE).level shouldBe Levels.MAX_LEVEL
+        RewardsState(lifetimePoints = 260).level.into shouldBe 10
+    }
+
+    private fun item(id: String, kind: ShopKind, price: Int, style: String? = null) = ShopItem(
         code = "test/$id",
         packId = "test",
         kind = kind,
@@ -156,6 +228,6 @@ class RewardsEngineTest {
         image = null,
         emoji = null,
         colors = emptyList(),
-        style = null,
+        style = style,
     )
 }

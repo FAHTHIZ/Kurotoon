@@ -66,7 +66,15 @@ Unknown fields are ignored, so newer packs still load on older versions of the a
 | `particles` | — | `colors` are used for the drifting embers and the tap sparks. |
 | `sticker` | Shown as is, fitted to the tile. | `emoji`. |
 | `badge` | Shown on a shield in `colors`. Up to three badges show on the profile. | `emoji` on the shield. |
-| `boost` | Shop preview only. | Each purchase adds 7 days of double mission points. |
+| `boost` | Shop preview only. | Each purchase adds 7 days of double mission points. With `"style": "freeze"` it's a streak freeze instead: one missed day is forgiven per freeze, and a reader can hold up to three. |
+
+## Seasonal items
+
+Items whose code is the reward of a seasonal event (see `kurotoon/rewards/Seasons.kt`) can only be bought while that event runs. Outside the event the tile is dimmed and shows "Seasonal". Finishing every chore of an event also gives its item for free plus a 150 point bonus. Built-in events: New Year, Valentine's, Spring, Eid al-Fitr, Pohela Boishakh, Eid al-Adha, Summer, Monsoon, Halloween, Kurotoon Anniversary (10 to 24 November) and Winter. Eid dates are approximate and listed per year.
+
+## Achievement medals
+
+Each achievement shows `app/src/main/assets/kuro/achievements/<code>.webp` (256×256, transparent). Locked medals are drawn greyed out. The streak tracker uses `assets/kuro/ui/chest.webp` and `freeze.webp`.
 
 ## Making a .kpack
 
