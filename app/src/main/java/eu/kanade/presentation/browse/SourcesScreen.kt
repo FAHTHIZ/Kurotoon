@@ -236,8 +236,8 @@ private fun SourcePill(
     onClick: () -> Unit,
 ) {
     val colors = MaterialTheme.colorScheme
-    val container = if (highlighted) colors.primary else colors.secondaryContainer
-    val content = if (highlighted) colors.onPrimary else colors.onSecondaryContainer
+    val container = if (highlighted) colors.primary.copy(alpha = 0.14f) else colors.surfaceContainerHighest
+    val content = if (highlighted) colors.primary else colors.onSurfaceVariant
     Text(
         text = text,
         style = MaterialTheme.typography.labelMedium,
