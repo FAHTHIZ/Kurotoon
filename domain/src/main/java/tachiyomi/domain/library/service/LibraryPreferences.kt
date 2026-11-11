@@ -49,6 +49,10 @@ class LibraryPreferences(
             DEVICE_ONLY_ON_WIFI,
         ),
     )
+
+    /** With the "caught up" restriction on, skip a series once it has at least this many unread chapters. */
+    val autoUpdateUnreadThreshold: Preference<Int> = preferenceStore.getInt("kurotoon_update_unread_threshold", 1)
+
     val autoUpdateMangaRestrictions: Preference<Set<String>> = preferenceStore.getStringSet(
         "library_update_manga_restriction",
         setOf(

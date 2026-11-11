@@ -183,6 +183,7 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
         }
 
         val restrictions = libraryPreferences.autoUpdateMangaRestrictions.get()
+        val unreadThreshold = libraryPreferences.autoUpdateUnreadThreshold.get().coerceAtLeast(1).toLong()
         val skippedUpdates = mutableListOf<Pair<Manga, String?>>()
         val timeZone = TimeZone.currentSystemDefault()
         val fetchWindowUpperBound = fetchInterval.getWindow(
@@ -205,7 +206,7 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
                         false
                     }
 
-                    MANGA_HAS_UNREAD in restrictions && it.unreadCount != 0L -> {
+                    MANGA_HAS_UNREAD in restrictions && it.unreadCount >= unreadThreshold -> {
                         skippedUpdates.add(it.manga to context.stringResource(MR.strings.skipped_reason_not_caught_up))
                         false
                     }

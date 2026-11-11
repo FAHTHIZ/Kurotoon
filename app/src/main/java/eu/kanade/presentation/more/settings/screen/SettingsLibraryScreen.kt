@@ -122,6 +122,7 @@ object SettingsLibraryScreen : SearchableSettings {
 
         val included by autoUpdateCategoriesPref.collectAsState()
         val excluded by autoUpdateCategoriesExcludePref.collectAsState()
+        val restrictions by libraryPreferences.autoUpdateMangaRestrictions.collectAsState()
         var showCategoriesDialog by rememberSaveable { mutableStateOf(false) }
         if (showCategoriesDialog) {
             TriStateListDialog(
@@ -200,6 +201,18 @@ object SettingsLibraryScreen : SearchableSettings {
                         MANGA_OUTSIDE_RELEASE_PERIOD to stringResource(MR.strings.pref_update_only_in_release_period),
                     ),
                     title = stringResource(MR.strings.pref_library_update_smart_update),
+                ),
+                Preference.PreferenceItem.ListPreference(
+                    preference = libraryPreferences.autoUpdateUnreadThreshold,
+                    entries = listOf(1, 3, 5, 10, 25).associateWith {
+                        if (it == 1) {
+                            stringResource(MR.strings.kurotoon_update_unreadThreshold_any)
+                        } else {
+                            pluralStringResource(MR.plurals.kurotoon_update_unreadThreshold_n, it, it)
+                        }
+                    },
+                    title = stringResource(MR.strings.kurotoon_update_unreadThreshold_title),
+                    visible = MANGA_HAS_UNREAD in restrictions,
                 ),
                 Preference.PreferenceItem.SwitchPreference(
                     preference = libraryPreferences.newShowUpdatesCount,
