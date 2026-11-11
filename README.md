@@ -93,7 +93,8 @@ calendar and music while you read. KuroToon is the first to give you both, plus 
 - **Weekly release schedule** learned from your library
 - Every source's own genres and themes as one-tap tags; long-press to exclude
 - **Saved searches** you can pin to Home
-- Universal search across every source
+- Universal search across every source, with each series shown **once** and tags gathered from all your sources
+- **Merged chapters**: the same series from several sources read as one list ([how it works](docs/merged-chapters.md))
 - **More like this** from AniList recommendations
 
 </td>
