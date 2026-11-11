@@ -11,8 +11,10 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalContext
@@ -93,6 +95,18 @@ data object LibraryTab : Tab {
         val state by viewModel.state.collectAsStateWithLifecycle()
         val hiddenCategories by viewModel.hiddenCategoryIds.collectAsStateWithLifecycle()
         val revealingHidden by viewModel.revealHidden.collectAsStateWithLifecycle()
+        val groupBy by viewModel.groupBy.collectAsStateWithLifecycle()
+        var showGroupBy by remember { mutableStateOf(false) }
+        if (showGroupBy) {
+            kurotoon.ui.library.LibraryGroupByDialog(
+                selected = groupBy,
+                onSelect = {
+                    viewModel.setGroupBy(it)
+                    showGroupBy = false
+                },
+                onDismissRequest = { showGroupBy = false },
+            )
+        }
 
         val snackbarHostState = remember { SnackbarHostState() }
 
@@ -124,7 +138,7 @@ data object LibraryTab : Tab {
                     onClickSelectAll = viewModel::selectAll,
                     onClickInvertSelection = viewModel::invertSelection,
                     onClickFilter = viewModel::showSettingsDialog,
-                    onClickRefresh = { scope.launch { onClickRefresh(state.activeCategory) } },
+                    onClickRefresh = { scope.launch { onClickRefresh(state.activeCategory?.takeIf { it.id >= 0 }) } },
                     onClickGlobalUpdate = { scope.launch { onClickRefresh(null) } },
                     onClickOpenRandomManga = {
                         scope.launch {
@@ -139,7 +153,8 @@ data object LibraryTab : Tab {
                         }
                     },
                     onClickDuplicates = { navigator.push(DuplicatesScreen()) },
-                    onClickHideCategory = state.activeCategory?.let { category ->
+                    onClickGroupBy = { showGroupBy = true },
+                    onClickHideCategory = state.activeCategory?.takeIf { it.id >= 0 }?.let { category ->
                         { viewModel.toggleCategoryHidden(category) }
                     },
                     activeCategoryHidden = state.activeCategory?.id in hiddenCategories,
