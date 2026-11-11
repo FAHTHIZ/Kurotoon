@@ -182,6 +182,7 @@ class ReaderActivity : BaseActivity() {
     private val autoScroll = AutoScrollState()
     private val chapterComplete = ChapterCompleteState()
     private val resumeHint = kurotoon.reader.ResumeHintState()
+    private val wakefulness = kurotoon.reader.ReaderWakefulness()
 
     /** The resume hint is offered once per opening, not after rotation or chapter changes. */
     private var resumeHintChecked = false
@@ -289,8 +290,15 @@ class ReaderActivity : BaseActivity() {
                             }
                         }
                     }
-                    .then(if (general.keepScreenOn || autoScroll.enabled) Modifier.keepScreenOn() else Modifier),
+                    .then(
+                        if (general.keepScreenOn || autoScroll.enabled || wakefulness.awake) {
+                            Modifier.keepScreenOn()
+                        } else {
+                            Modifier
+                        },
+                    ),
             ) {
+                wakefulness.Track()
                 ReaderViewer()
 
                 if (isLoadingViewer) {
@@ -980,7 +988,13 @@ class ReaderActivity : BaseActivity() {
      * Called from the viewer whenever a [page] is marked as active. It updates the values of the
      * bottom menu and delegates the change to the presenter.
      */
+    override fun dispatchTouchEvent(ev: android.view.MotionEvent): Boolean {
+        if (ev.actionMasked == android.view.MotionEvent.ACTION_DOWN) wakefulness.poke()
+        return super.dispatchTouchEvent(ev)
+    }
+
     fun onPageSelected(page: ReaderPage) {
+        wakefulness.poke()
         viewModel.onPageSelected(page)
     }
 
