@@ -74,6 +74,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Source badge: Library settings > Display > Source name shows which source each cover comes from.
 - Add several titles at once: in a source, menu > Select several, tap the covers you want, then Add to library.
 - Switch extension stores off: each store in Browse > Extensions > menu > Extension stores has a switch that hides its extensions without removing it.
+- 18+ extensions are hidden on a fresh install, so the first extension list isn't a wall of adult sources. Turn them on in Settings > Browse > Allowed content warnings.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.
