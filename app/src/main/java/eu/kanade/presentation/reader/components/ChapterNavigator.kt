@@ -203,10 +203,19 @@ fun HorizontalChapterNavigator(
                             .padding(horizontal = 16.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Box(contentAlignment = Alignment.CenterEnd) {
-                            Text(text = currentPage.toString())
-                            // Taking up full length so the slider doesn't shift when 'currentPage' length changes
-                            Text(text = totalPages.toString(), color = Color.Transparent)
+                        kurotoon.reader.GoToPageNumber(
+                            currentPage = currentPage,
+                            totalPages = totalPages,
+                            onGoTo = {
+                                onPageChange(it)
+                                onPageChangeFinished()
+                            },
+                        ) {
+                            Box(contentAlignment = Alignment.CenterEnd) {
+                                Text(text = currentPage.toString())
+                                // Taking up full length so the slider doesn't shift when 'currentPage' length changes
+                                Text(text = totalPages.toString(), color = Color.Transparent)
+                            }
                         }
 
                         Slider(
@@ -286,7 +295,16 @@ fun VerticalChapterNavigator(
                     .padding(vertical = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Text(text = currentPage.toString())
+                kurotoon.reader.GoToPageNumber(
+                    currentPage = currentPage,
+                    totalPages = totalPages,
+                    onGoTo = {
+                        onPageChange(it)
+                        onPageChangeFinished()
+                    },
+                ) {
+                    Text(text = currentPage.toString())
+                }
 
                 VerticalSlider(
                     state = state,
