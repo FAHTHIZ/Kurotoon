@@ -51,7 +51,7 @@ fun CrashScreen(
         header = {
             KuroMascot(
                 size = 72.dp,
-                mood = KuroMood.SLEEPY,
+                mood = KuroMood.SAD,
                 modifier = Modifier.padding(bottom = MaterialTheme.padding.small),
             )
         },

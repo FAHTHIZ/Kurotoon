@@ -1,6 +1,6 @@
 {
   "id": "kuro.seasonal",
-  "name": "Seasonal & event Kuru",
+  "name": "Seasonal & event Kuro",
   "author": "KuroToon",
   "version": 2,
   "description": "Limited editions that return every year.",
@@ -9,7 +9,7 @@
     {
       "id": "newyear",
       "kind": "sticker",
-      "name": "New Year Kuru",
+      "name": "New Year Kuro",
       "description": "January. Fireworks for a new reading year.",
       "price": 500,
       "rarity": "rare",
@@ -18,7 +18,7 @@
     {
       "id": "valentine",
       "kind": "sticker",
-      "name": "Valentine Kuru",
+      "name": "Valentine Kuro",
       "description": "February. Love is in the panels.",
       "price": 500,
       "rarity": "rare",
@@ -27,7 +27,7 @@
     {
       "id": "spring",
       "kind": "sticker",
-      "name": "Spring Kuru",
+      "name": "Spring Kuro",
       "description": "March. Cherry blossom season.",
       "price": 500,
       "rarity": "rare",
@@ -36,7 +36,7 @@
     {
       "id": "summer",
       "kind": "sticker",
-      "name": "Summer Kuru",
+      "name": "Summer Kuro",
       "description": "June to August. Beach-day chapters.",
       "price": 500,
       "rarity": "rare",
@@ -45,7 +45,7 @@
     {
       "id": "halloween",
       "kind": "sticker",
-      "name": "Halloween Kuru",
+      "name": "Halloween Kuro",
       "description": "October. Trick or read.",
       "price": 800,
       "rarity": "epic",
@@ -54,7 +54,7 @@
     {
       "id": "winter",
       "kind": "sticker",
-      "name": "Winter Kuru",
+      "name": "Winter Kuro",
       "description": "December. Cosy scarf, cold nights.",
       "price": 800,
       "rarity": "epic",
@@ -63,7 +63,7 @@
     {
       "id": "anniversary",
       "kind": "sticker",
-      "name": "Anniversary Kuru",
+      "name": "Anniversary Kuro",
       "description": "Annual event. Crowned for another year of KuroToon.",
       "price": 2500,
       "rarity": "legendary",
@@ -72,7 +72,7 @@
     {
       "id": "eid",
       "kind": "sticker",
-      "name": "Eid Kuru",
+      "name": "Eid Kuro",
       "description": "Eid Mubarak. Lanterns and sweets.",
       "price": 800,
       "rarity": "epic",
@@ -81,7 +81,7 @@
     {
       "id": "boishakh",
       "kind": "sticker",
-      "name": "Boishakh Kuru",
+      "name": "Boishakh Kuro",
       "description": "Shubho Noboborsho. Pohela Boishakh in April.",
       "price": 800,
       "rarity": "epic",
@@ -90,7 +90,7 @@
     {
       "id": "monsoon",
       "kind": "sticker",
-      "name": "Monsoon Kuru",
+      "name": "Monsoon Kuro",
       "description": "Rainy-season reading weather.",
       "price": 500,
       "rarity": "rare",

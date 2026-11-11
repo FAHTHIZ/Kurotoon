@@ -1,6 +1,6 @@
 {
   "id": "kuro.avatars",
-  "name": "Kuru avatars",
+  "name": "Kuro avatars",
   "author": "KuroToon",
   "version": 2,
   "description": "Profile icons, perfect for your identity.",
@@ -8,7 +8,7 @@
     {
       "id": "classic",
       "kind": "avatar",
-      "name": "Classic Kuru",
+      "name": "Classic Kuro",
       "description": "The original, under a starry sky.",
       "price": 200,
       "rarity": "common",
@@ -17,8 +17,8 @@
     {
       "id": "galaxy",
       "kind": "avatar",
-      "name": "Galaxy Kuru",
-      "description": "Kuru wrapped in a violet nebula.",
+      "name": "Galaxy Kuro",
+      "description": "Kuro wrapped in a violet nebula.",
       "price": 1500,
       "rarity": "epic",
       "image": "galaxy.webp"
@@ -26,7 +26,7 @@
     {
       "id": "royal",
       "kind": "avatar",
-      "name": "Royal Kuru",
+      "name": "Royal Kuro",
       "description": "Crowned, with his lucky K coin.",
       "price": 2500,
       "rarity": "legendary",
@@ -35,7 +35,7 @@
     {
       "id": "cool",
       "kind": "avatar",
-      "name": "Cool Kuru",
+      "name": "Cool Kuro",
       "description": "Shades on. Nothing can spoil this arc.",
       "price": 600,
       "rarity": "rare",
@@ -44,8 +44,8 @@
     {
       "id": "pumpkin",
       "kind": "avatar",
-      "name": "Pumpkin Kuru",
-      "description": "Spooky season, Kuru style.",
+      "name": "Pumpkin Kuro",
+      "description": "Spooky season, Kuro style.",
       "price": 800,
       "rarity": "rare",
       "image": "pumpkin.webp"

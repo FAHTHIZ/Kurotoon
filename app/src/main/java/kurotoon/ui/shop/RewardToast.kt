@@ -71,8 +71,8 @@ fun RewardToastHost(modifier: Modifier = Modifier) {
             visible = true
             KuroFx.burst(
                 Offset(width / 2f, 160f),
-                count = 26,
-                power = 5f,
+                count = 14,
+                power = 3.5f,
                 colors = listOf(KuroColors.Gold, Color(0xFFFFE08A), Color.White),
             )
             delay(2400)
