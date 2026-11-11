@@ -68,7 +68,7 @@ class ReaderSoundtrack(context: Context) {
         private set
 
     /** The chapter's track list couldn't be fetched (offline, say); [retry] fetches it again. */
-    var tracksFailed = false
+    var tracksFailed by mutableStateOf(false)
         private set
 
     /** Muted from the reader's quick toggle; lasts until the reader closes. */
@@ -150,6 +150,7 @@ class ReaderSoundtrack(context: Context) {
             tracks = emptyList()
             musicHere = false
             loadingTracks = false
+            tracksFailed = false
         }
     }
 

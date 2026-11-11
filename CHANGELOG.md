@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Fixed
+- The sound sheet now says when an episode's music couldn't be checked (offline) and offers Retry, instead of showing nothing
 - The end-of-series card now actually shows the usual update day (its chapter lookup always failed before)
 - Muting the soundtrack (badge, sheet or sleep timer) fades the music and ambience out instead of cutting them off mid-note
 - The screen no longer times out while you study a dense page: the reader stays lit for 3 minutes after your last touch or page turn, then lets the phone sleep

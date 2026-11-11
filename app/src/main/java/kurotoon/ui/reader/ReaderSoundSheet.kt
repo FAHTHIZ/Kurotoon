@@ -224,12 +224,14 @@ private fun NowPlaying(soundtrack: ReaderSoundtrack) {
     val tracks = soundtrack.tracks
     val scape = soundtrack.activeScape
     val interruption = soundtrack.interruption
+    // A track that won't play and a track list that couldn't be fetched both offer Retry
+    val failed = soundtrack.musicFailed || (soundtrack.tracksFailed && !soundtrack.loadingTracks)
     val visible = tracks.isNotEmpty() || scape != Soundscape.OFF || soundtrack.loadingTracks ||
-        soundtrack.musicFailed || interruption != null
+        failed || interruption != null
     AnimatedVisibility(visible = visible, enter = fadeIn(), exit = fadeOut()) {
         Surface(
             shape = RoundedCornerShape(16.dp),
-            color = if (soundtrack.musicFailed) {
+            color = if (failed) {
                 MaterialTheme.colorScheme.errorContainer
             } else {
                 MaterialTheme.colorScheme.primaryContainer
@@ -244,7 +246,7 @@ private fun NowPlaying(soundtrack: ReaderSoundtrack) {
                         modifier = Modifier.size(24.dp),
                         strokeWidth = 2.dp,
                     )
-                    soundtrack.musicFailed -> Icon(MaterialSymbols.Rounded.Error, contentDescription = null)
+                    failed -> Icon(MaterialSymbols.Rounded.Error, contentDescription = null)
                     else -> Icon(MaterialSymbols.Rounded.MusicNote, contentDescription = null)
                 }
                 Spacer(Modifier.width(12.dp))
@@ -252,6 +254,7 @@ private fun NowPlaying(soundtrack: ReaderSoundtrack) {
                     val line = when {
                         soundtrack.loadingTracks -> stringResource(MR.strings.kurotoon_sound_loading)
                         soundtrack.musicFailed -> stringResource(MR.strings.kurotoon_sound_failed)
+                        failed -> stringResource(MR.strings.kurotoon_sound_tracksFailed)
                         playing != null && soundtrack.buffering -> stringResource(MR.strings.kurotoon_sound_buffering)
                         playing != null -> stringResource(
                             MR.strings.kurotoon_sound_nowPlaying,
@@ -280,7 +283,7 @@ private fun NowPlaying(soundtrack: ReaderSoundtrack) {
                             style = MaterialTheme.typography.bodySmall,
                         )
                     }
-                    if (tracks.isNotEmpty() && !soundtrack.musicFailed) {
+                    if (tracks.isNotEmpty() && !failed) {
                         Text(
                             text = stringResource(MR.strings.kurotoon_sound_offlineHint),
                             style = MaterialTheme.typography.labelSmall,
@@ -289,7 +292,7 @@ private fun NowPlaying(soundtrack: ReaderSoundtrack) {
                     }
                 }
                 when {
-                    soundtrack.musicFailed -> TextButton(onClick = soundtrack::retry) {
+                    failed -> TextButton(onClick = soundtrack::retry) {
                         Text(stringResource(MR.strings.kurotoon_sound_retry))
                     }
                     interruption != null -> TextButton(onClick = soundtrack::resumeAfterInterruption) {
