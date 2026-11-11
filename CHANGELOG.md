@@ -20,6 +20,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Mouse wheels and trackpads scroll the long strip smoothly instead of in jumps ([mihon#2328](https://github.com/mihonapp/mihon/issues/2328))
 - A notification when a tracker signs you out (expired or revoked sign-in), which opens Tracking settings so progress doesn't silently stop syncing ([mihon#1700](https://github.com/mihonapp/mihon/issues/1700))
 - Saved pages can go to any folder you pick, including one on an SD card, in Settings > Reader ([mihon#295](https://github.com/mihonapp/mihon/issues/295))
 - Sort installed extensions by name, most recently installed or updated, or language ([mihon#2744](https://github.com/mihonapp/mihon/issues/2744))
