@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Added
+- Edit info on series pages (overflow menu): change the title, author, artist, tags and description; your edits survive every library refresh
 - Continue reading home-screen widget: your last-read titles with their chapter, one tap resumes the chapter
 - Saved panels: long-press a page and Keep panel to collect favourite pages in a gallery (Me > Saved panels) that jumps straight back to the chapter
 - Onboarding: Next on the storage step now opens the folder picker instead of sitting greyed out; friendlier empty Extensions screen

@@ -1105,6 +1105,16 @@
     <string name="kurotoon.widget.description">Jump back into what you were reading, right from your home screen</string>
     <string name="kurotoon.widget.empty">Start a chapter and it shows up here</string>
     <string name="kurotoon.widget.chapter">Ch. %1$s</string>
+    <string name="kurotoon.editInfo.title">Edit info</string>
+    <string name="kurotoon.editInfo.name">Title</string>
+    <string name="kurotoon.editInfo.author">Author</string>
+    <string name="kurotoon.editInfo.artist">Artist</string>
+    <string name="kurotoon.editInfo.tags">Tags, separated by commas</string>
+    <string name="kurotoon.editInfo.description">Description</string>
+    <string name="kurotoon.editInfo.hint">Your edits stay even when the series is refreshed from its source. Reset to go back to the source\'s details on the next refresh.</string>
+    <string name="kurotoon.editInfo.reset">Reset</string>
+    <string name="kurotoon.editInfo.resetDone">Edits removed. Refresh the series to get the source\'s details back.</string>
+    <string name="kurotoon.editInfo.saved">Series info saved</string>
     <string name="kurotoon.dataSaver.title">Data saver</string>
     <string name="kurotoon.dataSaver.off">Off</string>
     <string name="kurotoon.dataSaver.mobile">On mobile data</string>

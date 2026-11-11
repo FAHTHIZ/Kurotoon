@@ -34,6 +34,7 @@ class UpdateMangaFromRemote(
     private val coverCache: CoverCache,
     private val libraryPreferences: LibraryPreferences,
     private val downloadManager: DownloadManager,
+    private val kuroPreferences: kurotoon.prefs.KuroPreferences,
 ) {
     suspend operator fun invoke(
         manga: Manga,
@@ -122,15 +123,19 @@ class UpdateMangaFromRemote(
 
         val thumbnailUrl = remoteManga.thumbnail_url?.takeIf { it.isNotEmpty() }
 
+        // Your own edits win over whatever the source sends
+        val edit = kuroPreferences.mangaEdit(localManga.id)
+        val newTitle = if (edit?.title != null) edit.title.takeIf { it != localManga.title } else title
+
         val success = mangaRepository.updateRemote(
             MangaRemoteUpdate(
                 id = localManga.id,
-                title = title,
+                title = newTitle,
                 coverLastModified = coverLastModified,
-                author = remoteManga.author,
-                artist = remoteManga.artist,
-                description = remoteManga.description,
-                genre = remoteManga.getGenres(),
+                author = edit?.author ?: remoteManga.author,
+                artist = edit?.artist ?: remoteManga.artist,
+                description = edit?.description ?: remoteManga.description,
+                genre = edit?.genres ?: remoteManga.getGenres(),
                 thumbnailUrl = thumbnailUrl,
                 status = remoteManga.status.toLong(),
                 updateStrategy = remoteManga.update_strategy,
@@ -138,8 +143,8 @@ class UpdateMangaFromRemote(
                 memo = remoteManga.memo,
             ),
         )
-        if (success && title != null) {
-            downloadManager.renameManga(localManga, title)
+        if (success && newTitle != null) {
+            downloadManager.renameManga(localManga, newTitle)
         }
         return success
     }
