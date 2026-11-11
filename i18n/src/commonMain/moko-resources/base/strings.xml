@@ -891,6 +891,19 @@
     <!-- Updates -->
     <string name="updating_library">Updating library</string>
     <string name="update_already_running">An update is already running</string>
+    <string name="kurotoon_library_quick_unread">Unread</string>
+    <string name="kurotoon_library_quick_started">Started</string>
+    <string name="kurotoon_library_quick_downloaded">Downloaded</string>
+    <string name="kurotoon_library_quick_bookmarked">Bookmarked</string>
+    <string name="kurotoon_library_quick_completed">Completed</string>
+    <string name="kurotoon_me_group_reading">Reading</string>
+    <string name="kurotoon_me_group_library">Library tools</string>
+    <string name="kurotoon_me_group_app">App</string>
+    <string name="kurotoon_updates_checked">Checked %s</string>
+    <string name="kurotoon_updates_summary">%1$d unread of %2$d new chapters</string>
+    <string name="kurotoon_updates_pull_hint">Pull down or tap Check now to look for new chapters</string>
+    <string name="kurotoon_updates_check_now">Check now</string>
+    <string name="kurotoon_updates_new_badge">NEW</string>
     <string name="updates_last_update_info">Library last updated: %s</string>
     <string name="updates_last_update_info_just_now">Just now</string>
     <string name="relative_time_span_never">Never</string>

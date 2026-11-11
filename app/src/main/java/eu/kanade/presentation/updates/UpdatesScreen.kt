@@ -131,7 +131,10 @@ fun UpdateScreen(
                                 .padding(contentPadding)
                                 .fillMaxSize(),
                         ) {
-                            UpdatesLastUpdatedHeader(lastUpdated = lastUpdated)
+                            UpdatesLastUpdatedHeader(
+                                lastUpdated = lastUpdated,
+                                onCheckNow = { scope.launch { onUpdateLibrary() } },
+                            )
                             kurotoon.ui.updates.UpdateErrorsBanner()
                             EmptyScreen(
                                 stringRes = if (hasActiveFilters) {
@@ -149,7 +152,12 @@ fun UpdateScreen(
                         FastScrollLazyColumn(
                             contentPadding = contentPadding,
                         ) {
-                            updatesLastUpdatedItem(lastUpdated)
+                            updatesLastUpdatedItem(
+                                lastUpdated = lastUpdated,
+                                unread = state.items.count { !it.update.read },
+                                total = state.items.size,
+                                onCheckNow = { scope.launch { onUpdateLibrary() } },
+                            )
                             item(key = "updates-errors") { kurotoon.ui.updates.UpdateErrorsBanner() }
 
                             updatesUiItems(

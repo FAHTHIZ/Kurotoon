@@ -5,16 +5,21 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -27,10 +32,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalHapticFeedback
-import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.components.relativeDateText
@@ -41,12 +47,13 @@ import eu.kanade.presentation.manga.components.MangaCover
 import eu.kanade.presentation.util.relativeTimeSpanString
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.ui.updates.UpdatesItem
+import kurotoon.ui.KuroSectionHeader
+import kurotoon.ui.kuroCard
 import mihon.icons.materialsymbols.MaterialSymbols
+import mihon.icons.materialsymbols.rounded.Sync
 import mihon.icons.materialsymbols.roundedfilled.Bookmark
-import mihon.icons.materialsymbols.roundedfilled.Circle
 import tachiyomi.domain.updates.model.UpdatesWithRelations
 import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.ListGroupHeader
 import tachiyomi.presentation.core.components.material.DISABLED_ALPHA
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
@@ -54,28 +61,93 @@ import tachiyomi.presentation.core.util.selectedBackground
 
 internal fun LazyListScope.updatesLastUpdatedItem(
     lastUpdated: Long,
+    unread: Int = 0,
+    total: Int = 0,
+    onCheckNow: (() -> Unit)? = null,
 ) {
     item(key = "updates-lastUpdated") {
         UpdatesLastUpdatedHeader(
             lastUpdated = lastUpdated,
+            unread = unread,
+            total = total,
+            onCheckNow = onCheckNow,
             modifier = Modifier.animateItem(fadeInSpec = null, fadeOutSpec = null),
         )
     }
 }
 
+/**
+ * KuroToon's status card at the top of Updates: when the library was last checked, how much of what
+ * arrived is still unread, and a one-tap way to check again.
+ */
 @Composable
 internal fun UpdatesLastUpdatedHeader(
     lastUpdated: Long,
     modifier: Modifier = Modifier,
+    unread: Int = 0,
+    total: Int = 0,
+    onCheckNow: (() -> Unit)? = null,
 ) {
-    Box(
+    val primary = MaterialTheme.colorScheme.primary
+    val tertiary = MaterialTheme.colorScheme.tertiary
+    Row(
         modifier = modifier
-            .padding(horizontal = MaterialTheme.padding.medium, vertical = MaterialTheme.padding.small),
+            .fillMaxWidth()
+            .padding(horizontal = MaterialTheme.padding.medium, vertical = MaterialTheme.padding.small)
+            .kuroCard(RoundedCornerShape(20.dp))
+            .padding(12.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(
-            text = stringResource(MR.strings.updates_last_update_info, relativeTimeSpanString(lastUpdated)),
-            fontStyle = FontStyle.Italic,
-        )
+        Box(
+            modifier = Modifier
+                .size(44.dp)
+                .clip(RoundedCornerShape(14.dp))
+                .background(Brush.linearGradient(listOf(primary, tertiary))),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(
+                imageVector = MaterialSymbols.Rounded.Sync,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onPrimary,
+            )
+        }
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .padding(horizontal = 12.dp),
+        ) {
+            Text(
+                text = stringResource(MR.strings.kurotoon_updates_checked, relativeTimeSpanString(lastUpdated)),
+                style = MaterialTheme.typography.titleSmall,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+            if (total > 0) {
+                Text(
+                    text = stringResource(MR.strings.kurotoon_updates_summary, unread, total),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            } else {
+                Text(
+                    text = stringResource(MR.strings.kurotoon_updates_pull_hint),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
+        }
+        if (onCheckNow != null) {
+            FilledTonalButton(
+                onClick = onCheckNow,
+                contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp),
+            ) {
+                Text(stringResource(MR.strings.kurotoon_updates_check_now))
+            }
+        }
     }
 }
 
@@ -105,7 +177,7 @@ internal fun LazyListScope.updatesUiItems(
     ) { item ->
         when (item) {
             is UpdatesUiModel.Header -> {
-                ListGroupHeader(
+                UpdatesDayHeader(
                     modifier = Modifier.animateItem(),
                     text = relativeDateText(item.date),
                 )
@@ -178,14 +250,15 @@ private fun UpdatesUiItem(
                     haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                 },
             )
-            .height(56.dp)
+            .height(76.dp)
             .padding(horizontal = MaterialTheme.padding.medium),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        MangaCover.Square(
+        MangaCover.Book(
             modifier = Modifier
-                .padding(vertical = 6.dp)
-                .fillMaxHeight(),
+                .padding(vertical = 8.dp)
+                .fillMaxHeight()
+                .clip(RoundedCornerShape(10.dp)),
             data = update.coverData,
             onClick = onClickCover,
         )
@@ -195,26 +268,35 @@ private fun UpdatesUiItem(
                 .padding(horizontal = MaterialTheme.padding.medium)
                 .weight(1f),
         ) {
-            Text(
-                text = update.mangaTitle,
-                maxLines = 1,
-                style = MaterialTheme.typography.bodyMedium,
-                color = LocalContentColor.current.copy(alpha = textAlpha),
-                overflow = TextOverflow.Ellipsis,
-            )
-
             Row(verticalAlignment = Alignment.CenterVertically) {
-                var textHeight by remember { mutableIntStateOf(0) }
                 if (!update.read) {
-                    Icon(
-                        imageVector = MaterialSymbols.RoundedFilled.Circle,
-                        contentDescription = stringResource(MR.strings.unread),
+                    Text(
+                        text = stringResource(MR.strings.kurotoon_updates_new_badge),
+                        style = MaterialTheme.typography.labelSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        maxLines = 1,
                         modifier = Modifier
-                            .height(8.dp)
-                            .padding(end = 4.dp),
-                        tint = MaterialTheme.colorScheme.primary,
+                            .padding(end = 6.dp)
+                            .clip(RoundedCornerShape(6.dp))
+                            .background(MaterialTheme.colorScheme.primary)
+                            .padding(horizontal = 5.dp, vertical = 1.dp),
                     )
                 }
+                Text(
+                    text = update.mangaTitle,
+                    maxLines = 1,
+                    style = MaterialTheme.typography.titleSmall,
+                    color = LocalContentColor.current.copy(alpha = textAlpha),
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
+
+            Row(
+                modifier = Modifier.padding(top = 2.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                var textHeight by remember { mutableIntStateOf(0) }
                 if (update.bookmark) {
                     Icon(
                         imageVector = MaterialSymbols.RoundedFilled.Bookmark,
@@ -229,7 +311,7 @@ private fun UpdatesUiItem(
                     text = update.chapterName,
                     maxLines = 1,
                     style = MaterialTheme.typography.bodySmall,
-                    color = LocalContentColor.current.copy(alpha = textAlpha),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = textAlpha),
                     overflow = TextOverflow.Ellipsis,
                     onTextLayout = { textHeight = it.size.height },
                     modifier = Modifier
@@ -285,4 +367,12 @@ private fun UpdatesUiItem(
             onClick = { onDownloadChapter?.invoke(it) },
         )
     }
+}
+
+@Composable
+private fun UpdatesDayHeader(
+    text: String,
+    modifier: Modifier = Modifier,
+) {
+    KuroSectionHeader(text = text, modifier = modifier.fillMaxWidth())
 }
