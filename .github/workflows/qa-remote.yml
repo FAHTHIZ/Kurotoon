@@ -47,4 +47,6 @@ jobs:
             adb shell settings put global transition_animation_scale 0.5
             adb shell settings put global animator_duration_scale 0.5
             adb install -r -g $(ls app/build/outputs/apk/debug/*x86_64*.apk | head -1)
+            adb shell pm disable-user --user 0 com.google.android.apps.nexuslauncher || true
+            (adb logcat -v time > /tmp/logcat.txt 2>&1 &)
             python3 .github/qa/remote.py
