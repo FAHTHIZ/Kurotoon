@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.library
 
+import android.content.Context
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.util.fastAny
 import androidx.compose.ui.util.fastFilter
@@ -45,6 +46,9 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 import kotlinx.coroutines.withContext
+import kurotoon.library.GroupableEntry
+import kurotoon.library.LibraryGroupBy
+import kurotoon.library.LibraryGrouping
 import kurotoon.library.LibraryTag
 import kurotoon.library.LibraryTags
 import kurotoon.prefs.KuroPreferences
@@ -52,6 +56,7 @@ import mihon.core.common.utils.mutate
 import mihon.core.metro.AppCoroutineScope
 import mihon.domain.library.model.search.QueryNode
 import mihon.feature.library.matches
+import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.core.common.preference.CheckboxState
 import tachiyomi.core.common.preference.TriState
 import tachiyomi.core.common.preference.getAndSet
@@ -77,6 +82,7 @@ import tachiyomi.domain.manga.model.applyFilter
 import tachiyomi.domain.source.service.SourceManager
 import tachiyomi.domain.track.interactor.GetTracksPerManga
 import tachiyomi.domain.track.model.Track
+import tachiyomi.i18n.MR
 import tachiyomi.source.local.isLocal
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.seconds
@@ -103,6 +109,7 @@ class LibraryViewModel(
     private val downloadCache: DownloadCache,
     private val trackerManager: TrackerManager,
     private val kuroPreferences: KuroPreferences,
+    private val application: Context,
 ) : ViewModel() {
 
     private val subscriberGate = SubscriberGate()
@@ -166,6 +173,27 @@ class LibraryViewModel(
         }
     }
 
+    val groupBy = kuroPreferences.libraryGroupBy.changes()
+        .map(LibraryGrouping::parse)
+        .stateIn(viewModelScope, SharingStarted.Eagerly, LibraryGrouping.parse(kuroPreferences.libraryGroupBy.get()))
+
+    fun setGroupBy(mode: LibraryGroupBy) {
+        kuroPreferences.libraryGroupBy.set(mode.name.lowercase())
+        activeCategoryIndex.value = 0
+    }
+
+    private fun statusLabel(status: Long): String = application.stringResource(
+        when (status.toInt()) {
+            SManga.ONGOING -> MR.strings.ongoing
+            SManga.COMPLETED -> MR.strings.completed
+            SManga.LICENSED -> MR.strings.licensed
+            SManga.PUBLISHING_FINISHED -> MR.strings.publishing_finished
+            SManga.CANCELLED -> MR.strings.cancelled
+            SManga.ON_HIATUS -> MR.strings.on_hiatus
+            else -> MR.strings.unknown
+        },
+    )
+
     fun toggleRevealHidden() {
         revealHidden.update { !it }
     }
@@ -174,13 +202,24 @@ class LibraryViewModel(
     // first query result
     private val library = combine(
         combine(searchQuery.debounce(0.25.seconds), selectedTags, ::Pair),
-        combine(getCategories.subscribe(), hiddenCategoryIds, revealHidden) { categories, hidden, reveal ->
-            if (reveal) categories else categories.filter { it.id !in hidden }
+        combine(getCategories.subscribe(), hiddenCategoryIds, revealHidden, groupBy) {
+                categories,
+                hidden,
+                reveal,
+                mode,
+            ->
+            (if (reveal) categories else categories.filter { it.id !in hidden }) to mode
         },
         getFavoritesFlow(),
         combine(tracks, getTrackingFiltersFlow(), ::Pair),
         getLibraryItemPreferencesFlow(),
-    ) { (searchQuery, selectedTags), categories, favorites, (tracksMap, trackingFilters), itemPreferences ->
+    ) {
+            (searchQuery, selectedTags),
+            (categories, groupMode),
+            favorites,
+            (tracksMap, trackingFilters),
+            itemPreferences,
+        ->
         val showSystemCategory = favorites.any { it.libraryManga.categories.contains(0) }
         val filtered = favorites.applyFilters(tracksMap, trackingFilters, itemPreferences)
         val tags = LibraryTags.top(filtered.map { it.libraryManga.manga.genre })
@@ -204,6 +243,7 @@ class LibraryViewModel(
             loggedInTrackerIds = trackingFilters.keys,
             tags = tags,
             selectedTags = selectedTags,
+            groupBy = groupMode,
         )
     }
         .distinctUntilChanged()
@@ -211,7 +251,7 @@ class LibraryViewModel(
             Library(
                 data = data,
                 groupedFavorites = data.favorites
-                    .applyGrouping(data.categories, data.showSystemCategory)
+                    .applyGrouping(data.categories, data.showSystemCategory, data.groupBy)
                     .applySort(data.favoritesById, data.tracksMap, data.loggedInTrackerIds),
             )
         }
@@ -323,7 +363,17 @@ class LibraryViewModel(
     private fun List<LibraryItem>.applyGrouping(
         categories: List<Category>,
         showSystemCategory: Boolean,
+        groupBy: LibraryGroupBy,
     ): Map<Category, List</* LibraryItem */ Long>> {
+        if (groupBy != LibraryGroupBy.CATEGORY) {
+            return LibraryGrouping.group(
+                entries = map { GroupableEntry(it.id, it.sourceName, it.libraryManga.manga.status) },
+                mode = groupBy,
+                sortFlags = libraryPreferences.sortingMode.get().flag,
+                allLabel = application.stringResource(MR.strings.all),
+                statusLabel = ::statusLabel,
+            )
+        }
         val groupCache = mutableMapOf</* Category */ Long, MutableList</* LibraryItem */ Long>>()
         forEach { item ->
             item.libraryManga.categories.forEach { categoryId ->
@@ -829,6 +879,7 @@ class LibraryViewModel(
         /** The library's most common genres, offered as chips. */
         val tags: List<LibraryTag> = emptyList(),
         val selectedTags: Set<String> = emptySet(),
+        val groupBy: LibraryGroupBy = LibraryGroupBy.CATEGORY,
     ) {
         val favoritesById by lazy { favorites.associateBy { it.id } }
     }

@@ -70,6 +70,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Long-press a cover in any Home source, saved-search or "Because you read" row to add it to your library, or remove it if it's already there.
 - Hidden categories: Library menu > Hide this category keeps a category's tab out of sight. Show hidden categories brings them back until the app restarts.
 - Chapter list inside the reader: tap the list button in the reader menu to jump to any chapter without leaving the reader.
+- Group library by: Library menu > Group library by switches the tabs from your categories to one tab per source, one per publishing status, or a single list.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.

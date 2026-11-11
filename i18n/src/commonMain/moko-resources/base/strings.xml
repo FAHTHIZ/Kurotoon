@@ -1312,4 +1312,9 @@
     <string name="kurotoon.category.showHidden">Show hidden categories</string>
     <string name="kurotoon.category.concealHidden">Hide hidden categories again</string>
     <string name="kurotoon.reader.chapterList">Chapters</string>
+    <string name="kurotoon.library.groupBy">Group library by</string>
+    <string name="kurotoon.library.groupBy.category">Your categories</string>
+    <string name="kurotoon.library.groupBy.source">Source</string>
+    <string name="kurotoon.library.groupBy.status">Publishing status</string>
+    <string name="kurotoon.library.groupBy.none">Nothing (one list)</string>
 </resources>

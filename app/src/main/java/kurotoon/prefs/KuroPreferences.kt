@@ -66,5 +66,8 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
     /** Ids of library categories kept out of sight until "Show hidden categories" is tapped. */
     val hiddenCategories = preferenceStore.getStringSet("kurotoon_hidden_categories", emptySet())
 
+    /** How the library splits into tabs, see [kurotoon.library.LibraryGroupBy]. */
+    val libraryGroupBy = preferenceStore.getString("kurotoon_library_group_by", "category")
+
     val updatesGroupSeries = preferenceStore.getBoolean("kurotoon_updates_group_series", true)
 }

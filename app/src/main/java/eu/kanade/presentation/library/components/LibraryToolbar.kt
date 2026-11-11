@@ -37,6 +37,7 @@ fun LibraryToolbar(
     onClickGlobalUpdate: () -> Unit,
     onClickOpenRandomManga: () -> Unit,
     onClickDuplicates: () -> Unit = {},
+    onClickGroupBy: () -> Unit = {},
     /** Null when there's no category on screen to hide. */
     onClickHideCategory: (() -> Unit)? = null,
     activeCategoryHidden: Boolean = false,
@@ -63,6 +64,7 @@ fun LibraryToolbar(
         onClickGlobalUpdate = onClickGlobalUpdate,
         onClickOpenRandomManga = onClickOpenRandomManga,
         onClickDuplicates = onClickDuplicates,
+        onClickGroupBy = onClickGroupBy,
         onClickHideCategory = onClickHideCategory,
         activeCategoryHidden = activeCategoryHidden,
         onClickRevealHidden = onClickRevealHidden,
@@ -82,6 +84,7 @@ private fun LibraryRegularToolbar(
     onClickGlobalUpdate: () -> Unit,
     onClickOpenRandomManga: () -> Unit,
     onClickDuplicates: () -> Unit = {},
+    onClickGroupBy: () -> Unit = {},
     onClickHideCategory: (() -> Unit)? = null,
     activeCategoryHidden: Boolean = false,
     onClickRevealHidden: (() -> Unit)? = null,
@@ -134,6 +137,10 @@ private fun LibraryRegularToolbar(
                     AppBar.OverflowAction(
                         title = stringResource(MR.strings.kurotoon_duplicates_title),
                         onClick = onClickDuplicates,
+                    ),
+                    AppBar.OverflowAction(
+                        title = stringResource(MR.strings.kurotoon_library_groupBy),
+                        onClick = onClickGroupBy,
                     ),
                 ) + listOfNotNull(
                     onClickHideCategory?.let {
