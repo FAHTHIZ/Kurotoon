@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -31,6 +32,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
@@ -266,6 +268,16 @@ data class BrowseSourceScreen(
                         onSelectClick = { selecting = true },
                         onDefaultCategoryClick = { pickingDefaultCategory = true },
                     )
+                    if (state.toolbarQuery?.isEmpty() == true) {
+                        val recent by remember(viewModel) { viewModel.recentSearches.changes() }
+                            .collectAsState(emptyList())
+                        kurotoon.ui.browse.RecentSearchRow(
+                            recent = recent,
+                            onSearch = viewModel::search,
+                            onClear = viewModel::clearRecentSearches,
+                            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 4.dp),
+                        )
+                    }
                     if (pickingDefaultCategory) {
                         kurotoon.ui.browse.SourceDefaultCategoryDialog(sourceId) { pickingDefaultCategory = false }
                     }
