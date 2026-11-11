@@ -116,6 +116,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kurotoon.manga.ChapterTitles
 import kurotoon.reader.AutoScrollDriver
 import kurotoon.reader.AutoScrollState
 import kurotoon.reader.ChapterCompleteHost
@@ -814,7 +815,7 @@ class ReaderActivity : BaseActivity() {
             visible = state.menuVisible,
 
             mangaTitle = state.manga?.title,
-            chapterTitle = state.currentChapter?.chapter?.name?.let { name ->
+            chapterTitle = state.currentChapter?.chapter?.name?.let(ChapterTitles::tidy)?.let { name ->
                 if (state.chaptersLeft > 0) {
                     pluralStringResource(
                         MR.plurals.kurotoon_reader_chaptersLeft,
