@@ -33,6 +33,7 @@ import kotlin.time.Clock
 @SingleIn(AppScope::class)
 class ImageSaver(
     val context: Context,
+    private val kuroPreferences: kurotoon.prefs.KuroPreferences,
 ) {
 
     fun save(image: Image): Uri {
@@ -41,11 +42,37 @@ class ImageSaver(
         val type = ImageUtil.findImageType(data) ?: throw IllegalArgumentException("Not an image")
         val filename = DiskUtil.buildValidFilename("${image.name}.${type.extension}")
 
+        val location = image.location
+        if (location is Location.Pictures) {
+            val folder = kurotoon.ui.reader.PageSaveFolder.resolve(context, kuroPreferences.pageSaveFolder.get())
+            if (folder != null) {
+                runCatching { return saveToFolder(folder, location.relativePath, filename, data) }
+                    .onFailure { logcat(LogPriority.WARN, it) { "Saving to the chosen folder failed, using Pictures" } }
+            }
+        }
+
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || image.location !is Location.Pictures) {
             return save(data(), image.location.directory(context), filename)
         }
 
         return saveApi29(image, type, filename, data)
+    }
+
+    private fun saveToFolder(
+        root: com.hippo.unifile.UniFile,
+        relativePath: String,
+        filename: String,
+        data: () -> InputStream,
+    ): Uri {
+        val dir = relativePath.split(File.separator).filter { it.isNotBlank() }.fold(root) { parent, name ->
+            parent.findFile(name)?.takeIf { it.isDirectory } ?: parent.createDirectory(name)
+                ?: throw IOException(context.stringResource(MR.strings.error_saving_picture))
+        }
+        val file = dir.findFile(filename) ?: dir.createFile(filename)
+            ?: throw IOException(context.stringResource(MR.strings.error_saving_picture))
+        data().use { input -> file.openOutputStream().use { output -> input.copyTo(output) } }
+        DiskUtil.scanMedia(context, file.uri)
+        return file.uri
     }
 
     private fun save(inputStream: InputStream, directory: File, filename: String): Uri {
