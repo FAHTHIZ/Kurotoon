@@ -69,6 +69,8 @@ fun UpdateScreen(
     onOpenChapter: (UpdatesItem) -> Unit,
     onFilterClicked: () -> Unit,
     hasActiveFilters: Boolean,
+    onClearUpdates: () -> Unit = {},
+    onRestoreCleared: (() -> Unit)? = null,
 ) {
     BackHandler(enabled = state.selectionMode) {
         onSelectAll(false)
@@ -84,6 +86,8 @@ fun UpdateScreen(
                 onUpdateLibrary = { scope.launch { onUpdateLibrary() } },
                 onFilterClicked = { onFilterClicked() },
                 hasFilters = hasActiveFilters,
+                onClearUpdates = onClearUpdates.takeIf { state.items.isNotEmpty() },
+                onRestoreCleared = onRestoreCleared,
                 actionModeCounter = state.selected.size,
                 onSelectAll = { onSelectAll(true) },
                 onInvertSelection = { onInvertSelection() },
@@ -172,6 +176,8 @@ private fun UpdatesAppBar(
     onUpdateLibrary: () -> Unit,
     onFilterClicked: () -> Unit,
     hasFilters: Boolean,
+    onClearUpdates: (() -> Unit)?,
+    onRestoreCleared: (() -> Unit)?,
     // For action mode
     actionModeCounter: Int,
     onSelectAll: () -> Unit,
@@ -207,7 +213,19 @@ private fun UpdatesAppBar(
                         icon = MaterialSymbols.Rounded.Refresh,
                         onClick = onUpdateLibrary,
                     ),
-                ),
+                    onClearUpdates?.let {
+                        AppBar.OverflowAction(
+                            title = stringResource(MR.strings.kurotoon_updates_clear),
+                            onClick = it,
+                        )
+                    },
+                    onRestoreCleared?.let {
+                        AppBar.OverflowAction(
+                            title = stringResource(MR.strings.kurotoon_updates_restore),
+                            onClick = it,
+                        )
+                    },
+                ).filterNotNull(),
             )
         },
         actionModeCounter = actionModeCounter,

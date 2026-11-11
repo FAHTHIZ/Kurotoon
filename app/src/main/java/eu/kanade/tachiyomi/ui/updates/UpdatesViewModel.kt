@@ -48,6 +48,7 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.minus
 import logcat.LogPriority
 import mihon.core.metro.AppCoroutineScope
+import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.core.common.preference.TriState
 import tachiyomi.core.common.util.lang.SubscriberGate
 import tachiyomi.core.common.util.lang.pausedWhileUnsubscribed
@@ -62,6 +63,7 @@ import tachiyomi.domain.source.service.SourceManager
 import tachiyomi.domain.updates.interactor.GetUpdates
 import tachiyomi.domain.updates.model.UpdatesWithRelations
 import tachiyomi.domain.updates.service.UpdatesPreferences
+import tachiyomi.i18n.MR
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.seconds
 
@@ -81,6 +83,7 @@ class UpdatesViewModel(
     private val getChapter: GetChapter,
     private val libraryPreferences: LibraryPreferences,
     private val updatesPreferences: UpdatesPreferences,
+    private val kuroPreferences: kurotoon.prefs.KuroPreferences,
 ) : ViewModel() {
 
     private val subscriberGate = SubscriberGate()
@@ -181,8 +184,10 @@ class UpdatesViewModel(
         getUpdatesItemPreferenceFlow().distinctUntilChanged { old, new ->
             old.filterDownloaded == new.filterDownloaded
         },
-    ) { updates, _, _, itemPreferences ->
+        kuroPreferences.updatesClearedAt.changes(),
+    ) { updates, _, _, itemPreferences, clearedAt ->
         updates
+            .filter { it.dateFetch.toEpochMilliseconds() > clearedAt }
             .toUpdateItems()
             .applyFilters(itemPreferences)
     }
@@ -256,6 +261,29 @@ class UpdatesViewModel(
                 )
             }
     }
+
+    /** Hides everything currently listed, with an Undo; new chapters still show up (mihon#1534). */
+    fun clearUpdates() {
+        val previous = kuroPreferences.updatesClearedAt.get()
+        kuroPreferences.updatesClearedAt.set(Clock.System.now().toEpochMilliseconds())
+        viewModelScope.launch {
+            val result = snackbarHostState.showSnackbar(
+                message = context.stringResource(MR.strings.kurotoon_updates_cleared),
+                actionLabel = context.stringResource(MR.strings.kurotoon_action_undo),
+                withDismissAction = true,
+                duration = androidx.compose.material3.SnackbarDuration.Long,
+            )
+            if (result == androidx.compose.material3.SnackbarResult.ActionPerformed) {
+                kuroPreferences.updatesClearedAt.set(previous)
+            }
+        }
+    }
+
+    fun restoreClearedUpdates() {
+        kuroPreferences.updatesClearedAt.set(0L)
+    }
+
+    val updatesClearedAt = kuroPreferences.updatesClearedAt
 
     suspend fun updateLibrary(): Boolean {
         val started = LibraryUpdateWorker.startNow(context.workManager)
