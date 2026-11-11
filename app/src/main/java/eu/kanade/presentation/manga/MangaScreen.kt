@@ -65,6 +65,7 @@ import eu.kanade.tachiyomi.ui.manga.MangaViewModel
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import kurotoon.catalogue.TagAction
 import kurotoon.ui.manga.JumpToChapterButton
+import kurotoon.ui.manga.MergedChaptersCard
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.roundedfilled.PlayArrow
 import tachiyomi.domain.chapter.model.Chapter
@@ -441,6 +442,14 @@ private fun MangaScreenSmallImpl(
                         )
                     }
 
+                    item(key = "merged-chapters") {
+                        MergedChaptersCard(
+                            manga = state.manga,
+                            chapters = remember(state.chapters) { state.chapters.map { it.chapter } },
+                            onOpenChapter = onChapterClicked,
+                        )
+                    }
+
                     item(
                         key = MangaScreenItem.CHAPTER_HEADER,
                         contentType = MangaScreenItem.CHAPTER_HEADER,
@@ -684,6 +693,14 @@ fun MangaScreenLargeImpl(
                                 bottom = contentPadding.calculateBottomPadding(),
                             ),
                         ) {
+                            item(key = "merged-chapters") {
+                                MergedChaptersCard(
+                                    manga = state.manga,
+                                    chapters = remember(state.chapters) { state.chapters.map { it.chapter } },
+                                    onOpenChapter = onChapterClicked,
+                                )
+                            }
+
                             item(
                                 key = MangaScreenItem.CHAPTER_HEADER,
                                 contentType = MangaScreenItem.CHAPTER_HEADER,

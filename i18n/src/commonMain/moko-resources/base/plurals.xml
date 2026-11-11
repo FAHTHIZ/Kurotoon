@@ -175,4 +175,8 @@
         <item quantity="one">Linking %1$d series to %2$s…</item>
         <item quantity="other">Linking %1$d series to %2$s…</item>
     </plurals>
+    <plurals name="kurotoon_merged_summary">
+        <item quantity="one">%1$d more chapter from your other copies · %2$d sources</item>
+        <item quantity="other">%1$d more chapters from your other copies · %2$d sources</item>
+    </plurals>
 </resources>
