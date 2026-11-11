@@ -1,14 +1,21 @@
 package kurotoon.ui.fx
 
 import android.app.ActivityManager
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.os.PowerManager
 import android.provider.Settings
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
@@ -27,6 +34,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
@@ -66,7 +74,9 @@ fun ParticleField(
     val density = LocalDensity.current.density
     val lowRam = remember { context.getSystemService<ActivityManager>()?.isLowRamDevice == true }
     val engine = remember(density, lowRam) { ParticleEngine(density, lowRam) }
-    val ambientOn by rememberUpdatedState(ambient)
+    // Battery Saver stops the drifting embers; one-shot sparks and confetti still play
+    val powerSave by rememberPowerSaveMode()
+    val ambientOn by rememberUpdatedState(ambient && !powerSave)
     val wake = remember { Channel<Unit>(Channel.CONFLATED) }
     var frame by remember { mutableLongStateOf(0L) }
     val frameTimeMs = { if (frame != 0L) frame / 1_000_000 else System.nanoTime() / 1_000_000 }
@@ -90,7 +100,7 @@ fun ParticleField(
             wake.trySend(Unit)
         }
     }
-    LaunchedEffect(ambient) { wake.trySend(Unit) }
+    LaunchedEffect(ambient, powerSave) { wake.trySend(Unit) }
     LaunchedEffect(engine) {
         while (true) {
             var last = 0L
@@ -133,6 +143,29 @@ private class Particle(
     val ambient: Boolean,
 ) {
     var life = 0f
+}
+
+/** Whether Battery Saver is on, kept current while the composable is on screen. */
+@Composable
+private fun rememberPowerSaveMode(): androidx.compose.runtime.State<Boolean> {
+    val context = LocalContext.current
+    val power = remember { context.getSystemService<PowerManager>() }
+    val state = remember { mutableStateOf(power?.isPowerSaveMode == true) }
+    DisposableEffect(power) {
+        val receiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
+                state.value = power?.isPowerSaveMode == true
+            }
+        }
+        ContextCompat.registerReceiver(
+            context,
+            receiver,
+            IntentFilter(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED),
+            ContextCompat.RECEIVER_NOT_EXPORTED,
+        )
+        onDispose { context.unregisterReceiver(receiver) }
+    }
+    return state
 }
 
 private class ParticleEngine(private val density: Float, lowRam: Boolean) {
