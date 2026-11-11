@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -46,6 +47,8 @@ fun InfoScreen(
     rejectText: String? = null,
     onRejectClick: (() -> Unit)? = null,
     rejectAction: (@Composable RowScope.() -> Unit)? = null,
+    // Replaces the icon when set, e.g. with a mascot and step dots
+    header: (@Composable () -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Scaffold(
@@ -108,17 +111,22 @@ fun InfoScreen(
                 .padding(top = 48.dp)
                 .padding(horizontal = MaterialTheme.padding.medium),
         ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                modifier = Modifier
-                    .padding(bottom = MaterialTheme.padding.small)
-                    .size(48.dp),
-                tint = MaterialTheme.colorScheme.primary,
-            )
+            if (header != null) {
+                header()
+            } else {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .padding(bottom = MaterialTheme.padding.small)
+                        .size(48.dp),
+                    tint = MaterialTheme.colorScheme.primary,
+                )
+            }
             Text(
                 text = headingText,
                 style = MaterialTheme.typography.headlineLarge,
+                fontWeight = if (header != null) FontWeight.Bold else null,
             )
             Text(
                 text = subtitleText,
