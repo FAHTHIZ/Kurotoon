@@ -1,0 +1,227 @@
+> start app.kurotoon.dev
+> sleep 4
+> tapx Browse
+  !! not found: Browse
+  [shot 001_notfound] visible: ['Navigate up', 'MangaDex', 'Reset', 'Pinned', 'All', 'Has results']
+> tapx Extensions
+  !! not found: Extensions
+  [shot 002_notfound] visible: ['Navigate up', 'MangaDex', 'Reset', 'Pinned', 'All', 'Has results']
+> sleep 4
+> tap Search
+  !! not found: Search
+  [shot 003_notfound] visible: ['Navigate up', 'MangaDex', 'Reset', 'Pinned', 'All', 'Has results']
+> type Webtoons
+> sleep 5
+> shot ext_webtoons
+  [shot 004_ext_webtoons] visible: ['Navigate up', 'MangaDexWebtoons', 'Reset', 'Pinned', 'All', 'Has results']
+> tapx Install
+  !! not found: Install
+  [shot 005_notfound] visible: ['Navigate up', 'MangaDexWebtoons', 'Reset', 'Pinned', 'All', 'Has results']
+> sleep 15
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> shot ext_webtoons_done
+  [shot 006_ext_webtoons_done] visible: ['Navigate up', 'MangaDexWebtoons', 'Reset', 'Pinned', 'All', 'Has results']
+> tapif Reset
+> tapif "Navigate up"
+> tap Search
+> type Asura
+> sleep 5
+> shot ext_asura
+  [shot 007_ext_asura] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> tapx Install
+  !! not found: Install
+  [shot 008_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> sleep 15
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> shot ext_asura_done
+  [shot 009_ext_asura_done] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> start app.kurotoon.dev
+> tapx Browse
+  !! not found: Browse
+  [shot 010_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> tapx Sources
+  !! not found: Sources
+  [shot 011_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> sleep 3
+> shot sources
+  [shot 012_sources] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> tap MangaDex
+  !! not found: MangaDex
+  [shot 013_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> sleep 12
+> shot mangadex_popular
+  [shot 014_mangadex_popular] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> tapx Latest
+  !! not found: Latest
+  [shot 015_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> sleep 10
+> shot mangadex_latest
+  [shot 016_mangadex_latest] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> tapxy 270 1000
+> sleep 12
+> shot mangadex_series
+  [shot 017_mangadex_series] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 018_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> sleep 3
+> shot mangadex_added
+  [shot 019_mangadex_added] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> tap Start
+  !! not found: Start
+  [shot 020_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> sleep 20
+> shot reader
+  [shot 021_reader] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> tapxy 540 1200
+> sleep 2
+> shot reader_menu
+  [shot 022_reader_menu] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> tap Chapters
+  !! not found: Chapters
+  [shot 023_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> sleep 3
+> shot reader_chapters
+  [shot 024_reader_chapters] visible: ['Navigate up', 'Asura', 'Reset', 'Pinned', 'All', 'Has results']
+> back
+> back
+> sleep 2
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Browse
+> tapx Sources
+  !! not found: Sources
+  [shot 025_notfound] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap Webtoons.com
+  !! not found: Webtoons.com
+  [shot 026_notfound] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 12
+> shot webtoons_popular
+  [shot 027_webtoons_popular] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapxy 270 1000
+> sleep 12
+> shot webtoons_series
+  [shot 028_webtoons_series] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 029_notfound] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 3
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Browse
+> tapx Sources
+  !! not found: Sources
+  [shot 030_notfound] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "Asura Scans"
+  !! not found: Asura Scans
+  [shot 031_notfound] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 15
+> shot asura_popular
+  [shot 032_asura_popular] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapxy 270 1000
+> sleep 12
+> shot asura_series
+  [shot 033_asura_series] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 034_notfound] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 3
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Library
+> sleep 3
+> shot library
+  [shot 035_library] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "More options"
+  !! not found: More options
+  [shot 036_notfound] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "Group library by"
+  !! not found: Group library by
+  [shot 037_notfound] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 2
+> shot group_by
+  [shot 038_group_by] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap Source
+> sleep 3
+> shot library_by_source
+  [shot 039_library_by_source] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Updates
+> sleep 3
+> shot updates
+  [shot 040_updates] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "Release schedule"
+  !! not found: Release schedule
+  [shot 041_notfound] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 3
+> shot schedule
+  [shot 042_schedule] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> back
+> tapx Home
+> sleep 8
+> shot home
+  [shot 043_home] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> scrollup
+> shot home_scrolled
+  [shot 044_home_scrolled] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> scrollup
+> shot home_scrolled2
+  [shot 045_home_scrolled2] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> tapx Me
+  !! not found: Me
+  [shot 046_notfound] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> sleep 2
+> shot me
+  [shot 047_me] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> tap "Kuro Points"
+  !! not found: Kuro Points
+  [shot 048_notfound] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> sleep 3
+> shot shop_missions
+  [shot 049_shop_missions] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> tapx Shop
+  !! not found: Shop
+  [shot 050_notfound] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> sleep 2
+> shot shop
+  [shot 051_shop] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> scrollup
+> shot shop_scrolled
+  [shot 052_shop_scrolled] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> tapx Achievements
+  !! not found: Achievements
+  [shot 053_notfound] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> sleep 2
+> shot achievements
+  [shot 054_achievements] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> tapx Collection
+  !! not found: Collection
+  [shot 055_notfound] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> sleep 2
+> shot collection
+  [shot 056_collection] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> tapx Packs
+  !! not found: Packs
+  [shot 057_notfound] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> sleep 2
+> shot packs
+  [shot 058_packs] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> back
+> tap Statistics
+  !! not found: Statistics
+  [shot 059_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> sleep 3
+> shot stats
+  [shot 060_stats] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
