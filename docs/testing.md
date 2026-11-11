@@ -13,10 +13,10 @@ step number and a screenshot.
 
 ## 1. First run
 
-- [ ] **1.1** Open the app. You should see Kuro, four step dots and a Next button.
+- [ ] **1.1** Open the app. You should see the KuroToon logo, step dots and a Next button.
 - [ ] **1.2** Pick a theme. The screen recolours straight away.
 - [ ] **1.3** Choose a storage folder. Next stays put until you do, and tapping it opens the folder picker.
-- [ ] **1.4** Grant or skip permissions, then Finish. You land on **Home**, which shows Kuro and a button to add sources.
+- [ ] **1.4** Grant or skip permissions, then Finish. You land on **Home**, which shows a welcome card and an Add sources button.
 
 ## 2. Get some sources
 
@@ -58,7 +58,7 @@ step number and a screenshot.
 
 - [ ] **6.1** Updates tab → pull to refresh. A status card shows the last check; new chapters get NEW badges.
 - [ ] **6.2** Open the release schedule from Updates. Series you follow sit on the days they usually update.
-- [ ] **6.3** Download a chapter from the series page. Downloads shows a summary card with Kuro and live progress,
+- [ ] **6.3** Download a chapter from the series page. Downloads shows a summary card with live progress,
   and each chapter's progress bar fills.
 - [ ] **6.4** Home → **Out today** lists series due today.
 
@@ -77,7 +77,7 @@ step number and a screenshot.
 - [ ] **8.1** Turn on airplane mode and open a downloaded chapter. It reads normally; music for downloaded episodes
   still plays.
 - [ ] **8.2** Rotate the phone during auto-scroll and with a sleep timer running. Both keep going.
-- [ ] **8.3** With no sources installed, Home, Library, Updates and History each show Kuro with one clear next step,
+- [ ] **8.3** With no sources installed, Home, Library, Updates and History each show a simple icon with one clear next step,
   never a blank screen.
 
 ## Telling us how it went
