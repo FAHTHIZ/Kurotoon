@@ -230,20 +230,20 @@ class MangaViewModel(
         libraryPreferences.resumeFromLastOpened.changes(),
     ) { (manga, chapters), _, _, resumeFromLastOpened ->
         val source = sourceManager.getOrStub(manga.source)
+        val latest = runCatching { getHistory.await(mangaId) }.getOrNull()
+            ?.filter { it.readAt != null }
+            ?.maxByOrNull { it.readAt!! }
+            ?.chapterId
+        // A re-read in progress resumes at its page even when "resume last opened" is off (mihon#698)
+        val rereading = latest != null && kuroPreferences.isRereading(latest)
         MangaAndChapters(
             manga = manga,
             source = source,
             sourceName = source.getNameForMangaInfo(sourcePreferences),
             chapters = chapters.toChapterListItems(manga),
             // Chapters re-emit when reading progress changes, so this follows the reader
-            lastOpenedChapterId = if (resumeFromLastOpened) {
-                runCatching { getHistory.await(mangaId) }.getOrNull()
-                    ?.filter { it.readAt != null }
-                    ?.maxByOrNull { it.readAt!! }
-                    ?.chapterId
-            } else {
-                null
-            },
+            lastOpenedChapterId = latest.takeIf { resumeFromLastOpened || rereading },
+            lastOpenedIsRereading = rereading,
         )
     }
 
@@ -305,6 +305,7 @@ class MangaViewModel(
             hideMissingChapters = hideMissingChapters,
             downloadedOnly = downloadedOnly,
             lastOpenedChapterId = mangaAndChapters.lastOpenedChapterId,
+            lastOpenedIsRereading = mangaAndChapters.lastOpenedIsRereading,
         )
     }
         // Composition would otherwise build these on first read, on the main thread, for every new state
@@ -1154,6 +1155,7 @@ class MangaViewModel(
         val sourceName: String,
         val chapters: List<ChapterList.Item>,
         val lastOpenedChapterId: Long?,
+        val lastOpenedIsRereading: Boolean = false,
     )
 
     sealed interface State {
@@ -1177,6 +1179,7 @@ class MangaViewModel(
             val downloadedOnly: Boolean = false,
             /** Set when Resume should pick up from the last chapter opened. */
             val lastOpenedChapterId: Long? = null,
+            val lastOpenedIsRereading: Boolean = false,
         ) : State {
             val processedChapters by lazy {
                 chapters.applyFilters(manga).toList()
@@ -1208,7 +1211,13 @@ class MangaViewModel(
                 if (index < 0) return@lazy firstUnread
                 val opened = ordered[index]
                 // A chapter only peeked at resumes; a finished one moves on to the next unread after it
-                if (!opened.read) opened else ordered.drop(index + 1).firstOrNull { !it.read } ?: firstUnread
+                if (!opened.read ||
+                    lastOpenedIsRereading
+                ) {
+                    opened
+                } else {
+                    ordered.drop(index + 1).firstOrNull { !it.read } ?: firstUnread
+                }
             }
 
             // Counted over every chapter, so ones hidden by a filter aren't reported as missing (mihon#87)

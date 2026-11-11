@@ -340,7 +340,7 @@ private fun MangaScreenSmallImpl(
         },
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         floatingActionButton = {
-            val isFABVisible = state.hasUnreadChapters && !isAnySelected
+            val isFABVisible = (state.hasUnreadChapters || state.lastOpenedIsRereading) && !isAnySelected
             Column(
                 horizontalAlignment = Alignment.End,
                 verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -588,7 +588,7 @@ fun MangaScreenLargeImpl(
         },
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         floatingActionButton = {
-            val isFABVisible = state.hasUnreadChapters && !isAnySelected
+            val isFABVisible = (state.hasUnreadChapters || state.lastOpenedIsRereading) && !isAnySelected
             Column(
                 horizontalAlignment = Alignment.End,
                 verticalArrangement = Arrangement.spacedBy(12.dp),
