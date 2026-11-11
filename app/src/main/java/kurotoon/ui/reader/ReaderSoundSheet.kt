@@ -6,6 +6,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -32,7 +33,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.StringResource
 import eu.kanade.presentation.components.AdaptiveSheet
@@ -316,44 +319,62 @@ fun ReaderSoundBadge(
     modifier: Modifier = Modifier,
     buffering: Boolean = false,
     interrupted: Boolean = false,
+    onLongClick: (() -> Unit)? = null,
 ) {
+    val haptic = androidx.compose.ui.platform.LocalHapticFeedback.current
     AnimatedVisibility(
         visible = visible,
         enter = fadeIn() + scaleIn(initialScale = 0.8f),
         exit = fadeOut() + scaleOut(targetScale = 0.8f),
         modifier = modifier,
     ) {
-        Surface(
-            shape = CircleShape,
-            color = Color.Black.copy(alpha = 0.55f),
-            contentColor = Color.White,
+        // 48 dp to touch, 40 dp to see
+        androidx.compose.foundation.layout.Box(
+            contentAlignment = Alignment.Center,
             modifier = Modifier
-                .size(40.dp)
-                .clickable(onClick = onClick),
+                .size(48.dp)
+                .clip(CircleShape)
+                .combinedClickable(
+                    onClick = onClick,
+                    onLongClick = onLongClick?.let {
+                        {
+                            haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                            it()
+                        }
+                    },
+                    onLongClickLabel = onLongClick?.let { stringResource(MR.strings.kurotoon_sound_openSettings) },
+                ),
         ) {
-            androidx.compose.foundation.layout.Box(contentAlignment = Alignment.Center) {
-                if (buffering && !muted && !interrupted) {
-                    CircularProgressIndicator(
-                        modifier = Modifier.size(36.dp),
-                        strokeWidth = 2.dp,
-                        color = Color.White.copy(alpha = 0.8f),
+            Surface(
+                shape = CircleShape,
+                color = Color.Black.copy(alpha = 0.55f),
+                contentColor = Color.White,
+                modifier = Modifier.size(40.dp),
+            ) {
+                androidx.compose.foundation.layout.Box(contentAlignment = Alignment.Center) {
+                    if (buffering && !muted && !interrupted) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(36.dp),
+                            strokeWidth = 2.dp,
+                            color = Color.White.copy(alpha = 0.8f),
+                        )
+                    }
+                    Icon(
+                        imageVector = when {
+                            interrupted -> MaterialSymbols.Rounded.PlayArrow
+                            muted -> MaterialSymbols.Rounded.VolumeOff
+                            else -> MaterialSymbols.Rounded.MusicNote
+                        },
+                        contentDescription = stringResource(
+                            when {
+                                interrupted -> MR.strings.kurotoon_sound_resume
+                                muted -> MR.strings.kurotoon_sound_unmute
+                                else -> MR.strings.kurotoon_sound_mute
+                            },
+                        ),
+                        modifier = Modifier.padding(9.dp),
                     )
                 }
-                Icon(
-                    imageVector = when {
-                        interrupted -> MaterialSymbols.Rounded.PlayArrow
-                        muted -> MaterialSymbols.Rounded.VolumeOff
-                        else -> MaterialSymbols.Rounded.MusicNote
-                    },
-                    contentDescription = stringResource(
-                        when {
-                            interrupted -> MR.strings.kurotoon_sound_resume
-                            muted -> MR.strings.kurotoon_sound_unmute
-                            else -> MR.strings.kurotoon_sound_mute
-                        },
-                    ),
-                    modifier = Modifier.padding(9.dp),
-                )
             }
         }
     }

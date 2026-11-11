@@ -378,10 +378,11 @@ class ReaderActivity : BaseActivity() {
                     buffering = soundtrack.buffering,
                     interrupted = soundtrack.interruption != null,
                     onClick = soundtrack::toggleMute,
+                    onLongClick = viewModel::openSoundDialog,
                     modifier = Modifier
                         .align(Alignment.TopEnd)
                         .statusBarsPadding()
-                        .padding(12.dp),
+                        .padding(8.dp),
                 )
 
                 AppBars(state = state)
