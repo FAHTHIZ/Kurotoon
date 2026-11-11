@@ -568,6 +568,7 @@ class ReaderActivity : BaseActivity() {
     }
 
     private var silentChecked = false
+    private var mediaVolumeHinted = false
 
     /**
      * Media audio plays even with the ringer off, so a reader opened on a silent phone starts muted
@@ -845,6 +846,16 @@ class ReaderActivity : BaseActivity() {
         val mixWithOthers by readerPreferences.soundMixWithOthers.collectAsState()
         LaunchedEffect(mixWithOthers) { soundtrack.setMixWithOthers(mixWithOthers) }
         LaunchedEffect(episodeMusic) { soundtrack.enableMusic(episodeMusic) }
+        // Music "not working" is usually the media volume sitting at zero; say so once per visit
+        val hearingMusic = soundtrack.playing != null && !soundtrack.muted
+        LaunchedEffect(hearingMusic) {
+            if (!hearingMusic || mediaVolumeHinted) return@LaunchedEffect
+            val audio = getSystemService(android.media.AudioManager::class.java) ?: return@LaunchedEffect
+            if (audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC) == 0) {
+                mediaVolumeHinted = true
+                toast(MR.strings.kurotoon_sound_mediaVolumeOff)
+            }
+        }
         LaunchedEffect(chapter?.chapter?.id, chapter?.pages?.size, episodeMusic) {
             if (chapter?.pages == null) return@LaunchedEffect
             soundtrack.loadChapter(

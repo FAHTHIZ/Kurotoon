@@ -12,6 +12,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- A one-time hint when episode music starts but your media volume is at zero
 - The reader opens muted when your phone is on silent or vibrate (turn off in the sound sheet)
 - README redesign: a new hero, a twelve-screen tour and a five-app comparison, all from real screenshots of the current build with Webtoons.com, MangaDex and Asura Scans installed
 - A jump button on long chapter lists scrolls straight to the chapter you're up to
