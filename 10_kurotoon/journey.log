@@ -1,0 +1,121 @@
+> start app.kurotoon.dev
+> sleep 6
+> shot welcome
+  [shot 001_welcome] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapuntil Next "Select a folder"
+  !! never reached Select a folder
+> shot storage
+  [shot 002_storage] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapuntil "Select a folder" "Use this folder" 4
+  !! never reached Use this folder
+> shot picker
+  [shot 003_picker] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tap "More options" 20
+  !! not found: More options
+  [shot 004_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tap "New folder"
+  !! not found: New folder
+  [shot 005_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> shot newfolder
+  [shot 006_newfolder] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> type Kurotoon
+> tapx OK
+  !! not found: OK
+  [shot 007_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> sleep 3
+> tap "Use this folder" 15
+  !! not found: Use this folder
+  [shot 008_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> sleep 2
+> shot picker_allow
+  [shot 009_picker_allow] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tap Allow
+  !! not found: Allow
+  [shot 010_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> sleep 3
+> shot storage_done
+  [shot 011_storage_done] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapuntil Next "Get started" 6
+  !! never reached Get started
+> shot guides
+  [shot 012_guides] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapuntil "Get started" Library 4
+  !! never reached Library
+> sleep 4
+> shot home_empty
+  [shot 013_home_empty] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx Browse
+  !! not found: Browse
+  [shot 014_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> sleep 2
+> shot browse_empty
+  [shot 015_browse_empty] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx Library
+  !! not found: Library
+  [shot 016_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> shot library_empty
+  [shot 017_library_empty] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx Updates
+  !! not found: Updates
+  [shot 018_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> shot updates_empty
+  [shot 019_updates_empty] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx Me
+  !! not found: Me
+  [shot 020_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> shot me_new
+  [shot 021_me_new] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx Home
+  !! not found: Home
+  [shot 022_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> view "tachiyomi://add-repo?url=https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
+> sleep 4
+> shot addrepo_dialog
+  [shot 023_addrepo_dialog] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> tapx Add
+> sleep 5
+> shot store_added
+  [shot 024_store_added] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh']
+> start app.kurotoon.dev
+> sleep 3
+> tapx Home
+  !! not found: Home
+  [shot 025_notfound] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh']
+> tap "Add sources"
+  !! not found: Add sources
+  [shot 026_notfound] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh']
+> sleep 8
+> shot extensions
+  [shot 027_extensions] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh']
+> tap "Tap here to grant"
+  !! not found: Tap here to grant
+  [shot 028_notfound] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh']
+> sleep 3
+> shot grant_settings
+  [shot 029_grant_settings] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh']
+> tap "Allow from this source"
+  !! not found: Allow from this source
+  [shot 030_notfound] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh']
+> sleep 2
+> shot grant_on
+  [shot 031_grant_on] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh']
+> back
+> sleep 2
+> shot extensions_granted
+  [shot 032_extensions_granted] visible: ['😸', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'History', 'Downloads', 'Extensions', 'Statistics', 'Continue reading', '😺', 'Chapters you start reading will show up here.', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap Search
+> type MangaDex
+> sleep 4
+> shot ext_search
+  [shot 033_ext_search] visible: ['Navigate up', 'MangaDex', 'Reset', 'Pinned', 'All', 'Has results']
+> tapx Install
+  !! not found: Install
+  [shot 034_notfound] visible: ['Navigate up', 'MangaDex', 'Reset', 'Pinned', 'All', 'Has results']
+> sleep 15
+> shot install_prompt
+  [shot 035_install_prompt] visible: ['Navigate up', 'MangaDex', 'Reset', 'Pinned', 'All', 'Has results']
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> shot installed
+  [shot 036_installed] visible: ['Navigate up', 'MangaDex', 'Reset', 'Pinned', 'All', 'Has results']
