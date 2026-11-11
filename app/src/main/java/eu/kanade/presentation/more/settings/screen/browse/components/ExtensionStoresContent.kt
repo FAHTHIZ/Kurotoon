@@ -37,6 +37,8 @@ fun ExtensionStoresContent(
     onOpenDiscord: (ExtensionStore) -> Unit,
     onClickDelete: (ExtensionStore) -> Unit,
     modifier: Modifier = Modifier,
+    disabledStores: Set<String> = emptySet(),
+    onToggleEnabled: (ExtensionStore) -> Unit = {},
 ) {
     LazyColumn(
         state = lazyListState,
@@ -53,6 +55,8 @@ fun ExtensionStoresContent(
                     onOpenDiscord = { onOpenDiscord(it) },
                     onCopy = { onCopy(it) },
                     onDelete = { onClickDelete(it) },
+                    enabled = it.indexUrl !in disabledStores,
+                    onToggleEnabled = { onToggleEnabled(it) },
                 )
             }
         }
@@ -67,6 +71,8 @@ private fun ExtensionStoresListItem(
     onCopy: () -> Unit,
     onDelete: () -> Unit,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    onToggleEnabled: () -> Unit = {},
 ) {
     ElevatedCard(
         modifier = modifier,
@@ -84,8 +90,13 @@ private fun ExtensionStoresListItem(
             Icon(imageVector = MaterialSymbols.AutoMirroredRounded.Label, contentDescription = null)
             Text(
                 text = store.name,
-                modifier = Modifier.padding(start = MaterialTheme.padding.medium),
                 style = MaterialTheme.typography.titleMedium,
+                color = if (enabled) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(start = MaterialTheme.padding.medium).weight(1f),
+            )
+            androidx.compose.material3.Switch(
+                checked = enabled,
+                onCheckedChange = { onToggleEnabled() },
             )
         }
 

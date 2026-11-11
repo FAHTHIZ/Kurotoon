@@ -65,6 +65,7 @@ class ExtensionManager(
     private val installer: ExtensionInstaller,
     private val extensionUpdateNotifier: ExtensionUpdateNotifier,
     private val rewardsStore: RewardsStore,
+    private val kuroPreferences: kurotoon.prefs.KuroPreferences,
 ) {
 
     private val initialized = CompletableDeferred<Unit>()
@@ -116,6 +117,12 @@ class ExtensionManager(
         scope.launch(Dispatchers.IO) {
             initialized.await()
             extensionStoreRepository.getAllAsFlow().collect(::assignStores)
+        }
+        // Switching a repo off or on in settings refreshes the listing right away
+        scope.launch(Dispatchers.IO) {
+            kuroPreferences.disabledExtensionStores.changes()
+                .drop(1)
+                .collect { findAvailableExtensions() }
         }
     }
 
@@ -225,7 +232,8 @@ class ExtensionManager(
     }
 
     private suspend fun fetchExtensions(): List<Extension.Available> {
-        return extensionStoreRepository.fetchExtensions()
+        val disabled = kuroPreferences.disabledExtensionStores.get()
+        return extensionStoreRepository.fetchExtensions().filter { it.store.indexUrl !in disabled }
     }
 
     private fun setAvailableExtensions(extensions: List<Extension.Available>) {
