@@ -265,6 +265,7 @@ dependencies {
 
     // Networking
     implementation(libs.bundles.okhttp)
+    implementation(libs.bundles.media3) // Episode music (HLS) with retries and an offline cache
     implementation(libs.okio)
     implementation(libs.conscrypt) // TLS 1.3 support for Android < 10
 
