@@ -58,7 +58,7 @@ fun ReaderPageActionsDialog(
             )
             ActionButton(
                 modifier = Modifier.weight(1f),
-                title = stringResource(MR.strings.action_copy_to_clipboard),
+                title = stringResource(MR.strings.kurotoon_panels_copy),
                 icon = MaterialSymbols.Rounded.ContentCopy,
                 onClick = {
                     onShare(true)
