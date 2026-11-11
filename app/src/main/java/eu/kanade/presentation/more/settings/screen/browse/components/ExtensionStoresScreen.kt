@@ -7,19 +7,23 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import eu.kanade.presentation.category.components.CategoryFloatingActionButton
 import eu.kanade.presentation.components.AppBar
 import eu.kanade.presentation.more.settings.screen.browse.ExtensionStoreScreenState
+import mihon.app.di.appGraph
 import mihon.domain.extension.model.ExtensionStore
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Refresh
+import tachiyomi.core.common.preference.getAndSet
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.components.material.topSmallPaddingValues
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.screens.EmptyScreen
+import tachiyomi.presentation.core.util.collectAsState
 import tachiyomi.presentation.core.util.plus
 
 @Composable
@@ -33,6 +37,9 @@ fun ExtensionStoresScreen(
     onClickRefresh: () -> Unit,
     navigateUp: () -> Unit,
 ) {
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val disabledPref = androidx.compose.runtime.remember { context.appGraph.kuroPreferences.disabledExtensionStores }
+    val disabledStores by disabledPref.collectAsState()
     val lazyListState = rememberLazyListState()
     Scaffold(
         topBar = { scrollBehavior ->
@@ -74,6 +81,12 @@ fun ExtensionStoresScreen(
             onOpenWebsite = onOpenWebsite,
             onOpenDiscord = onOpenDiscord,
             onClickDelete = onClickDelete,
+            disabledStores = disabledStores,
+            onToggleEnabled = { store ->
+                disabledPref.getAndSet { urls ->
+                    if (store.indexUrl in urls) urls - store.indexUrl else urls + store.indexUrl
+                }
+            },
         )
     }
 }

@@ -72,5 +72,8 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
     /** Shows the source's name on library covers. */
     val sourceBadge = preferenceStore.getBoolean("kurotoon_source_badge", false)
 
+    /** Index urls of extension repos switched off: their extensions aren't listed until switched back on. */
+    val disabledExtensionStores = preferenceStore.getStringSet("kurotoon_disabled_extension_stores", emptySet())
+
     val updatesGroupSeries = preferenceStore.getBoolean("kurotoon_updates_group_series", true)
 }
