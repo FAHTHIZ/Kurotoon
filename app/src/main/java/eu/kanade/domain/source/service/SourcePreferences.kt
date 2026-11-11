@@ -45,7 +45,7 @@ class SourcePreferences(
 
     val enabledContentWarnings: Preference<Set<ContentWarning>> = preferenceStore.getEnumSet(
         "enabled_content_warnings",
-        setOf(ContentWarning.SAFE, ContentWarning.MIXED, ContentWarning.NSFW),
+        setOf(ContentWarning.SAFE, ContentWarning.MIXED),
     )
 
     val applyContentWarningsToInstalled: Preference<Boolean> = preferenceStore.getBoolean(
