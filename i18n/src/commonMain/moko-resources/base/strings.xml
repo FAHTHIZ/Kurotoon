@@ -1213,6 +1213,9 @@
     <string name="kurotoon_reader_clockBatterySummary">Show the clock and battery level next to the page number, since the reader hides the status bar</string>
     <string name="kurotoon_reader_resumedAt">Picked up on page %d</string>
     <string name="kurotoon_reader_startOver">Start over</string>
+    <string name="kurotoon_settings_navTabs">Navigation bar tabs</string>
+    <string name="kurotoon_settings_startTab">Open app on</string>
+    <string name="kurotoon_settings_startTabSummary">%s · takes effect next launch; hidden tabs fall back to Home</string>
     <string name="kurotoon_reader_bookmarkFollows">Bookmark follows your progress</string>
     <string name="kurotoon_reader_bookmarkFollowsSummary">Finishing a chapter moves the series\' bookmark onto it. Bookmarks with a note stay put</string>
     <string name="kurotoon_tracker_signedOut_title">%s needs you to sign in again</string>

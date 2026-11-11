@@ -57,6 +57,12 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
     /** Keep a single bookmark per series on the furthest chapter finished (mihon#2386). */
     val bookmarkFollowsProgress = preferenceStore.getBoolean("kurotoon_bookmark_follows_progress", false)
 
+    /** Optional bottom-bar tabs that are shown; Home and More are always there (mihon#2678). */
+    val navTabs = preferenceStore.getStringSet("kurotoon_nav_tabs", setOf("browse", "library", "updates"))
+
+    /** Tab the app opens on (mihon#2678). */
+    val startTab = preferenceStore.getString("kurotoon_start_tab", "home")
+
     /** Per-source default library category as "sourceId=categoryId" (mihon#336). */
     val sourceDefaultCategories = preferenceStore.getStringSet("kurotoon_source_default_categories", emptySet())
 
