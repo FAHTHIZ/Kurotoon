@@ -33,6 +33,7 @@ fun LibraryQuickFilters(modifier: Modifier = Modifier) {
         MR.strings.kurotoon_library_quick_downloaded to prefs.filterDownloaded,
         MR.strings.kurotoon_library_quick_bookmarked to prefs.filterBookmarked,
         MR.strings.kurotoon_library_quick_completed to prefs.filterCompleted,
+        MR.strings.kurotoon_library_quick_oneShot to prefs.filterOneShot,
     )
     LazyRow(
         modifier = modifier,

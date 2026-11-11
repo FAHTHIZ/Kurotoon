@@ -116,6 +116,12 @@ private fun ColumnScope.FilterPage(
         state = filterCompleted,
         onClick = { viewModel.toggleFilter(LibraryPreferences::filterCompleted) },
     )
+    val filterOneShot by viewModel.libraryPreferences.filterOneShot.collectAsState()
+    TriStateItem(
+        label = stringResource(MR.strings.kurotoon_library_quick_oneShot),
+        state = filterOneShot,
+        onClick = { viewModel.toggleFilter(LibraryPreferences::filterOneShot) },
+    )
     // TODO: re-enable when custom intervals are ready for stable
     if ((!isReleaseBuildType) && LibraryPreferences.MANGA_OUTSIDE_RELEASE_PERIOD in autoUpdateMangaRestrictions) {
         val filterIntervalCustom by viewModel.libraryPreferences.filterIntervalCustom.collectAsState()

@@ -134,7 +134,11 @@ fun MangaInfoBox(
     onCoverClick: () -> Unit,
     doSearch: (query: String, global: Boolean) -> Unit,
     modifier: Modifier = Modifier,
+    chapterCount: Long = 0,
 ) {
+    val oneShot = remember(manga.genre, manga.status, chapterCount) {
+        kurotoon.library.OneShot.matches(manga.genre, manga.status, chapterCount)
+    }
     Box(modifier = modifier) {
         // Backdrop
         val backdropGradientColors = listOf(
@@ -166,6 +170,7 @@ fun MangaInfoBox(
                 MangaAndSourceTitlesSmall(
                     appBarPadding = appBarPadding,
                     manga = manga,
+                    oneShot = oneShot,
                     source = source,
                     sourceName = sourceName,
                     isStubSource = isStubSource,
@@ -176,6 +181,7 @@ fun MangaInfoBox(
                 MangaAndSourceTitlesLarge(
                     appBarPadding = appBarPadding,
                     manga = manga,
+                    oneShot = oneShot,
                     source = source,
                     sourceName = sourceName,
                     isStubSource = isStubSource,
@@ -405,6 +411,7 @@ fun ExpandableMangaDescription(
 private fun MangaAndSourceTitlesLarge(
     appBarPadding: Dp,
     manga: Manga,
+    oneShot: Boolean,
     source: Source,
     sourceName: String,
     isStubSource: Boolean,
@@ -432,6 +439,7 @@ private fun MangaAndSourceTitlesLarge(
             author = manga.author,
             artist = manga.artist,
             status = manga.status,
+            oneShot = oneShot,
             source = source,
             sourceName = sourceName,
             isStubSource = isStubSource,
@@ -445,6 +453,7 @@ private fun MangaAndSourceTitlesLarge(
 private fun MangaAndSourceTitlesSmall(
     appBarPadding: Dp,
     manga: Manga,
+    oneShot: Boolean,
     source: Source,
     sourceName: String,
     isStubSource: Boolean,
@@ -477,6 +486,7 @@ private fun MangaAndSourceTitlesSmall(
                 author = manga.author,
                 artist = manga.artist,
                 status = manga.status,
+                oneShot = oneShot,
                 source = source,
                 sourceName = sourceName,
                 isStubSource = isStubSource,
@@ -497,6 +507,7 @@ private fun ColumnScope.MangaContentInfo(
     isStubSource: Boolean,
     doSearch: (query: String, global: Boolean) -> Unit,
     textAlign: TextAlign? = LocalTextStyle.current.textAlign,
+    oneShot: Boolean = false,
 ) {
     val context = LocalContext.current
     Text(
@@ -595,14 +606,9 @@ private fun ColumnScope.MangaContentInfo(
         )
         ProvideTextStyle(MaterialTheme.typography.bodyMedium) {
             Text(
-                text = when (status) {
-                    SManga.ONGOING.toLong() -> stringResource(MR.strings.ongoing)
-                    SManga.COMPLETED.toLong() -> stringResource(MR.strings.completed)
-                    SManga.LICENSED.toLong() -> stringResource(MR.strings.licensed)
-                    SManga.PUBLISHING_FINISHED.toLong() -> stringResource(MR.strings.publishing_finished)
-                    SManga.CANCELLED.toLong() -> stringResource(MR.strings.cancelled)
-                    SManga.ON_HIATUS.toLong() -> stringResource(MR.strings.on_hiatus)
-                    else -> stringResource(MR.strings.unknown)
+                text = when {
+                    oneShot -> stringResource(MR.strings.kurotoon_series_oneShot)
+                    else -> statusText(status)
                 },
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1,
@@ -628,6 +634,17 @@ private fun ColumnScope.MangaContentInfo(
             )
         }
     }
+}
+
+@Composable
+private fun statusText(status: Long): String = when (status) {
+    SManga.ONGOING.toLong() -> stringResource(MR.strings.ongoing)
+    SManga.COMPLETED.toLong() -> stringResource(MR.strings.completed)
+    SManga.LICENSED.toLong() -> stringResource(MR.strings.licensed)
+    SManga.PUBLISHING_FINISHED.toLong() -> stringResource(MR.strings.publishing_finished)
+    SManga.CANCELLED.toLong() -> stringResource(MR.strings.cancelled)
+    SManga.ON_HIATUS.toLong() -> stringResource(MR.strings.on_hiatus)
+    else -> stringResource(MR.strings.unknown)
 }
 
 private fun Source.query(): String = """src:"$name" lang:$lang""".takeIf { name.isNotBlank() } ?: "srcid:$id"
