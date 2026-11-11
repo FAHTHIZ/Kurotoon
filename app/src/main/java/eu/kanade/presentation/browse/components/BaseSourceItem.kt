@@ -2,16 +2,20 @@ package eu.kanade.presentation.browse.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import eu.kanade.tachiyomi.util.system.LocaleHelper
+import kurotoon.ui.kuroCard
 import tachiyomi.domain.source.model.Source
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.util.secondaryItemAlpha
@@ -30,8 +34,13 @@ fun BaseSourceItem(
     val sourceLangString = LocaleHelper.getSourceDisplayName(source.lang, LocalContext.current).takeIf {
         showLanguageInContent
     }
+    val shape = RoundedCornerShape(18.dp)
     BaseBrowseItem(
-        modifier = modifier,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = MaterialTheme.padding.medium, vertical = 4.dp)
+            .clip(shape)
+            .kuroCard(shape),
         onClickItem = onClickItem,
         onLongClickItem = onLongClickItem,
         icon = { icon.invoke(this, source) },
@@ -41,7 +50,12 @@ fun BaseSourceItem(
 }
 
 private val defaultIcon: @Composable RowScope.(Source) -> Unit = { source ->
-    SourceIcon(source = source, modifier = Modifier.size(48.dp))
+    SourceIcon(
+        source = source,
+        modifier = Modifier
+            .size(44.dp)
+            .clip(RoundedCornerShape(12.dp)),
+    )
 }
 
 private val defaultContent: @Composable RowScope.(Source, String?) -> Unit = { source, sourceLangString ->
@@ -54,7 +68,7 @@ private val defaultContent: @Composable RowScope.(Source, String?) -> Unit = { s
             text = source.name,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.titleSmall,
         )
         if (sourceLangString != null) {
             Text(
