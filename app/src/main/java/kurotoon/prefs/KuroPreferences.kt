@@ -33,6 +33,21 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
     /** Manga ids kept out of Browse and Search results (mihon#2322). */
     val hiddenSeries = preferenceStore.getStringSet("kurotoon_hidden_series", emptySet())
 
+    /** Per-series paged scale type and zoom start as "mangaId=scale,zoom" (mihon#1622). */
+    val seriesPagedScale = preferenceStore.getStringSet("kurotoon_series_paged_scale", emptySet())
+
+    /** The series' own (scale type, zoom start), or null when it follows the global setting. */
+    fun pagedScaleFor(mangaId: Long): Pair<Int, Int>? = seriesPagedScale.get().firstNotNullOfOrNull { entry ->
+        if (entry.substringBefore('=') != mangaId.toString()) return@firstNotNullOfOrNull null
+        val parts = entry.substringAfter('=').split(',').mapNotNull { it.toIntOrNull() }
+        parts.takeIf { it.size == 2 }?.let { it[0] to it[1] }
+    }
+
+    fun setPagedScaleFor(mangaId: Long, scale: Pair<Int, Int>?) {
+        val rest = seriesPagedScale.get().filterNot { it.substringBefore('=') == mangaId.toString() }.toSet()
+        seriesPagedScale.set(if (scale == null) rest else rest + "$mangaId=${scale.first},${scale.second}")
+    }
+
     /** Per-source default library category as "sourceId=categoryId" (mihon#336). */
     val sourceDefaultCategories = preferenceStore.getStringSet("kurotoon_source_default_categories", emptySet())
 

@@ -77,27 +77,49 @@ private fun ColumnScope.PagerViewerSettings(viewModel: ReaderSettingsViewModel) 
         onSelectInvertMode = viewModel.preferences.pagerNavInverted::set,
     )
 
-    val imageScaleType by viewModel.preferences.imageScaleType.collectAsState()
+    // With "Just this series" on, the chips edit the series' own scale instead of the global one
+    val seriesScale by viewModel.seriesPagedScale.collectAsState()
+    val globalScaleType by viewModel.preferences.imageScaleType.collectAsState()
+    val imageScaleType = seriesScale?.first ?: globalScaleType
     SettingsChipRow(MR.strings.pref_image_scale_type) {
         ReaderPreferences.ImageScaleType.mapIndexed { index, it ->
             FilterChip(
                 selected = imageScaleType == index + 1,
-                onClick = { viewModel.preferences.imageScaleType.set(index + 1) },
+                onClick = {
+                    if (seriesScale != null) {
+                        viewModel.setSeriesPagedScale(scaleType = index + 1)
+                    } else {
+                        viewModel.preferences.imageScaleType.set(index + 1)
+                    }
+                },
                 label = { Text(stringResource(it)) },
             )
         }
     }
 
-    val zoomStart by viewModel.preferences.zoomStart.collectAsState()
+    val globalZoomStart by viewModel.preferences.zoomStart.collectAsState()
+    val zoomStart = seriesScale?.second ?: globalZoomStart
     SettingsChipRow(MR.strings.pref_zoom_start) {
         ReaderPreferences.ZoomStart.mapIndexed { index, it ->
             FilterChip(
                 selected = zoomStart == index + 1,
-                onClick = { viewModel.preferences.zoomStart.set(index + 1) },
+                onClick = {
+                    if (seriesScale != null) {
+                        viewModel.setSeriesPagedScale(zoomStart = index + 1)
+                    } else {
+                        viewModel.preferences.zoomStart.set(index + 1)
+                    }
+                },
                 label = { Text(stringResource(it)) },
             )
         }
     }
+
+    CheckboxItem(
+        label = stringResource(MR.strings.kurotoon_reader_scaleForSeries),
+        checked = seriesScale != null,
+        onClick = { viewModel.setSeriesPagedScaleEnabled(seriesScale == null) },
+    )
 
     CheckboxItem(
         label = stringResource(MR.strings.pref_crop_borders),

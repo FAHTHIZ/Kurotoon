@@ -163,7 +163,9 @@ class ReaderActivity : BaseActivity() {
 
     val viewModel by viewModels<ReaderViewModel> { graph.viewModelFactory }
     val settingsViewModel by viewModels<ReaderSettingsViewModel> {
-        viewModelFactory { initializer { ReaderSettingsViewModel(viewModel, readerPreferences, preferences) } }
+        viewModelFactory {
+            initializer { ReaderSettingsViewModel(viewModel, readerPreferences, preferences, graph.kuroPreferences) }
+        }
     }
     private var assistUrl: String? = null
 
