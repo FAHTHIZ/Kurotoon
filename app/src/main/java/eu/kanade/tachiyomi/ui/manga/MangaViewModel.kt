@@ -120,6 +120,7 @@ class MangaViewModel(
     private val basePreferences: BasePreferences,
     private val sourcePreferences: SourcePreferences,
     private val libraryPreferences: LibraryPreferences,
+    private val kuroPreferences: kurotoon.prefs.KuroPreferences,
     trackPreferences: TrackPreferences,
     readerPreferences: ReaderPreferences,
     private val trackerManager: TrackerManager,
@@ -453,7 +454,10 @@ class MangaViewModel(
 
                 // Now check if user previously set categories, when available
                 val categories = getCategories()
-                val defaultCategoryId = libraryPreferences.defaultCategory.get().toLong()
+                val defaultCategoryId = kuroPreferences.defaultCategoryFor(
+                    manga.source,
+                    libraryPreferences.defaultCategory.get().toLong(),
+                )
                 val defaultCategory = categories.find { it.id == defaultCategoryId }
                 when {
                     // Default category set

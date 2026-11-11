@@ -398,9 +398,12 @@ class BrowseSourceViewModel(
     fun addFavorites(mangas: Collection<Manga>) {
         viewModelScope.launch {
             val categories = getCategories()
-            val defaultCategoryId = libraryPreferences.defaultCategory.get()
-            val defaultCategory = categories.find { it.id == defaultCategoryId.toLong() }
             mangas.filterNot { it.favorite }.forEach { manga ->
+                val defaultCategoryId = kuroPreferences.defaultCategoryFor(
+                    manga.source,
+                    libraryPreferences.defaultCategory.get().toLong(),
+                )
+                val defaultCategory = categories.find { it.id == defaultCategoryId }
                 if (defaultCategory != null) {
                     moveMangaToCategories(manga, defaultCategory)
                 } else {
@@ -414,7 +417,10 @@ class BrowseSourceViewModel(
     fun addFavorite(manga: Manga) {
         viewModelScope.launch {
             val categories = getCategories()
-            val defaultCategoryId = libraryPreferences.defaultCategory.get()
+            val defaultCategoryId = kuroPreferences.defaultCategoryFor(
+                manga.source,
+                libraryPreferences.defaultCategory.get().toLong(),
+            ).toInt()
             val defaultCategory = categories.find { it.id == defaultCategoryId.toLong() }
 
             when {

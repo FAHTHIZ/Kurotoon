@@ -328,7 +328,10 @@ class KuroHomeViewModel(
                 // Same as adding from a source: the reader's chapter defaults and default category.
                 // "Always ask" has no dialog here, so the series lands uncategorised.
                 setMangaDefaultChapterFlags.await(manga)
-                val defaultId = libraryPreferences.defaultCategory.get().toLong()
+                val defaultId = kuroPreferences.defaultCategoryFor(
+                    manga.source,
+                    libraryPreferences.defaultCategory.get().toLong(),
+                )
                 val category = getCategories.await().find { it.id == defaultId && it.id != 0L }
                 if (category != null) setMangaCategories.await(manga.id, listOf(category.id))
             } else {

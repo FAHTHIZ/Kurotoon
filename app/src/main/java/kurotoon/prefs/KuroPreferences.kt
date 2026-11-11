@@ -24,6 +24,21 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
         mangaEdits.set(kurotoon.manga.MangaEdit.encodeAll(all))
     }
 
+    /** Per-source default library category as "sourceId=categoryId" (mihon#336). */
+    val sourceDefaultCategories = preferenceStore.getStringSet("kurotoon_source_default_categories", emptySet())
+
+    /** The source's own default category if one is set, else [fallback] (the global default). */
+    fun defaultCategoryFor(sourceId: Long, fallback: Long): Long =
+        sourceDefaultCategories.get().firstNotNullOfOrNull { entry ->
+            val (source, category) = entry.split('=').takeIf { it.size == 2 } ?: return@firstNotNullOfOrNull null
+            category.toLongOrNull()?.takeIf { source.toLongOrNull() == sourceId }
+        } ?: fallback
+
+    fun setDefaultCategoryFor(sourceId: Long, categoryId: Long?) {
+        val rest = sourceDefaultCategories.get().filterNot { it.substringBefore('=') == sourceId.toString() }
+        sourceDefaultCategories.set(if (categoryId == null) rest.toSet() else rest.toSet() + "$sourceId=$categoryId")
+    }
+
     /** The reader's display name on the Me tab; empty means the default. */
     val nickname = preferenceStore.getString("kurotoon_nickname", "")
 
