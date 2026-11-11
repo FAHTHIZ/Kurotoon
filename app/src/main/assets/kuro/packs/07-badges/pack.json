@@ -1,87 +1,88 @@
 {
   "id": "kuro.badges",
-  "name": "Badges",
+  "name": "Outfit & accessories",
   "author": "KuroToon",
-  "version": 1,
-  "description": "Wear up to three on your profile.",
+  "version": 2,
+  "description": "Kuru's signature look and details. Wear up to three on your profile.",
   "items": [
     {
-      "id": "scout",
+      "id": "coin",
       "kind": "badge",
-      "name": "Kuro Scout",
-      "description": "For early explorers.",
+      "name": "K Coin",
+      "description": "The coin that started it all.",
       "price": 150,
       "rarity": "common",
-      "emoji": "🧭",
+      "image": "coin.webp",
       "colors": [
-        "#2FB0E6",
-        "#1683B8"
+        "#F2C14E",
+        "#C9932B"
       ]
     },
     {
-      "id": "night",
+      "id": "paws",
       "kind": "badge",
-      "name": "Night Reader",
-      "description": "For those who read past midnight.",
+      "name": "Paw Gloves",
+      "description": "Soft paws for page turning.",
       "price": 400,
       "rarity": "rare",
-      "emoji": "🌙",
-      "colors": [
-        "#3B2A72",
-        "#A35BE8"
-      ]
-    },
-    {
-      "id": "binge",
-      "kind": "badge",
-      "name": "Binger",
-      "description": "Ten chapters? Just getting started.",
-      "price": 600,
-      "rarity": "rare",
-      "emoji": "⚡",
-      "colors": [
-        "#FB923C",
-        "#FF4D4D"
-      ]
-    },
-    {
-      "id": "heart",
-      "kind": "badge",
-      "name": "Big Heart",
-      "description": "Love every story.",
-      "price": 600,
-      "rarity": "rare",
-      "emoji": "💗",
+      "image": "paws.webp",
       "colors": [
         "#FF7AB6",
-        "#E0468E"
+        "#3A2F4D"
       ]
     },
     {
-      "id": "sage",
+      "id": "hood",
       "kind": "badge",
-      "name": "Galaxy Sage",
-      "description": "A purple shimmer for deep readers.",
+      "name": "Hood Up",
+      "description": "Night reading mode.",
+      "price": 600,
+      "rarity": "rare",
+      "image": "hood.webp",
+      "colors": [
+        "#3B2A72",
+        "#15111C"
+      ]
+    },
+    {
+      "id": "cape",
+      "kind": "badge",
+      "name": "Cosmic Cape",
+      "description": "A cape stitched from the night sky.",
+      "price": 900,
+      "rarity": "epic",
+      "image": "cape.webp",
+      "colors": [
+        "#A35BE8",
+        "#3B2A72"
+      ]
+    },
+    {
+      "id": "tablet",
+      "kind": "badge",
+      "name": "Creator Tablet",
+      "description": "For readers who draw their own stories.",
       "price": 1800,
       "rarity": "legendary",
-      "emoji": "🔮",
+      "image": "tablet.webp",
       "colors": [
         "#A35BE8",
         "#2FB0E6"
       ]
     },
     {
-      "id": "legend",
+      "id": "aura",
       "kind": "badge",
-      "name": "Living Legend",
-      "description": "The rarest badge of all.",
+      "name": "Galaxy Aura",
+      "description": "Kuru's signature cosmic glow.",
       "price": 4000,
       "rarity": "mythic",
-      "emoji": "👑",
+      "image": "aura.webp",
       "colors": [
-        "#F2C14E",
-        "#FF4D4D"
+        "#A35BE8",
+        "#F2C14E"
       ]
     }
-  ]
+  ],
+  "cover": "coin.webp"
 }
