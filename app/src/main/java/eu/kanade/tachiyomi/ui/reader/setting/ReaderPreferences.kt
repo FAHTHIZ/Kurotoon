@@ -92,6 +92,11 @@ class ReaderPreferences(
     /** A soft paper swish when a page turns in the paged readers. */
     val soundPageTurn: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_sound_page_turn", false)
 
+    /** Send pages through an image proxy that shrinks them: off, mobile (only off Wi-Fi) or always. */
+    val dataSaver: Preference<String> = preferenceStore.getString("kurotoon_data_saver", "off")
+
+    val dataSaverQuality: Preference<Int> = preferenceStore.getInt("kurotoon_data_saver_quality", 70)
+
     /** Show an estimate of the time left in the chapter next to the page number. */
     val showTimeLeft: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_reader_time_left", true)
 
