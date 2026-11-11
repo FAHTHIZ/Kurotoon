@@ -98,7 +98,11 @@ data object KuroHomeTab : Tab {
             viewModel.libraryToggled.collect { (title, added) ->
                 snackbarHostState.showSnackbar(
                     context.stringResource(
-                        if (added) MR.strings.kurotoon_home_addedToLibrary else MR.strings.kurotoon_home_removedFromLibrary,
+                        if (added) {
+                            MR.strings.kurotoon_home_addedToLibrary
+                        } else {
+                            MR.strings.kurotoon_home_removedFromLibrary
+                        },
                         title,
                     ),
                 )

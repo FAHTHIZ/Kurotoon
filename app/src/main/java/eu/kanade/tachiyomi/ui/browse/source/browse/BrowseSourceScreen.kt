@@ -66,12 +66,12 @@ import mihon.icons.materialsymbols.rounded.Verified
 import mihon.icons.materialsymbols.roundedfilled.Favorite
 import mihon.presentation.core.util.collectAsLazyPagingItems
 import tachiyomi.core.common.Constants
+import tachiyomi.core.common.i18n.pluralStringResource
 import tachiyomi.domain.source.model.StubSource
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.core.common.i18n.pluralStringResource
 import tachiyomi.presentation.core.screens.LoadingScreen
 import tachiyomi.source.local.LocalSource
 
@@ -151,6 +151,9 @@ data class BrowseSourceScreen(
         val context = androidx.compose.ui.platform.LocalContext.current
         var selecting by remember { mutableStateOf(false) }
         var selected by remember { mutableStateOf(emptyMap<Long, tachiyomi.domain.manga.model.Manga>()) }
+        val toggleSelected = { manga: tachiyomi.domain.manga.model.Manga ->
+            selected = if (manga.id in selected) selected - manga.id else selected + (manga.id to manga)
+        }
         val stopSelecting = {
             selecting = false
             selected = emptyMap()
@@ -259,41 +262,43 @@ data class BrowseSourceScreen(
             androidx.compose.runtime.CompositionLocalProvider(
                 kurotoon.ui.browse.LocalBrowseSelection provides selected.keys,
             ) {
-            BrowseSourceContent(
-                source = source,
-                mangaList = viewModel.mangaPagerFlowFlow.collectAsLazyPagingItems(),
-                columns = viewModel.getColumnsPreference(LocalConfiguration.current.orientation),
-                displayMode = viewModel.displayMode,
-                snackbarHostState = snackbarHostState,
-                contentPadding = paddingValues,
-                onWebViewClick = onWebViewClick,
-                onHelpClick = { uriHandler.openUri(Constants.URL_HELP) },
-                onLocalSourceHelpClick = onHelpClick,
-                onMangaClick = { manga ->
-                    if (selecting) {
-                        selected = if (manga.id in selected) selected - manga.id else selected + (manga.id to manga)
-                    } else {
-                        navigator.push(MangaScreen(manga.id, true))
-                    }
-                },
-                onMangaLongClick = { manga ->
-                    if (selecting) {
-                        selected = if (manga.id in selected) selected - manga.id else selected + (manga.id to manga)
-                    } else {
-                    scope.launch(Dispatchers.IO) {
-                        val duplicates = viewModel.getDuplicateLibraryManga(manga)
-                        when {
-                            manga.favorite -> viewModel.setDialog(BrowseSourceViewModel.Dialog.RemoveManga(manga))
-                            duplicates.isNotEmpty() -> viewModel.setDialog(
-                                BrowseSourceViewModel.Dialog.AddDuplicateManga(manga, duplicates),
-                            )
-                            else -> viewModel.addFavorite(manga)
+                BrowseSourceContent(
+                    source = source,
+                    mangaList = viewModel.mangaPagerFlowFlow.collectAsLazyPagingItems(),
+                    columns = viewModel.getColumnsPreference(LocalConfiguration.current.orientation),
+                    displayMode = viewModel.displayMode,
+                    snackbarHostState = snackbarHostState,
+                    contentPadding = paddingValues,
+                    onWebViewClick = onWebViewClick,
+                    onHelpClick = { uriHandler.openUri(Constants.URL_HELP) },
+                    onLocalSourceHelpClick = onHelpClick,
+                    onMangaClick = { manga ->
+                        if (selecting) {
+                            toggleSelected(manga)
+                        } else {
+                            navigator.push(MangaScreen(manga.id, true))
                         }
-                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                    }
-                    }
-                },
-            )
+                    },
+                    onMangaLongClick = { manga ->
+                        if (selecting) {
+                            toggleSelected(manga)
+                        } else {
+                            scope.launch(Dispatchers.IO) {
+                                val duplicates = viewModel.getDuplicateLibraryManga(manga)
+                                when {
+                                    manga.favorite -> viewModel.setDialog(
+                                        BrowseSourceViewModel.Dialog.RemoveManga(manga),
+                                    )
+                                    duplicates.isNotEmpty() -> viewModel.setDialog(
+                                        BrowseSourceViewModel.Dialog.AddDuplicateManga(manga, duplicates),
+                                    )
+                                    else -> viewModel.addFavorite(manga)
+                                }
+                                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                            }
+                        }
+                    },
+                )
             }
         }
 

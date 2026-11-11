@@ -91,7 +91,11 @@ private fun ExtensionStoresListItem(
             Text(
                 text = store.name,
                 style = MaterialTheme.typography.titleMedium,
-                color = if (enabled) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
+                color = if (enabled) {
+                    MaterialTheme.colorScheme.onSurface
+                } else {
+                    MaterialTheme.colorScheme.onSurfaceVariant
+                },
                 modifier = Modifier.padding(start = MaterialTheme.padding.medium).weight(1f),
             )
             androidx.compose.material3.Switch(
