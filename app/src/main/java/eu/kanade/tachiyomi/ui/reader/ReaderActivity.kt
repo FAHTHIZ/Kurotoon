@@ -146,6 +146,7 @@ class ReaderActivity : BaseActivity() {
     companion object {
         private const val STATE_SOUND_MUTED = "kurotoon_sound_muted"
         private const val STATE_VOLUME_HINTED = "kurotoon_volume_hinted"
+        private const val STATE_AUTO_SCROLL = "kurotoon_auto_scroll"
 
         fun newIntent(context: Context, mangaId: Long?, chapterId: Long?): Intent {
             return Intent(context, ReaderActivity::class.java).apply {
@@ -225,6 +226,8 @@ class ReaderActivity : BaseActivity() {
             silentChecked = true
             mediaVolumeHinted = savedInstanceState.getBoolean(STATE_VOLUME_HINTED)
             if (savedInstanceState.getBoolean(STATE_SOUND_MUTED)) soundtrack.mute(true, fade = false)
+            sleepTimer.restore(savedInstanceState)
+            autoScroll.enabled = savedInstanceState.getBoolean(STATE_AUTO_SCROLL)
         }
 
         setComposeContent {
@@ -583,6 +586,8 @@ class ReaderActivity : BaseActivity() {
         super.onSaveInstanceState(outState)
         outState.putBoolean(STATE_SOUND_MUTED, soundtrack.muted)
         outState.putBoolean(STATE_VOLUME_HINTED, mediaVolumeHinted)
+        outState.putBoolean(STATE_AUTO_SCROLL, autoScroll.enabled)
+        sleepTimer.save(outState)
     }
 
     /**
