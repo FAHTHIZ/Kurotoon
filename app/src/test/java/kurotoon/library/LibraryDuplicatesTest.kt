@@ -43,4 +43,23 @@ class LibraryDuplicatesTest {
             listOf(3L, 1L),
         )
     }
+
+    @Test
+    fun `groups copies linked to the same tracker entry`() {
+        val library = listOf(
+            entry(1, "Solo Leveling"),
+            entry(2, "Na Honjaman Level Up"),
+            entry(3, "Lookism"),
+            entry(4, "Oegeum"),
+        )
+        val tracks = mapOf(
+            1L to listOf("2:100"),
+            2L to listOf("2:100", "1:7"),
+            3L to listOf("2:200"),
+            4L to listOf("1:8"),
+        )
+        LibraryDuplicates.groups(library, tracks).map { group -> group.map { it.id } } shouldBe listOf(
+            listOf(1L, 2L),
+        )
+    }
 }

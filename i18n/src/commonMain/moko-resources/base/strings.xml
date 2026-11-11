@@ -1483,7 +1483,7 @@
     <string name="kurotoon.browse.recentSearches">Recent searches</string>
     <string name="kurotoon.browse.clearRecent">Clear</string>
     <string name="kurotoon.duplicates.title">Find duplicates</string>
-    <string name="kurotoon.duplicates.info">Series saved more than once, matched by title. The copy you have read most is listed first; open any other to remove or migrate it.</string>
+    <string name="kurotoon.duplicates.info">Series saved more than once, matched by title or by the same tracker entry. The copy you have read most is listed first; open any other to remove or migrate it.</string>
     <string name="kurotoon.duplicates.none">No series is saved twice</string>
     <string name="kurotoon.duplicates.progress">%1$d of %2$d read</string>
     <string name="kurotoon.settings.homeHidden">Hidden on Home</string>

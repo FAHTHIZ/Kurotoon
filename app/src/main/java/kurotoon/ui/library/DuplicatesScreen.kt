@@ -29,6 +29,7 @@ import eu.kanade.presentation.manga.components.MangaCover
 import eu.kanade.presentation.util.Screen
 import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kurotoon.library.LibraryDuplicates
 import kurotoon.ui.KuroColors
@@ -52,9 +53,14 @@ class DuplicatesScreen : Screen() {
         val context = LocalContext.current
         val sourceManager = remember { context.appGraph.sourceManager }
         val found by remember {
-            context.appGraph.getLibraryManga.subscribe()
-                .map { library ->
-                    val groups = LibraryDuplicates.groups(library)
+            combine(
+                context.appGraph.getLibraryManga.subscribe(),
+                context.appGraph.trackRepository.getTracksAsFlow(),
+            ) { library, tracks -> library to tracks }
+                .map { (library, tracks) ->
+                    val trackKeys = tracks.filter { it.remoteId > 0 }
+                        .groupBy({ it.mangaId }, { "${it.trackerId}:${it.remoteId}" })
+                    val groups = LibraryDuplicates.groups(library, trackKeys)
                     val names = groups.flatten().map { it.manga.source }.distinct()
                         .associateWith { sourceManager.getOrStub(it).name }
                     groups to names
