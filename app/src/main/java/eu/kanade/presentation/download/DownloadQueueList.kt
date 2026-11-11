@@ -1,6 +1,7 @@
 package eu.kanade.presentation.download
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.MutatePriority
 import androidx.compose.foundation.gestures.ScrollScope
 import androidx.compose.foundation.gestures.ScrollableState
@@ -11,10 +12,12 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -37,9 +40,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -50,6 +55,7 @@ import eu.kanade.tachiyomi.ui.download.DownloadQueueSection
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
+import kurotoon.ui.KuroSectionHeader
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.DragHandle
 import mihon.icons.materialsymbols.rounded.MoreVert
@@ -58,7 +64,6 @@ import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.rememberReorderableLazyListState
 import sh.calvin.reorderable.rememberScroller
 import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.ListGroupHeader
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -288,8 +293,9 @@ private fun ReorderableCollectionItemScope.DownloadQueueHeader(
             modifier = Modifier.padding(end = MaterialTheme.padding.small),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            ListGroupHeader(
-                text = "${section.name} (${section.downloads.size})",
+            KuroSectionHeader(
+                text = section.name,
+                count = section.downloads.size,
                 modifier = Modifier.weight(1f),
             )
             DragHandle(onDragStarted = onDragStarted, onDragStopped = onDragStopped)
@@ -319,13 +325,15 @@ private fun ReorderableCollectionItemScope.DownloadQueueItem(
     val animatedProgress by animateFloatAsState(progress?.fraction ?: 0f, label = "progress")
 
     Surface(
-        modifier = modifier,
-        color = listItemContainerColor(isDragging),
+        modifier = modifier.padding(horizontal = MaterialTheme.padding.medium, vertical = 4.dp),
+        shape = RoundedCornerShape(16.dp),
+        color = if (isDragging) listItemContainerColor(true) else MaterialTheme.colorScheme.surfaceContainer,
+        border = BorderStroke(1.dp, Color.White.copy(alpha = 0.06f)),
         shadowElevation = listItemElevation(isDragging),
     ) {
         Row(
             modifier = Modifier.padding(
-                start = MaterialTheme.padding.small,
+                start = MaterialTheme.padding.extraSmall,
                 end = MaterialTheme.padding.extraSmall,
             ),
             verticalAlignment = Alignment.CenterVertically,
@@ -343,13 +351,18 @@ private fun ReorderableCollectionItemScope.DownloadQueueItem(
                         modifier = Modifier.weight(1f),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.titleSmall,
                     )
                     progress?.let {
                         Text(
                             text = "${it.downloadedPages}/${it.pageCount}",
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            style = MaterialTheme.typography.bodySmall,
+                            color = if (status == Download.State.ERROR) {
+                                MaterialTheme.colorScheme.error
+                            } else {
+                                MaterialTheme.colorScheme.primary
+                            },
+                            style = MaterialTheme.typography.labelMedium,
+                            fontWeight = FontWeight.SemiBold,
                         )
                     }
                 }
@@ -358,12 +371,23 @@ private fun ReorderableCollectionItemScope.DownloadQueueItem(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 LinearProgressIndicator(
                     progress = { animatedProgress },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = MaterialTheme.padding.extraSmall),
+                        .padding(top = MaterialTheme.padding.extraSmall)
+                        .height(6.dp),
+                    color = if (status == Download.State.ERROR) {
+                        MaterialTheme.colorScheme.error
+                    } else {
+                        MaterialTheme.colorScheme.primary
+                    },
+                    trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+                    strokeCap = StrokeCap.Round,
+                    gapSize = 0.dp,
+                    drawStopIndicator = {},
                 )
             }
             DownloadQueueItemMenu(
