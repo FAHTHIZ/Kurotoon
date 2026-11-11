@@ -25,6 +25,7 @@ import eu.kanade.core.util.insertSeparators
 import eu.kanade.domain.base.BasePreferences
 import eu.kanade.domain.chapter.interactor.GetAvailableScanlators
 import eu.kanade.domain.chapter.interactor.SetReadStatus
+import eu.kanade.domain.chapter.model.applyFilters
 import eu.kanade.domain.manga.interactor.GetExcludedScanlators
 import eu.kanade.domain.manga.interactor.SetExcludedScanlators
 import eu.kanade.domain.manga.interactor.UpdateManga
@@ -144,6 +145,7 @@ class MangaViewModel(
     private val sourceManager: SourceManager,
     private val refreshTracks: RefreshTracks,
     private val coverCache: CoverCache,
+    private val getHistory: tachiyomi.domain.history.interactor.GetHistory,
 ) : ViewModel() {
 
     private val subscriberGate = SubscriberGate()
@@ -224,13 +226,23 @@ class MangaViewModel(
             .distinctUntilChanged(),
         downloadCache.changes.pausedWhileUnsubscribed(),
         downloadManager.queueState.pausedWhileUnsubscribed(),
-    ) { (manga, chapters), _, _ ->
+        libraryPreferences.resumeFromLastOpened.changes(),
+    ) { (manga, chapters), _, _, resumeFromLastOpened ->
         val source = sourceManager.getOrStub(manga.source)
         MangaAndChapters(
             manga = manga,
             source = source,
             sourceName = source.getNameForMangaInfo(sourcePreferences),
             chapters = chapters.toChapterListItems(manga),
+            // Chapters re-emit when reading progress changes, so this follows the reader
+            lastOpenedChapterId = if (resumeFromLastOpened) {
+                runCatching { getHistory.await(mangaId) }.getOrNull()
+                    ?.filter { it.readAt != null }
+                    ?.maxByOrNull { it.readAt!! }
+                    ?.chapterId
+            } else {
+                null
+            },
         )
     }
 
@@ -291,6 +303,7 @@ class MangaViewModel(
             dialog = dialog,
             hideMissingChapters = hideMissingChapters,
             downloadedOnly = downloadedOnly,
+            lastOpenedChapterId = mangaAndChapters.lastOpenedChapterId,
         )
     }
         // Composition would otherwise build these on first read, on the main thread, for every new state
@@ -661,7 +674,7 @@ class MangaViewModel(
      */
     fun getNextUnreadChapter(): Chapter? {
         val successState = successState ?: return null
-        return successState.chapters.getNextUnread(successState.manga, successState.downloadedOnly)
+        return successState.nextUnreadChapter
     }
 
     private fun getUnreadChapters(): List<Chapter> {
@@ -1105,6 +1118,7 @@ class MangaViewModel(
         val source: Source,
         val sourceName: String,
         val chapters: List<ChapterList.Item>,
+        val lastOpenedChapterId: Long?,
     )
 
     sealed interface State {
@@ -1126,6 +1140,8 @@ class MangaViewModel(
             val dialog: Dialog? = null,
             val hideMissingChapters: Boolean = false,
             val downloadedOnly: Boolean = false,
+            /** Set when Resume should pick up from the last chapter opened. */
+            val lastOpenedChapterId: Long? = null,
         ) : State {
             val processedChapters by lazy {
                 chapters.applyFilters(manga).toList()
@@ -1149,7 +1165,15 @@ class MangaViewModel(
 
             /** What Resume / Start opens, so the button can name it. */
             val nextUnreadChapter by lazy {
-                chapters.getNextUnread(manga, downloadedOnly)
+                val firstUnread = chapters.getNextUnread(manga, downloadedOnly)
+                val lastId = lastOpenedChapterId ?: return@lazy firstUnread
+                val ordered = chapters.applyFilters(manga, downloadedOnly).map { it.chapter }.toList()
+                    .let { if (manga.sortDescending()) it.reversed() else it }
+                val index = ordered.indexOfFirst { it.id == lastId }
+                if (index < 0) return@lazy firstUnread
+                val opened = ordered[index]
+                // A chapter only peeked at resumes; a finished one moves on to the next unread after it
+                if (!opened.read) opened else ordered.drop(index + 1).firstOrNull { !it.read } ?: firstUnread
             }
 
             val missingChapterCount by lazy {

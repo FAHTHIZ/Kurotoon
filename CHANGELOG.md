@@ -11,6 +11,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Resume where you left off (Settings > Reader): Resume opens the last chapter you opened, even after skipping ahead, instead of an earlier unread one
 - Ignore repeated volume-key presses (Settings > Reader > Navigation): one page per press on bouncy buttons
 - The reader's top bar says how many chapters are left after this one ("Chapter 37 · 13 chapters left")
 - The Resume / Start button on a series names the chapter it opens ("Resume · Ch. 37")
