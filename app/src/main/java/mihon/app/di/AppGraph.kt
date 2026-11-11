@@ -119,6 +119,7 @@ interface AppGraph : ViewModelGraph {
     val chapterCache: ChapterCache
     val coverCache: CoverCache
     val downloadCache: DownloadCache
+    val downloadProvider: eu.kanade.tachiyomi.data.download.DownloadProvider
 
     val json: Json
     val protoBuf: ProtoBuf

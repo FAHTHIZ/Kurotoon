@@ -143,4 +143,12 @@
         <item quantity="one">%d series didn\'t update</item>
         <item quantity="other">%d series didn\'t update</item>
     </plurals>
+    <plurals name="kurotoon_orphans_found">
+        <item quantity="one">Delete the downloads of %d series that isn\'t in your library?</item>
+        <item quantity="other">Delete the downloads of %d series that aren\'t in your library?</item>
+    </plurals>
+    <plurals name="kurotoon_orphans_removed">
+        <item quantity="one">Removed downloads of %d series</item>
+        <item quantity="other">Removed downloads of %d series</item>
+    </plurals>
 </resources>
