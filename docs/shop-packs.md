@@ -46,7 +46,7 @@ names exists.
 | Field | Notes |
 | --- | --- |
 | `id` | Letters, digits, `.`, `_` and `-`; up to 64 characters. Pack ids must be unique, and item ids must be unique within a pack. Purchases are stored as `<pack id>/<item id>`, so don't rename ids after release. |
-| `kind` | `avatar`, `frame`, `theme`, `particles`, `sticker`, `badge` or `boost`. Items with an unknown kind are skipped. |
+| `kind` | `avatar`, `frame`, `theme`, `particles`, `sticker` or `badge`. Items with an unknown kind are skipped. |
 | `price` | Ignored; everything is free. Kept so older packs still load. |
 | `rarity` | `common`, `rare`, `epic`, `legendary` or `mythic`. Sets the tile's glow colour. |
 | `image` | Optional. A path inside the pack (PNG, WebP, JPEG or GIF). Paths that leave the pack are ignored. |
@@ -66,15 +66,10 @@ Unknown fields are ignored, so newer packs still load on older versions of the a
 | `particles` | — | `colors` are used for the drifting embers and the tap sparks. |
 | `sticker` | Shown as is, fitted to the tile. | `emoji`. |
 | `badge` | Shown on a shield in `colors`. Up to three badges show on the profile. | `emoji` on the shield. |
-| `boost` | Not shown. Boosts belonged to the old points shop. | — |
 
 ## Seasonal items
 
 Seasonal items are free all year like everything else.
-
-## Achievement medals
-
-Each achievement shows `app/src/main/assets/kuro/achievements/<code>.webp` (256×256, transparent). Locked medals are drawn greyed out. The streak tracker uses `assets/kuro/ui/chest.webp` and `freeze.webp`.
 
 ## Making a .kpack
 
