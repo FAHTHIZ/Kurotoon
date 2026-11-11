@@ -29,9 +29,21 @@ class WebtoonFrame(context: Context) : FrameLayout(context) {
     var doubleTapZoom = true
         set(value) {
             field = value
-            recycler?.doubleTapZoom = value
-            scaleDetector.isQuickScaleEnabled = value
+            applyZoomGestures()
         }
+
+    /** When set, pinch and double-tap zoom are both ignored. */
+    var zoomLocked = false
+        set(value) {
+            field = value
+            applyZoomGestures()
+        }
+
+    private fun applyZoomGestures() {
+        val doubleTap = doubleTapZoom && !zoomLocked
+        recycler?.doubleTapZoom = doubleTap
+        scaleDetector.isQuickScaleEnabled = doubleTap
+    }
 
     var zoomOutDisabled = false
         set(value) {
@@ -49,7 +61,7 @@ class WebtoonFrame(context: Context) : FrameLayout(context) {
      * Dispatches a touch event to the detectors.
      */
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
-        scaleDetector.onTouchEvent(ev)
+        if (!zoomLocked) scaleDetector.onTouchEvent(ev)
         flingDetector.onTouchEvent(ev)
 
         // Get the bounding box of the recyclerview and translate any motion events to be within it.

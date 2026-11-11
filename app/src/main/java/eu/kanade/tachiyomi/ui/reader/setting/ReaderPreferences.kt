@@ -161,6 +161,9 @@ class ReaderPreferences(
 
     val webtoonDisableZoomOut: Preference<Boolean> = preferenceStore.getBoolean("webtoon_disable_zoom_out", false)
 
+    /** Ignore pinch and double-tap zoom in the long strip so a stray two-finger touch never zooms (mihon#1397). */
+    val webtoonZoomLocked: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_webtoon_zoom_locked", false)
+
     // endregion
 
     // region Split two-page spread

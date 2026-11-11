@@ -170,6 +170,9 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
             if (old?.zoomOutDisabled != new.zoomOutDisabled) {
                 frame.zoomOutDisabled = new.zoomOutDisabled
             }
+            if (old?.zoomLocked != new.zoomLocked) {
+                frame.zoomLocked = new.zoomLocked
+            }
         }
         settingsViewModel.simpleLongStrip.collectChanges(scope) { old, new ->
             if (old != null && old.page != new.page) {
