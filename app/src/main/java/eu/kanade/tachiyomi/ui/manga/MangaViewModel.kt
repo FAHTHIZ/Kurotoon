@@ -1147,6 +1147,11 @@ class MangaViewModel(
                 chapters.fastAny { it.chapter.read }
             }
 
+            /** What Resume / Start opens, so the button can name it. */
+            val nextUnreadChapter by lazy {
+                chapters.getNextUnread(manga, downloadedOnly)
+            }
+
             val missingChapterCount by lazy {
                 if (hideMissingChapters) return@lazy 0
                 processedChapters.fastMap { it.chapter.chapterNumber }.missingChaptersCount()
