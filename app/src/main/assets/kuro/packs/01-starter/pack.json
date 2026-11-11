@@ -102,7 +102,7 @@
       "description": "The cosmic companion of KuroToon, hugging his K coin.",
       "price": 0,
       "rarity": "common",
-      "image": "kuru.webp"
+      "image": "kuro.webp"
     },
     {
       "id": "ring",
@@ -119,5 +119,5 @@
       ]
     }
   ],
-  "cover": "kuru.webp"
+  "cover": "kuro.webp"
 }
