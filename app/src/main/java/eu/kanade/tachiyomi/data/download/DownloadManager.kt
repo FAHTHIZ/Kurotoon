@@ -110,6 +110,19 @@ class DownloadManager(
         startDownloads()
     }
 
+    /**
+     * Gives a failed [download] one more try and keeps it with whatever pages it gets, instead of failing again
+     * over pages the source won't serve (mihon#587).
+     */
+    suspend fun finishWithMissingPages(download: Download) {
+        download.acceptMissingPages = true
+        downloader.updateQueue { queue ->
+            val (existing, others) = queue.partition { it.chapter.id == download.chapter.id }
+            existing + others
+        }
+        startDownloads()
+    }
+
     private suspend fun downloadFromChapterId(chapterId: Long): Download? {
         val chapter = getChapter.await(chapterId) ?: return null
         val manga = getManga.await(chapter.mangaId) ?: return null
