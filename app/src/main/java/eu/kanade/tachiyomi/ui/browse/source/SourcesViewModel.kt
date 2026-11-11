@@ -12,6 +12,7 @@ import eu.kanade.domain.source.interactor.GetEnabledSources
 import eu.kanade.domain.source.interactor.ToggleSource
 import eu.kanade.domain.source.interactor.ToggleSourcePin
 import eu.kanade.presentation.browse.SourceUiModel
+import eu.kanade.tachiyomi.source.online.HttpSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -30,6 +31,7 @@ import logcat.LogPriority
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.source.model.Pin
 import tachiyomi.domain.source.model.Source
+import tachiyomi.domain.source.service.SourceManager
 import java.util.TreeMap
 import kotlin.time.Duration.Companion.seconds
 
@@ -41,6 +43,7 @@ class SourcesViewModel(
     private val toggleSource: ToggleSource,
     private val toggleSourcePin: ToggleSourcePin,
     private val kuroPreferences: KuroPreferences,
+    private val sourceManager: SourceManager,
 ) : ViewModel() {
 
     private val _events = Channel<Event>(Int.MAX_VALUE)
@@ -64,7 +67,7 @@ class SourcesViewModel(
         State(
             dialog = dialog,
             isLoading = false,
-            items = toSourceUiModels(sources.filter { it.matches(query) }),
+            items = toSourceUiModels(sources.filter { query.isBlank() || it.matches(query, homeOf(it.id)) }),
             sourceCount = sources.size,
             query = query,
             recentSearches = recent,
@@ -116,6 +119,8 @@ class SourcesViewModel(
         kuroPreferences.recentSearches.delete()
     }
 
+    private suspend fun homeOf(id: Long): String? = (sourceManager.get(id) as? HttpSource)?.baseUrl
+
     fun setQuery(query: String) {
         this.query.value = query
     }
@@ -155,10 +160,20 @@ class SourcesViewModel(
     }
 }
 
-/** Name, language code or id contains every word of [query], ignoring case. */
-internal fun Source.matches(query: String): Boolean {
-    val words = query.trim().split(' ').filter { it.isNotBlank() }
+/**
+ * Name, language code, id or site address contains every word of [query], ignoring case. A pasted
+ * address like "https://www.hitomi.la/" is trimmed to its host first.
+ */
+internal fun Source.matches(query: String, home: String? = null): Boolean {
+    val words = query.trim().split(' ').filter { it.isNotBlank() }.map(::hostOf)
     if (words.isEmpty()) return true
-    val haystack = "$name $lang $id"
+    val haystack = "$name $lang $id ${home.orEmpty()}"
     return words.all { haystack.contains(it, ignoreCase = true) }
 }
+
+private fun hostOf(word: String): String = word
+    .removePrefix("https://")
+    .removePrefix("http://")
+    .removePrefix("www.")
+    .substringBefore('/')
+    .ifBlank { word }
