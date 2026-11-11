@@ -17,6 +17,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Finishing a chapter of a series you haven't added offers "Add to library" right on the end-of-chapter card, like WEBTOON's Subscribe
 - History rows say "Finished" or the page you stopped on, so half-read chapters stand out
 - Ongoing series show the day they usually update under the chapter count ("New chapters usually every Tuesday")
 - Stop a running library update right from the "Updating library" snackbar in Library and Updates

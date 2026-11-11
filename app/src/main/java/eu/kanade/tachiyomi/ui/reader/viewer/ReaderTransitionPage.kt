@@ -50,6 +50,10 @@ fun ReaderTransitionPage(
             }
         }
 
+        if (transition is ChapterTransition.Next) {
+            kurotoon.reader.AddToLibraryPrompt(onButtonPressChange = onButtonPressChange)
+        }
+
         val toChapter = transition.to ?: return@Column
         val state by toChapter.stateFlow.collectAsState()
         when (val state = state) {
