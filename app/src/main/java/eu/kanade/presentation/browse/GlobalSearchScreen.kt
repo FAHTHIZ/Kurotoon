@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.browse.components.GlobalSearchCardRow
@@ -18,10 +19,13 @@ import eu.kanade.tachiyomi.ui.browse.source.globalsearch.SearchItemResult
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.SearchViewModel
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.SourceFilter
 import eu.kanade.tachiyomi.util.system.LocaleHelper
+import kurotoon.catalogue.SourceTagIndex
 import kurotoon.ui.browse.RecentSearchRow
 import kurotoon.ui.browse.TagBrowseRow
 import tachiyomi.domain.manga.model.Manga
+import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold
+import tachiyomi.presentation.core.i18n.stringResource
 
 @Composable
 fun GlobalSearchScreen(
@@ -39,8 +43,13 @@ fun GlobalSearchScreen(
     onRecentSearch: (String) -> Unit = {},
     onClearRecentSearches: () -> Unit = {},
     libraryTags: List<String> = emptyList(),
+    sourceTags: List<SourceTagIndex.Tag> = emptyList(),
     onTag: (String) -> Unit = {},
 ) {
+    val typed = state.searchQuery.orEmpty().trim()
+    val tagMatches = remember(sourceTags, typed) {
+        SourceTagIndex.matching(sourceTags, typed, if (typed.isEmpty()) IDLE_TAGS else MATCH_TAGS).map { it.name }
+    }
     Scaffold(
         topBar = { scrollBehavior ->
             GlobalSearchToolbar(
@@ -59,7 +68,9 @@ fun GlobalSearchScreen(
             )
         },
     ) { paddingValues ->
-        if (state.items.isEmpty() && (recentSearches.isNotEmpty() || libraryTags.isNotEmpty())) {
+        if (state.items.isEmpty() &&
+            (recentSearches.isNotEmpty() || libraryTags.isNotEmpty() || tagMatches.isNotEmpty())
+        ) {
             Column(modifier = Modifier.padding(paddingValues).padding(top = 8.dp)) {
                 RecentSearchRow(
                     recent = recentSearches,
@@ -67,10 +78,18 @@ fun GlobalSearchScreen(
                     onClear = onClearRecentSearches,
                     contentPadding = PaddingValues(horizontal = 16.dp),
                 )
+                if (typed.isEmpty()) {
+                    TagBrowseRow(
+                        tags = libraryTags,
+                        onTag = onTag,
+                        contentPadding = PaddingValues(horizontal = 16.dp),
+                    )
+                }
                 TagBrowseRow(
-                    tags = libraryTags,
+                    tags = tagMatches,
                     onTag = onTag,
                     contentPadding = PaddingValues(horizontal = 16.dp),
+                    title = stringResource(MR.strings.kurotoon_browse_sourceTags, sourceTags.size),
                 )
             }
             return@Scaffold
@@ -78,6 +97,18 @@ fun GlobalSearchScreen(
         GlobalSearchContent(
             items = state.filteredItems,
             contentPadding = paddingValues,
+            header = if (tagMatches.isEmpty() || typed.isEmpty()) {
+                null
+            } else {
+                {
+                    TagBrowseRow(
+                        tags = tagMatches,
+                        onTag = onTag,
+                        contentPadding = PaddingValues(horizontal = 16.dp),
+                        title = stringResource(MR.strings.kurotoon_browse_matchingTags),
+                    )
+                }
+            },
             getManga = getManga,
             onClickSource = onClickSource,
             onClickItem = onClickItem,
@@ -95,10 +126,12 @@ internal fun GlobalSearchContent(
     onClickItem: (Manga) -> Unit,
     onLongClickItem: (Manga) -> Unit,
     fromSourceId: Long? = null,
+    header: (@Composable () -> Unit)? = null,
 ) {
     LazyColumn(
         contentPadding = contentPadding,
     ) {
+        if (header != null) item(key = "tag-header") { header() }
         items.forEach { (source, result) ->
             item(key = source.id) {
                 GlobalSearchResultItem(
@@ -130,3 +163,6 @@ internal fun GlobalSearchContent(
         }
     }
 }
+
+private const val IDLE_TAGS = 30
+private const val MATCH_TAGS = 16

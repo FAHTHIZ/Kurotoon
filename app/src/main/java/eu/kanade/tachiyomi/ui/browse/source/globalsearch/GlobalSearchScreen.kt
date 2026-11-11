@@ -18,6 +18,7 @@ import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceScreen
 import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kurotoon.catalogue.SourceTagIndex
 import kurotoon.library.LibraryTags
 import kurotoon.ui.catalogue.TagEverywhereScreen
 import mihon.app.di.appGraph
@@ -45,6 +46,9 @@ class GlobalSearchScreen(
                 LibraryTags.top(library.map { it.manga.genre }, LIBRARY_TAGS).map { it.name }
             }.getOrDefault(emptyList())
         }
+        val sourceTags by remember {
+            SourceTagIndex.watch(context.appGraph.sourceManager, context.appGraph.sourcePreferences)
+        }.collectAsState(emptyList())
         var showSingleLoadingScreen by remember {
             mutableStateOf(searchQuery.isNotEmpty() && !extensionFilter.isNullOrEmpty() && state.total == 1)
         }
@@ -85,6 +89,7 @@ class GlobalSearchScreen(
                 onRecentSearch = viewModel::searchRecent,
                 onClearRecentSearches = viewModel::clearRecentSearches,
                 libraryTags = libraryTags,
+                sourceTags = sourceTags,
                 onTag = { navigator.push(TagEverywhereScreen(it)) },
             )
         }

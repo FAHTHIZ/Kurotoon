@@ -29,11 +29,12 @@ fun TagBrowseRow(
     onTag: (String) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
+    title: String = stringResource(MR.strings.kurotoon_browse_yourTags),
 ) {
     if (tags.isEmpty()) return
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
-            text = stringResource(MR.strings.kurotoon_browse_yourTags),
+            text = title,
             style = MaterialTheme.typography.labelMedium,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
