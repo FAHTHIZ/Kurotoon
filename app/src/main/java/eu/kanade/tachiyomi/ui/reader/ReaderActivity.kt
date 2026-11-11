@@ -144,6 +144,9 @@ class ReaderActivity : BaseActivity() {
     private val graph: AppGraph by lazy { metroGraph() }
 
     companion object {
+        private const val STATE_SOUND_MUTED = "kurotoon_sound_muted"
+        private const val STATE_VOLUME_HINTED = "kurotoon_volume_hinted"
+
         fun newIntent(context: Context, mangaId: Long?, chapterId: Long?): Intent {
             return Intent(context, ReaderActivity::class.java).apply {
                 putExtra("manga", mangaId)
@@ -217,6 +220,12 @@ class ReaderActivity : BaseActivity() {
 
         super.onCreate(savedInstanceState)
         resumeHintChecked = savedInstanceState != null
+        // Rotating recreates the reader: keep it quiet if it was muted, and don't re-check silent mode
+        if (savedInstanceState != null) {
+            silentChecked = true
+            mediaVolumeHinted = savedInstanceState.getBoolean(STATE_VOLUME_HINTED)
+            if (savedInstanceState.getBoolean(STATE_SOUND_MUTED)) soundtrack.mute(true, fade = false)
+        }
 
         setComposeContent {
             val state by viewModel.state.collectAsState()
@@ -569,6 +578,12 @@ class ReaderActivity : BaseActivity() {
 
     private var silentChecked = false
     private var mediaVolumeHinted = false
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(STATE_SOUND_MUTED, soundtrack.muted)
+        outState.putBoolean(STATE_VOLUME_HINTED, mediaVolumeHinted)
+    }
 
     /**
      * Media audio plays even with the ringer off, so a reader opened on a silent phone starts muted
