@@ -3,6 +3,7 @@ package kurotoon.reader.sound
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import android.os.SystemClock
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -186,9 +187,18 @@ class ReaderSoundtrack(context: Context) {
 
     fun mute(mute: Boolean) {
         if (!mute) focus.clearInterruption()
+        if (mute && !muted) {
+            // Stay audible long enough for the music and ambience to fade out instead of cutting off
+            mutedAt = SystemClock.uptimeMillis()
+            main.removeCallbacks(muteSettled)
+            main.postDelayed(muteSettled, MUTE_FADE_MS + 50)
+        }
         muted = mute
         evaluate()
     }
+
+    private var mutedAt = 0L
+    private val muteSettled = Runnable { refreshOutputs() }
 
     /** Takes the sound back after a call, another app or unplugged headphones. */
     fun resumeAfterInterruption() {
@@ -267,7 +277,8 @@ class ReaderSoundtrack(context: Context) {
 
     /** Decides what may be heard right now and starts or stops each output to match. */
     private fun refreshOutputs() {
-        val wantsSound = resumed && !muted &&
+        val fadingOut = muted && SystemClock.uptimeMillis() - mutedAt < MUTE_FADE_MS
+        val wantsSound = resumed && (!muted || fadingOut) &&
             ((musicEnabled && music.playingTrack != null) || activeScape != Soundscape.OFF)
         val allowed = wantsSound && focus.interrupted == null && focus.acquire()
         // Give other apps their sound back while we have nothing to play
@@ -297,6 +308,9 @@ class ReaderSoundtrack(context: Context) {
 
     private companion object {
         const val SETTLE_MS = 180L
+
+        // Just over EpisodeMusic's fade-out, so mute never cuts a note off
+        const val MUTE_FADE_MS = 1_900L
         const val ARM_AHEAD = 2
         const val PREFETCH_AHEAD = 6
     }
