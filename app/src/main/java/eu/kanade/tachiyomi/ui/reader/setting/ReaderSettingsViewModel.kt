@@ -123,6 +123,7 @@ class ReaderSettingsViewModel(
         preferences.zoomStart,
         preferences.cropBorders,
         preferences.landscapeZoom,
+        preferences.pagerZoomLocked,
         preferences.navigateToPan,
         preferences.navigationModePager,
         preferences.pagerNavInverted,
@@ -133,6 +134,7 @@ class ReaderSettingsViewModel(
                 zoomStart = ReaderPreferences.ZoomStartType.fromValue(zoomStart.get()),
                 cropBorders = cropBorders.get(),
                 landscapeZoom = landscapeZoom.get(),
+                zoomLocked = pagerZoomLocked.get(),
             ),
             navigateToPan = navigateToPan.get(),
             navigation = NavigationSettings(

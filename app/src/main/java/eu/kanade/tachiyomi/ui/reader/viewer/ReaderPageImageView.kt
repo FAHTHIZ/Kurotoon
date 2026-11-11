@@ -149,6 +149,7 @@ open class ReaderPageImageView @JvmOverloads constructor(
         if (
             config != null &&
             config!!.landscapeZoom &&
+            config!!.zoomEnabled &&
             config!!.minimumScaleType == SCALE_TYPE_CENTER_INSIDE &&
             sWidth > sHeight &&
             scale == minScale
@@ -308,6 +309,7 @@ open class ReaderPageImageView @JvmOverloads constructor(
         setMinimumScaleType(config.minimumScaleType)
         setMinimumDpi(1) // Just so that very small image will be fit for initial load
         setCropBorders(config.cropBorders)
+        isZoomEnabled = config.zoomEnabled
         setOnImageEventListener(
             object : SubsamplingScaleImageView.DefaultOnImageEventListener() {
                 override fun onReady() {
@@ -400,6 +402,7 @@ open class ReaderPageImageView @JvmOverloads constructor(
                 setOnDoubleTapListener(
                     object : GestureDetector.SimpleOnGestureListener() {
                         override fun onDoubleTap(e: MotionEvent): Boolean {
+                            if (config?.zoomEnabled == false) return false
                             if (scale > 1F) {
                                 setScale(1F, e.x, e.y, true)
                             } else {
@@ -429,6 +432,7 @@ open class ReaderPageImageView @JvmOverloads constructor(
     ) = (pageView as? AppCompatImageView)?.apply {
         if (this is PhotoView) {
             setZoomTransitionDuration(config.zoomDuration.getSystemScaledDuration())
+            isZoomable = config.zoomEnabled
         }
 
         val request = ImageRequest.Builder(context)
@@ -467,6 +471,7 @@ open class ReaderPageImageView @JvmOverloads constructor(
         val cropBorders: Boolean = false,
         val zoomStartPosition: ZoomStartPosition = ZoomStartPosition.CENTER,
         val landscapeZoom: Boolean = false,
+        val zoomEnabled: Boolean = true,
     )
 
     enum class ZoomStartPosition {

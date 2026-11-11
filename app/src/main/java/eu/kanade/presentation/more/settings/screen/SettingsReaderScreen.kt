@@ -269,6 +269,11 @@ object SettingsReaderScreen : SearchableSettings {
                     visible = imageScaleType == 1,
                 ),
                 Preference.PreferenceItem.SwitchPreference(
+                    preference = readerPreferences.pagerZoomLocked,
+                    title = stringResource(MR.strings.kurotoon_reader_zoomLocked),
+                    subtitle = stringResource(MR.strings.kurotoon_reader_pagerZoomLockedSummary),
+                ),
+                Preference.PreferenceItem.SwitchPreference(
                     preference = readerPreferences.navigateToPan,
                     title = stringResource(MR.strings.pref_navigate_pan),
                     visible = navMode != 5,

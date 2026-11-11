@@ -19,5 +19,6 @@ data class PagedSettings(
         val zoomStart: ReaderPreferences.ZoomStartType,
         val cropBorders: Boolean,
         val landscapeZoom: Boolean,
+        val zoomLocked: Boolean = false,
     )
 }
