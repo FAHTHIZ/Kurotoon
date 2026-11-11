@@ -220,7 +220,7 @@ fun MangaActionRow(
     var wasFavorite by remember { mutableStateOf(favorite) }
     LaunchedEffect(favorite) {
         if (favorite && !wasFavorite) {
-            favoriteAnchor.burst(count = 14, power = 3.5f)
+            favoriteAnchor.burst(count = 10, power = 3f)
             favoriteScale.animateTo(1.35f, spring(stiffness = Spring.StiffnessHigh))
             favoriteScale.animateTo(1f, spring(dampingRatio = Spring.DampingRatioMediumBouncy))
         }
