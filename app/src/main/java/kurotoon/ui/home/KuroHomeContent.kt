@@ -141,6 +141,9 @@ fun KuroHomeContent(
                         )
                     }
                 }
+                if (state.hasSources) {
+                    item(key = "tip") { HomeTip() }
+                }
                 if (shown(HomeSection.NEW_CHAPTERS) && state.newChapters.isNotEmpty()) {
                     item(key = "new-chapters") {
                         HomeNewChapters(
