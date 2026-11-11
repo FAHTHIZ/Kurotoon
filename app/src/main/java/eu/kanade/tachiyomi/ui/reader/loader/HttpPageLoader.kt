@@ -215,13 +215,8 @@ internal class HttpPageLoader(
     }
 
     /**
-     * Loads the page, retrieving the image URL and downloading the image if necessary.
-     * Downloaded images are stored in the chapter cache.
-     *
-     * @param page the page whose source image has to be downloaded.
-     */
-    /**
-     * Loads [page], quietly trying again a couple of times on network hiccups and server overload
+     * Loads [page], retrieving the image URL and downloading the image into the chapter cache if
+     * necessary. Quietly trying again a couple of times on network hiccups and server overload
      * so a single dropped request doesn't turn into a Retry button mid-chapter.
      */
     private suspend fun internalLoadPage(page: ReaderPage, force: Boolean = false) {
