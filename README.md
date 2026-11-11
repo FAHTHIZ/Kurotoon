@@ -18,6 +18,7 @@ and tells you what's out today. Private by default: no accounts, no ads, no trac
 **[Download](https://github.com/FAHTHIZ/Kurotoon/releases/latest)** ·
 **[Tour](#a-quick-tour)** ·
 **[Features](#everything-it-does)** ·
+**[Design](#designed-not-reskinned)** ·
 **[Compare](#how-it-compares)** ·
 **[Get started](#get-started)** ·
 **[Guides](docs/)**
@@ -140,6 +141,26 @@ calendar and music while you read. KuroToon is the first to give you both, plus 
 </td>
 </tr>
 </table>
+
+## Designed, not reskinned
+
+KuroToon started from Mihon's engine (sources, downloads, backups, trackers) and keeps it. The screens on top are
+its own: one design language of rounded cards, accent section headers, pills and a crimson-on-black palette.
+
+| Screen | Mihon | KuroToon |
+| --- | --- | --- |
+| Home | Not there; opens on Library | Hero carousel, Continue reading, Out today, Because you read, your panels |
+| Library | Tabs and a filter sheet | Category pills, one-tap quick filters, rounded covers, list mode as cards |
+| Updates | Plain dated list | Status card, day headers, NEW badges, release schedule |
+| History | Plain rows | Cards with a Resume pill and progress |
+| Browse | List rows | Source and extension cards with Popular, Latest, Install and Update pills |
+| Global search | Spinner per source | Accent headers, See all pills, pulsing cover placeholders |
+| Series page | Icon-and-label buttons | Rounded action tiles, cover-tinted page, accent rail on unread chapters |
+| Reader | Full-width bars | Floating rounded dock, soundtrack badge, sleep timer, progress orb |
+| Me and Settings | Flat preference lists | Mode tiles and grouped cards with colored icons, settings search bar |
+| Empty screens | Kaomoji | A sleeping Kuro |
+
+Details for each redesign are in the [changelog](CHANGELOG.md).
 
 ## How it compares
 

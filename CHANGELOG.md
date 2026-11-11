@@ -5,6 +5,21 @@ All notable changes to KuroToon are documented here. Versions follow
 
 ## [Unreleased]
 
+### Redesigned
+KuroToon's own look replaces the stock Mihon screens, one at a time:
+- Empty screens show a sleeping Kuro instead of a kaomoji
+- Updates: a status card with the last check, day headers and NEW badges
+- Sources: rounded cards with Popular and Latest pills; language groups under accent headers
+- Extensions: cards with rounded icons and one filled Install, Update or Retry pill
+- Library: category pills, one-tap quick filters (Unread, Downloaded, Started, Bookmarked), rounded covers with an outline when selected, and list mode as cards
+- Me tab: Downloaded only and Incognito as big mode tiles, everything else in grouped cards with colored icons
+- Settings: a search bar on top and the categories grouped into Look & read, Content & sources, App & data
+- Series page: actions as rounded tiles; unread chapters marked by an accent rail and bolder titles
+- History: cards with the cover, a Resume pill and how far you got
+- Downloads: cards with a thick rounded progress bar that turns red on errors
+- Global search: accent source headers, a See all pill, pulsing cover placeholders while loading and compact error cards
+- Reader: the controls float in a rounded dock, and the page slider matches it with the current page in the accent
+
 ### Fixed
 - Search bars put the keyboard away on Enter, and it no longer pops back up after leaving a series opened from the results ([mihon#3124](https://github.com/mihonapp/mihon/issues/3124))
 - Chapters hidden by a filter (e.g. Unread) are no longer reported as missing chapters ([mihon#87](https://github.com/mihonapp/mihon/issues/87))
