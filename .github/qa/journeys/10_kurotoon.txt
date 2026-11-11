@@ -4,10 +4,10 @@ sleep 3
 shot welcome
 tapx Next
 shot storage
-tap "Select a folder"
+tapx "Select a folder"
 sleep 3
 shot picker
-tap "More options"
+tap "More options" 25
 shot picker_menu
 tap "New folder"
 shot newfolder
@@ -15,7 +15,7 @@ type Kurotoon
 tapx OK
 sleep 2
 shot infolder
-tap "Use this folder"
+tap "Use this folder" 15
 sleep 2
 tap Allow
 sleep 2
