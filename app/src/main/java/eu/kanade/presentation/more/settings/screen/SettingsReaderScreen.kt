@@ -51,6 +51,11 @@ object SettingsReaderScreen : SearchableSettings {
                 title = stringResource(MR.strings.kurotoon_reader_clockBattery),
                 subtitle = stringResource(MR.strings.kurotoon_reader_clockBatterySummary),
             ),
+            Preference.PreferenceItem.SwitchPreference(
+                preference = readerPref.bedtimeMode,
+                title = stringResource(MR.strings.kurotoon_reader_bedtime),
+                subtitle = stringResource(MR.strings.kurotoon_reader_bedtimeSummary),
+            ),
             Preference.PreferenceItem.ListPreference(
                 preference = readerPref.doubleTapAnimSpeed,
                 entries = mapOf(

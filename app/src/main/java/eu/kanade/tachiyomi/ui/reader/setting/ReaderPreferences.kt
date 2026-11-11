@@ -109,6 +109,9 @@ class ReaderPreferences(
     /** The time and battery level next to the page number, since the reader hides the status bar. */
     val showClockBattery: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_reader_clock_battery", true)
 
+    /** Warms and slightly dims pages from late evening until morning. */
+    val bedtimeMode: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_reader_bedtime", false)
+
     val defaultOrientationType: Preference<Int> = preferenceStore.getInt(
         "pref_default_orientation_type_key",
         ReaderOrientation.FREE.flagValue,
