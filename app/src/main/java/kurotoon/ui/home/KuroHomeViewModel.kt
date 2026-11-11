@@ -9,8 +9,12 @@ import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import dev.zacsweers.metrox.viewmodel.ViewModelKey
 import eu.kanade.domain.source.interactor.GetEnabledSources
+import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.source.CatalogueSource
+import eu.kanade.tachiyomi.util.removeCovers
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
@@ -45,11 +49,15 @@ import logcat.LogPriority
 import mihon.domain.manga.model.toDomainManga
 import tachiyomi.core.common.preference.getAndSet
 import tachiyomi.core.common.util.system.logcat
+import tachiyomi.domain.category.interactor.GetCategories
+import tachiyomi.domain.category.interactor.SetMangaCategories
+import tachiyomi.domain.chapter.interactor.SetMangaDefaultChapterFlags
 import tachiyomi.domain.chapter.model.Chapter
 import tachiyomi.domain.history.interactor.GetHistory
 import tachiyomi.domain.history.interactor.GetNextChapters
 import tachiyomi.domain.history.model.HistoryWithRelations
 import tachiyomi.domain.library.model.LibraryManga
+import tachiyomi.domain.library.service.LibraryPreferences
 import tachiyomi.domain.manga.interactor.GetLibraryManga
 import tachiyomi.domain.manga.interactor.NetworkToLocalManga
 import tachiyomi.domain.manga.model.Manga
@@ -73,6 +81,11 @@ class KuroHomeViewModel(
     private val getLibraryManga: GetLibraryManga,
     scheduleLoader: ScheduleLoader,
     private val updateManga: eu.kanade.domain.manga.interactor.UpdateManga,
+    private val libraryPreferences: LibraryPreferences,
+    private val getCategories: GetCategories,
+    private val setMangaCategories: SetMangaCategories,
+    private val setMangaDefaultChapterFlags: SetMangaDefaultChapterFlags,
+    private val coverCache: CoverCache,
 ) : ViewModel() {
 
     /** Unread chapters fetched lately, one entry per series, newest first. */
@@ -162,7 +175,7 @@ class KuroHomeViewModel(
                 SourceRow(source.id, search.name, items = null, savedSearch = search, sourceName = source.name)
             }
         }
-        savedRows.value.forEach { row -> launch { loadRow(row) } }
+        savedRows.value.forEach(::launchRow)
     }
 
     /**
@@ -192,7 +205,7 @@ class KuroHomeViewModel(
             picks += SourceRow(source.id, tag.name, items = null, sourceName = source.name, pickTag = tag.name)
         }
         pickRows.value = picks
-        picks.forEach { row -> launch { loadRow(row) } }
+        picks.forEach(::launchRow)
     }
 
     /** Fetches each source's popular list, like the web app's home rows. */
@@ -209,9 +222,7 @@ class KuroHomeViewModel(
                 )
             }
         }
-        rows.value.forEach { row ->
-            launch { loadRow(row) }
-        }
+        rows.value.forEach(::launchRow)
     }
 
     /** Switches a source's Home row between popular titles and latest updates, and remembers it. */
@@ -221,19 +232,31 @@ class KuroHomeViewModel(
         val key = row.sourceId.toString()
         kuroPreferences.homeLatestSources.getAndSet { if (updated.latest) it + key else it - key }
         updateRow(row.key) { it.copy(latest = updated.latest) }
-        viewModelScope.launch { loadRow(updated) }
+        launchRow(updated)
     }
 
     /** Pull-to-refresh: reloads every row, and rebuilds picks so new library tags show up. */
     fun refresh() {
         viewModelScope.launch {
             launch { loadPickRows(rows.value.map { it.sourceId }) }
-            (savedRows.value + rows.value).forEach { row -> launch { loadRow(row) } }
+            (savedRows.value + rows.value).forEach(::launchRow)
         }
     }
 
-    fun retry(row: SourceRow) {
-        viewModelScope.launch { loadRow(row) }
+    fun retry(row: SourceRow) = launchRow(row)
+
+    /** The fetch in flight for each row, so a newer one (toggle, retry, refresh) replaces an older one. */
+    private val rowJobs = java.util.concurrent.ConcurrentHashMap<String, Job>()
+
+    /**
+     * Loads [row], cancelling any earlier load of the same row first. Without this a slow Popular
+     * fetch could land after the Latest one the reader just switched to, and overwrite it.
+     */
+    private fun launchRow(row: SourceRow) {
+        val job = viewModelScope.launch(start = CoroutineStart.LAZY) { loadRow(row) }
+        rowJobs.put(row.key, job)?.cancel()
+        job.invokeOnCompletion { rowJobs.remove(row.key, job) }
+        job.start()
     }
 
     private suspend fun loadRow(row: SourceRow) {
@@ -291,6 +314,16 @@ class KuroHomeViewModel(
     fun toggleLibrary(manga: Manga) {
         viewModelScope.launch(Dispatchers.IO) {
             val favorite = !manga.favorite
+            if (favorite) {
+                // Same as adding from a source: the reader's chapter defaults and default category.
+                // "Always ask" has no dialog here, so the series lands uncategorised.
+                setMangaDefaultChapterFlags.await(manga)
+                val defaultId = libraryPreferences.defaultCategory.get().toLong()
+                val category = getCategories.await().find { it.id == defaultId && it.id != 0L }
+                if (category != null) setMangaCategories.await(manga.id, listOf(category.id))
+            } else {
+                manga.removeCovers(coverCache)
+            }
             if (!updateManga.awaitUpdateFavorite(manga.id, favorite)) return@launch
             val swap: (SourceRow) -> SourceRow = { row ->
                 row.copy(
