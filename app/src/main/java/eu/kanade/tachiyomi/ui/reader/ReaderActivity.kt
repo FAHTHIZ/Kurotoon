@@ -181,6 +181,10 @@ class ReaderActivity : BaseActivity() {
 
     private val autoScroll = AutoScrollState()
     private val chapterComplete = ChapterCompleteState()
+    private val resumeHint = kurotoon.reader.ResumeHintState()
+
+    /** The resume hint is offered once per opening, not after rotation or chapter changes. */
+    private var resumeHintChecked = false
     private val soundtrack by lazy { ReaderSoundtrack(this) }
     private val sleepTimer = SleepTimerState()
 
@@ -208,6 +212,7 @@ class ReaderActivity : BaseActivity() {
         windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
         super.onCreate(savedInstanceState)
+        resumeHintChecked = savedInstanceState != null
 
         setComposeContent {
             val state by viewModel.state.collectAsState()
@@ -330,6 +335,13 @@ class ReaderActivity : BaseActivity() {
                 ReaderNavigationOverlay(state = navigationOverlayState)
 
                 ChapterCompleteHost(state = chapterComplete, modifier = Modifier.fillMaxSize())
+
+                kurotoon.reader.ResumeHintHost(
+                    state = resumeHint,
+                    menuVisible = state.menuVisible,
+                    onStartOver = { moveToPageIndex(0) },
+                    modifier = Modifier.fillMaxSize(),
+                )
 
                 ReaderSoundBadge(
                     visible = !state.menuVisible && (
@@ -903,6 +915,13 @@ class ReaderActivity : BaseActivity() {
     private fun setChapters(viewerChapters: ViewerChapters) {
         isLoadingViewer = false
         viewer?.setChapters(viewerChapters)
+
+        if (!resumeHintChecked) {
+            resumeHintChecked = true
+            val requested = viewerChapters.currChapter.requestedPage
+            val total = viewerChapters.currChapter.pages?.size ?: 0
+            if (requested in 1..<total) resumeHint.show(requested + 1)
+        }
 
         lifecycleScope.launch(Dispatchers.IO) {
             viewModel.getChapterUrl()?.let { url ->
