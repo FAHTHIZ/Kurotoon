@@ -1,173 +1,180 @@
 <div align="center">
 
-<img src=".github/assets/logo.png" alt="KuroToon" width="112" height="112">
+<img src=".github/assets/logo.png" alt="KuroToon" width="104" height="104">
 
 # KuroToon
 
-### Your manga. Your sources. One beautifully simple home.
+### Every source. Every soundtrack. One beautifully simple home.
 
-A private, local-first reader for manga, manhwa and webtoons on Android.<br>
-No accounts, no ads, no tracking: just your library, on your phone.
+The manga, manhwa and webtoon reader for Android that plays the music, remembers the panels you love<br>
+and tells you what's out today. Private by default: no accounts, no ads, no tracking.
 
 [![Build](https://github.com/FAHTHIZ/Kurotoon/actions/workflows/build.yml/badge.svg)](https://github.com/FAHTHIZ/Kurotoon/actions/workflows/build.yml)
-[![Latest release](https://img.shields.io/github/v/release/FAHTHIZ/Kurotoon?color=FF4D4D&label=release)](https://github.com/FAHTHIZ/Kurotoon/releases/latest)
-[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-FF4D4D)](LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/FAHTHIZ/Kurotoon?color=E5243B&label=release)](https://github.com/FAHTHIZ/Kurotoon/releases/latest)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-E5243B)](LICENSE)
 ![Android 8.0+](https://img.shields.io/badge/Android-8.0%2B-A35BE8)
 ![Kotlin + Compose](https://img.shields.io/badge/Kotlin-Jetpack%20Compose-7F52FF)
 
 **[Download](https://github.com/FAHTHIZ/Kurotoon/releases/latest)** ·
-**[Features](#features)** ·
-**[Screenshots](#screenshots)** ·
-**[How it compares](#how-it-compares)** ·
+**[Tour](#a-quick-tour)** ·
+**[Features](#everything-it-does)** ·
+**[Compare](#how-it-compares)** ·
 **[Get started](#get-started)** ·
 **[Guides](docs/)**
 
-<img src=".github/assets/features-marquee.svg" alt="Private by design · No accounts · No analytics · Local library · Auto-scroll reader · Webtoon mode · Chapter celebrations · Particle effects · Universal search" width="100%">
+<img src=".github/assets/hero.jpg" alt="KuroToon on a phone: Home, a Webtoons.com series, the reader with its soundtrack, and the library" width="100%">
 
-<img src=".github/assets/screenshots/home.png" alt="KuroToon Home" width="320">
+<sub>Every picture on this page is a real screenshot of the current build, taken on an Android emulator with the
+Webtoons.com, MangaDex and Asura Scans sources installed from a public extension store.</sub>
 
 </div>
 
-## Features
+## Why KuroToon
+
+Open-source readers give you every source and your privacy. Webtoon apps give you a home feed, a release
+calendar and music while you read. KuroToon is the first to give you both, plus things neither has:
+
+- **The soundtrack plays.** WEBTOON episodes with BGM play their music in KuroToon, starting and stopping on the
+  same panels as the official app. Every other chapter can get rain, night, fireplace, ocean or focus ambience.
+- **It knows when to stop.** A sleep timer winds the session down after 15 to 60 minutes or at the end of the
+  chapter: auto-scroll stops, the music fades and a dim "Time to rest" card takes over.
+- **It keeps what you love.** Long-press any page and **Keep panel**. Your saved panels live in a gallery that
+  jumps straight back to the chapter.
+- **It's kind to your data plan.** Data saver shrinks pages to WebP on mobile data (or always), with a quality
+  slider and automatic fallback for sites that refuse it.
+- **It feels alive.** A Home feed, a weekly release schedule, a Continue reading widget, a daily goal, a year in
+  review and a shop you fill by reading, never by paying.
+
+## A quick tour
+
+<div align="center">
+
+| Home | Browse a source | Series page |
+| :---: | :---: | :---: |
+| <img src=".github/assets/screenshots/home.jpg" alt="Home feed with a featured title and shortcuts" width="250"> | <img src=".github/assets/screenshots/browse.jpg" alt="Browsing Webtoons.com" width="250"> | <img src=".github/assets/screenshots/series.jpg" alt="Angel Wings series page with music-marked episodes" width="250"> |
+| **The reader** | **Keep a panel** | **Continue reading** |
+| <img src=".github/assets/screenshots/reader.jpg" alt="Reading Angel Wings in long-strip mode with clock and battery" width="250"> | <img src=".github/assets/screenshots/keep_panel.jpg" alt="Page actions with Keep panel" width="250"> | <img src=".github/assets/screenshots/home_continue.jpg" alt="Continue reading and source rows on Home" width="250"> |
+| **Library** | **Updates** | **Me** |
+| <img src=".github/assets/screenshots/library.jpg" alt="Library" width="250"> | <img src=".github/assets/screenshots/updates.jpg" alt="Updates with release schedule" width="250"> | <img src=".github/assets/screenshots/me.jpg" alt="Me tab with profile and stats" width="250"> |
+| **Sources** | **Extensions** | **First run** |
+| <img src=".github/assets/screenshots/sources.jpg" alt="Installed sources and Universal Search" width="250"> | <img src=".github/assets/screenshots/extensions.jpg" alt="Installed extensions" width="250"> | <img src=".github/assets/screenshots/onboarding.jpg" alt="First-run theme picker" width="250"> |
+
+</div>
+
+## Everything it does
 
 <table>
 <tr>
 <td width="33%" valign="top">
 
-### A home that feels alive
-A hero carousel, **Continue reading**, **New chapters**, **Out today**, "Because you read…", series you've
-stalled on, and a row for every source and saved search. Pull to refresh; hide any row you don't want.
+#### Read
+- Webtoon (long strip) and paged modes, picked automatically for manhwa and webtoons
+- **Soundtrack**: WEBTOON BGM, generated ambience, page-turn sound
+- **Sleep timer** with a gentle wind-down
+- Hands-free **auto-scroll** with ten speeds
+- Per-series ambience memory, crossfading tracks, offline music for downloads
+- Chapter list inside the reader, progress orb, time left in the chapter
+- Reopens long strips on the exact panel; go to any page; clock and battery on screen
+- **Bedtime warmth** that eases pages warmer and dimmer at night
+- **Keep panel**, save, share or set any page as the cover
+- **Data saver** with a quality slider
+- A small celebration when you finish a chapter
 
 </td>
 <td width="33%" valign="top">
 
-### Release schedule
-KuroToon learns which day each ongoing series usually updates and lays your library out as a week, the way
-webtoon apps do. Home shows what's **out today**.
+#### Discover
+- Home: hero carousel, Continue reading, New chapters, **Out today**, "Because you read…" and rows per source
+- **Weekly release schedule** learned from your library
+- Every source's own genres and themes as one-tap tags; long-press to exclude
+- **Saved searches** you can pin to Home
+- Universal search across every source
+- **More like this** from AniList recommendations
 
 </td>
 <td width="33%" valign="top">
 
-### A reader for long sessions
-Webtoon and paged modes, hands-free **auto-scroll** with ten speeds, a **chapter list inside the reader**,
-a progress orb, time left in the chapter, and a small celebration when you finish one.
+#### Keep
+- Library grouped by category, source or status, with **hidden categories**
+- Progress bars and source badges on covers
+- **Edit info**: your own title, people, tags and description that survive refreshes
+- Duplicates finder, bulk add, random pick
+- Offline downloads, backups, source migration
+- Tracker sync: AniList, MyAnimeList, Kitsu, MangaUpdates and more
 
 </td>
 </tr>
 <tr>
 <td valign="top">
 
-### A library that bends to you
-Group it by **your categories, source, or publishing status**, or keep one list. **Hide categories** you
-don't want on screen, filter by genre chips, show the **source on every cover**, and find duplicates.
+#### Make it yours
+- Crimson-on-black KuroToon theme, dynamic colour and more
+- Series pages tinted by their cover
+- Avatars, animated frames, particle colours and badges from the **Kuro Shop**
+- Import your own [`.kpack` files](docs/shop-packs.md)
 
 </td>
 <td valign="top">
 
-### Browse the way each catalogue is built
-Every source shows its own genres, themes and status as one-tap tags. Stack them, long-press to exclude,
-**save the search** and pin it to Home. **Select several titles** and add them in one go.
+#### Build a habit
+- Daily goal and an optional reminder at your hour
+- Kuro Points, daily missions and achievements
+- Reading heatmap, pace and **year in review**
+- **Continue reading** home-screen widget
+- **Your panels** row on Home
 
 </td>
 <td valign="top">
 
-### Private by design
-No accounts, no analytics, no ads. Your library, history and downloads stay on your phone. Backups are
-plain files you own.
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-### A shop you earn, not buy
-Reading, daily visits and missions earn **Kuro Points**. Spend them on avatars, animated frames, themes,
-particle colours and badges, or import your own [`.kpack` files](docs/shop-packs.md).
-
-</td>
-<td valign="top">
-
-### Your reading, in numbers
-A daily goal with a gentle reminder, a reading heatmap, your reading pace, and a **year in review**.
-
-</td>
-<td valign="top">
-
-### Everything else you'd expect
-Universal search across sources, offline downloads, tracker sync (AniList, MyAnimeList, Kitsu, MangaUpdates, Comick and more),
-source migration, extension stores you can **switch on and off**, and backups.
+#### Stay private
+- No accounts, no analytics, no ads
+- Library, history and downloads stay on the phone
+- Incognito mode
+- Backups are plain files you own
+- Extension stores you add yourself and can switch off
 
 </td>
 </tr>
 </table>
 
-### New in this version
-
-| | |
-| --- | --- |
-| **Release schedule & Out today** | A weekly view of when your series update, plus a Home row for today. |
-| **Chapter list in the reader** | Tap the list button in the reader menu to jump to any chapter. |
-| **Group library by** | Your categories, source, publishing status, or a single list. |
-| **Hidden categories** | Keep a category out of sight; reveal it from the menu when you want it. |
-| **Source on covers** | Library settings → Display → Source name. |
-| **Select several in Browse** | Menu → Select several, tap covers, Add to library. |
-| **Long-press on Home** | Add or remove any Home cover from your library without opening it. |
-| **Switch stores off** | Turn an extension store off without deleting it. |
-
-The full list is in the [changelog](CHANGELOG.md).
-
-## Screenshots
-
-<div align="center">
-
-| Release schedule | Out today on Home | Duplicates finder |
-| :---: | :---: | :---: |
-| <img src=".github/assets/screenshots/schedule.png" alt="Weekly release schedule" width="260"> | <img src=".github/assets/screenshots/home_schedule.png" alt="Out today row on Home" width="260"><br><br><img src=".github/assets/screenshots/home_saved_feed.png" alt="Saved search feed on Home" width="260"> | <img src=".github/assets/screenshots/duplicates.png" alt="Duplicates finder" width="260"> |
-| **Browse a source** | **Finished a chapter** | **Your profile** |
-| <img src=".github/assets/screenshots/browse_chips.png" alt="Sort and genre pills" width="260"> | <img src=".github/assets/screenshots/chapter_complete.png" alt="Chapter complete card" width="260"> | <img src=".github/assets/screenshots/profile.png" alt="Profile with avatar, frame and badges" width="260"> |
-| **Kuro Shop** | **Daily missions** | **Your year in reading** |
-| <img src=".github/assets/screenshots/shop.png" alt="Kuro Shop" width="260"> | <img src=".github/assets/screenshots/shop_missions.png" alt="Daily missions" width="260"> | <img src=".github/assets/screenshots/year_in_review.png" alt="Year in reading recap" width="260"> |
-| **Progress on covers** | **Reading activity** | **Hidden tags** |
-| <img src=".github/assets/screenshots/library_progress.png" alt="Library covers with read progress bars" width="260"> | <img src=".github/assets/screenshots/reading_activity.png" alt="Reading activity heatmap" width="260"> | <img src=".github/assets/screenshots/hidden_tags.png" alt="Hidden tags" width="260"> |
-| **Find a source** | **Reading progress orb** | **Tap effect** |
-| <img src=".github/assets/screenshots/source_filter.png" alt="Source filter and universal search" width="260"> | <img src=".github/assets/screenshots/progress_orb.png" alt="Progress orb at 12, 48 and 100 percent" width="260"> | <img src=".github/assets/screenshots/tap_burst.png" alt="Tap burst frames" width="260"> |
-
-</div>
-
-These are rendered from the real Compose code by the screenshot tests (see [Development](#development)).
-
 ## How it compares
 
-KuroToon keeps everything that makes open-source readers great (any source, offline, private) and adds the
-discovery and habit features people love in webtoon apps.
+KuroToon is built on Mihon and keeps everything that makes it great. Here is how it stacks up against the
+readers people usually switch from.
 
-| | **KuroToon** | Open-source readers<br><sub>(e.g. Mihon)</sub> | Webtoon apps<br><sub>(e.g. WEBTOON)</sub> |
-| --- | :---: | :---: | :---: |
-| Read from any source through extensions | ✅ | ✅ | ❌ own catalogue |
-| No account, no ads, no analytics | ✅ | ✅ | ❌ |
-| Offline downloads, backups, tracker sync | ✅ | ✅ | ➖ |
-| Home feed: continue reading, new chapters, picks | ✅ | ❌ | ✅ |
-| Weekly release schedule and "out today" | ✅ | ❌ | ✅ |
-| Saved searches pinned to Home | ✅ | ❌ | ❌ |
-| Chapter list inside the reader | ✅ | ❌ | ✅ |
-| Hands-free auto-scroll | ✅ | ❌ | ❌ |
-| Group library by source or status | ✅ | ❌ | ➖ |
-| Hidden categories, source badges, bulk add | ✅ | ❌ | ➖ |
-| Daily goal, reading stats, year in review | ✅ | ➖ basic stats | ➖ |
-| Rewards you earn by reading (no purchases) | ✅ | ❌ | ❌ coins are paid |
+| | **KuroToon** | Mihon | TachiyomiSY | Komikku | Kotatsu | WEBTOON |
+| --- | :---: | :---: | :---: | :---: | :---: | :---: |
+| Any source through extensions | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| No account, ads or analytics | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| Downloads, backups, trackers | ✅ | ✅ | ✅ | ✅ | ✅ | ➖ |
+| Episode music (BGM) | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Reading ambience and sleep timer | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Saved panels gallery | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Home feed with Continue reading | ✅ | ❌ | ➖ feed | ✅ feed | ➖ | ✅ |
+| Weekly schedule and "Out today" | ✅ | ➖ upcoming | ➖ upcoming | ➖ upcoming | ❌ | ✅ |
+| Auto-scroll | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ |
+| Data saver | ✅ | ❌ | ❌ | ❌ | ✅ | ➖ |
+| Edit series info | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ |
+| Hidden categories | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ |
+| Continue reading widget | ✅ | ➖ updates | ➖ updates | ➖ updates | ✅ | ✅ |
+| Daily goal, stats, year in review | ✅ | ➖ stats | ➖ stats | ➖ stats | ➖ stats | ❌ |
+| Rewards earned by reading | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ paid coins |
 
-<sub>✅ yes · ➖ partly or not applicable · ❌ no. Based on each app's public features at the time of writing.</sub>
+<sub>✅ yes · ➖ partly · ❌ no. Based on each project's public features and changelogs in November 2026:
+[Mihon](https://mihon.app/changelogs/), [TachiyomiSY](https://github.com/jobobby04/TachiyomiSY),
+[Komikku](https://github.com/komikku-app/komikku), [Kotatsu](https://github.com/KotatsuApp/Kotatsu),
+[WEBTOON](https://www.webtoons.com/). Spotted a mistake? Open an issue.</sub>
 
 ## Get started
 
 1. **Install.** Grab the APK from the [latest release](https://github.com/FAHTHIZ/Kurotoon/releases/latest), or
-   from the newest [Actions run](https://github.com/FAHTHIZ/Kurotoon/actions/workflows/build.yml) for the bleeding
-   edge. Most phones want the `arm64-v8a` file; `universal` works everywhere.
-2. **Add a repository.** Open **Browse → Extensions**, then the menu → **Extension stores**, tap **Add** and paste the index URL of a
-   repository you trust (it ends in `index.min.json` or `index.pb`). Repo links of the form
-   `tachiyomi://add-repo?url=…` open straight in KuroToon too.
-3. **Install a source**, find a series and tap **Add to library**, or long-press its cover anywhere.
-4. **Make Home yours.** Pull to refresh, save a search and pin it, or hide the rows you don't need.
+   from the newest [Actions run](https://github.com/FAHTHIZ/Kurotoon/actions/workflows/build.yml). Most phones want
+   `arm64-v8a`; `universal` works everywhere.
+2. **Set up.** Pick a theme, choose (or create) a folder for downloads and backups, grant the permissions you want.
+3. **Add an extension store.** Open a `tachiyomi://add-repo?url=…` link, or go to **Browse → Extensions →
+   menu → Extension stores → Add** and paste the store's `index.min.json` URL.
+4. **Install sources**, find a series and tap **Add to library**, or long-press any cover.
+5. **Read.** Tap the middle of the page for the menu; the music note opens the soundtrack and sleep timer.
 
 The [guides](docs/) cover [getting started](docs/getting-started.md), [your library](docs/library.md),
 [tracking](docs/tracking.md), [storage](docs/storage.md), [moving between sources](docs/source-migration.md),
@@ -175,12 +182,12 @@ The [guides](docs/) cover [getting started](docs/getting-started.md), [your libr
 
 ## Reader tips
 
-- Tap the **play button** in the reader's bottom bar to start auto-scroll. Touching the screen pauses it;
-  the speed slider lives in the reader settings under General.
-- Tap the **list button** to see every chapter and jump to any of them.
-- Volume keys can turn pages (reader settings → Controls). While auto-scroll runs they change its speed instead.
-- The orb in the corner shows how far through the chapter you are; tap it for the menu.
-- Long-press a page to save, share or set it as the cover.
+- **Play** in the bottom bar starts auto-scroll; touching the screen pauses it.
+- The **music note** opens the Sound sheet: episode music, ambience, page-turn sound and the sleep timer.
+- **Long-press a page** to keep the panel, save, share or set it as the cover.
+- The **list button** shows every chapter; jump to any of them.
+- Volume keys turn pages, or change the auto-scroll speed while it runs.
+- **Settings → General → Data saver** shrinks pages on mobile data.
 
 ## Development
 
@@ -191,19 +198,16 @@ Requirements: JDK 21 and the Android SDK.
 ./gradlew assembleRelease               # release APKs (debug-signed unless keystore.properties exists)
 ./gradlew spotlessApply                 # format
 ./gradlew :app:testDebugUnitTest        # unit tests
-./gradlew :app:testDebugUnitTest -Pscreenshots --tests 'kurotoon.screenshots.*'
-                                        # render UI screenshots to app/build/screenshots/
-KUROTOON_NETWORK_TESTS=1 ./gradlew :app:testDebugUnitTest --tests 'kurotoon.extension.*'
-                                        # add a real extension repo and check its listing
 ```
 
-Every push to `main` is built by GitHub Actions and the APK is attached to the run. The **QA emulator** workflow
-boots an Android emulator, walks through user journeys (first run, adding a repo, installing a source, browsing,
-reading) and records a screenshot of every step. Pushing a `v*` tag (or running the Release workflow by hand)
-publishes a GitHub release with per-ABI APKs and checksums. Add the `SIGNING_KEY` (base64 keystore), `ALIAS`,
+Every push to `main` is built by GitHub Actions and the APK is attached to the run. The **QA emulator** workflows
+boot an Android emulator and walk through real user journeys (first run, adding a store, installing sources,
+browsing, reading), recording a screenshot of every step; that's where the pictures above come from. Pushing a
+`v*` tag publishes a release with per-ABI APKs and checksums. Add the `SIGNING_KEY` (base64 keystore), `ALIAS`,
 `KEY_STORE_PASSWORD` and `KEY_PASSWORD` secrets to sign them with your own key.
 
 ## License
 
-KuroToon is distributed under the Apache License 2.0. It is built on code from other Apache-2.0 open-source
-Android readers; their copyright notices are kept in the source files. See [LICENSE](LICENSE).
+KuroToon is distributed under the Apache License 2.0. It is built on [Mihon](https://github.com/mihonapp/mihon)
+and other Apache-2.0 open-source Android readers; their copyright notices are kept in the source files. See
+[LICENSE](LICENSE). KuroToon ships with no content; sources come from extension stores you choose to add.
