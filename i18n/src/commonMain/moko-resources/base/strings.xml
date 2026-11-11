@@ -917,6 +917,8 @@
     <string name="kurotoon_tip_edit_info">Edit info on a series page keeps your own title, tags and description through refreshes.</string>
     <string name="kurotoon_tip_shop">Reading earns Kuro Points. Spend them on avatars, frames and themes in the Kuro Shop.</string>
     <string name="kurotoon_about_tagline">Every source. Every soundtrack. One beautifully simple home.</string>
+    <string name="kurotoon_downloads_summary_title">%1$d chapters in the queue</string>
+    <string name="kurotoon_downloads_summary_subtitle">From %1$d series · %2$d%% of pages fetched</string>
     <string name="kurotoon_updates_checked">Checked %s</string>
     <string name="kurotoon_updates_summary">%1$d unread of %2$d new chapters</string>
     <string name="kurotoon_updates_pull_hint">Pull down or tap Check now to look for new chapters</string>

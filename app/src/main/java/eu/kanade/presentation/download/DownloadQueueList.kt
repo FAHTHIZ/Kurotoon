@@ -55,7 +55,11 @@ import eu.kanade.tachiyomi.ui.download.DownloadQueueSection
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
+import kurotoon.ui.KuroColors
 import kurotoon.ui.KuroSectionHeader
+import kurotoon.ui.kuroCard
+import kurotoon.ui.shop.KuroMascot
+import kurotoon.ui.shop.KuroMood
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.DragHandle
 import mihon.icons.materialsymbols.rounded.MoreVert
@@ -151,6 +155,9 @@ fun DownloadQueueList(
         state = lazyListState,
         contentPadding = contentPadding,
     ) {
+        item(key = "kuro_summary") {
+            DownloadSummaryCard(sections = sectionsState)
+        }
         sectionsState.forEach { section ->
             item(key = section.key) {
                 ReorderableItem(reorderableState, section.key, enabled = draggingSectionId == null) { isDragging ->
@@ -531,5 +538,56 @@ private fun Download.pagesProgressFlow() = pagesFlow.flatMapLatest { pages ->
                     totalProgress = states.sumOf { (_, progress) -> progress },
                 )
             }
+    }
+}
+
+@Composable
+private fun DownloadSummaryCard(sections: List<DownloadQueueSection>) {
+    val downloads = sections.flatMap { it.downloads }
+    val progressFlow = remember(downloads) {
+        if (downloads.isEmpty()) {
+            flowOf(0)
+        } else {
+            combine(downloads.map { it.pagesProgressFlow() }) { all ->
+                val total = all.sumOf { it?.pageCount ?: 0 }
+                val done = all.sumOf { it?.downloadedPages ?: 0 }
+                if (total == 0) 0 else done * 100 / total
+            }
+        }
+    }
+    val percent by progressFlow.collectAsState(initial = 0)
+    val progress by animateFloatAsState(percent / 100f, label = "summary")
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .kuroCard(RoundedCornerShape(20.dp))
+            .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        KuroMascot(size = 56.dp, mood = KuroMood.READING)
+        Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Text(
+                text = stringResource(MR.strings.kurotoon_downloads_summary_title, downloads.size),
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+            )
+            Text(
+                text = stringResource(MR.strings.kurotoon_downloads_summary_subtitle, sections.size, percent),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            LinearProgressIndicator(
+                progress = { progress },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 6.dp)
+                    .height(6.dp),
+                color = KuroColors.Crimson,
+                strokeCap = StrokeCap.Round,
+                drawStopIndicator = {},
+            )
+        }
     }
 }
