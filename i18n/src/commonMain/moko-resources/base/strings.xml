@@ -1213,6 +1213,10 @@
     <string name="kurotoon_reader_clockBatterySummary">Show the clock and battery level next to the page number, since the reader hides the status bar</string>
     <string name="kurotoon_reader_resumedAt">Picked up on page %d</string>
     <string name="kurotoon_reader_startOver">Start over</string>
+    <string name="kurotoon_extensions_sort">Sort installed</string>
+    <string name="kurotoon_extensions_sortName">Name</string>
+    <string name="kurotoon_extensions_sortRecent">Recently installed or updated</string>
+    <string name="kurotoon_extensions_sortLanguage">Language</string>
     <string name="kurotoon_reader_scaleForSeries">Use this scale and zoom start just for this series</string>
     <string name="kurotoon_browse_hiddenSeries">Hidden series</string>
     <string name="kurotoon_browse_hiddenSeriesNone">No hidden series. Select series while browsing a source and tap Hide to keep them out of results.</string>

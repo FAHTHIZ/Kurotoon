@@ -23,6 +23,7 @@ import eu.kanade.tachiyomi.ui.webview.WebViewScreen
 import eu.kanade.tachiyomi.util.system.isPackageInstalled
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
+import tachiyomi.presentation.core.util.collectAsState
 
 @Composable
 fun extensionsTab(
@@ -33,12 +34,17 @@ fun extensionsTab(
 
     val updatesCount by extensionsViewModel.updatesCount.collectAsStateWithLifecycle()
     var privateExtensionToUninstall by remember { mutableStateOf<Extension.Installed?>(null) }
+    var choosingSort by remember { mutableStateOf(false) }
 
     return TabContent(
         titleRes = MR.strings.label_extensions,
         badgeNumber = updatesCount.takeIf { it > 0 },
         searchEnabled = true,
         actions = listOf(
+            AppBar.OverflowAction(
+                title = stringResource(MR.strings.kurotoon_extensions_sort),
+                onClick = { choosingSort = true },
+            ),
             AppBar.OverflowAction(
                 title = stringResource(MR.strings.action_filter),
                 onClick = { navigator.push(ExtensionFilterScreen()) },
@@ -91,6 +97,15 @@ fun extensionsTab(
                 onUpdateExtension = extensionsViewModel::updateExtension,
                 onRefresh = extensionsViewModel::findAvailableExtensions,
             )
+
+            if (choosingSort) {
+                val sort by extensionsViewModel.extensionSort.collectAsState()
+                kurotoon.extension.ExtensionSortDialog(
+                    current = kurotoon.extension.ExtensionSort.from(sort),
+                    onSelect = { extensionsViewModel.extensionSort.set(it.ordinal) },
+                    onDismissRequest = { choosingSort = false },
+                )
+            }
 
             privateExtensionToUninstall?.let { extension ->
                 ExtensionUninstallConfirmation(

@@ -49,7 +49,10 @@ class ExtensionsViewModel(
     private val extensionManager: ExtensionManager,
     private val getExtensions: GetExtensionsByType,
     private val context: Context,
+    private val kuroPreferences: kurotoon.prefs.KuroPreferences,
 ) : ViewModel() {
+
+    val extensionSort = kuroPreferences.extensionSort
 
     private val currentDownloads = MutableStateFlow<Map<String, InstallStep>>(hashMapOf())
 
@@ -75,7 +78,9 @@ class ExtensionsViewModel(
             .map { searchQueryPredicate(it ?: "") },
         currentDownloads,
         getExtensions.subscribe(),
-    ) { predicate, downloads, (_updates, _loaded, _available, _notLoaded) ->
+        kuroPreferences.extensionSort.changes(),
+    ) { predicate, downloads, (_updates, _loaded, _available, _notLoaded), sortValue ->
+        val sort = kurotoon.extension.ExtensionSort.from(sortValue)
         buildMap {
             val updates = _updates.filter(predicate).map(extensionMapper(downloads))
             if (updates.isNotEmpty()) {
@@ -87,7 +92,7 @@ class ExtensionsViewModel(
                 put(ExtensionUiModel.Header.Resource(MR.strings.ext_not_loaded), notLoaded)
             }
 
-            val loaded = _loaded.filter(predicate).map(extensionMapper(downloads))
+            val loaded = sort.sort(_loaded.filter(predicate), context).map(extensionMapper(downloads))
             if (loaded.isNotEmpty()) {
                 put(ExtensionUiModel.Header.Resource(MR.strings.ext_installed), loaded)
             }
