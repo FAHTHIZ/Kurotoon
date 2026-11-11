@@ -46,6 +46,8 @@ import eu.kanade.presentation.manga.components.MangaCover
 import eu.kanade.presentation.util.formatChapterNumber
 import eu.kanade.presentation.util.rememberResourceBitmapPainter
 import eu.kanade.tachiyomi.R
+import kurotoon.ui.KuroColors
+import kurotoon.ui.kuroCard
 import mihon.feature.migration.list.models.MigratingManga
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.automirroredrounded.ArrowForward
@@ -126,10 +128,9 @@ fun MigrationListScreenContent(
                     Modifier
                         .fillMaxWidth()
                         .animateItem()
-                        .padding(
-                            start = MaterialTheme.padding.medium,
-                            end = MaterialTheme.padding.small,
-                        )
+                        .padding(horizontal = MaterialTheme.padding.medium, vertical = 6.dp)
+                        .kuroCard(RoundedCornerShape(20.dp))
+                        .padding(8.dp)
                         .height(IntrinsicSize.Min),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
@@ -149,6 +150,7 @@ fun MigrationListScreenContent(
                     Icon(
                         imageVector = MaterialSymbols.AutoMirroredRounded.ArrowForward,
                         contentDescription = null,
+                        tint = KuroColors.Crimson,
                         modifier = Modifier.weight(0.2f),
                     )
 
@@ -189,7 +191,7 @@ fun MigrationListItem(
         modifier = modifier
             .widthIn(max = 150.dp)
             .fillMaxWidth()
-            .clip(MaterialTheme.shapes.small)
+            .clip(RoundedCornerShape(14.dp))
             .clickable(onClick = onClick)
             .padding(4.dp),
     ) {
