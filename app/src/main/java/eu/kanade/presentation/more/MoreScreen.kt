@@ -1,22 +1,26 @@
 package eu.kanade.presentation.more
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsTopHeight
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
-import eu.kanade.presentation.more.settings.widget.SwitchPreferenceWidget
-import eu.kanade.presentation.more.settings.widget.TextPreferenceWidget
 import eu.kanade.tachiyomi.ui.more.DownloadQueueState
+import kurotoon.ui.KuroColors
 import kurotoon.ui.profile.KuroProfileHeader
+import kurotoon.ui.profile.MeGroup
+import kurotoon.ui.profile.MeModeTile
+import kurotoon.ui.profile.MeRow
 import kurotoon.ui.profile.ProfileLook
 import kurotoon.ui.profile.ProfileStats
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -31,7 +35,6 @@ import mihon.icons.materialsymbols.rounded.QueryStats
 import mihon.icons.materialsymbols.rounded.Settings
 import mihon.icons.materialsymbols.rounded.Storage
 import mihon.icons.materialsymbols.rounded.Sync
-import mihon.icons.materialsymbols.roundedfilled.VolunteerActivism
 import tachiyomi.core.common.Constants
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.ScrollbarLazyColumn
@@ -87,117 +90,129 @@ fun MoreScreen(
                     onShopClick = onClickShop,
                 )
             }
-            item {
-                SwitchPreferenceWidget(
-                    title = stringResource(MR.strings.label_downloaded_only),
-                    subtitle = stringResource(MR.strings.downloaded_only_summary),
-                    icon = MaterialSymbols.Rounded.CloudOff,
-                    checked = downloadedOnly,
-                    onCheckedChanged = onDownloadedOnlyChange,
-                )
-            }
-            item {
-                SwitchPreferenceWidget(
-                    title = stringResource(MR.strings.pref_incognito_mode),
-                    subtitle = stringResource(MR.strings.pref_incognito_mode_summary),
-                    icon = MaterialSymbols.Rounded.Eyeglasses2,
-                    checked = incognitoMode,
-                    onCheckedChanged = onIncognitoModeChange,
-                )
+            item(key = "modes") {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    MeModeTile(
+                        title = stringResource(MR.strings.label_downloaded_only),
+                        subtitle = stringResource(MR.strings.downloaded_only_summary),
+                        icon = MaterialSymbols.Rounded.CloudOff,
+                        checked = downloadedOnly,
+                        onCheckedChange = onDownloadedOnlyChange,
+                        modifier = Modifier.weight(1f),
+                    )
+                    MeModeTile(
+                        title = stringResource(MR.strings.pref_incognito_mode),
+                        subtitle = stringResource(MR.strings.pref_incognito_mode_summary),
+                        icon = MaterialSymbols.Rounded.Eyeglasses2,
+                        checked = incognitoMode,
+                        onCheckedChange = onIncognitoModeChange,
+                        modifier = Modifier.weight(1f),
+                    )
+                }
             }
 
-            item { HorizontalDivider() }
-
-            item {
-                val downloadQueueState = downloadQueueStateProvider()
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.label_download_queue),
-                    subtitle = when (downloadQueueState) {
-                        DownloadQueueState.Stopped -> null
-                        is DownloadQueueState.Paused -> {
-                            val pending = downloadQueueState.pending
-                            if (pending == 0) {
-                                stringResource(MR.strings.paused)
-                            } else {
-                                "${stringResource(MR.strings.paused)} • ${
-                                    pluralStringResource(
-                                        MR.plurals.download_queue_summary,
-                                        count = pending,
-                                        pending,
-                                    )
-                                }"
+            item(key = "group-reading") {
+                MeGroup(title = stringResource(MR.strings.kurotoon_me_group_reading)) {
+                    val downloadQueueState = downloadQueueStateProvider()
+                    MeRow(
+                        title = stringResource(MR.strings.label_download_queue),
+                        subtitle = when (downloadQueueState) {
+                            DownloadQueueState.Stopped -> null
+                            is DownloadQueueState.Paused -> {
+                                val pending = downloadQueueState.pending
+                                if (pending == 0) {
+                                    stringResource(MR.strings.paused)
+                                } else {
+                                    "${stringResource(MR.strings.paused)} • ${
+                                        pluralStringResource(
+                                            MR.plurals.download_queue_summary,
+                                            count = pending,
+                                            pending,
+                                        )
+                                    }"
+                                }
                             }
-                        }
-                        is DownloadQueueState.Downloading -> {
-                            val pending = downloadQueueState.pending
-                            pluralStringResource(MR.plurals.download_queue_summary, count = pending, pending)
-                        }
-                    },
-                    icon = MaterialSymbols.Rounded.Download,
-                    onPreferenceClick = onClickDownloadQueue,
-                )
-            }
-            item {
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.categories),
-                    icon = MaterialSymbols.AutoMirroredRounded.Label,
-                    onPreferenceClick = onClickCategories,
-                )
-            }
-            item {
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.label_stats),
-                    icon = MaterialSymbols.Rounded.QueryStats,
-                    onPreferenceClick = onClickStats,
-                )
-            }
-            item {
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.kurotoon_panels_title),
-                    subtitle = stringResource(MR.strings.kurotoon_panels_summary),
-                    icon = MaterialSymbols.Rounded.CollectionsBookmark,
-                    onPreferenceClick = onClickSavedPanels,
-                )
-            }
-            item {
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.kurotoon_more_reconcile),
-                    subtitle = stringResource(MR.strings.kurotoon_more_reconcileSummary),
-                    icon = MaterialSymbols.Rounded.Sync,
-                    onPreferenceClick = onClickChapterReconciliation,
-                )
-            }
-            item {
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.label_data_storage),
-                    icon = MaterialSymbols.Rounded.Storage,
-                    onPreferenceClick = onClickDataAndStorage,
-                )
+                            is DownloadQueueState.Downloading -> {
+                                val pending = downloadQueueState.pending
+                                pluralStringResource(MR.plurals.download_queue_summary, count = pending, pending)
+                            }
+                        },
+                        icon = MaterialSymbols.Rounded.Download,
+                        tint = KuroColors.Aurora,
+                        onClick = onClickDownloadQueue,
+                    )
+                    MeRow(
+                        title = stringResource(MR.strings.label_stats),
+                        icon = MaterialSymbols.Rounded.QueryStats,
+                        tint = KuroColors.Galaxy,
+                        onClick = onClickStats,
+                    )
+                    MeRow(
+                        title = stringResource(MR.strings.kurotoon_panels_title),
+                        subtitle = stringResource(MR.strings.kurotoon_panels_summary),
+                        icon = MaterialSymbols.Rounded.CollectionsBookmark,
+                        tint = KuroColors.Crimson,
+                        onClick = onClickSavedPanels,
+                        showDivider = false,
+                    )
+                }
             }
 
-            item { HorizontalDivider() }
+            item(key = "group-library") {
+                MeGroup(title = stringResource(MR.strings.kurotoon_me_group_library)) {
+                    MeRow(
+                        title = stringResource(MR.strings.categories),
+                        icon = MaterialSymbols.AutoMirroredRounded.Label,
+                        tint = KuroColors.Gold,
+                        onClick = onClickCategories,
+                    )
+                    MeRow(
+                        title = stringResource(MR.strings.kurotoon_more_reconcile),
+                        subtitle = stringResource(MR.strings.kurotoon_more_reconcileSummary),
+                        icon = MaterialSymbols.Rounded.Sync,
+                        tint = KuroColors.Aurora,
+                        onClick = onClickChapterReconciliation,
+                    )
+                    MeRow(
+                        title = stringResource(MR.strings.label_data_storage),
+                        icon = MaterialSymbols.Rounded.Storage,
+                        tint = KuroColors.Galaxy,
+                        onClick = onClickDataAndStorage,
+                        showDivider = false,
+                    )
+                }
+            }
 
-            item {
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.label_settings),
-                    icon = MaterialSymbols.Rounded.Settings,
-                    onPreferenceClick = onClickSettings,
-                )
+            item(key = "group-app") {
+                MeGroup(title = stringResource(MR.strings.kurotoon_me_group_app)) {
+                    MeRow(
+                        title = stringResource(MR.strings.label_settings),
+                        icon = MaterialSymbols.Rounded.Settings,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        onClick = onClickSettings,
+                    )
+                    MeRow(
+                        title = stringResource(MR.strings.pref_category_about),
+                        icon = MaterialSymbols.Rounded.Info,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        onClick = onClickAbout,
+                    )
+                    MeRow(
+                        title = stringResource(MR.strings.label_help),
+                        icon = MaterialSymbols.AutoMirroredRounded.Help,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        onClick = { uriHandler.openUri(Constants.URL_HELP) },
+                        showDivider = false,
+                    )
+                }
             }
-            item {
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.pref_category_about),
-                    icon = MaterialSymbols.Rounded.Info,
-                    onPreferenceClick = onClickAbout,
-                )
-            }
-            item {
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.label_help),
-                    icon = MaterialSymbols.AutoMirroredRounded.Help,
-                    onPreferenceClick = { uriHandler.openUri(Constants.URL_HELP) },
-                )
-            }
+
+            item(key = "bottom-space") { Spacer(Modifier.height(16.dp)) }
         }
     }
 }
