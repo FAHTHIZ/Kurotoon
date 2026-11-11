@@ -19,7 +19,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - The old JSON chapter reconciliation tool in the Me tab is replaced by merged chapters
 
 ### Fixed
-- Searching extensions for `hitomi.la` (or any 18+ site) found nothing because adult extensions are hidden by default. The search now says what's hidden and offers Allow 18+, and pasted addresses like `https://www.hitomi.la/` match
+- Searching extensions for `hitomi.la` (or any 18+ site) found nothing because adult extensions are hidden by default. The search now says what's hidden and offers Allow 18+, and pasted addresses like `https://www.hitomi.la/` match in both Extensions and Sources
 - Kuro labels that didn't match their art (Shy → Manga Time, Kuru legend → Kuro legend)
 
 ## [0.22.0] - 2026-11-11
