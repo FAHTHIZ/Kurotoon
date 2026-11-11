@@ -28,8 +28,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import kurotoon.ui.KuroColors
 import kurotoon.ui.kuroCard
-import kurotoon.ui.shop.KuroMascot
-import kurotoon.ui.shop.KuroMood
 import mihon.app.di.appGraph
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
@@ -45,7 +43,6 @@ private val tips = listOf(
     MR.strings.kurotoon_tip_schedule,
     MR.strings.kurotoon_tip_tags,
     MR.strings.kurotoon_tip_edit_info,
-    MR.strings.kurotoon_tip_shop,
 )
 
 /**
@@ -67,18 +64,16 @@ fun HomeTip(modifier: Modifier = Modifier) {
             .fillMaxWidth()
             .clip(shape)
             .kuroCard(shape)
-            .background(Brush.linearGradient(listOf(KuroColors.Galaxy.copy(alpha = 0.14f), Color.Transparent)))
-            .padding(start = 8.dp, end = 14.dp, top = 12.dp, bottom = 12.dp),
+            .padding(horizontal = 16.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        KuroMascot(size = 56.dp, mood = KuroMood.HAPPY)
         Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Text(
                 text = stringResource(MR.strings.kurotoon_tip_label).uppercase(),
                 style = MaterialTheme.typography.labelSmall,
                 fontWeight = FontWeight.Bold,
-                color = KuroColors.Galaxy,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             AnimatedContent(
                 targetState = index.mod(tips.size),

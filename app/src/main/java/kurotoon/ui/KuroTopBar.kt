@@ -24,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -33,17 +34,17 @@ import tachiyomi.presentation.core.i18n.stringResource
 
 /** The red "K" tile from the KuroToon logo. */
 @Composable
-fun KuroLogo(modifier: Modifier = Modifier) {
+fun KuroLogo(modifier: Modifier = Modifier, size: Dp = 32.dp) {
     Box(
         modifier = modifier
-            .size(32.dp)
+            .size(size)
             .background(
                 Brush.linearGradient(listOf(KuroColors.Crimson, KuroColors.CrimsonDeep)),
-                RoundedCornerShape(8.dp),
+                RoundedCornerShape(size / 4),
             ),
         contentAlignment = Alignment.Center,
     ) {
-        Text(text = "K", color = Color.White, fontWeight = FontWeight.Black, fontSize = 17.sp)
+        Text(text = "K", color = Color.White, fontWeight = FontWeight.Black, fontSize = (size.value * 0.53f).sp)
     }
 }
 

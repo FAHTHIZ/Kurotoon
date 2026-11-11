@@ -51,8 +51,6 @@ import kotlinx.coroutines.withContext
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import kurotoon.ui.profile.MeGroup
-import kurotoon.ui.shop.KuroMascot
-import kurotoon.ui.shop.KuroMood
 import logcat.LogPriority
 import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -275,7 +273,7 @@ object AboutScreen : Screen() {
     }
 }
 
-/** KuroToon's About header: Kuro, the name, the tagline and the version as a pill. */
+/** KuroToon's About header: the logo, the name, the tagline and the version as a pill. */
 @Composable
 private fun KuroAboutHero(version: String) {
     Column(
@@ -285,7 +283,7 @@ private fun KuroAboutHero(version: String) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
-        KuroMascot(size = 120.dp, mood = KuroMood.HAPPY)
+        kurotoon.ui.KuroLogo(size = 72.dp, modifier = Modifier.padding(bottom = 8.dp))
         Text(
             text = stringResource(MR.strings.app_name),
             style = MaterialTheme.typography.headlineSmall,
