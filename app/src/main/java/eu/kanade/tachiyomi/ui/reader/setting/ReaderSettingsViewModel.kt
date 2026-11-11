@@ -40,6 +40,7 @@ class ReaderSettingsViewModel(
     private val readerViewModel: ReaderViewModel,
     val preferences: ReaderPreferences,
     private val basePreferences: BasePreferences,
+    private val kuroPreferences: kurotoon.prefs.KuroPreferences,
 ) : ViewModel() {
 
     val mangaFlow = readerViewModel.state
@@ -118,7 +119,7 @@ class ReaderSettingsViewModel(
     /**
      * Settings every paged viewer uses.
      */
-    val paged = settings(
+    private val pagedGlobal = settings(
         preferences.imageScaleType,
         preferences.zoomStart,
         preferences.cropBorders,
@@ -142,6 +143,44 @@ class ReaderSettingsViewModel(
                 pagerNavInverted.get(),
             ),
         )
+    }
+
+    /** This series' own scale type and zoom start, when it has them (mihon#1622). */
+    val seriesPagedScale: StateFlow<Pair<Int, Int>?> = combine(
+        mangaFlow,
+        kuroPreferences.seriesPagedScale.changes(),
+    ) { manga, _ -> manga?.let { kuroPreferences.pagedScaleFor(it.id) } }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, mangaFlow.value?.let { kuroPreferences.pagedScaleFor(it.id) })
+
+    /**
+     * Settings every paged viewer uses, with this series' own scale applied over the global one.
+     */
+    val paged: StateFlow<PagedSettings> = combine(pagedGlobal, seriesPagedScale, ::withSeriesScale)
+        .stateIn(viewModelScope, SharingStarted.Eagerly, withSeriesScale(pagedGlobal.value, seriesPagedScale.value))
+
+    private fun withSeriesScale(global: PagedSettings, scale: Pair<Int, Int>?): PagedSettings {
+        scale ?: return global
+        return global.copy(
+            page = global.page.copy(
+                imageScaleType = ReaderPreferences.ScaleType.fromValue(scale.first),
+                zoomStart = ReaderPreferences.ZoomStartType.fromValue(scale.second),
+            ),
+        )
+    }
+
+    /** Gives this series its own scale (starting from the global one), or puts it back on the global one. */
+    fun setSeriesPagedScaleEnabled(enabled: Boolean) {
+        val id = mangaFlow.value?.id ?: return
+        kuroPreferences.setPagedScaleFor(
+            id,
+            (preferences.imageScaleType.get() to preferences.zoomStart.get()).takeIf { enabled },
+        )
+    }
+
+    fun setSeriesPagedScale(scaleType: Int? = null, zoomStart: Int? = null) {
+        val id = mangaFlow.value?.id ?: return
+        val current = kuroPreferences.pagedScaleFor(id) ?: return
+        kuroPreferences.setPagedScaleFor(id, (scaleType ?: current.first) to (zoomStart ?: current.second))
     }
 
     /**
