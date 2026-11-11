@@ -41,6 +41,8 @@ class GlobalSearchViewModel(
     preferences = preferences,
 ) {
 
+    override fun hiddenSeriesIds(): Set<String> = kuroPreferences.hiddenSeries.get()
+
     @AssistedFactory
     @ManualViewModelAssistedFactoryKey
     @ContributesIntoMap(AppScope::class)

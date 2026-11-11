@@ -67,6 +67,7 @@ import mihon.icons.materialsymbols.roundedfilled.Favorite
 import mihon.presentation.core.util.collectAsLazyPagingItems
 import tachiyomi.core.common.Constants
 import tachiyomi.core.common.i18n.pluralStringResource
+import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.domain.source.model.StubSource
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold
@@ -171,6 +172,30 @@ data class BrowseSourceScreen(
                         isActionMode = true,
                         onCancelActionMode = stopSelecting,
                         actions = {
+                            androidx.compose.material3.TextButton(
+                                enabled = selected.values.any { !it.favorite },
+                                onClick = {
+                                    val toHide = selected.values.filterNot { it.favorite }
+                                    viewModel.hideSeries(toHide)
+                                    stopSelecting()
+                                    scope.launch {
+                                        val result = snackbarHostState.showSnackbar(
+                                            message = context.pluralStringResource(
+                                                MR.plurals.kurotoon_browse_hiddenMany,
+                                                toHide.size,
+                                                toHide.size,
+                                            ),
+                                            actionLabel = context.stringResource(MR.strings.kurotoon_action_undo),
+                                            duration = androidx.compose.material3.SnackbarDuration.Long,
+                                        )
+                                        if (result == androidx.compose.material3.SnackbarResult.ActionPerformed) {
+                                            viewModel.unhideSeries(toHide)
+                                        }
+                                    }
+                                },
+                            ) {
+                                Text(stringResource(MR.strings.kurotoon_browse_hideSeries))
+                            }
                             androidx.compose.material3.TextButton(
                                 enabled = selected.values.any { !it.favorite },
                                 onClick = {

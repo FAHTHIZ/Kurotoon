@@ -30,6 +30,9 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
     /** The category the library opens on; -1 means wherever you left it (mihon#2165). */
     val libraryStartCategory = preferenceStore.getLong("kurotoon_library_start_category", -1L)
 
+    /** Manga ids kept out of Browse and Search results (mihon#2322). */
+    val hiddenSeries = preferenceStore.getStringSet("kurotoon_hidden_series", emptySet())
+
     /** Per-source default library category as "sourceId=categoryId" (mihon#336). */
     val sourceDefaultCategories = preferenceStore.getStringSet("kurotoon_source_default_categories", emptySet())
 
