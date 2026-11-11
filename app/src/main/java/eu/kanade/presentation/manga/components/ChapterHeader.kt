@@ -26,6 +26,7 @@ fun ChapterHeader(
     modifier: Modifier = Modifier,
     mangaId: Long? = null,
     readCount: Int = 0,
+    status: Long? = null,
 ) {
     Column(
         modifier = modifier
@@ -49,6 +50,7 @@ fun ChapterHeader(
 
         if (mangaId != null && chapterCount != null) {
             kurotoon.ui.manga.SeriesReadSummary(mangaId, readCount, chapterCount)
+            if (status != null) kurotoon.ui.manga.UpdateDaysLine(mangaId, status, chapterCount)
         }
 
         MissingChaptersWarning(missingChapterCount)

@@ -6,12 +6,14 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Fixed
+- The end-of-series card now actually shows the usual update day (its chapter lookup always failed before)
 - Muting the soundtrack (badge, sheet or sleep timer) fades the music and ambience out instead of cutting them off mid-note
 - The screen no longer times out while you study a dense page: the reader stays lit for 3 minutes after your last touch or page turn, then lets the phone sleep
 - Jumping with the page slider right after opening a long-strip chapter is no longer pulled back to the saved panel
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Ongoing series show the day they usually update under the chapter count ("New chapters usually every Tuesday")
 - Stop a running library update right from the "Updating library" snackbar in Library and Updates
 - Downloads that stopped because the connection dropped (or Wi-Fi went away with Wi-Fi only on) resume by themselves when it's back
 - A one-time hint when episode music starts but your media volume is at zero
