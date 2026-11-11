@@ -16,12 +16,16 @@ def say(msg):
 
 
 def raw_dump():
-    adb("shell", "uiautomator", "dump", "/sdcard/ui.xml")
-    xml = adb("shell", "cat", "/sdcard/ui.xml")
-    try:
-        return ET.fromstring(xml[xml.index("<"):])
-    except Exception:
-        return None
+    # uiautomator itself crashes now and then on a tree that changes mid-dump; try a few times
+    for attempt in range(3):
+        adb("shell", "rm", "-f", "/sdcard/ui.xml")
+        adb("shell", "uiautomator", "dump", "/sdcard/ui.xml")
+        xml = adb("shell", "cat", "/sdcard/ui.xml")
+        try:
+            return ET.fromstring(xml[xml.index("<"):])
+        except Exception:
+            time.sleep(1 + attempt)
+    return None
 
 
 def dump():
