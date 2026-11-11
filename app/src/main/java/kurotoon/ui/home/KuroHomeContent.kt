@@ -135,6 +135,7 @@ fun KuroHomeContent(
                     item(key = "continue") {
                         ContinueReading(
                             items = state.continueReading,
+                            pages = state.continuePages,
                             onMangaClick = onMangaClick,
                             onResumeClick = onResumeClick,
                         )
@@ -290,6 +291,7 @@ private fun androidx.compose.foundation.layout.RowScope.Shortcut(
 @Composable
 private fun ContinueReading(
     items: List<HistoryWithRelations>,
+    pages: Map<Long, Int>,
     onMangaClick: (Long) -> Unit,
     onResumeClick: (HistoryWithRelations) -> Unit,
 ) {
@@ -348,13 +350,21 @@ private fun ContinueReading(
                         modifier = Modifier.padding(top = 6.dp),
                     )
                     if (item.chapterNumber > -1) {
+                        val chapter = stringResource(
+                            MR.strings.display_mode_chapter,
+                            formatChapterNumber(item.chapterNumber),
+                        )
+                        val page = pages[item.chapterId]
                         Text(
-                            text = stringResource(
-                                MR.strings.display_mode_chapter,
-                                formatChapterNumber(item.chapterNumber),
-                            ),
+                            text = if (page != null) {
+                                stringResource(MR.strings.kurotoon_home_chapterPage, chapter, page)
+                            } else {
+                                chapter
+                            },
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
                         )
                     }
                 }

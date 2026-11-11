@@ -1210,6 +1210,7 @@
     <string name="kurotoon_reader_clockBatterySummary">Show the clock and battery level next to the page number, since the reader hides the status bar</string>
     <string name="kurotoon_reader_resumedAt">Picked up on page %d</string>
     <string name="kurotoon_reader_startOver">Start over</string>
+    <string name="kurotoon_home_chapterPage">%1$s · p. %2$d</string>
     <string name="kurotoon_reader_goToPage">Go to page</string>
     <string name="kurotoon_reader_goToPageRange">1 to %d</string>
     <string name="kurotoon_reader_goToPageAction">Go</string>
