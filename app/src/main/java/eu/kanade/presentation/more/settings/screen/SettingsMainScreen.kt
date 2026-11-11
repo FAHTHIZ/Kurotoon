@@ -230,7 +230,6 @@ object SettingsMainScreen : Screen() {
                                 title = stringResource(item.titleRes),
                                 subtitle = item.formatSubtitle(),
                                 icon = item.icon,
-                                tint = item.tint(),
                                 onClick = { onOpen(item.screen) },
                                 showDivider = i != group.lastIndex,
                             )

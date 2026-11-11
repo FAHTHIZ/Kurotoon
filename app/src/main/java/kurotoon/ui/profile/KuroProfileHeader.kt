@@ -28,14 +28,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.dropShadow
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -43,16 +40,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kurotoon.shop.ShopItem
-import kurotoon.ui.KuroColors
-import kurotoon.ui.kuroCard
 import kurotoon.ui.shop.KuroAvatar
 import kurotoon.ui.shop.KuroBadge
 import kurotoon.ui.shop.ShopItemArt
 import mihon.icons.materialsymbols.MaterialSymbols
+import mihon.icons.materialsymbols.rounded.Book
 import mihon.icons.materialsymbols.rounded.CollectionsBookmark
 import mihon.icons.materialsymbols.rounded.Edit
 import mihon.icons.materialsymbols.rounded.History
-import mihon.icons.materialsymbols.rounded.Storefront
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -64,10 +59,9 @@ data class ProfileStats(
     val unread: Long = 0,
 )
 
-/** What the reader is wearing from the shop, plus their balance. */
+/** What the reader picked from their collection. */
 @Immutable
 data class ProfileLook(
-    val points: Int = 0,
     val avatar: ShopItem? = null,
     val frame: ShopItem? = null,
     val sticker: ShopItem? = null,
@@ -91,7 +85,6 @@ fun KuroProfileHeader(
     ) {
         ProfileCard(
             nickname = nickname.ifBlank { stringResource(MR.strings.kurotoon_me_defaultNickname) },
-            chaptersRead = stats.chaptersRead,
             look = look,
             onAvatarClick = onShopClick,
             onNicknameChange = { onNicknameChange(it.trim().take(NICKNAME_MAX)) },
@@ -112,12 +105,11 @@ fun KuroProfileHeader(
                 modifier = Modifier.weight(1f),
             )
             StatTile(
-                icon = MaterialSymbols.Rounded.Storefront,
-                value = look.points.toLong(),
-                label = stringResource(MR.strings.kurotoon_rewards_points),
-                onClick = onShopClick,
+                icon = MaterialSymbols.Rounded.Book,
+                value = stats.chaptersRead,
+                label = stringResource(MR.strings.kurotoon_me_read),
+                onClick = onHistoryClick,
                 modifier = Modifier.weight(1f),
-                tint = KuroColors.Gold,
             )
         }
     }
@@ -126,7 +118,6 @@ fun KuroProfileHeader(
 @Composable
 private fun ProfileCard(
     nickname: String,
-    chaptersRead: Long,
     look: ProfileLook,
     onAvatarClick: () -> Unit,
     onNicknameChange: (String) -> Unit,
@@ -137,11 +128,8 @@ private fun ProfileCard(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .kuroCard(shape)
-            .background(
-                Brush.radialGradient(listOf(KuroColors.Crimson.copy(alpha = 0.12f), Color.Transparent)),
-                shape,
-            )
+            .clip(shape)
+            .background(MaterialTheme.colorScheme.surfaceContainer)
             .padding(20.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -152,7 +140,12 @@ private fun ProfileCard(
                 .clip(CircleShape)
                 .clickable(onClick = onAvatarClick),
         ) {
-            KuroAvatar(avatar = look.avatar, frame = look.frame, modifier = Modifier.matchParentSize())
+            KuroAvatar(
+                avatar = look.avatar,
+                frame = look.frame,
+                modifier = Modifier.matchParentSize(),
+                initial = nickname,
+            )
             look.sticker?.let { sticker ->
                 ShopItemArt(
                     sticker,
@@ -200,14 +193,6 @@ private fun ProfileCard(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 2.dp),
             )
-            Text(
-                text = stringResource(MR.strings.kurotoon_me_chaptersRead, chaptersRead).uppercase(),
-                color = KuroColors.Gold,
-                fontSize = 10.sp,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = 1.5.sp,
-                modifier = Modifier.padding(top = 4.dp),
-            )
             if (look.badges.isNotEmpty()) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(6.dp),
@@ -233,13 +218,13 @@ private fun NicknameField(initial: String, onDone: (String) -> Unit) {
             color = MaterialTheme.colorScheme.onSurface,
             fontWeight = FontWeight.Bold,
         ),
-        cursorBrush = SolidColor(KuroColors.Crimson),
+        cursorBrush = SolidColor(MaterialTheme.colorScheme.primary),
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
         keyboardActions = KeyboardActions(onDone = { onDone(value) }),
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.Black.copy(alpha = 0.3f), RoundedCornerShape(8.dp))
-            .border(1.dp, KuroColors.Crimson.copy(alpha = 0.6f), RoundedCornerShape(8.dp))
+            .background(MaterialTheme.colorScheme.surfaceContainerHighest, RoundedCornerShape(8.dp))
+            .border(1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(8.dp))
             .padding(horizontal = 8.dp, vertical = 4.dp)
             .focusRequester(focusRequester)
             .onFocusChanged {
@@ -260,13 +245,13 @@ private fun StatTile(
     label: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    tint: Color = KuroColors.Crimson,
+    tint: Color = MaterialTheme.colorScheme.primary,
 ) {
     val shape = RoundedCornerShape(16.dp)
     Column(
         modifier = modifier
             .clip(shape)
-            .kuroCard(shape)
+            .background(MaterialTheme.colorScheme.surfaceContainer)
             .clickable(onClick = onClick)
             .padding(16.dp),
     ) {

@@ -52,7 +52,8 @@ data class RewardsState(
 
     val level: LevelInfo get() = Levels.of(lifetimePoints)
 
-    fun owns(item: ShopItem): Boolean = item.isFree || item.code in owned
+    /** Everything in the collection is free; boosts were part of the old points shop. */
+    fun owns(item: ShopItem): Boolean = item.kind != ShopKind.BOOST || item.isFree || item.code in owned
 
     fun isEquipped(item: ShopItem): Boolean =
         if (item.kind == ShopKind.BADGE) item.code in badges else equipped[item.kind.key] == item.code

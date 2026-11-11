@@ -44,7 +44,7 @@ import kurotoon.rewards.RewardsStore
 import kurotoon.shop.ShopKind
 import kurotoon.ui.profile.ProfileLook
 import kurotoon.ui.profile.ProfileStats
-import kurotoon.ui.shop.KuroShopScreen
+import kurotoon.ui.shop.CollectionScreen
 import logcat.LogPriority
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Person
@@ -100,7 +100,7 @@ data object MoreTab : Tab {
             onClickLibrary = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.Library()) } },
             onClickHistory = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.History) } },
             profileLook = profileLook,
-            onClickShop = { navigator.push(KuroShopScreen()) },
+            onClickShop = { navigator.push(CollectionScreen()) },
         )
     }
 }
@@ -123,7 +123,6 @@ class MoreViewModel(
         val packs = rewardsStore.packs
         fun worn(kind: ShopKind) = state.equipped[kind.key]?.let(packs::item)?.takeIf(state::owns)
         ProfileLook(
-            points = state.points,
             avatar = worn(ShopKind.AVATAR),
             frame = worn(ShopKind.FRAME),
             sticker = worn(ShopKind.STICKER),

@@ -460,34 +460,18 @@ class KuroScreenshots {
         achievements = mapOf("first_chapter" to 1_762_000_000_000, "first_bookmark" to 1_762_100_000_000),
     )
 
-    private fun shopShot(name: String, section: kurotoon.ui.shop.ShopSection) = shot(name, fullScreen = true) {
-        kurotoon.ui.shop.ShopContent(
+    @Test
+    fun collection() = shot("collection", fullScreen = true) {
+        kurotoon.ui.shop.CollectionContent(
             state = rewards,
             packs = packs,
             contentPadding = androidx.compose.foundation.layout.PaddingValues(),
-            onClaim = {},
-            onClaimAll = {},
-            onBuy = { kurotoon.rewards.PurchaseResult.Success },
-            onEquip = {},
-            onUnequip = {},
-            onImport = {},
+            onUse = {},
+            onStopUsing = {},
+            onShare = {},
             onRemovePack = {},
-            initialSection = section,
-            animated = false,
         )
     }
-
-    @Test
-    fun shop() = shopShot("shop", kurotoon.ui.shop.ShopSection.SHOP)
-
-    @Test
-    fun shopMissions() = shopShot("shop_missions", kurotoon.ui.shop.ShopSection.MISSIONS)
-
-    @Test
-    fun shopCollection() = shopShot("shop_collection", kurotoon.ui.shop.ShopSection.COLLECTION)
-
-    @Test
-    fun shopPacks() = shopShot("shop_packs", kurotoon.ui.shop.ShopSection.PACKS)
 
     @Test
     fun profile() = shot("profile") {
@@ -499,7 +483,6 @@ class KuroScreenshots {
             onLibraryClick = {},
             onHistoryClick = {},
             look = kurotoon.ui.profile.ProfileLook(
-                points = rewards.points,
                 avatar = items["kuro.avatars/galaxy"],
                 frame = items["kuro.frames/mythic"],
                 sticker = items["kuro.starter/ex_happy"],

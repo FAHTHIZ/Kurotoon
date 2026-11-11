@@ -36,7 +36,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import kurotoon.ui.KuroSectionTitle
-import kurotoon.ui.kuroCard
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.KeyboardArrowRight
 
@@ -150,7 +149,7 @@ fun MeGroup(
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(20.dp))
-                .kuroCard(RoundedCornerShape(20.dp)),
+                .background(MaterialTheme.colorScheme.surfaceContainer),
             content = content,
         )
     }
@@ -161,9 +160,9 @@ fun MeGroup(
 fun MeRow(
     title: String,
     icon: ImageVector,
-    tint: Color,
     onClick: () -> Unit,
     subtitle: String? = null,
+    tint: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     showDivider: Boolean = true,
 ) {
     Row(
@@ -178,7 +177,7 @@ fun MeRow(
             modifier = Modifier
                 .size(36.dp)
                 .clip(RoundedCornerShape(11.dp))
-                .background(tint.copy(alpha = 0.16f)),
+                .background(MaterialTheme.colorScheme.surfaceContainerHighest),
             contentAlignment = Alignment.Center,
         ) {
             Icon(imageVector = icon, contentDescription = null, tint = tint, modifier = Modifier.size(20.dp))
@@ -210,7 +209,7 @@ fun MeRow(
     if (showDivider) {
         HorizontalDivider(
             modifier = Modifier.padding(start = 64.dp),
-            color = Color.White.copy(alpha = 0.05f),
+            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f),
         )
     }
 }

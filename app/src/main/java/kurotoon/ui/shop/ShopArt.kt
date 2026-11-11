@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,6 +45,8 @@ import coil3.compose.AsyncImage
 import kurotoon.shop.ShopItem
 import kurotoon.shop.ShopKind
 import kurotoon.ui.KuroColors
+import mihon.icons.materialsymbols.MaterialSymbols
+import mihon.icons.materialsymbols.rounded.Person
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -258,8 +261,8 @@ private fun ParticleSwatch(colors: List<Color>, modifier: Modifier, animated: Bo
 }
 
 /**
- * The reader's avatar with its frame. Either can be null: no avatar shows Kuro, no frame
- * shows a soft accent ring.
+ * The reader's avatar with its frame. Either can be null: no avatar shows the first letter of
+ * [initial] (or a person glyph), no frame shows a soft ring.
  */
 @Composable
 fun KuroAvatar(
@@ -268,6 +271,7 @@ fun KuroAvatar(
     modifier: Modifier = Modifier,
     animated: Boolean = true,
     ring: Boolean = true,
+    initial: String? = null,
 ) {
     val spin by if (animated && frame != null) {
         rememberInfiniteTransition(label = "frame").animateFloat(
@@ -280,11 +284,13 @@ fun KuroAvatar(
         remember { mutableFloatStateOf(0f) }
     }
     Box(modifier, contentAlignment = Alignment.Center) {
-        val accent = KuroColors.Crimson
+        val accent = MaterialTheme.colorScheme.outlineVariant
+        val plain = MaterialTheme.colorScheme.surfaceContainerHighest
+        val onPlain = MaterialTheme.colorScheme.onSurfaceVariant
         Canvas(Modifier.fillMaxSize()) {
             if (frame == null && ring) {
                 drawCircle(
-                    accent.copy(alpha = 0.5f),
+                    accent,
                     radius = size.minDimension / 2 - 2.dp.toPx(),
                     style = Stroke(2.dp.toPx()),
                 )
@@ -299,7 +305,7 @@ fun KuroAvatar(
                 .background(
                     Brush.radialGradient(
                         (avatar?.colors?.takeIf { it.size >= 2 }?.take(2)?.map { it.copy(alpha = 0.45f) })
-                            ?: listOf(Color(0xFF2A2236), Color(0xFF120F18)),
+                            ?: listOf(plain, plain),
                     ),
                 ),
             contentAlignment = Alignment.Center,
@@ -312,13 +318,25 @@ fun KuroAvatar(
                     contentScale = ContentScale.Crop,
                 )
                 avatar?.emoji != null -> EmojiArt(avatar.emoji, Modifier.fillMaxSize())
-                // No avatar picked yet: Kuro's classic portrait
-                else -> AsyncImage(
-                    DEFAULT_AVATAR,
-                    null,
-                    Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop,
-                )
+                // No avatar picked yet: a plain letter, like most apps
+                else -> {
+                    val letter = initial?.trim()?.firstOrNull()?.uppercaseChar()
+                    if (letter != null) {
+                        Text(
+                            letter.toString(),
+                            color = onPlain,
+                            fontWeight = FontWeight.SemiBold,
+                            style = MaterialTheme.typography.headlineMedium,
+                        )
+                    } else {
+                        Icon(
+                            MaterialSymbols.Rounded.Person,
+                            contentDescription = null,
+                            tint = onPlain,
+                            modifier = Modifier.fillMaxSize(0.5f),
+                        )
+                    }
+                }
             }
         }
         if (frame?.image != null) {
@@ -332,8 +350,6 @@ fun KuroAvatar(
         }
     }
 }
-
-private const val DEFAULT_AVATAR = "file:///android_asset/kuro/packs/02-avatars/classic.webp"
 
 private fun DrawScope.drawFrame(frame: ShopItem, spin: Float) {
     val colors = frame.colors.ifEmpty { listOf(KuroColors.Crimson, KuroColors.Galaxy, KuroColors.Aurora) }
