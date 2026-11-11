@@ -1213,6 +1213,8 @@
     <string name="kurotoon_reader_clockBatterySummary">Show the clock and battery level next to the page number, since the reader hides the status bar</string>
     <string name="kurotoon_reader_resumedAt">Picked up on page %d</string>
     <string name="kurotoon_reader_startOver">Start over</string>
+    <string name="kurotoon_download_chapterDelay">Pause between chapters</string>
+    <string name="kurotoon_download_chapterDelaySummary">Download one chapter per source at a time and wait this long before the next, for sources that block bulk downloads</string>
     <string name="kurotoon_local_namesFromFiles">Name local chapters after their files</string>
     <string name="kurotoon_local_namesFromFilesSummary">Ignore chapter titles in ComicInfo.xml, so renaming a file renames the chapter. Applies on the next refresh</string>
     <string name="kurotoon_library_updateSelected">Check for new chapters</string>
