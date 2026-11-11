@@ -1211,6 +1211,8 @@
     <string name="kurotoon_reader_clockBatterySummary">Show the clock and battery level next to the page number, since the reader hides the status bar</string>
     <string name="kurotoon_reader_resumedAt">Picked up on page %d</string>
     <string name="kurotoon_reader_startOver">Start over</string>
+    <string name="kurotoon_reader_caughtUp">You\'re all caught up</string>
+    <string name="kurotoon_reader_caughtUpOn">You\'re all caught up · New chapters usually arrive on %1$s</string>
     <string name="kurotoon_action_undo">Undo</string>
     <string name="kurotoon_manga_swipedRead">Marked as read</string>
     <string name="kurotoon_manga_swipedUnread">Marked as unread</string>
