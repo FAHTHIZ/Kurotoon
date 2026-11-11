@@ -60,6 +60,7 @@ class MyAnimeListInterceptor(
 
         if (response.code == 401) {
             myanimelist.setAuthExpired()
+            myanimelist.notifySignedOut()
             throw MALTokenExpired()
         }
 

@@ -24,6 +24,7 @@ class AnilistInterceptor(val anilist: Anilist, private var token: String?) : Int
         }
         if (oauth!!.isExpired()) {
             anilist.logout()
+            anilist.notifySignedOut()
             throw IOException("Token expired. Reconnect AniList in Settings.")
         }
 

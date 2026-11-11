@@ -40,6 +40,7 @@ class HikkaInterceptor(
         if (!refreshTokenResponse.isSuccessful) {
             refreshTokenResponse.close()
             hikka.logout()
+            hikka.notifySignedOut()
             throw Exception("Hikka: The token is expired")
         }
         refreshTokenResponse.close()

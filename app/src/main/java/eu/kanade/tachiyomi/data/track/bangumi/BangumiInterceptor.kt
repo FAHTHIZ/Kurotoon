@@ -43,6 +43,8 @@ class BangumiInterceptor(
 
         val response = chain.proceed(BangumiApi.refreshTokenRequest(current.refreshToken!!))
         if (!response.isSuccessful) {
+            // A 4xx means the refresh token was revoked or ran out, so it won't fix itself
+            if (response.code in 400..499) bangumi.notifySignedOut()
             response.close()
             return@synchronized current
         }

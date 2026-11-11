@@ -33,6 +33,8 @@ class KitsuInterceptor(
                 if (response.isSuccessful) {
                     with(json) { response.parseAs<KitsuOAuth>() }.also(::newAuth)
                 } else {
+                    // A 4xx means the refresh token was revoked or ran out, so it won't fix itself
+                    if (response.code in 400..499) kitsu.notifySignedOut()
                     response.close()
                     latest
                 }
