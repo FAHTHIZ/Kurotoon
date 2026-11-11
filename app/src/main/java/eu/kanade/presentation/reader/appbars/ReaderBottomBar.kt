@@ -2,7 +2,6 @@ package eu.kanade.presentation.reader.appbars
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -19,10 +18,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderOrientation
 import eu.kanade.tachiyomi.ui.reader.setting.ReadingMode
+import kurotoon.ui.kuroBounceClickable
+import kurotoon.ui.kuroPopOn
 import mihon.icons.custommaterialsymbols.CustomMaterialSymbols
 import mihon.icons.custommaterialsymbols.rounded.CropOff
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -132,14 +132,17 @@ private fun DockButton(
         if (active) MaterialTheme.colorScheme.onPrimary else LocalContentColor.current,
         label = "dockButtonTint",
     )
+    // Squishes on press; a tool that switches on pops with a small tilt
     Box(
         modifier = Modifier
             .size(44.dp)
+            .kuroBounceClickable(onClick = onClick, pressed = 0.88f)
             .clip(CircleShape)
-            .background(background)
-            .clickable(role = Role.Button, onClick = onClick),
+            .background(background),
         contentAlignment = Alignment.Center,
     ) {
-        CompositionLocalProvider(LocalContentColor provides tint, content = content)
+        Box(Modifier.kuroPopOn(active), contentAlignment = Alignment.Center) {
+            CompositionLocalProvider(LocalContentColor provides tint, content = content)
+        }
     }
 }

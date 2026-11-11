@@ -1,5 +1,6 @@
 package kurotoon.ui.schedule
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -19,8 +21,6 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.PrimaryScrollableTabRow
-import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -28,7 +28,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -46,6 +48,7 @@ import kotlinx.datetime.isoDayNumber
 import kotlinx.datetime.toJavaDayOfWeek
 import kurotoon.schedule.ScheduledSeries
 import kurotoon.schedule.WeeklySchedule
+import kurotoon.ui.kuroBounceClickable
 import tachiyomi.domain.manga.model.asMangaCover
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold
@@ -102,15 +105,21 @@ internal fun WeeklyScheduleContent(
     val pagerState = rememberPagerState(initialPage = schedule.today.dayOfWeek.isoDayNumber - 1) { days.size }
     val scope = rememberCoroutineScope()
     Column(modifier = Modifier.padding(top = contentPadding.calculateTopPadding())) {
-        PrimaryScrollableTabRow(selectedTabIndex = pagerState.currentPage, edgePadding = 8.dp) {
+        // A MANGA Plus-style day strip: seven equal pills, today marked with a dot, the open day solid
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+        ) {
             days.forEachIndexed { index, day ->
-                Tab(
+                DayPill(
+                    day = day,
                     selected = pagerState.currentPage == index,
+                    isToday = day == schedule.today.dayOfWeek,
+                    count = schedule.on(day).size,
                     onClick = { scope.launch { pagerState.animateScrollToPage(index) } },
-                    unselectedContentColor = MaterialTheme.colorScheme.onSurface,
-                    text = {
-                        DayTabLabel(day, isToday = day == schedule.today.dayOfWeek, count = schedule.on(day).size)
-                    },
+                    modifier = Modifier.weight(1f),
                 )
             }
         }
@@ -129,26 +138,61 @@ internal fun WeeklyScheduleContent(
 }
 
 @Composable
-private fun DayTabLabel(day: DayOfWeek, isToday: Boolean, count: Int) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        if (isToday) {
-            Box(
-                modifier = Modifier
-                    .padding(end = 6.dp)
-                    .size(6.dp)
-                    .background(MaterialTheme.colorScheme.primary, CircleShape),
-            )
-        }
+private fun DayPill(
+    day: DayOfWeek,
+    selected: Boolean,
+    isToday: Boolean,
+    count: Int,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val primary = MaterialTheme.colorScheme.primary
+    val container by animateColorAsState(
+        if (selected) primary else MaterialTheme.colorScheme.surfaceContainerHigh,
+        label = "dayPill",
+    )
+    val content by animateColorAsState(
+        when {
+            selected -> MaterialTheme.colorScheme.onPrimary
+            isToday -> primary
+            else -> MaterialTheme.colorScheme.onSurface
+        },
+        label = "dayPillContent",
+    )
+    Column(
+        modifier = modifier
+            .kuroBounceClickable(onClick = onClick, role = Role.Tab, pressed = 0.92f)
+            .clip(RoundedCornerShape(16.dp))
+            .background(container)
+            .padding(vertical = 8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
         Text(
             text = day.shortName(),
-            fontWeight = if (isToday) FontWeight.Bold else FontWeight.Normal,
+            color = content,
+            style = MaterialTheme.typography.labelMedium,
+            fontWeight = if (selected || isToday) FontWeight.ExtraBold else FontWeight.SemiBold,
+            maxLines = 1,
         )
-        if (count > 0) {
-            Text(
-                text = " $count",
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
+        Box(
+            modifier = Modifier
+                .padding(top = 4.dp)
+                .height(16.dp),
+            contentAlignment = Alignment.Center,
+        ) {
+            when {
+                count > 0 -> Text(
+                    text = count.toString(),
+                    color = content.copy(alpha = if (selected) 0.85f else 0.6f),
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold,
+                )
+                isToday -> Box(
+                    Modifier
+                        .size(5.dp)
+                        .background(content, CircleShape),
+                )
+            }
         }
     }
 }

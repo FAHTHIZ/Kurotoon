@@ -13,6 +13,12 @@ All notable changes to KuroToon are documented here. Versions follow
 - Covers in grids are rounder with a faint edge and bolder titles; Updates rows are taller with pill NEW badges
 - Section headings across the app are bold and bright, and cards lift off the background with a hairline edge
 - Me: the profile card has a crimson spotlight behind your avatar and your numbers count up when the tab opens
+- Schedule: the day tabs are a strip of seven day pills; the open day is solid, today is marked, and each shows its count
+- Collection: filter pills are solid when on with a count; the item in use glows
+- Settings: each group is one rounded card with bold headings
+- Empty screens: a softly floating icon on a crimson glow, bolder message, and a solid first action
+- Reader dock: buttons squish when pressed and a tool pops when you switch it on
+- README: banner, badges, a screen gallery and design tokens
 - **Motion**: covers, cards, tiles and buttons squish when pressed and spring back, Home shelves cascade in, the bottom bar icon pops with a small tilt when you switch tabs, and loading shelves shimmer
 
 ## [0.23.0] - 2026-11-11

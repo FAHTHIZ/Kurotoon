@@ -1,14 +1,20 @@
 package eu.kanade.presentation.more.settings
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
 import eu.kanade.presentation.more.settings.screen.SearchableSettings
@@ -60,11 +66,21 @@ fun PreferenceScreen(
                             )
                         }
                     }
-                    items(preference.preferenceItems) { item ->
-                        PreferenceItem(
-                            item = item,
-                            highlightKey = highlightKey,
-                        )
+                    // Each group reads as one rounded card, like iOS-style grouped settings
+                    val shown = preference.preferenceItems.filter { it.visible }
+                    itemsIndexed(shown) { index, item ->
+                        Box(
+                            modifier = Modifier
+                                .padding(horizontal = 12.dp)
+                                .padding(bottom = 2.dp)
+                                .clip(groupItemShape(index, shown.size))
+                                .background(MaterialTheme.colorScheme.surfaceContainer),
+                        ) {
+                            PreferenceItem(
+                                item = item,
+                                highlightKey = highlightKey,
+                            )
+                        }
                     }
                     item {
                         if (i < items.lastIndex) {
@@ -98,3 +114,13 @@ private fun List<Preference>.findHighlightedIndex(highlightKey: String): Int {
         }
     }.indexOfFirst { it == highlightKey }
 }
+
+private val GroupCorner = 22.dp
+private val GroupInnerCorner = 6.dp
+
+private fun groupItemShape(index: Int, count: Int) = RoundedCornerShape(
+    topStart = if (index == 0) GroupCorner else GroupInnerCorner,
+    topEnd = if (index == 0) GroupCorner else GroupInnerCorner,
+    bottomStart = if (index == count - 1) GroupCorner else GroupInnerCorner,
+    bottomEnd = if (index == count - 1) GroupCorner else GroupInnerCorner,
+)

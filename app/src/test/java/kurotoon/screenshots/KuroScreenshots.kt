@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
@@ -48,6 +49,7 @@ import mihon.icons.materialsymbols.rounded.Explore
 import mihon.icons.materialsymbols.rounded.Home
 import mihon.icons.materialsymbols.rounded.NewReleases
 import mihon.icons.materialsymbols.rounded.Person
+import mihon.icons.materialsymbols.rounded.Refresh
 import org.junit.Assume.assumeTrue
 import org.junit.Before
 import org.junit.Test
@@ -606,6 +608,56 @@ class KuroScreenshots {
             onMangaClick = {},
             onSeeAll = {},
         )
+    }
+
+    @Test
+    fun seriesHeader() = shot("series_header") {
+        Column {
+            eu.kanade.presentation.manga.components.MangaInfoBox(
+                isTabletUi = false,
+                appBarPadding = 16.dp,
+                manga = tachiyomi.domain.manga.model.Manga.create().copy(
+                    id = 7L,
+                    title = "Solo Leveling",
+                    author = "Chugong",
+                    artist = "DUBU",
+                    status = eu.kanade.tachiyomi.source.model.SManga.COMPLETED.toLong(),
+                ),
+                source = tachiyomi.domain.source.model.StubSource(1L, "en", "Asura Scans"),
+                sourceName = "Asura Scans",
+                isStubSource = false,
+                onCoverClick = {},
+                doSearch = { _, _ -> },
+            )
+            eu.kanade.presentation.manga.components.MangaActionRow(
+                favorite = true,
+                trackingCount = 1,
+                nextUpdate = null,
+                isUserIntervalMode = false,
+                onAddToLibraryClicked = {},
+                onWebViewClicked = {},
+                onWebViewLongClicked = null,
+                onSimilarClicked = {},
+                onTrackingClicked = {},
+                onEditIntervalClicked = null,
+                onEditCategory = null,
+            )
+        }
+    }
+
+    @Test
+    fun emptyState() = shot("empty_state") {
+        androidx.compose.foundation.layout.Box(Modifier.height(520.dp)) {
+            tachiyomi.presentation.core.screens.EmptyScreen(
+                message = "Your library is empty",
+                actions = listOf(
+                    tachiyomi.presentation.core.screens.EmptyScreenAction(
+                        tachiyomi.i18n.MR.strings.getting_started_guide,
+                        mihon.icons.materialsymbols.MaterialSymbols.Rounded.Refresh,
+                    ) {},
+                ),
+            )
+        }
     }
 
     private fun shot(name: String, fullScreen: Boolean = false, content: @Composable () -> Unit) {

@@ -19,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -244,4 +245,55 @@ fun KuroButtonRow(modifier: Modifier = Modifier, content: @Composable RowScope.(
         verticalAlignment = Alignment.CenterVertically,
         content = content,
     )
+}
+
+/**
+ * A filter pill: solid accent when on, a quiet filled pill when off. The colour change is animated and a
+ * press squishes it slightly. Replaces Material's outlined FilterChip on KuroToon screens.
+ */
+@Composable
+fun KuroFilterPill(
+    text: String,
+    selected: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    count: Int? = null,
+) {
+    val container by androidx.compose.animation.animateColorAsState(
+        if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceContainerHigh,
+        label = "kuroFilterPill",
+    )
+    val content by androidx.compose.animation.animateColorAsState(
+        if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface,
+        label = "kuroFilterPillContent",
+    )
+    val interaction = remember { MutableInteractionSource() }
+    Row(
+        modifier = modifier
+            .kuroPressScale(interaction, pressed = 0.93f)
+            .height(36.dp)
+            .clip(CircleShape)
+            .background(container)
+            .clickable(interactionSource = interaction, indication = LocalIndication.current, onClick = onClick)
+            .padding(horizontal = 16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(6.dp),
+    ) {
+        Text(
+            text = text,
+            color = content,
+            style = MaterialTheme.typography.labelLarge,
+            fontWeight = if (selected) FontWeight.Bold else FontWeight.SemiBold,
+            maxLines = 1,
+        )
+        if (count != null && count > 0) {
+            Text(
+                text = count.toString(),
+                color = content.copy(alpha = 0.7f),
+                style = MaterialTheme.typography.labelSmall,
+                fontWeight = FontWeight.Bold,
+                maxLines = 1,
+            )
+        }
+    }
 }
