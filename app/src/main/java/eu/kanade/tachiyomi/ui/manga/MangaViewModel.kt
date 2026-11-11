@@ -1211,9 +1211,16 @@ class MangaViewModel(
                 if (!opened.read) opened else ordered.drop(index + 1).firstOrNull { !it.read } ?: firstUnread
             }
 
+            // Counted over every chapter, so ones hidden by a filter aren't reported as missing (mihon#87)
+            private val knownChapterNumbers by lazy {
+                chapters.mapNotNullTo(HashSet()) { item ->
+                    item.chapter.takeIf { it.isRecognizedNumber }?.let { floor(it.chapterNumber).toInt() }
+                }
+            }
+
             val missingChapterCount by lazy {
                 if (hideMissingChapters) return@lazy 0
-                processedChapters.fastMap { it.chapter.chapterNumber }.missingChaptersCount()
+                chapters.fastMap { it.chapter.chapterNumber }.missingChaptersCount()
             }
 
             val chapterListItems by lazy {
@@ -1229,13 +1236,11 @@ class MangaViewModel(
                     }
                     if (higherChapter == null) return@insertSeparators null
 
-                    if (lowerChapter == null) {
-                        floor(higherChapter.chapter.chapterNumber)
-                            .toInt()
-                            .minus(1)
-                            .coerceAtLeast(0)
-                    } else {
-                        calculateChapterGap(higherChapter.chapter, lowerChapter.chapter)
+                    val higher = higherChapter.chapter
+                    val lower = lowerChapter?.chapter
+                    when {
+                        !higher.isRecognizedNumber || (lower != null && !lower.isRecognizedNumber) -> 0
+                        else -> calculateChapterGap(higher.chapterNumber, lower?.chapterNumber, knownChapterNumbers)
                     }
                         .takeIf { it > 0 }
                         ?.let { missingCount ->

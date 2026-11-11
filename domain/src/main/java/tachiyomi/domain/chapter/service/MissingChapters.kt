@@ -47,3 +47,15 @@ fun calculateChapterGap(higherChapterNumber: Double, lowerChapterNumber: Double)
     if (higherChapterNumber < 0.0 || lowerChapterNumber < 0.0) return 0
     return floor(higherChapterNumber).toInt() - floor(lowerChapterNumber).toInt() - 1
 }
+
+/**
+ * Chapters missing between two shown chapters, ignoring numbers that exist but are hidden by a filter
+ * (mihon#87). [known] holds the whole-number chapters the series really has; a null [lowerChapterNumber]
+ * means "from the start".
+ */
+fun calculateChapterGap(higherChapterNumber: Double, lowerChapterNumber: Double?, known: Set<Int>): Int {
+    if (higherChapterNumber < 0.0 || (lowerChapterNumber != null && lowerChapterNumber < 0.0)) return 0
+    val from = (lowerChapterNumber?.let { floor(it).toInt() } ?: 0) + 1
+    val until = floor(higherChapterNumber).toInt()
+    return (from until until).count { it !in known }
+}
