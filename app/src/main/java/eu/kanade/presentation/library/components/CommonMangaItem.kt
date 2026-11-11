@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import eu.kanade.presentation.manga.components.MangaCover
+import kurotoon.ui.kuroCard
 import kurotoon.ui.library.CoverReadProgress
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Check
@@ -376,15 +377,22 @@ fun MangaListItem(
     coverAlpha: Float = 1f,
     onClickContinueReading: (() -> Unit)? = null,
 ) {
+    val shape = RoundedCornerShape(16.dp)
     Row(
         modifier = Modifier
+            .padding(horizontal = 12.dp, vertical = 3.dp)
+            .height(80.dp)
+            .clip(shape)
+            .kuroCard(shape)
+            .then(
+                if (isSelected) Modifier.border(2.dp, MaterialTheme.colorScheme.primary, shape) else Modifier,
+            )
             .selectedBackground(isSelected)
-            .height(76.dp)
             .combinedClickable(
                 onClick = onClick,
                 onLongClick = onLongClick,
             )
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+            .padding(horizontal = 10.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         MangaCover.Book(
