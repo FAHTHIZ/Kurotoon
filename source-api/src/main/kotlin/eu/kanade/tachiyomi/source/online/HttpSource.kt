@@ -41,7 +41,7 @@ abstract class HttpSource : CatalogueSource {
      * Returns the base (home) URL of the website as a string.
      *
      * This is typically the root address that serves as the main entry point
-     * to the site's content, such as "https://mihon.tech".
+     * to the site's content, such as "https://example.org".
      *
      * This method is used in the browse screen to determine the URL
      * opened when tapping "Open in WebView".
