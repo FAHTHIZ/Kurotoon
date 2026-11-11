@@ -1,0 +1,73 @@
+{
+  "id": "kuro.seasonal",
+  "name": "Seasonal & event Kuru",
+  "author": "KuroToon",
+  "version": 1,
+  "description": "Limited editions that return every year.",
+  "cover": "anniversary.webp",
+  "items": [
+    {
+      "id": "newyear",
+      "kind": "sticker",
+      "name": "New Year Kuru",
+      "description": "January. Fireworks for a new reading year.",
+      "price": 500,
+      "rarity": "rare",
+      "image": "newyear.webp"
+    },
+    {
+      "id": "valentine",
+      "kind": "sticker",
+      "name": "Valentine Kuru",
+      "description": "February. Love is in the panels.",
+      "price": 500,
+      "rarity": "rare",
+      "image": "valentine.webp"
+    },
+    {
+      "id": "spring",
+      "kind": "sticker",
+      "name": "Spring Kuru",
+      "description": "March. Cherry blossom season.",
+      "price": 500,
+      "rarity": "rare",
+      "image": "spring.webp"
+    },
+    {
+      "id": "summer",
+      "kind": "sticker",
+      "name": "Summer Kuru",
+      "description": "June to August. Beach-day chapters.",
+      "price": 500,
+      "rarity": "rare",
+      "image": "summer.webp"
+    },
+    {
+      "id": "halloween",
+      "kind": "sticker",
+      "name": "Halloween Kuru",
+      "description": "October. Trick or read.",
+      "price": 800,
+      "rarity": "epic",
+      "image": "halloween.webp"
+    },
+    {
+      "id": "winter",
+      "kind": "sticker",
+      "name": "Winter Kuru",
+      "description": "December. Cosy scarf, cold nights.",
+      "price": 800,
+      "rarity": "epic",
+      "image": "winter.webp"
+    },
+    {
+      "id": "anniversary",
+      "kind": "sticker",
+      "name": "Anniversary Kuru",
+      "description": "Annual event. Crowned for another year of KuroToon.",
+      "price": 2500,
+      "rarity": "legendary",
+      "image": "anniversary.webp"
+    }
+  ]
+}
