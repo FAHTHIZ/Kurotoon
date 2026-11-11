@@ -190,6 +190,7 @@ class ReaderActivity : BaseActivity() {
     private val autoScroll = AutoScrollState()
     private val chapterComplete = ChapterCompleteState()
     private val resumeHint = kurotoon.reader.ResumeHintState()
+    private val nextElsewhere = kurotoon.reader.NextElsewhereState()
     private val wakefulness = kurotoon.reader.ReaderWakefulness()
     private val seriesAmbience by lazy { kurotoon.reader.sound.SeriesAmbience(this) }
 
@@ -363,6 +364,16 @@ class ReaderActivity : BaseActivity() {
                 ReaderNavigationOverlay(state = navigationOverlayState)
 
                 ChapterCompleteHost(state = chapterComplete, modifier = Modifier.fillMaxSize())
+
+                kurotoon.reader.NextElsewhereHost(
+                    state = nextElsewhere,
+                    onContinue = { offer ->
+                        // singleTask: the finishing reader steps aside so a fresh one opens the other copy
+                        finish()
+                        startActivity(newIntent(this@ReaderActivity, offer.mangaId, offer.chapterId))
+                    },
+                    modifier = Modifier.fillMaxSize(),
+                )
 
                 kurotoon.reader.ResumeHintHost(
                     state = resumeHint,
@@ -554,6 +565,16 @@ class ReaderActivity : BaseActivity() {
                         } else if (readerPreferences.celebrateChapters.get()) {
                             chapterComplete.show(event.chapterName)
                         }
+                    }
+                    is ReaderViewModel.Event.NextElsewhere -> {
+                        nextElsewhere.show(
+                            kurotoon.reader.NextElsewhereState.Offer(
+                                event.mangaId,
+                                event.chapterId,
+                                event.chapterName,
+                                event.sourceName,
+                            ),
+                        )
                     }
                 }
             }

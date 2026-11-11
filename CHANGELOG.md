@@ -9,6 +9,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - **Merged chapters across sources**: when a series is in your library from more than one source, its page offers one chapter list combined by chapter number, so 1–4 and 9 from one site plus 5–7 and 10 from another read as 1–10. Each chapter opens from the source that has it. See [docs/merged-chapters.md](docs/merged-chapters.md)
 - Global search opens with **On several sources**: each series found on two or more sources shown once with a ×N badge
 - Global search suggests **tags from every installed source**, merged and deduplicated, filtered as you type. The list updates as soon as you install or remove a source
+- **Continue on another source**: when the copy you're reading runs out or skips a chapter that another copy has, the reader offers "Next up, on <source> · Continue" at the end of the chapter
 - **Library combines copies**: a series saved from several sources shows once, with a ×N badge, led by the copy you read last. Turn it off in Library settings
 
 ### Changed

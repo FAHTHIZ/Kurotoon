@@ -45,4 +45,15 @@ class MergedChaptersTest {
         )
         MergedChapters.sameSeries(here, others).map { it.id } shouldBe listOf(2L, 4L)
     }
+
+    @Test
+    fun `finds the next chapter in another copy`() {
+        val b = MergedChapters.Copy(manga(2, "Solo Leveling"), "B", chapters(2, 5.0, 6.0, 10.0, read = setOf(5.0)))
+        val c = MergedChapters.Copy(manga(3, "Solo Leveling"), "C", chapters(3, 5.0, 11.0))
+        MergedChapters.nextAfter(4.0, listOf(b, c))!!.let { (chapter, copy) ->
+            chapter.chapterNumber shouldBe 5.0
+            copy.sourceName shouldBe "C"
+        }
+        MergedChapters.nextAfter(11.0, listOf(b, c)) shouldBe null
+    }
 }
