@@ -135,6 +135,7 @@ class ReaderViewModel(
     private val kuroPreferences: kurotoon.prefs.KuroPreferences,
     private val getCategories: tachiyomi.domain.category.interactor.GetCategories,
     private val setMangaCategories: tachiyomi.domain.category.interactor.SetMangaCategories,
+    private val addTracks: eu.kanade.domain.track.interactor.AddTracks,
 ) : ViewModel() {
 
     private val readingPace = kurotoon.reader.ReadingPace()
@@ -1171,6 +1172,8 @@ class ReaderViewModel(
             }
             val updated = getManga.await(manga.id) ?: return@launch
             mutableState.update { it.copy(manga = updated) }
+            // Same as adding from the series page: link Komga/Kavita-style trackers automatically
+            appScope.launch { addTracks.bindEnhancedTrackers(updated, sourceManager.getOrStub(updated.source)) }
         }
     }
 
