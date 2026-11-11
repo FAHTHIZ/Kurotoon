@@ -47,12 +47,14 @@ import kotlinx.coroutines.plus
 import kotlinx.coroutines.withContext
 import kurotoon.library.LibraryTag
 import kurotoon.library.LibraryTags
+import kurotoon.prefs.KuroPreferences
 import mihon.core.common.utils.mutate
 import mihon.core.metro.AppCoroutineScope
 import mihon.domain.library.model.search.QueryNode
 import mihon.feature.library.matches
 import tachiyomi.core.common.preference.CheckboxState
 import tachiyomi.core.common.preference.TriState
+import tachiyomi.core.common.preference.getAndSet
 import tachiyomi.core.common.util.lang.SubscriberGate
 import tachiyomi.core.common.util.lang.compareToWithCollator
 import tachiyomi.core.common.util.lang.pausedWhileUnsubscribed
@@ -100,6 +102,7 @@ class LibraryViewModel(
     private val downloadManager: DownloadManager,
     private val downloadCache: DownloadCache,
     private val trackerManager: TrackerManager,
+    private val kuroPreferences: KuroPreferences,
 ) : ViewModel() {
 
     private val subscriberGate = SubscriberGate()
@@ -148,11 +151,32 @@ class LibraryViewModel(
         .distinctUntilChanged()
         .flatMapLatest { needsTracks -> if (needsTracks) getTracksPerManga.subscribe() else flowOf(emptyMap()) }
 
+    /** Categories hidden from the library; shown again only for this session when [revealHidden] is on. */
+    val hiddenCategoryIds = kuroPreferences.hiddenCategories.changes()
+        .map { ids -> ids.mapNotNull(String::toLongOrNull).toSet() }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, emptySet())
+
+    val revealHidden = MutableStateFlow(false)
+
+    /** Hide the category on screen, or bring it back if it's already hidden. */
+    fun toggleCategoryHidden(category: Category) {
+        kuroPreferences.hiddenCategories.getAndSet { ids ->
+            val key = category.id.toString()
+            if (key in ids) ids - key else ids + key
+        }
+    }
+
+    fun toggleRevealHidden() {
+        revealHidden.update { !it }
+    }
+
     // Shared separately so search, selection and dialog changes still reach [state] before the
     // first query result
     private val library = combine(
         combine(searchQuery.debounce(0.25.seconds), selectedTags, ::Pair),
-        getCategories.subscribe(),
+        combine(getCategories.subscribe(), hiddenCategoryIds, revealHidden) { categories, hidden, reveal ->
+            if (reveal) categories else categories.filter { it.id !in hidden }
+        },
         getFavoritesFlow(),
         combine(tracks, getTrackingFiltersFlow(), ::Pair),
         getLibraryItemPreferencesFlow(),

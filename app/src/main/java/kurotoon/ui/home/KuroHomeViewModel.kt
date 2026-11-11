@@ -293,7 +293,17 @@ class KuroHomeViewModel(
             val favorite = !manga.favorite
             if (!updateManga.awaitUpdateFavorite(manga.id, favorite)) return@launch
             val swap: (SourceRow) -> SourceRow = { row ->
-                row.copy(items = row.items?.map { if (it.id == manga.id) it.copy(favoriteAt = if (favorite) kotlin.time.Clock.System.now() else null) else it })
+                row.copy(
+                    items = row.items?.map {
+                        if (it.id ==
+                            manga.id
+                        ) {
+                            it.copy(favoriteAt = if (favorite) kotlin.time.Clock.System.now() else null)
+                        } else {
+                            it
+                        }
+                    },
+                )
             }
             listOf(rows, savedRows, pickRows).forEach { flow -> flow.update { list -> list.map(swap) } }
             libraryEvents.send(manga.title to favorite)
