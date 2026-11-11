@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.components.AdaptiveSheet
 import mihon.icons.materialsymbols.MaterialSymbols
+import mihon.icons.materialsymbols.rounded.BookmarkAdd
 import mihon.icons.materialsymbols.rounded.ContentCopy
 import mihon.icons.materialsymbols.rounded.Photo
 import mihon.icons.materialsymbols.rounded.Save
@@ -31,6 +32,7 @@ fun ReaderPageActionsDialog(
     onSetAsCover: () -> Unit,
     onShare: (Boolean) -> Unit,
     onSave: () -> Unit,
+    onKeepPanel: () -> Unit = {},
 ) {
     var showSetCoverDialog by remember { mutableStateOf(false) }
 
@@ -44,6 +46,15 @@ fun ReaderPageActionsDialog(
                 title = stringResource(MR.strings.set_as_cover),
                 icon = MaterialSymbols.Rounded.Photo,
                 onClick = { showSetCoverDialog = true },
+            )
+            ActionButton(
+                modifier = Modifier.weight(1f),
+                title = stringResource(MR.strings.kurotoon_panels_keep),
+                icon = MaterialSymbols.Rounded.BookmarkAdd,
+                onClick = {
+                    onKeepPanel()
+                    onDismissRequest()
+                },
             )
             ActionButton(
                 modifier = Modifier.weight(1f),
