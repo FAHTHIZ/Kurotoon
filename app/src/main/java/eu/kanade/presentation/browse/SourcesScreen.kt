@@ -1,28 +1,39 @@
 package eu.kanade.presentation.browse
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import eu.kanade.presentation.browse.components.BaseSourceItem
+import eu.kanade.presentation.browse.components.SourceIcon
 import eu.kanade.tachiyomi.ui.browse.source.SourcesViewModel
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceViewModel.Listing
 import eu.kanade.tachiyomi.util.system.LocaleHelper
+import kurotoon.ui.KuroSectionHeader
 import kurotoon.ui.browse.SourceFilterField
 import kurotoon.ui.browse.UniversalSearchCard
+import kurotoon.ui.kuroCard
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Keep
 import mihon.icons.materialsymbols.roundedfilled.Keep
@@ -36,7 +47,6 @@ import tachiyomi.presentation.core.components.material.topSmallPaddingValues
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.screens.EmptyScreen
 import tachiyomi.presentation.core.screens.LoadingScreen
-import tachiyomi.presentation.core.theme.header
 import tachiyomi.presentation.core.util.plus
 import tachiyomi.source.local.isLocal
 
@@ -136,14 +146,16 @@ private fun SourceHeader(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    Text(
+    KuroSectionHeader(
         text = LocaleHelper.getSourceDisplayName(language, context),
-        modifier = modifier
-            .padding(horizontal = MaterialTheme.padding.medium, vertical = MaterialTheme.padding.small),
-        style = MaterialTheme.typography.header,
+        modifier = modifier.fillMaxWidth(),
     )
 }
 
+/**
+ * A source as a KuroToon card: icon, name and language, then pill shortcuts straight into Popular
+ * and Latest, with the pin kept to the side.
+ */
 @Composable
 private fun SourceItem(
     source: Source,
@@ -152,27 +164,91 @@ private fun SourceItem(
     onClickPin: (Source) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    BaseSourceItem(
-        modifier = modifier,
-        source = source,
-        onClickItem = { onClickItem(source, Listing.Popular) },
-        onLongClickItem = { onLongClickItem(source) },
-        action = {
-            if (source.supportsLatest) {
-                TextButton(onClick = { onClickItem(source, Listing.Latest) }) {
-                    Text(
+    val context = LocalContext.current
+    val shape = RoundedCornerShape(18.dp)
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = MaterialTheme.padding.medium, vertical = 4.dp)
+            .clip(shape)
+            .kuroCard(shape)
+            .combinedClickable(
+                onClick = { onClickItem(source, Listing.Popular) },
+                onLongClick = { onLongClickItem(source) },
+            )
+            .padding(start = 12.dp, top = 10.dp, bottom = 10.dp, end = 4.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        SourceIcon(
+            source = source,
+            modifier = Modifier
+                .size(44.dp)
+                .clip(RoundedCornerShape(12.dp)),
+        )
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .padding(horizontal = 12.dp),
+        ) {
+            Text(
+                text = source.name,
+                style = MaterialTheme.typography.titleSmall,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+            Row(
+                modifier = Modifier.padding(top = 6.dp),
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                SourcePill(
+                    text = stringResource(MR.strings.popular),
+                    highlighted = true,
+                    onClick = { onClickItem(source, Listing.Popular) },
+                )
+                if (source.supportsLatest) {
+                    SourcePill(
                         text = stringResource(MR.strings.latest),
-                        style = LocalTextStyle.current.copy(
-                            color = MaterialTheme.colorScheme.primary,
-                        ),
+                        highlighted = false,
+                        onClick = { onClickItem(source, Listing.Latest) },
                     )
                 }
+                Text(
+                    text = LocaleHelper.getSourceDisplayName(source.lang, context),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
             }
-            SourcePinButton(
-                isPinned = Pin.Pinned in source.pin,
-                onClick = { onClickPin(source) },
-            )
-        },
+        }
+        SourcePinButton(
+            isPinned = Pin.Pinned in source.pin,
+            onClick = { onClickPin(source) },
+        )
+    }
+}
+
+@Composable
+private fun SourcePill(
+    text: String,
+    highlighted: Boolean,
+    onClick: () -> Unit,
+) {
+    val colors = MaterialTheme.colorScheme
+    val container = if (highlighted) colors.primary else colors.secondaryContainer
+    val content = if (highlighted) colors.onPrimary else colors.onSecondaryContainer
+    Text(
+        text = text,
+        style = MaterialTheme.typography.labelMedium,
+        fontWeight = FontWeight.SemiBold,
+        color = content,
+        maxLines = 1,
+        modifier = Modifier
+            .clip(CircleShape)
+            .background(container)
+            .clickable(onClick = onClick)
+            .padding(horizontal = 12.dp, vertical = 4.dp),
     )
 }
 
