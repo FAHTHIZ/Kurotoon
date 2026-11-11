@@ -235,6 +235,7 @@ object DownloadQueueScreen : Screen() {
                 onMove = viewModel::move,
                 onMoveSeries = viewModel::moveSeries,
                 onCancel = { viewModel.cancel(listOf(it)) },
+                onFinishWithMissingPages = viewModel::finishWithMissingPages,
                 onCancelSeries = viewModel::cancelSeries,
                 modifier = Modifier.nestedScroll(nestedScrollConnection),
             )

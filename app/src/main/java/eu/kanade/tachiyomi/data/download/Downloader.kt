@@ -487,8 +487,13 @@ class Downloader(
             // Do after download completes
 
             if (!isDownloadSuccessful(download, tmpDir)) {
-                download.status = Download.State.ERROR
-                return
+                if (!download.acceptMissingPages || download.downloadedImages == 0) {
+                    download.status = Download.State.ERROR
+                    return
+                }
+                // Kept with the pages that made it; leftovers of failed pages aren't packed with them
+                tmpDir.listFiles().orEmpty().filter { it.name.orEmpty().endsWith(".tmp") }.forEach { it.delete() }
+                logcat { "Keeping ${download.chapter.name} with ${download.downloadedImages}/${download.pages?.size}" }
             }
 
             createComicInfoFile(

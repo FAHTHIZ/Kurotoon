@@ -54,6 +54,10 @@ class DownloadQueueViewModel(
         viewModelScope.launch { downloadManager.reorderQueue(downloads) }
     }
 
+    fun finishWithMissingPages(download: Download) {
+        viewModelScope.launch { downloadManager.finishWithMissingPages(download) }
+    }
+
     fun cancel(downloads: List<Download>) {
         viewModelScope.launch { downloadManager.cancelQueuedDownloads(downloads) }
     }

@@ -29,6 +29,11 @@ data class Download(
             _pagesFlow.value = pages
         }
 
+    /** Set when the user chose to keep this chapter even if some pages still fail (mihon#587). */
+    @Transient
+    @Volatile
+    var acceptMissingPages = false
+
     val downloadedImages: Int
         get() = pages?.count { it.status == Page.State.Ready } ?: 0
 

@@ -73,6 +73,7 @@ fun DownloadQueueList(
     onCancel: (Download) -> Unit,
     onCancelSeries: (Download) -> Unit,
     modifier: Modifier = Modifier,
+    onFinishWithMissingPages: (Download) -> Unit = {},
 ) {
     val sectionsState = remember { sections.toMutableStateList() }
     // While a section is dragged its downloads are hidden, so it moves past whole sections
@@ -190,6 +191,7 @@ fun DownloadQueueList(
                             onMoveSeries = { toTop -> onMoveSeries(download, toTop) },
                             onCancel = { onCancel(download) },
                             onCancelSeries = { onCancelSeries(download) },
+                            onFinishWithMissingPages = { onFinishWithMissingPages(download) },
                         )
                     }
                 }
@@ -307,9 +309,13 @@ private fun ReorderableCollectionItemScope.DownloadQueueItem(
     onMoveSeries: (toTop: Boolean) -> Unit,
     onCancel: () -> Unit,
     onCancelSeries: () -> Unit,
+    onFinishWithMissingPages: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val progress by remember(download) { download.pagesProgressFlow() }.collectAsState(null)
+    val status by download.statusFlow.collectAsState()
+    // Only worth offering once some pages are on disk and the download has stopped on the rest
+    val canFinish = status == Download.State.ERROR && (progress?.downloadedPages ?: 0) > 0
     val animatedProgress by animateFloatAsState(progress?.fraction ?: 0f, label = "progress")
 
     Surface(
@@ -367,6 +373,7 @@ private fun ReorderableCollectionItemScope.DownloadQueueItem(
                 onMoveSeries = onMoveSeries,
                 onCancel = onCancel,
                 onCancelSeries = onCancelSeries,
+                onFinishWithMissingPages = onFinishWithMissingPages.takeIf { canFinish },
             )
         }
     }
@@ -394,6 +401,7 @@ private fun DownloadQueueItemMenu(
     onMoveSeries: (toTop: Boolean) -> Unit,
     onCancel: () -> Unit,
     onCancelSeries: () -> Unit,
+    onFinishWithMissingPages: (() -> Unit)?,
 ) {
     var expanded by remember { mutableStateOf(false) }
     val closeMenu = { expanded = false }
@@ -405,6 +413,15 @@ private fun DownloadQueueItemMenu(
             )
         }
         DropdownMenu(expanded = expanded, onDismissRequest = closeMenu) {
+            if (onFinishWithMissingPages != null) {
+                DropdownMenuItem(
+                    text = { Text(stringResource(MR.strings.kurotoon_download_finishMissing)) },
+                    onClick = {
+                        closeMenu()
+                        onFinishWithMissingPages()
+                    },
+                )
+            }
             if (canMoveToTop) {
                 DropdownMenuItem(
                     text = { Text(stringResource(MR.strings.action_move_to_top)) },
