@@ -71,6 +71,8 @@ class HistoryViewModel(
     private val setMangaCategories: SetMangaCategories,
     private val updateManga: UpdateManga,
     private val sourceManager: SourceManager,
+    private val historyRepository: tachiyomi.domain.history.repository.HistoryRepository,
+    private val getChapter: tachiyomi.domain.chapter.interactor.GetChapter,
 ) : ViewModel() {
 
     private val subscriberGate = SubscriberGate()
@@ -120,11 +122,21 @@ class HistoryViewModel(
     }
 
     suspend fun getNextChapter(): Chapter? {
+        val last = historyRepository.getLastHistory()
+        if (last != null && kuroPreferences.isRereading(last.chapterId)) {
+            getChapter.await(last.chapterId)?.let { return it }
+        }
         return getNextChapters.await(onlyUnread = false).firstOrNull()
     }
 
     fun getNextChapterForManga(mangaId: Long, chapterId: Long) {
         viewModelScope.launch {
+            // Mid re-read: go back to that exact chapter rather than the one after it (mihon#698)
+            val rereading = chapterId.takeIf { kuroPreferences.isRereading(it) }?.let { getChapter.await(it) }
+            if (rereading != null) {
+                _events.send(Event.OpenChapter(rereading))
+                return@launch
+            }
             sendNextChapterEvent(getNextChapters.await(mangaId, chapterId, onlyUnread = false))
         }
     }

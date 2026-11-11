@@ -39,6 +39,21 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
         sourceDefaultCategories.set(if (categoryId == null) rest.toSet() else rest.toSet() + "$sourceId=$categoryId")
     }
 
+    /**
+     * Read chapters being read again and left part-way, by chapter id, so History and the reader resume
+     * on that page instead of skipping ahead or starting over (mihon#698). Capped to the latest few.
+     */
+    val rereading = preferenceStore.getStringSet("kurotoon_rereading", emptySet())
+
+    fun isRereading(chapterId: Long): Boolean = chapterId.toString() in rereading.get()
+
+    fun setRereading(chapterId: Long, active: Boolean) {
+        val id = chapterId.toString()
+        val current = rereading.get()
+        if ((id in current) == active) return
+        rereading.set(if (active) (current.toList().takeLast(REREADING_CAP - 1) + id).toSet() else current - id)
+    }
+
     /** The reader's display name on the Me tab; empty means the default. */
     val nickname = preferenceStore.getString("kurotoon_nickname", "")
 
@@ -102,4 +117,8 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
 
     /** Fold same-day chapters of one series into a single Updates row. See [kurotoon.updates.UpdateGroups]. */
     val updatesGroupSeries = preferenceStore.getBoolean("kurotoon_updates_group_series", true)
+
+    private companion object {
+        const val REREADING_CAP = 50
+    }
 }
