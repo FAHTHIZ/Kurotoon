@@ -114,6 +114,11 @@ private fun ColumnScope.PagerViewerSettings(viewModel: ReaderSettingsViewModel) 
         pref = viewModel.preferences.navigateToPan,
     )
 
+    CheckboxItem(
+        label = stringResource(MR.strings.kurotoon_reader_zoomLocked),
+        pref = viewModel.preferences.pagerZoomLocked,
+    )
+
     val dualPageSplitPaged by viewModel.preferences.dualPageSplitPaged.collectAsState()
     CheckboxItem(
         label = stringResource(MR.strings.pref_dual_page_split),
