@@ -34,6 +34,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -167,6 +168,9 @@ internal fun HomeHeroCarousel(
     heroes: List<Pair<KuroHomeViewModel.SourceRow, Manga>>,
     onClick: (Manga) -> Unit,
 ) {
+    // The same series can top two rows of one source (Popular and Latest); pager keys must be unique
+    @Suppress("NAME_SHADOWING")
+    val heroes = remember(heroes) { heroes.distinctBy { (row, manga) -> manga.url + row.sourceId } }
     val pagerState = rememberPagerState { heroes.size }
     val dragged by pagerState.interactionSource.collectIsDraggedAsState()
     val pressed by pagerState.interactionSource.collectIsPressedAsState()
@@ -356,7 +360,7 @@ internal fun HomeSourceRow(
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                items(row.items, key = { it.id }) { manga ->
+                items(row.items.distinctBy { it.id }, key = { it.id }) { manga ->
                     Column(modifier = Modifier.width(112.dp)) {
                         Box {
                             MangaCover.Book(

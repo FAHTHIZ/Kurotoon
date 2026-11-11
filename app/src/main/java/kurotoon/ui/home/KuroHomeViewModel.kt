@@ -405,7 +405,10 @@ class KuroHomeViewModel(
                     var depth = 0
                     while (size < HERO_COUNT && picks.any { it.size > depth }) {
                         rows.forEachIndexed { i, row ->
-                            picks[i].getOrNull(depth)?.let { if (size < HERO_COUNT) add(row to it) }
+                            picks[i].getOrNull(depth)?.let { manga ->
+                                val seen = any { (r, m) -> r.sourceId == row.sourceId && m.url == manga.url }
+                                if (size < HERO_COUNT && !seen) add(row to manga)
+                            }
                         }
                         depth++
                     }
