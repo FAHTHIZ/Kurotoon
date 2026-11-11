@@ -50,10 +50,13 @@ class ReaderSettingsViewModel(
     /**
      * The reading mode the viewer is made for, with the default resolved.
      */
-    val readingMode = combine(mangaFlow, preferences.defaultReadingMode.changes()) { manga, default ->
-        ReadingMode.fromPreference(manga?.readingMode?.toInt())
-            .takeIf { it != ReadingMode.DEFAULT }
-            ?: ReadingMode.fromPreference(default)
+    val readingMode = combine(
+        mangaFlow,
+        preferences.defaultReadingMode.changes(),
+        readerViewModel.sourceReadingModeChanges(),
+    ) { _, _, _ ->
+        // Resolved like the viewer picks it, so the source's mode and long-strip detection count too
+        ReadingMode.fromPreference(readerViewModel.getMangaReadingMode())
     }
         .stateIn(
             viewModelScope,
@@ -306,6 +309,12 @@ class ReaderSettingsViewModel(
     }
 
     fun setReadingMode(readingMode: ReadingMode) = readerViewModel.setMangaReadingMode(readingMode)
+
+    fun getSourceReadingMode() = readerViewModel.getSourceReadingMode()
+
+    fun sourceName() = readerViewModel.source?.name
+
+    fun setSourceReadingMode(readingMode: ReadingMode?) = readerViewModel.setSourceReadingMode(readingMode)
 
     fun setOrientation(orientation: ReaderOrientation) = readerViewModel.setMangaOrientationType(orientation)
 

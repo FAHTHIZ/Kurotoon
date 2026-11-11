@@ -861,7 +861,10 @@ class ReaderViewModel(
      */
     fun getMangaReadingMode(resolveDefault: Boolean = true): Int {
         val manga = manga
-        val default = if (
+        val sourceMode = manga?.let { kuroPreferences.readingModeFor(it.source) }
+        val default = if (sourceMode != null) {
+            sourceMode
+        } else if (
             readerPreferences.autoWebtoonMode.get() &&
             manga != null &&
             WebtoonDetector.isLongStrip(manga.genre, source?.name)
@@ -878,6 +881,19 @@ class ReaderViewModel(
     }
 
     private var readingModeJob: Job? = null
+
+    /** The reading mode set for every series of this manga's source, or null if it follows the default. */
+    fun getSourceReadingMode(): ReadingMode? =
+        manga?.let { kuroPreferences.readingModeFor(it.source) }?.let { ReadingMode.fromPreference(it) }
+
+    fun sourceReadingModeChanges() = kuroPreferences.sourceReadingModes.changes()
+
+    /** Sets (or with null, clears) the source's reading mode, and lets this series follow it. */
+    fun setSourceReadingMode(readingMode: ReadingMode?) {
+        val manga = manga ?: return
+        kuroPreferences.setReadingModeFor(manga.source, readingMode?.flagValue)
+        setMangaReadingMode(ReadingMode.DEFAULT)
+    }
 
     /**
      * Updates the viewer position for the open manga.
