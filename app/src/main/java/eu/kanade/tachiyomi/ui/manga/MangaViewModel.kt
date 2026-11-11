@@ -632,6 +632,34 @@ class MangaViewModel(
     fun chapterSwipe(chapterItem: ChapterList.Item, swipeAction: LibraryPreferences.ChapterSwipeAction) {
         viewModelScope.launch {
             executeChapterSwipeAction(chapterItem, swipeAction)
+            offerSwipeUndo(chapterItem.chapter, swipeAction)
+        }
+    }
+
+    /** A swipe is easy to do by accident in a long list, so read and bookmark swipes can be undone. */
+    private suspend fun offerSwipeUndo(before: Chapter, swipeAction: LibraryPreferences.ChapterSwipeAction) {
+        val message = when (swipeAction) {
+            LibraryPreferences.ChapterSwipeAction.ToggleRead ->
+                if (before.read) MR.strings.kurotoon_manga_swipedUnread else MR.strings.kurotoon_manga_swipedRead
+            LibraryPreferences.ChapterSwipeAction.ToggleBookmark ->
+                if (before.bookmark) MR.strings.kurotoon_manga_swipedUnbookmarked else MR.strings.kurotoon_manga_swipedBookmarked
+            else -> return
+        }
+        snackbarHostState.currentSnackbarData?.dismiss()
+        val result = snackbarHostState.showSnackbar(
+            message = context.stringResource(message),
+            actionLabel = context.stringResource(MR.strings.kurotoon_action_undo),
+            duration = SnackbarDuration.Short,
+        )
+        if (result != SnackbarResult.ActionPerformed) return
+        appScope.launch {
+            updateChapter.await(
+                ChapterUpdate(before.id) {
+                    read = before.read
+                    bookmark = before.bookmark
+                    lastPageRead = before.lastPageRead
+                },
+            )
         }
     }
 
