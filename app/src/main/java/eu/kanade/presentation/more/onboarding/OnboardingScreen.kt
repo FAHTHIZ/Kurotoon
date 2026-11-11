@@ -2,10 +2,17 @@ package eu.kanade.presentation.more.onboarding
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -13,8 +20,14 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.unit.dp
+import kurotoon.ui.KuroColors
+import kurotoon.ui.kuroCard
+import kurotoon.ui.shop.KuroMascot
+import kurotoon.ui.shop.KuroMood
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.RocketLaunch
 import soup.compose.material.motion.animation.materialSharedAxisX
@@ -68,13 +81,25 @@ fun OnboardingScreen(
                 currentStep++
             }
         },
+        header = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = MaterialTheme.padding.small),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+            ) {
+                KuroMascot(size = 72.dp, mood = if (isLastStep) KuroMood.HYPED else KuroMood.HAPPY)
+                StepDots(count = steps.size, current = currentStep)
+            }
+        },
     ) {
         Box(
             modifier = Modifier
                 .padding(vertical = MaterialTheme.padding.small)
-                .clip(MaterialTheme.shapes.small)
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.surfaceVariant),
+                .kuroCard(RoundedCornerShape(20.dp))
+                .clip(RoundedCornerShape(20.dp)),
         ) {
             AnimatedContent(
                 targetState = currentStep,
@@ -88,6 +113,23 @@ fun OnboardingScreen(
             ) {
                 steps[it].Content()
             }
+        }
+    }
+}
+
+@Composable
+private fun StepDots(count: Int, current: Int) {
+    Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+        repeat(count) { index ->
+            val width by animateDpAsState(if (index == current) 22.dp else 8.dp, label = "dot")
+            Box(
+                modifier = Modifier
+                    .size(width = width, height = 8.dp)
+                    .clip(CircleShape)
+                    .background(
+                        if (index <= current) KuroColors.Crimson else MaterialTheme.colorScheme.surfaceContainerHighest,
+                    ),
+            )
         }
     }
 }
