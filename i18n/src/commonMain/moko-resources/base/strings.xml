@@ -1091,6 +1091,16 @@
     <string name="kurotoon.me.defaultNickname">Reader</string>
     <string name="kurotoon.me.editNickname">Edit nickname</string>
     <string name="kurotoon.sound.title">Sound</string>
+    <string name="kurotoon.extensions.empty">No extensions yet. Add an extension store to browse and install the sources you want to read from.</string>
+    <string name="kurotoon.extensions.addStore">Add an extension store</string>
+    <string name="kurotoon.panels.title">Saved panels</string>
+    <string name="kurotoon.panels.summary">Pages you kept from the reader</string>
+    <string name="kurotoon.panels.keep">Keep panel</string>
+    <string name="kurotoon.panels.kept">Kept in Saved panels</string>
+    <string name="kurotoon.panels.failed">Couldn\'t keep this page</string>
+    <string name="kurotoon.panels.remove">Remove this panel?</string>
+    <string name="kurotoon.panels.where">%1$s · page %2$d</string>
+    <string name="kurotoon.panels.empty">No saved panels yet. Long-press any page in the reader and pick Keep panel.</string>
     <string name="kurotoon.dataSaver.title">Data saver</string>
     <string name="kurotoon.dataSaver.off">Off</string>
     <string name="kurotoon.dataSaver.mobile">On mobile data</string>

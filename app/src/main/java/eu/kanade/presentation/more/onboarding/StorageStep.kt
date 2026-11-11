@@ -34,6 +34,12 @@ internal class StorageStep : OnboardingStep {
     override val isComplete: Boolean
         get() = _isComplete
 
+    private var pick: (() -> Unit)? = null
+
+    override fun onIncompleteAccept() {
+        pick?.invoke()
+    }
+
     @Composable
     override fun Content() {
         val context = LocalContext.current
@@ -41,6 +47,14 @@ internal class StorageStep : OnboardingStep {
 
         val storagePref = remember { context.appGraph.storagePreferences.baseStorageDirectory }
         val pickStorageLocation = SettingsDataScreen.storageLocationPicker(storagePref)
+
+        pick = {
+            try {
+                pickStorageLocation.launch(null)
+            } catch (e: ActivityNotFoundException) {
+                context.toast(MR.strings.file_picker_error)
+            }
+        }
 
         Column(
             modifier = Modifier.padding(16.dp),
