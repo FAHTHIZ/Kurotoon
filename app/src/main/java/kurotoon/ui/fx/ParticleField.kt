@@ -169,7 +169,7 @@ private class ParticleEngine(private val density: Float, lowRam: Boolean) {
     var size = Size.Zero
 
     private val particles = ArrayList<Particle>(128)
-    private val maxAmbient = if (lowRam) 6 else 12
+    private val maxAmbient = if (lowRam) 4 else 8
     private val scale = if (lowRam) 0.5f else 1f
     private var lastAmbientMs = 0L
 
@@ -181,7 +181,7 @@ private class ParticleEngine(private val density: Float, lowRam: Boolean) {
         repeat(n) {
             val angle = -PI.toFloat() / 2 + (Random.nextFloat() - 0.5f) * event.spread
             val speed = event.power * (0.35f + Random.nextFloat() * 0.75f) * density
-            val confetti = event.count > 30 && Random.nextFloat() < 0.55f
+            val confetti = event.count > 24 && Random.nextFloat() < 0.45f
             particles += Particle(
                 x = event.x,
                 y = event.y,
@@ -206,9 +206,9 @@ private class ParticleEngine(private val density: Float, lowRam: Boolean) {
         val y = size.height * 0.42f
         burst(
             when (wave) {
-                0 -> FxEvent.Burst(x, y, count = 46, power = 7f, gravity = 0.16f)
-                1 -> FxEvent.Burst(x * 0.5f, y * 1.1f, count = 20, power = 6f, gravity = 0.18f)
-                else -> FxEvent.Burst(x * 1.5f, y * 1.1f, count = 20, power = 6f, gravity = 0.18f)
+                0 -> FxEvent.Burst(x, y, count = 28, power = 6f, gravity = 0.16f)
+                1 -> FxEvent.Burst(x * 0.5f, y * 1.1f, count = 12, power = 5f, gravity = 0.18f)
+                else -> FxEvent.Burst(x * 1.5f, y * 1.1f, count = 12, power = 5f, gravity = 0.18f)
             },
         )
     }
