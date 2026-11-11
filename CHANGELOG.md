@@ -5,6 +5,21 @@ All notable changes to KuroToon are documented here. Versions follow
 
 ## [Unreleased]
 
+### Added
+- **Merged chapters across sources**: when a series is in your library from more than one source, its page offers one chapter list combined by chapter number, so 1–4 and 9 from one site plus 5–7 and 10 from another read as 1–10. Each chapter opens from the source that has it. See [docs/merged-chapters.md](docs/merged-chapters.md)
+- Global search opens with **On several sources**: each series found on two or more sources shown once with a ×N badge
+- Global search suggests **tags from every installed source**, merged and deduplicated, filtered as you type. The list updates as soon as you install or remove a source
+
+### Changed
+- Kuro's real artwork everywhere: the code-drawn cat, the emoji welcome and the off-model chibi pack are gone, and empty screens show Kuro dozing
+- Calmer effects: a tap shows one thin ripple instead of an aura and sparks, and the background embers are fewer and fainter
+- Home reads as one page: every shelf shares the same header (icon, title, subtitle, See all) and cover size. Continue reading gains See all
+- The old JSON chapter reconciliation tool in the Me tab is replaced by merged chapters
+
+### Fixed
+- Searching extensions for `hitomi.la` (or any 18+ site) found nothing because adult extensions are hidden by default. The search now says what's hidden and offers Allow 18+, and pasted addresses like `https://www.hitomi.la/` match
+- Kuro labels that didn't match their art (Shy → Manga Time, Kuru legend → Kuro legend)
+
 ## [0.22.0] - 2026-11-11
 
 The redesign release: KuroToon's own look across every main screen.
