@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Fixed
+- Muting the soundtrack (badge, sheet or sleep timer) fades the music and ambience out instead of cutting them off mid-note
 - The screen no longer times out while you study a dense page: the reader stays lit for 3 minutes after your last touch or page turn, then lets the phone sleep
 - Jumping with the page slider right after opening a long-strip chapter is no longer pulled back to the saved panel
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
