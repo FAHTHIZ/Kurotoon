@@ -1,5 +1,6 @@
 package kurotoon.ui.home
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,7 +26,7 @@ import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 
 /** Width of a cover on every Home shelf, so the rows line up as one page. */
-internal val HomeCoverWidth = 104.dp
+internal val HomeCoverWidth = 112.dp
 
 /**
  * The one header every Home shelf uses: the title with an optional one-line
@@ -45,21 +46,22 @@ internal fun HomeShelfHeader(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(start = 16.dp, end = 8.dp, top = 2.dp, bottom = 2.dp),
+            .padding(start = 20.dp, end = 12.dp, top = 4.dp, bottom = 2.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold,
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.ExtraBold,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
             if (!subtitle.isNullOrBlank()) {
                 Text(
                     text = subtitle,
-                    style = MaterialTheme.typography.labelSmall,
+                    style = MaterialTheme.typography.labelMedium,
+                    fontWeight = FontWeight.Medium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -70,20 +72,23 @@ internal fun HomeShelfHeader(
         if (onSeeAll != null) {
             Row(
                 modifier = Modifier
+                    .padding(start = 8.dp)
                     .clip(CircleShape)
+                    .background(MaterialTheme.colorScheme.surfaceContainerHigh)
                     .clickable(onClick = onSeeAll)
-                    .padding(start = 10.dp, end = 4.dp, top = 6.dp, bottom = 6.dp),
+                    .padding(start = 12.dp, end = 6.dp, top = 6.dp, bottom = 6.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = stringResource(MR.strings.kurotoon_home_seeAll),
                     style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
                 Icon(
                     MaterialSymbols.Rounded.KeyboardArrowRight,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    tint = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.size(16.dp),
                 )
             }

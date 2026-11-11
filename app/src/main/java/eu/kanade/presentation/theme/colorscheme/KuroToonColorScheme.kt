@@ -5,60 +5,61 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
 /**
- * KuroToon's default theme: near-black surfaces with a crimson accent and gold highlights.
+ * KuroToon's default theme: ink-black surfaces with a faint cool tint, a crimson accent and gold for ratings.
  *
  * Key colors:
- * Primary #FF4D4D
- * Tertiary #F2C14E
- * Neutral #0B0B0B
+ * Primary #FF4757 (crimson)
+ * Tertiary #FFC548 (rating gold)
+ * Neutral #09090B (ink)
  */
 internal object KuroToonColorScheme : BaseColorScheme() {
 
     override val darkScheme = darkColorScheme(
-        primary = Color(0xFFFF4D4D),
+        primary = Color(0xFFFF4757),
         onPrimary = Color(0xFFFFFFFF),
-        primaryContainer = Color(0xFF5C1414),
-        onPrimaryContainer = Color(0xFFFFDAD6),
-        inversePrimary = Color(0xFFB3261E),
-        secondary = Color(0xFFFF4D4D),
+        primaryContainer = Color(0xFF3D0F17),
+        onPrimaryContainer = Color(0xFFFFB2B9),
+        inversePrimary = Color(0xFFC21E35),
+        secondary = Color(0xFFFF6B78),
         onSecondary = Color(0xFFFFFFFF),
-        secondaryContainer = Color(0xFF2E1313),
-        onSecondaryContainer = Color(0xFFFF6B6B),
-        tertiary = Color(0xFFF2C14E),
+        secondaryContainer = Color(0xFF2A1218),
+        onSecondaryContainer = Color(0xFFFF8A94),
+        tertiary = Color(0xFFFFC548),
         onTertiary = Color(0xFF2A1F00),
-        tertiaryContainer = Color(0xFF4D3A00),
+        tertiaryContainer = Color(0xFF3F3000),
         onTertiaryContainer = Color(0xFFFFE08A),
         error = Color(0xFFFF6B60),
         onError = Color(0xFF690005),
         errorContainer = Color(0xFF93000A),
         onErrorContainer = Color(0xFFFFDAD6),
-        background = Color(0xFF0B0B0B),
-        onBackground = Color(0xFFF5F5F5),
-        surface = Color(0xFF0B0B0B),
-        onSurface = Color(0xFFF5F5F5),
-        surfaceVariant = Color(0xFF151515),
-        onSurfaceVariant = Color(0xFFA1A1A1),
-        outline = Color(0xFF5A5A5A),
-        outlineVariant = Color(0xFF262626),
+        background = Color(0xFF09090B),
+        onBackground = Color(0xFFF4F4F6),
+        surface = Color(0xFF09090B),
+        onSurface = Color(0xFFF4F4F6),
+        surfaceVariant = Color(0xFF17171C),
+        onSurfaceVariant = Color(0xFF9D9DA8),
+        surfaceTint = Color(0xFFFF4757),
+        outline = Color(0xFF4A4A54),
+        outlineVariant = Color(0xFF26262D),
         scrim = Color(0xFF000000),
-        inverseSurface = Color(0xFFF5F5F5),
-        inverseOnSurface = Color(0xFF1A1A1A),
-        surfaceDim = Color(0xFF0B0B0B),
-        surfaceBright = Color(0xFF2A2A2A),
-        surfaceContainerLowest = Color(0xFF080808),
-        surfaceContainerLow = Color(0xFF111111),
-        surfaceContainer = Color(0xFF151515),
-        surfaceContainerHigh = Color(0xFF1C1C1C),
-        surfaceContainerHighest = Color(0xFF242424),
+        inverseSurface = Color(0xFFF4F4F6),
+        inverseOnSurface = Color(0xFF18181C),
+        surfaceDim = Color(0xFF09090B),
+        surfaceBright = Color(0xFF2B2B33),
+        surfaceContainerLowest = Color(0xFF060607),
+        surfaceContainerLow = Color(0xFF0F0F12),
+        surfaceContainer = Color(0xFF141418),
+        surfaceContainerHigh = Color(0xFF1B1B21),
+        surfaceContainerHighest = Color(0xFF24242B),
     )
 
     override val lightScheme = lightColorScheme(
-        primary = Color(0xFFC62828),
+        primary = Color(0xFFD7263D),
         onPrimary = Color(0xFFFFFFFF),
         primaryContainer = Color(0xFFFFDAD6),
         onPrimaryContainer = Color(0xFF410002),
         inversePrimary = Color(0xFFFF8A80),
-        secondary = Color(0xFFC62828),
+        secondary = Color(0xFFD7263D),
         onSecondary = Color(0xFFFFFFFF),
         secondaryContainer = Color(0xFFFFE1DE),
         onSecondaryContainer = Color(0xFF8C1D18),

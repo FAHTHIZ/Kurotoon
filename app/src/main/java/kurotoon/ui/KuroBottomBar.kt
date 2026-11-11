@@ -1,8 +1,12 @@
 package kurotoon.ui
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
@@ -10,13 +14,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -33,7 +38,6 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 /** One entry of [KuroBottomBar]. */
 data class KuroBottomBarItem(
@@ -44,8 +48,8 @@ data class KuroBottomBarItem(
 )
 
 /**
- * KuroToon's bottom navigation: a soft crimson pill behind the active tab with a glowing line on
- * top, matching the web app's nav bar.
+ * KuroToon's bottom navigation: a floating rounded dock. The open tab's icon sits in a solid accent pill that
+ * grows in with a spring; the others stay quiet so the artwork above keeps the attention.
  */
 @Composable
 fun KuroBottomBar(
@@ -54,18 +58,24 @@ fun KuroBottomBar(
     onClick: (KuroBottomBarItem) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(
+    val dockShape = RoundedCornerShape(26.dp)
+    Box(
         modifier = modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.background.copy(alpha = 0.96f)),
+            .background(MaterialTheme.colorScheme.background)
+            .navigationBarsPadding()
+            .padding(start = 12.dp, end = 12.dp, top = 4.dp, bottom = 10.dp),
     ) {
-        HorizontalDivider(color = Color.White.copy(alpha = 0.06f))
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .navigationBarsPadding()
-                .height(64.dp),
+                .height(64.dp)
+                .clip(dockShape)
+                .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+                .border(1.dp, Color.White.copy(alpha = 0.05f), dockShape)
+                .padding(horizontal = 4.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             items.forEach { item ->
                 KuroBottomBarEntry(
@@ -89,18 +99,24 @@ private fun KuroBottomBarEntry(
     val primary = MaterialTheme.colorScheme.primary
     val interaction = remember { MutableInteractionSource() }
     val pressed by interaction.collectIsPressedAsState()
-    val pressScale by animateFloatAsState(if (pressed) 0.88f else 1f, label = "navPress")
+    val pressScale by animateFloatAsState(if (pressed) 0.9f else 1f, label = "navPress")
     val tint by animateColorAsState(
-        if (selected) primary else MaterialTheme.colorScheme.onSurfaceVariant,
+        if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
         label = "navTint",
     )
     val pill by animateColorAsState(
-        if (selected) primary.copy(alpha = 0.14f) else Color.Transparent,
+        if (selected) primary else Color.Transparent,
         label = "navPill",
+    )
+    val pillWidth by animateDpAsState(
+        targetValue = if (selected) 52.dp else 36.dp,
+        animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessMediumLow),
+        label = "navPillWidth",
     )
 
     Box(
         modifier = modifier
+            .fillMaxHeight()
             .clickable(
                 interactionSource = interaction,
                 indication = null,
@@ -114,28 +130,29 @@ private fun KuroBottomBarEntry(
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
+                    .width(pillWidth)
+                    .height(30.dp)
                     .clip(RoundedCornerShape(50))
-                    .background(pill)
-                    .padding(horizontal = 18.dp, vertical = 4.dp),
+                    .background(pill),
             ) {
                 Icon(
                     painter = item.icon,
                     contentDescription = null,
                     tint = tint,
-                    modifier = Modifier.size(22.dp),
+                    modifier = Modifier.size(21.dp),
                 )
                 item.badge?.let { badge ->
-                    Box(Modifier.align(Alignment.TopEnd).padding(start = 14.dp)) { badge() }
+                    Box(Modifier.align(Alignment.TopEnd).padding(top = 1.dp, end = 4.dp)) { badge() }
                 }
             }
             Text(
                 text = item.title,
                 color = MaterialTheme.colorScheme.run { if (selected) onSurface else onSurfaceVariant },
-                fontSize = 11.sp,
-                fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Medium,
+                style = MaterialTheme.typography.labelSmall,
+                fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.padding(top = 4.dp),
+                modifier = Modifier.padding(top = 3.dp),
             )
         }
     }

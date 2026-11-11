@@ -5,6 +5,11 @@ All notable changes to KuroToon are documented here. Versions follow
 
 ## [Unreleased]
 
+### Changed
+- **New look**: Plus Jakarta Sans throughout, a deeper ink-black palette with a brighter crimson accent, and rounder shapes
+- The bottom bar is now a floating dock; the current tab sits in a solid crimson pill
+- Home: the top pick is a full-bleed artwork card with tags and Read now, popular rows show rank numerals 1–10, and shelf headers are bolder with a pill See all
+
 ## [0.23.0] - 2026-11-11
 
 ### Added

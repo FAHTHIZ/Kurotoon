@@ -1,7 +1,6 @@
 package kurotoon.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -56,21 +55,24 @@ fun KuroTopBar(onSearchClick: () -> Unit, modifier: Modifier = Modifier) {
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.background)
             .windowInsetsPadding(WindowInsets.statusBars)
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+            .padding(start = 20.dp, end = 16.dp, top = 10.dp, bottom = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         KuroLogo()
         Spacer(Modifier.size(8.dp))
-        Text(text = stringResource(MR.strings.app_name), fontWeight = FontWeight.Bold, fontSize = 17.sp)
+        Text(
+            text = stringResource(MR.strings.app_name),
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.ExtraBold,
+        )
         Spacer(Modifier.size(12.dp))
         Row(
             modifier = Modifier
                 .weight(1f)
                 .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.surfaceContainer)
-                .border(1.dp, Color.White.copy(alpha = 0.06f), CircleShape)
+                .background(MaterialTheme.colorScheme.surfaceContainerHigh)
                 .clickable(onClick = onSearchClick)
-                .padding(horizontal = 14.dp, vertical = 10.dp),
+                .padding(horizontal = 16.dp, vertical = 11.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
