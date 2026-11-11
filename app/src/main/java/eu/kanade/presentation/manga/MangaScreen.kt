@@ -24,6 +24,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SmallExtendedFloatingActionButton
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -360,6 +361,8 @@ private fun MangaScreenSmallImpl(
                     icon = { Icon(imageVector = MaterialSymbols.RoundedFilled.PlayArrow, contentDescription = null) },
                     onClick = onContinueReading,
                     expanded = chapterListState.shouldExpandFAB(),
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary,
                     modifier = Modifier.animateFloatingActionButton(
                         visible = isFABVisible,
                         alignment = Alignment.BottomEnd,
@@ -617,6 +620,8 @@ fun MangaScreenLargeImpl(
                     icon = { Icon(imageVector = MaterialSymbols.RoundedFilled.PlayArrow, contentDescription = null) },
                     onClick = onContinueReading,
                     expanded = chapterListState.shouldExpandFAB(),
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary,
                     modifier = Modifier.animateFloatingActionButton(
                         visible = isFABVisible,
                         alignment = Alignment.BottomEnd,
