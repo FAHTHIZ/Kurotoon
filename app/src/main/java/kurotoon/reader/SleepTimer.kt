@@ -92,7 +92,7 @@ fun SleepTimerDriver(state: SleepTimerState, onFire: () -> Unit) {
 
 /** The dimmed card shown once the timer has run out. */
 @Composable
-fun SleepTimerCurtain(state: SleepTimerState, onClose: () -> Unit) {
+fun SleepTimerCurtain(state: SleepTimerState, onClose: () -> Unit, onKeepReading: () -> Unit = {}) {
     AnimatedVisibility(visible = state.fired, enter = fadeIn(), exit = fadeOut()) {
         Box(
             modifier = Modifier
@@ -120,7 +120,12 @@ fun SleepTimerCurtain(state: SleepTimerState, onClose: () -> Unit) {
                     textAlign = TextAlign.Center,
                 )
                 Button(onClick = onClose) { Text(stringResource(MR.strings.kurotoon_sleep_close)) }
-                OutlinedButton(onClick = state::dismiss) { Text(stringResource(MR.strings.kurotoon_sleep_keepReading)) }
+                OutlinedButton(
+                    onClick = {
+                        state.dismiss()
+                        onKeepReading()
+                    },
+                ) { Text(stringResource(MR.strings.kurotoon_sleep_keepReading)) }
             }
         }
     }
