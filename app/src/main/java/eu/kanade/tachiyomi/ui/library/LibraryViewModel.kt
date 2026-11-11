@@ -125,6 +125,9 @@ class LibraryViewModel(
 
     private val activeCategoryIndex = MutableStateFlow(libraryPreferences.lastUsedCategory.get())
 
+    // Set when the library should open on a chosen category; applied once the categories are known
+    private var pendingStartCategory: Long? = kuroPreferences.libraryStartCategory.get().takeIf { it >= 0 }
+
     private val displayPreferences = combine(
         libraryPreferences.categoryTabs.changes(),
         libraryPreferences.categoryNumberOfItems.changes(),
@@ -262,7 +265,17 @@ class LibraryViewModel(
         library,
         combine(searchQuery, selection, dialog, ::Triple),
         combine(activeCategoryIndex, displayPreferences, hasActiveFilters, ::Triple),
-    ) { library, (searchQuery, selection, dialog), (activeCategoryIndex, display, hasActiveFilters) ->
+    ) { library, (searchQuery, selection, dialog), (storedIndex, display, hasActiveFilters) ->
+        var activeCategoryIndex = storedIndex
+        val startCategory = pendingStartCategory
+        if (library != null && startCategory != null) {
+            pendingStartCategory = null
+            val index = library.groupedFavorites.keys.indexOfFirst { it.id == startCategory }
+            if (index >= 0) {
+                activeCategoryIndex = index
+                this.activeCategoryIndex.value = index
+            }
+        }
         State(
             isLoading = library == null,
             searchQuery = searchQuery,
