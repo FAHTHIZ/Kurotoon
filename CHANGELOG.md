@@ -19,6 +19,7 @@ KuroToon's own look replaces the stock Mihon screens, one at a time:
 - Downloads: cards with a thick rounded progress bar that turns red on errors
 - Global search: accent source headers, a See all pill, pulsing cover placeholders while loading and compact error cards
 - Reader: the controls float in a rounded dock, and the page slider matches it with the current page in the accent
+- Library toolbar: a bold title with an accent count pill
 
 ### Fixed
 - Search bars put the keyboard away on Enter, and it no longer pops back up after leaving a series opened from the results ([mihon#3124](https://github.com/mihonapp/mihon/issues/3124))
@@ -35,6 +36,7 @@ KuroToon's own look replaces the stock Mihon screens, one at a time:
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- A KuroToon tip card on Home: Kuro points out one KuroToon-only feature at a time (Keep panel, ambience and sleep timer, episode music, data saver, saved searches, the schedule, tag exclusion, Edit info, the Kuro Shop), with Next tip and Hide tips
 - Track many library series at once: select them, then More › Track on…, and each is linked to its closest match ([mihon#2441](https://github.com/mihonapp/mihon/issues/2441))
 - Searching inside a source remembers recent queries as one-tap pills ([mihon#1409](https://github.com/mihonapp/mihon/issues/1409))
 - Choose which tabs the bottom bar shows (History can be added) and which tab the app opens on ([mihon#2678](https://github.com/mihonapp/mihon/issues/2678))
