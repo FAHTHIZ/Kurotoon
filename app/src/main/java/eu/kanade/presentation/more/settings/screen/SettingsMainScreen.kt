@@ -1,20 +1,29 @@
 package eu.kanade.presentation.more.settings.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -32,6 +41,10 @@ import eu.kanade.presentation.more.settings.screen.about.AboutScreen
 import eu.kanade.presentation.more.settings.widget.TextPreferenceWidget
 import eu.kanade.presentation.util.LocalBackPress
 import eu.kanade.presentation.util.Screen
+import kurotoon.ui.KuroColors
+import kurotoon.ui.kuroCard
+import kurotoon.ui.profile.MeGroup
+import kurotoon.ui.profile.MeRow
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.automirroredrounded.ChromeReaderMode
 import mihon.icons.materialsymbols.rounded.Code
@@ -117,6 +130,16 @@ object SettingsMainScreen : Screen() {
                     null
                 }
 
+                if (!twoPane) {
+                    GroupedSettings(
+                        state = state,
+                        contentPadding = contentPadding,
+                        onSearch = { navigator.navigate(SettingsSearchScreen(), false) },
+                        onOpen = { navigator.navigate(it, false) },
+                    )
+                    return@Scaffold
+                }
+
                 LazyColumn(
                     state = state,
                     contentPadding = contentPadding,
@@ -158,6 +181,66 @@ object SettingsMainScreen : Screen() {
         )
     }
 
+    /**
+     * Single-pane settings: a search bar on top, then the categories split into three rounded cards
+     * with colored icon badges, matching the Me tab.
+     */
+    @Composable
+    private fun GroupedSettings(
+        state: LazyListState,
+        contentPadding: PaddingValues,
+        onSearch: () -> Unit,
+        onOpen: (VoyagerScreen) -> Unit,
+    ) {
+        val groups = listOf(
+            MR.strings.kurotoon_settings_group_reading to items.subList(0, 3),
+            MR.strings.kurotoon_settings_group_content to items.subList(3, 6),
+            MR.strings.kurotoon_settings_group_system to items.subList(6, items.size),
+        )
+        LazyColumn(state = state, contentPadding = contentPadding) {
+            item(key = "search") {
+                Row(
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(16.dp))
+                        .kuroCard(RoundedCornerShape(16.dp))
+                        .clickable(onClick = onSearch)
+                        .padding(horizontal = 16.dp, vertical = 14.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    Icon(
+                        imageVector = MaterialSymbols.Rounded.Search,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    Text(
+                        text = stringResource(MR.strings.kurotoon_settings_search_hint),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
+            groups.forEach { (title, group) ->
+                item(key = title.resourceId) {
+                    MeGroup(title = stringResource(title)) {
+                        group.forEachIndexed { i, item ->
+                            MeRow(
+                                title = stringResource(item.titleRes),
+                                subtitle = item.formatSubtitle(),
+                                icon = item.icon,
+                                tint = item.tint(),
+                                onClick = { onOpen(item.screen) },
+                                showDivider = i != group.lastIndex,
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private fun Navigator.navigate(screen: VoyagerScreen, twoPane: Boolean) {
         if (twoPane) replaceAll(screen) else push(screen)
     }
@@ -168,6 +251,7 @@ object SettingsMainScreen : Screen() {
         val formatSubtitle: @Composable () -> String? = { subtitleRes?.let { stringResource(it) } },
         val icon: ImageVector,
         val screen: VoyagerScreen,
+        val tint: () -> Color = { KuroColors.Crimson },
     )
 
     private val items = listOf(
@@ -176,54 +260,63 @@ object SettingsMainScreen : Screen() {
             subtitleRes = MR.strings.pref_appearance_summary,
             icon = MaterialSymbols.Rounded.Palette,
             screen = SettingsAppearanceScreen,
+            tint = { KuroColors.Galaxy },
         ),
         Item(
             titleRes = MR.strings.pref_category_library,
             subtitleRes = MR.strings.pref_library_summary,
             icon = MaterialSymbols.Rounded.CollectionsBookmark,
             screen = SettingsLibraryScreen,
+            tint = { KuroColors.Crimson },
         ),
         Item(
             titleRes = MR.strings.pref_category_reader,
             subtitleRes = MR.strings.pref_reader_summary,
             icon = MaterialSymbols.AutoMirroredRounded.ChromeReaderMode,
             screen = SettingsReaderScreen,
+            tint = { KuroColors.Aurora },
         ),
         Item(
             titleRes = MR.strings.pref_category_downloads,
             subtitleRes = MR.strings.pref_downloads_summary,
             icon = MaterialSymbols.Rounded.Download,
             screen = SettingsDownloadScreen,
+            tint = { KuroColors.Aurora },
         ),
         Item(
             titleRes = MR.strings.pref_category_tracking,
             subtitleRes = MR.strings.pref_tracking_summary,
             icon = MaterialSymbols.Rounded.Sync,
             screen = SettingsTrackingScreen,
+            tint = { KuroColors.Flame },
         ),
         Item(
             titleRes = MR.strings.browse,
             subtitleRes = MR.strings.pref_browse_summary,
             icon = MaterialSymbols.Rounded.Explore,
             screen = SettingsBrowseScreen,
+            tint = { KuroColors.Gold },
         ),
         Item(
             titleRes = MR.strings.label_data_storage,
             subtitleRes = MR.strings.pref_backup_summary,
             icon = MaterialSymbols.Rounded.Storage,
             screen = SettingsDataScreen,
+            tint = { KuroColors.Aurora },
         ),
         Item(
             titleRes = MR.strings.pref_category_security,
             subtitleRes = MR.strings.pref_security_summary,
             icon = MaterialSymbols.Rounded.Security,
             screen = SettingsSecurityScreen,
+            tint = { KuroColors.Flame },
         ),
         Item(
             titleRes = MR.strings.pref_category_advanced,
             subtitleRes = MR.strings.pref_advanced_summary,
             icon = MaterialSymbols.Rounded.Code,
             screen = SettingsAdvancedScreen,
+            tint = { KuroColors.Galaxy },
         ),
         Item(
             titleRes = MR.strings.pref_category_about,
@@ -232,6 +325,7 @@ object SettingsMainScreen : Screen() {
             },
             icon = MaterialSymbols.Rounded.Info,
             screen = AboutScreen,
+            tint = { KuroColors.Crimson },
         ),
     )
 }
