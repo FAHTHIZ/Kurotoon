@@ -1,10 +1,11 @@
 package eu.kanade.presentation.category.components
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ElevatedCard
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconToggleButton
@@ -14,6 +15,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import kurotoon.ui.kuroCard
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Delete
 import mihon.icons.materialsymbols.rounded.DragHandle
@@ -34,7 +39,12 @@ fun ReorderableCollectionItemScope.CategoryListItem(
     incognito: Boolean = false,
     onToggleIncognito: ((Boolean) -> Unit)? = null,
 ) {
-    ElevatedCard(modifier = modifier) {
+    val shape = RoundedCornerShape(18.dp)
+    Box(
+        modifier = modifier
+            .clip(shape)
+            .kuroCard(shape),
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -56,6 +66,8 @@ fun ReorderableCollectionItemScope.CategoryListItem(
             Text(
                 text = category.name,
                 modifier = Modifier.weight(1f),
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
             )
             if (onToggleIncognito != null) {
                 IconToggleButton(checked = incognito, onCheckedChange = onToggleIncognito) {
@@ -76,6 +88,7 @@ fun ReorderableCollectionItemScope.CategoryListItem(
                 Icon(
                     imageVector = MaterialSymbols.Rounded.Delete,
                     contentDescription = stringResource(MR.strings.action_delete),
+                    tint = MaterialTheme.colorScheme.error.copy(alpha = 0.85f),
                 )
             }
         }
