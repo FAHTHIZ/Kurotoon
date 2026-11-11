@@ -271,6 +271,11 @@ object SettingsLibraryScreen : SearchableSettings {
                     preference = libraryPreferences.hideMissingChapters,
                     title = stringResource(MR.strings.pref_hide_missing_chapter_indicators),
                 ),
+                Preference.PreferenceItem.SwitchPreference(
+                    preference = libraryPreferences.localChapterNamesFromFiles,
+                    title = stringResource(MR.strings.kurotoon_local_namesFromFiles),
+                    subtitle = stringResource(MR.strings.kurotoon_local_namesFromFilesSummary),
+                ),
             ),
         )
     }

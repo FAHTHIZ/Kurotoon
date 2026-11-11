@@ -50,6 +50,10 @@ class LibraryPreferences(
         ),
     )
 
+    /** Name local chapters after their files even when a ComicInfo.xml gives them a title (mihon#2393). */
+    val localChapterNamesFromFiles: Preference<Boolean> =
+        preferenceStore.getBoolean("kurotoon_local_chapter_names_from_files", false)
+
     /** With the "caught up" restriction on, skip a series once it has at least this many unread chapters. */
     val autoUpdateUnreadThreshold: Preference<Int> = preferenceStore.getInt("kurotoon_update_unread_threshold", 1)
 
