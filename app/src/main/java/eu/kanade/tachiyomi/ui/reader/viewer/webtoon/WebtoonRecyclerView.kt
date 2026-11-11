@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.util.AttributeSet
 import android.view.HapticFeedbackConstants
+import android.view.InputDevice
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
@@ -76,9 +77,38 @@ class WebtoonRecyclerView @JvmOverloads constructor(
         x = getPositionX(x)
     }
 
+    // Pixels a mouse wheel or trackpad still has to scroll, eased out a frame at a time (mihon#2328)
+    private var wheelRemaining = 0f
+    private val wheelStep = Runnable { stepWheel() }
+
+    override fun onGenericMotionEvent(event: MotionEvent): Boolean {
+        if (event.actionMasked != MotionEvent.ACTION_SCROLL || !event.isFromSource(InputDevice.SOURCE_CLASS_POINTER)) {
+            return super.onGenericMotionEvent(event)
+        }
+        val notches = event.getAxisValue(MotionEvent.AXIS_VSCROLL)
+        if (notches == 0f) return super.onGenericMotionEvent(event)
+        val factor = ViewConfiguration.get(context).scaledVerticalScrollFactor
+        wheelRemaining -= notches * factor * WHEEL_SPEED
+        removeCallbacks(wheelStep)
+        postOnAnimation(wheelStep)
+        return true
+    }
+
+    private fun stepWheel() {
+        // A fixed share each frame: fast at first, settling gently, and later notches add on top
+        val step = wheelRemaining * WHEEL_EASE
+        val dy = if (abs(step) < 1f) wheelRemaining else step
+        wheelRemaining -= dy
+        scrollBy(0, dy.toInt())
+        if (abs(wheelRemaining) >= 1f) postOnAnimation(wheelStep) else wheelRemaining = 0f
+    }
+
     override fun onTouchEvent(e: MotionEvent): Boolean {
         if (e.actionMasked == MotionEvent.ACTION_DOWN) {
             tapDuringManualScroll = isManuallyScrolling
+            // A finger on the screen takes over from any wheel scroll still easing out
+            wheelRemaining = 0f
+            removeCallbacks(wheelStep)
         }
 
         detector.onTouchEvent(e)
@@ -371,3 +401,9 @@ private const val ANIMATOR_DURATION_TIME = 200
 private const val MIN_RATE = 0.5f
 private const val DEFAULT_RATE = 1f
 private const val MAX_SCALE_RATE = 3f
+
+// One wheel notch scrolls this many of the system's per-notch distance
+private const val WHEEL_SPEED = 1.5f
+
+// Share of the remaining wheel distance scrolled each frame
+private const val WHEEL_EASE = 0.22f
