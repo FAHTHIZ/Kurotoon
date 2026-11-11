@@ -78,6 +78,7 @@ import kurotoon.rewards.RewardEvent
 import kurotoon.rewards.RewardsStore
 import kurotoon.shortcuts.ContinueShortcut
 import logcat.LogPriority
+import mihon.app.di.appGraph
 import mihon.core.metro.AppCoroutineScope
 import mihon.data.cache.ChapterCache
 import tachiyomi.core.common.preference.toggle
@@ -692,6 +693,7 @@ class ReaderViewModel(
 
         if (readerChapter.pages?.lastIndex == pageIndex) {
             if (!wasRead) eventChannel.trySend(Event.ChapterCompleted(readerChapter.chapter.name))
+            offerNextElsewhere(readerChapter.chapter, state.value.viewerChapters?.nextChapter?.chapter)
             pendingProgressChapter = null
             writeChapterProgress(readerChapter, onComplete = true)
         } else {
@@ -807,6 +809,35 @@ class ReaderViewModel(
             manga?.let { manga ->
                 appScope.launch(Dispatchers.IO) { ContinueShortcut.update(context, manga, chapterId) }
             }
+        }
+    }
+
+    private val offeredElsewhere = HashSet<Long>()
+
+    /**
+     * When another copy of the series has the chapter that comes next (this one has run out or
+     * skips ahead, say 4 → 9 while 5 is elsewhere), points to it.
+     */
+    private fun offerNextElsewhere(finished: Chapter, nextHere: Chapter?) {
+        val manga = state.value.manga ?: return
+        if (!finished.isRecognizedNumber || !offeredElsewhere.add(finished.id)) return
+        val number = finished.chapterNumber
+        if (nextHere != null && nextHere.isRecognizedNumber && nextHere.chapterNumber <= number + 1) return
+        viewModelScope.launch(Dispatchers.IO) {
+            val graph = context.appGraph
+            val library = graph.getLibraryManga.await().map { it.manga }
+            val copies = kurotoon.manga.MergedChapters.sameSeries(manga, library).map { copy ->
+                kurotoon.manga.MergedChapters.Copy(
+                    manga = copy,
+                    sourceName = sourceManager.getOrStub(copy.source).name,
+                    chapters = getChaptersByMangaId.await(copy.id, applyScanlatorFilter = true),
+                )
+            }
+            val (chapter, copy) = kurotoon.manga.MergedChapters.nextAfter(number, copies) ?: return@launch
+            if (nextHere != null && nextHere.isRecognizedNumber && chapter.chapterNumber >= nextHere.chapterNumber) {
+                return@launch
+            }
+            eventChannel.send(Event.NextElsewhere(copy.manga.id, chapter.id, chapter.name, copy.sourceName))
         }
     }
 
@@ -1288,6 +1319,14 @@ class ReaderViewModel(
 
         /** The reader reached the last page of a chapter that wasn't read before. */
         data class ChapterCompleted(val chapterName: String) : Event
+
+        /** This copy has no next chapter but another copy of the series does. */
+        data class NextElsewhere(
+            val mangaId: Long,
+            val chapterId: Long,
+            val chapterName: String,
+            val sourceName: String,
+        ) : Event
     }
 }
 

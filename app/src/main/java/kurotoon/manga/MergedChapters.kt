@@ -79,5 +79,17 @@ object MergedChapters {
             .sortedByDescending { it.number }
     }
 
+    /**
+     * The chapter right after [number] in any of [copies], for carrying on when the series being
+     * read has run out. Unread chapters win a tie between copies, then the copy listed first.
+     */
+    fun nextAfter(number: Double, copies: List<Copy>): Pair<Chapter, Copy>? {
+        val after = keyOf(number)
+        return copies.asSequence()
+            .flatMap { copy -> copy.chapters.asSequence().map { it to copy } }
+            .filter { (chapter, _) -> chapter.isRecognizedNumber && keyOf(chapter.chapterNumber) > after }
+            .minWithOrNull(compareBy<Pair<Chapter, Copy>> { keyOf(it.first.chapterNumber) }.thenBy { it.first.read })
+    }
+
     private fun keyOf(number: Double) = (number * 100).roundToLong()
 }
