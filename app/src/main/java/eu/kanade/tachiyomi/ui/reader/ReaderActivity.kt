@@ -547,7 +547,11 @@ class ReaderActivity : BaseActivity() {
         kurotoon.reader.PageAutoRetry.online(this)
             .flowWithLifecycle(lifecycle)
             .onEach { online ->
-                if (online) kurotoon.reader.PageAutoRetry.retryFailed(viewModel.state.value.viewerChapters)
+                if (online) {
+                    kurotoon.reader.PageAutoRetry.retryFailed(viewModel.state.value.viewerChapters)
+                    // Episode music that failed offline gets another go too
+                    if (soundtrack.musicFailed || soundtrack.tracksFailed) soundtrack.retry()
+                }
             }
             .launchIn(lifecycleScope)
     }
