@@ -71,6 +71,7 @@ import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.util.system.openInBrowser
 import kotlinx.coroutines.launch
+import kurotoon.ui.KuroColors
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.automirroredrounded.ArrowBack
 import mihon.icons.materialsymbols.rounded.Close
@@ -249,8 +250,8 @@ private fun SearchResultItem(
     val type = trackSearch.publishing_type.toLowerCase(locale).capitalize(locale)
     val status = trackSearch.publishing_status.toLowerCase(locale).capitalize(locale)
     val description = trackSearch.summary.trim()
-    val shape = RoundedCornerShape(16.dp)
-    val borderColor = if (selected) MaterialTheme.colorScheme.outline else Color.Transparent
+    val shape = RoundedCornerShape(18.dp)
+    val borderColor = if (selected) KuroColors.Crimson else Color.White.copy(alpha = 0.06f)
     var dropDownMenuExpanded by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     Box(
@@ -258,9 +259,9 @@ private fun SearchResultItem(
             .fillMaxWidth()
             .padding(horizontal = 12.dp)
             .clip(shape)
-            .background(MaterialTheme.colorScheme.surface)
+            .background(MaterialTheme.colorScheme.surfaceContainer)
             .border(
-                width = 2.dp,
+                width = if (selected) 2.dp else 1.dp,
                 color = borderColor,
                 shape = shape,
             )
@@ -278,14 +279,16 @@ private fun SearchResultItem(
                 imageVector = MaterialSymbols.RoundedFilled.CheckCircle,
                 contentDescription = null,
                 modifier = Modifier.align(Alignment.TopEnd),
-                tint = MaterialTheme.colorScheme.primary,
+                tint = KuroColors.Crimson,
             )
         }
         Column {
             Row {
                 MangaCover.Book(
                     data = trackSearch.cover_url,
-                    modifier = Modifier.height(96.dp),
+                    modifier = Modifier
+                        .height(96.dp)
+                        .clip(RoundedCornerShape(10.dp)),
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Column {
