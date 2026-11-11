@@ -66,7 +66,14 @@ def shot(name=None):
     global step
     step += 1
     name = f"{step:03d}_{name or 'screen'}"
-    png = subprocess.run(["adb", "exec-out", "screencap", "-p"], capture_output=True, timeout=60).stdout
+    png = b""
+    for _ in range(3):
+        try:
+            png = subprocess.run(["adb", "exec-out", "screencap", "-p"], capture_output=True, timeout=60).stdout
+            break
+        except subprocess.TimeoutExpired:
+            say("  .. screencap timed out, waiting for the emulator")
+            subprocess.run(["adb", "wait-for-device"], timeout=180)
     open(f"{OUT}/{name}.png", "wb").write(png)
     root = dump()
     texts = [t or d for t, d, *_ in nodes(root) if (t or d)]
