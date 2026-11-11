@@ -172,6 +172,22 @@ private fun ColumnScope.WebtoonViewerSettings(viewModel: ReaderSettingsViewModel
         },
         pillColor = MaterialTheme.colorScheme.surfaceContainerHighest,
     )
+    CheckboxItem(
+        label = stringResource(MR.strings.kurotoon_reader_sidePaddingLandscapeOwn),
+        pref = viewModel.preferences.webtoonSidePaddingLandscapeEnabled,
+    )
+    val landscapeOwn by viewModel.preferences.webtoonSidePaddingLandscapeEnabled.collectAsState()
+    if (landscapeOwn) {
+        val landscapePadding by viewModel.preferences.webtoonSidePaddingLandscape.collectAsState()
+        SliderItem(
+            value = landscapePadding,
+            valueRange = ReaderPreferences.let { it.WEBTOON_PADDING_MIN..it.WEBTOON_PADDING_MAX },
+            label = stringResource(MR.strings.kurotoon_reader_sidePaddingLandscape),
+            valueString = numberFormat.format(landscapePadding / 100f),
+            onChange = { viewModel.preferences.webtoonSidePaddingLandscape.set(it) },
+            pillColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+        )
+    }
 
     CheckboxItem(
         label = stringResource(MR.strings.pref_crop_borders),

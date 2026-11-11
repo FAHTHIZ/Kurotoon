@@ -320,6 +320,7 @@ object SettingsReaderScreen : SearchableSettings {
         val navMode by navModePref.collectAsState()
         val dualPageSplit by dualPageSplitPref.collectAsState()
         val rotateToFit by rotateToFitPref.collectAsState()
+        val landscapePaddingOwn by readerPreferences.webtoonSidePaddingLandscapeEnabled.collectAsState()
 
         return Preference.PreferenceGroup(
             title = stringResource(MR.strings.webtoon_viewer),
@@ -350,6 +351,19 @@ object SettingsReaderScreen : SearchableSettings {
                     },
                     title = stringResource(MR.strings.pref_webtoon_side_padding),
                     valueText = { numberFormat.format(it / 100f) },
+                ),
+                Preference.PreferenceItem.SwitchPreference(
+                    preference = readerPreferences.webtoonSidePaddingLandscapeEnabled,
+                    title = stringResource(MR.strings.kurotoon_reader_sidePaddingLandscapeOwn),
+                ),
+                Preference.PreferenceItem.SliderPreference(
+                    preference = readerPreferences.webtoonSidePaddingLandscape,
+                    valueRange = ReaderPreferences.let {
+                        it.WEBTOON_PADDING_MIN..it.WEBTOON_PADDING_MAX
+                    },
+                    title = stringResource(MR.strings.kurotoon_reader_sidePaddingLandscape),
+                    valueText = { numberFormat.format(it / 100f) },
+                    visible = landscapePaddingOwn,
                 ),
                 Preference.PreferenceItem.ListPreference(
                     preference = readerPreferences.readerHideThreshold,
