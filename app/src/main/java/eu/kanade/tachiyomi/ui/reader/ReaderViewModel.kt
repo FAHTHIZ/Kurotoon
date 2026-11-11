@@ -820,6 +820,18 @@ class ReaderViewModel(
         }
     }
 
+    fun bookmarkNote(): String? {
+        val chapter = getCurrentChapter()?.chapter ?: return null
+        return kurotoon.manga.BookmarkNotes.get(context).get(chapter.id)
+    }
+
+    /** Saves the note on the current chapter's bookmark, bookmarking it first if needed (mihon#1509). */
+    fun setBookmarkNote(note: String) {
+        val readerChapter = getCurrentChapter() ?: return
+        kurotoon.manga.BookmarkNotes.get(context).set(readerChapter.chapter.id, note)
+        if (note.isNotBlank() && !readerChapter.chapter.bookmark) toggleChapterBookmark()
+    }
+
     /**
      * Bookmarks the currently active chapter.
      */

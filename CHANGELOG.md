@@ -19,6 +19,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Bookmark notes: in the reader's menu, write why a chapter is bookmarked; the note shows under the chapter on the series page ([mihon#1509](https://github.com/mihonapp/mihon/issues/1509))
 - Find duplicates also matches copies linked to the same tracker entry, even when their titles differ ([mihon#84](https://github.com/mihonapp/mihon/issues/84))
 - Re-reading a finished chapter remembers your page: History and the reader resume there instead of skipping to the next chapter or page 1 ([mihon#698](https://github.com/mihonapp/mihon/issues/698))
 - Per-source default category: in a source's menu, choose where series added from it land; used by the series page, browse, history, home and the reader ([mihon#336](https://github.com/mihonapp/mihon/issues/336))
