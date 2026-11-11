@@ -5,6 +5,8 @@ All notable changes to KuroToon are documented here. Versions follow
 
 ## [Unreleased]
 
+## [0.23.0] - 2026-11-11
+
 ### Added
 - **Up next** leads Home: the series you read last as a large artwork card with its chapter, page and a Resume button
 - **Collection** replaces the Kuro Shop: avatars, frames, stickers, badges, themes and effect colours are all free. Tap one to see it large, then Use or Stop using. Stickers can be pinned to your picture or shared in a chat. Packs still import from the top bar
@@ -16,6 +18,10 @@ All notable changes to KuroToon are documented here. Versions follow
 - **Library combines copies**: a series saved from several sources shows once, with a ×N badge, led by the copy you read last. Turn it off in Library settings
 
 ### Changed
+- Browse: Popular and Latest on each source are soft tinted buttons instead of solid red
+- Chapter names that repeat their number, like "Episode 42 (ch. 42)", read as "Episode 42" in the chapter list and reader
+- Series page: the Start and Resume button uses the solid accent, the jump-to-chapter button is neutral, unread chapters get a thinner, softer mark
+- Updates says Not checked yet instead of Checked Never
 - A firmer type scale: semibold titles and tighter large text across the app
 - The bottom bar marks the open tab with one soft pill instead of a pill, ring and top line
 - Every remaining hard-coded crimson and gold (stats, reader hints, tags, tracking, duplicates, migration, schedule, downloads, onboarding) follows the theme's accent
@@ -32,6 +38,8 @@ All notable changes to KuroToon are documented here. Versions follow
 - The old JSON chapter reconciliation tool in the Me tab is replaced by merged chapters
 
 ### Fixed
+- Opening the Library, or a series saved from two sources, could crash on Android because of a title-matching pattern
+- Home could crash when one series topped both the Popular and Latest rows of a source
 - An extension search with no match now says that none of your stores lists it (Keiyoushi no longer carries Hitomi) and points to adding a store
 - Searching extensions for `hitomi.la` (or any 18+ site) found nothing because adult extensions are hidden by default. The search now says what's hidden and offers Allow 18+, and pasted addresses like `https://www.hitomi.la/` match in both Extensions and Sources
 - Kuro labels that didn't match their art (Shy → Manga Time, Kuru legend → Kuro legend)
