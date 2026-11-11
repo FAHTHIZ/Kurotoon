@@ -198,7 +198,7 @@ private fun CombinedResultsRow(
     GlobalSearchResultItem(
         title = stringResource(MR.strings.kurotoon_search_combined),
         subtitle = stringResource(MR.strings.kurotoon_search_combinedSummary),
-        onClick = {},
+        onClick = null,
     ) {
         GlobalSearchCardRow(
             titles = combined.map { it.first },
