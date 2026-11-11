@@ -11,6 +11,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import eu.kanade.presentation.components.AppBar
@@ -101,13 +102,14 @@ private fun LibraryRegularToolbar(
                 Text(
                     text = title.text,
                     maxLines = 1,
+                    fontWeight = FontWeight.Bold,
                     modifier = Modifier.weight(1f, false),
                     overflow = TextOverflow.Ellipsis,
                 )
                 if (title.numberOfManga != null) {
                     Pill(
                         text = "${title.numberOfManga}",
-                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = pillAlpha),
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = pillAlpha + 0.08f),
                         fontSize = 14.sp,
                     )
                 }
