@@ -39,6 +39,20 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
         sourceDefaultCategories.set(if (categoryId == null) rest.toSet() else rest.toSet() + "$sourceId=$categoryId")
     }
 
+    /** Reading modes picked for every series of a source, as "sourceId=flagValue" (mihon#2140). */
+    val sourceReadingModes = preferenceStore.getStringSet("kurotoon_source_reading_modes", emptySet())
+
+    fun readingModeFor(sourceId: Long): Int? =
+        sourceReadingModes.get().firstNotNullOfOrNull { entry ->
+            val (source, mode) = entry.split('=').takeIf { it.size == 2 } ?: return@firstNotNullOfOrNull null
+            mode.toIntOrNull()?.takeIf { source.toLongOrNull() == sourceId }
+        }
+
+    fun setReadingModeFor(sourceId: Long, mode: Int?) {
+        val rest = sourceReadingModes.get().filterNot { it.substringBefore('=') == sourceId.toString() }.toSet()
+        sourceReadingModes.set(if (mode == null) rest else rest + "$sourceId=$mode")
+    }
+
     /**
      * Read chapters being read again and left part-way, by chapter id, so History and the reader resume
      * on that page instead of skipping ahead or starting over (mihon#698). Capped to the latest few.

@@ -2,6 +2,7 @@ package eu.kanade.presentation.reader
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -20,7 +21,9 @@ import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderSettingsViewModel
 import eu.kanade.tachiyomi.ui.reader.setting.ReadingMode
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.LabeledCheckbox
 import tachiyomi.presentation.core.components.SettingsIconGrid
+import tachiyomi.presentation.core.components.SettingsItemsPaddings
 import tachiyomi.presentation.core.components.material.IconToggleButton
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -34,13 +37,25 @@ fun ReadingModeSelectDialog(
 ) {
     val manga by viewModel.mangaFlow.collectAsState()
     val readingMode = remember(manga) { ReadingMode.fromPreference(manga?.readingMode?.toInt()) }
+    val sourceMode = remember(manga) { viewModel.getSourceReadingMode() }
+    val sourceName = remember(manga) { viewModel.sourceName() }
 
     AdaptiveSheet(onDismissRequest = onDismissRequest) {
         DialogContent(
             readingMode = readingMode,
-            onChangeReadingMode = {
-                viewModel.setReadingMode(it)
-                onChange(it.stringRes)
+            sourceMode = sourceMode,
+            sourceName = sourceName,
+            onChangeReadingMode = { mode, forSource ->
+                when {
+                    forSource -> viewModel.setSourceReadingMode(mode)
+                    // Unticked, so the source stops deciding and this series keeps the pick
+                    readingMode == ReadingMode.DEFAULT && sourceMode != null -> {
+                        viewModel.setSourceReadingMode(null)
+                        viewModel.setReadingMode(mode)
+                    }
+                    else -> viewModel.setReadingMode(mode)
+                }
+                onChange(mode.stringRes)
                 onDismissRequest()
             },
         )
@@ -50,13 +65,19 @@ fun ReadingModeSelectDialog(
 @Composable
 private fun DialogContent(
     readingMode: ReadingMode,
-    onChangeReadingMode: (ReadingMode) -> Unit,
+    onChangeReadingMode: (ReadingMode, forSource: Boolean) -> Unit,
+    sourceMode: ReadingMode? = null,
+    sourceName: String? = null,
 ) {
-    var selected by remember { mutableStateOf(readingMode) }
+    // A series following its source shows the source's mode as the pick
+    val followsSource = readingMode == ReadingMode.DEFAULT && sourceMode != null
+    var selected by remember { mutableStateOf(if (followsSource) sourceMode!! else readingMode) }
+    var forSource by remember { mutableStateOf(followsSource) }
 
     ModeSelectionDialog(
-        onUseDefault = { onChangeReadingMode(ReadingMode.DEFAULT) }.takeIf { readingMode != ReadingMode.DEFAULT },
-        onApply = { onChangeReadingMode(selected) },
+        onUseDefault = { onChangeReadingMode(ReadingMode.DEFAULT, false) }
+            .takeIf { readingMode != ReadingMode.DEFAULT || sourceMode != null },
+        onApply = { onChangeReadingMode(selected, forSource) },
     ) {
         SettingsIconGrid(MR.strings.pref_category_reading_mode) {
             items(ReadingModesWithoutDefault) { mode ->
@@ -71,6 +92,14 @@ private fun DialogContent(
                 )
             }
         }
+        if (sourceName != null) {
+            LabeledCheckbox(
+                label = stringResource(MR.strings.kurotoon_reader_modeForSource, sourceName),
+                checked = forSource,
+                onCheckedChange = { forSource = it },
+                modifier = Modifier.padding(horizontal = SettingsItemsPaddings.Horizontal),
+            )
+        }
     }
 }
 
@@ -82,12 +111,12 @@ private fun DialogContentPreview() {
             Column {
                 DialogContent(
                     readingMode = ReadingMode.DEFAULT,
-                    onChangeReadingMode = {},
+                    onChangeReadingMode = { _, _ -> },
                 )
 
                 DialogContent(
                     readingMode = ReadingMode.LEFT_TO_RIGHT,
-                    onChangeReadingMode = {},
+                    onChangeReadingMode = { _, _ -> },
                 )
             }
         }
