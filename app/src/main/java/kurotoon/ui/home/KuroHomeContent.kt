@@ -112,9 +112,20 @@ fun KuroHomeContent(
                     item(key = "welcome") { Welcome(onAddSourcesClick) }
                 }
                 if (shown(HomeSection.CONTINUE) && state.continueReading.isNotEmpty()) {
+                    val upNext = state.continueReading.first()
+                    item(key = "up-next") {
+                        HomeUpNext(
+                            item = upNext,
+                            page = state.continuePages[upNext.chapterId],
+                            onOpen = { onMangaClick(upNext.mangaId) },
+                            onResume = { onResumeClick(upNext) },
+                        )
+                    }
+                }
+                if (shown(HomeSection.CONTINUE) && state.continueReading.size > 1) {
                     item(key = "continue") {
                         ContinueReading(
-                            items = state.continueReading,
+                            items = state.continueReading.drop(1),
                             pages = state.continuePages,
                             onMangaClick = onMangaClick,
                             onResumeClick = onResumeClick,
