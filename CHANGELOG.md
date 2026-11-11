@@ -19,6 +19,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Updates show the scanlator of each new chapter ([mihon#1914](https://github.com/mihonapp/mihon/issues/1914))
 - Reading mode per source: tick "Use for every series from …" in the reader's reading mode sheet, and series from that source without their own pick open in it ([mihon#2140](https://github.com/mihonapp/mihon/issues/2140))
 - A failed download with some pages saved can be kept as is from its menu in the download queue, so a source that won't serve a page or two no longer blocks the chapter ([mihon#587](https://github.com/mihonapp/mihon/issues/587))
 - The series page's Resume button picks a re-read back up at the page you left, even with every chapter read
