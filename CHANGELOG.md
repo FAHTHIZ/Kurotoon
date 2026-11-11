@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Added
+- Continue reading home-screen widget: your last-read titles with their chapter, one tap resumes the chapter
 - Saved panels: long-press a page and Keep panel to collect favourite pages in a gallery (Me > Saved panels) that jumps straight back to the chapter
 - Onboarding: Next on the storage step now opens the folder picker instead of sitting greyed out; friendlier empty Extensions screen
 - Data saver (off / on mobile data / always) with a quality slider: pages are shrunk to WebP through the wsrv.nl proxy, with automatic fallback for sites that refuse it

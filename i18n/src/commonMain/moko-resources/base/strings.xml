@@ -1101,6 +1101,10 @@
     <string name="kurotoon.panels.remove">Remove this panel?</string>
     <string name="kurotoon.panels.where">%1$s · page %2$d</string>
     <string name="kurotoon.panels.empty">No saved panels yet. Long-press any page in the reader and pick Keep panel.</string>
+    <string name="kurotoon.widget.continue">Continue reading</string>
+    <string name="kurotoon.widget.description">Jump back into what you were reading, right from your home screen</string>
+    <string name="kurotoon.widget.empty">Start a chapter and it shows up here</string>
+    <string name="kurotoon.widget.chapter">Ch. %1$s</string>
     <string name="kurotoon.dataSaver.title">Data saver</string>
     <string name="kurotoon.dataSaver.off">Off</string>
     <string name="kurotoon.dataSaver.mobile">On mobile data</string>
