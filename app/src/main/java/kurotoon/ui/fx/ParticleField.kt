@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.PowerManager
 import android.provider.Settings
-import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -26,9 +25,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotateRad
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.onSizeChanged
@@ -85,7 +82,6 @@ fun ParticleField(
         events.collect { event ->
             when (event) {
                 is FxEvent.Burst -> engine.burst(event)
-                is FxEvent.Tap -> engine.tap(event, frameTimeMs())
                 FxEvent.Celebrate -> launch {
                     engine.celebrate(0)
                     wake.trySend(Unit)
@@ -124,7 +120,7 @@ fun ParticleField(
             .graphicsLayer()
             .onSizeChanged { engine.size = Size(it.width.toFloat(), it.height.toFloat()) },
     ) {
-        if (frame != 0L) engine.draw(this, frame / 1_000_000)
+        if (frame != 0L) engine.draw(this)
     }
 }
 
@@ -177,16 +173,7 @@ private class ParticleEngine(private val density: Float, lowRam: Boolean) {
     private val scale = if (lowRam) 0.5f else 1f
     private var lastAmbientMs = 0L
 
-    private val taps = ArrayList<TapBurst>(4)
-    private var lastTapMs = 0L
-
-    val isActive: Boolean get() = particles.isNotEmpty() || taps.isNotEmpty()
-
-    fun tap(event: FxEvent.Tap, nowMs: Long) {
-        if (nowMs - lastTapMs < 40) return
-        lastTapMs = nowMs
-        taps += TapBurst(event.x, event.y, nowMs)
-    }
+    val isActive: Boolean get() = particles.isNotEmpty()
 
     fun burst(event: FxEvent.Burst) {
         val n = (event.count * scale).roundToInt()
@@ -249,7 +236,6 @@ private class ParticleEngine(private val density: Float, lowRam: Boolean) {
             lastAmbientMs = nowMs
             spawnAmbient()
         }
-        taps.removeAll { nowMs - it.startMs > TAP_DURATION_MS }
         val margin = 20 * density
         val drag = Math.pow(0.985, step.toDouble()).toFloat()
         for (i in particles.indices.reversed()) {
@@ -274,8 +260,7 @@ private class ParticleEngine(private val density: Float, lowRam: Boolean) {
         }
     }
 
-    fun draw(scope: DrawScope, nowMs: Long) = with(scope) {
-        for (tap in taps) drawTap(tap, ((nowMs - tap.startMs) / TAP_DURATION_MS.toFloat()).coerceIn(0f, 1f))
+    fun draw(scope: DrawScope) = with(scope) {
         for (p in particles) {
             val k = (p.life / p.max).coerceIn(0f, 1f)
             val alpha = if (p.ambient) sin(PI.toFloat() * k) * 0.16f else 1f - k * k
@@ -303,37 +288,3 @@ private class ParticleEngine(private val density: Float, lowRam: Boolean) {
         }
     }
 }
-
-private class TapBurst(val x: Float, val y: Float, val startMs: Long)
-
-private const val TAP_DURATION_MS = 420L
-
-private val TapEase = CubicBezierEasing(0.2f, 0.7f, 0.2f, 1f)
-
-/**
- * A quiet touch ripple: one thin ring in the accent that grows a little and fades. Kept small on purpose so it
- * confirms the touch without competing with the content.
- */
-private fun DrawScope.drawTap(tap: TapBurst, t: Float) {
-    val center = Offset(tap.x, tap.y)
-    val eased = TapEase.transform(t)
-    val accent = KuroCosmetics.particleColors?.firstOrNull() ?: TapAccent
-    val alpha = (1f - t) * 0.45f
-    drawCircle(
-        color = accent.copy(alpha = alpha * 0.35f),
-        radius = 10 * density * (0.6f + 1.6f * eased),
-        center = center,
-    )
-    drawCircle(
-        color = accent.copy(alpha = alpha),
-        radius = 10 * density * (0.6f + 1.6f * eased),
-        center = center,
-        style = Stroke(width = 1.25f * density),
-    )
-}
-
-private val TapAccent = Color(0xFFE83A4A)
-
-/** Draws one frame of the tap effect, [progress] from 0 to 1. For previews and screenshots. */
-internal fun DrawScope.drawTapFrame(center: Offset, progress: Float) =
-    drawTap(TapBurst(center.x, center.y, 0L), progress)
