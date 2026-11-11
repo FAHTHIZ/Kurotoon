@@ -20,6 +20,7 @@ import eu.kanade.tachiyomi.ui.browse.source.globalsearch.SearchViewModel
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.SourceFilter
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import kurotoon.catalogue.SourceTagIndex
+import kurotoon.library.LibraryDuplicates
 import kurotoon.ui.browse.RecentSearchRow
 import kurotoon.ui.browse.TagBrowseRow
 import tachiyomi.domain.manga.model.Manga
@@ -97,10 +98,8 @@ fun GlobalSearchScreen(
         GlobalSearchContent(
             items = state.filteredItems,
             contentPadding = paddingValues,
-            header = if (tagMatches.isEmpty() || typed.isEmpty()) {
-                null
-            } else {
-                {
+            header = {
+                if (typed.isNotEmpty()) {
                     TagBrowseRow(
                         tags = tagMatches,
                         onTag = onTag,
@@ -108,6 +107,12 @@ fun GlobalSearchScreen(
                         title = stringResource(MR.strings.kurotoon_browse_matchingTags),
                     )
                 }
+                CombinedResultsRow(
+                    items = state.items,
+                    getManga = getManga,
+                    onClickItem = onClickItem,
+                    onLongClickItem = onLongClickItem,
+                )
             },
             getManga = getManga,
             onClickSource = onClickSource,
@@ -164,5 +169,47 @@ internal fun GlobalSearchContent(
     }
 }
 
+/**
+ * The same series found on two or more sources, shown once each with a ×N badge, ahead of the
+ * per-source rows. The copy already in the library is preferred, then the first source to answer.
+ */
+@Composable
+private fun CombinedResultsRow(
+    items: Map<Source, SearchItemResult>,
+    getManga: @Composable (Manga) -> State<Manga>,
+    onClickItem: (Manga) -> Unit,
+    onLongClickItem: (Manga) -> Unit,
+) {
+    val combined = remember(items) {
+        items.values.asSequence()
+            .filterIsInstance<SearchItemResult.Success>()
+            .flatMap { it.result.asSequence() }
+            .groupBy { LibraryDuplicates.keyOf(it.title) }
+            .filterKeys { it.isNotEmpty() }
+            .values
+            .map { group -> group.distinctBy { it.source } }
+            .filter { it.size > 1 }
+            .sortedByDescending { it.size }
+            .take(COMBINED_LIMIT)
+            .map { group -> (group.firstOrNull { it.favorite } ?: group.first()) to group.size }
+    }
+    if (combined.isEmpty()) return
+    val counts = remember(combined) { combined.associate { (manga, count) -> manga.id to count } }
+    GlobalSearchResultItem(
+        title = stringResource(MR.strings.kurotoon_search_combined),
+        subtitle = stringResource(MR.strings.kurotoon_search_combinedSummary),
+        onClick = {},
+    ) {
+        GlobalSearchCardRow(
+            titles = combined.map { it.first },
+            getManga = getManga,
+            onClick = onClickItem,
+            onLongClick = onLongClickItem,
+            sourceCount = { counts[it.id] ?: 0 },
+        )
+    }
+}
+
+private const val COMBINED_LIMIT = 20
 private const val IDLE_TAGS = 30
 private const val MATCH_TAGS = 16

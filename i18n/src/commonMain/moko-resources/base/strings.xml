@@ -927,6 +927,8 @@
     <string name="kurotoon_merged_title">All chapters, every source</string>
     <string name="kurotoon_merged_explain">Your copies of this series are combined by chapter number. Each chapter opens from the source that has it.</string>
     <string name="kurotoon_merged_chapter">Chapter %1$s</string>
+    <string name="kurotoon_search_combined">On several sources</string>
+    <string name="kurotoon_search_combinedSummary">Each series once · ×N shows how many sources have it</string>
     <string name="kurotoon_updates_checked">Checked %s</string>
     <string name="kurotoon_updates_summary">%1$d unread of %2$d new chapters</string>
     <string name="kurotoon_updates_pull_hint">Pull down or tap Check now to look for new chapters</string>
