@@ -51,8 +51,6 @@ import androidx.compose.ui.util.lerp
 import coil3.compose.AsyncImage
 import eu.kanade.presentation.manga.components.MangaCover
 import kotlinx.coroutines.delay
-import kurotoon.ui.KuroColors
-import kurotoon.ui.kuroCard
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.AutoAwesome
 import mihon.icons.materialsymbols.rounded.Bookmark
@@ -76,7 +74,7 @@ internal fun HomeHero(
         modifier = modifier
             .fillMaxWidth()
             .clip(shape)
-            .kuroCard(shape)
+            .background(MaterialTheme.colorScheme.surfaceContainer)
             .clickable(onClick = onClick),
     ) {
         AsyncImage(
@@ -85,15 +83,15 @@ internal fun HomeHero(
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .matchParentSize()
-                .blur(24.dp)
-                .alpha(0.32f),
+                .blur(32.dp)
+                .alpha(0.45f),
         )
         Box(
             Modifier
                 .matchParentSize()
                 .background(
                     Brush.verticalGradient(
-                        listOf(KuroColors.Crimson.copy(alpha = 0.14f), MaterialTheme.colorScheme.background.copy(0.6f)),
+                        listOf(Color.Transparent, MaterialTheme.colorScheme.surface.copy(alpha = 0.7f)),
                     ),
                 ),
         )
@@ -113,34 +111,18 @@ internal fun HomeHero(
                     .height(144.dp),
                 verticalArrangement = Arrangement.Bottom,
             ) {
-                Row(
-                    modifier = Modifier
-                        .background(KuroColors.Crimson.copy(alpha = 0.15f), CircleShape)
-                        .border(1.dp, KuroColors.Crimson.copy(alpha = 0.25f), CircleShape)
-                        .padding(horizontal = 8.dp, vertical = 2.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(4.dp),
-                ) {
-                    Icon(
-                        MaterialSymbols.Rounded.AutoAwesome,
-                        contentDescription = null,
-                        tint = KuroColors.Crimson,
-                        modifier = Modifier.size(12.dp),
-                    )
-                    Text(
-                        text = stringResource(MR.strings.kurotoon_home_topOn, sourceName).uppercase(),
-                        color = KuroColors.Crimson,
-                        fontSize = 10.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
-                }
+                Text(
+                    text = stringResource(MR.strings.kurotoon_home_topOn, sourceName),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
                 Text(
                     text = manga.title,
                     fontSize = 20.sp,
                     lineHeight = 24.sp,
-                    fontWeight = FontWeight.ExtraBold,
+                    fontWeight = FontWeight.Bold,
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.padding(top = 8.dp),
@@ -160,13 +142,13 @@ internal fun HomeHero(
                     modifier = Modifier
                         .padding(top = 12.dp)
                         .clip(CircleShape)
-                        .background(Brush.linearGradient(listOf(KuroColors.Crimson, KuroColors.CrimsonDeep)))
+                        .background(MaterialTheme.colorScheme.primary)
                         .clickable(onClick = onClick)
                         .padding(horizontal = 20.dp, vertical = 8.dp),
                 ) {
                     Text(
                         text = stringResource(MR.strings.kurotoon_home_readNow),
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onPrimary,
                         style = MaterialTheme.typography.labelMedium,
                         fontWeight = FontWeight.Bold,
                     )
@@ -226,6 +208,8 @@ internal fun HomeHeroCarousel(
                 horizontalArrangement = Arrangement.spacedBy(6.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
+                val primary = MaterialTheme.colorScheme.primary
+                val idle = MaterialTheme.colorScheme.outlineVariant
                 repeat(heroes.size) { i ->
                     val selected = pagerState.currentPage == i
                     val width by animateDpAsState(
@@ -234,7 +218,7 @@ internal fun HomeHeroCarousel(
                         label = "heroDot",
                     )
                     val color by animateColorAsState(
-                        targetValue = if (selected) KuroColors.Crimson else Color.White.copy(alpha = 0.22f),
+                        targetValue = if (selected) primary else idle,
                         label = "heroDotColor",
                     )
                     Box(
@@ -269,10 +253,10 @@ private fun ListingToggle(latest: Boolean, onClick: () -> Unit) {
                 text = stringResource(if (option) MR.strings.latest else MR.strings.popular),
                 style = MaterialTheme.typography.labelSmall,
                 fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
-                color = if (selected) Color.White else MaterialTheme.colorScheme.onSurfaceVariant,
+                color = MaterialTheme.colorScheme.run { if (selected) onPrimary else onSurfaceVariant },
                 modifier = Modifier
                     .clip(CircleShape)
-                    .background(if (selected) KuroColors.Crimson else Color.Transparent)
+                    .background(if (selected) MaterialTheme.colorScheme.primary else Color.Transparent)
                     .padding(horizontal = 10.dp, vertical = 4.dp),
             )
         }
@@ -333,7 +317,7 @@ internal fun HomeSourceRow(
                 modifier = Modifier
                     .padding(horizontal = 16.dp, vertical = 8.dp)
                     .fillMaxWidth()
-                    .kuroCard()
+                    .background(MaterialTheme.colorScheme.surfaceContainer, RoundedCornerShape(16.dp))
                     .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -346,7 +330,7 @@ internal fun HomeSourceRow(
                 Text(
                     text = stringResource(MR.strings.action_retry),
                     style = MaterialTheme.typography.labelMedium,
-                    color = KuroColors.Crimson,
+                    color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier
                         .clip(CircleShape)
@@ -390,12 +374,12 @@ internal fun HomeSourceRow(
                                 Icon(
                                     MaterialSymbols.Rounded.Bookmark,
                                     contentDescription = stringResource(MR.strings.in_library),
-                                    tint = Color.White,
+                                    tint = MaterialTheme.colorScheme.onPrimary,
                                     modifier = Modifier
                                         .align(Alignment.TopEnd)
                                         .padding(6.dp)
                                         .clip(CircleShape)
-                                        .background(KuroColors.Crimson)
+                                        .background(MaterialTheme.colorScheme.primary)
                                         .padding(4.dp)
                                         .size(12.dp),
                                 )
@@ -403,14 +387,14 @@ internal fun HomeSourceRow(
                             if (manga.url in row.freshUrls) {
                                 Text(
                                     text = stringResource(MR.strings.kurotoon_home_newBadge),
-                                    color = Color.White,
+                                    color = MaterialTheme.colorScheme.onPrimary,
                                     style = MaterialTheme.typography.labelSmall,
                                     fontWeight = FontWeight.Bold,
                                     modifier = Modifier
                                         .align(Alignment.TopStart)
                                         .padding(6.dp)
                                         .clip(CircleShape)
-                                        .background(KuroColors.Crimson)
+                                        .background(MaterialTheme.colorScheme.primary)
                                         .padding(horizontal = 8.dp, vertical = 2.dp),
                                 )
                             }
