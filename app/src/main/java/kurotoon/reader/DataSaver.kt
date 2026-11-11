@@ -1,5 +1,6 @@
 package kurotoon.reader
 
+import android.app.Application
 import android.content.Context
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.NetworkHelper
@@ -9,6 +10,7 @@ import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderPreferences
 import eu.kanade.tachiyomi.util.system.isConnectedToWifi
 import logcat.LogPriority
+import mihon.app.di.appGraph
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.Response
 import tachiyomi.core.common.util.system.logcat
@@ -28,9 +30,11 @@ object DataSaver {
     val MODES = listOf(OFF, MOBILE, ALWAYS)
 
     private const val MAX_WIDTH = 1080
-    private val context: android.app.Application by injectLazy()
-    private val preferences: ReaderPreferences by injectLazy()
-    private val network: NetworkHelper by injectLazy()
+
+    // Only Application and NetworkHelper are exposed to Injekt, everything else comes from the app graph
+    private val context: Application by injectLazy()
+    private val preferences: ReaderPreferences get() = context.appGraph.readerPreferences
+    private val network: NetworkHelper get() = context.appGraph.networkHelper
     private val misses = ConcurrentHashMap<Long, Int>()
 
     /** The proxied address for [url], or null when it can't go through the proxy. */
@@ -55,9 +59,10 @@ object DataSaver {
 
     /** Fetches [page] through the proxy, or returns null so the caller downloads it as usual. */
     suspend fun fetch(sourceId: Long, page: Page): Response? {
-        if ((misses[sourceId] ?: 0) >= 2 || !isActive()) return null
-        val url = proxyUrl(page.imageUrl ?: return null, preferences.dataSaverQuality.get()) ?: return null
+        if ((misses[sourceId] ?: 0) >= 2) return null
         return try {
+            if (!isActive()) return null
+            val url = proxyUrl(page.imageUrl ?: return null, preferences.dataSaverQuality.get()) ?: return null
             network.client.newCachelessCallWithProgress(GET(url), page).awaitSuccess().also {
                 misses.remove(sourceId)
             }
