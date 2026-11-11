@@ -134,6 +134,7 @@ import tachiyomi.core.common.Constants
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.i18n.pluralStringResource
 import tachiyomi.presentation.core.screens.LoadingScreen
 import tachiyomi.presentation.core.util.collectAsState
 
@@ -718,7 +719,18 @@ class ReaderActivity : BaseActivity() {
             visible = state.menuVisible,
 
             mangaTitle = state.manga?.title,
-            chapterTitle = state.currentChapter?.chapter?.name,
+            chapterTitle = state.currentChapter?.chapter?.name?.let { name ->
+                if (state.chaptersLeft > 0) {
+                    pluralStringResource(
+                        MR.plurals.kurotoon_reader_chaptersLeft,
+                        state.chaptersLeft,
+                        name,
+                        state.chaptersLeft,
+                    )
+                } else {
+                    name
+                }
+            },
             navigateUp = onBackPressedDispatcher::onBackPressed,
             onClickTopAppBar = ::openMangaScreen,
             bookmarked = state.bookmarked,

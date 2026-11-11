@@ -409,6 +409,7 @@ class ReaderViewModel(
                 chapterToDownload = toDownload
                 it.copy(
                     viewerChapters = newChapters,
+                    chaptersLeft = (chapterList.size - 1 - chapterPos).coerceAtLeast(0),
                     bookmarked = newChapters.currChapter.chapter.bookmark,
                 )
             }
@@ -1165,6 +1166,8 @@ class ReaderViewModel(
         val menuVisible: Boolean = false,
         /** Estimated minutes left in the chapter, once the reading pace is known. */
         val minutesLeft: Int? = null,
+        /** Chapters after this one in reading order. */
+        val chaptersLeft: Int = 0,
     ) {
         val currentChapter: ReaderChapter?
             get() = viewerChapters?.currChapter
