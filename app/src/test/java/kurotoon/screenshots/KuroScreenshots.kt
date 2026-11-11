@@ -460,15 +460,15 @@ class KuroScreenshots {
             "kuro.avatars/galaxy",
             "kuro.frames/mythic",
             "kuro.themes/aurora",
-            "kuro.badges/night",
-            "kuro.badges/sage",
+            "kuro.badges/hood",
+            "kuro.badges/cape",
         ),
         equipped = mapOf(
             "avatar" to "kuro.avatars/galaxy",
             "frame" to "kuro.frames/mythic",
-            "sticker" to "kuro.starter/fire",
+            "sticker" to "kuro.starter/ex_happy",
         ),
-        badges = listOf("kuro.badges/night", "kuro.badges/sage"),
+        badges = listOf("kuro.badges/hood", "kuro.badges/cape"),
         achievements = mapOf("first_chapter" to 1_762_000_000_000, "first_bookmark" to 1_762_100_000_000),
     )
 
@@ -514,7 +514,7 @@ class KuroScreenshots {
                 points = rewards.points,
                 avatar = items["kuro.avatars/galaxy"],
                 frame = items["kuro.frames/mythic"],
-                sticker = items["kuro.starter/fire"],
+                sticker = items["kuro.starter/ex_happy"],
                 badges = rewards.badges.mapNotNull(items::get),
             ),
         )
