@@ -1097,6 +1097,7 @@
     <string name="kurotoon.home.panels">Your panels</string>
     <string name="kurotoon.panels.summary">Pages you kept from the reader</string>
     <string name="kurotoon.panels.keep">Keep panel</string>
+    <string name="kurotoon.panels.copy">Copy</string>
     <string name="kurotoon.panels.kept">Kept in Saved panels</string>
     <string name="kurotoon.panels.failed">Couldn\'t keep this page</string>
     <string name="kurotoon.panels.remove">Remove this panel?</string>
