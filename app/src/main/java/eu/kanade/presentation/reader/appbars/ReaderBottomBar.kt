@@ -1,15 +1,26 @@
 package eu.kanade.presentation.reader.appbars
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.unit.dp
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderOrientation
 import eu.kanade.tachiyomi.ui.reader.setting.ReadingMode
 import mihon.icons.custommaterialsymbols.CustomMaterialSymbols
@@ -48,35 +59,35 @@ fun ReaderBottomBar(
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        IconButton(onClick = onClickChapterList) {
+        DockButton(onClick = onClickChapterList) {
             Icon(
                 imageVector = MaterialSymbols.AutoMirroredRounded.FormatListBulleted,
                 contentDescription = stringResource(MR.strings.kurotoon_reader_chapterList),
             )
         }
 
-        IconButton(onClick = onClickReadingMode) {
+        DockButton(onClick = onClickReadingMode) {
             Icon(
                 imageVector = readingMode.icon,
                 contentDescription = stringResource(MR.strings.viewer),
             )
         }
 
-        IconButton(onClick = onClickOrientation) {
+        DockButton(onClick = onClickOrientation) {
             Icon(
                 imageVector = orientation.icon,
                 contentDescription = stringResource(MR.strings.rotation_type),
             )
         }
 
-        IconButton(onClick = onClickCropBorder) {
+        DockButton(onClick = onClickCropBorder, active = cropEnabled) {
             Icon(
                 imageVector = if (cropEnabled) MaterialSymbols.Rounded.Crop else CustomMaterialSymbols.Rounded.CropOff,
                 contentDescription = stringResource(MR.strings.pref_crop_borders),
             )
         }
 
-        IconButton(onClick = onClickAutoScroll) {
+        DockButton(onClick = onClickAutoScroll, active = autoScrolling) {
             Icon(
                 imageVector = if (autoScrolling) {
                     MaterialSymbols.RoundedFilled.Pause
@@ -84,23 +95,51 @@ fun ReaderBottomBar(
                     MaterialSymbols.Rounded.PlayArrow
                 },
                 contentDescription = stringResource(MR.strings.kurotoon_reader_autoScroll),
-                tint = if (autoScrolling) MaterialTheme.colorScheme.primary else LocalContentColor.current,
             )
         }
 
-        IconButton(onClick = onClickSound) {
+        DockButton(onClick = onClickSound, active = soundActive && !soundMuted) {
             Icon(
                 imageVector = if (soundMuted) MaterialSymbols.Rounded.VolumeOff else MaterialSymbols.Rounded.MusicNote,
                 contentDescription = stringResource(MR.strings.kurotoon_sound_title),
-                tint = if (soundActive && !soundMuted) MaterialTheme.colorScheme.primary else LocalContentColor.current,
             )
         }
 
-        IconButton(onClick = onClickSettings) {
+        DockButton(onClick = onClickSettings) {
             Icon(
                 imageVector = MaterialSymbols.Rounded.Settings,
                 contentDescription = stringResource(MR.strings.action_settings),
             )
         }
+    }
+}
+
+/**
+ * A reader dock button. Switched-on tools (auto-scroll, sound, crop) sit in a filled accent circle so
+ * you can tell what's running without opening anything.
+ */
+@Composable
+private fun DockButton(
+    onClick: () -> Unit,
+    active: Boolean = false,
+    content: @Composable () -> Unit,
+) {
+    val background by animateColorAsState(
+        if (active) MaterialTheme.colorScheme.primary else Color.Transparent,
+        label = "dockButtonBackground",
+    )
+    val tint by animateColorAsState(
+        if (active) MaterialTheme.colorScheme.onPrimary else LocalContentColor.current,
+        label = "dockButtonTint",
+    )
+    Box(
+        modifier = Modifier
+            .size(44.dp)
+            .clip(CircleShape)
+            .background(background)
+            .clickable(role = Role.Button, onClick = onClick),
+        contentAlignment = Alignment.Center,
+    ) {
+        CompositionLocalProvider(LocalContentColor provides tint, content = content)
     }
 }
