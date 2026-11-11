@@ -4,14 +4,17 @@ import android.content.Context
 import android.content.pm.ServiceInfo
 import android.os.Build
 import androidx.lifecycle.asFlow
+import androidx.work.Constraints
 import androidx.work.CoroutineWorker
 import androidx.work.ExistingWorkPolicy
 import androidx.work.ForegroundInfo
+import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import dev.zacsweers.metro.Inject
+import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.util.system.activeNetworkState
 import eu.kanade.tachiyomi.util.system.notificationBuilder
@@ -63,6 +66,7 @@ class DownloadWorker(context: Context, workerParams: WorkerParameters) : Corouti
         var networkIssue = networkIssue()
         if (networkIssue != null) {
             downloader.stop(networkIssue)
+            scheduleResume(applicationContext, downloadPreferences.downloadOnlyOverWifi.get())
             return Result.failure()
         }
 
@@ -80,6 +84,9 @@ class DownloadWorker(context: Context, workerParams: WorkerParameters) : Corouti
             if (downloader.isRunning && (networkIssue != null || isStopped)) {
                 withContext(NonCancellable) { downloader.stop(networkIssue) }
             }
+        }
+        if (networkIssue != null && downloader.queueState.value.isNotEmpty()) {
+            scheduleResume(applicationContext, downloadPreferences.downloadOnlyOverWifi.get())
         }
 
         return Result.success()
@@ -106,11 +113,43 @@ class DownloadWorker(context: Context, workerParams: WorkerParameters) : Corouti
                 .enqueueUniqueWork(TAG, ExistingWorkPolicy.REPLACE, request)
         }
 
+        private const val RESUME_TAG = "DownloaderResume"
+
+        /**
+         * Picks the queue back up by itself once a suitable network returns, instead of leaving it
+         * stalled until the user opens the app and taps resume (mihon#1053).
+         */
+        fun scheduleResume(context: Context, wifiOnly: Boolean) {
+            val network = if (wifiOnly) NetworkType.UNMETERED else NetworkType.CONNECTED
+            val request = OneTimeWorkRequestBuilder<DownloadResumeWorker>()
+                .addTag(RESUME_TAG)
+                .setConstraints(Constraints.Builder().setRequiredNetworkType(network).build())
+                .build()
+            WorkManager.getInstance(context)
+                .enqueueUniqueWork(RESUME_TAG, ExistingWorkPolicy.REPLACE, request)
+        }
+
         fun isRunningFlow(context: Context): Flow<Boolean> {
             return WorkManager.getInstance(context)
                 .getWorkInfosForUniqueWorkLiveData(TAG)
                 .asFlow()
                 .map { list -> list.count { it.state == WorkInfo.State.RUNNING } == 1 }
         }
+    }
+}
+
+/** Runs once the network is back and restarts the downloader if chapters are still waiting. */
+class DownloadResumeWorker(context: Context, workerParams: WorkerParameters) : CoroutineWorker(context, workerParams) {
+
+    @Inject private lateinit var downloader: Downloader
+
+    init {
+        context.metroGraph<AppGraph>().inject(this)
+    }
+
+    override suspend fun doWork(): Result {
+        val waiting = downloader.queueState.value.any { it.status != Download.State.DOWNLOADED }
+        if (waiting && !downloader.isRunning && !downloader.isPaused) DownloadWorker.start(applicationContext)
+        return Result.success()
     }
 }
