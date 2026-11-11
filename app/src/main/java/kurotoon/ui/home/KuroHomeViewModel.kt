@@ -39,6 +39,8 @@ import kurotoon.library.BingeList
 import kurotoon.library.LibraryTags
 import kurotoon.library.StalledList
 import kurotoon.prefs.KuroPreferences
+import kurotoon.schedule.ScheduleLoader
+import kurotoon.schedule.WeeklySchedule
 import logcat.LogPriority
 import mihon.domain.manga.model.toDomainManga
 import tachiyomi.core.common.preference.getAndSet
@@ -69,6 +71,7 @@ class KuroHomeViewModel(
     private val kuroPreferences: KuroPreferences,
     getUpdates: GetUpdates,
     private val getLibraryManga: GetLibraryManga,
+    scheduleLoader: ScheduleLoader,
 ) : ViewModel() {
 
     /** Unread chapters fetched lately, one entry per series, newest first. */
@@ -95,6 +98,9 @@ class KuroHomeViewModel(
         .map { library -> BingeList.of(library) to StalledList.of(library, Clock.System.now()) }
         .distinctUntilChanged()
 
+    /** This week's release schedule, for the "Out today" row. */
+    private val schedule = scheduleLoader.subscribe()
+
     private val rows = MutableStateFlow<List<SourceRow>>(emptyList())
     private val savedRows = MutableStateFlow<List<SourceRow>>(emptyList())
     private val pickRows = MutableStateFlow<List<SourceRow>>(emptyList())
@@ -117,8 +123,8 @@ class KuroHomeViewModel(
         sourceIds,
         rows,
         combine(savedRows, pickRows) { saved, picks -> saved to picks },
-        combine(newChapters, shelves) { new, shelves -> new to shelves },
-    ) { history, ids, rows, (savedRows, pickRows), (newChapters, shelves) ->
+        combine(newChapters, shelves, schedule) { new, shelves, schedule -> Triple(new, shelves, schedule) },
+    ) { history, ids, rows, (savedRows, pickRows), (newChapters, shelves, schedule) ->
         State(
             isLoading = false,
             continueReading = history.distinctBy { it.mangaId }.take(CONTINUE_READING_LIMIT),
@@ -129,6 +135,7 @@ class KuroHomeViewModel(
             newChapters = newChapters,
             binge = shelves.first,
             stalled = shelves.second,
+            schedule = schedule,
         )
     }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), State())
@@ -305,6 +312,7 @@ class KuroHomeViewModel(
         val binge: List<LibraryManga> = emptyList(),
         /** Started series left alone for a few weeks. */
         val stalled: List<LibraryManga> = emptyList(),
+        val schedule: WeeklySchedule = WeeklySchedule.EMPTY,
     ) {
         /** Top titles for the hero carousel, taking turns between sources so each gets a slot. */
         val heroes: List<Pair<SourceRow, Manga>>

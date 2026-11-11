@@ -24,6 +24,7 @@ import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.stats.StatsScreen
 import kotlinx.coroutines.launch
+import kurotoon.ui.schedule.ScheduleScreen
 import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Home
@@ -82,6 +83,7 @@ data object KuroHomeTab : Tab {
             onRetryRow = viewModel::retry,
             onToggleLatest = viewModel::toggleLatest,
             onUpdatesClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.Updates) } },
+            onScheduleClick = { navigator.push(ScheduleScreen()) },
             onResumeClick = viewModel::resume,
             onExtensionsClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.Browse(toExtensions = true)) } },
             onHistoryClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.History) } },

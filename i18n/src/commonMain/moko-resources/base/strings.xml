@@ -1298,4 +1298,11 @@
     <string name="kurotoon.tagEverywhere.searchText">Search titles instead</string>
     <string name="kurotoon.tag.hide">Hide this tag</string>
     <string name="kurotoon.tag.hidden">“%s” is now hidden while browsing</string>
+    <string name="kurotoon.schedule.title">Release schedule</string>
+    <string name="kurotoon.schedule.empty">No ongoing series in your library has a regular update day yet. Once a series has posted a few chapters it shows up here.</string>
+    <string name="kurotoon.schedule.none">Nothing in your library usually updates on %s</string>
+    <string name="kurotoon.schedule.newToday">New today</string>
+    <string name="kurotoon.schedule.homeTitle">Out today</string>
+    <string name="kurotoon.schedule.homeSummary">Series that usually update on %s</string>
+    <string name="kurotoon.section.schedule">Out today</string>
 </resources>

@@ -175,6 +175,7 @@ object SettingsAppearanceScreen : SearchableSettings {
                         HomeSection.SHORTCUTS.key to stringResource(MR.strings.kurotoon_section_shortcuts),
                         HomeSection.CONTINUE.key to stringResource(MR.strings.kurotoon_home_continueReading),
                         HomeSection.NEW_CHAPTERS.key to stringResource(MR.strings.kurotoon_home_newChapters),
+                        HomeSection.SCHEDULE.key to stringResource(MR.strings.kurotoon_section_schedule),
                         HomeSection.STALLED.key to stringResource(MR.strings.kurotoon_home_stalled),
                         HomeSection.BINGE.key to stringResource(MR.strings.kurotoon_home_binge),
                         HomeSection.PICKS.key to stringResource(MR.strings.kurotoon_section_picks),

@@ -72,6 +72,7 @@ fun KuroHomeContent(
     onRetryRow: (KuroHomeViewModel.SourceRow) -> Unit,
     onToggleLatest: (KuroHomeViewModel.SourceRow) -> Unit = {},
     onUpdatesClick: () -> Unit = {},
+    onScheduleClick: () -> Unit = {},
     onResumeClick: (HistoryWithRelations) -> Unit,
     onExtensionsClick: () -> Unit,
     onHistoryClick: () -> Unit,
@@ -143,6 +144,16 @@ fun KuroHomeContent(
                             items = state.newChapters,
                             onMangaClick = onMangaClick,
                             onSeeAll = onUpdatesClick,
+                        )
+                    }
+                }
+                if (shown(HomeSection.SCHEDULE) && state.schedule.dueToday.isNotEmpty()) {
+                    item(key = "schedule") {
+                        HomeSchedule(
+                            items = state.schedule.dueToday,
+                            today = state.schedule.today,
+                            onMangaClick = onMangaClick,
+                            onSeeAll = onScheduleClick,
                         )
                     }
                 }

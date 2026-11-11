@@ -118,4 +118,16 @@
         <item quantity="one">%d chapter</item>
         <item quantity="other">%d chapters</item>
     </plurals>
+    <plurals name="kurotoon_schedule_count">
+        <item quantity="one">%1$d series usually updates on %2$s</item>
+        <item quantity="other">%1$d series usually update on %2$s</item>
+    </plurals>
+    <plurals name="kurotoon_schedule_unscheduled">
+        <item quantity="one">%d ongoing series has no regular day yet</item>
+        <item quantity="other">%d ongoing series have no regular day yet</item>
+    </plurals>
+    <plurals name="kurotoon_schedule_daysAgo">
+        <item quantity="one">Updated yesterday</item>
+        <item quantity="other">%d days ago</item>
+    </plurals>
 </resources>

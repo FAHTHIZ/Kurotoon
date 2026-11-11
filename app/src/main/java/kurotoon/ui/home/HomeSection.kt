@@ -6,6 +6,7 @@ enum class HomeSection(val key: String) {
     SHORTCUTS("shortcuts"),
     CONTINUE("continue"),
     NEW_CHAPTERS("new"),
+    SCHEDULE("schedule"),
     STALLED("stalled"),
     BINGE("binge"),
     PICKS("picks"),

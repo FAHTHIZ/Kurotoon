@@ -32,6 +32,7 @@ import com.github.takahirom.roborazzi.captureRoboImage
 import eu.kanade.presentation.theme.colorscheme.KuroToonColorScheme
 import eu.kanade.tachiyomi.source.model.Filter
 import eu.kanade.tachiyomi.source.model.FilterList
+import kotlinx.datetime.minus
 import kurotoon.catalogue.CatalogFacet
 import kurotoon.catalogue.CatalogFacets
 import kurotoon.catalogue.SavedSearch
@@ -584,6 +585,56 @@ class KuroScreenshots {
             busiestMonthChapters = 212,
         )
         kurotoon.ui.stats.YearInReviewCard(review)
+    }
+
+    private fun sampleSchedule(): kurotoon.schedule.WeeklySchedule {
+        val today = kotlinx.datetime.LocalDate(2026, 11, 11)
+        fun series(id: Long, title: String, unread: Long, ago: Int, vararg days: kotlinx.datetime.DayOfWeek) =
+            kurotoon.schedule.ScheduledSeries(
+                item = tachiyomi.domain.library.model.LibraryManga(
+                    manga = Manga.create().copy(id = id, title = title, thumbnailUrl = "cover://$id"),
+                    categories = emptyList(),
+                    totalChapters = 120,
+                    readCount = 120 - unread,
+                    bookmarkCount = 0,
+                    latestUpload = null,
+                    chapterFetchedAt = null,
+                    lastRead = null,
+                ),
+                days = days.toList(),
+                latest = today.minus(kotlinx.datetime.DatePeriod(days = ago)),
+            )
+        val wed = kotlinx.datetime.DayOfWeek.WEDNESDAY
+        val mon = kotlinx.datetime.DayOfWeek.MONDAY
+        val all = listOf(
+            series(1, "Omniscient Reader's Viewpoint", 1, 0, wed),
+            series(2, "Lookism", 0, 7, wed),
+            series(3, "The Greatest Estate Developer", 2, 0, wed, mon),
+            series(4, "Eleceed", 0, 7, wed),
+            series(5, "Return of the Mount Hua Sect", 0, 7, wed),
+            series(6, "Nano Machine", 0, 2, mon),
+        )
+        return kurotoon.schedule.WeeklySchedule(
+            today = today,
+            byDay = kotlinx.datetime.DayOfWeek.entries.associateWith { d -> all.filter { d in it.days } },
+            unscheduled = 4,
+        )
+    }
+
+    @Test
+    fun schedule() = shot("schedule", fullScreen = true) {
+        kurotoon.ui.schedule.WeeklyScheduleContent(schedule = sampleSchedule(), onClick = {})
+    }
+
+    @Test
+    fun homeSchedule() = shot("home_schedule") {
+        val schedule = sampleSchedule()
+        kurotoon.ui.home.HomeSchedule(
+            items = schedule.dueToday,
+            today = schedule.today,
+            onMangaClick = {},
+            onSeeAll = {},
+        )
     }
 
     private fun shot(name: String, fullScreen: Boolean = false, content: @Composable () -> Unit) {
