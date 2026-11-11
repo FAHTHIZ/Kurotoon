@@ -161,6 +161,9 @@ its own: one design language of rounded cards, accent section headers, pills and
 | Empty screens | Kaomoji | A sleeping Kuro |
 | Settings sheets | Underlined tab rows | Segmented pill tabs |
 | About | Logo and a list | Kuro, the tagline and a version pill above grouped cards |
+| Downloads | A plain queue | A summary card with Kuro and live progress, chapters as cards with rounded progress bars |
+| Migration | Bare rows | Source cards for picking, and each old-to-new pair in one card |
+| Tracker search | Grey result boxes | Rounded cards with a crimson outline on the pick |
 | Feature discovery | None | A Home tip card where Kuro shows off one KuroToon feature at a time |
 
 Details for each redesign are in the [changelog](CHANGELOG.md).

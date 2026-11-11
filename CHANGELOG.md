@@ -24,6 +24,9 @@ KuroToon's own look replaces the stock Mihon screens, one at a time:
 - Settings sheets (library display, reader settings and others): segmented pill tabs instead of an underlined tab row
 - Categories editor: KuroToon cards with a red delete action
 - About: Kuro, the tagline and the version as a pill, above a grouped card
+- Downloads: a summary card on top with Kuro, the chapter and series count and live progress for the whole queue
+- Migration: the source picker and source filter rows are cards, and each old-to-new pair sits in one card with a crimson arrow
+- Tracker search: results are rounded cards with a crimson outline and check on the one you pick
 
 ### Fixed
 - Search bars put the keyboard away on Enter, and it no longer pops back up after leaving a series opened from the results ([mihon#3124](https://github.com/mihonapp/mihon/issues/3124))
