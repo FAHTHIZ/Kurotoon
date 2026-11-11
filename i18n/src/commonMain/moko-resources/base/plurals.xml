@@ -130,4 +130,8 @@
         <item quantity="one">Updated yesterday</item>
         <item quantity="other">%d days ago</item>
     </plurals>
+    <plurals name="kurotoon_browse_addedMany">
+        <item quantity="one">Added %d title to the library</item>
+        <item quantity="other">Added %d titles to the library</item>
+    </plurals>
 </resources>

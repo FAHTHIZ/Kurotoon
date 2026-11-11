@@ -11,6 +11,7 @@ import androidx.paging.compose.LazyPagingItems
 import eu.kanade.presentation.library.components.CommonMangaItemDefaults
 import eu.kanade.presentation.library.components.MangaListItem
 import kotlinx.coroutines.flow.StateFlow
+import kurotoon.ui.browse.LocalBrowseSelection
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.manga.model.MangaCover
 import tachiyomi.presentation.core.util.plus
@@ -56,6 +57,7 @@ private fun BrowseSourceListItem(
 ) {
     MangaListItem(
         title = manga.title,
+        isSelected = manga.id in LocalBrowseSelection.current,
         coverData = MangaCover(
             mangaId = manga.id,
             sourceId = manga.source,

@@ -37,6 +37,7 @@ fun BrowseSourceToolbar(
     onSettingsClick: () -> Unit,
     onSearch: (String) -> Unit,
     scrollBehavior: TopAppBarScrollBehavior? = null,
+    onSelectClick: (() -> Unit)? = null,
 ) {
     // Avoid capturing unstable source in actions lambda
     val title = source?.name
@@ -80,6 +81,14 @@ fun BrowseSourceToolbar(
                             AppBar.OverflowAction(
                                 title = stringResource(MR.strings.action_open_in_web_view),
                                 onClick = onWebViewClick,
+                            ),
+                        )
+                    }
+                    if (onSelectClick != null) {
+                        add(
+                            AppBar.OverflowAction(
+                                title = stringResource(MR.strings.kurotoon_browse_selectSeveral),
+                                onClick = onSelectClick,
                             ),
                         )
                     }

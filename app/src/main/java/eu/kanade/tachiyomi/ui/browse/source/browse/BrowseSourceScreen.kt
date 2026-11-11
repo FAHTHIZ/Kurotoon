@@ -71,6 +71,7 @@ import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
+import tachiyomi.core.common.i18n.pluralStringResource
 import tachiyomi.presentation.core.screens.LoadingScreen
 import tachiyomi.source.local.LocalSource
 
@@ -147,8 +148,48 @@ data class BrowseSourceScreen(
             assistUrl = (source as? HttpSource)?.getHomeUrl()
         }
 
+        val context = androidx.compose.ui.platform.LocalContext.current
+        var selecting by remember { mutableStateOf(false) }
+        var selected by remember { mutableStateOf(emptyMap<Long, tachiyomi.domain.manga.model.Manga>()) }
+        val stopSelecting = {
+            selecting = false
+            selected = emptyMap()
+        }
+        androidx.activity.compose.BackHandler(enabled = selecting, onBack = stopSelecting)
+
         Scaffold(
-            topBar = {
+            topBar = topBar@{
+                if (selecting) {
+                    eu.kanade.presentation.components.AppBar(
+                        titleContent = {
+                            Text(stringResource(MR.strings.kurotoon_browse_selected, selected.size))
+                        },
+                        isActionMode = true,
+                        onCancelActionMode = stopSelecting,
+                        actions = {
+                            androidx.compose.material3.TextButton(
+                                enabled = selected.values.any { !it.favorite },
+                                onClick = {
+                                    val toAdd = selected.values.filterNot { it.favorite }
+                                    viewModel.addFavorites(toAdd)
+                                    stopSelecting()
+                                    scope.launch {
+                                        snackbarHostState.showSnackbar(
+                                            context.pluralStringResource(
+                                                MR.plurals.kurotoon_browse_addedMany,
+                                                toAdd.size,
+                                                toAdd.size,
+                                            ),
+                                        )
+                                    }
+                                },
+                            ) {
+                                Text(stringResource(MR.strings.add_to_library))
+                            }
+                        },
+                    )
+                    return@topBar
+                }
                 Column(
                     modifier = Modifier
                         .background(MaterialTheme.colorScheme.surface)
@@ -165,6 +206,7 @@ data class BrowseSourceScreen(
                         onHelpClick = onHelpClick,
                         onSettingsClick = { navigator.push(SourcePreferencesScreen(sourceId)) },
                         onSearch = viewModel::search,
+                        onSelectClick = { selecting = true },
                     )
 
                     BrowseChips(
@@ -214,6 +256,9 @@ data class BrowseSourceScreen(
             },
             snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         ) { paddingValues ->
+            androidx.compose.runtime.CompositionLocalProvider(
+                kurotoon.ui.browse.LocalBrowseSelection provides selected.keys,
+            ) {
             BrowseSourceContent(
                 source = source,
                 mangaList = viewModel.mangaPagerFlowFlow.collectAsLazyPagingItems(),
@@ -224,8 +269,17 @@ data class BrowseSourceScreen(
                 onWebViewClick = onWebViewClick,
                 onHelpClick = { uriHandler.openUri(Constants.URL_HELP) },
                 onLocalSourceHelpClick = onHelpClick,
-                onMangaClick = { navigator.push((MangaScreen(it.id, true))) },
+                onMangaClick = { manga ->
+                    if (selecting) {
+                        selected = if (manga.id in selected) selected - manga.id else selected + (manga.id to manga)
+                    } else {
+                        navigator.push(MangaScreen(manga.id, true))
+                    }
+                },
                 onMangaLongClick = { manga ->
+                    if (selecting) {
+                        selected = if (manga.id in selected) selected - manga.id else selected + (manga.id to manga)
+                    } else {
                     scope.launch(Dispatchers.IO) {
                         val duplicates = viewModel.getDuplicateLibraryManga(manga)
                         when {
@@ -237,8 +291,10 @@ data class BrowseSourceScreen(
                         }
                         haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     }
+                    }
                 },
             )
+            }
         }
 
         val onDismissRequest = { viewModel.setDialog(null) }

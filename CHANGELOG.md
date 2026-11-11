@@ -72,6 +72,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Chapter list inside the reader: tap the list button in the reader menu to jump to any chapter without leaving the reader.
 - Group library by: Library menu > Group library by switches the tabs from your categories to one tab per source, one per publishing status, or a single list.
 - Source badge: Library settings > Display > Source name shows which source each cover comes from.
+- Add several titles at once: in a source, menu > Select several, tap the covers you want, then Add to library.
 
 ### Changed
 - Bottom navigation: Home, Browse, Library, Updates and Me.
