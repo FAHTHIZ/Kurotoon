@@ -16,8 +16,11 @@ LIVE = "qa-live"
 DEADLINE = time.time() + float(os.environ.get("MINUTES", "300")) * 60
 
 
-def sh(*a, **k):
-    return subprocess.run(a, capture_output=True, text=True, **k)
+def sh(*a, timeout=180, **k):
+    try:
+        return subprocess.run(a, capture_output=True, text=True, timeout=timeout, **k)
+    except subprocess.TimeoutExpired:
+        return subprocess.CompletedProcess(a, 1, "", f"timeout after {timeout}s")
 
 
 def head(branch):
@@ -43,7 +46,7 @@ def publish(msg):
 
 def rebuild(out):
     log = sh("bash", "-c", "git pull -q origin main && ./gradlew -q assembleDebug 2>&1 | tail -30 && "
-             "adb install -r -g $(ls app/build/outputs/apk/debug/*x86_64*.apk | head -1)")
+             "adb install -r -g $(ls app/build/outputs/apk/debug/*x86_64*.apk | head -1)", timeout=1800)
     open(f"{out}/rebuild.txt", "w").write(log.stdout + log.stderr)
 
 
@@ -54,39 +57,50 @@ def main():
     last = head("qa-cmd")
     while time.time() < DEADLINE:
         time.sleep(4)
-        sha = head("qa-cmd")
-        if not sha or sha == last:
-            continue
-        last = sha
-        sh("git", "fetch", "-q", REMOTE, f"{sha}")
-        text = sh("git", "show", f"{sha}:cmd.txt").stdout
-        lines = text.splitlines()
-        if not lines:
-            continue
-        batch = lines[0].strip() or sha[:7]
-        out = f"live/{batch}"
-        os.makedirs(out, exist_ok=True)
-        ui.OUT = out
-        ui.log = open(f"{out}/journey.log", "w")
-        ui.step = 0
-        body = [l for l in lines[1:]]
-        if any(l.strip() == "quit" for l in body):
-            publish(f"bye {batch}")
-            return
-        if any(l.strip() == "rebuild" for l in body):
-            rebuild(out)
-            body = [l for l in body if l.strip() != "rebuild"]
-        path = f"{out}/cmd.txt"
-        open(path, "w").write("\n".join(body) + "\n")
         try:
-            ui.run(path)
-        except Exception as e:  # keep the session alive whatever happens
-            ui.say(f"!! batch failed: {e}")
+            sha = head("qa-cmd")
+            if not sha or sha == last:
+                continue
+            last = sha
+            if run_batch(sha) == "quit":
+                return
+        except Exception as e:  # never let one bad batch end the session
+            print(f"batch loop error: {e}")
+
+
+def run_batch(sha):
+    sh("git", "fetch", "-q", REMOTE, f"{sha}")
+    lines = sh("git", "show", f"{sha}:cmd.txt").stdout.splitlines()
+    if not lines:
+        return None
+    batch = lines[0].strip() or sha[:7]
+    out = f"live/{batch}"
+    os.makedirs(out, exist_ok=True)
+    ui.OUT = out
+    ui.log = open(f"{out}/journey.log", "w")
+    ui.step = 0
+    body = lines[1:]
+    if any(l.strip() == "quit" for l in body):
+        publish(f"bye {batch}")
+        return "quit"
+    if any(l.strip() == "rebuild" for l in body):
+        rebuild(out)
+        body = [l for l in body if l.strip() != "rebuild"]
+    path = f"{out}/cmd.txt"
+    open(path, "w").write("\n".join(body) + "\n")
+    try:
+        ui.run(path)
+    except Exception as e:  # keep the session alive whatever happens
+        ui.say(f"!! batch failed: {e}")
+    try:
         ui.shot("end")
-        ui.log.close()
-        crash = sh("adb", "logcat", "-d", "-b", "crash").stdout
-        open(f"{out}/crash.txt", "w").write(crash[-20000:])
-        publish(f"batch {batch}")
+    except Exception as e:
+        ui.say(f"!! final shot failed: {e}")
+    ui.log.close()
+    crash = sh("adb", "logcat", "-d", "-b", "crash").stdout
+    open(f"{out}/crash.txt", "w").write(crash[-20000:])
+    publish(f"batch {batch}")
+    return None
 
 
 if __name__ == "__main__":
