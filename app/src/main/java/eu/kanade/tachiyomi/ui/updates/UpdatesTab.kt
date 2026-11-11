@@ -35,6 +35,7 @@ import mihon.feature.upcoming.UpcomingScreen
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
+import tachiyomi.presentation.core.util.collectAsState
 
 data object UpdatesTab : Tab {
 
@@ -61,6 +62,7 @@ data object UpdatesTab : Tab {
         val viewModel = metroViewModel<UpdatesViewModel>()
         val settingsViewModel = metroViewModel<UpdatesSettingsViewModel>()
         val state by viewModel.state.collectAsStateWithLifecycle()
+        val clearedAt by viewModel.updatesClearedAt.collectAsState()
 
         UpdateScreen(
             state = state,
@@ -83,6 +85,8 @@ data object UpdatesTab : Tab {
             onScheduleClicked = { navigator.push(ScheduleScreen()) },
             onFilterClicked = viewModel::showFilterDialog,
             hasActiveFilters = state.hasActiveFilters,
+            onClearUpdates = viewModel::clearUpdates,
+            onRestoreCleared = clearedAt.takeIf { it > 0L }?.let { { viewModel.restoreClearedUpdates() } },
         )
 
         val onDismissDialog = { viewModel.setDialog(null) }

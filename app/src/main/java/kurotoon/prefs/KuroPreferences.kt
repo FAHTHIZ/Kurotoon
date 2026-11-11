@@ -24,6 +24,9 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
         mangaEdits.set(kurotoon.manga.MangaEdit.encodeAll(all))
     }
 
+    /** Updates fetched at or before this time (epoch ms) are hidden from the Updates tab (mihon#1534). */
+    val updatesClearedAt = preferenceStore.getLong("kurotoon_updates_cleared_at", 0L)
+
     /** Per-source default library category as "sourceId=categoryId" (mihon#336). */
     val sourceDefaultCategories = preferenceStore.getStringSet("kurotoon_source_default_categories", emptySet())
 
