@@ -12,6 +12,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Undo after swiping a chapter to read, unread or bookmarked
 - Home's Continue reading cards show the page you stopped on ("Chapter 37 · p. 12")
 - Each series remembers the ambience you picked for it in the reader
 - Go to page: tap the page number in the reader menu to type the page you want
