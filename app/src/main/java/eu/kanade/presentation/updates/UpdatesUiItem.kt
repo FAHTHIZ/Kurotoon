@@ -100,13 +100,13 @@ internal fun UpdatesLastUpdatedHeader(
             modifier = Modifier
                 .size(44.dp)
                 .clip(RoundedCornerShape(14.dp))
-                .background(primary),
+                .background(primary.copy(alpha = 0.14f)),
             contentAlignment = Alignment.Center,
         ) {
             Icon(
                 imageVector = MaterialSymbols.Rounded.Sync,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onPrimary,
+                tint = primary,
             )
         }
         Column(
@@ -115,7 +115,11 @@ internal fun UpdatesLastUpdatedHeader(
                 .padding(horizontal = 12.dp),
         ) {
             Text(
-                text = stringResource(MR.strings.kurotoon_updates_checked, relativeTimeSpanString(lastUpdated)),
+                text = if (lastUpdated > 0) {
+                    stringResource(MR.strings.kurotoon_updates_checked, relativeTimeSpanString(lastUpdated))
+                } else {
+                    stringResource(MR.strings.kurotoon_updates_notChecked)
+                },
                 style = MaterialTheme.typography.titleSmall,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
