@@ -2,35 +2,98 @@
   "id": "kuro.starter",
   "name": "Starter kit",
   "author": "KuroToon",
-  "version": 1,
-  "description": "A few free things to get you going.",
+  "version": 2,
+  "description": "Kuru, his expression set and a frame, free to get you going.",
   "items": [
     {
-      "id": "sparkle",
+      "id": "ex_neutral",
       "kind": "sticker",
-      "name": "Sparkle Eyes",
-      "description": "A free starter sticker.",
+      "name": "Neutral",
+      "description": "A free Kuru expression.",
       "price": 0,
       "rarity": "common",
-      "emoji": "✨"
+      "image": "ex_neutral.webp"
     },
     {
-      "id": "heart",
+      "id": "ex_happy",
       "kind": "sticker",
-      "name": "Heart Burst",
-      "description": "A free starter sticker.",
+      "name": "Happy",
+      "description": "A free Kuru expression.",
       "price": 0,
       "rarity": "common",
-      "emoji": "💖"
+      "image": "ex_happy.webp"
     },
     {
-      "id": "fire",
+      "id": "ex_laughing",
       "kind": "sticker",
-      "name": "Fire",
-      "description": "For chapters that hit hard.",
+      "name": "Laughing",
+      "description": "A free Kuru expression.",
       "price": 0,
       "rarity": "common",
-      "emoji": "🔥"
+      "image": "ex_laughing.webp"
+    },
+    {
+      "id": "ex_love",
+      "kind": "sticker",
+      "name": "Love",
+      "description": "A free Kuru expression.",
+      "price": 0,
+      "rarity": "common",
+      "image": "ex_love.webp"
+    },
+    {
+      "id": "ex_surprised",
+      "kind": "sticker",
+      "name": "Surprised",
+      "description": "A free Kuru expression.",
+      "price": 0,
+      "rarity": "common",
+      "image": "ex_surprised.webp"
+    },
+    {
+      "id": "ex_sad",
+      "kind": "sticker",
+      "name": "Sad / Crying",
+      "description": "A free Kuru expression.",
+      "price": 0,
+      "rarity": "common",
+      "image": "ex_sad.webp"
+    },
+    {
+      "id": "ex_angry",
+      "kind": "sticker",
+      "name": "Angry",
+      "description": "A free Kuru expression.",
+      "price": 0,
+      "rarity": "common",
+      "image": "ex_angry.webp"
+    },
+    {
+      "id": "ex_thinking",
+      "kind": "sticker",
+      "name": "Thinking",
+      "description": "A free Kuru expression.",
+      "price": 0,
+      "rarity": "common",
+      "image": "ex_thinking.webp"
+    },
+    {
+      "id": "ex_sleepy",
+      "kind": "sticker",
+      "name": "Sleepy",
+      "description": "A free Kuru expression.",
+      "price": 0,
+      "rarity": "common",
+      "image": "ex_sleepy.webp"
+    },
+    {
+      "id": "ex_excited",
+      "kind": "sticker",
+      "name": "Excited",
+      "description": "A free Kuru expression.",
+      "price": 0,
+      "rarity": "common",
+      "image": "ex_excited.webp"
     },
     {
       "id": "kuro",
