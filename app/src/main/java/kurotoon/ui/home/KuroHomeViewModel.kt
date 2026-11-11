@@ -86,6 +86,7 @@ class KuroHomeViewModel(
     private val setMangaCategories: SetMangaCategories,
     private val setMangaDefaultChapterFlags: SetMangaDefaultChapterFlags,
     private val coverCache: CoverCache,
+    private val getChapter: tachiyomi.domain.chapter.interactor.GetChapter,
 ) : ViewModel() {
 
     /** Unread chapters fetched lately, one entry per series, newest first. */
@@ -139,9 +140,15 @@ class KuroHomeViewModel(
         combine(savedRows, pickRows) { saved, picks -> saved to picks },
         combine(newChapters, shelves, schedule) { new, shelves, schedule -> Triple(new, shelves, schedule) },
     ) { history, ids, rows, (savedRows, pickRows), (newChapters, shelves, schedule) ->
+        val continueReading = history.distinctBy { it.mangaId }.take(CONTINUE_READING_LIMIT)
         State(
             isLoading = false,
-            continueReading = history.distinctBy { it.mangaId }.take(CONTINUE_READING_LIMIT),
+            continueReading = continueReading,
+            continuePages = continueReading.mapNotNull { item ->
+                val chapter = runCatching { getChapter.await(item.chapterId) }.getOrNull() ?: return@mapNotNull null
+                if (chapter.read || chapter.lastPageRead <= 0) return@mapNotNull null
+                item.chapterId to (chapter.lastPageRead + 1).toInt()
+            }.toMap(),
             hasSources = ids.isNotEmpty(),
             rows = rows,
             savedRows = savedRows,
@@ -364,6 +371,8 @@ class KuroHomeViewModel(
     data class State(
         val isLoading: Boolean = true,
         val continueReading: List<HistoryWithRelations> = emptyList(),
+        /** The page each unfinished Continue reading chapter was left on, by chapter id. */
+        val continuePages: Map<Long, Int> = emptyMap(),
         val hasSources: Boolean = true,
         val rows: List<SourceRow> = emptyList(),
         /** Rows for saved searches the user pinned to Home. */

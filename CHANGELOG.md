@@ -12,6 +12,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Home's Continue reading cards show the page you stopped on ("Chapter 37 · p. 12")
 - Each series remembers the ambience you picked for it in the reader
 - Go to page: tap the page number in the reader menu to type the page you want
 - Pages that failed when the connection dropped reload by themselves as soon as you're back online, and timeouts or busy servers get two quiet retries before a Retry button appears
