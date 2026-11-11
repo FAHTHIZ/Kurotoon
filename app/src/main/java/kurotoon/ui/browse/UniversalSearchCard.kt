@@ -24,7 +24,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.font.FontWeight
@@ -52,10 +51,6 @@ fun UniversalSearchCard(
         modifier = modifier
             .fillMaxWidth()
             .kuroCard(shape)
-            .background(
-                Brush.radialGradient(listOf(primary.copy(alpha = 0.14f), Color.Transparent)),
-                shape,
-            )
             .padding(16.dp),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {

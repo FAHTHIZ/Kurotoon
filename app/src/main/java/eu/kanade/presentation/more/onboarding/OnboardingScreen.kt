@@ -24,7 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import kurotoon.ui.KuroColors
 import kurotoon.ui.kuroCard
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.RocketLaunch
@@ -125,7 +124,7 @@ private fun StepDots(count: Int, current: Int) {
                     .size(width = width, height = 8.dp)
                     .clip(CircleShape)
                     .background(
-                        if (index <= current) KuroColors.Crimson else MaterialTheme.colorScheme.surfaceContainerHighest,
+                        MaterialTheme.colorScheme.run { if (index <= current) primary else surfaceContainerHighest },
                     ),
             )
         }
