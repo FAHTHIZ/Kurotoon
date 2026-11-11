@@ -3,7 +3,6 @@ package kurotoon.ui
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
@@ -16,7 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -92,13 +90,14 @@ private fun KuroBottomBarEntry(
     val interaction = remember { MutableInteractionSource() }
     val pressed by interaction.collectIsPressedAsState()
     val pressScale by animateFloatAsState(if (pressed) 0.88f else 1f, label = "navPress")
-    val iconScale by animateFloatAsState(if (selected) 1.12f else 1f, label = "navIcon")
     val tint by animateColorAsState(
         if (selected) primary else MaterialTheme.colorScheme.onSurfaceVariant,
         label = "navTint",
     )
-    val pill by animateColorAsState(if (selected) primary.copy(alpha = 0.1f) else Color.Transparent, label = "navPill")
-    val ring by animateColorAsState(if (selected) primary.copy(alpha = 0.25f) else Color.Transparent, label = "navRing")
+    val pill by animateColorAsState(
+        if (selected) primary.copy(alpha = 0.14f) else Color.Transparent,
+        label = "navPill",
+    )
 
     Box(
         modifier = modifier
@@ -111,24 +110,19 @@ private fun KuroBottomBarEntry(
             .scale(pressScale),
         contentAlignment = Alignment.Center,
     ) {
-        val shape = RoundedCornerShape(16.dp)
-        Column(
-            modifier = Modifier
-                .padding(horizontal = 6.dp, vertical = 4.dp)
-                .clip(shape)
-                .background(pill)
-                .border(1.dp, ring, shape)
-                .padding(horizontal = 10.dp, vertical = 6.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Box {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .clip(RoundedCornerShape(50))
+                    .background(pill)
+                    .padding(horizontal = 18.dp, vertical = 4.dp),
+            ) {
                 Icon(
                     painter = item.icon,
                     contentDescription = null,
                     tint = tint,
-                    modifier = Modifier
-                        .size(22.dp)
-                        .scale(iconScale),
+                    modifier = Modifier.size(22.dp),
                 )
                 item.badge?.let { badge ->
                     Box(Modifier.align(Alignment.TopEnd).padding(start = 14.dp)) { badge() }
@@ -136,21 +130,12 @@ private fun KuroBottomBarEntry(
             }
             Text(
                 text = item.title,
-                color = tint.copy(alpha = if (selected) 1f else 0.75f),
-                fontSize = 10.sp,
-                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.colorScheme.run { if (selected) onSurface else onSurfaceVariant },
+                fontSize = 11.sp,
+                fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Medium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.padding(top = 3.dp),
-            )
-        }
-        if (selected) {
-            Box(
-                modifier = Modifier
-                    .align(Alignment.TopCenter)
-                    .width(32.dp)
-                    .height(2.dp)
-                    .background(primary, RoundedCornerShape(50)),
+                modifier = Modifier.padding(top = 4.dp),
             )
         }
     }
