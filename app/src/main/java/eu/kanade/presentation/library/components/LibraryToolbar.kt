@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
@@ -15,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import eu.kanade.presentation.components.AppBar
 import eu.kanade.presentation.components.AppBarActions
 import eu.kanade.presentation.components.SearchToolbar
+import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.FilterList
 import mihon.icons.materialsymbols.rounded.FlipToBack
@@ -23,6 +25,7 @@ import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.Pill
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.theme.active
+import tachiyomi.presentation.core.util.collectAsState
 
 @Composable
 fun LibraryToolbar(
@@ -114,6 +117,9 @@ private fun LibraryRegularToolbar(
         onChangeSearchQuery = onSearchQueryChange,
         actions = {
             val filterTint = if (hasFilters) MaterialTheme.colorScheme.active else LocalContentColor.current
+            // A quick on/off switch, since incognito is meant to be toggled per session (mihon#1577)
+            val incognitoPref = androidx.compose.ui.platform.LocalContext.current.appGraph.basePreferences.incognitoMode
+            val incognito by incognitoPref.collectAsState()
             AppBarActions(
                 listOf(
                     AppBar.Action(
@@ -141,6 +147,12 @@ private fun LibraryRegularToolbar(
                     AppBar.OverflowAction(
                         title = stringResource(MR.strings.kurotoon_library_groupBy),
                         onClick = onClickGroupBy,
+                    ),
+                    AppBar.OverflowAction(
+                        title = stringResource(
+                            if (incognito) MR.strings.kurotoon_incognito_off else MR.strings.kurotoon_incognito_on,
+                        ),
+                        onClick = { incognitoPref.set(!incognito) },
                     ),
                 ) + listOfNotNull(
                     onClickHideCategory?.let {

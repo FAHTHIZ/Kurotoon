@@ -1213,6 +1213,8 @@
     <string name="kurotoon_reader_clockBatterySummary">Show the clock and battery level next to the page number, since the reader hides the status bar</string>
     <string name="kurotoon_reader_resumedAt">Picked up on page %d</string>
     <string name="kurotoon_reader_startOver">Start over</string>
+    <string name="kurotoon_incognito_on">Turn on incognito</string>
+    <string name="kurotoon_incognito_off">Turn off incognito</string>
     <string name="kurotoon_series_lastRead">last read %s</string>
     <string name="kurotoon_update_unreadThreshold_title">Skip series with unread chapters</string>
     <string name="kurotoon_update_unreadThreshold_any">Any unread chapter</string>
