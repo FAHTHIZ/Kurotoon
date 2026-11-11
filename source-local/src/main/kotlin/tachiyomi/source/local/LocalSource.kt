@@ -62,6 +62,7 @@ class LocalSource(
     private val coverManager: LocalCoverManager,
     private val json: Json,
     private val xml: XML,
+    private val libraryPreferences: tachiyomi.domain.library.service.LibraryPreferences,
 ) : Source, UnmeteredSource {
 
     @Suppress("PrivatePropertyName")
@@ -269,7 +270,7 @@ class LocalSource(
     private fun setChapterDetailsFromComicInfoFile(stream: InputStream, chapter: SChapter) {
         val comicInfo = parseComicInfo(stream)
 
-        comicInfo.title?.let { chapter.name = it.value }
+        if (!libraryPreferences.localChapterNamesFromFiles.get()) comicInfo.title?.let { chapter.name = it.value }
         comicInfo.number?.value?.toFloatOrNull()?.let { chapter.chapter_number = it }
         comicInfo.translator?.let { chapter.scanlator = it.value }
 
