@@ -54,6 +54,10 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
     /** A folder (tree URI) saved pages go to instead of Pictures; empty for Pictures (mihon#295). */
     val pageSaveFolder = preferenceStore.getString("kurotoon_page_save_folder", "")
 
+    /** The Home tip card: which KuroToon feature it shows next, and whether it was switched off. */
+    val homeTipIndex = preferenceStore.getInt("kurotoon_home_tip_index", 0)
+    val homeTipsHidden = preferenceStore.getBoolean("kurotoon_home_tips_hidden", false)
+
     /** Keep a single bookmark per series on the furthest chapter finished (mihon#2386). */
     val bookmarkFollowsProgress = preferenceStore.getBoolean("kurotoon_bookmark_follows_progress", false)
 
