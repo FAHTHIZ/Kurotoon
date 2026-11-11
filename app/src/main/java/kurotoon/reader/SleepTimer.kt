@@ -72,8 +72,26 @@ class SleepTimerState {
         fired = false
     }
 
+    /** Saves the countdown so rotating the reader (which recreates it) doesn't cancel the timer. */
+    fun save(out: android.os.Bundle) {
+        out.putInt(KEY_CHOICE, choice)
+        out.putLong(KEY_ENDS_AT, endsAt ?: 0L)
+        out.putBoolean(KEY_FIRED, fired)
+    }
+
+    fun restore(saved: android.os.Bundle) {
+        choice = saved.getInt(KEY_CHOICE, 0)
+        endOfChapter = choice == END_OF_CHAPTER
+        // A timer that ran out while recreating fires straight away from the driver
+        endsAt = saved.getLong(KEY_ENDS_AT, 0L).takeIf { it > 0 }
+        fired = saved.getBoolean(KEY_FIRED, false)
+    }
+
     companion object {
         const val END_OF_CHAPTER = -1
+        private const val KEY_CHOICE = "kurotoon_sleep_choice"
+        private const val KEY_ENDS_AT = "kurotoon_sleep_ends_at"
+        private const val KEY_FIRED = "kurotoon_sleep_fired"
         val CHOICES = listOf(0, 15, 30, 45, 60, END_OF_CHAPTER)
     }
 }
