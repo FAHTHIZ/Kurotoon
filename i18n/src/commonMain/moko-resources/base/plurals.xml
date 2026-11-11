@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <plurals name="kurotoon_reader_chaptersLeft">
+        <item quantity="one">%1$s · %2$d chapter left</item>
+        <item quantity="other">%1$s · %2$d chapters left</item>
+    </plurals>
+
     <plurals name="lock_after_mins">
         <item quantity="one">After %1$s minute</item>
         <item quantity="other">After %1$s minutes</item>
