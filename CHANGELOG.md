@@ -20,6 +20,10 @@ KuroToon's own look replaces the stock Mihon screens, one at a time:
 - Global search: accent source headers, a See all pill, pulsing cover placeholders while loading and compact error cards
 - Reader: the controls float in a rounded dock, and the page slider matches it with the current page in the accent
 - Library toolbar: a bold title with an accent count pill
+- Series page: tags as pills, and the chapter header gets an accent bar and a read progress bar
+- Settings sheets (library display, reader settings and others): segmented pill tabs instead of an underlined tab row
+- Categories editor: KuroToon cards with a red delete action
+- About: Kuro, the tagline and the version as a pill, above a grouped card
 
 ### Fixed
 - Search bars put the keyboard away on Enter, and it no longer pops back up after leaving a series opened from the results ([mihon#3124](https://github.com/mihonapp/mihon/issues/3124))
