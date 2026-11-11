@@ -2,6 +2,7 @@ package kurotoon.ui.manga
 
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -56,6 +57,8 @@ fun JumpToChapterButton(
     SmallFloatingActionButton(
         onClick = { scope.launch { listState.animateScrollToItem((index - 1).coerceAtLeast(0)) } },
         modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+        contentColor = MaterialTheme.colorScheme.onSurface,
     ) {
         Icon(
             MaterialSymbols.Rounded.History,

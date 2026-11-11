@@ -95,7 +95,7 @@ fun MangaChapterListItem(
         swipeThreshold = swipeActionThreshold,
         backgroundUntilSwipeThreshold = MaterialTheme.colorScheme.surfaceContainerLowest,
     ) {
-        val rail = MaterialTheme.colorScheme.primary
+        val rail = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)
         Row(
             modifier = modifier
                 .selectedBackground(selected)
@@ -111,7 +111,7 @@ fun MangaChapterListItem(
                         drawRoundRect(
                             color = rail,
                             topLeft = Offset(x, inset),
-                            size = Size(3.dp.toPx(), size.height - inset * 2),
+                            size = Size(2.5.dp.toPx(), size.height - inset * 2),
                             cornerRadius = CornerRadius(2.dp.toPx()),
                         )
                     }
