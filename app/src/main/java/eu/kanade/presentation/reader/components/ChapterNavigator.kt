@@ -1,6 +1,7 @@
 package eu.kanade.presentation.reader.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsDraggedAsState
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -39,6 +40,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
@@ -200,6 +202,7 @@ fun HorizontalChapterNavigator(
                             .weight(1f)
                             .clip(RoundedCornerShape(24.dp))
                             .background(backgroundColor)
+                            .border(1.dp, Color.White.copy(alpha = 0.06f), RoundedCornerShape(24.dp))
                             .padding(horizontal = 16.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
@@ -212,7 +215,11 @@ fun HorizontalChapterNavigator(
                             },
                         ) {
                             Box(contentAlignment = Alignment.CenterEnd) {
-                                Text(text = currentPage.toString())
+                                Text(
+                                    text = currentPage.toString(),
+                                    color = MaterialTheme.colorScheme.primary,
+                                    fontWeight = FontWeight.Bold,
+                                )
                                 // Taking up full length so the slider doesn't shift when 'currentPage' length changes
                                 Text(text = totalPages.toString(), color = Color.Transparent)
                             }
@@ -292,6 +299,7 @@ fun VerticalChapterNavigator(
                     .weight(1f)
                     .clip(RoundedCornerShape(24.dp))
                     .background(backgroundColor)
+                    .border(1.dp, Color.White.copy(alpha = 0.06f), RoundedCornerShape(24.dp))
                     .padding(vertical = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
@@ -303,7 +311,11 @@ fun VerticalChapterNavigator(
                         onPageChangeFinished()
                     },
                 ) {
-                    Text(text = currentPage.toString())
+                    Text(
+                        text = currentPage.toString(),
+                        color = MaterialTheme.colorScheme.primary,
+                        fontWeight = FontWeight.Bold,
+                    )
                 }
 
                 VerticalSlider(
