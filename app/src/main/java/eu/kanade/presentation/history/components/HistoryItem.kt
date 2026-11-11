@@ -74,16 +74,18 @@ fun HistoryItem(
             val readAt = remember(timeFormatter, history.readAt) {
                 history.readAt?.toTimestampString(timeFormatter) ?: ""
             }
+            val progress = kurotoon.ui.history.rememberHistoryProgress(history.chapterId, history.readAt)
+            val line = if (history.chapterNumber > -1) {
+                stringResource(
+                    MR.strings.recent_manga_time,
+                    formatChapterNumber(history.chapterNumber),
+                    readAt,
+                )
+            } else {
+                readAt
+            }
             Text(
-                text = if (history.chapterNumber > -1) {
-                    stringResource(
-                        MR.strings.recent_manga_time,
-                        formatChapterNumber(history.chapterNumber),
-                        readAt,
-                    )
-                } else {
-                    readAt
-                },
+                text = if (progress != null) "$line · $progress" else line,
                 modifier = Modifier.padding(top = 4.dp),
                 style = textStyle,
             )
