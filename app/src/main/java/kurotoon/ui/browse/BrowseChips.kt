@@ -424,14 +424,15 @@ internal fun TagPill(
         when (state) {
             FacetState.Included -> MaterialTheme.colorScheme.primary.copy(alpha = 0.18f)
             FacetState.Excluded -> MaterialTheme.colorScheme.surfaceContainerHighest
-            FacetState.Off -> MaterialTheme.colorScheme.surfaceContainer
+            FacetState.Off -> MaterialTheme.colorScheme.surfaceContainerHigh
         },
         label = "tagPillBackground",
     )
     val content by animateColorAsState(
         when (state) {
             FacetState.Included -> MaterialTheme.colorScheme.primary
-            else -> MaterialTheme.colorScheme.onSurfaceVariant
+            FacetState.Excluded -> MaterialTheme.colorScheme.onSurfaceVariant
+            FacetState.Off -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.86f)
         },
         label = "tagPillContent",
     )

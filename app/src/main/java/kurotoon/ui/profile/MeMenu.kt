@@ -36,6 +36,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import kurotoon.ui.KuroSectionTitle
+import kurotoon.ui.kuroCard
+import kurotoon.ui.kuroPopOn
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.KeyboardArrowRight
 
@@ -105,7 +107,9 @@ fun MeModeTile(
                     } else {
                         MaterialTheme.colorScheme.onSurfaceVariant
                     },
-                    modifier = Modifier.size(20.dp),
+                    modifier = Modifier
+                        .size(20.dp)
+                        .kuroPopOn(checked),
                 )
             }
             Box(Modifier.weight(1f))
@@ -148,8 +152,8 @@ fun MeGroup(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(20.dp))
-                .background(MaterialTheme.colorScheme.surfaceContainer),
+                .clip(RoundedCornerShape(22.dp))
+                .kuroCard(RoundedCornerShape(22.dp)),
             content = content,
         )
     }
@@ -177,7 +181,13 @@ fun MeRow(
             modifier = Modifier
                 .size(36.dp)
                 .clip(RoundedCornerShape(11.dp))
-                .background(MaterialTheme.colorScheme.surfaceContainerHighest),
+                .background(
+                    if (tint == MaterialTheme.colorScheme.onSurfaceVariant) {
+                        MaterialTheme.colorScheme.surfaceContainerHighest
+                    } else {
+                        tint.copy(alpha = 0.16f)
+                    },
+                ),
             contentAlignment = Alignment.Center,
         ) {
             Icon(imageVector = icon, contentDescription = null, tint = tint, modifier = Modifier.size(20.dp))

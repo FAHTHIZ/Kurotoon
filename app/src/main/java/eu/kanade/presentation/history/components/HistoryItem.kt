@@ -31,6 +31,7 @@ import eu.kanade.presentation.manga.components.MangaCover
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import eu.kanade.presentation.util.formatChapterNumber
 import eu.kanade.tachiyomi.util.lang.toTimestampString
+import kurotoon.ui.kuroBounceClickable
 import kurotoon.ui.kuroCard
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Delete
@@ -64,9 +65,9 @@ fun HistoryItem(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = MaterialTheme.padding.medium, vertical = 4.dp)
+            .kuroBounceClickable(onClick = onClickResume, pressed = 0.97f)
             .clip(shape)
             .kuroCard(shape)
-            .clickable(onClick = onClickResume)
             .height(HistoryItemHeight)
             .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -86,7 +87,7 @@ fun HistoryItem(
             Text(
                 text = history.title,
                 style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.SemiBold,
+                fontWeight = FontWeight.Bold,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
             )
@@ -133,7 +134,7 @@ fun HistoryItem(
                     Text(
                         text = stringResource(MR.strings.action_resume),
                         style = MaterialTheme.typography.labelMedium,
-                        fontWeight = FontWeight.SemiBold,
+                        fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onPrimary,
                         modifier = Modifier.padding(start = 2.dp),
                     )

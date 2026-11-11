@@ -59,6 +59,9 @@ import kurotoon.ui.KuroPrimaryButton
 import kurotoon.ui.KuroRankNumeral
 import kurotoon.ui.KuroTag
 import kurotoon.ui.kuroBottomScrim
+import kurotoon.ui.kuroBounceClickable
+import kurotoon.ui.kuroEntrance
+import kurotoon.ui.kuroShimmer
 import kurotoon.ui.onArtwork
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.AutoAwesome
@@ -87,9 +90,9 @@ internal fun HomeHero(
         modifier = modifier
             .fillMaxWidth()
             .aspectRatio(0.8f)
+            .kuroBounceClickable(onClick = onClick, pressed = 0.98f)
             .clip(shape)
-            .background(MaterialTheme.colorScheme.surfaceContainer)
-            .clickable(onClick = onClick),
+            .background(MaterialTheme.colorScheme.surfaceContainer),
     ) {
         AsyncImage(
             model = manga.asMangaCover(),
@@ -327,7 +330,7 @@ internal fun HomeSourceRow(
                         Modifier
                             .width(HomeCoverWidth)
                             .height(168.dp)
-                            .background(MaterialTheme.colorScheme.surfaceContainerHigh, RoundedCornerShape(12.dp)),
+                            .kuroShimmer(RoundedCornerShape(12.dp), MaterialTheme.colorScheme.surfaceContainerHigh),
                     )
                 }
             }
@@ -338,18 +341,18 @@ internal fun HomeSourceRow(
                 // Popular rows read as a ranked Top list, like MANGA Plus' Hottest shelf
                 val ranked = !row.latest && row.pickTag == null && !saved && showListing
                 itemsIndexed(row.items.distinctBy { it.id }, key = { _, it -> it.id }) { index, manga ->
-                    Column(modifier = Modifier.width(HomeCoverWidth)) {
-                        Box {
+                    Column(modifier = Modifier.width(HomeCoverWidth).kuroEntrance(index)) {
+                        Box(
+                            Modifier.kuroBounceClickable(
+                                onClick = { onMangaClick(manga) },
+                                onLongClick = onMangaLongClick?.let { { it(manga) } },
+                            ),
+                        ) {
                             MangaCover.Book(
                                 data = manga.asMangaCover(),
                                 shape = RoundedCornerShape(12.dp),
                                 contentDescription = manga.title,
-                                modifier = Modifier
-                                    .clip(RoundedCornerShape(12.dp))
-                                    .combinedClickable(
-                                        onClick = { onMangaClick(manga) },
-                                        onLongClick = onMangaLongClick?.let { { it(manga) } },
-                                    ),
+                                modifier = Modifier.clip(RoundedCornerShape(12.dp)),
                             )
                             if (ranked && index < 10) {
                                 Box(

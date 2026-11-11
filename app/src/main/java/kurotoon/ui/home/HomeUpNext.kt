@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import eu.kanade.presentation.manga.components.MangaCover
 import eu.kanade.presentation.util.formatChapterNumber
+import kurotoon.ui.kuroBounceClickable
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.PlayArrow
 import tachiyomi.domain.history.model.HistoryWithRelations
@@ -56,9 +57,9 @@ internal fun HomeUpNext(
         modifier = modifier
             .padding(horizontal = 16.dp)
             .fillMaxWidth()
+            .kuroBounceClickable(onClick = onOpen, pressed = 0.98f)
             .clip(shape)
-            .background(MaterialTheme.colorScheme.surfaceContainer)
-            .clickable(onClick = onOpen),
+            .background(MaterialTheme.colorScheme.surfaceContainer),
     ) {
         AsyncImage(
             model = item.coverData,

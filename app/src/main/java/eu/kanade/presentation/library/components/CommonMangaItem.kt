@@ -1,9 +1,14 @@
 package eu.kanade.presentation.library.components
 
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
@@ -25,6 +30,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -71,7 +77,10 @@ private val ContinueReadingButtonListSpacing = 8.dp
 private const val GRID_SELECTED_COVER_ALPHA = 0.76f
 
 /** KuroToon covers are rounder than Mihon's, so the grid reads as cards rather than tiles. */
-private val GridCoverShape = RoundedCornerShape(12.dp)
+private val GridCoverShape = RoundedCornerShape(14.dp)
+
+/** A hairline keeps dark covers from melting into the ink background. */
+private val GridCoverHairline = Color.White.copy(alpha = 0.06f)
 
 /**
  * Layout of grid list item with title overlaying the cover.
@@ -160,6 +169,7 @@ private fun BoxScope.CoverTextOverlay(
             title = title,
             style = MaterialTheme.typography.titleSmall.copy(
                 color = Color.White,
+                fontWeight = FontWeight.Bold,
                 shadow = Shadow(
                     color = Color.Black,
                     blurRadius = 4f,
@@ -256,7 +266,8 @@ private fun MangaGridCover(
         modifier = modifier
             .fillMaxWidth()
             .aspectRatio(MangaCover.Book.ratio)
-            .clip(GridCoverShape),
+            .clip(GridCoverShape)
+            .border(1.dp, GridCoverHairline, GridCoverShape),
     ) {
         cover()
         content?.invoke(this)
@@ -294,8 +305,8 @@ private fun GridItemTitle(
     Text(
         modifier = modifier,
         text = title,
-        fontSize = 12.sp,
-        lineHeight = 18.sp,
+        fontSize = 13.sp,
+        lineHeight = 17.sp,
         minLines = minLines,
         maxLines = maxLines,
         overflow = TextOverflow.Ellipsis,
@@ -315,12 +326,25 @@ private fun GridItemSelectable(
     content: @Composable () -> Unit,
 ) {
     // Selected covers shrink a touch and get an accent outline with a check, instead of a filled block
-    val scale by animateFloatAsState(if (isSelected) 0.94f else 1f, label = "gridSelectScale")
+    // Pressing squishes the cover a touch and springs back, so taps feel physical
+    val interaction = remember { MutableInteractionSource() }
+    val pressed by interaction.collectIsPressedAsState()
+    val scale by animateFloatAsState(
+        targetValue = when {
+            isSelected -> 0.94f
+            pressed -> 0.96f
+            else -> 1f
+        },
+        animationSpec = spring(dampingRatio = 0.55f, stiffness = Spring.StiffnessMedium),
+        label = "gridSelectScale",
+    )
     val outline = MaterialTheme.colorScheme.primary
     Box(
         modifier = modifier
-            .clip(RoundedCornerShape(14.dp))
+            .clip(RoundedCornerShape(16.dp))
             .combinedClickable(
+                interactionSource = interaction,
+                indication = LocalIndication.current,
                 onClick = onClick,
                 onLongClick = onLongClick,
             )

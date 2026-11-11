@@ -9,6 +9,11 @@ All notable changes to KuroToon are documented here. Versions follow
 - **New look**: Plus Jakarta Sans throughout, a deeper ink-black palette with a brighter crimson accent, and rounder shapes
 - The bottom bar is now a floating dock; the current tab sits in a solid crimson pill
 - Home: the top pick is a full-bleed artwork card with tags and Read now, popular rows show rank numerals 1–10, and shelf headers are bolder with a pill See all
+- Series page: the cover is a large centred poster over a blurred backdrop of itself, with a bigger, heavier title
+- Covers in grids are rounder with a faint edge and bolder titles; Updates rows are taller with pill NEW badges
+- Section headings across the app are bold and bright, and cards lift off the background with a hairline edge
+- Me: the profile card has a crimson spotlight behind your avatar and your numbers count up when the tab opens
+- **Motion**: covers, cards, tiles and buttons squish when pressed and spring back, Home shelves cascade in, the bottom bar icon pops with a small tilt when you switch tabs, and loading shelves shimmer
 
 ## [0.23.0] - 2026-11-11
 

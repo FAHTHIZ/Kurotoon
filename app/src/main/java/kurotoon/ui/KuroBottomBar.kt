@@ -139,7 +139,9 @@ private fun KuroBottomBarEntry(
                     painter = item.icon,
                     contentDescription = null,
                     tint = tint,
-                    modifier = Modifier.size(21.dp),
+                    modifier = Modifier
+                        .size(21.dp)
+                        .kuroPopOn(selected),
                 )
                 item.badge?.let { badge ->
                     Box(Modifier.align(Alignment.TopEnd).padding(top = 1.dp, end = 4.dp)) { badge() }
