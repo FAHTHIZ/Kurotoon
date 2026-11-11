@@ -18,6 +18,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Series page shows when you last read it, e.g. "12 of 80 read · 3h 20m · last read 2 weeks ago" ([mihon#1123](https://github.com/mihonapp/mihon/issues/1123))
 - Smart update can skip only series with 3/5/10/25+ unread chapters instead of any unread ([mihon#2539](https://github.com/mihonapp/mihon/issues/2539))
 - Settings → Downloads → Pause when this many are unread: stop auto-downloading new chapters for a series with a big unread backlog ([mihon#122](https://github.com/mihonapp/mihon/issues/122))
 - Settings → Data and storage → Remove downloads not in library, with a list of what will go first ([mihon#565](https://github.com/mihonapp/mihon/issues/565))
