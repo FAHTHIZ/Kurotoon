@@ -155,10 +155,13 @@ its own: one design language of rounded cards, accent section headers, pills and
 | History | Plain rows | Cards with a Resume pill and progress |
 | Browse | List rows | Source and extension cards with Popular, Latest, Install and Update pills |
 | Global search | Spinner per source | Accent headers, See all pills, pulsing cover placeholders |
-| Series page | Icon-and-label buttons | Rounded action tiles, cover-tinted page, accent rail on unread chapters |
+| Series page | Icon-and-label buttons, outlined chips | Rounded action tiles, tag pills, a read progress bar, accent rail on unread chapters |
 | Reader | Full-width bars | Floating rounded dock, soundtrack badge, sleep timer, progress orb |
 | Me and Settings | Flat preference lists | Mode tiles and grouped cards with colored icons, settings search bar |
 | Empty screens | Kaomoji | A sleeping Kuro |
+| Settings sheets | Underlined tab rows | Segmented pill tabs |
+| About | Logo and a list | Kuro, the tagline and a version pill above grouped cards |
+| Feature discovery | None | A Home tip card where Kuro shows off one KuroToon feature at a time |
 
 Details for each redesign are in the [changelog](CHANGELOG.md).
 
