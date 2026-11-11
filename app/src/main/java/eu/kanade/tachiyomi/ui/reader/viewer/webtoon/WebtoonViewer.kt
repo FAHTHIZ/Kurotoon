@@ -241,6 +241,8 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
      * Tells this viewer to move to the given [page].
      */
     override fun moveToPage(page: ReaderPage) {
+        // A jump (slider, chapter list, Start over) wins over a pending panel restore.
+        cancelRestore()
         val position = adapter.items.indexOf(page)
         if (position != -1) {
             layoutManager.scrollToPositionWithOffset(position, 0)
