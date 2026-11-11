@@ -13,7 +13,7 @@ All notable changes to KuroToon are documented here. Versions follow
 
 ### Changed
 - Kuro's real artwork everywhere: the code-drawn cat, the emoji welcome and the off-model chibi pack are gone, and empty screens show Kuro dozing
-- Cleaner effects: taps use the normal touch ripple only, celebration sparks are smaller and softer, and the background embers are fewer and fainter
+- Cleaner effects: taps use the normal touch ripple only, celebration sparks are smaller and softer, and the background embers are off by default (Settings › Appearance › Background embers)
 - Home reads as one page: every shelf shares the same header (icon, title, subtitle, See all) and cover size. Continue reading gains See all
 - The old JSON chapter reconciliation tool in the Me tab is replaced by merged chapters
 

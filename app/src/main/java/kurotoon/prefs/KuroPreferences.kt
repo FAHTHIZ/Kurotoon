@@ -122,8 +122,11 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
     /** The reader's display name on the Me tab; empty means the default. */
     val nickname = preferenceStore.getString("kurotoon_nickname", "")
 
-    /** Ambient embers behind the UI and sparks on key moments. */
+    /** Sparks on key moments, like finishing a chapter or adding to the library. */
     val particles = preferenceStore.getBoolean("kurotoon_particles", true)
+
+    /** Faint embers drifting behind the app. Off by default to keep screens clean. */
+    val ambientEmbers = preferenceStore.getBoolean("kurotoon_ambient_embers", false)
 
     /** Tint a series' page with colours from its cover. */
     val coverColors = preferenceStore.getBoolean("kurotoon_cover_colors", true)

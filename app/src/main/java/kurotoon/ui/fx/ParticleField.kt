@@ -63,6 +63,7 @@ fun ParticleField(
 ) {
     val context = LocalContext.current
     val enabled by remember { context.appGraph.kuroPreferences.particles }.collectAsState()
+    val embers by remember { context.appGraph.kuroPreferences.ambientEmbers }.collectAsState()
     val reducedMotion = remember {
         Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) == 0f
     }
@@ -73,7 +74,7 @@ fun ParticleField(
     val engine = remember(density, lowRam) { ParticleEngine(density, lowRam) }
     // Battery Saver stops the drifting embers; one-shot sparks and confetti still play
     val powerSave by rememberPowerSaveMode()
-    val ambientOn by rememberUpdatedState(ambient && !powerSave)
+    val ambientOn by rememberUpdatedState(ambient && embers && !powerSave)
     val wake = remember { Channel<Unit>(Channel.CONFLATED) }
     var frame by remember { mutableLongStateOf(0L) }
     val frameTimeMs = { if (frame != 0L) frame / 1_000_000 else System.nanoTime() / 1_000_000 }
