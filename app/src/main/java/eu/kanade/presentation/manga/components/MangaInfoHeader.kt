@@ -88,8 +88,6 @@ import eu.kanade.tachiyomi.util.system.copyToClipboard
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.daysUntil
 import kurotoon.catalogue.TagAction
-import kurotoon.ui.fx.fxAnchor
-import kurotoon.ui.fx.rememberFxAnchor
 import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.AttachMoney
@@ -220,14 +218,12 @@ fun MangaActionRow(
         }
     }
 
-    // Sparks and a little pop when a title joins the library
-    val favoriteAnchor = rememberFxAnchor()
+    // A small pop when a title joins the library
     val favoriteScale = remember { Animatable(1f) }
     var wasFavorite by remember { mutableStateOf(favorite) }
     LaunchedEffect(favorite) {
         if (favorite && !wasFavorite) {
-            favoriteAnchor.burst(count = 10, power = 3f)
-            favoriteScale.animateTo(1.35f, spring(stiffness = Spring.StiffnessHigh))
+            favoriteScale.animateTo(1.15f, spring(stiffness = Spring.StiffnessHigh))
             favoriteScale.animateTo(1f, spring(dampingRatio = Spring.DampingRatioMediumBouncy))
         }
         wasFavorite = favorite
@@ -239,7 +235,6 @@ fun MangaActionRow(
     ) {
         MangaActionButton(
             iconModifier = Modifier
-                .fxAnchor(favoriteAnchor)
                 .graphicsLayer {
                     scaleX = favoriteScale.value
                     scaleY = favoriteScale.value

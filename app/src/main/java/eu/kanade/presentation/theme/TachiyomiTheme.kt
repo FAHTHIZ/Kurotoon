@@ -68,6 +68,7 @@ private fun BaseTachiyomiTheme(
             // Shop themes recolour KuroToon's own scheme only
             if (appTheme == AppTheme.DEFAULT) KuroCosmetics.tint(scheme, isDark) else scheme
         },
+        typography = KuroTypography,
         content = content,
     )
 }
