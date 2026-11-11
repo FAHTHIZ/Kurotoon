@@ -20,6 +20,7 @@ import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.manga.model.MangaCover
 import tachiyomi.domain.manga.model.asMangaCover
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.Badge
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -29,6 +30,7 @@ fun GlobalSearchCardRow(
     getManga: @Composable (Manga) -> State<Manga>,
     onClick: (Manga) -> Unit,
     onLongClick: (Manga) -> Unit,
+    sourceCount: (Manga) -> Int = { 0 },
 ) {
     if (titles.isEmpty()) {
         EmptyResultItem()
@@ -45,6 +47,7 @@ fun GlobalSearchCardRow(
                 title = title.title,
                 cover = title.asMangaCover(),
                 isFavorite = title.favorite,
+                sourceCount = sourceCount(it),
                 onClick = { onClick(title) },
                 onLongClick = { onLongClick(title) },
             )
@@ -57,6 +60,7 @@ private fun MangaItem(
     title: String,
     cover: MangaCover,
     isFavorite: Boolean,
+    sourceCount: Int,
     onClick: () -> Unit,
     onLongClick: () -> Unit,
 ) {
@@ -67,6 +71,10 @@ private fun MangaItem(
             coverData = cover,
             coverBadgeStart = {
                 InLibraryBadge(enabled = isFavorite)
+            },
+            coverBadgeEnd = {
+                // How many sources carry this series, on the combined row
+                if (sourceCount > 1) Badge(text = "×$sourceCount")
             },
             coverAlpha = if (isFavorite) CommonMangaItemDefaults.BrowseFavoriteCoverAlpha else 1f,
             onClick = onClick,
