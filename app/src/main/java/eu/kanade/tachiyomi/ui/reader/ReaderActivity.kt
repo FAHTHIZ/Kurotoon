@@ -223,6 +223,8 @@ class ReaderActivity : BaseActivity() {
             val clock = kurotoon.reader.rememberReaderClock(showPageNumber && showClockBattery)
             val battery = kurotoon.reader.rememberBatteryLevel(showPageNumber && showClockBattery)
             val showProgressOrb by readerPreferences.showProgressOrb.collectAsState()
+            val bedtimeMode by readerPreferences.bedtimeMode.collectAsState()
+            val bedtimeWarmth = kurotoon.reader.rememberBedtimeWarmth(bedtimeMode)
             val flashOnPageChange by readerPreferences.flashOnPageChange.collectAsState()
             val colorOverlayEnabled by readerPreferences.colorFilter.collectAsState()
             val colorOverlay by readerPreferences.colorFilterValue.collectAsState()
@@ -301,6 +303,7 @@ class ReaderActivity : BaseActivity() {
                     color = colorOverlay.takeIf { colorOverlayEnabled },
                     colorBlendMode = colorOverlayBlendMode,
                 )
+                kurotoon.reader.BedtimeOverlay(warmth = bedtimeWarmth)
 
                 if (!state.menuVisible && showPageNumber) {
                     ReaderPageIndicator(
