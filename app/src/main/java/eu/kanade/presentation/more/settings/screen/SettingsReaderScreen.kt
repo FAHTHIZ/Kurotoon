@@ -28,6 +28,7 @@ object SettingsReaderScreen : SearchableSettings {
     override fun getPreferences(): List<Preference> {
         val context = LocalContext.current
         val readerPref = remember { context.appGraph.readerPreferences }
+        val libraryPref = remember { context.appGraph.libraryPreferences }
 
         return listOf(
             Preference.PreferenceItem.ListPreference(
@@ -40,6 +41,11 @@ object SettingsReaderScreen : SearchableSettings {
                 preference = readerPref.autoWebtoonMode,
                 title = stringResource(MR.strings.kurotoon_reader_autoWebtoon),
                 subtitle = stringResource(MR.strings.kurotoon_reader_autoWebtoonSummary),
+            ),
+            Preference.PreferenceItem.SwitchPreference(
+                preference = libraryPref.resumeFromLastOpened,
+                title = stringResource(MR.strings.kurotoon_reader_resumeLastOpened),
+                subtitle = stringResource(MR.strings.kurotoon_reader_resumeLastOpenedSummary),
             ),
             Preference.PreferenceItem.SwitchPreference(
                 preference = readerPref.showTimeLeft,
