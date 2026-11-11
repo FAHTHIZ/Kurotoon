@@ -67,6 +67,10 @@ class ReaderSoundtrack(context: Context) {
     var musicFailed by mutableStateOf(false)
         private set
 
+    /** The chapter's track list couldn't be fetched (offline, say); [retry] fetches it again. */
+    var tracksFailed = false
+        private set
+
     /** Muted from the reader's quick toggle; lasts until the reader closes. */
     var muted by mutableStateOf(false)
         private set
@@ -114,16 +118,22 @@ class ReaderSoundtrack(context: Context) {
         this.client = client
         music.setClient(client)
         loadingTracks = true
+        tracksFailed = false
         loadJob = scope.launch {
+            var failed = false
             val found = withContext(Dispatchers.IO) { BgmLists.get(app, key) }
                 ?: withContext(Dispatchers.IO) {
                     runCatching {
                         val html = client.newCall(WebtoonBgm.viewerRequest(viewer)).execute().use { it.body.string() }
                         WebtoonBgm.parse(html, pageUrls).also { BgmLists.put(app, key, it) }
-                    }.onFailure { logcat { "No episode music: ${it.message}" } }.getOrNull()
+                    }.onFailure {
+                        failed = true
+                        logcat { "No episode music: ${it.message}" }
+                    }.getOrNull()
                 }
             if (!isActive || chapterKey != key) return@launch
             loadingTracks = false
+            tracksFailed = failed
             tracks = found.orEmpty()
             evaluate()
         }
