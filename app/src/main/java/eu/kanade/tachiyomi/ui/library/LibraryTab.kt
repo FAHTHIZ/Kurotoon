@@ -55,6 +55,7 @@ import kurotoon.ui.library.DuplicatesScreen
 import mihon.feature.migration.config.MigrationConfigScreen
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.automirroredrounded.Help
+import tachiyomi.core.common.i18n.pluralStringResource
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.domain.category.model.Category
 import tachiyomi.domain.library.model.LibraryManga
@@ -186,6 +187,20 @@ data object LibraryTab : Tab {
                         val selection = state.selection
                         viewModel.clearSelection()
                         navigator.push(MigrationConfigScreen(selection))
+                    },
+                    onUpdateClicked = {
+                        val ids = state.selectedManga.map { it.id }
+                        viewModel.clearSelection()
+                        scope.launch {
+                            val started = LibraryUpdateWorker.startNow(context.workManager, mangaIds = ids)
+                            val message = if (started) {
+                                val res = MR.plurals.kurotoon_library_updatingSelected
+                                context.pluralStringResource(res, ids.size, ids.size)
+                            } else {
+                                context.stringResource(MR.strings.update_already_running)
+                            }
+                            snackbarHostState.showSnackbar(message, duration = SnackbarDuration.Short)
+                        }
                     },
                 )
             },

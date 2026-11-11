@@ -129,7 +129,14 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
         libraryPreferences.lastUpdatedTimestamp.set(Clock.System.now().toEpochMilliseconds())
 
         val categoryId = inputData.getLong(KEY_CATEGORY, -1L)
-        addMangaToQueue(categoryId)
+        val mangaIds = inputData.getLongArray(KEY_MANGA_IDS)
+        if (mangaIds != null) {
+            // Picked by hand, so the smart-update restrictions don't apply (mihon#2933)
+            val picked = mangaIds.toHashSet()
+            mangaToUpdate = getLibraryManga.await().filter { it.manga.id in picked }.sortedBy { it.manga.title }
+        } else {
+            addMangaToQueue(categoryId)
+        }
 
         return withContext(Dispatchers.IO) {
             try {
@@ -444,6 +451,7 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
          * Key for category to update.
          */
         private const val KEY_CATEGORY = "category"
+        private const val KEY_MANGA_IDS = "manga_ids"
 
         fun setupTask(
             context: Context,
@@ -500,6 +508,7 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
         suspend fun startNow(
             workManager: WorkManager,
             category: Category? = null,
+            mangaIds: List<Long>? = null,
         ): Boolean {
             if (workManager.isRunning(TAG)) {
                 // Already running either as a scheduled or manual job
@@ -508,6 +517,7 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
 
             val inputData = workDataOf(
                 KEY_CATEGORY to category?.id,
+                KEY_MANGA_IDS to mangaIds?.toLongArray(),
             )
             val request = OneTimeWorkRequestBuilder<LibraryUpdateWorker>()
                 .addTag(TAG)

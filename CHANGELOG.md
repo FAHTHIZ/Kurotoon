@@ -20,6 +20,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Check only some series for new chapters: select them in the library and pick "Check for new chapters" from the overflow menu ([mihon#2933](https://github.com/mihonapp/mihon/issues/2933))
 - Lock zoom for the paged readers too: pages stay fitted, with no pinch or double-tap zoom ([mihon#1397](https://github.com/mihonapp/mihon/issues/1397))
 - Incognito categories: tap the glasses on a category in Edit categories, and its series are read without saving history or progress ([mihon#3367](https://github.com/mihonapp/mihon/issues/3367))
 - Updates show the scanlator of each new chapter ([mihon#1914](https://github.com/mihonapp/mihon/issues/1914))

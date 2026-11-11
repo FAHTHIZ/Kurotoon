@@ -159,4 +159,8 @@
         <item quantity="one">%d or more unread</item>
         <item quantity="other">%d or more unread</item>
     </plurals>
+    <plurals name="kurotoon_library_updatingSelected">
+        <item quantity="one">Checking %d series for new chapters</item>
+        <item quantity="other">Checking %d series for new chapters</item>
+    </plurals>
 </resources>
