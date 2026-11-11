@@ -20,6 +20,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- Optional single bookmark that follows your progress: finishing a chapter moves the bookmark onto it ([mihon#2386](https://github.com/mihonapp/mihon/issues/2386))
 - While selecting series in a source, library series can be checked for new chapters straight away ([mihon#834](https://github.com/mihonapp/mihon/issues/834))
 - Mouse wheels and trackpads scroll the long strip smoothly instead of in jumps ([mihon#2328](https://github.com/mihonapp/mihon/issues/2328))
 - A notification when a tracker signs you out (expired or revoked sign-in), which opens Tracking settings so progress doesn't silently stop syncing ([mihon#1700](https://github.com/mihonapp/mihon/issues/1700))

@@ -735,6 +735,7 @@ class ReaderViewModel(
     private suspend fun updateChapterProgressOnComplete(readerChapter: ReaderChapter) {
         updateTrackChapterRead(readerChapter)
         deleteChapterIfNeeded(readerChapter)
+        if (kuroPreferences.bookmarkFollowsProgress.get() && !incognitoMode) moveBookmarkTo(readerChapter)
 
         val markDuplicateAsRead = libraryPreferences.markDuplicateReadChapterAsRead.get()
             .contains(LibraryPreferences.MARK_DUPLICATE_CHAPTER_READ_EXISTING)
@@ -753,6 +754,28 @@ class ReaderViewModel(
                 }
             }
         updateChapter.awaitAll(duplicateUnreadChapters)
+    }
+
+    /**
+     * Moves the series' bookmark onto [readerChapter] when it's further than the bookmarked one, so a single
+     * bookmark tracks progress. Bookmarks carrying a note are the reader's own and are left alone.
+     */
+    private suspend fun moveBookmarkTo(readerChapter: ReaderChapter) {
+        val finished = readerChapter.chapter
+        val chapters = getUnfilteredChapterList()
+        val notes = kurotoon.manga.BookmarkNotes.get(context)
+        val auto = chapters.filter { it.bookmark && it.id != finished.id && notes.get(it.id) == null }
+        // Re-reading an earlier chapter doesn't pull the bookmark back
+        val furtherBookmark = auto.any { it.isRecognizedNumber && it.chapterNumber > finished.chapterNumber }
+        if (finished.isRecognizedNumber && furtherBookmark) return
+        val updates = auto.map { ChapterUpdate(it.id) { bookmark = false } } +
+            listOfNotNull(ChapterUpdate(finished.id) { bookmark = true }.takeIf { !finished.bookmark })
+        if (updates.isEmpty()) return
+        updateChapter.awaitAll(updates)
+        if (!finished.bookmark) {
+            readerChapter.update { it.copy(bookmark = true) }
+            if (getCurrentChapter()?.chapter?.id == finished.id) mutableState.update { it.copy(bookmarked = true) }
+        }
     }
 
     fun restartReadTimer() {

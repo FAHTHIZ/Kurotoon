@@ -54,6 +54,9 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
     /** A folder (tree URI) saved pages go to instead of Pictures; empty for Pictures (mihon#295). */
     val pageSaveFolder = preferenceStore.getString("kurotoon_page_save_folder", "")
 
+    /** Keep a single bookmark per series on the furthest chapter finished (mihon#2386). */
+    val bookmarkFollowsProgress = preferenceStore.getBoolean("kurotoon_bookmark_follows_progress", false)
+
     /** Per-source default library category as "sourceId=categoryId" (mihon#336). */
     val sourceDefaultCategories = preferenceStore.getStringSet("kurotoon_source_default_categories", emptySet())
 

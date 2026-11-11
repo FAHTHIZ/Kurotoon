@@ -48,6 +48,11 @@ object SettingsReaderScreen : SearchableSettings {
                 subtitle = stringResource(MR.strings.kurotoon_reader_resumeLastOpenedSummary),
             ),
             Preference.PreferenceItem.SwitchPreference(
+                preference = LocalContext.current.appGraph.kuroPreferences.bookmarkFollowsProgress,
+                title = stringResource(MR.strings.kurotoon_reader_bookmarkFollows),
+                subtitle = stringResource(MR.strings.kurotoon_reader_bookmarkFollowsSummary),
+            ),
+            Preference.PreferenceItem.SwitchPreference(
                 preference = readerPref.showTimeLeft,
                 title = stringResource(MR.strings.kurotoon_reader_timeLeft),
                 subtitle = stringResource(MR.strings.kurotoon_reader_timeLeftSummary),
