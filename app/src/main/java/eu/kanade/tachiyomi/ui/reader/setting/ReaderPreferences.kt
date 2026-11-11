@@ -110,6 +110,9 @@ class ReaderPreferences(
     val showClockBattery: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_reader_clock_battery", true)
 
     /** Warms and slightly dims pages from late evening until morning. */
+    /** Volume-key presses closer together than this are ignored, for bouncy buttons. */
+    val volumeKeyDelay: Preference<Int> = preferenceStore.getInt("kurotoon_reader_volume_key_delay", 0)
+
     val bedtimeMode: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_reader_bedtime", false)
 
     val defaultOrientationType: Preference<Int> = preferenceStore.getInt(

@@ -412,6 +412,19 @@ object SettingsReaderScreen : SearchableSettings {
                     title = stringResource(MR.strings.pref_read_with_volume_keys_inverted),
                     visible = readWithVolumeKeys,
                 ),
+                Preference.PreferenceItem.ListPreference(
+                    preference = readerPreferences.volumeKeyDelay,
+                    entries = listOf(0, 150, 300, 500).associateWith {
+                        if (it == 0) {
+                            stringResource(MR.strings.disabled)
+                        } else {
+                            stringResource(MR.strings.kurotoon_reader_volumeKeyDelayMs, it)
+                        }
+                    },
+                    title = stringResource(MR.strings.kurotoon_reader_volumeKeyDelay),
+                    subtitle = stringResource(MR.strings.kurotoon_reader_volumeKeyDelaySummary),
+                    visible = readWithVolumeKeys,
+                ),
                 Preference.PreferenceItem.MultiSelectListPreference(
                     preference = readerPreferences.verticalNavigator,
                     entries = ReadingMode.entries.filter { it != ReadingMode.DEFAULT }
