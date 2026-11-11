@@ -5,9 +5,10 @@ shot welcome
 tapx Next
 shot storage
 tap "Select a folder"
-sleep 2
+sleep 3
 shot picker
 tap "More options"
+shot picker_menu
 tap "New folder"
 shot newfolder
 type Kurotoon
@@ -15,6 +16,7 @@ tapx OK
 sleep 2
 shot infolder
 tap "Use this folder"
+sleep 2
 tap Allow
 sleep 2
 shot storage_done
@@ -25,63 +27,69 @@ shot guides
 tap "Get started"
 sleep 3
 shot home
-tap Library
-shot library
-tap Updates
-shot updates
-tap History
-shot history
-tap Browse
+tapx Browse
+sleep 2
 shot browse
-tap More
-shot more
-back
+tapx Library
+shot library
+tapx Updates
+shot updates
+tapx Me
+shot me
+tapx Home
 # Add the community extension repo through the standard deep link
 view "tachiyomi://add-repo?url=https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
-sleep 2
+sleep 3
 shot addrepo_dialog
-tap Add
+tapx Add
 sleep 4
 shot after_addrepo
-start app.kurotoon.dev
-tap Browse
-tap Extensions
-sleep 6
+back
+tapx Home
+tap "Add sources"
+sleep 8
 shot extensions
 tap Search
 type MangaDex
 sleep 3
 shot ext_search
 tapx Install
-sleep 10
+sleep 12
 shot install_prompt
-tap Install
-sleep 15
+tapx Install
+sleep 20
 shot installed
+tapx Install
+sleep 5
+shot installed2
 back
 back
-tap Sources
-sleep 3
-shot sources
-tap MangaDex
+tapx Home
 sleep 10
-shot source_popular
-tap Latest
-sleep 8
-shot source_latest
+shot home_with_source
 scrollup
-shot source_scrolled
-tapxy 270 900
-sleep 8
+shot home_scrolled
+tapx Browse
+sleep 3
+shot browse_sources
+tap MangaDex
+sleep 12
+shot source_popular
+tapx Latest
+sleep 10
+shot source_latest
+tapxy 270 1000
+sleep 10
 shot manga
 scrollup
 shot manga_chapters
+scrolldown
 scrolldown
 tap "Add to library"
 sleep 3
 shot added
 tap "Start"
-sleep 12
+sleep 15
 shot reader
 tapxy 540 1200
 sleep 2
@@ -95,11 +103,13 @@ sleep 2
 shot manga_after_read
 back
 back
-tap Library
+tapx Library
 sleep 2
 shot library_after
-tap Home
-sleep 3
+tapx Updates
+shot updates_after
+tapx Me
+shot me_after
+tapx Home
+sleep 4
 shot home_after
-tap History
-shot history_after

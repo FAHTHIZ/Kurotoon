@@ -1,20 +1,18 @@
-# First run, as a brand-new user
 start app.mihon
 sleep 3
 shot welcome
 tapx Next
 shot storage
 tap "Select a folder"
-sleep 2
+sleep 3
 shot picker
 tap "More options"
 tap "New folder"
-shot newfolder
-type Kurotoon
+type Mihon
 tapx OK
 sleep 2
-shot infolder
 tap "Use this folder"
+sleep 2
 tap Allow
 sleep 2
 shot storage_done
@@ -24,82 +22,61 @@ tapx Next
 shot guides
 tap "Get started"
 sleep 3
-shot home
-tap Library
 shot library
-tap Updates
+tapx Updates
 shot updates
-tap History
+tapx History
 shot history
-tap Browse
+tapx Browse
 shot browse
-tap More
+tapx More
 shot more
-back
-# Add the community extension repo through the standard deep link
-view "tachiyomi://add-repo?url=https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
-sleep 2
+view "tachiyomi://add-repo?url=https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json" -p app.mihon
+sleep 3
 shot addrepo_dialog
-tap Add
+tapx Add
 sleep 4
 shot after_addrepo
-start app.mihon
-tap Browse
-tap Extensions
-sleep 6
+back
+tapx Browse
+tapx Extensions
+sleep 8
 shot extensions
 tap Search
 type MangaDex
 sleep 3
 shot ext_search
 tapx Install
-sleep 10
+sleep 12
 shot install_prompt
-tap Install
-sleep 15
+tapx Install
+sleep 20
 shot installed
 back
 back
-tap Sources
+tapx Sources
 sleep 3
 shot sources
 tap MangaDex
-sleep 10
+sleep 12
 shot source_popular
-tap Latest
-sleep 8
+tapx Latest
+sleep 10
 shot source_latest
-scrollup
-shot source_scrolled
-tapxy 270 900
-sleep 8
+tapxy 270 1000
+sleep 10
 shot manga
-scrollup
-shot manga_chapters
-scrolldown
 tap "Add to library"
 sleep 3
 shot added
 tap "Start"
-sleep 12
+sleep 15
 shot reader
 tapxy 540 1200
 sleep 2
 shot reader_menu
-tapxy 540 1200
-scrollup
-scrollup
-shot reader_scrolled
-back
-sleep 2
-shot manga_after_read
 back
 back
-tap Library
-sleep 2
+back
+tapx Library
 shot library_after
-tap Home
-sleep 3
-shot home_after
-tap History
-shot history_after

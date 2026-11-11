@@ -15,13 +15,28 @@ def say(msg):
     print(msg); log.write(msg + "\n"); log.flush()
 
 
-def dump():
+def raw_dump():
     adb("shell", "uiautomator", "dump", "/sdcard/ui.xml")
     xml = adb("shell", "cat", "/sdcard/ui.xml")
     try:
         return ET.fromstring(xml[xml.index("<"):])
     except Exception:
         return None
+
+
+def dump():
+    """UI tree, after clearing any system "isn't responding" dialog the slow emulator throws up."""
+    for _ in range(4):
+        root = raw_dump()
+        hit = None
+        for t, d, x, y, n in nodes(root):
+            if "isn't responding" in t:
+                hit = True
+            if hit and t == "Wait":
+                adb("shell", "input", "tap", str(x), str(y)); time.sleep(2); break
+        else:
+            return root
+    return raw_dump()
 
 
 def nodes(root):
