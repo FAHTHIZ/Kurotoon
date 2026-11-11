@@ -100,6 +100,7 @@ data object LibraryTab : Tab {
         val revealingHidden by viewModel.revealHidden.collectAsStateWithLifecycle()
         val groupBy by viewModel.groupBy.collectAsStateWithLifecycle()
         var showGroupBy by remember { mutableStateOf(false) }
+        var massTrackSelection by remember { mutableStateOf<List<tachiyomi.domain.manga.model.Manga>?>(null) }
         if (showGroupBy) {
             kurotoon.ui.library.LibraryGroupByDialog(
                 selected = groupBy,
@@ -202,7 +203,35 @@ data object LibraryTab : Tab {
                             snackbarHostState.showSnackbar(message, duration = SnackbarDuration.Short)
                         }
                     },
+                    onTrackClicked = {
+                        val trackers = kurotoon.track.MassTrack.searchableTrackers(context)
+                        val selection = state.selectedManga
+                        if (trackers.isEmpty()) {
+                            scope.launch {
+                                snackbarHostState.showSnackbar(
+                                    context.stringResource(MR.strings.kurotoon_track_massNoTrackers),
+                                    duration = SnackbarDuration.Short,
+                                )
+                            }
+                        } else if (trackers.size == 1) {
+                            viewModel.clearSelection()
+                            kurotoon.track.MassTrack.start(context, selection, trackers.single())
+                        } else {
+                            massTrackSelection = selection
+                        }
+                    },
                 )
+                massTrackSelection?.let { selection ->
+                    kurotoon.track.MassTrackDialog(
+                        trackers = remember { kurotoon.track.MassTrack.searchableTrackers(context) },
+                        onPick = { tracker ->
+                            massTrackSelection = null
+                            viewModel.clearSelection()
+                            kurotoon.track.MassTrack.start(context, selection, tracker)
+                        },
+                        onDismiss = { massTrackSelection = null },
+                    )
+                }
             },
             snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         ) { contentPadding ->
