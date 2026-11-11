@@ -58,8 +58,6 @@ import kotlinx.coroutines.flow.flowOf
 import kurotoon.ui.KuroColors
 import kurotoon.ui.KuroSectionHeader
 import kurotoon.ui.kuroCard
-import kurotoon.ui.shop.KuroMascot
-import kurotoon.ui.shop.KuroMood
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.DragHandle
 import mihon.icons.materialsymbols.rounded.MoreVert
@@ -566,7 +564,6 @@ private fun DownloadSummaryCard(sections: List<DownloadQueueSection>) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        KuroMascot(size = 56.dp, mood = KuroMood.READING)
         Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(
                 text = stringResource(MR.strings.kurotoon_downloads_summary_title, downloads.size),

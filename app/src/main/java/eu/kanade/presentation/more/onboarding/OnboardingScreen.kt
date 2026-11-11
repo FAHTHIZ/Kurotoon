@@ -26,8 +26,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import kurotoon.ui.KuroColors
 import kurotoon.ui.kuroCard
-import kurotoon.ui.shop.KuroMascot
-import kurotoon.ui.shop.KuroMood
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.RocketLaunch
 import soup.compose.material.motion.animation.materialSharedAxisX
@@ -89,7 +87,7 @@ fun OnboardingScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                KuroMascot(size = 72.dp, mood = if (isLastStep) KuroMood.HYPED else KuroMood.HAPPY)
+                kurotoon.ui.KuroLogo(size = 48.dp)
                 StepDots(count = steps.size, current = currentStep)
             }
         },

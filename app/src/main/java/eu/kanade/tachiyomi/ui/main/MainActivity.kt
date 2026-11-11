@@ -271,7 +271,6 @@ class MainActivity : BaseActivity() {
                 }
 
                 ParticleField(ambient = true)
-                kurotoon.ui.shop.RewardToastHost()
 
                 // Pop source-related screens when incognito mode is turned off
                 LaunchedEffect(Unit) {

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,14 +17,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import mihon.icons.materialsymbols.MaterialSymbols
+import mihon.icons.materialsymbols.rounded.Info
 
-/** Kuro, the mascot, offering a short hint. */
+/** A short, quiet hint in a card. */
 @Composable
-fun KuroTip(text: String, modifier: Modifier = Modifier, mood: String = "😺") {
+fun KuroTip(text: String, modifier: Modifier = Modifier, icon: ImageVector = MaterialSymbols.Rounded.Info) {
     Row(
         modifier = modifier
             .kuroCard(RoundedCornerShape(16.dp))
@@ -31,7 +35,12 @@ fun KuroTip(text: String, modifier: Modifier = Modifier, mood: String = "😺") 
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(text = mood, fontSize = 22.sp)
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(20.dp),
+        )
         Text(
             text = text,
             style = MaterialTheme.typography.bodySmall,

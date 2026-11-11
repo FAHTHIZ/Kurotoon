@@ -55,8 +55,6 @@ import mihon.icons.materialsymbols.rounded.QueryStats
 import tachiyomi.domain.history.model.HistoryWithRelations
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.KuroArt
-import tachiyomi.presentation.core.components.KuroPose
 import tachiyomi.presentation.core.components.material.PullRefresh
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
@@ -213,7 +211,7 @@ private fun Welcome(onAddSourcesClick: () -> Unit) {
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        KuroArt(pose = KuroPose.WAVING, size = 120.dp)
+        kurotoon.ui.KuroLogo(size = 56.dp)
         Text(
             text = stringResource(MR.strings.kurotoon_home_welcomeTitle),
             fontSize = 22.sp,

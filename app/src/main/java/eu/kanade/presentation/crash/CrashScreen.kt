@@ -17,8 +17,6 @@ import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import kotlinx.coroutines.launch
 import kurotoon.ui.kuroCard
-import kurotoon.ui.shop.KuroMascot
-import kurotoon.ui.shop.KuroMood
 import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.BugReport
@@ -48,13 +46,6 @@ fun CrashScreen(
         },
         rejectText = stringResource(MR.strings.crash_screen_restart_application),
         onRejectClick = onRestartClick,
-        header = {
-            KuroMascot(
-                size = 72.dp,
-                mood = KuroMood.SAD,
-                modifier = Modifier.padding(bottom = MaterialTheme.padding.small),
-            )
-        },
     ) {
         Box(
             modifier = Modifier
