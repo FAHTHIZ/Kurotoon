@@ -99,6 +99,6 @@ imported replaces it, which is how you ship an update. Built-in pack ids can't b
 
 ## Backups
 
-What you're using is stored in app preferences, so they're included in
+What you're using is stored in app preferences, so it's included in
 KuroToon backups. Imported pack files are not; keep your `.kpack` files and import them again on a
 new device.
