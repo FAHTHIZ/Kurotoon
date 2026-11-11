@@ -17,8 +17,10 @@ import mihon.icons.custommaterialsymbols.rounded.CropOff
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.automirroredrounded.FormatListBulleted
 import mihon.icons.materialsymbols.rounded.Crop
+import mihon.icons.materialsymbols.rounded.MusicNote
 import mihon.icons.materialsymbols.rounded.PlayArrow
 import mihon.icons.materialsymbols.rounded.Settings
+import mihon.icons.materialsymbols.rounded.VolumeOff
 import mihon.icons.materialsymbols.roundedfilled.Pause
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
@@ -36,6 +38,9 @@ fun ReaderBottomBar(
     onClickAutoScroll: () -> Unit,
     modifier: Modifier = Modifier,
     onClickChapterList: () -> Unit = {},
+    soundActive: Boolean = false,
+    soundMuted: Boolean = false,
+    onClickSound: () -> Unit = {},
 ) {
     Row(
         modifier = modifier
@@ -80,6 +85,14 @@ fun ReaderBottomBar(
                 },
                 contentDescription = stringResource(MR.strings.kurotoon_reader_autoScroll),
                 tint = if (autoScrolling) MaterialTheme.colorScheme.primary else LocalContentColor.current,
+            )
+        }
+
+        IconButton(onClick = onClickSound) {
+            Icon(
+                imageVector = if (soundMuted) MaterialSymbols.Rounded.VolumeOff else MaterialSymbols.Rounded.MusicNote,
+                contentDescription = stringResource(MR.strings.kurotoon_sound_title),
+                tint = if (soundActive && !soundMuted) MaterialTheme.colorScheme.primary else LocalContentColor.current,
             )
         }
 

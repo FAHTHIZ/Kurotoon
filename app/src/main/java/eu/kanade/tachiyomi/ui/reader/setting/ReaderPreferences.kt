@@ -79,6 +79,19 @@ class ReaderPreferences(
     /** Open manhwa, manhua and webtoons in the long-strip reader unless a mode was picked for them. */
     val autoWebtoonMode: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_reader_auto_webtoon", true)
 
+    /** Play the music WEBTOON attaches to some episodes, starting and stopping on the same panels. */
+    val soundEpisodeMusic: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_sound_episode_music", true)
+
+    /** Ambience under every chapter: off, auto (from genres) or a fixed [kurotoon.reader.sound.Soundscape]. */
+    val soundAmbience: Preference<String> = preferenceStore.getString("kurotoon_sound_ambience", "off")
+
+    val soundMusicVolume: Preference<Int> = preferenceStore.getInt("kurotoon_sound_music_volume", 80)
+
+    val soundAmbienceVolume: Preference<Int> = preferenceStore.getInt("kurotoon_sound_ambience_volume", 45)
+
+    /** A soft paper swish when a page turns in the paged readers. */
+    val soundPageTurn: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_sound_page_turn", false)
+
     /** Show an estimate of the time left in the chapter next to the page number. */
     val showTimeLeft: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_reader_time_left", true)
 
