@@ -954,6 +954,17 @@ class ReaderViewModel(
         mutableState.update { it.copy(dialog = Dialog.PageActions(page)) }
     }
 
+    fun openChapterList() {
+        if (!::chapterList.isInitialized) return
+        mutableState.update { it.copy(dialog = Dialog.ChapterList(chapterList.map { chapter -> chapter.chapter })) }
+    }
+
+    /** Jumps to any chapter of the series from the in-reader chapter list, resuming where it was left. */
+    suspend fun loadChapterById(chapterId: Long) {
+        val chapter = chapterList.firstOrNull { it.chapter.id == chapterId } ?: return
+        loadAdjacent(chapter)
+    }
+
     fun openSettingsDialog() {
         mutableState.update { it.copy(dialog = Dialog.Settings) }
     }
@@ -1141,6 +1152,7 @@ class ReaderViewModel(
         data object ReadingModeSelect : Dialog
         data object OrientationModeSelect : Dialog
         data class PageActions(val page: ReaderPage) : Dialog
+        data class ChapterList(val chapters: List<Chapter>) : Dialog
     }
 
     sealed interface Event {

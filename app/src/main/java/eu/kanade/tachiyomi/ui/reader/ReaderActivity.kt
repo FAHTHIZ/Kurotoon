@@ -331,7 +331,7 @@ class ReaderActivity : BaseActivity() {
             }
 
             val onDismissRequest = viewModel::closeDialog
-            when (state.dialog) {
+            when (val dialog = state.dialog) {
                 is ReaderViewModel.Dialog.Settings -> {
                     ReaderSettingsDialog(
                         onDismissRequest = onDismissRequest,
@@ -368,6 +368,16 @@ class ReaderActivity : BaseActivity() {
                         onSetAsCover = viewModel::setAsCover,
                         onShare = viewModel::shareImage,
                         onSave = viewModel::saveImage,
+                    )
+                }
+                is ReaderViewModel.Dialog.ChapterList -> {
+                    kurotoon.ui.reader.ReaderChapterListSheet(
+                        chapters = dialog.chapters,
+                        currentChapterId = state.currentChapter?.chapter?.id,
+                        onDismissRequest = onDismissRequest,
+                        onChapterClick = { chapter ->
+                            lifecycleScope.launch { viewModel.loadChapterById(chapter.id) }
+                        },
                     )
                 }
                 null -> {}
@@ -674,6 +684,7 @@ class ReaderActivity : BaseActivity() {
             onClickSettings = viewModel::openSettingsDialog,
             autoScrolling = autoScroll.enabled,
             onClickAutoScroll = ::toggleAutoScroll,
+            onClickChapterList = viewModel::openChapterList,
         )
     }
 

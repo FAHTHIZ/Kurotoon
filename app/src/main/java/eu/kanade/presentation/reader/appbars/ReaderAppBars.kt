@@ -76,6 +76,7 @@ fun ReaderAppBars(
     onClickSettings: () -> Unit,
     autoScrolling: Boolean,
     onClickAutoScroll: () -> Unit,
+    onClickChapterList: () -> Unit = {},
 ) {
     val backgroundColor = MaterialTheme.colorScheme
         .surfaceColorAtElevation(3.dp)
@@ -177,6 +178,7 @@ fun ReaderAppBars(
                     onClickSettings = onClickSettings,
                     autoScrolling = autoScrolling,
                     onClickAutoScroll = onClickAutoScroll,
+                    onClickChapterList = onClickChapterList,
                 )
             }
         }
