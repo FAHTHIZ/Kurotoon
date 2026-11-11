@@ -1209,6 +1209,7 @@
     <string name="kurotoon_reader_clockBatterySummary">Show the clock and battery level next to the page number, since the reader hides the status bar</string>
     <string name="kurotoon_reader_resumedAt">Picked up on page %d</string>
     <string name="kurotoon_reader_startOver">Start over</string>
+    <string name="kurotoon_manga_continueChapter">%1$s · Ch. %2$s</string>
     <string name="kurotoon_reader_bedtime">Bedtime warmth</string>
     <string name="kurotoon_reader_bedtimeSummary">Pages warm up and dim a little from 9:30 PM, easing back to normal by 6:30 AM</string>
     <string name="kurotoon_year_title">%d in reading</string>

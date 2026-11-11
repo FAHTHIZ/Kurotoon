@@ -340,11 +340,7 @@ private fun MangaScreenSmallImpl(
             val isFABVisible = state.hasUnreadChapters && !isAnySelected
             SmallExtendedFloatingActionButton(
                 text = {
-                    Text(
-                        text = stringResource(
-                            if (state.hasReadChapters) MR.strings.action_resume else MR.strings.action_start,
-                        ),
-                    )
+                    Text(text = continueReadingLabel(state))
                 },
                 icon = { Icon(imageVector = MaterialSymbols.RoundedFilled.PlayArrow, contentDescription = null) },
                 onClick = onContinueReading,
@@ -579,11 +575,7 @@ fun MangaScreenLargeImpl(
             val isFABVisible = state.hasUnreadChapters && !isAnySelected
             SmallExtendedFloatingActionButton(
                 text = {
-                    Text(
-                        text = stringResource(
-                            if (state.hasReadChapters) MR.strings.action_resume else MR.strings.action_start,
-                        ),
-                    )
+                    Text(text = continueReadingLabel(state))
                 },
                 icon = { Icon(imageVector = MaterialSymbols.RoundedFilled.PlayArrow, contentDescription = null) },
                 onClick = onContinueReading,
@@ -833,4 +825,12 @@ private fun onChapterItemClick(
         isAnyChapterSelected -> onToggleSelection(true)
         else -> onChapterClicked(chapterItem.chapter)
     }
+}
+
+/** "Resume · Ch. 37" or "Start · Ch. 1"; just the verb when the chapter has no number. */
+@Composable
+private fun continueReadingLabel(state: MangaViewModel.State.Success): String {
+    val verb = stringResource(if (state.hasReadChapters) MR.strings.action_resume else MR.strings.action_start)
+    val number = state.nextUnreadChapter?.chapterNumber?.takeIf { it >= 0 } ?: return verb
+    return stringResource(MR.strings.kurotoon_manga_continueChapter, verb, formatChapterNumber(number))
 }

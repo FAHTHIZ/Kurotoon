@@ -11,6 +11,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Keep reading on the sleep timer's rest card now brings the soundtrack back instead of leaving it muted
 
 ### Added
+- The Resume / Start button on a series names the chapter it opens ("Resume · Ch. 37")
 - Bedtime warmth (Settings > Reader): pages warm up and dim slightly from 9:30 PM, easing back by 6:30 AM
 - Opening a chapter part-way through shows "Picked up on page N" with a Start over button for a second look from the top
 - Reader clock and battery: the time and battery level sit next to the page number, since the reader hides the status bar (Settings > Reader > Time and battery)
