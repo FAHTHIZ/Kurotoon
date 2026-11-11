@@ -34,7 +34,6 @@ import mihon.icons.materialsymbols.rounded.Info
 import mihon.icons.materialsymbols.rounded.QueryStats
 import mihon.icons.materialsymbols.rounded.Settings
 import mihon.icons.materialsymbols.rounded.Storage
-import mihon.icons.materialsymbols.rounded.Sync
 import tachiyomi.core.common.Constants
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.ScrollbarLazyColumn
@@ -54,7 +53,6 @@ fun MoreScreen(
     onClickStats: () -> Unit,
     onClickSavedPanels: () -> Unit = {},
     onClickDataAndStorage: () -> Unit,
-    onClickChapterReconciliation: () -> Unit,
     onClickSettings: () -> Unit,
     onClickAbout: () -> Unit,
     nickname: String,
@@ -170,13 +168,6 @@ fun MoreScreen(
                         icon = MaterialSymbols.AutoMirroredRounded.Label,
                         tint = KuroColors.Gold,
                         onClick = onClickCategories,
-                    )
-                    MeRow(
-                        title = stringResource(MR.strings.kurotoon_more_reconcile),
-                        subtitle = stringResource(MR.strings.kurotoon_more_reconcileSummary),
-                        icon = MaterialSymbols.Rounded.Sync,
-                        tint = KuroColors.Aurora,
-                        onClick = onClickChapterReconciliation,
                     )
                     MeRow(
                         title = stringResource(MR.strings.label_data_storage),
