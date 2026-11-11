@@ -99,6 +99,10 @@ def run_batch(sha):
     ui.log.close()
     crash = sh("adb", "logcat", "-d", "-b", "crash").stdout
     open(f"{out}/crash.txt", "w").write(crash[-20000:])
+    try:  # the last of the full log, for when the emulator itself falls over
+        open(f"{out}/logcat.txt", "w").write(open("/tmp/logcat.txt", errors="replace").read()[-60000:])
+    except OSError:
+        pass
     publish(f"batch {batch}")
     return None
 

@@ -140,7 +140,8 @@ def run(path):
             elif cmd == "tapxy":
                 adb("shell", "input", "tap", args[0], args[1]); time.sleep(1.5)
             elif cmd == "long":
-                pos = find(args[0])
+                # long LABEL, or long X Y for a spot with no label (a reader page)
+                pos = (int(args[0]), int(args[1])) if len(args) > 1 and args[0].isdigit() else find(args[0])
                 if pos:
                     adb("shell", "input", "swipe", str(pos[0]), str(pos[1]), str(pos[0]), str(pos[1]), "900"); time.sleep(1.5)
                 else:
