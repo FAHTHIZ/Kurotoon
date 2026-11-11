@@ -15,6 +15,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kurotoon.reader.DataSaver
 import mihon.data.cache.ChapterCache
 import java.io.FileNotFoundException
 import java.util.concurrent.ConcurrentHashMap
@@ -229,7 +230,7 @@ internal class HttpPageLoader(
                 val live = page.downloadStream
                 page.status = Page.State.DownloadImage
                 try {
-                    chapterCache.putImage(imageUrl, source.getImage(page), live)
+                    chapterCache.putImage(imageUrl, DataSaver.fetch(source.id, page) ?: source.getImage(page), live)
                         .also { live?.finish() }
                 } catch (e: Throwable) {
                     live?.finish(e)

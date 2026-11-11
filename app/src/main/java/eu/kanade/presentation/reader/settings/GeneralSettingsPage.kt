@@ -11,6 +11,7 @@ import eu.kanade.tachiyomi.ui.reader.setting.ReaderPreferences
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderSettingsViewModel
 import eu.kanade.tachiyomi.ui.reader.setting.ReadingMode
 import eu.kanade.tachiyomi.util.system.hasDisplayCutout
+import kurotoon.reader.DataSaver
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.CheckboxItem
 import tachiyomi.presentation.core.components.SettingsChipRow
@@ -80,6 +81,38 @@ internal fun ColumnScope.GeneralPage(viewModel: ReaderSettingsViewModel) {
         label = stringResource(MR.strings.kurotoon_reader_celebrateChapters),
         pref = viewModel.preferences.celebrateChapters,
     )
+
+    val dataSaver by viewModel.preferences.dataSaver.collectAsState()
+    SettingsChipRow(MR.strings.kurotoon_dataSaver_title) {
+        DataSaver.MODES.forEach { mode ->
+            FilterChip(
+                selected = dataSaver == mode,
+                onClick = { viewModel.preferences.dataSaver.set(mode) },
+                label = {
+                    Text(
+                        stringResource(
+                            when (mode) {
+                                DataSaver.MOBILE -> MR.strings.kurotoon_dataSaver_mobile
+                                DataSaver.ALWAYS -> MR.strings.kurotoon_dataSaver_always
+                                else -> MR.strings.kurotoon_dataSaver_off
+                            },
+                        ),
+                    )
+                },
+            )
+        }
+    }
+    if (dataSaver != DataSaver.OFF) {
+        val qualityPref = viewModel.preferences.dataSaverQuality
+        val quality by qualityPref.collectAsState()
+        SliderItem(
+            label = stringResource(MR.strings.kurotoon_dataSaver_quality),
+            value = quality,
+            valueRange = 30..90 step 5,
+            valueString = "$quality%",
+            onChange = { qualityPref.set(it) },
+        )
+    }
 
     val verticalNavigatorModes by viewModel.preferences.verticalNavigator.collectAsState()
 

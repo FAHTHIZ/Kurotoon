@@ -1091,6 +1091,11 @@
     <string name="kurotoon.me.defaultNickname">Reader</string>
     <string name="kurotoon.me.editNickname">Edit nickname</string>
     <string name="kurotoon.sound.title">Sound</string>
+    <string name="kurotoon.dataSaver.title">Data saver</string>
+    <string name="kurotoon.dataSaver.off">Off</string>
+    <string name="kurotoon.dataSaver.mobile">On mobile data</string>
+    <string name="kurotoon.dataSaver.always">Always</string>
+    <string name="kurotoon.dataSaver.quality">Data saver quality</string>
     <string name="kurotoon.sleep.timer">Sleep timer</string>
     <string name="kurotoon.sleep.minutes">%1$d min</string>
     <string name="kurotoon.sleep.endOfChapter">End of chapter</string>
