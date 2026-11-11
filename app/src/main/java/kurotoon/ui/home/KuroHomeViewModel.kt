@@ -161,6 +161,12 @@ class KuroHomeViewModel(
     }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), State())
 
+    /**
+     * The fetch in flight for each row, so a newer one (toggle, retry, refresh) replaces an older one.
+     * Declared before init: the first loads start from init, and a later field would still be null then.
+     */
+    private val rowJobs = java.util.concurrent.ConcurrentHashMap<String, Job>()
+
     init {
         viewModelScope.launch {
             sourceIds.collectLatest { ids ->
@@ -251,9 +257,6 @@ class KuroHomeViewModel(
     }
 
     fun retry(row: SourceRow) = launchRow(row)
-
-    /** The fetch in flight for each row, so a newer one (toggle, retry, refresh) replaces an older one. */
-    private val rowJobs = java.util.concurrent.ConcurrentHashMap<String, Job>()
 
     /**
      * Loads [row], cancelling any earlier load of the same row first. Without this a slow Popular
