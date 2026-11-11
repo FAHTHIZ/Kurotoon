@@ -1,0 +1,190 @@
+> start app.kurotoon.dev
+> sleep 3
+> shot welcome
+  [shot 001_welcome] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx Next
+> shot storage
+  [shot 002_storage] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx "Select a folder"
+  !! not found: Select a folder
+  [shot 003_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> sleep 3
+> shot picker
+  [shot 004_picker] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tap "More options" 25
+  !! not found: More options
+  [shot 005_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> shot picker_menu
+  [shot 006_picker_menu] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tap "New folder"
+  !! not found: New folder
+  [shot 007_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> shot newfolder
+  [shot 008_newfolder] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> type Kurotoon
+> tapx OK
+  !! not found: OK
+  [shot 009_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> sleep 2
+> shot infolder
+  [shot 010_infolder] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tap "Use this folder" 15
+  !! not found: Use this folder
+  [shot 011_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> sleep 2
+> tap Allow
+  !! not found: Allow
+  [shot 012_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> sleep 2
+> shot storage_done
+  [shot 013_storage_done] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx Next
+> shot permissions
+  [shot 014_permissions] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx Next
+> shot guides
+  [shot 015_guides] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tap "Get started"
+  !! not found: Get started
+  [shot 016_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> sleep 3
+> shot home
+  [shot 017_home] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx Browse
+  !! not found: Browse
+  [shot 018_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> sleep 2
+> shot browse
+  [shot 019_browse] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx Library
+  !! not found: Library
+  [shot 020_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> shot library
+  [shot 021_library] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx Updates
+  !! not found: Updates
+  [shot 022_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> shot updates
+  [shot 023_updates] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx Me
+  !! not found: Me
+  [shot 024_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> shot me
+  [shot 025_me] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx Home
+  !! not found: Home
+  [shot 026_notfound] visible: ['Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Light', 'System', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> view "tachiyomi://add-repo?url=https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
+> sleep 3
+> shot addrepo_dialog
+  [shot 027_addrepo_dialog] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> tapx Add
+> sleep 4
+> shot after_addrepo
+  [shot 028_after_addrepo] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh']
+> back
+> tapx Home
+> tap "Add sources"
+> sleep 8
+> shot extensions
+  [shot 029_extensions] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', '3Hentai', 'Keiyoushi', '1.6.7', '18+', 'Open in WebView', 'Install', '4KHD', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'AHottie', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'Ahri Gallery', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'Akuma', 'Keiyoushi', '1.6.11', '18+', 'Open in WebView', 'Install', 'AllPornComics.co', 'Keiyoushi', '1.6.58', '18+', 'Open in WebView', 'Install', 'AsmHentai', 'Keiyoushi', '1.6.15', '18+', 'Open in WebView', 'Install', 'BaoBua', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'BookOrbit', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library']
+> tap Search
+> type MangaDex
+> sleep 3
+> shot ext_search
+  [shot 030_ext_search] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', 'MangaDex', 'Keiyoushi', '1.6.4', 'Mixed', 'Open in WebView', 'Install', 'English', 'MangaDex', 'Keiyoushi', '1.6.4', 'Mixed', 'Open in WebView', 'Install', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'MangaDex', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Install
+> sleep 12
+> shot install_prompt
+  [shot 031_install_prompt] visible: ['KuroToon', 'For your security, your phone currently isn’t allowed to install unknown apps from this source. You can change this in Settings.', 'CANCEL', 'SETTINGS']
+> tapx Install
+  !! not found: Install
+  [shot 032_notfound] visible: ['KuroToon', 'For your security, your phone currently isn’t allowed to install unknown apps from this source. You can change this in Settings.', 'CANCEL', 'SETTINGS']
+> sleep 20
+> shot installed
+  [shot 033_installed] visible: ['KuroToon', 'For your security, your phone currently isn’t allowed to install unknown apps from this source. You can change this in Settings.', 'CANCEL', 'SETTINGS']
+> tapx Install
+  !! not found: Install
+  [shot 034_notfound] visible: ['KuroToon', 'For your security, your phone currently isn’t allowed to install unknown apps from this source. You can change this in Settings.', 'CANCEL', 'SETTINGS']
+> sleep 5
+> shot installed2
+  [shot 035_installed2] visible: ['KuroToon', 'For your security, your phone currently isn’t allowed to install unknown apps from this source. You can change this in Settings.', 'CANCEL', 'SETTINGS']
+> back
+> back
+> tapx Home
+> sleep 10
+> shot home_with_source
+  [shot 036_home_with_source] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', 'MangaDex', 'Keiyoushi', '1.6.4', 'Installing', 'Mixed', 'Cancel', 'English', 'MangaDex', 'Keiyoushi', '1.6.4', 'Mixed', 'Open in WebView', 'Install', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'MangaDex', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> shot home_scrolled
+  [shot 037_home_scrolled] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', 'MangaDex', 'Keiyoushi', '1.6.4', 'Installing', 'Mixed', 'Cancel', 'English', 'MangaDex', 'Keiyoushi', '1.6.4', 'Mixed', 'Open in WebView', 'Install', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'MangaDex', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Browse
+> sleep 3
+> shot browse_sources
+  [shot 038_browse_sources] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', 'MangaDex', 'Keiyoushi', '1.6.4', 'Installing', 'Mixed', 'Cancel', 'English', 'MangaDex', 'Keiyoushi', '1.6.4', 'Mixed', 'Open in WebView', 'Install', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'MangaDex', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap MangaDex
+> sleep 12
+> shot source_popular
+  [shot 039_source_popular] visible: ['KuroToon', 'For your security, your phone currently isn’t allowed to install unknown apps from this source. You can change this in Settings.', 'CANCEL', 'SETTINGS']
+> tapx Latest
+  !! not found: Latest
+  [shot 040_notfound] visible: ['KuroToon', 'For your security, your phone currently isn’t allowed to install unknown apps from this source. You can change this in Settings.', 'CANCEL', 'SETTINGS']
+> sleep 10
+> shot source_latest
+  [shot 041_source_latest] visible: ['KuroToon', 'For your security, your phone currently isn’t allowed to install unknown apps from this source. You can change this in Settings.', 'CANCEL', 'SETTINGS']
+> tapxy 270 1000
+> sleep 10
+> shot manga
+  [shot 042_manga] visible: ['KuroToon', 'For your security, your phone currently isn’t allowed to install unknown apps from this source. You can change this in Settings.', 'CANCEL', 'SETTINGS']
+> scrollup
+> shot manga_chapters
+  [shot 043_manga_chapters] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', 'MangaDex', 'Keiyoushi', '1.6.4', 'Installing', 'Mixed', 'Cancel', 'English', 'MangaDex', 'Keiyoushi', '1.6.4', 'Mixed', 'Open in WebView', 'Install', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'MangaDex', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrolldown
+> scrolldown
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 044_notfound] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', 'MangaDex', 'Keiyoushi', '1.6.4', 'Installing', 'Mixed', 'Cancel', 'English', 'MangaDex', 'Keiyoushi', '1.6.4', 'Mixed', 'Open in WebView', 'Install', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'MangaDex', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 3
+> shot added
+  [shot 045_added] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', 'MangaDex', 'Keiyoushi', '1.6.4', 'Installing', 'Mixed', 'Cancel', 'English', 'MangaDex', 'Keiyoushi', '1.6.4', 'Mixed', 'Open in WebView', 'Install', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'MangaDex', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "Start"
+  !! not found: Start
+  [shot 046_notfound] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', 'MangaDex', 'Keiyoushi', '1.6.4', 'Installing', 'Mixed', 'Cancel', 'English', 'MangaDex', 'Keiyoushi', '1.6.4', 'Mixed', 'Open in WebView', 'Install', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'MangaDex', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 15
+> shot reader
+  [shot 047_reader] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', 'MangaDex', 'Keiyoushi', '1.6.4', 'Installing', 'Mixed', 'Cancel', 'English', 'MangaDex', 'Keiyoushi', '1.6.4', 'Mixed', 'Open in WebView', 'Install', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'MangaDex', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapxy 540 1200
+> sleep 2
+> shot reader_menu
+  [shot 048_reader_menu] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', 'MangaDex', 'Keiyoushi', '1.6.4', 'Installing', 'Mixed', 'Cancel', 'English', 'MangaDex', 'Keiyoushi', '1.6.4', 'Installing', 'Mixed', 'Cancel', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'MangaDex', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapxy 540 1200
+> scrollup
+> scrollup
+> shot reader_scrolled
+  [shot 049_reader_scrolled] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', 'MangaDex', 'Keiyoushi', '1.6.4', 'Installing', 'Mixed', 'Cancel', 'English', 'MangaDex', 'Keiyoushi', '1.6.4', 'Installing', 'Mixed', 'Cancel', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'MangaDex', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> back
+> sleep 2
+> shot manga_after_read
+  [shot 050_manga_after_read] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', '3Hentai', 'Keiyoushi', '1.6.7', '18+', 'Open in WebView', 'Install', '4KHD', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'AHottie', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'Ahri Gallery', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'Akuma', 'Keiyoushi', '1.6.11', '18+', 'Open in WebView', 'Install', 'AllPornComics.co', 'Keiyoushi', '1.6.58', '18+', 'Open in WebView', 'Install', 'AsmHentai', 'Keiyoushi', '1.6.15', '18+', 'Open in WebView', 'Install', 'BaoBua', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> back
+> back
+> tapx Library
+  !! not found: Library
+  [shot 051_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> sleep 2
+> shot library_after
+  [shot 052_library_after] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> tapx Updates
+  !! not found: Updates
+  [shot 053_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> shot updates_after
+  [shot 054_updates_after] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> tapx Me
+  !! not found: Me
+  [shot 055_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> shot me_after
+  [shot 056_me_after] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> tapx Home
+> sleep 4
+> shot home_after
+  [shot 057_home_after] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']

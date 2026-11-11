@@ -1,0 +1,186 @@
+> start app.kurotoon.dev
+> sleep 4
+> tapx Home
+> tap "Add sources"
+> sleep 8
+> tap Search
+> type Webtoons.com
+> sleep 4
+> shot ext_webtoons
+  [shot 001_ext_webtoons] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'English', 'Webtoons.com', 'Keiyoushi', '1.6.3', 'Open in WebView', 'Install', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'Webtoons.com', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Install
+> sleep 12
+> tapx Install
+  !! not found: Install
+  [shot 002_notfound] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'English', 'Webtoons.com', 'Keiyoushi', '1.6.3', 'Installing', 'Cancel', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'Webtoons.com', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 20
+> key 123
+> sh input keyevent 67 67 67 67 67 67 67 67 67 67 67 67 67 67 67
+
+> type Asura
+> sleep 4
+> shot ext_asura
+  [shot 003_ext_asura] visible: ['(╬ಠ益ಠ)', 'No results found', 'Extension stores', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'Aura', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Install
+  !! not found: Install
+  [shot 004_notfound] visible: ['(╬ಠ益ಠ)', 'No results found', 'Extension stores', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'Aura', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 12
+> tapx Install
+  !! not found: Install
+  [shot 005_notfound] visible: ['(╬ಠ益ಠ)', 'No results found', 'Extension stores', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'Aura', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 20
+> shot ext_installed
+  [shot 006_ext_installed] visible: ['(╬ಠ益ಠ)', 'No results found', 'Extension stores', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'Aura', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> back
+> back
+> tapx Browse
+> sleep 3
+> shot sources_list
+  [shot 007_sources_list] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', '3Hentai', 'Keiyoushi', '1.6.7', '18+', 'Open in WebView', 'Install', '4KHD', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'AHottie', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'Ahri Gallery', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'Akuma', 'Keiyoushi', '1.6.11', '18+', 'Open in WebView', 'Install', 'AllPornComics.co', 'Keiyoushi', '1.6.58', '18+', 'Open in WebView', 'Install', 'AsmHentai', 'Keiyoushi', '1.6.15', '18+', 'Open in WebView', 'Install', 'BaoBua', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'BookOrbit', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library']
+> tap Webtoons.com
+  !! not found: Webtoons.com
+  [shot 008_notfound] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', '3Hentai', 'Keiyoushi', '1.6.7', '18+', 'Open in WebView', 'Install', '4KHD', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'AHottie', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'Ahri Gallery', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'Akuma', 'Keiyoushi', '1.6.11', '18+', 'Open in WebView', 'Install', 'AllPornComics.co', 'Keiyoushi', '1.6.58', '18+', 'Open in WebView', 'Install', 'AsmHentai', 'Keiyoushi', '1.6.15', '18+', 'Open in WebView', 'Install', 'BaoBua', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'BookOrbit', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library']
+> sleep 10
+> shot webtoons_popular
+  [shot 009_webtoons_popular] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', '3Hentai', 'Keiyoushi', '1.6.7', '18+', 'Open in WebView', 'Install', '4KHD', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'AHottie', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'Ahri Gallery', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'Akuma', 'Keiyoushi', '1.6.11', '18+', 'Open in WebView', 'Install', 'AllPornComics.co', 'Keiyoushi', '1.6.58', '18+', 'Open in WebView', 'Install', 'AsmHentai', 'Keiyoushi', '1.6.15', '18+', 'Open in WebView', 'Install', 'BaoBua', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'BookOrbit', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library']
+> tapx Latest
+  !! not found: Latest
+  [shot 010_notfound] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', '3Hentai', 'Keiyoushi', '1.6.7', '18+', 'Open in WebView', 'Install', '4KHD', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'AHottie', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'Ahri Gallery', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'Akuma', 'Keiyoushi', '1.6.11', '18+', 'Open in WebView', 'Install', 'AllPornComics.co', 'Keiyoushi', '1.6.58', '18+', 'Open in WebView', 'Install', 'AsmHentai', 'Keiyoushi', '1.6.15', '18+', 'Open in WebView', 'Install', 'BaoBua', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'BookOrbit', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library']
+> sleep 8
+> shot webtoons_latest
+  [shot 011_webtoons_latest] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', '3Hentai', 'Keiyoushi', '1.6.7', '18+', 'Open in WebView', 'Install', '4KHD', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'AHottie', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'Ahri Gallery', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'Akuma', 'Keiyoushi', '1.6.11', '18+', 'Open in WebView', 'Install', 'AllPornComics.co', 'Keiyoushi', '1.6.58', '18+', 'Open in WebView', 'Install', 'AsmHentai', 'Keiyoushi', '1.6.15', '18+', 'Open in WebView', 'Install', 'BaoBua', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'BookOrbit', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library']
+> tapxy 270 1000
+> sleep 10
+> shot webtoons_series
+  [shot 012_webtoons_series] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', '3Hentai', 'Keiyoushi', '1.6.7', '18+', 'Open in WebView', 'Install', '4KHD', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'AHottie', 'Keiyoushi', '1.6.5', 'Installing', '18+', 'Cancel', 'Ahri Gallery', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'Akuma', 'Keiyoushi', '1.6.11', '18+', 'Open in WebView', 'Install', 'AllPornComics.co', 'Keiyoushi', '1.6.58', '18+', 'Open in WebView', 'Install', 'AsmHentai', 'Keiyoushi', '1.6.15', '18+', 'Open in WebView', 'Install', 'BaoBua', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'BookOrbit', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library']
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 013_notfound] visible: ['Permissions are needed to install extensions. Tap here to grant.', 'Multi', '3Hentai', 'Keiyoushi', '1.6.7', '18+', 'Open in WebView', 'Install', '4KHD', 'Keiyoushi', '1.6.5', '18+', 'Open in WebView', 'Install', 'AHottie', 'Keiyoushi', '1.6.5', 'Installing', '18+', 'Cancel', 'Ahri Gallery', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'Akuma', 'Keiyoushi', '1.6.11', '18+', 'Open in WebView', 'Install', 'AllPornComics.co', 'Keiyoushi', '1.6.58', '18+', 'Open in WebView', 'Install', 'AsmHentai', 'Keiyoushi', '1.6.15', '18+', 'Open in WebView', 'Install', 'BaoBua', 'Keiyoushi', '1.6.1', '18+', 'Open in WebView', 'Install', 'BookOrbit', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library']
+> sleep 3
+> back
+> back
+> tap "Asura Scans"
+  !! not found: Asura Scans
+  [shot 014_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> sleep 12
+> shot asura_popular
+  [shot 015_asura_popular] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> tapxy 270 1000
+> sleep 10
+> shot asura_series
+  [shot 016_asura_series] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 017_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> sleep 3
+> tap Start
+  !! not found: Start
+  [shot 018_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> sleep 15
+> shot asura_reader
+  [shot 019_asura_reader] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> tapxy 540 1200
+> sleep 2
+> shot asura_reader_menu
+  [shot 020_asura_reader_menu] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> tap Chapters
+  !! not found: Chapters
+  [shot 021_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> sleep 3
+> shot reader_chapter_list
+  [shot 022_reader_chapter_list] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> back
+> back
+> back
+> back
+> back
+> tapx Library
+  !! not found: Library
+  [shot 023_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> sleep 3
+> shot library_full
+  [shot 024_library_full] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> tap "More options"
+  !! not found: More options
+  [shot 025_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> shot library_menu
+  [shot 026_library_menu] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> tap "Group library by"
+  !! not found: Group library by
+  [shot 027_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> sleep 2
+> shot group_by
+  [shot 028_group_by] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> tap Source
+  !! not found: Source
+  [shot 029_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> sleep 3
+> shot library_by_source
+  [shot 030_library_by_source] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> tapx Updates
+  !! not found: Updates
+  [shot 031_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> sleep 3
+> shot updates
+  [shot 032_updates] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> tap "Release schedule"
+  !! not found: Release schedule
+  [shot 033_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> sleep 3
+> shot schedule
+  [shot 034_schedule] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> back
+> tapx Me
+  !! not found: Me
+  [shot 035_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> sleep 2
+> shot me
+  [shot 036_me] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> tap "Kuro Points"
+  !! not found: Kuro Points
+  [shot 037_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> sleep 3
+> shot shop_missions
+  [shot 038_shop_missions] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> tapx Shop
+  !! not found: Shop
+  [shot 039_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> sleep 2
+> shot shop
+  [shot 040_shop] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> scrollup
+> shot shop_scrolled
+  [shot 041_shop_scrolled] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> tapx Achievements
+  !! not found: Achievements
+  [shot 042_notfound] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> sleep 2
+> shot achievements
+  [shot 043_achievements] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> tapx Collection
+  !! not found: Collection
+  [shot 044_notfound] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> sleep 2
+> shot collection
+  [shot 045_collection] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> tapx Packs
+  !! not found: Packs
+  [shot 046_notfound] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> sleep 2
+> shot packs
+  [shot 047_packs] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
+> back
+> tap Statistics
+  !! not found: Statistics
+  [shot 048_notfound] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> sleep 3
+> shot stats
+  [shot 049_stats] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> back
+> tapx Home
+> sleep 6
+> shot home_final
+  [shot 050_home_final] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> scrollup
+> shot home_final_scrolled
+  [shot 051_home_final_scrolled] visible: ['Calendar', 'Camera', 'Clock', 'Contacts', 'Files', 'Gallery', 'KuroToon', 'Messaging', 'Phone', 'Search', 'Settings', 'TMoble', 'WebView Browser Tester', '  Search apps', 'Home']
