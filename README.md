@@ -58,6 +58,8 @@ calendar and music while you read. KuroToon is the first to give you both, plus 
 | <img src=".github/assets/screenshots/keep_panel.jpg" alt="Page actions with Keep panel" width="250"> | <img src=".github/assets/screenshots/strip.jpg" alt="Long-strip reading with clock and battery" width="250"> | <img src=".github/assets/screenshots/home_continue.jpg" alt="Continue reading and source rows on Home" width="250"> |
 | **Library** | **Updates** | **Me** |
 | <img src=".github/assets/screenshots/library.jpg" alt="Library" width="250"> | <img src=".github/assets/screenshots/updates.jpg" alt="Updates with release schedule" width="250"> | <img src=".github/assets/screenshots/me.jpg" alt="Me tab with profile and stats" width="250"> |
+| **Kuro Points shop** | **Statistics** | **Knows the release days** |
+| <img src=".github/assets/screenshots/shop.jpg" alt="Kuro Points shop with avatars earned by reading" width="250"> | <img src=".github/assets/screenshots/stats.jpg" alt="Statistics with reading heatmap and streaks" width="250"> | <img src=".github/assets/screenshots/series_schedule.jpg" alt="Series page showing its usual release days" width="250"> |
 | **Sources** | **Extensions** | **First run** |
 | <img src=".github/assets/screenshots/sources.jpg" alt="Installed sources and Universal Search" width="250"> | <img src=".github/assets/screenshots/extensions.jpg" alt="Installed extensions" width="250"> | <img src=".github/assets/screenshots/onboarding.jpg" alt="First-run theme picker" width="250"> |
 
