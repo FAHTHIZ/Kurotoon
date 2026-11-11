@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Fixed
+- Rotating the screen no longer unmutes the reader's music
 - The sound sheet now says when an episode's music couldn't be checked (offline) and offers Retry, instead of showing nothing
 - The end-of-series card now actually shows the usual update day (its chapter lookup always failed before)
 - Home no longer crashes on launch when your sources start loading their rows before Home finished setting up
