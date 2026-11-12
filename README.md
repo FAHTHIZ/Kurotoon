@@ -97,6 +97,15 @@ one, tap Use.
 </tr>
 </table>
 
+<table>
+<tr>
+<td width="50%" valign="top"><img src="docs/images/episode_list.png" alt="Episode list with numbered tiles, UP badge and Newest sort pill"><br><sub><b>Episodes</b> · numbered tiles, new ones marked UP</sub></td>
+<td width="50%" valign="top"><img src="docs/images/up_next.png" alt="Up next card between two episodes in the reader"><br><sub><b>Up next</b> · a calm card between episodes</sub></td>
+</tr>
+</table>
+
+<p align="center"><img src="docs/images/segmented_tabs.png" alt="Segmented tabs: Sources, Extensions, Migrate" width="70%"></p>
+
 <p align="center"><img src="docs/images/bottom_bar.png" alt="Floating bottom dock with the Browse tab selected" width="70%"></p>
 
 <sub>Rendered from the real Compose screens with Roborazzi, using placeholder gradient covers.</sub>

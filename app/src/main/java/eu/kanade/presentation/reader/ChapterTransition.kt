@@ -170,7 +170,7 @@ private fun QuietChapter(
         }
         Column(modifier = Modifier.weight(1f)) {
             Text(
-                text = label,
+                text = label.trimEnd(':', '：', ' '),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -203,7 +203,7 @@ private fun DestinationCard(
             .padding(horizontal = 20.dp, vertical = 18.dp),
     ) {
         Text(
-            text = label,
+            text = label.trimEnd(':', '：', ' '),
             style = MaterialTheme.typography.labelMedium,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onPrimary,

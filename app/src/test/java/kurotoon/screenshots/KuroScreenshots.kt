@@ -59,6 +59,7 @@ import org.robolectric.annotation.Config
 import tachiyomi.domain.history.model.HistoryWithRelations
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.manga.model.MangaCover
+import tachiyomi.domain.library.service.LibraryPreferences.ChapterSwipeAction as SwipeAction
 
 /**
  * Renders KuroToon's own components to PNGs under `app/build/screenshots/` for visual review.
@@ -641,6 +642,83 @@ class KuroScreenshots {
                 onTrackingClicked = {},
                 onEditIntervalClicked = null,
                 onEditCategory = null,
+            )
+        }
+    }
+
+    @Test
+    fun episodeList() = shot("episode_list") {
+        Column(Modifier.padding(vertical = 8.dp)) {
+            eu.kanade.presentation.manga.components.ChapterHeader(
+                enabled = true,
+                chapterCount = 126,
+                missingChapterCount = 0,
+                onClick = {},
+                sortDescending = true,
+                onFlipSortOrder = {},
+            )
+            data class Row(val n: Int, val date: String, val read: Boolean, val new: Boolean, val progress: Boolean)
+            listOf(
+                Row(126, "Today", read = false, new = true, progress = false),
+                Row(125, "Nov 5", read = false, new = false, progress = true),
+                Row(124, "Oct 29", read = true, new = false, progress = false),
+                Row(123, "Oct 22", read = true, new = false, progress = false),
+            ).forEach { row ->
+                eu.kanade.presentation.manga.components.MangaChapterListItem(
+                    title = "Episode ${row.n}",
+                    date = row.date,
+                    readProgress = if (row.progress) "Page 14" else null,
+                    scanlator = null,
+                    read = row.read,
+                    bookmark = false,
+                    selected = false,
+                    downloadIndicatorEnabled = true,
+                    downloadStateProvider = { eu.kanade.tachiyomi.data.download.model.Download.State.NOT_DOWNLOADED },
+                    downloadProgressProvider = { 0 },
+                    chapterSwipeStartAction = SwipeAction.Disabled,
+                    chapterSwipeEndAction = SwipeAction.Disabled,
+                    onLongClick = {},
+                    onClick = {},
+                    onDownloadClick = {},
+                    onChapterSwipe = {},
+                    number = row.n.toString(),
+                    isNew = row.new,
+                    inProgress = row.progress,
+                )
+            }
+        }
+    }
+
+    @Test
+    fun segmentedTabs() = shot("segmented_tabs") {
+        val pager = androidx.compose.foundation.pager.rememberPagerState { 3 }
+        kurotoon.ui.KuroSegmentedTabs(
+            titles = listOf("Sources", "Extensions", "Migrate"),
+            pagerState = pager,
+            onSelect = {},
+            modifier = Modifier.padding(vertical = 10.dp),
+        )
+    }
+
+    @Test
+    fun upNextTransition() = shot("up_next") {
+        fun chapter(id: Long, name: String, number: Double) = tachiyomi.domain.chapter.model.Chapter.create().copy(
+            id = id,
+            mangaId = 1L,
+            name = name,
+            chapterNumber = number,
+            scanlator = "Official",
+        )
+        androidx.compose.foundation.layout.Box(Modifier.padding(horizontal = 20.dp, vertical = 32.dp)) {
+            val from = chapter(1, "Episode 125 - Under the Red Moon", 125.0)
+            val to = chapter(2, "Episode 126 - The Crown", 126.0)
+            eu.kanade.presentation.reader.ChapterTransition(
+                transition = eu.kanade.tachiyomi.ui.reader.model.ChapterTransition.Next(
+                    eu.kanade.tachiyomi.ui.reader.model.ReaderChapter(from),
+                    eu.kanade.tachiyomi.ui.reader.model.ReaderChapter(to),
+                ),
+                currChapterDownloaded = false,
+                goingToChapterDownloaded = true,
             )
         }
     }
