@@ -1,0 +1,17 @@
+view "tachiyomi://add-repo?url=https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
+sleep 5
+shot dlg
+tapx Add
+sleep 15
+shot added
+tapif "Navigate up"
+sleep 3
+shot afterup
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Browse
+sleep 2
+tapx Extensions
+sleep 25
+shot ext

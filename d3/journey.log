@@ -1,0 +1,22 @@
+> view "tachiyomi://add-repo?url=https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
+> sleep 5
+> shot dlg
+  [shot 001_dlg] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> tapx Add
+> sleep 15
+> shot added
+  [shot 002_added] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh']
+> tapif "Navigate up"
+> sleep 3
+> shot afterup
+  [shot 003_afterup] visible: ['Multi', 'BookOrbit', 'Keiyoushi', '1.6.1', 'Open in WebView', 'Install', 'Comic Fury', 'Keiyoushi', '1.6.1', 'Mixed', 'Open in WebView', 'Install', 'Comic Growl', 'Keiyoushi', '1.6.3', 'Open in WebView', 'Install', 'Comick (Unoriginal)', 'Keiyoushi', '1.6.7', 'Mixed', 'Open in WebView', 'Install', 'Cubari', 'Keiyoushi', '1.6.3', 'Open in WebView', 'Install', 'DB New Hope', 'Keiyoushi', '1.6.1', 'Open in WebView', 'Install', 'DeviantArt', 'Keiyoushi', '1.6.14', 'Mixed', 'Open in WebView', 'Install', 'Grabber Zone', 'Open in WebView', 'Install', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Browse
+> sleep 2
+> tapx Extensions
+> sleep 25
+> shot ext
+  [shot 004_ext] visible: ['Multi', 'BookOrbit', 'Keiyoushi', '1.6.1', 'Open in WebView', 'Install', 'Comic Fury', 'Keiyoushi', '1.6.1', 'Mixed', 'Open in WebView', 'Install', 'Comic Growl', 'Keiyoushi', '1.6.3', 'Open in WebView', 'Install', 'Comick (Unoriginal)', 'Keiyoushi', '1.6.7', 'Mixed', 'Open in WebView', 'Install', 'Cubari', 'Keiyoushi', '1.6.3', 'Open in WebView', 'Install', 'DB New Hope', 'Keiyoushi', '1.6.1', 'Open in WebView', 'Install', 'DeviantArt', 'Keiyoushi', '1.6.14', 'Mixed', 'Open in WebView', 'Install', 'Grabber Zone', 'Open in WebView', 'Install', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+  [shot 005_end] visible: ['Multi', 'BookOrbit', 'Keiyoushi', '1.6.1', 'Open in WebView', 'Install', 'Comic Fury', 'Keiyoushi', '1.6.1', 'Mixed', 'Open in WebView', 'Install', 'Comic Growl', 'Keiyoushi', '1.6.3', 'Open in WebView', 'Install', 'Comick (Unoriginal)', 'Keiyoushi', '1.6.7', 'Mixed', 'Open in WebView', 'Install', 'Cubari', 'Keiyoushi', '1.6.3', 'Open in WebView', 'Install', 'DB New Hope', 'Keiyoushi', '1.6.1', 'Open in WebView', 'Install', 'DeviantArt', 'Keiyoushi', '1.6.14', 'Mixed', 'Open in WebView', 'Install', 'Grabber Zone', 'Open in WebView', 'Install', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
