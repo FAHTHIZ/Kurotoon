@@ -19,7 +19,17 @@ All notable changes to KuroToon are documented here. Versions follow
 - Empty screens: a softly floating icon on a crimson glow, bolder message, and a solid first action
 - Reader dock: buttons squish when pressed and a tool pops when you switch it on
 - README: banner, badges, a screen gallery and design tokens
+- Series page: each episode starts with a rounded number tile that rings while you're partway through and turns into a check once read; episodes from the last three days carry an UP tag
+- Series page: a Newest/Oldest pill above the episode list flips the order in one tap, next to a round filter button
+- Browse, Updates and other tabbed screens use a pill track with a thumb that slides as you swipe between tabs
+- Reader: the top bar floats as a rounded capsule that matches the bottom dock
+- Screen titles in every top bar are bolder and tighter
+- Series page: the jump-to-episode button sits beside Start/Resume instead of above it, clear of the download buttons
 - **Motion**: covers, cards, tiles and buttons squish when pressed and spring back, Home shelves cascade in, the bottom bar icon pops with a small tilt when you switch tabs, and loading shelves shimmer
+
+### Fixed
+- Global search found nothing until you pinned a source, because it started on Pinned only. It now starts on All until something is pinned
+- TalkBack couldn't read the series page Start/Resume button
 
 ## [0.23.0] - 2026-11-11
 
