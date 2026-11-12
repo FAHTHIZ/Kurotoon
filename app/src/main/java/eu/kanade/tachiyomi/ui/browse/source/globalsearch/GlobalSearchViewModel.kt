@@ -35,7 +35,11 @@ class GlobalSearchViewModel(
     // Pinned-only is a fine default once you've pinned something; before that it would search nothing at all
     initialState = State(
         searchQuery = initialQuery,
-        sourceFilter = if (sourcePreferences.pinnedSources.get().isEmpty()) SourceFilter.All else SourceFilter.PinnedOnly,
+        sourceFilter = if (sourcePreferences.pinnedSources.get().isEmpty()) {
+            SourceFilter.All
+        } else {
+            SourceFilter.PinnedOnly
+        },
     ),
     sourcePreferences = sourcePreferences,
     sourceManager = sourceManager,
