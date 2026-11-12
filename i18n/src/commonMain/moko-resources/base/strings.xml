@@ -1654,4 +1654,27 @@
     <string name="kurotoon.reader.loadingChapter">Opening the episode…</string>
     <string name="kurotoon.reader.cropOn">Crop borders on</string>
     <string name="kurotoon.reader.cropOff">Crop borders off</string>
+    <string name="kurotoon.search.merged">Merged</string>
+    <string name="kurotoon.search.bySource">By source</string>
+    <string name="kurotoon.search.summary">%1$d series · %2$d of %3$d sources answered</string>
+    <string name="kurotoon.search.stillAsking">Still asking %d more…</string>
+    <string name="kurotoon.search.failed">%d sources could not answer</string>
+    <string name="kurotoon.search.seeBySource">See by source</string>
+    <string name="kurotoon.search.nothing">Nothing matched on any source yet</string>
+    <string name="kurotoon.search.foundOn">Found on %d sources</string>
+    <string name="kurotoon.search.pickCopy">Pick which copy to open</string>
+    <string name="kurotoon.search.inLibrary">In your library</string>
+    <string name="kurotoon.tags.tab">Tags</string>
+    <string name="kurotoon.tags.search">Search %d tags</string>
+    <string name="kurotoon.tags.popular">Most sources</string>
+    <string name="kurotoon.tags.az">A–Z</string>
+    <string name="kurotoon.tags.yours">From your library</string>
+    <string name="kurotoon.tags.onSources">On %d sources</string>
+    <string name="kurotoon.tags.browse">Browse on every source</string>
+    <string name="kurotoon.tags.searchTitles">Search titles with this word</string>
+    <string name="kurotoon.tags.hide">Hide this tag everywhere</string>
+    <string name="kurotoon.tags.none">No tags yet. Install an extension and every tag its sources offer shows up here.</string>
+    <string name="kurotoon.tags.noMatch">No tag matches “%s”</string>
+    <string name="kurotoon.tags.summary">%1$d tags from %2$d sources</string>
+    <string name="kurotoon.tags.hiddenNow">%s is hidden</string>
 </resources>

@@ -71,6 +71,13 @@ class GlobalSearchViewModel(
 
     val recentSearches = kuroPreferences.recentSearches.changes()
 
+    val merged = kuroPreferences.searchMerged.changes()
+    val mergedNow: Boolean get() = kuroPreferences.searchMerged.get()
+
+    fun setMerged(merged: Boolean) {
+        kuroPreferences.searchMerged.set(merged)
+    }
+
     fun clearRecentSearches() {
         kuroPreferences.recentSearches.delete()
     }

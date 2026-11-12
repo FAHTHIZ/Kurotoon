@@ -22,6 +22,7 @@ import kurotoon.catalogue.SourceTagIndex
 import kurotoon.library.LibraryTags
 import kurotoon.ui.catalogue.TagEverywhereScreen
 import mihon.app.di.appGraph
+import tachiyomi.domain.manga.model.Manga
 import tachiyomi.presentation.core.screens.LoadingScreen
 
 class GlobalSearchScreen(
@@ -40,11 +41,14 @@ class GlobalSearchScreen(
         val state by viewModel.state.collectAsState()
         val recent by viewModel.recentSearches.collectAsState(emptyList())
         val context = LocalContext.current
-        val libraryTags by produceState(emptyList<String>()) {
+        val merged by viewModel.merged.collectAsState(viewModel.mergedNow)
+        val library by produceState(emptyList<Manga>()) {
             value = runCatching {
-                val library = withContext(Dispatchers.IO) { context.appGraph.getLibraryManga.await() }
-                LibraryTags.top(library.map { it.manga.genre }, LIBRARY_TAGS).map { it.name }
+                withContext(Dispatchers.IO) { context.appGraph.getLibraryManga.await() }.map { it.manga }
             }.getOrDefault(emptyList())
+        }
+        val libraryTags = remember(library) {
+            LibraryTags.top(library.map { it.genre }, LIBRARY_TAGS).map { it.name }
         }
         val sourceTags by remember {
             SourceTagIndex.watch(context.appGraph.sourceManager, context.appGraph.sourcePreferences)
@@ -91,6 +95,10 @@ class GlobalSearchScreen(
                 libraryTags = libraryTags,
                 sourceTags = sourceTags,
                 onTag = { navigator.push(TagEverywhereScreen(it)) },
+                merged = merged,
+                onToggleMerged = viewModel::setMerged,
+                // Library matches only join the merged grid once a search has run
+                library = if (state.items.isEmpty()) emptyList() else library,
             )
         }
     }

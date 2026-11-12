@@ -6,6 +6,8 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Changed
+- Universal search is one merged grid: every source's results fold together, the same series shows once with a ×N badge, exact and prefix title matches come first, and titles already in your library join in. Long-press a cover to pick which source's copy to open. "By source" brings back the row-per-source view, and the choice is remembered
+- Universal search filters are KuroToon pills, with a thin accent progress line while sources answer and a summary of how many sources answered or failed
 - Reader: the page slider is a slim accent track with a round thumb and no step dots, the page you're on sits in an accent pill (tap it to jump), and previous/next chapter are round glass buttons that match the dock
 - Reader: the page counter shown while reading is a dark glass capsule with a thin progress line, instead of outlined text
 - Reader: a page that fails to load shows a card with Retry and Open on web; long-pressing a page opens a row of tiles led by Keep panel
