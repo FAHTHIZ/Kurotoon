@@ -1,0 +1,44 @@
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Library
+sleep 3
+tap Filter
+sleep 2
+tapx Display
+sleep 1
+shot lib_display
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Library
+sleep 3
+tapx Osora
+sleep 6
+scrollup
+sleep 1
+long 540 1700
+sleep 1
+tapxy 540 1500
+sleep 2
+shot selection2
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Library
+sleep 3
+tapx Osora
+sleep 6
+tap Resume
+sleep 15
+tapxy 540 1200
+sleep 2
+tap Settings
+sleep 2
+shot reader_settings
+tapx General
+sleep 1
+shot reader_general
+tapx "Custom filter"
+sleep 1
+shot reader_filter

@@ -1,0 +1,50 @@
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tap Filter
+> sleep 2
+> tapx Display
+> sleep 1
+> shot lib_display
+  [shot 001_lib_display] visible: ['Filter', 'Sort', 'Display', 'Display mode', 'Compact grid', 'Comfortable grid', 'Cover-only grid', 'List', 'Items per row', 'Auto', 'Overlay', 'Downloaded chapters', 'Unread chapters', 'Local source', 'Language', 'Source name', 'Show a series saved from several sources once', 'Continue reading button', 'Tabs', 'Show category tabs']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> scrollup
+> sleep 1
+> long 540 1700
+> sleep 1
+> tapxy 540 1500
+> sleep 2
+> shot selection2
+  [shot 002_selection2] visible: ['Osora', 'ToniRenea', 'Ongoing', ' • ', 'Webtoons.com', 'In library', '6 days', 'Tracking', 'Similar', 'WebView', 'Prince Osora is destined to rule over the Calaveras Kingdom in a life planned out by his family since birth, when his father presented him to the kingdom as male. However, the magic-wielding race called Sergos has a different plan for Osora: to use him as collateral in war with the humans. Bound by what others force him to be and trapped in a love triangle between a promised fiancée and his childhood best friend, Osora must recreate his own story. This series contains themes regarding sexuality, gender identity, homophobia, transphobia, and other prejudices.', 'More', 'Fantasy', '126 chapters', 'Newest', 'Filter', 'New chapters usually every Thursday', '126', '(S2) Chapter 126', 'UP', 'Today', 'Download', '125', '(S2) Chapter 125', '11/5/26', 'Download', '(S2) Chapter 124', '10/29/26', 'Download', '123', '(S2) Chapter 123', '10/22/26', 'Download', '(S2) Chapter 122', '10/15/26', 'Download', '121', '(S2) Chapter 121', '10/8/26', 'Download', '120', '(S2) Chapter 120', 'Download', '119', '9/24/26', 'Download', 'Cancel', '2', 'Select all', 'Select inverse', 'Bookmark chapter', 'Bookmark', 'Mark as read', 'Read', 'Download', 'Download']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> tap Resume
+> sleep 15
+> tapxy 540 1200
+> sleep 2
+> tap Settings
+> sleep 2
+> shot reader_settings
+  [shot 003_reader_settings] visible: ['Reading mode', 'General', 'Custom filter', 'For this series', 'Reading mode', 'Default', 'Paged (left to right)', 'Paged (right to left)', 'Paged (vertical)', 'Long strip', 'Long strip with gaps', 'Rotation', 'Default', 'Free', 'Portrait', 'Landscape', 'Locked portrait', 'Locked landscape', 'Reverse portrait', 'Long strip', 'Tap zones', 'Default', 'L shaped', 'Kindle-ish', 'Edge', 'Right and Left', 'Disabled', 'Invert tap zones', 'None', 'Horizontal', 'Vertical', 'Both']
+> tapx General
+> sleep 1
+> shot reader_general
+  [shot 004_reader_general] visible: ['Reading mode', 'General', 'Custom filter', 'Auto-scroll speed', '4', 'Background color', 'Black', 'Gray', 'White', 'Auto', 'Show page number', 'Show progress orb', 'Celebrate finished chapters', 'Data saver', 'Off', 'On mobile data', 'Always', 'Use vertical chapter navigator in', 'Paged (left to right)', 'Paged (right to left)', 'Paged (vertical)', 'Long strip', 'Long strip with gaps']
+> tapx "Custom filter"
+> sleep 1
+> shot reader_filter
+  [shot 005_reader_filter] visible: ['Viewing full screen', 'To exit, swipe down from the top.', 'Got it']
+  [shot 006_end] visible: ['Viewing full screen', 'To exit, swipe down from the top.', 'Got it']
