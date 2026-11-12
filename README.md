@@ -111,7 +111,15 @@ one, tap Use.
 </tr>
 </table>
 
-<p align="center"><img src="docs/images/segmented_tabs.png" alt="Segmented tabs: Sources, Extensions, Migrate" width="70%"></p>
+<table>
+<tr>
+<td width="33%" valign="top"><img src="docs/images/unified_search.png" alt="Universal search showing one merged grid with x3 and x2 source badges"><br><sub><b>Universal search</b> · one merged grid, each series once</sub></td>
+<td width="33%" valign="top"><img src="docs/images/browse_tags.png" alt="Browse Tags tab with a search field and tag counts from every source"><br><sub><b>Tags</b> · every tag from every source</sub></td>
+<td width="33%" valign="top"><img src="docs/images/reader_chrome.png" alt="Reader page slider, page capsule, page loader and error card"><br><sub><b>Reader</b> · slider, page capsule, loader, error card</sub></td>
+</tr>
+</table>
+
+<p align="center"><img src="docs/images/segmented_tabs.png" alt="Segmented tabs: Sources, Tags, Extensions, Migrate" width="70%"></p>
 
 <p align="center"><img src="docs/images/bottom_bar.png" alt="Floating bottom dock with the Browse tab selected" width="70%"></p>
 

@@ -782,9 +782,9 @@ class KuroScreenshots {
 
     @Test
     fun segmentedTabs() = shot("segmented_tabs") {
-        val pager = androidx.compose.foundation.pager.rememberPagerState { 3 }
+        val pager = androidx.compose.foundation.pager.rememberPagerState { 4 }
         kurotoon.ui.KuroSegmentedTabs(
-            titles = listOf("Sources", "Extensions", "Migrate"),
+            titles = listOf("Sources", "Tags", "Extensions", "Migrate"),
             pagerState = pager,
             onSelect = {},
             modifier = Modifier.padding(vertical = 10.dp),
@@ -827,6 +827,46 @@ class KuroScreenshots {
                 ),
             )
         }
+    }
+
+    @Test
+    fun unifiedSearch() = shot("unified_search", fullScreen = true) {
+        fun manga(id: Long, title: String, source: Long) = Manga.create().copy(
+            id = id,
+            title = title,
+            source = source,
+            url = "/$source/$id",
+            thumbnailUrl = "https://example.org/$id.jpg",
+        )
+        val asura: eu.kanade.tachiyomi.source.Source = tachiyomi.domain.source.model.StubSource(1L, "en", "Asura")
+        val flame: eu.kanade.tachiyomi.source.Source = tachiyomi.domain.source.model.StubSource(2L, "en", "Flame")
+        val reaper: eu.kanade.tachiyomi.source.Source = tachiyomi.domain.source.model.StubSource(3L, "en", "Reaper")
+        val slow: eu.kanade.tachiyomi.source.Source = tachiyomi.domain.source.model.StubSource(4L, "en", "Night Scans")
+        val ok: (List<Manga>) -> eu.kanade.tachiyomi.ui.browse.source.globalsearch.SearchItemResult =
+            eu.kanade.tachiyomi.ui.browse.source.globalsearch.SearchItemResult::Success
+        val loading: eu.kanade.tachiyomi.ui.browse.source.globalsearch.SearchItemResult =
+            eu.kanade.tachiyomi.ui.browse.source.globalsearch.SearchItemResult.Loading
+        val items = mapOf(
+            asura to ok(
+                listOf(
+                    manga(1, "Solo Leveling", 1),
+                    manga(2, "Solo Leveling: Ragnarok", 1),
+                    manga(3, "Solo Max-Level Newbie", 1),
+                ),
+            ),
+            flame to ok(listOf(manga(11, "Solo Leveling", 2), manga(12, "Solo Bug Player", 2))),
+            reaper to ok(listOf(manga(21, "Solo Leveling", 3), manga(22, "Solo Leveling: Ragnarok", 3))),
+            slow to loading,
+        )
+        kurotoon.ui.browse.UnifiedSearchResults(
+            items = items,
+            query = "solo leveling",
+            library = emptyList(),
+            contentPadding = androidx.compose.foundation.layout.PaddingValues(0.dp),
+            getManga = { androidx.compose.runtime.remember(it) { androidx.compose.runtime.mutableStateOf(it) } },
+            onClickItem = {},
+            onShowBySource = {},
+        )
     }
 
     @Test
