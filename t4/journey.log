@@ -1,0 +1,200 @@
+> key BACK
+> stop app.kurotoon.dev
+> clear app.kurotoon.dev
+> sh "run-as app.kurotoon.dev sh -c 'mkdir -p shared_prefs; echo PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiIHN0YW5kYWxvbmU9InllcyIgPz4KPG1hcD4KICAgIDxib29sZWFuIG5hbWU9Il9fQVBQX1NUQVRFX29uYm9hcmRpbmdfY29tcGxldGUiIHZhbHVlPSJ0cnVlIiAvPgo8L21hcD4= | base64 -d > shared_prefs/app.kurotoon.dev_preferences.xml'"
+
+> sh "appops set app.kurotoon.dev REQUEST_INSTALL_PACKAGES allow"
+
+> start app.kurotoon.dev
+> sleep 8
+> shot home_empty
+  [shot 001_home_empty] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> view "tachiyomi://add-repo?url=https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
+> sleep 4
+> tapx Add
+> sleep 15
+> tapif "Navigate up"
+> sleep 3
+> tapif Browse
+> tapx Extensions
+> sleep 6
+> tap Search
+> type Webtoons
+> sleep 5
+> tapx Install
+  !! not found: Install
+  [shot 002_notfound] visible: ['Installed', 'Taddy INK (Webtoons)', 'Keiyoushi', 'Multi • 1.6.1', 'Settings', 'Webtoons.com', 'Keiyoushi', 'Multi • 1.6.3', 'Settings', 'WebtoonScan', 'Keiyoushi', 'English • 1.6.58', 'Mixed', 'Settings', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'Webtoons', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 15
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> shot ext_webtoons_done
+  [shot 003_ext_webtoons_done] visible: ['Installed', 'Taddy INK (Webtoons)', 'Keiyoushi', 'Multi • 1.6.1', 'Settings', 'Webtoons.com', 'Keiyoushi', 'Multi • 1.6.3', 'Settings', 'WebtoonScan', 'Keiyoushi', 'English • 1.6.58', 'Mixed', 'Settings', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'Webtoons', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif Reset
+> tapif "Navigate up"
+> tap Search
+> type MangaDex
+> sleep 5
+> tapx Install
+> sleep 15
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> start app.kurotoon.dev
+> sleep 3
+> tapx Browse
+  !! not found: Browse
+  [shot 004_notfound] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> sleep 2
+> shot browse_sources
+  [shot 005_browse_sources] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> tapx Extensions
+  !! not found: Extensions
+  [shot 006_notfound] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> sleep 3
+> shot browse_extensions
+  [shot 007_browse_extensions] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> tapx Migrate
+  !! not found: Migrate
+  [shot 008_notfound] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> sleep 2
+> shot browse_migrate
+  [shot 009_browse_migrate] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> tapx Sources
+  !! not found: Sources
+  [shot 010_notfound] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> sleep 2
+> tap Webtoons.com
+  !! not found: Webtoons.com
+  [shot 011_notfound] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> sleep 12
+> shot src_popular
+  [shot 012_src_popular] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> tapx Latest
+  !! not found: Latest
+  [shot 013_notfound] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> sleep 8
+> shot src_latest
+  [shot 014_src_latest] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> tapx Popular
+  !! not found: Popular
+  [shot 015_notfound] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> sleep 8
+> tapxy 270 1000
+> sleep 12
+> shot series
+  [shot 016_series] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 017_notfound] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> sleep 3
+> shot series_added
+  [shot 018_series_added] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> scrollup
+> sleep 2
+> shot series_chapters
+  [shot 019_series_chapters] visible: ['1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Español', 'Settings', 'Español (Latinoamérica)', 'Settings', 'Esperanto', 'Settings', 'Euskara', 'Settings', 'Filipino', 'Settings', 'Français', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> scrollup
+> sleep 2
+> shot series_chapters2
+  [shot 020_series_chapters2] visible: ['Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Español', 'Settings', 'Español (Latinoamérica)', 'Settings', 'Esperanto', 'Settings', 'Euskara', 'Settings', 'Filipino', 'Settings', 'Français', 'Settings', 'Gaeilge', 'Settings', 'Hrvatski', 'Settings', 'Indonesia', 'Settings', 'Italiano', 'Settings', 'Jawa', 'Settings', 'Latin', 'Settings', 'Lietuvių', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> scrolldown
+> scrolldown
+> scrolldown
+> sleep 1
+> tap Start
+  !! not found: Start
+  [shot 021_notfound] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> tap Resume
+  !! not found: Resume
+  [shot 022_notfound] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> sleep 20
+> shot reader
+  [shot 023_reader] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> tapxy 540 1200
+> sleep 2
+> shot reader_menu
+  [shot 024_reader_menu] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> tap Settings
+> sleep 2
+> shot reader_settings
+  [shot 025_reader_settings] visible: ['Cover quality', 'Original', 'Attempt to use the first volume cover as cover', 'May need to manually refresh entries already in library. Otherwise, clear database to have new covers to show up.', 'Data saver', 'Enables smaller, more compressed images', 'Use HTTPS port 443 only', 'Enable to only request image servers that use port 443. This allows users with stricter firewall restrictions to access MangaDex images', 'Alternative titles in description', "Include a manga's alternative titles at the end of its description", 'Use alternative titles', 'If there is an alternative title available which matches the extension language, it will be used', 'Final chapter in description', "Include a manga's final chapter number at the end of its description", 'Show unavailable chapters', 'Include chapters that have been marked as unavailable by the source in the chapter list', 'Default content rating', 'Navigate up', 'MangaDex (AF)']
+> key BACK
+> sleep 1
+> tap Chapters
+  !! not found: Chapters
+  [shot 026_notfound] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> sleep 2
+> shot reader_chapters
+  [shot 027_reader_chapters] visible: ['MangaDex', 'eu.kanade.tachiyomi.extension.all.mangadex', 'Keiyoushi', '1.6.4', 'Version', 'Multi', 'Language', 'Mixed', 'Warning ⓘ', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Afrikaans', 'Settings', 'Azərbaycan', 'Settings', 'Català', 'Settings', 'Dansk', 'Settings', 'Deutsch', 'Settings', 'Eesti', 'Settings', 'English', 'Settings', 'Navigate up', 'Extension info', 'More options']
+> key BACK
+> sleep 1
+> key BACK
+> sleep 2
+> key BACK
+> sleep 3
+> shot series_after
+  [shot 028_series_after] visible: ['Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'Top on MangaDex', 'Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'Read now', 'MangaDex', 'Popular', 'Latest', 'See all', "Nakama ni Uragirare Shokei Sareta Necromancer, Undead-ka Shiteita Eiyuu 10000-nin o Sosei shi Saikyou no Oukoku o Tsukuri Fukushuu o Kaishi Suru: An'ei no Gyokuza ni Eirei o Tsudou", '1', 'Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', '2', 'Zatsuyougakari to shite Yado de Hatarakihajimeta Renkinjutsushi, Kanbanmusume-tachi to Issho ni Kurasu koto ni natta', '3', 'Sekai Saikyou no Honoo Mahoutsukai', '4', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> key BACK
+> sleep 2
+> key BACK
+> sleep 2
+> key BACK
+> sleep 2
+> start app.kurotoon.dev
+> sleep 3
+> tapx Home
+> sleep 8
+> shot home
+  [shot 029_home] visible: ['Rainbow and the Gleamstone', 'Fantasy  ·  LGBTQ+  ·  Comedy', 'Read now', 'MangaDex', 'Popular', 'Latest', 'See all', "Nakama ni Uragirare Shokei Sareta Necromancer, Undead-ka Shiteita Eiyuu 10000-nin o Sosei shi Saikyou no Oukoku o Tsukuri Fukushuu o Kaishi Suru: An'ei no Gyokuza ni Eirei o Tsudou", '1', "Nakama ni Uragirare Shokei Sareta Necromancer, Undead-ka Shiteita Eiyuu 10000-nin o Sosei shi Saikyou no Oukoku o Tsukuri Fukushuu o Kaishi Suru: An'ei no Gyokuza ni Eirei o Tsudou", 'Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', '2', 'Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'Zatsuyougakari to shite Yado de Hatarakihajimeta Renkinjutsushi, Kanbanmusume-tachi to Issho ni Kurasu koto ni natta', '3', 'Zatsuyougakari to shite Yado de Hatarakihajimeta Renkinjutsushi, Kanbanmusume-tachi to Issho ni Kurasu koto ni natta', 'Sekai Saikyou no Honoo Mahoutsukai', '4', 'Sekai Saikyou no Honoo Mahoutsukai', 'MangaDex', 'Popular', 'Latest', 'See all', 'A Necromancer Betrayed by His Comrades and Executed Revives 10,000 Heroes Who Had Become Undead, Builds the Most Powerful Kingdom, and Begins His Quest for Revenge.: Heroic Spirits Gather at the Throne of Darkness', '1', 'A Necromancer Betrayed by His Comrades and Executed Revives 10,000 Heroes Who Had Become Undead, Builds the Most Powerful Kingdom, and Begins His Quest for Revenge.: Heroic Spirits Gather at the Throne of Darkness', 'Why Did I, An Older Women Guy, Fall In Love With The Teeny You?', '2', 'Why Did I, An Older Women Guy, Fall In Love With The Teeny You?', 'An Alchemist Who Started Working as a Handyman at an Inn Ends Up Living with the Inn’s Lovely Girls', '3', 'An Alchemist Who Started Working as a Handyman at an Inn Ends Up Living with the Inn’s Lovely Girls', "The World's Strongest Fire Mage", '4', "The World's Strongest Fire Mage", 'Taddy INK (Webtoons)', 'Popular', 'See all', 'Rainbow and the Gleamstone', '1', 'The White Devil', '2', 'Adam the Martian. The architect of Mars', '3', 'PodMax', '4', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> sleep 2
+> shot home2
+  [shot 030_home2] visible: ["Nakama ni Uragirare Shokei Sareta Necromancer, Undead-ka Shiteita Eiyuu 10000-nin o Sosei shi Saikyou no Oukoku o Tsukuri Fukushuu o Kaishi Suru: An'ei no Gyokuza ni Eirei o Tsudou", '1', "Nakama ni Uragirare Shokei Sareta Necromancer, Undead-ka Shiteita Eiyuu 10000-nin o Sosei shi Saikyou no Oukoku o Tsukuri Fukushuu o Kaishi Suru: An'ei no Gyokuza ni Eirei o Tsudou", 'Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', '2', 'Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'Zatsuyougakari to shite Yado de Hatarakihajimeta Renkinjutsushi, Kanbanmusume-tachi to Issho ni Kurasu koto ni natta', '3', 'Zatsuyougakari to shite Yado de Hatarakihajimeta Renkinjutsushi, Kanbanmusume-tachi to Issho ni Kurasu koto ni natta', 'Sekai Saikyou no Honoo Mahoutsukai', '4', 'Sekai Saikyou no Honoo Mahoutsukai', 'MangaDex', 'Popular', 'Latest', 'See all', 'A Necromancer Betrayed by His Comrades and Executed Revives 10,000 Heroes Who Had Become Undead, Builds the Most Powerful Kingdom, and Begins His Quest for Revenge.: Heroic Spirits Gather at the Throne of Darkness', '1', 'A Necromancer Betrayed by His Comrades and Executed Revives 10,000 Heroes Who Had Become Undead, Builds the Most Powerful Kingdom, and Begins His Quest for Revenge.: Heroic Spirits Gather at the Throne of Darkness', 'Why Did I, An Older Women Guy, Fall In Love With The Teeny You?', '2', 'Why Did I, An Older Women Guy, Fall In Love With The Teeny You?', 'An Alchemist Who Started Working as a Handyman at an Inn Ends Up Living with the Inn’s Lovely Girls', '3', 'An Alchemist Who Started Working as a Handyman at an Inn Ends Up Living with the Inn’s Lovely Girls', "The World's Strongest Fire Mage", '4', "The World's Strongest Fire Mage", 'Taddy INK (Webtoons)', 'Popular', 'See all', 'Rainbow and the Gleamstone', '1', 'Rainbow and the Gleamstone', 'The White Devil', '2', 'The White Devil', 'Adam the Martian. The architect of Mars', '3', 'Adam the Martian. The architect of Mars', 'PodMax', '4', 'PodMax', 'Webtoons.com', 'Popular', 'Latest', 'See all', 'Osora', '1', 'unOrdinary', '2', 'Tears on a Withered Flower', '3', 'My Desire is Not a Sin', '4', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse']
+> scrollup
+> sleep 2
+> shot home3
+  [shot 031_home3] visible: ['MangaDex', 'Popular', 'Latest', 'See all', 'A Necromancer Betrayed by His Comrades and Executed Revives 10,000 Heroes Who Had Become Undead, Builds the Most Powerful Kingdom, and Begins His Quest for Revenge.: Heroic Spirits Gather at the Throne of Darkness', '1', 'A Necromancer Betrayed by His Comrades and Executed Revives 10,000 Heroes Who Had Become Undead, Builds the Most Powerful Kingdom, and Begins His Quest for Revenge.: Heroic Spirits Gather at the Throne of Darkness', 'Why Did I, An Older Women Guy, Fall In Love With The Teeny You?', '2', 'Why Did I, An Older Women Guy, Fall In Love With The Teeny You?', 'An Alchemist Who Started Working as a Handyman at an Inn Ends Up Living with the Inn’s Lovely Girls', '3', 'An Alchemist Who Started Working as a Handyman at an Inn Ends Up Living with the Inn’s Lovely Girls', "The World's Strongest Fire Mage", '4', "The World's Strongest Fire Mage", 'Taddy INK (Webtoons)', 'Popular', 'See all', 'Rainbow and the Gleamstone', '1', 'Rainbow and the Gleamstone', 'The White Devil', '2', 'The White Devil', 'Adam the Martian. The architect of Mars', '3', 'Adam the Martian. The architect of Mars', 'PodMax', '4', 'PodMax', 'Webtoons.com', 'Popular', 'Latest', 'See all', 'Osora', '1', 'Osora', 'unOrdinary', '2', 'unOrdinary', 'Tears on a Withered Flower', '3', 'Tears on a Withered Flower', 'My Desire is Not a Sin', '4', 'My Desire is Not a Sin', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Library
+> sleep 3
+> shot library
+  [shot 032_library] visible: ['Your library is empty', 'Getting started guide', 'Library', 'Search', 'Filter', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Updates
+> sleep 3
+> shot updates
+  [shot 033_updates] visible: ['Not checked yet', 'Pull down or tap Check now to look for new chapters', 'Check now', 'No recent updates', 'Updates', 'Filter', 'Release schedule', 'View Upcoming Updates', 'Update library', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif "Check now"
+> sleep 20
+> shot updates_after
+  [shot 034_updates_after] visible: ['Checked Just now', 'Pull down or tap Check now to look for new chapters', 'Check now', 'No recent updates', 'Updates', 'Filter', 'Release schedule', 'View Upcoming Updates', 'Update library', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Me
+> sleep 2
+> shot me
+  [shot 035_me] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '0', 'In library', '0', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> sleep 1
+> shot me2
+  [shot 036_me2] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> sleep 1
+> shot me3
+  [shot 037_me3] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap Settings
+> sleep 2
+> shot settings
+  [shot 038_settings] visible: ['Search all settings', 'Look & read', 'Appearance', 'Theme, date & time format', 'Library', 'Categories, global update, chapter swipe', 'Reader', 'Reading mode, display, navigation', 'Content & sources', 'Downloads', 'Automatic download, download ahead', 'Tracking', 'One-way progress sync, enhanced sync', 'Browse', 'Sources, extensions, global search', 'App & data', 'Data and storage', 'Manual & automatic backups, storage space', 'Security and privacy', 'App lock, secure screen', 'Advanced', 'Dump crash logs, battery optimizations', 'Navigate up', 'Settings', 'Search']
+> tapx Appearance
+> sleep 2
+> shot settings_appearance
+  [shot 039_settings_appearance] visible: ['Theme', 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Green Apple', 'Pure black dark mode', 'Display', 'App language', 'Tablet UI', 'Auto', 'Date format', 'Default (11/12/26)', 'Time format', 'Follow language (4:47\u202fAM)', 'Navigate up', 'Appearance']
+> back
+> back
+> tapx Home
+> tap "Search manga"
+> sleep 2
+> type Solo
+> key 66
+> sleep 15
+> shot global_search
+  [shot 040_global_search] visible: ['On several sources', 'Each series once · ×N shows how many sources have it', '×2', 'Komyu Sawa Gamer wa Solo Play de Sekai Saikyou', '×2', 'Rental Magica from SOLOMON', '×2', 'VRMMO Chronicles of a Solo Cleric ~Surprise! I’m Actually a Berserker!~', '×2', 'Mobile Suit Gundam - Nightmare of Solomon', 'MangaDex', 'All', 'See all', 'Komyu Sawa Gamer wa Solo Play de Sekai Saikyou', 'Rental Magica from SOLOMON', 'VRMMO Chronicles of a Solo Cleric ~Surprise! I’m Actually a Berserker!~', 'Mobile Suit Gundam - Nightmare of Solomon', 'MangaDex', 'English', 'See all', 'Komyu Sawa Gamer wa Solo Play de Sekai Saikyou', 'Rental Magica from SOLOMON', 'VRMMO Chronicles of a Solo Cleric ~Surprise! I’m Actually a Berserker!~', 'Mobile Suit Gundam - Nightmare of Solomon', 'Navigate up', 'Solo', 'Reset', 'Pinned', 'All', 'Has results']
+  [shot 041_end] visible: ['On several sources', 'Each series once · ×N shows how many sources have it', '×2', 'Komyu Sawa Gamer wa Solo Play de Sekai Saikyou', '×2', 'Rental Magica from SOLOMON', '×2', 'VRMMO Chronicles of a Solo Cleric ~Surprise! I’m Actually a Berserker!~', '×2', 'Mobile Suit Gundam - Nightmare of Solomon', 'MangaDex', 'All', 'See all', 'Komyu Sawa Gamer wa Solo Play de Sekai Saikyou', 'Rental Magica from SOLOMON', 'VRMMO Chronicles of a Solo Cleric ~Surprise! I’m Actually a Berserker!~', 'Mobile Suit Gundam - Nightmare of Solomon', 'MangaDex', 'English', 'See all', 'Komyu Sawa Gamer wa Solo Play de Sekai Saikyou', 'Rental Magica from SOLOMON', 'VRMMO Chronicles of a Solo Cleric ~Surprise! I’m Actually a Berserker!~', 'Mobile Suit Gundam - Nightmare of Solomon', 'Navigate up', 'Solo', 'Reset', 'Pinned', 'All', 'Has results']
