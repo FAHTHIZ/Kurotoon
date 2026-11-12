@@ -331,11 +331,10 @@ fun WebViewScreenContent(
                             .fillMaxWidth()
                             .align(Alignment.BottomCenter),
                     )
-                    is LoadingState.Loading -> LinearProgressIndicator(
+                    is LoadingState.Loading -> tachiyomi.presentation.core.components.KuroProgressBar(
                         progress = { loadingState.progress },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .align(Alignment.BottomCenter),
+                        modifier = Modifier.align(Alignment.BottomCenter),
+                        height = 3.dp,
                     )
                     else -> {}
                 }

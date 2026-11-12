@@ -23,7 +23,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -44,6 +43,7 @@ import kurotoon.reader.SleepTimerState
 import kurotoon.reader.sound.ReaderSoundtrack
 import kurotoon.reader.sound.SoundFocus
 import kurotoon.reader.sound.Soundscape
+import kurotoon.ui.KuroFilterPill
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Error
 import mihon.icons.materialsymbols.rounded.MusicNote
@@ -93,27 +93,20 @@ fun ReaderSoundSheet(
                     modifier = Modifier.weight(1f),
                 )
                 val interrupted = soundtrack.interruption != null
-                FilterChip(
-                    selected = soundtrack.muted || interrupted,
-                    onClick = soundtrack::toggleMute,
-                    leadingIcon = {
-                        Icon(
-                            imageVector = when {
-                                interrupted -> MaterialSymbols.Rounded.PlayArrow
-                                soundtrack.muted -> MaterialSymbols.Rounded.VolumeOff
-                                else -> MaterialSymbols.Rounded.VolumeUp
-                            },
-                            contentDescription = null,
-                            modifier = Modifier.size(18.dp),
-                        )
-                    },
-                    label = {
-                        val label = when {
+                KuroFilterPill(
+                    text = stringResource(
+                        when {
                             interrupted -> MR.strings.kurotoon_sound_resume
                             soundtrack.muted -> MR.strings.kurotoon_sound_unmute
                             else -> MR.strings.kurotoon_sound_mute
-                        }
-                        Text(stringResource(label))
+                        },
+                    ),
+                    selected = soundtrack.muted || interrupted,
+                    onClick = soundtrack::toggleMute,
+                    icon = when {
+                        interrupted -> MaterialSymbols.Rounded.PlayArrow
+                        soundtrack.muted -> MaterialSymbols.Rounded.VolumeOff
+                        else -> MaterialSymbols.Rounded.VolumeUp
                     },
                 )
             }
@@ -209,13 +202,13 @@ fun AmbienceChips(preferences: ReaderPreferences, onPicked: (key: String) -> Uni
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Soundscape.entries.forEach { scape ->
-            FilterChip(
+            KuroFilterPill(
+                text = stringResource(scape.label),
                 selected = Soundscape.of(ambience) == scape,
                 onClick = {
                     preferences.soundAmbience.set(scape.key)
                     onPicked(scape.key)
                 },
-                label = { Text(stringResource(scape.label)) },
             )
         }
     }
@@ -395,18 +388,14 @@ private fun SleepTimerChips(timer: SleepTimerState) {
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         SleepTimerState.CHOICES.forEach { minutes ->
-            FilterChip(
+            KuroFilterPill(
+                text = when (minutes) {
+                    0 -> stringResource(MR.strings.kurotoon_sound_off)
+                    SleepTimerState.END_OF_CHAPTER -> stringResource(MR.strings.kurotoon_sleep_endOfChapter)
+                    else -> stringResource(MR.strings.kurotoon_sleep_minutes, minutes)
+                },
                 selected = timer.choice == minutes,
                 onClick = { timer.set(minutes) },
-                label = {
-                    Text(
-                        when (minutes) {
-                            0 -> stringResource(MR.strings.kurotoon_sound_off)
-                            SleepTimerState.END_OF_CHAPTER -> stringResource(MR.strings.kurotoon_sleep_endOfChapter)
-                            else -> stringResource(MR.strings.kurotoon_sleep_minutes, minutes)
-                        },
-                    )
-                },
             )
         }
     }

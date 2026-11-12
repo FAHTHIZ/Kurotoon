@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
@@ -83,7 +82,8 @@ fun MigrationConfigScreenSheet(
                         .fastFilterNot { it == MigrationFlag.REMOVE_DOWNLOAD }
                         .fastForEach { flag ->
                             val selected = flag in migrationFlags
-                            FilterChip(
+                            kurotoon.ui.KuroFilterPill(
+                                text = stringResource(flag.getLabel()),
                                 selected = selected,
                                 onClick = {
                                     preferences.migrationFlags.getAndSet { currentFlags ->
@@ -94,15 +94,7 @@ fun MigrationConfigScreenSheet(
                                         }
                                     }
                                 },
-                                label = { Text(stringResource(flag.getLabel())) },
-                                leadingIcon = {
-                                    if (selected) {
-                                        Icon(
-                                            imageVector = MaterialSymbols.Rounded.Check,
-                                            contentDescription = null,
-                                        )
-                                    }
-                                },
+                                icon = MaterialSymbols.Rounded.Check.takeIf { selected },
                             )
                         }
                 }

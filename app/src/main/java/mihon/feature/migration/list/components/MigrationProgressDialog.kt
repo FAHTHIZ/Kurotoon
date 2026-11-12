@@ -1,7 +1,6 @@
 package mihon.feature.migration.list.components
 
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -31,7 +30,7 @@ fun MigrationProgressDialog(
                     animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec,
                     label = "migration_progress",
                 )
-                LinearProgressIndicator(
+                tachiyomi.presentation.core.components.KuroProgressBar(
                     progress = { progressAnimated },
                 )
             }

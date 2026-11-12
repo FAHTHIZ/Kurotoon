@@ -9,6 +9,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Browse › Tags: every tag your installed sources offer in one searchable page, by most sources or A–Z, with how many sources carry each and your library's tags on top. Tap a tag to browse it on every source; long-press to search titles with it or hide it everywhere
 
 ### Changed
+- The reader's sound sheet (mute, ambience, sleep timer) and the migration options use KuroToon filter pills instead of outlined chips; storage, web page loading and migration progress use the rounded KuroToon progress line
 - Checkboxes and radio buttons everywhere (categories, tracker pickers, settings lists, data and backup options) use KuroToon's rounded accent tick and ring-with-dot radio
 - Every on/off switch (settings, filters, extension stores, migration options, onboarding) is a KuroToon pill switch with a springy round knob
 - Loading spinners across the app (full-screen loads, browse paging, chapter transitions, migration, extension installs) are a KuroToon accent arc with round ends that breathes as it turns

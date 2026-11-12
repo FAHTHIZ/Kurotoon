@@ -258,6 +258,7 @@ fun KuroFilterPill(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     count: Int? = null,
+    icon: ImageVector? = null,
 ) {
     val container by androidx.compose.animation.animateColorAsState(
         if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceContainerHigh,
@@ -275,10 +276,13 @@ fun KuroFilterPill(
             .clip(CircleShape)
             .background(container)
             .clickable(interactionSource = interaction, indication = LocalIndication.current, onClick = onClick)
-            .padding(horizontal = 16.dp),
+            .padding(start = if (icon != null) 12.dp else 16.dp, end = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(6.dp),
     ) {
+        if (icon != null) {
+            Icon(icon, contentDescription = null, tint = content, modifier = Modifier.size(18.dp))
+        }
         Text(
             text = text,
             color = content,
