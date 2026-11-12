@@ -22,7 +22,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -51,6 +50,7 @@ import mihon.icons.materialsymbols.rounded.VolumeOff
 import mihon.icons.materialsymbols.rounded.VolumeUp
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.CheckboxItem
+import tachiyomi.presentation.core.components.KuroSpinner
 import tachiyomi.presentation.core.components.SliderItem
 import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
@@ -238,8 +238,8 @@ private fun NowPlaying(soundtrack: ReaderSoundtrack) {
         ) {
             Row(modifier = Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
                 when {
-                    soundtrack.loadingTracks || soundtrack.buffering -> CircularProgressIndicator(
-                        modifier = Modifier.size(24.dp),
+                    soundtrack.loadingTracks || soundtrack.buffering -> KuroSpinner(
+                        size = 24.dp,
                         strokeWidth = 2.dp,
                     )
                     failed -> Icon(MaterialSymbols.Rounded.Error, contentDescription = null)
@@ -346,8 +346,8 @@ fun ReaderSoundBadge(
             ) {
                 androidx.compose.foundation.layout.Box(contentAlignment = Alignment.Center) {
                     if (buffering && !muted && !interrupted) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(36.dp),
+                        KuroSpinner(
+                            size = 36.dp,
                             strokeWidth = 2.dp,
                             color = Color.White.copy(alpha = 0.8f),
                         )
