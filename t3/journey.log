@@ -1,0 +1,186 @@
+> key BACK
+> stop app.kurotoon.dev
+> clear app.kurotoon.dev
+> sh "run-as app.kurotoon.dev sh -c 'mkdir -p shared_prefs; echo PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiIHN0YW5kYWxvbmU9InllcyIgPz4KPG1hcD4KICAgIDxib29sZWFuIG5hbWU9Il9fQVBQX1NUQVRFX29uYm9hcmRpbmdfY29tcGxldGUiIHZhbHVlPSJ0cnVlIiAvPgo8L21hcD4= | base64 -d > shared_prefs/app.kurotoon.dev_preferences.xml'"
+
+> sh "appops set app.kurotoon.dev REQUEST_INSTALL_PACKAGES allow"
+
+> start app.kurotoon.dev
+> sleep 8
+> shot home_empty
+  [shot 001_home_empty] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> view "tachiyomi://add-repo?url=https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
+> sleep 4
+> tapx Add
+> sleep 15
+> tapif "Navigate up"
+> sleep 3
+> tapif Browse
+> tapx Extensions
+> sleep 6
+> tap Search
+> type Webtoons
+> sleep 5
+> tapx Install
+> sleep 15
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> shot ext_webtoons_done
+  [shot 002_ext_webtoons_done] visible: ['Tachiyomi: Webtoons.com', 'Do you want to install this app?', 'Cancel', 'Install']
+> tapif Reset
+> tapif "Navigate up"
+> tap Search
+  !! not found: Search
+  [shot 003_notfound] visible: ['Tachiyomi: Webtoons.com', 'Do you want to install this app?', 'Cancel', 'Install']
+> type MangaDex
+> sleep 5
+> tapx Install
+> sleep 15
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> start app.kurotoon.dev
+> sleep 3
+> tapx Browse
+> sleep 2
+> shot browse_sources
+  [shot 004_browse_sources] visible: ['Installed', 'Taddy INK (Webtoons)', 'Keiyoushi', 'Multi • 1.6.1', 'Settings', 'Webtoons.com', 'Keiyoushi', 'Multi • 1.6.3', 'Settings', 'WebtoonScan', 'Keiyoushi', 'English • 1.6.58', 'Mixed', 'Settings', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'Webtoons', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Extensions
+> sleep 3
+> shot browse_extensions
+  [shot 005_browse_extensions] visible: ['Installed', 'Taddy INK (Webtoons)', 'Keiyoushi', 'Multi • 1.6.1', 'Settings', 'Webtoons.com', 'Keiyoushi', 'Multi • 1.6.3', 'Settings', 'WebtoonScan', 'Keiyoushi', 'English • 1.6.58', 'Mixed', 'Settings', 'Sources', 'Extensions', 'Migrate', 'Navigate up', 'Webtoons', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Migrate
+> sleep 2
+> shot browse_migrate
+  [shot 006_browse_migrate] visible: ['Your library is empty', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Source migration guide', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Sources
+> sleep 2
+> tap Webtoons.com
+> sleep 12
+> shot src_popular
+  [shot 007_src_popular] visible: ['Osora', 'unOrdinary', 'Tears on a Withered Flower', 'My Desire is Not a Sin', 'How to Survive as a Wandering Knight', 'Press Play, Sami', 'Hero Killer', 'Who Made Me a Princess', 'The Remarried Empress', 'Navigate up', 'Webtoons.com', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Filter', 'ALL', 'Originals', 'Canvas']
+> tapx Latest
+> sleep 8
+> shot src_latest
+  [shot 008_src_latest] visible: ['Vibe Check!', 'Keeper of Scarlet Petals', 'Frozen Hearts', 'Diner for Adas', 'Misi', 'Preppity', 'My Desire is Not a Sin', 'Dancer on the Court', 'The Reborn Prodigy of the Ducal Family', 'Navigate up', 'Webtoons.com', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Filter', 'ALL', 'Originals', 'Canvas']
+> tapx Popular
+> sleep 8
+> tapxy 270 1000
+> sleep 12
+> shot series
+  [shot 009_series] visible: ['Cover', 'Osora', 'ToniRenea', 'Ongoing', ' • ', 'Webtoons.com', 'Add to library', '6 days', 'Tracking', 'Similar', 'WebView', 'Prince Osora is destined to rule over the Calaveras Kingdom in a life planned out by his family since birth, when his father presented him to the kingdom as male. However, the magic-wielding race called Sergos has a different plan for Osora: to use him as collateral in war with the humans. Bound by what others force him to be and trapped in a love triangle between a promised fiancée and his childhood best friend, Osora must recreate his own story. This series contains themes regarding sexuality, gender identity, homophobia, transphobia, and other prejudices.', 'Less', 'Fantasy', '126 chapters', 'Newest', 'Filter', 'Navigate up', 'Download', 'Filter', 'More options', 'Jump to where you left off']
+> tap "Add to library"
+> sleep 3
+> shot series_added
+  [shot 010_series_added] visible: ['Cover', 'Osora', 'ToniRenea', 'Ongoing', ' • ', 'Webtoons.com', 'In library', '6 days', 'Tracking', 'Similar', 'WebView', 'Prince Osora is destined to rule over the Calaveras Kingdom in a life planned out by his family since birth, when his father presented him to the kingdom as male. However, the magic-wielding race called Sergos has a different plan for Osora: to use him as collateral in war with the humans. Bound by what others force him to be and trapped in a love triangle between a promised fiancée and his childhood best friend, Osora must recreate his own story. This series contains themes regarding sexuality, gender identity, homophobia, transphobia, and other prejudices.', 'Less', 'Fantasy', '126 chapters', 'Newest', 'Filter', 'Navigate up', 'Download', 'Filter', 'More options', 'Jump to where you left off']
+> scrollup
+> sleep 2
+> shot series_chapters
+  [shot 011_series_chapters] visible: ['Cover', 'Osora', 'ToniRenea', 'Ongoing', ' • ', 'Webtoons.com', 'In library', '6 days', 'Tracking', 'Similar', 'WebView', 'Prince Osora is destined to rule over the Calaveras Kingdom in a life planned out by his family since birth, when his father presented him to the kingdom as male. However, the magic-wielding race called Sergos has a different plan for Osora: to use him as collateral in war with the humans. Bound by what others force him to be and trapped in a love triangle between a promised fiancée and his childhood best friend, Osora must recreate his own story. This series contains themes regarding sexuality, gender identity, homophobia, transphobia, and other prejudices.', 'Less', 'Fantasy', '126 chapters', 'Newest', 'Filter', 'New chapters usually every Thursday', '126', '(S2) Chapter 126', 'UP', 'Today', 'Download', '125', '(S2) Chapter 125', '11/5/26', 'Download', '124', '(S2) Chapter 124', '10/29/26', 'Download', '123', '(S2) Chapter 123', '10/22/26', 'Download', 'Navigate up', 'Download', 'Filter', 'More options', 'Jump to where you left off']
+> scrollup
+> sleep 2
+> shot series_chapters2
+  [shot 012_series_chapters2] visible: ['Prince Osora is destined to rule over the Calaveras Kingdom in a life planned out by his family since birth, when his father presented him to the kingdom as male. However, the magic-wielding race called Sergos has a different plan for Osora: to use him as collateral in war with the humans. Bound by what others force him to be and trapped in a love triangle between a promised fiancée and his childhood best friend, Osora must recreate his own story. This series contains themes regarding sexuality, gender identity, homophobia, transphobia, and other prejudices.', 'Less', 'Fantasy', '126 chapters', 'Newest', 'Filter', 'New chapters usually every Thursday', '126', '(S2) Chapter 126', 'UP', 'Today', 'Download', '125', '(S2) Chapter 125', '11/5/26', 'Download', '124', '(S2) Chapter 124', '10/29/26', 'Download', '123', '(S2) Chapter 123', '10/22/26', 'Download', '122', '(S2) Chapter 122', '10/15/26', 'Download', '121', '(S2) Chapter 121', '10/8/26', 'Download', '120', '(S2) Chapter 120', '10/1/26', 'Download', '119', '(S2) Chapter 119', '9/24/26', 'Download', '118', '(S2) Chapter 118', '9/17/26', 'Download', 'Navigate up', 'Osora', 'Download', 'Filter', 'More options', 'Jump to where you left off']
+> scrolldown
+> scrolldown
+> scrolldown
+> sleep 1
+> tap Start
+  !! not found: Start
+  [shot 013_notfound] visible: ['Cover', 'Osora', 'ToniRenea', 'Ongoing', ' • ', 'Webtoons.com', 'In library', '6 days', 'Tracking', 'Similar', 'WebView', 'Prince Osora is destined to rule over the Calaveras Kingdom in a life planned out by his family since birth, when his father presented him to the kingdom as male. However, the magic-wielding race called Sergos has a different plan for Osora: to use him as collateral in war with the humans. Bound by what others force him to be and trapped in a love triangle between a promised fiancée and his childhood best friend, Osora must recreate his own story. This series contains themes regarding sexuality, gender identity, homophobia, transphobia, and other prejudices.', 'Less', 'Fantasy', '126 chapters', 'Newest', 'Filter', 'Navigate up', 'Download', 'Filter', 'More options', 'Jump to where you left off']
+> tap Resume
+  !! not found: Resume
+  [shot 014_notfound] visible: ['Cover', 'Osora', 'ToniRenea', 'Ongoing', ' • ', 'Webtoons.com', 'In library', '6 days', 'Tracking', 'Similar', 'WebView', 'Prince Osora is destined to rule over the Calaveras Kingdom in a life planned out by his family since birth, when his father presented him to the kingdom as male. However, the magic-wielding race called Sergos has a different plan for Osora: to use him as collateral in war with the humans. Bound by what others force him to be and trapped in a love triangle between a promised fiancée and his childhood best friend, Osora must recreate his own story. This series contains themes regarding sexuality, gender identity, homophobia, transphobia, and other prejudices.', 'Less', 'Fantasy', '126 chapters', 'Newest', 'Filter', 'Navigate up', 'Download', 'Filter', 'More options', 'Jump to where you left off']
+> sleep 20
+> shot reader
+  [shot 015_reader] visible: ['Cover', 'Osora', 'ToniRenea', 'Ongoing', ' • ', 'Webtoons.com', 'In library', '6 days', 'Tracking', 'Similar', 'WebView', 'Prince Osora is destined to rule over the Calaveras Kingdom in a life planned out by his family since birth, when his father presented him to the kingdom as male. However, the magic-wielding race called Sergos has a different plan for Osora: to use him as collateral in war with the humans. Bound by what others force him to be and trapped in a love triangle between a promised fiancée and his childhood best friend, Osora must recreate his own story. This series contains themes regarding sexuality, gender identity, homophobia, transphobia, and other prejudices.', 'Less', 'Fantasy', '126 chapters', 'Newest', 'Filter', 'Navigate up', 'Download', 'Filter', 'More options', 'Jump to where you left off']
+> tapxy 540 1200
+> sleep 2
+> shot reader_menu
+  [shot 016_reader_menu] visible: ['No results found', 'Retry', 'Open in WebView', 'Help', 'Navigate up', 'src:"Webtoons.com" lang:en', 'Reset', 'Display mode', 'More options', 'Popular', 'Latest', 'Filter', 'Save search', 'ALL', 'Originals', 'Canvas']
+> tap Settings
+  !! not found: Settings
+  [shot 017_notfound] visible: ['No results found', 'Retry', 'Open in WebView', 'Help', 'Navigate up', 'src:"Webtoons.com" lang:en', 'Reset', 'Display mode', 'More options', 'Popular', 'Latest', 'Filter', 'Save search', 'ALL', 'Originals', 'Canvas']
+> sleep 2
+> shot reader_settings
+  [shot 018_reader_settings] visible: ['No results found', 'Retry', 'Open in WebView', 'Help', 'Navigate up', 'src:"Webtoons.com" lang:en', 'Reset', 'Display mode', 'More options', 'Popular', 'Latest', 'Filter', 'Save search', 'ALL', 'Originals', 'Canvas']
+> key BACK
+> sleep 1
+> tap Chapters
+  !! not found: Chapters
+  [shot 019_notfound] visible: ['Universal Search', 'One search across every installed source.', 'Last used', 'Webtoons.com', 'Popular', 'Latest', 'English', 'Pin', 'Multi', 'Taddy INK (Webtoons)', 'Popular', 'Multi', 'Pin', 'English', 'Webtoons.com', 'Popular', 'Latest', 'English', 'Pin', 'WebtoonScan', 'Popular', 'Latest', 'English', 'Pin', 'Other', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 2
+> shot reader_chapters
+  [shot 020_reader_chapters] visible: ['Universal Search', 'One search across every installed source.', 'Last used', 'Webtoons.com', 'Popular', 'Latest', 'English', 'Pin', 'Multi', 'Taddy INK (Webtoons)', 'Popular', 'Multi', 'Pin', 'English', 'Webtoons.com', 'Popular', 'Latest', 'English', 'Pin', 'WebtoonScan', 'Popular', 'Latest', 'English', 'Pin', 'Other', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> key BACK
+> sleep 1
+> key BACK
+> sleep 2
+> key BACK
+> sleep 3
+> shot series_after
+  [shot 021_series_after] visible: ['Pixel is starting…']
+> key BACK
+> sleep 2
+> key BACK
+> sleep 2
+> key BACK
+> sleep 2
+> start app.kurotoon.dev
+> sleep 3
+> tapx Home
+> sleep 8
+> shot home
+  [shot 022_home] visible: ['Out today', 'Series that usually update on Thursday', 'See all', 'Osora', '126', 'Osora', 'New today', 'The White Devil', 'Top on Taddy INK (Webtoons)', 'The White Devil', 'Horror  ·  Supernatural  ·  Thriller', 'Read now', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> sleep 2
+> shot home2
+  [shot 023_home2] visible: ['Osora', 'Osora', 'New today', 'unOrdinary', 'Adam the Martian. The architect of Mars', 'Top on Taddy INK (Webtoons)', 'Adam the Martian. The architect of Mars', 'Sci-Fi  ·  Fantasy  ·  Supernatural', 'Read now', 'Recently added', 'Saved to your library this month', 'Osora', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> sleep 2
+> shot home3
+  [shot 024_home3] visible: ['Tears on a Withered Flower', 'Top on Webtoons.com', 'Tears on a Withered Flower', 'Read now', 'Recently added', 'Saved to your library this month', 'Osora', 'Osora', 'Today', 'Taddy INK (Webtoons)', 'Popular', 'See all', 'Rainbow and the Gleamstone', '1', 'Rainbow and the Gleamstone', 'The White Devil', '2', 'The White Devil', 'Adam the Martian. The architect of Mars', '3', 'Adam the Martian. The architect of Mars', 'PodMax', '4', 'PodMax', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Library
+> sleep 3
+> shot library
+  [shot 025_library] visible: ['Unread', 'Started', 'Downloaded', 'Bookmarked', 'Completed', 'Osora', '126', 'Library', 'Search', 'Filter', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Updates
+> sleep 3
+> shot updates
+  [shot 026_updates] visible: ['Not checked yet', 'Pull down or tap Check now to look for new chapters', 'Check now', 'No recent updates', 'Updates', 'Filter', 'Release schedule', 'View Upcoming Updates', 'Update library', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif "Check now"
+> sleep 20
+> shot updates_after
+  [shot 027_updates_after] visible: ['Checked Just now', 'Pull down or tap Check now to look for new chapters', 'Check now', 'No recent updates', 'Updates', 'Filter', 'Release schedule', 'View Upcoming Updates', 'Update library', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Me
+> sleep 2
+> shot me
+  [shot 028_me] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '1', 'In library', '126', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> sleep 1
+> shot me2
+  [shot 029_me2] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> sleep 1
+> shot me3
+  [shot 030_me3] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap Settings
+> sleep 2
+> shot settings
+  [shot 031_settings] visible: ['Search all settings', 'Look & read', 'Appearance', 'Theme, date & time format', 'Library', 'Categories, global update, chapter swipe', 'Reader', 'Reading mode, display, navigation', 'Content & sources', 'Downloads', 'Automatic download, download ahead', 'Tracking', 'One-way progress sync, enhanced sync', 'Browse', 'Sources, extensions, global search', 'App & data', 'Data and storage', 'Manual & automatic backups, storage space', 'Security and privacy', 'App lock, secure screen', 'Advanced', 'Dump crash logs, battery optimizations', 'Navigate up', 'Settings', 'Search']
+> tapx Appearance
+> sleep 2
+> shot settings_appearance
+  [shot 032_settings_appearance] visible: ['Theme', 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Green Apple', 'Pure black dark mode', 'Display', 'App language', 'Tablet UI', 'Auto', 'Date format', 'Default (11/12/26)', 'Time format', 'Follow language (4:28\u202fAM)', 'Navigate up', 'Appearance']
+> back
+> back
+> tapx Home
+> tap "Search manga"
+> sleep 2
+> type Solo
+> key 66
+> sleep 15
+> shot global_search
+  [shot 033_global_search] visible: ['Recent searches', 'Clear', 'Solo', 'Navigate up', 'Solo', 'Reset', 'Pinned', 'All', 'Has results']
+  [shot 034_end] visible: ['Recent searches', 'Clear', 'Solo', 'Navigate up', 'Solo', 'Reset', 'Pinned', 'All', 'Has results']
