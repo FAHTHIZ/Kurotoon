@@ -197,6 +197,9 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
     /** Fold same-day chapters of one series into a single Updates row. See [kurotoon.updates.UpdateGroups]. */
     val updatesGroupSeries = preferenceStore.getBoolean("kurotoon_updates_group_series", true)
 
+    /** Universal search shows one merged grid instead of a row per source. See [kurotoon.search.UnifiedSearch]. */
+    val searchMerged = preferenceStore.getBoolean("kurotoon_search_merged", true)
+
     private companion object {
         const val REREADING_CAP = 50
     }

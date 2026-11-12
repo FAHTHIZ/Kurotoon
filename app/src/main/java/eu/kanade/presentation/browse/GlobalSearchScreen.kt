@@ -23,6 +23,7 @@ import kurotoon.catalogue.SourceTagIndex
 import kurotoon.library.LibraryDuplicates
 import kurotoon.ui.browse.RecentSearchRow
 import kurotoon.ui.browse.TagBrowseRow
+import kurotoon.ui.browse.UnifiedSearchResults
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold
@@ -46,6 +47,9 @@ fun GlobalSearchScreen(
     libraryTags: List<String> = emptyList(),
     sourceTags: List<SourceTagIndex.Tag> = emptyList(),
     onTag: (String) -> Unit = {},
+    merged: Boolean = false,
+    onToggleMerged: ((Boolean) -> Unit)? = null,
+    library: List<Manga> = emptyList(),
 ) {
     val typed = state.searchQuery.orEmpty().trim()
     val tagMatches = remember(sourceTags, typed) {
@@ -66,6 +70,8 @@ fun GlobalSearchScreen(
                 onlyShowHasResults = state.onlyShowHasResults,
                 onToggleResults = onToggleResults,
                 scrollBehavior = scrollBehavior,
+                merged = merged.takeIf { onToggleMerged != null },
+                onToggleMerged = { onToggleMerged?.invoke(it) },
             )
         },
     ) { paddingValues ->
@@ -93,6 +99,26 @@ fun GlobalSearchScreen(
                     title = stringResource(MR.strings.kurotoon_browse_sourceTags, sourceTags.size),
                 )
             }
+            return@Scaffold
+        }
+        if (merged && onToggleMerged != null) {
+            UnifiedSearchResults(
+                items = state.items,
+                query = typed,
+                library = library,
+                contentPadding = paddingValues,
+                getManga = getManga,
+                onClickItem = onClickItem,
+                onShowBySource = { onToggleMerged(false) },
+                header = {
+                    TagBrowseRow(
+                        tags = tagMatches,
+                        onTag = onTag,
+                        contentPadding = PaddingValues(horizontal = 4.dp),
+                        title = stringResource(MR.strings.kurotoon_browse_matchingTags),
+                    )
+                },
+            )
             return@Scaffold
         }
         GlobalSearchContent(
