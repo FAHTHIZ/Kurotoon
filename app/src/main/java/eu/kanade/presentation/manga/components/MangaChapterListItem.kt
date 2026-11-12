@@ -4,9 +4,11 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -21,16 +23,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import eu.kanade.tachiyomi.data.download.model.Download
 import me.saket.swipe.SwipeableActionsBox
@@ -70,6 +67,9 @@ fun MangaChapterListItem(
     onChapterSwipe: (LibraryPreferences.ChapterSwipeAction) -> Unit,
     modifier: Modifier = Modifier,
     note: String? = null,
+    number: String? = null,
+    isNew: Boolean = false,
+    inProgress: Boolean = false,
 ) {
     val start = getSwipeAction(
         action = chapterSwipeStartAction,
@@ -95,7 +95,6 @@ fun MangaChapterListItem(
         swipeThreshold = swipeActionThreshold,
         backgroundUntilSwipeThreshold = MaterialTheme.colorScheme.surfaceContainerLowest,
     ) {
-        val rail = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)
         Row(
             modifier = modifier
                 .selectedBackground(selected)
@@ -103,24 +102,18 @@ fun MangaChapterListItem(
                     onClick = onClick,
                     onLongClick = onLongClick,
                 )
-                // Unread chapters carry an accent rail on the leading edge instead of a dot
-                .drawBehind {
-                    if (!read) {
-                        val inset = 12.dp.toPx()
-                        val x = if (layoutDirection == LayoutDirection.Ltr) 6.dp.toPx() else size.width - 9.dp.toPx()
-                        drawRoundRect(
-                            color = rail,
-                            topLeft = Offset(x, inset),
-                            size = Size(2.5.dp.toPx(), size.height - inset * 2),
-                            cornerRadius = CornerRadius(2.dp.toPx()),
-                        )
-                    }
-                }
-                .padding(start = 18.dp, top = 12.dp, end = 8.dp, bottom = 12.dp),
+                .padding(start = 16.dp, top = 10.dp, end = 8.dp, bottom = 10.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
+            kurotoon.ui.manga.EpisodeTile(
+                number = number,
+                read = read,
+                inProgress = inProgress,
+            )
+            Spacer(Modifier.width(14.dp))
             Column(
                 modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(6.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp),
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(2.dp),
@@ -144,7 +137,14 @@ fun MangaChapterListItem(
                         overflow = TextOverflow.Ellipsis,
                         onTextLayout = { textHeight = it.size.height },
                         color = LocalContentColor.current.copy(alpha = if (read) DISABLED_ALPHA else 1f),
+                        modifier = Modifier.weight(1f, fill = false),
                     )
+                    if (isNew && !read) {
+                        kurotoon.ui.KuroTag(
+                            text = stringResource(MR.strings.kurotoon_episode_up),
+                            modifier = Modifier.padding(start = 6.dp),
+                        )
+                    }
                 }
 
                 Row {

@@ -1377,6 +1377,9 @@
     <string name="kurotoon_year_mostRead">Most read</string>
     <string name="kurotoon_year_genres">Your genres</string>
     <string name="kurotoon_year_chapters">%d ch.</string>
+    <string name="kurotoon_episode_up">UP</string>
+    <string name="kurotoon_sort_newest">Newest</string>
+    <string name="kurotoon_sort_oldest">Oldest</string>
     <string name="kurotoon_year_busiest">Busiest month: %1$s, with %2$d chapters</string>
     <!-- Kuro Points, missions and the shop -->
     <string name="kurotoon.shop.title">Kuro Shop</string>
