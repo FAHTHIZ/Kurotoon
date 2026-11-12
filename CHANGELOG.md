@@ -9,6 +9,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Browse › Tags: every tag your installed sources offer in one searchable page, by most sources or A–Z, with how many sources carry each and your library's tags on top. Tap a tag to browse it on every source; long-press to search titles with it or hide it everywhere
 
 ### Changed
+- Hidden series list shows each cover; tap a row to open the series, or Unhide with a tonal pill
 - Floating actions (continue reading, add category, pause downloads, migration) are a glowing Kuro pill that folds to its icon while scrolling
 - Theme mode is a sliding Kuro segmented choice, and backup create/restore are Kuro tonal buttons, replacing stock segmented buttons
 - Snackbars (undo, errors, confirmations) are a dark glass capsule with an accent action on every screen
