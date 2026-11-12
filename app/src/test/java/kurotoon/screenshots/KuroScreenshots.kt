@@ -56,6 +56,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import tachiyomi.core.common.preference.TriState
 import tachiyomi.domain.history.model.HistoryWithRelations
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.manga.model.MangaCover
@@ -686,6 +687,24 @@ class KuroScreenshots {
                     inProgress = row.progress,
                 )
             }
+        }
+    }
+
+    @Test
+    fun sheetRows() = shot("sheet_rows") {
+        androidx.compose.foundation.layout.Column(Modifier.padding(vertical = 12.dp)) {
+            tachiyomi.presentation.core.components.HeadingItem("Filter")
+            tachiyomi.presentation.core.components.TriStateItem("Downloaded", TriState.DISABLED, onClick = {})
+            tachiyomi.presentation.core.components.TriStateItem("Unread", TriState.ENABLED_IS, onClick = {})
+            tachiyomi.presentation.core.components.TriStateItem("Completed", TriState.ENABLED_NOT, onClick = {})
+            tachiyomi.presentation.core.components.HeadingItem("Sort")
+            tachiyomi.presentation.core.components.SortItem("Last read", sortDescending = true, onClick = {})
+            tachiyomi.presentation.core.components.SortItem("Alphabetically", sortDescending = null, onClick = {})
+            tachiyomi.presentation.core.components.HeadingItem("Display")
+            tachiyomi.presentation.core.components.RadioItem("Comfortable grid", selected = true, onClick = {})
+            tachiyomi.presentation.core.components.RadioItem("List", selected = false, onClick = {})
+            tachiyomi.presentation.core.components.CheckboxItem("Unread badges", checked = true, onClick = {})
+            tachiyomi.presentation.core.components.CheckboxItem("Language badges", checked = false, onClick = {})
         }
     }
 
