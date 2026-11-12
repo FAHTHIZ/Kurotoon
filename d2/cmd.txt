@@ -1,0 +1,14 @@
+stop app.kurotoon.dev
+sh "run-as app.kurotoon.dev cat shared_prefs/app.kurotoon.dev_preferences.xml"
+sh "logcat -c"
+start app.kurotoon.dev
+sleep 6
+tapx Browse
+sleep 2
+tapx Extensions
+sleep 15
+shot ext1
+swipe 540 700 540 1800
+sleep 20
+shot ext2
+sh "logcat -d | grep -E ' [EW] ' | grep -v -iE 'systemui|FrameTracker|chromium|cr_' | tail -60"

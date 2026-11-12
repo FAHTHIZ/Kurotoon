@@ -1,0 +1,93 @@
+> stop app.kurotoon.dev
+> sh "run-as app.kurotoon.dev cat shared_prefs/app.kurotoon.dev_preferences.xml"
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <int name="__APP_STATE_library_unseen_updates_count" value="0" />
+    <int name="__APP_STATE_last_version_code" value="41" />
+    <string name="kurotoon_rewards_state">{&quot;day&quot;:&quot;2026-11-12&quot;,&quot;progress&quot;:{&quot;search_1&quot;:1},&quot;week&quot;:&quot;2026-11-09&quot;,&quot;seasonProgress&quot;:{&quot;anniversary-2026/search&quot;:1}}</string>
+    <long name="__APP_STATE_last_catalogue_source" value="0" />
+    <string name="__APP_STATE_installation_id">ba15dcff-5baf-4061-b2cc-79b20b276814</string>
+    <int name="ext_updates_count" value="0" />
+    <boolean name="__APP_STATE_incognito_mode" value="false" />
+    <string name="kurotoon_recent_searches">[&quot;Solo&quot;]</string>
+    <boolean name="__APP_STATE_onboarding_complete" value="true" />
+    <long name="__APP_STATE_library_update_last_timestamp" value="1794456680318" />
+</map>
+
+> sh "logcat -c"
+
+> start app.kurotoon.dev
+> sleep 6
+> tapx Browse
+> sleep 2
+> tapx Extensions
+> sleep 15
+> shot ext1
+  [shot 001_ext1] visible: ['No extensions yet. Add an extension store to browse and install the sources you want to read from.', 'Add an extension store', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> swipe 540 700 540 1800
+> sleep 20
+> shot ext2
+  [shot 002_ext2] visible: ['No extensions yet. Add an extension store to browse and install the sources you want to read from.', 'Add an extension store', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sh "logcat -d | grep -E ' [EW] ' | grep -v -iE 'systemui|FrameTracker|chromium|cr_' | tail -60"
+11-12 04:15:27.109  1879  2477 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-12 04:15:27.109  1879  2477 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-12 04:15:27.109  1879  2477 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-12 04:15:27.109  1879  2477 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-12 04:15:27.109  1879  2477 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-12 04:15:27.117  3605  3605 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:15:27.124   547  2495 W ActivityManager: Unable to start service Intent { cmp=com.google.android.apps.tachyon/.clientapi.ClientApiService } U=0: not found
+11-12 04:15:27.143  1977  2886 W A       : UiCallbackStub-onGenericEvent[ServiceEvent = 60] task was not run. Callback from Service received after client was disposed.
+11-12 04:15:27.153  1977  2886 W SearchServiceCore: Abort, client detached.
+11-12 04:15:31.397   547  2495 W ProcessStats: Tracking association SourceState{23dd0e5 com.google.android.gms.persistent/10128 BFgs #16908} whose proc state 4 is better than process ProcessState{b2ad7cc com.google.android.gms/10128 pkg=com.google.android.gms} proc state 14 (123 skipped)
+11-12 04:15:31.626  1977  1992 W earchbox:search: Reducing the number of considered missed Gc histogram windows from 155 to 100
+11-12 04:15:44.681 13676 13676 W BpBinder: Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+11-12 04:15:44.683 13676 13676 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-12 04:15:45.617   547  2495 W ProcessStats: Tracking association SourceState{4005636 com.google.android.gms.persistent/10128 ImpBg #16926} whose proc state 6 is better than process ProcessState{b2ad7cc com.google.android.gms/10128 pkg=com.google.android.gms} proc state 14 (27 skipped)
+11-12 04:15:46.026 13680 13680 W app_process: Unexpected CPU variant for x86: x86_64.
+11-12 04:15:46.026 13680 13680 W app_process: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+11-12 04:15:46.031 13680 13680 W app_process: ClassLoaderContext shared library size mismatch. Expected=2, found=0 (PCL[]{PCL[/system/framework/android.test.base.jar*836642756]#PCL[/system/framework/android.test.mock.jar*3186112116]} | PCL[])
+11-12 04:15:46.031 13680 13680 W app_process: ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[]{PCL[/system/framework/android.test.runner.jar*4168958247]{PCL[/system/framework/android.test.base.jar*836642756]#PCL[/system/framework/android.test.mock.jar*3186112116]}#PCL[/system/framework/android.test.base.jar*836642756]} | PCL[/system/framework/android.test.runner.jar*4168958247])
+11-12 04:15:46.062 13680 13680 W libc    : Access denied finding property "ro.product.name_for_attestation"
+11-12 04:15:46.062 13680 13680 W libc    : Access denied finding property "ro.product.brand_for_attestation"
+11-12 04:15:46.063 13680 13680 W libc    : Access denied finding property "ro.product.model_for_attestation"
+11-12 04:15:46.068 13680 13680 W UiAutomation: Created with deprecatead constructor, assumes DEFAULT_DISPLAY
+11-12 04:15:46.060 13680 13680 W main    : type=1400 audit(0.0:749): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-12 04:15:46.087   547  2658 W WindowMagnificationMgr: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-12 04:15:46.060 13680 13680 W main    : type=1400 audit(0.0:750): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-12 04:15:46.098  3605  3605 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:15:46.105   547  2658 W WindowMagnificationMgr: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-12 04:15:46.133  3605  3665 W Looper  : Slow dispatch took 34ms wmshell.main h=android.view.ViewRootImpl$ViewRootHandler c=android.view.accessibility.AccessibilityManager$$ExternalSyntheticLambda1@adf3bd6 m=0
+11-12 04:15:46.134  3605  3605 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:15:46.060 13680 13680 W main    : type=1400 audit(0.0:751): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-12 04:15:47.321  1850  2542 W MediaProvider: isAppCloneUserPair for user 0: false
+11-12 04:15:49.065 13680 13680 W AccessibilityNodeInfoDumper: Fetch time: 1747ms
+11-12 04:15:49.066   547  2273 W WindowMagnificationMgr: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-12 04:15:49.069  3605  3605 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:15:50.236 13552 13552 W pp.kurotoon.dev: Accessing hidden method Landroid/view/ViewTreeObserver;->dispatchOnScrollChanged()V (unsupported, reflection, allowed)
+11-12 04:15:55.398   547   834 E WifiStaIfaceAidlImpl: installApfPacketFilter failed with service-specific exception: android.os.ServiceSpecificException:  (code 4)
+11-12 04:16:00.003  3605  3605 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:16:07.815     0     0 W healthd : battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+11-12 04:16:12.348 13714 13714 W BpBinder: Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+11-12 04:16:12.348 13714 13714 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-12 04:16:13.289   547  2658 W ProcessStats: Tracking association SourceState{4005636 com.google.android.gms.persistent/10128 ImpBg #16947} whose proc state 6 is better than process ProcessState{b2ad7cc com.google.android.gms/10128 pkg=com.google.android.gms} proc state 14 (6 skipped)
+11-12 04:16:13.652 13718 13718 W app_process: Unexpected CPU variant for x86: x86_64.
+11-12 04:16:13.652 13718 13718 W app_process: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+11-12 04:16:13.654 13718 13718 W app_process: ClassLoaderContext shared library size mismatch. Expected=2, found=0 (PCL[]{PCL[/system/framework/android.test.base.jar*836642756]#PCL[/system/framework/android.test.mock.jar*3186112116]} | PCL[])
+11-12 04:16:13.655 13718 13718 W app_process: ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[]{PCL[/system/framework/android.test.runner.jar*4168958247]{PCL[/system/framework/android.test.base.jar*836642756]#PCL[/system/framework/android.test.mock.jar*3186112116]}#PCL[/system/framework/android.test.base.jar*836642756]} | PCL[/system/framework/android.test.runner.jar*4168958247])
+11-12 04:16:13.703 13718 13718 W libc    : Access denied finding property "ro.product.name_for_attestation"
+11-12 04:16:13.705 13718 13718 W libc    : Access denied finding property "ro.product.brand_for_attestation"
+11-12 04:16:13.705 13718 13718 W libc    : Access denied finding property "ro.product.model_for_attestation"
+11-12 04:16:13.718 13718 13718 W UiAutomation: Created with deprecatead constructor, assumes DEFAULT_DISPLAY
+11-12 04:16:13.700 13718 13718 W main    : type=1400 audit(0.0:752): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-12 04:16:13.729   547  2658 W WindowMagnificationMgr: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-12 04:16:13.700 13718 13718 W main    : type=1400 audit(0.0:753): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-12 04:16:13.700 13718 13718 W main    : type=1400 audit(0.0:754): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-12 04:16:13.766   547  2633 W WindowMagnificationMgr: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-12 04:16:13.771  3605  3605 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:16:13.771  3605  3605 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:16:14.922  1850  2542 W MediaProvider: isAppCloneUserPair for user 0: false
+11-12 04:16:17.534 13718 13718 W AccessibilityNodeInfoDumper: Fetch time: 2616ms
+11-12 04:16:17.554   547  2658 W WindowMagnificationMgr: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-12 04:16:17.584  3605  3605 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+
+  [shot 003_end] visible: ['No extensions yet. Add an extension store to browse and install the sources you want to read from.', 'Add an extension store', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
