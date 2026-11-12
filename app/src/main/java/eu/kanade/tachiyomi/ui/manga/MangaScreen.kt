@@ -168,6 +168,7 @@ class MangaScreen(
                     }
                 },
                 onFilterButtonClicked = viewModel::showSettingsDialog,
+                onFlipSortOrder = { viewModel.setSorting(successState.manga.sorting) },
                 onRefresh = viewModel::fetchAllFromSource,
                 onContinueReading = { continueReading(context, viewModel.getNextUnreadChapter()) },
                 onSearch = { query, global -> scope.launch { performSearch(navigator, query, global) } },

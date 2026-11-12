@@ -108,6 +108,7 @@ fun MangaScreen(
     onTagAction: (String, TagAction) -> Unit = { _, _ -> },
 
     onFilterButtonClicked: () -> Unit,
+    onFlipSortOrder: () -> Unit,
     onRefresh: () -> Unit,
     onContinueReading: () -> Unit,
     onSearch: (query: String, global: Boolean) -> Unit,
@@ -165,6 +166,7 @@ fun MangaScreen(
             onTagAction = onTagAction,
             onCopyTagToClipboard = onCopyTagToClipboard,
             onFilterClicked = onFilterButtonClicked,
+            onFlipSortOrder = onFlipSortOrder,
             onRefresh = onRefresh,
             onContinueReading = onContinueReading,
             onSearch = onSearch,
@@ -205,6 +207,7 @@ fun MangaScreen(
             onTagAction = onTagAction,
             onCopyTagToClipboard = onCopyTagToClipboard,
             onFilterButtonClicked = onFilterButtonClicked,
+            onFlipSortOrder = onFlipSortOrder,
             onRefresh = onRefresh,
             onContinueReading = onContinueReading,
             onSearch = onSearch,
@@ -251,6 +254,7 @@ private fun MangaScreenSmallImpl(
     onCopyTagToClipboard: (tag: String) -> Unit,
 
     onFilterClicked: () -> Unit,
+    onFlipSortOrder: () -> Unit,
     onRefresh: () -> Unit,
     onContinueReading: () -> Unit,
     onSearch: (query: String, global: Boolean) -> Unit,
@@ -468,6 +472,8 @@ private fun MangaScreenSmallImpl(
                             readCount = chapters.count { it.chapter.read },
                             status = state.manga.status,
                             onClick = onFilterClicked,
+                            sortDescending = state.manga.sortDescending(),
+                            onFlipSortOrder = onFlipSortOrder,
                         )
                     }
 
@@ -512,6 +518,7 @@ fun MangaScreenLargeImpl(
     onCopyTagToClipboard: (tag: String) -> Unit,
 
     onFilterButtonClicked: () -> Unit,
+    onFlipSortOrder: () -> Unit,
     onRefresh: () -> Unit,
     onContinueReading: () -> Unit,
     onSearch: (query: String, global: Boolean) -> Unit,
@@ -722,6 +729,8 @@ fun MangaScreenLargeImpl(
                                     readCount = chapters.count { it.chapter.read },
                                     status = state.manga.status,
                                     onClick = onFilterButtonClicked,
+                                    sortDescending = state.manga.sortDescending(),
+                                    onFlipSortOrder = onFlipSortOrder,
                                 )
                             }
 
@@ -838,6 +847,13 @@ private fun LazyListScope.sharedChapterItems(
                     read = item.chapter.read,
                     bookmark = item.chapter.bookmark,
                     note = kurotoon.ui.manga.bookmarkNoteOf(item.chapter.id, item.chapter.bookmark),
+                    number = item.chapter.chapterNumber
+                        .takeIf { it >= 0.0 }
+                        ?.let { formatChapterNumber(it) },
+                    inProgress = !item.chapter.read && item.chapter.lastPageRead > 0L,
+                    isNew = !item.chapter.read && item.chapter.dateUpload
+                        ?.let { System.currentTimeMillis() - it.toEpochMilliseconds() < 3L * 24 * 60 * 60 * 1000 } ==
+                        true,
                     selected = item.selected,
                     downloadIndicatorEnabled = !isAnyChapterSelected && !manga.isLocal(),
                     downloadStateProvider = { item.downloadState },

@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import mihon.icons.materialsymbols.rounded.FilterList
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.SECONDARY_ALPHA
 import tachiyomi.presentation.core.components.material.padding
@@ -33,6 +34,8 @@ fun ChapterHeader(
     mangaId: Long? = null,
     readCount: Int = 0,
     status: Long? = null,
+    sortDescending: Boolean? = null,
+    onFlipSortOrder: (() -> Unit)? = null,
 ) {
     Column(
         modifier = modifier
@@ -41,7 +44,7 @@ fun ChapterHeader(
                 enabled = enabled,
                 onClick = onClick,
             )
-            .padding(horizontal = 16.dp, vertical = 4.dp),
+            .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 6.dp),
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.padding.extraSmall),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -54,6 +57,21 @@ fun ChapterHeader(
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier.weight(1f),
+            )
+            if (sortDescending != null && onFlipSortOrder != null) {
+                kurotoon.ui.manga.EpisodeSortPill(
+                    descending = sortDescending,
+                    enabled = enabled,
+                    onClick = onFlipSortOrder,
+                )
+            }
+            kurotoon.ui.KuroIconButton(
+                icon = mihon.icons.materialsymbols.MaterialSymbols.Rounded.FilterList,
+                contentDescription = stringResource(MR.strings.action_filter),
+                onClick = onClick,
+                enabled = enabled,
+                modifier = Modifier.padding(start = 8.dp),
             )
         }
 
