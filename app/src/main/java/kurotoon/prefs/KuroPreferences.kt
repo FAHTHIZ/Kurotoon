@@ -159,6 +159,14 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
         deserializer = RecentSearches::decode,
     )
 
+    /** Tags last opened from Browse › Tags, newest first. */
+    val recentTags = preferenceStore.getObjectFromString<List<String>>(
+        key = "kurotoon_recent_tags",
+        defaultValue = emptyList(),
+        serializer = RecentSearches::encode,
+        deserializer = RecentSearches::decode,
+    )
+
     /** Recent searches inside one source, newest first (mihon#1409). */
     fun sourceRecentSearches(sourceId: Long) = preferenceStore.getObjectFromString<List<String>>(
         key = "kurotoon_recent_searches_$sourceId",

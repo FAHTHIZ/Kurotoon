@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Added
+- Browse › Tags remembers the last tags you opened and shows them first under Recently opened
 - Browse › Tags: every tag your installed sources offer in one searchable page, by most sources or A–Z, with how many sources carry each and your library's tags on top. Tap a tag to browse it on every source; long-press to search titles with it or hide it everywhere
 
 ### Changed

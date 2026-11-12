@@ -113,6 +113,8 @@ private fun TagsPage(
     val sourceCount by remember {
         graph.sourceManager.sources.map { list -> list.count { it is CatalogueSource && it.id != 0L } }
     }.collectAsState(0)
+    val recentPref = remember { graph.kuroPreferences.recentTags }
+    val recent by recentPref.changes().collectAsState(recentPref.get())
     val libraryTags by produceState(emptyList<String>()) {
         value = runCatching {
             val library = withContext(Dispatchers.IO) { graph.getLibraryManga.await() }
@@ -123,9 +125,13 @@ private fun TagsPage(
         tags = all,
         hidden = hidden,
         libraryTags = libraryTags,
+        recentTags = recent,
         sourceCount = sourceCount,
         contentPadding = contentPadding,
-        onTag = onTag,
+        onTag = { tag ->
+            recentPref.getAndSet { kurotoon.catalogue.RecentSearches.add(it, tag).take(RECENT_TAGS) }
+            onTag(tag)
+        },
         onSearchText = onSearchText,
         onHide = { tag ->
             hiddenPref.getAndSet { addHiddenTag(it, tag.name) }
@@ -146,6 +152,7 @@ internal fun TagsContent(
     onSearchText: (String) -> Unit,
     onHide: (SourceTagIndex.Tag) -> Unit,
     initialOrder: Boolean = false,
+    recentTags: List<String> = emptyList(),
 ) {
     var query by rememberSaveable { mutableStateOf("") }
     var order by rememberSaveable { mutableStateOf(if (initialOrder) TagOrder.Alphabetical else TagOrder.Popular) }
@@ -153,6 +160,9 @@ internal fun TagsContent(
 
     val shown = remember(tags, hidden, query) { TagSections.visible(tags.orEmpty(), hidden, query) }
     val known = remember(tags) { tags.orEmpty().associateBy { it.name.lowercase() } }
+    val recent = remember(recentTags, known, hidden) {
+        recentTags.mapNotNull { known[it.lowercase()] }.filter { it.name.lowercase() !in hidden }
+    }
     val yours = remember(libraryTags, known, hidden) {
         libraryTags.mapNotNull { known[it.lowercase()] }.filter { it.name.lowercase() !in hidden }
     }
@@ -226,6 +236,17 @@ internal fun TagsContent(
                 }
             }
             else -> {
+                if (query.isBlank() && recent.isNotEmpty()) {
+                    item(key = "recent") {
+                        TagGroup(
+                            title = stringResource(MR.strings.kurotoon_tags_recent),
+                            tags = recent,
+                            onTag = onTag,
+                            onLongTag = { sheetFor = it },
+                            highlight = true,
+                        )
+                    }
+                }
                 if (query.isBlank() && yours.isNotEmpty()) {
                     item(key = "yours") {
                         TagGroup(
@@ -453,4 +474,5 @@ private fun SheetRow(icon: ImageVector, text: String, onClick: () -> Unit) {
     }
 }
 
+private const val RECENT_TAGS = 8
 private const val LIBRARY_TAGS = 16
