@@ -1369,6 +1369,12 @@
     <string name="kurotoon_reader_volumeKeyDelay">Ignore repeated presses</string>
     <string name="kurotoon_reader_volumeKeyDelaySummary">One page per press, even if a worn volume button bounces</string>
     <string name="kurotoon_reader_volumeKeyDelayMs">Within %d ms</string>
+    <string name="kurotoon_sel_bookmark">Bookmark</string>
+    <string name="kurotoon_sel_unbookmark">Unmark</string>
+    <string name="kurotoon_sel_read">Read</string>
+    <string name="kurotoon_sel_unread">Unread</string>
+    <string name="kurotoon_sel_readBefore">Read before</string>
+    <string name="kurotoon_sel_move">Move</string>
     <string name="kurotoon_manga_continueChapter">%1$s · Ch. %2$s</string>
     <string name="kurotoon_reader_bedtime">Bedtime warmth</string>
     <string name="kurotoon_reader_bedtimeSummary">Pages warm up and dim a little from 9:30 PM, easing back to normal by 6:30 AM</string>

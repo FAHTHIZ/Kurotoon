@@ -4,9 +4,8 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,19 +14,18 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
-import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.shape.ZeroCornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
@@ -37,6 +35,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
@@ -85,9 +84,13 @@ fun MangaBottomActionMenu(
     ) {
         val scope = rememberCoroutineScope()
         Surface(
-            modifier = modifier,
-            shape = MaterialTheme.shapes.large.copy(bottomEnd = ZeroCornerSize, bottomStart = ZeroCornerSize),
+            modifier = modifier
+                .windowInsetsPadding(WindowInsets.navigationBars.only(WindowInsetsSides.Bottom))
+                .padding(horizontal = 12.dp, vertical = 8.dp),
+            shape = DockShape,
             color = MaterialTheme.colorScheme.surfaceContainerHigh,
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)),
+            shadowElevation = 8.dp,
         ) {
             val haptic = LocalHapticFeedback.current
             val confirm = remember { mutableStateListOf(false, false, false, false, false, false, false) }
@@ -102,17 +105,12 @@ fun MangaBottomActionMenu(
                 }
             }
             Row(
-                modifier = Modifier
-                    .padding(
-                        WindowInsets.navigationBars
-                            .only(WindowInsetsSides.Bottom)
-                            .asPaddingValues(),
-                    )
-                    .padding(horizontal = 8.dp, vertical = 12.dp),
+                modifier = Modifier.padding(horizontal = 6.dp, vertical = 6.dp),
             ) {
                 if (onBookmarkClicked != null) {
                     Button(
                         title = stringResource(MR.strings.action_bookmark),
+                        label = stringResource(MR.strings.kurotoon_sel_bookmark),
                         icon = MaterialSymbols.Rounded.BookmarkAdd,
                         toConfirm = confirm[0],
                         onLongClick = { onLongClickItem(0) },
@@ -122,6 +120,7 @@ fun MangaBottomActionMenu(
                 if (onRemoveBookmarkClicked != null) {
                     Button(
                         title = stringResource(MR.strings.action_remove_bookmark),
+                        label = stringResource(MR.strings.kurotoon_sel_unbookmark),
                         icon = MaterialSymbols.Rounded.BookmarkRemove,
                         toConfirm = confirm[1],
                         onLongClick = { onLongClickItem(1) },
@@ -131,6 +130,7 @@ fun MangaBottomActionMenu(
                 if (onMarkAsReadClicked != null) {
                     Button(
                         title = stringResource(MR.strings.action_mark_as_read),
+                        label = stringResource(MR.strings.kurotoon_sel_read),
                         icon = MaterialSymbols.Rounded.DoneAll,
                         toConfirm = confirm[2],
                         onLongClick = { onLongClickItem(2) },
@@ -140,6 +140,7 @@ fun MangaBottomActionMenu(
                 if (onMarkAsUnreadClicked != null) {
                     Button(
                         title = stringResource(MR.strings.action_mark_as_unread),
+                        label = stringResource(MR.strings.kurotoon_sel_unread),
                         icon = MaterialSymbols.Rounded.RemoveDone,
                         toConfirm = confirm[3],
                         onLongClick = { onLongClickItem(3) },
@@ -149,6 +150,7 @@ fun MangaBottomActionMenu(
                 if (onMarkPreviousAsReadClicked != null) {
                     Button(
                         title = stringResource(MR.strings.action_mark_previous_as_read),
+                        label = stringResource(MR.strings.kurotoon_sel_readBefore),
                         icon = CustomMaterialSymbols.Rounded.DonePrevious,
                         toConfirm = confirm[4],
                         onLongClick = { onLongClickItem(4) },
@@ -178,6 +180,10 @@ fun MangaBottomActionMenu(
     }
 }
 
+/**
+ * One action in the floating selection dock: an icon over a short label. Long-press widens it and spells the action
+ * out in full, so "Read before" can be checked as "Mark previous as read" before tapping.
+ */
 @Composable
 private fun RowScope.Button(
     title: String,
@@ -185,6 +191,7 @@ private fun RowScope.Button(
     toConfirm: Boolean,
     onLongClick: () -> Unit,
     onClick: () -> Unit,
+    label: String = title,
     content: (@Composable () -> Unit)? = null,
 ) {
     val animatedWeight by animateFloatAsState(
@@ -193,40 +200,38 @@ private fun RowScope.Button(
     )
     Box(
         modifier = Modifier
-            .size(48.dp)
+            .height(58.dp)
             .weight(animatedWeight)
+            .clip(RoundedCornerShape(20.dp))
             .combinedClickable(
-                interactionSource = null,
-                indication = ripple(bounded = false),
                 onLongClick = onLongClick,
                 onClick = onClick,
             ),
         contentAlignment = Alignment.Center,
     ) {
         Column(
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.spacedBy(3.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Icon(
                 imageVector = icon,
                 contentDescription = title,
+                modifier = Modifier.size(22.dp),
             )
-            AnimatedVisibility(
-                visible = toConfirm,
-                enter = expandVertically(expandFrom = Alignment.Top) + fadeIn(),
-                exit = shrinkVertically(shrinkTowards = Alignment.Top) + fadeOut(),
-            ) {
-                Text(
-                    text = title,
-                    overflow = TextOverflow.Visible,
-                    maxLines = 1,
-                    style = MaterialTheme.typography.labelSmall,
-                )
-            }
+            Text(
+                text = if (toConfirm) title else label,
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1,
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(horizontal = 2.dp),
+            )
         }
         content?.invoke()
     }
 }
+
+private val DockShape = RoundedCornerShape(28.dp)
 
 @Composable
 fun LibraryBottomActionMenu(
@@ -248,9 +253,13 @@ fun LibraryBottomActionMenu(
     ) {
         val scope = rememberCoroutineScope()
         Surface(
-            modifier = modifier,
-            shape = MaterialTheme.shapes.large.copy(bottomEnd = ZeroCornerSize, bottomStart = ZeroCornerSize),
+            modifier = modifier
+                .windowInsetsPadding(WindowInsets.navigationBars.only(WindowInsetsSides.Bottom))
+                .padding(horizontal = 12.dp, vertical = 8.dp),
+            shape = DockShape,
             color = MaterialTheme.colorScheme.surfaceContainerHigh,
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)),
+            shadowElevation = 8.dp,
         ) {
             val haptic = LocalHapticFeedback.current
             val confirm = remember { mutableStateListOf(false, false, false, false, false, false) }
@@ -266,15 +275,11 @@ fun LibraryBottomActionMenu(
             }
             val itemOverflow = onDownloadClicked != null || onUpdateClicked != null
             Row(
-                modifier = Modifier
-                    .windowInsetsPadding(
-                        WindowInsets.navigationBars
-                            .only(WindowInsetsSides.Bottom),
-                    )
-                    .padding(horizontal = 8.dp, vertical = 12.dp),
+                modifier = Modifier.padding(horizontal = 6.dp, vertical = 6.dp),
             ) {
                 Button(
                     title = stringResource(MR.strings.action_move_category),
+                    label = stringResource(MR.strings.kurotoon_sel_move),
                     icon = MaterialSymbols.AutoMirroredRounded.Label,
                     toConfirm = confirm[0],
                     onLongClick = { onLongClickItem(0) },
@@ -282,6 +287,7 @@ fun LibraryBottomActionMenu(
                 )
                 Button(
                     title = stringResource(MR.strings.action_mark_as_read),
+                    label = stringResource(MR.strings.kurotoon_sel_read),
                     icon = MaterialSymbols.Rounded.DoneAll,
                     toConfirm = confirm[1],
                     onLongClick = { onLongClickItem(1) },
@@ -289,6 +295,7 @@ fun LibraryBottomActionMenu(
                 )
                 Button(
                     title = stringResource(MR.strings.action_mark_as_unread),
+                    label = stringResource(MR.strings.kurotoon_sel_unread),
                     icon = MaterialSymbols.Rounded.RemoveDone,
                     toConfirm = confirm[2],
                     onLongClick = { onLongClickItem(2) },
