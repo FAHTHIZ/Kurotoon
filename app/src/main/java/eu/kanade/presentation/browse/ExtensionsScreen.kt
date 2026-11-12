@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -60,6 +59,7 @@ import eu.kanade.tachiyomi.ui.browse.extension.ExtensionsViewModel
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import eu.kanade.tachiyomi.util.system.launchRequestPackageInstallsPermission
+import kurotoon.ui.KuroAlertDialog
 import kurotoon.ui.KuroSectionHeader
 import kurotoon.ui.kuroCard
 import mihon.domain.extension.model.ExtensionStore
@@ -665,7 +665,7 @@ private fun ExtensionNotLoadedDialog(
     onClickUninstall: () -> Unit,
     onDismissRequest: () -> Unit,
 ) {
-    AlertDialog(
+    KuroAlertDialog(
         title = {
             Text(text = stringResource(MR.strings.ext_not_loaded_dialog))
         },
@@ -716,7 +716,7 @@ private fun ExtensionTrustDialog(
     onClickDismiss: () -> Unit,
     onDismissRequest: () -> Unit,
 ) {
-    AlertDialog(
+    KuroAlertDialog(
         title = {
             Text(text = stringResource(MR.strings.untrusted_extension))
         },

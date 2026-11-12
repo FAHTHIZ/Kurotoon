@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -20,6 +19,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kurotoon.ui.KuroAlertDialog
 import logcat.LogPriority
 import mihon.app.di.appGraph
 import tachiyomi.core.common.i18n.pluralStringResource
@@ -99,7 +99,7 @@ fun MassTrackDialog(
     onPick: (Tracker) -> Unit,
     onDismiss: () -> Unit,
 ) {
-    AlertDialog(
+    KuroAlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(MR.strings.kurotoon_track_massTitle)) },
         text = {

@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -54,6 +53,7 @@ import eu.kanade.tachiyomi.source.ConfigurableSource
 import eu.kanade.tachiyomi.ui.browse.extension.details.ExtensionDetailsViewModel
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import eu.kanade.tachiyomi.util.system.copyToClipboard
+import kurotoon.ui.KuroAlertDialog
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Eyeglasses2
 import mihon.icons.materialsymbols.rounded.Settings
@@ -460,7 +460,7 @@ private fun ContentWarningDialog(
     description: StringResource,
     onClickConfirm: () -> Unit,
 ) {
-    AlertDialog(
+    KuroAlertDialog(
         title = {
             Text(
                 text = stringResource(label),

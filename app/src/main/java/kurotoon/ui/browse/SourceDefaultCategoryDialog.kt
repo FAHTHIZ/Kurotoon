@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectable
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -20,6 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.category.visualName
+import kurotoon.ui.KuroAlertDialog
 import mihon.app.di.appGraph
 import tachiyomi.domain.category.model.Category
 import tachiyomi.i18n.MR
@@ -35,7 +35,7 @@ fun SourceDefaultCategoryDialog(sourceId: Long, onDismiss: () -> Unit) {
     }
     val current = kuro.defaultCategoryFor(sourceId, fallback = -1L).takeIf { it >= 0 }
 
-    AlertDialog(
+    KuroAlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(MR.strings.kurotoon_sourceCategory_title)) },
         text = {

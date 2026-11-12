@@ -28,7 +28,6 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -73,6 +72,7 @@ import kurotoon.shop.PackOrigin
 import kurotoon.shop.PackRepository.ImportResult
 import kurotoon.shop.ShopItem
 import kurotoon.shop.ShopKind
+import kurotoon.ui.KuroAlertDialog
 import kurotoon.ui.kuroBounceClickable
 import kurotoon.ui.kuroCard
 import mihon.app.di.appGraph
@@ -256,7 +256,7 @@ fun CollectionContent(
     }
 
     removing?.let { pack ->
-        AlertDialog(
+        KuroAlertDialog(
             onDismissRequest = { removing = null },
             title = { Text(stringResource(MR.strings.kurotoon_packs_remove)) },
             text = { Text(stringResource(MR.strings.kurotoon_collection_removeConfirm, pack.name)) },

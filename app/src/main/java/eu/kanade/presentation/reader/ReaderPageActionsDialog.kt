@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -27,6 +26,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.components.AdaptiveSheet
+import kurotoon.ui.KuroAlertDialog
 import kurotoon.ui.KuroSectionTitle
 import kurotoon.ui.kuroBounceClickable
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -116,7 +116,7 @@ private fun SetCoverDialog(
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
 ) {
-    AlertDialog(
+    KuroAlertDialog(
         text = {
             Text(stringResource(MR.strings.confirm_set_image_as_cover))
         },

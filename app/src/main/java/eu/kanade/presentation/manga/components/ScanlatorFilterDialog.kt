@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
@@ -24,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
+import kurotoon.ui.KuroAlertDialog
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.CheckBoxOutlineBlank
 import mihon.icons.materialsymbols.roundedfilled.DisabledByDefault
@@ -43,7 +43,7 @@ fun ScanlatorFilterDialog(
         availableScanlators.sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it })
     }
     val mutableExcludedScanlators = remember(excludedScanlators) { excludedScanlators.toMutableStateList() }
-    AlertDialog(
+    KuroAlertDialog(
         onDismissRequest = onDismissRequest,
         title = { Text(text = stringResource(MR.strings.exclude_scanlators)) },
         text = textFunc@{

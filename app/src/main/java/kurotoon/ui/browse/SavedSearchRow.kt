@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -28,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import kurotoon.catalogue.SavedSearch
+import kurotoon.ui.KuroAlertDialog
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Bookmark
 import mihon.icons.materialsymbols.rounded.BookmarkAdd
@@ -116,7 +116,7 @@ fun SavedSearchDialog(
 ) {
     var name by rememberSaveable { mutableStateOf(initialName) }
     var onHome by rememberSaveable { mutableStateOf(initialOnHome) }
-    AlertDialog(
+    KuroAlertDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(

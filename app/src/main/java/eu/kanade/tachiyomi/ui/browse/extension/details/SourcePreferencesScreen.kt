@@ -11,7 +11,6 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -63,6 +62,7 @@ import eu.kanade.tachiyomi.source.sourcePreferences
 import eu.kanade.tachiyomi.util.view.setIncognito
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kurotoon.ui.KuroAlertDialog
 import mihon.app.di.appGraph
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.ScrollbarLazyColumn
@@ -301,7 +301,7 @@ private fun EditTextPreferenceDialog(
     var draft by rememberSaveable { mutableStateOf<String?>(null) }
     var editText by remember { mutableStateOf<EditText?>(null) }
     var confirmEnabled by remember { mutableStateOf(true) }
-    AlertDialog(
+    KuroAlertDialog(
         onDismissRequest = onDismissRequest,
         title = title?.let { { Text(text = it) } },
         text = {

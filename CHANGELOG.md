@@ -9,6 +9,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Browse › Tags: every tag your installed sources offer in one searchable page, by most sources or A–Z, with how many sources carry each and your library's tags on top. Tap a tag to browse it on every source; long-press to search titles with it or hide it everywhere
 
 ### Changed
+- Every confirmation and choice dialog (delete, migrate, categories, settings lists, extension stores and the rest) is a KuroToon card: rounded ink panel with a faint edge, accent icon disc, bold title and actions in a wrapping row
 - Reader: a page still downloading shows an accent ring on a dark glass disc with the percentage inside, instead of the stock spinner
 - Reader: the page-failed card stacks Retry and Open on web full width so neither label gets cut off
 - Universal search is one merged grid: every source's results fold together, the same series shows once with a ×N badge, exact and prefix title matches come first, and titles already in your library join in. Long-press a cover to pick which source's copy to open. "By source" brings back the row-per-source view, and the choice is remembered

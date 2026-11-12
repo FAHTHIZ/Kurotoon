@@ -1,9 +1,9 @@
 package eu.kanade.presentation.updates
 
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -12,7 +12,7 @@ fun UpdatesDeleteConfirmationDialog(
     onDismissRequest: () -> Unit,
     onConfirm: () -> Unit,
 ) {
-    AlertDialog(
+    KuroAlertDialog(
         text = {
             Text(text = stringResource(MR.strings.confirm_delete_chapters))
         },
