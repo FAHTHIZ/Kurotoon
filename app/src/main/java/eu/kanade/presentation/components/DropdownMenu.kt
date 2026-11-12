@@ -1,10 +1,12 @@
 package eu.kanade.presentation.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -19,22 +21,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.automirroredrounded.ArrowRight
-import mihon.icons.materialsymbols.rounded.RadioButtonChecked
-import mihon.icons.materialsymbols.rounded.RadioButtonUnchecked
+import mihon.icons.materialsymbols.rounded.Check
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 import androidx.compose.material3.DropdownMenu as ComposeDropdownMenu
 
 /**
- * DropdownMenu but overlaps anchor and has width constraints to better
- * match non-Compose implementation.
+ * KuroToon's menu: a rounded, lifted card that drops just below its anchor instead of covering it.
  */
 @Composable
 fun DropdownMenu(
     expanded: Boolean,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
-    offset: DpOffset = DpOffset(8.dp, (-56).dp),
+    offset: DpOffset = DpOffset((-8).dp, 4.dp),
     scrollState: ScrollState = rememberScrollState(),
     properties: PopupProperties = PopupProperties(focusable = true),
     content: @Composable ColumnScope.() -> Unit,
@@ -42,10 +42,15 @@ fun DropdownMenu(
     ComposeDropdownMenu(
         expanded = expanded,
         onDismissRequest = onDismissRequest,
-        modifier = modifier.sizeIn(minWidth = 196.dp, maxWidth = 196.dp),
+        modifier = modifier.sizeIn(minWidth = 200.dp, maxWidth = 280.dp),
         offset = offset,
         scrollState = scrollState,
         properties = properties,
+        shape = RoundedCornerShape(20.dp),
+        containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
+        tonalElevation = 0.dp,
+        shadowElevation = 12.dp,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)),
         content = content,
     )
 }
@@ -63,14 +68,9 @@ fun RadioMenuItem(
         trailingIcon = {
             if (isChecked) {
                 Icon(
-                    imageVector = MaterialSymbols.Rounded.RadioButtonChecked,
+                    imageVector = MaterialSymbols.Rounded.Check,
                     contentDescription = stringResource(MR.strings.selected),
                     tint = MaterialTheme.colorScheme.primary,
-                )
-            } else {
-                Icon(
-                    imageVector = MaterialSymbols.Rounded.RadioButtonUnchecked,
-                    contentDescription = stringResource(MR.strings.not_selected),
                 )
             }
         },
