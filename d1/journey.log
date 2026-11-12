@@ -1,0 +1,46 @@
+> sh "logcat -c"
+
+> start app.kurotoon.dev
+> sleep 5
+> tapx Browse
+  !! not found: Browse
+  [shot 001_notfound] visible: ['Recent searches', 'Clear', 'Solo', 'Navigate up', 'Solo', 'Reset', 'Pinned', 'All', 'Has results']
+> sleep 2
+> tapx Extensions
+  !! not found: Extensions
+  [shot 002_notfound] visible: ['Recent searches', 'Clear', 'Solo', 'Navigate up', 'Solo', 'Reset', 'Pinned', 'All', 'Has results']
+> sleep 15
+> shot ext1
+  [shot 003_ext1] visible: ['Recent searches', 'Clear', 'Solo', 'Navigate up', 'Solo', 'Reset', 'Pinned', 'All', 'Has results']
+> swipe 540 700 540 1800
+> sleep 15
+> shot ext2
+  [shot 004_ext2] visible: ['Recent searches', 'Clear', 'Solo', 'Navigate up', 'Solo', 'Reset', 'Pinned', 'All', 'Has results']
+> sh "run-as app.kurotoon.dev ls -la shared_prefs files databases"
+databases:
+total 184
+drwxrwx--x 2 u0_a192 u0_a192   4096 2026-11-12 04:00 .
+drwx------ 9 u0_a192 u0_a192   4096 2026-11-12 04:01 ..
+-rw------- 1 u0_a192 u0_a192   4096 2026-11-12 04:00 tachiyomi.db
+-rw------- 1 u0_a192 u0_a192  32768 2026-11-12 04:01 tachiyomi.db-shm
+-rw------- 1 u0_a192 u0_a192 119512 2026-11-12 04:00 tachiyomi.db-wal
+
+files:
+total 32
+drwxrwx--x 3 u0_a192 u0_a192 4096 2026-11-12 04:00 .
+drwx------ 9 u0_a192 u0_a192 4096 2026-11-12 04:01 ..
+drwx------ 2 u0_a192 u0_a192 4096 2026-11-12 04:00 datastore
+-rw------- 1 u0_a192 u0_a192   24 2026-11-12 04:00 profileInstalled
+
+shared_prefs:
+total 40
+drwxrwxrwx 2 u0_a192 u0_a192 4096 2026-11-12 04:12 .
+drwx------ 9 u0_a192 u0_a192 4096 2026-11-12 04:01 ..
+-rw-rw---- 1 u0_a192 u0_a192  127 2026-11-12 04:01 WebViewChromiumPrefs.xml
+-rw-rw---- 1 u0_a192 u0_a192   65 2026-11-12 04:10 active_downloads.xml
+-rw-rw---- 1 u0_a192 u0_a192  937 2026-11-12 04:12 app.kurotoon.dev_preferences.xml
+
+> sh "logcat -d -t 400 | grep -iE 'exception|error|okhttp|extension|repo' | tail -80"
+11-12 04:14:50.603 13431 13431 I app_process: Core platform API reporting enabled, enforcing=false
+
+  [shot 005_end] visible: ['Recent searches', 'Clear', 'Solo', 'Navigate up', 'Solo', 'Reset', 'Pinned', 'All', 'Has results']

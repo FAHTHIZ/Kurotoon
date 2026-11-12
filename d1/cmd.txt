@@ -1,0 +1,13 @@
+sh "logcat -c"
+start app.kurotoon.dev
+sleep 5
+tapx Browse
+sleep 2
+tapx Extensions
+sleep 15
+shot ext1
+swipe 540 700 540 1800
+sleep 15
+shot ext2
+sh "run-as app.kurotoon.dev ls -la shared_prefs files databases"
+sh "logcat -d -t 400 | grep -iE 'exception|error|okhttp|extension|repo' | tail -80"
