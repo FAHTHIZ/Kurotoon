@@ -1,0 +1,146 @@
+key BACK
+stop app.kurotoon.dev
+clear app.kurotoon.dev
+sh "run-as app.kurotoon.dev sh -c 'mkdir -p shared_prefs; echo PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiIHN0YW5kYWxvbmU9InllcyIgPz4KPG1hcD4KICAgIDxib29sZWFuIG5hbWU9Il9fQVBQX1NUQVRFX29uYm9hcmRpbmdfY29tcGxldGUiIHZhbHVlPSJ0cnVlIiAvPgo8L21hcD4= | base64 -d > shared_prefs/app.kurotoon.dev_preferences.xml'"
+sh "appops set app.kurotoon.dev REQUEST_INSTALL_PACKAGES allow"
+start app.kurotoon.dev
+sleep 8
+shot home_empty
+view "tachiyomi://add-repo?url=https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
+sleep 4
+tapx Add
+sleep 6
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Browse
+tapx Extensions
+sleep 6
+tap Search
+type Webtoons
+sleep 5
+tapx Install
+sleep 15
+tapif INSTALL
+tapif Install
+sleep 25
+shot ext_webtoons_done
+tapif Reset
+tapif "Navigate up"
+tap Search
+type MangaDex
+sleep 5
+tapx Install
+sleep 15
+tapif INSTALL
+tapif Install
+sleep 25
+start app.kurotoon.dev
+sleep 3
+tapx Browse
+sleep 2
+shot browse_sources
+tapx Extensions
+sleep 3
+shot browse_extensions
+tapx Migrate
+sleep 2
+shot browse_migrate
+tapx Sources
+sleep 2
+tap Webtoons.com
+sleep 12
+shot src_popular
+tapx Latest
+sleep 8
+shot src_latest
+tapx Popular
+sleep 8
+tapxy 270 1000
+sleep 12
+shot series
+tap "Add to library"
+sleep 3
+shot series_added
+scrollup
+sleep 2
+shot series_chapters
+scrollup
+sleep 2
+shot series_chapters2
+scrolldown
+scrolldown
+scrolldown
+sleep 1
+tap Start
+tap Resume
+sleep 20
+shot reader
+tapxy 540 1200
+sleep 2
+shot reader_menu
+tap Settings
+sleep 2
+shot reader_settings
+key BACK
+sleep 1
+tap Chapters
+sleep 2
+shot reader_chapters
+key BACK
+sleep 1
+key BACK
+sleep 2
+key BACK
+sleep 3
+shot series_after
+key BACK
+sleep 2
+key BACK
+sleep 2
+key BACK
+sleep 2
+start app.kurotoon.dev
+sleep 3
+tapx Home
+sleep 8
+shot home
+scrollup
+sleep 2
+shot home2
+scrollup
+sleep 2
+shot home3
+tapx Library
+sleep 3
+shot library
+tapx Updates
+sleep 3
+shot updates
+tapif "Check now"
+sleep 20
+shot updates_after
+tapx Me
+sleep 2
+shot me
+scrollup
+sleep 1
+shot me2
+scrollup
+sleep 1
+shot me3
+tap Settings
+sleep 2
+shot settings
+tapx Appearance
+sleep 2
+shot settings_appearance
+back
+back
+tapx Home
+tap "Search manga"
+sleep 2
+type Solo
+key 66
+sleep 15
+shot global_search
