@@ -29,9 +29,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
@@ -501,14 +502,21 @@ private fun StateMark(
 
 @Composable
 fun TextItem(label: String, value: String, onChange: (String) -> Unit) {
-    OutlinedTextField(
+    TextField(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = SettingsItemsPaddings.Horizontal, vertical = 4.dp),
+            .padding(horizontal = RowInset, vertical = 4.dp),
         label = { Text(text = label) },
         value = value,
         onValueChange = onChange,
         singleLine = true,
+        shape = RowShape,
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+        ),
     )
 }
 
