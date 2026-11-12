@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectable
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -23,6 +22,7 @@ import kurotoon.ui.KuroAlertDialog
 import mihon.app.di.appGraph
 import tachiyomi.domain.category.model.Category
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroRadioButton
 import tachiyomi.presentation.core.i18n.stringResource
 
 /** Pick where series added from this source land, overriding the global default category. */
@@ -72,7 +72,7 @@ private fun Option(label: String, selected: Boolean, onClick: () -> Unit) {
             .selectable(selected = selected, onClick = onClick, role = Role.RadioButton)
             .heightIn(min = 48.dp),
     ) {
-        RadioButton(selected = selected, onClick = null)
+        KuroRadioButton(selected = selected, onClick = null)
         Text(text = label, modifier = Modifier.weight(1f))
     }
 }

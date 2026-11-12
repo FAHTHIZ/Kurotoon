@@ -862,6 +862,19 @@ class KuroScreenshots {
             )
             tachiyomi.presentation.core.components.KuroSpinner()
         }
+        androidx.compose.foundation.layout.Row(
+            modifier = Modifier.padding(start = 16.dp, top = 72.dp),
+            verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
+        ) {
+            tachiyomi.presentation.core.components.material.KuroCheckbox(checked = true, onCheckedChange = {})
+            tachiyomi.presentation.core.components.material.KuroCheckbox(checked = false, onCheckedChange = {})
+            tachiyomi.presentation.core.components.material.KuroTriStateCheckbox(
+                state = androidx.compose.ui.state.ToggleableState.Indeterminate,
+                onClick = {},
+            )
+            tachiyomi.presentation.core.components.material.KuroRadioButton(selected = true, onClick = {})
+            tachiyomi.presentation.core.components.material.KuroRadioButton(selected = false, onClick = {})
+        }
     }
 
     @Test

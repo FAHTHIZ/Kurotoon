@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -18,6 +17,7 @@ import dev.icerock.moko.resources.StringResource
 import eu.kanade.tachiyomi.extension.model.Extension
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroRadioButton
 import tachiyomi.presentation.core.i18n.stringResource
 
 /** How the installed extension sections are ordered (mihon#2744). */
@@ -77,7 +77,7 @@ fun ExtensionSortDialog(
                             .padding(vertical = 4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        RadioButton(selected = sort == current, onClick = null)
+                        KuroRadioButton(selected = sort == current, onClick = null)
                         Text(stringResource(sort.label), modifier = Modifier.padding(start = 12.dp))
                     }
                 }
