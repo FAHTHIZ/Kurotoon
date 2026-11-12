@@ -9,6 +9,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Browse › Tags: every tag your installed sources offer in one searchable page, by most sources or A–Z, with how many sources carry each and your library's tags on top. Tap a tag to browse it on every source; long-press to search titles with it or hide it everywhere
 
 ### Changed
+- Theme mode is a sliding Kuro segmented choice, and backup create/restore are Kuro tonal buttons, replacing stock segmented buttons
 - Snackbars (undo, errors, confirmations) are a dark glass capsule with an accent action on every screen
 - Text fields are filled, borderless KuroToon fields that light an accent outline on focus
 - Hidden tags use Kuro pills, and extension store and migration source rows use Kuro cards instead of stock chips and elevated cards

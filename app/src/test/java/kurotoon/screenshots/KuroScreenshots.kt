@@ -858,7 +858,15 @@ class KuroScreenshots {
             override fun performAction() = Unit
             override fun dismiss() = Unit
         }
-        kurotoon.ui.KuroSnackbar(data)
+        androidx.compose.foundation.layout.Column {
+            kurotoon.ui.KuroSnackbar(data)
+            kurotoon.ui.KuroSegmentedChoice(
+                titles = listOf("System", "Light", "Dark"),
+                selected = 2,
+                onSelect = {},
+                modifier = Modifier.padding(horizontal = 16.dp),
+            )
+        }
     }
 
     @Test

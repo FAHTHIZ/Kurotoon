@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -16,9 +17,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MultiChoiceSegmentedButtonRow
-import androidx.compose.material3.SegmentedButton
-import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -34,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
@@ -68,6 +67,8 @@ import tachiyomi.domain.backup.service.BackupPreferences
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.storage.service.StoragePreferences
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroButton
+import tachiyomi.presentation.core.components.material.KuroButtonStyle
 import tachiyomi.presentation.core.components.material.KuroCheckbox
 import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
@@ -215,24 +216,24 @@ object SettingsDataScreen : SearchableSettings {
                 ) {
                     BasePreferenceWidget(
                         subcomponent = {
-                            MultiChoiceSegmentedButtonRow(
+                            Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .height(intrinsicSize = IntrinsicSize.Min)
                                     .padding(horizontal = PrefsHorizontalPadding),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
                             ) {
-                                SegmentedButton(
-                                    modifier = Modifier.fillMaxHeight(),
-                                    checked = false,
-                                    onCheckedChange = { navigator.push(CreateBackupScreen()) },
-                                    shape = SegmentedButtonDefaults.itemShape(0, 2),
+                                KuroButton(
+                                    modifier = Modifier.weight(1f).fillMaxHeight(),
+                                    style = KuroButtonStyle.Tonal,
+                                    onClick = { navigator.push(CreateBackupScreen()) },
                                 ) {
                                     Text(stringResource(MR.strings.pref_create_backup))
                                 }
-                                SegmentedButton(
-                                    modifier = Modifier.fillMaxHeight(),
-                                    checked = false,
-                                    onCheckedChange = {
+                                KuroButton(
+                                    modifier = Modifier.weight(1f).fillMaxHeight(),
+                                    style = KuroButtonStyle.Tonal,
+                                    onClick = {
                                         scope.launch {
                                             if (!BackupRestoreWorker.isRunning(context.workManager)) {
                                                 if (DeviceUtil.isMiui && DeviceUtil.isMiuiOptimizationDisabled()) {
@@ -244,7 +245,6 @@ object SettingsDataScreen : SearchableSettings {
                                             }
                                         }
                                     },
-                                    shape = SegmentedButtonDefaults.itemShape(1, 2),
                                 ) {
                                     Text(stringResource(MR.strings.pref_restore_backup))
                                 }
