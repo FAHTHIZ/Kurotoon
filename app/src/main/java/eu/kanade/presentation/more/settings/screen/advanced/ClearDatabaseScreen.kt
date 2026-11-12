@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -59,6 +58,7 @@ import tachiyomi.domain.source.model.Source
 import tachiyomi.domain.source.model.SourceWithCount
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.LazyColumnWithAction
+import tachiyomi.presentation.core.components.material.KuroCheckbox
 import tachiyomi.presentation.core.components.material.KuroSwitch
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.components.material.padding
@@ -218,7 +218,7 @@ class ClearDatabaseScreen : Screen() {
                 )
                 Text(text = stringResource(MR.strings.clear_database_source_item_count, count))
             }
-            Checkbox(
+            KuroCheckbox(
                 checked = isSelected,
                 onCheckedChange = { onClickSelect() },
             )

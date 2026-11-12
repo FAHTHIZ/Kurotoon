@@ -18,7 +18,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.SelectableDates
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -38,6 +37,7 @@ import tachiyomi.presentation.core.components.ScrollbarLazyColumn
 import tachiyomi.presentation.core.components.WheelNumberPicker
 import tachiyomi.presentation.core.components.WheelTextPicker
 import tachiyomi.presentation.core.components.material.AlertDialogContent
+import tachiyomi.presentation.core.components.material.KuroRadioButton
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -68,7 +68,7 @@ fun TrackStatusSelector(
                                 .fillMaxWidth()
                                 .minimumInteractiveComponentSize(),
                         ) {
-                            RadioButton(
+                            KuroRadioButton(
                                 selected = isSelected,
                                 onClick = null,
                             )

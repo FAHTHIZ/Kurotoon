@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.minimumInteractiveComponentSize
@@ -26,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.ScrollbarLazyColumn
+import tachiyomi.presentation.core.components.material.KuroRadioButton
 import tachiyomi.presentation.core.i18n.stringResource
 
 @Composable
@@ -124,7 +124,7 @@ private fun DialogRow(
             .fillMaxWidth()
             .minimumInteractiveComponentSize(),
     ) {
-        RadioButton(
+        KuroRadioButton(
             selected = isSelected,
             onClick = null,
         )

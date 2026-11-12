@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MultiChoiceSegmentedButtonRow
@@ -69,6 +68,7 @@ import tachiyomi.domain.backup.service.BackupPreferences
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.storage.service.StoragePreferences
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroCheckbox
 import tachiyomi.presentation.core.components.material.TextButton
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.util.collectAsState
@@ -441,7 +441,7 @@ object SettingsDataScreen : SearchableSettings {
             text = {
                 Column {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Checkbox(
+                        KuroCheckbox(
                             checked = titleSelected,
                             onCheckedChange = { checked ->
                                 titleSelected = checked
@@ -455,7 +455,7 @@ object SettingsDataScreen : SearchableSettings {
                     }
 
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Checkbox(
+                        KuroCheckbox(
                             checked = authorSelected,
                             onCheckedChange = { authorSelected = it },
                             enabled = titleSelected,
@@ -464,7 +464,7 @@ object SettingsDataScreen : SearchableSettings {
                     }
 
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Checkbox(
+                        KuroCheckbox(
                             checked = artistSelected,
                             onCheckedChange = { artistSelected = it },
                             enabled = titleSelected,
