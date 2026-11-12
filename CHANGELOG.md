@@ -5,6 +5,9 @@ All notable changes to KuroToon are documented here. Versions follow
 
 ## [Unreleased]
 
+### Added
+- Browse › Tags: every tag your installed sources offer in one searchable page, by most sources or A–Z, with how many sources carry each and your library's tags on top. Tap a tag to browse it on every source; long-press to search titles with it or hide it everywhere
+
 ### Changed
 - Universal search is one merged grid: every source's results fold together, the same series shows once with a ×N badge, exact and prefix title matches come first, and titles already in your library join in. Long-press a cover to pick which source's copy to open. "By source" brings back the row-per-source view, and the choice is remembered
 - Universal search filters are KuroToon pills, with a thin accent progress line while sources answer and a summary of how many sources answered or failed
