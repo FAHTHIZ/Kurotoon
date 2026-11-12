@@ -41,10 +41,34 @@ class ReaderHintState {
         private set
     private var serial = 0L
 
-    fun show(text: String?) {
+    fun show(text: String?, long: Boolean = false) {
         if (text.isNullOrBlank()) return
-        current = Hint(text, serial++)
+        current = Hint(text, serial++, long)
     }
+
+    /**
+     * Routes the app's toasts here while [owner] is in front. Call from onResume; [release] from onPause.
+     */
+    fun claimToasts(owner: android.app.Activity) {
+        val main = android.os.Handler(android.os.Looper.getMainLooper())
+        handler = { text: String, long: Boolean ->
+            if (owner.isFinishing || owner.isDestroyed) {
+                false
+            } else {
+                main.post { show(text, long) }
+                true
+            }
+        }.also { eu.kanade.tachiyomi.util.system.InAppToasts.handler = it }
+    }
+
+    fun releaseToasts() {
+        if (eu.kanade.tachiyomi.util.system.InAppToasts.handler === handler) {
+            eu.kanade.tachiyomi.util.system.InAppToasts.handler = null
+        }
+        handler = null
+    }
+
+    private var handler: ((String, Boolean) -> Boolean)? = null
 
     fun hide() {
         current = null
@@ -54,24 +78,26 @@ class ReaderHintState {
         if (current == hint) current = null
     }
 
-    internal data class Hint(val text: String, val id: Long)
+    internal data class Hint(val text: String, val id: Long, val long: Boolean = false)
 }
 
 @Composable
-fun ReaderHintHost(state: ReaderHintState, modifier: Modifier = Modifier) {
+fun ReaderHintHost(state: ReaderHintState, modifier: Modifier = Modifier, fromBottom: Boolean = false) {
     val hint = state.current
     var last by remember { mutableStateOf("") }
     if (hint != null) last = hint.text
     LaunchedEffect(hint) {
         if (hint == null) return@LaunchedEffect
-        delay(HINT_MILLIS + hint.text.length * PER_CHAR_MILLIS)
+        delay((if (hint.long) LONG_HINT_MILLIS else HINT_MILLIS) + hint.text.length * PER_CHAR_MILLIS)
         state.expire(hint)
     }
     AnimatedVisibility(
         visible = hint != null,
         modifier = modifier,
-        enter = fadeIn() + slideInVertically(spring(dampingRatio = 0.7f)) { -it } + scaleIn(initialScale = 0.9f),
-        exit = fadeOut() + slideOutVertically { -it / 2 } + scaleOut(targetScale = 0.95f),
+        enter = fadeIn() +
+            slideInVertically(spring(dampingRatio = 0.7f)) { if (fromBottom) it else -it } +
+            scaleIn(initialScale = 0.9f),
+        exit = fadeOut() + slideOutVertically { if (fromBottom) it / 2 else -it / 2 } + scaleOut(targetScale = 0.95f),
     ) {
         Text(
             text = last,
@@ -90,4 +116,5 @@ fun ReaderHintHost(state: ReaderHintState, modifier: Modifier = Modifier) {
 }
 
 private const val HINT_MILLIS = 1600L
+private const val LONG_HINT_MILLIS = 3200L
 private const val PER_CHAR_MILLIS = 25L

@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
@@ -39,6 +40,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.core.animation.doOnEnd
 import androidx.core.net.toUri
 import androidx.core.splashscreen.SplashScreen
@@ -144,6 +146,8 @@ class MainActivity : BaseActivity() {
     init {
         registerSecureActivity(this)
     }
+
+    private val appHint = kurotoon.ui.reader.ReaderHintState()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         graph.inject(this)
@@ -256,6 +260,16 @@ class MainActivity : BaseActivity() {
                                 .consumeWindowInsets(contentPadding),
                         )
 
+                        // App messages as a KuroToon capsule above the bottom bar instead of a system toast
+                        kurotoon.ui.reader.ReaderHintHost(
+                            state = appHint,
+                            fromBottom = true,
+                            modifier = Modifier
+                                .align(Alignment.BottomCenter)
+                                .navigationBarsPadding()
+                                .padding(bottom = 96.dp, start = 24.dp, end = 24.dp),
+                        )
+
                         // Draw navigation bar scrim when needed
                         if (remember { isNavigationBarNeedsScrim() }) {
                             Spacer(
@@ -307,6 +321,16 @@ class MainActivity : BaseActivity() {
         if (isLaunch && libraryPreferences.autoClearChapterCache.get()) {
             lifecycleScope.launch { chapterCache.clear() }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        appHint.claimToasts(this)
+    }
+
+    override fun onPause() {
+        appHint.releaseToasts()
+        super.onPause()
     }
 
     override fun onProvideAssistContent(outContent: AssistContent) {
