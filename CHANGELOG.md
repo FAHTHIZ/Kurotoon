@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Changed
+- Filter, sort and display sheets drop the stock checkbox lists: each row is a rounded block that tints when on, with a check, cross or arrow mark on the right, and hidden filters are struck through
 - Between episodes the reader shows a calm "Up next" card instead of plain text, and dialogs with tabs use the same segmented pill tabs as the rest of the app
 - **New look**: Plus Jakarta Sans throughout, a deeper ink-black palette with a brighter crimson accent, and rounder shapes
 - The bottom bar is now a floating dock; the current tab sits in a solid crimson pill
