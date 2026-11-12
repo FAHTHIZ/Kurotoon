@@ -21,7 +21,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SelectableDates
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
@@ -38,6 +37,7 @@ import tachiyomi.presentation.core.components.WheelNumberPicker
 import tachiyomi.presentation.core.components.WheelTextPicker
 import tachiyomi.presentation.core.components.material.AlertDialogContent
 import tachiyomi.presentation.core.components.material.KuroRadioButton
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -167,15 +167,15 @@ fun TrackDateSelector(
                     horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small, Alignment.End),
                 ) {
                     if (onRemove != null) {
-                        TextButton(onClick = onRemove) {
+                        KuroTextButton(onClick = onRemove) {
                             Text(text = stringResource(MR.strings.action_remove))
                         }
                         Spacer(modifier = Modifier.weight(1f))
                     }
-                    TextButton(onClick = onDismissRequest) {
+                    KuroTextButton(onClick = onDismissRequest) {
                         Text(text = stringResource(MR.strings.action_cancel))
                     }
-                    TextButton(onClick = { onConfirm(pickerState.selectedDateMillis!!) }) {
+                    KuroTextButton(onClick = { onConfirm(pickerState.selectedDateMillis!!) }) {
                         Text(text = stringResource(MR.strings.action_ok))
                     }
                 }
@@ -210,10 +210,10 @@ private fun BaseSelector(
                     thirdButton()
                     Spacer(modifier = Modifier.weight(1f))
                 }
-                TextButton(onClick = onDismissRequest) {
+                KuroTextButton(onClick = onDismissRequest) {
                     Text(text = stringResource(MR.strings.action_cancel))
                 }
-                TextButton(onClick = onConfirm) {
+                KuroTextButton(onClick = onConfirm) {
                     Text(text = stringResource(MR.strings.action_ok))
                 }
             }

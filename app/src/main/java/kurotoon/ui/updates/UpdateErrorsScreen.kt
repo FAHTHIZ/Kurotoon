@@ -15,7 +15,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -38,6 +37,7 @@ import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Close
 import mihon.icons.materialsymbols.rounded.Error
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.pluralStringResource
 import tachiyomi.presentation.core.i18n.stringResource
@@ -66,7 +66,7 @@ class UpdateErrorsScreen : Screen() {
                     scrollBehavior = scrollBehavior,
                     actions = {
                         if (errors.isNotEmpty()) {
-                            TextButton(onClick = store::clear) {
+                            KuroTextButton(onClick = store::clear) {
                                 Text(stringResource(MR.strings.kurotoon_updateErrors_clear))
                             }
                         }
@@ -139,7 +139,7 @@ private fun ErrorRow(
                 overflow = TextOverflow.Ellipsis,
             )
         }
-        TextButton(onClick = onMigrate) { Text(stringResource(MR.strings.action_migrate)) }
+        KuroTextButton(onClick = onMigrate) { Text(stringResource(MR.strings.action_migrate)) }
         IconButton(onClick = onDismiss) {
             Icon(
                 MaterialSymbols.Rounded.Close,

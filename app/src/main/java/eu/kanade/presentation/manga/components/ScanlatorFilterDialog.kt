@@ -28,7 +28,7 @@ import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.CheckBoxOutlineBlank
 import mihon.icons.materialsymbols.roundedfilled.DisabledByDefault
 import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.TextButton
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -103,25 +103,25 @@ fun ScanlatorFilterDialog(
         ),
         confirmButton = {
             if (sortedAvailableScanlators.isEmpty()) {
-                TextButton(onClick = onDismissRequest) {
+                KuroTextButton(onClick = onDismissRequest) {
                     Text(text = stringResource(MR.strings.action_cancel))
                 }
             } else {
                 FlowRow {
                     if (mutableExcludedScanlators.isEmpty()) {
-                        TextButton(onClick = { mutableExcludedScanlators.addAll(availableScanlators) }) {
+                        KuroTextButton(onClick = { mutableExcludedScanlators.addAll(availableScanlators) }) {
                             Text(text = stringResource(MR.strings.action_select_all))
                         }
                     } else {
-                        TextButton(onClick = mutableExcludedScanlators::clear) {
+                        KuroTextButton(onClick = mutableExcludedScanlators::clear) {
                             Text(text = stringResource(MR.strings.action_reset))
                         }
                     }
                     Spacer(modifier = Modifier.weight(1f))
-                    TextButton(onClick = onDismissRequest) {
+                    KuroTextButton(onClick = onDismissRequest) {
                         Text(text = stringResource(MR.strings.action_cancel))
                     }
-                    TextButton(
+                    KuroTextButton(
                         onClick = {
                             onConfirm(mutableExcludedScanlators.toSet())
                             onDismissRequest()

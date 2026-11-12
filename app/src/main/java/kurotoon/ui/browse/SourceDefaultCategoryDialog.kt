@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
@@ -23,6 +22,7 @@ import mihon.app.di.appGraph
 import tachiyomi.domain.category.model.Category
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroRadioButton
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 
 /** Pick where series added from this source land, overriding the global default category. */
@@ -58,7 +58,7 @@ fun SourceDefaultCategoryDialog(sourceId: Long, onDismiss: () -> Unit) {
             }
         },
         confirmButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(MR.strings.action_cancel)) }
+            KuroTextButton(onClick = onDismiss) { Text(stringResource(MR.strings.action_cancel)) }
         },
     )
 }

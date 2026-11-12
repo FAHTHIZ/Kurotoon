@@ -6,7 +6,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -25,6 +24,7 @@ import kotlinx.coroutines.withContext
 import mihon.app.di.appGraph
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.screens.EmptyScreen
@@ -77,7 +77,7 @@ class HiddenSeriesScreen : Screen() {
                             Text(sourceNames[manga.source].orEmpty())
                         },
                         trailingContent = {
-                            TextButton(
+                            KuroTextButton(
                                 onClick = { preference.set(preference.get() - manga.id.toString()) },
                                 modifier = Modifier.padding(start = 8.dp),
                             ) {

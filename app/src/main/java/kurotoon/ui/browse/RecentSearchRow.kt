@@ -12,7 +12,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.History
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 
 /** Recent Universal Search queries as one-tap pills. Draws nothing when there are none. */
@@ -48,7 +48,7 @@ fun RecentSearchRow(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.weight(1f),
             )
-            TextButton(onClick = onClear) {
+            KuroTextButton(onClick = onClear) {
                 Text(
                     text = stringResource(MR.strings.kurotoon_browse_clearRecent),
                     style = MaterialTheme.typography.labelMedium,

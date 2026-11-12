@@ -17,7 +17,6 @@ import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -44,6 +43,7 @@ import kurotoon.panels.SavedPanel
 import kurotoon.panels.SavedPanels
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.screens.EmptyScreen
@@ -107,13 +107,13 @@ class SavedPanelsScreen : Screen() {
                 title = { Text(stringResource(MR.strings.kurotoon_panels_remove)) },
                 text = { Text("${panel.mangaTitle} · ${panel.chapterName}") },
                 confirmButton = {
-                    TextButton(onClick = {
+                    KuroTextButton(onClick = {
                         store.remove(panel)
                         removing = null
                     }) { Text(stringResource(MR.strings.action_delete)) }
                 },
                 dismissButton = {
-                    TextButton(onClick = { removing = null }) { Text(stringResource(MR.strings.action_cancel)) }
+                    KuroTextButton(onClick = { removing = null }) { Text(stringResource(MR.strings.action_cancel)) }
                 },
             )
         }

@@ -36,7 +36,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -83,6 +82,7 @@ import mihon.icons.materialsymbols.rounded.Share
 import mihon.icons.materialsymbols.rounded.UploadFile
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
 import java.io.File
@@ -261,7 +261,7 @@ fun CollectionContent(
             title = { Text(stringResource(MR.strings.kurotoon_packs_remove)) },
             text = { Text(stringResource(MR.strings.kurotoon_collection_removeConfirm, pack.name)) },
             confirmButton = {
-                TextButton(
+                KuroTextButton(
                     onClick = {
                         onRemovePack(pack)
                         removing = null
@@ -269,7 +269,7 @@ fun CollectionContent(
                 ) { Text(stringResource(MR.strings.kurotoon_packs_remove)) }
             },
             dismissButton = {
-                TextButton(onClick = { removing = null }) { Text(stringResource(MR.strings.action_cancel)) }
+                KuroTextButton(onClick = { removing = null }) { Text(stringResource(MR.strings.action_cancel)) }
             },
         )
     }
@@ -464,7 +464,7 @@ private fun ItemSheet(
             ) { Text(stringResource(MR.strings.kurotoon_collection_use)) }
         }
         if (item.kind == ShopKind.STICKER && item.image != null) {
-            TextButton(onClick = onShare, modifier = Modifier.padding(top = 4.dp)) {
+            KuroTextButton(onClick = onShare, modifier = Modifier.padding(top = 4.dp)) {
                 Icon(MaterialSymbols.Rounded.Share, null, Modifier.size(18.dp))
                 Text(stringResource(MR.strings.action_share), Modifier.padding(start = 8.dp))
             }

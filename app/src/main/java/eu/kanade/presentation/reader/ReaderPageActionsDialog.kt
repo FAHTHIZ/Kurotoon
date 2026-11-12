@@ -11,7 +11,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,6 +35,7 @@ import mihon.icons.materialsymbols.rounded.Photo
 import mihon.icons.materialsymbols.rounded.Save
 import mihon.icons.materialsymbols.rounded.Share
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -121,12 +121,12 @@ private fun SetCoverDialog(
             Text(stringResource(MR.strings.confirm_set_image_as_cover))
         },
         confirmButton = {
-            TextButton(onClick = onConfirm) {
+            KuroTextButton(onClick = onConfirm) {
                 Text(stringResource(MR.strings.action_ok))
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) {
+            KuroTextButton(onClick = onDismiss) {
                 Text(stringResource(MR.strings.action_cancel))
             }
         },

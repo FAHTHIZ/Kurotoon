@@ -15,7 +15,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SelectableDates
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.collectAsState
@@ -90,6 +89,7 @@ import tachiyomi.domain.track.model.Track
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.LabeledCheckbox
 import tachiyomi.presentation.core.components.material.AlertDialogContent
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 import kotlin.time.Clock
@@ -668,7 +668,7 @@ data class TrackDateRemoverScreen(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small, Alignment.End),
                 ) {
-                    TextButton(onClick = navigator::pop) {
+                    KuroTextButton(onClick = navigator::pop) {
                         Text(text = stringResource(MR.strings.action_cancel))
                     }
                     FilledTonalButton(
@@ -890,7 +890,7 @@ data class TrackerRemoveScreen(
                         Alignment.End,
                     ),
                 ) {
-                    TextButton(onClick = navigator::pop) {
+                    KuroTextButton(onClick = navigator::pop) {
                         Text(text = stringResource(MR.strings.action_cancel))
                     }
                     FilledTonalButton(

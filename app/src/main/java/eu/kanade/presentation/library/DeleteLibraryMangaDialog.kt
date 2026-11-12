@@ -2,7 +2,6 @@ package eu.kanade.presentation.library
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -13,6 +12,7 @@ import kurotoon.ui.KuroAlertDialog
 import tachiyomi.core.common.preference.CheckboxState
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.LabeledCheckbox
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 
 @Composable
@@ -34,12 +34,12 @@ fun DeleteLibraryMangaDialog(
     KuroAlertDialog(
         onDismissRequest = onDismissRequest,
         dismissButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.action_cancel))
             }
         },
         confirmButton = {
-            TextButton(
+            KuroTextButton(
                 enabled = list.any { it.isChecked },
                 onClick = {
                     onDismissRequest()

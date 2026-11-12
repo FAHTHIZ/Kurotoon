@@ -11,7 +11,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -29,6 +28,7 @@ import tachiyomi.core.common.preference.CheckboxState
 import tachiyomi.domain.category.model.Category
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroCheckbox
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.KuroTriStateCheckbox
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
@@ -47,7 +47,7 @@ fun CategoryCreateDialog(
     KuroAlertDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
-            TextButton(
+            KuroTextButton(
                 enabled = name.isNotEmpty() && !nameAlreadyExists,
                 onClick = {
                     onCreate(name)
@@ -58,7 +58,7 @@ fun CategoryCreateDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.action_cancel))
             }
         },
@@ -109,7 +109,7 @@ fun CategoryRenameDialog(
     KuroAlertDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
-            TextButton(
+            KuroTextButton(
                 enabled = valueHasChanged && name.isNotEmpty() && !nameAlreadyExists,
                 onClick = {
                     onRename(name)
@@ -120,7 +120,7 @@ fun CategoryRenameDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.action_cancel))
             }
         },
@@ -164,7 +164,7 @@ fun CategoryDeleteDialog(
     KuroAlertDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
-            TextButton(onClick = {
+            KuroTextButton(onClick = {
                 onDelete()
                 onDismissRequest()
             }) {
@@ -172,7 +172,7 @@ fun CategoryDeleteDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.action_cancel))
             }
         },
@@ -196,7 +196,7 @@ fun ChangeCategoryDialog(
         KuroAlertDialog(
             onDismissRequest = onDismissRequest,
             confirmButton = {
-                tachiyomi.presentation.core.components.material.TextButton(
+                tachiyomi.presentation.core.components.material.KuroTextButton(
                     onClick = {
                         onDismissRequest()
                         onEditCategories()
@@ -219,17 +219,17 @@ fun ChangeCategoryDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             Row {
-                tachiyomi.presentation.core.components.material.TextButton(onClick = {
+                tachiyomi.presentation.core.components.material.KuroTextButton(onClick = {
                     onDismissRequest()
                     onEditCategories()
                 }) {
                     Text(text = stringResource(MR.strings.action_edit))
                 }
                 Spacer(modifier = Modifier.weight(1f))
-                tachiyomi.presentation.core.components.material.TextButton(onClick = onDismissRequest) {
+                tachiyomi.presentation.core.components.material.KuroTextButton(onClick = onDismissRequest) {
                     Text(text = stringResource(MR.strings.action_cancel))
                 }
-                tachiyomi.presentation.core.components.material.TextButton(
+                tachiyomi.presentation.core.components.material.KuroTextButton(
                     onClick = {
                         onDismissRequest()
                         onConfirm(

@@ -8,7 +8,6 @@ import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
@@ -21,6 +20,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 
 @Composable
@@ -69,7 +69,7 @@ fun ExtensionStoreCreateDialog(
             )
         },
         confirmButton = {
-            TextButton(
+            KuroTextButton(
                 onClick = { onCreate(state.text.toString()) },
                 enabled = !processing && state.text.isNotEmpty() && !storeAlreadyExists,
             ) {
@@ -85,7 +85,7 @@ fun ExtensionStoreCreateDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.action_cancel))
             }
         },
@@ -112,7 +112,7 @@ fun ExtensionStoreDeleteDialog(
             Text(text = stringResource(MR.strings.extensionStoresScreen_deleteStore_body, storeName, storeIndexUrl))
         },
         confirmButton = {
-            TextButton(onClick = {
+            KuroTextButton(onClick = {
                 onDelete()
                 onDismissRequest()
             }) {
@@ -120,7 +120,7 @@ fun ExtensionStoreDeleteDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.action_cancel))
             }
         },
@@ -167,7 +167,7 @@ fun ExtensionStoreConfirmDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = onCreate, enabled = !storeAlreadyExists && !processing) {
+            KuroTextButton(onClick = onCreate, enabled = !storeAlreadyExists && !processing) {
                 Text(
                     text = stringResource(
                         resource = if (processing) {
@@ -180,7 +180,7 @@ fun ExtensionStoreConfirmDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.action_cancel))
             }
         },

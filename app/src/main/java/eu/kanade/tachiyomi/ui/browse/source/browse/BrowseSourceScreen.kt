@@ -202,7 +202,7 @@ data class BrowseSourceScreen(
                                     )
                                 }
                             }
-                            androidx.compose.material3.TextButton(
+                            tachiyomi.presentation.core.components.material.KuroTextButton(
                                 enabled = selected.values.any { !it.favorite },
                                 onClick = {
                                     val toHide = selected.values.filterNot { it.favorite }
@@ -226,7 +226,7 @@ data class BrowseSourceScreen(
                             ) {
                                 Text(stringResource(MR.strings.kurotoon_browse_hideSeries))
                             }
-                            androidx.compose.material3.TextButton(
+                            tachiyomi.presentation.core.components.material.KuroTextButton(
                                 enabled = selected.values.any { !it.favorite },
                                 onClick = {
                                     val toAdd = selected.values.filterNot { it.favorite }

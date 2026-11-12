@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.ui.browse.extension
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,6 +25,7 @@ import kotlinx.coroutines.launch
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.util.collectAsState
 
@@ -149,7 +149,7 @@ private fun ExtensionUninstallConfirmation(
             Text(text = stringResource(MR.strings.remove_private_extension_message, extensionName))
         },
         confirmButton = {
-            TextButton(
+            KuroTextButton(
                 onClick = {
                     onClickConfirm()
                     onDismissRequest()
@@ -159,7 +159,7 @@ private fun ExtensionUninstallConfirmation(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.action_cancel))
             }
         },

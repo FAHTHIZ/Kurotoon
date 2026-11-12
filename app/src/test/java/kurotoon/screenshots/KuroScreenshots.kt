@@ -874,6 +874,12 @@ class KuroScreenshots {
             )
             tachiyomi.presentation.core.components.material.KuroRadioButton(selected = true, onClick = {})
             tachiyomi.presentation.core.components.material.KuroRadioButton(selected = false, onClick = {})
+            tachiyomi.presentation.core.components.material.KuroTextButton(onClick = {}) {
+                androidx.compose.material3.Text("Cancel")
+            }
+            tachiyomi.presentation.core.components.material.KuroTextButton(onClick = {}, enabled = false) {
+                androidx.compose.material3.Text("OK")
+            }
         }
     }
 

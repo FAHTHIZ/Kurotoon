@@ -3,7 +3,6 @@ package kurotoon.ui.reader
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -17,6 +16,7 @@ import androidx.compose.ui.focus.focusRequester
 import kurotoon.manga.BookmarkNotes
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 
 /** Write or edit the note on a chapter's bookmark. Saving a note also bookmarks the chapter. */
@@ -46,10 +46,10 @@ fun BookmarkNoteDialog(
             )
         },
         confirmButton = {
-            TextButton(onClick = { onSave(text) }) { Text(stringResource(MR.strings.action_save)) }
+            KuroTextButton(onClick = { onSave(text) }) { Text(stringResource(MR.strings.action_save)) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(MR.strings.action_cancel)) }
+            KuroTextButton(onClick = onDismiss) { Text(stringResource(MR.strings.action_cancel)) }
         },
     )
 }

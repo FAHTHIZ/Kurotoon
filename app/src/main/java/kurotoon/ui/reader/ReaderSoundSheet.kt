@@ -27,7 +27,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -53,6 +52,7 @@ import mihon.icons.materialsymbols.rounded.VolumeUp
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.CheckboxItem
 import tachiyomi.presentation.core.components.SliderItem
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.util.collectAsState
 
@@ -288,10 +288,10 @@ private fun NowPlaying(soundtrack: ReaderSoundtrack) {
                     }
                 }
                 when {
-                    failed -> TextButton(onClick = soundtrack::retry) {
+                    failed -> KuroTextButton(onClick = soundtrack::retry) {
                         Text(stringResource(MR.strings.kurotoon_sound_retry))
                     }
-                    interruption != null -> TextButton(onClick = soundtrack::resumeAfterInterruption) {
+                    interruption != null -> KuroTextButton(onClick = soundtrack::resumeAfterInterruption) {
                         Text(stringResource(MR.strings.kurotoon_sound_resume))
                     }
                 }

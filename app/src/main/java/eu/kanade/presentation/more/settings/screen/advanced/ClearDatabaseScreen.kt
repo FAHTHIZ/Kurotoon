@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.collectAsState
@@ -60,6 +59,7 @@ import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.LazyColumnWithAction
 import tachiyomi.presentation.core.components.material.KuroCheckbox
 import tachiyomi.presentation.core.components.material.KuroSwitch
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
@@ -116,7 +116,7 @@ class ClearDatabaseScreen : Screen() {
                         },
                         onDismissRequest = viewModel::hideConfirmation,
                         confirmButton = {
-                            TextButton(
+                            KuroTextButton(
                                 onClick = {
                                     scope.launch(Dispatchers.Main) {
                                         viewModel.removeMangaBySourceId(keepReadManga)
@@ -130,7 +130,7 @@ class ClearDatabaseScreen : Screen() {
                             }
                         },
                         dismissButton = {
-                            TextButton(onClick = viewModel::hideConfirmation) {
+                            KuroTextButton(onClick = viewModel::hideConfirmation) {
                                 Text(text = stringResource(MR.strings.action_cancel))
                             }
                         },

@@ -9,7 +9,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -42,6 +41,7 @@ import mihon.feature.common.utils.getLabel
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.LabeledCheckbox
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.screens.LoadingScreen
@@ -93,7 +93,7 @@ internal fun Screen.MigrateMangaDialog(
             FlowRow(
                 horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.extraSmall),
             ) {
-                TextButton(
+                KuroTextButton(
                     onClick = {
                         onDismissRequest()
                         onClickTitle()
@@ -104,7 +104,7 @@ internal fun Screen.MigrateMangaDialog(
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                TextButton(
+                KuroTextButton(
                     onClick = {
                         scope.launch(Dispatchers.IO) {
                             viewModel.migrateManga(replace = false)
@@ -114,7 +114,7 @@ internal fun Screen.MigrateMangaDialog(
                 ) {
                     Text(text = stringResource(MR.strings.copy))
                 }
-                TextButton(
+                KuroTextButton(
                     onClick = {
                         scope.launch(Dispatchers.IO) {
                             viewModel.migrateManga(replace = true)

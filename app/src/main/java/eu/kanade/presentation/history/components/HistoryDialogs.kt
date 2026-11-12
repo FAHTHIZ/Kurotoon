@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -15,6 +14,7 @@ import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.LabeledCheckbox
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -44,7 +44,7 @@ fun HistoryDeleteDialog(
         },
         onDismissRequest = onDismissRequest,
         confirmButton = {
-            TextButton(onClick = {
+            KuroTextButton(onClick = {
                 onDelete(removeEverything)
                 onDismissRequest()
             }) {
@@ -52,7 +52,7 @@ fun HistoryDeleteDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.action_cancel))
             }
         },
@@ -73,7 +73,7 @@ fun HistoryDeleteAllDialog(
         },
         onDismissRequest = onDismissRequest,
         confirmButton = {
-            TextButton(onClick = {
+            KuroTextButton(onClick = {
                 onDelete()
                 onDismissRequest()
             }) {
@@ -81,7 +81,7 @@ fun HistoryDeleteAllDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.action_cancel))
             }
         },

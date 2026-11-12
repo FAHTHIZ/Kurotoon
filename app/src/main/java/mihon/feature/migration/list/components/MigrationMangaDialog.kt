@@ -1,10 +1,10 @@
 package mihon.feature.migration.list.components
 
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.pluralStringResource
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -43,7 +43,7 @@ fun MigrationMangaDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = onMigrate) {
+            KuroTextButton(onClick = onMigrate) {
                 Text(
                     text = stringResource(
                         resource = if (copy) {
@@ -56,7 +56,7 @@ fun MigrationMangaDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.migrationListScreen_migrateDialog_cancelLabel))
             }
         },
