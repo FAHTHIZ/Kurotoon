@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.ui.browse.migration.search
 
 import androidx.compose.material3.Icon
-import androidx.compose.material3.SmallExtendedFloatingActionButton
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.animateFloatingActionButton
@@ -36,6 +35,7 @@ import mihon.presentation.core.util.collectAsLazyPagingItems
 import tachiyomi.core.common.Constants
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroFab
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.screens.LoadingScreen
@@ -78,7 +78,7 @@ data class MigrateSourceSearchScreen(
                 )
             },
             floatingActionButton = {
-                SmallExtendedFloatingActionButton(
+                KuroFab(
                     text = { Text(text = stringResource(MR.strings.action_filter)) },
                     icon = { Icon(MaterialSymbols.Rounded.FilterList, contentDescription = null) },
                     onClick = viewModel::openFilterSheet,

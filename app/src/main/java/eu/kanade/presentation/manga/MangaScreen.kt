@@ -26,7 +26,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SmallExtendedFloatingActionButton
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.animateFloatingActionButton
@@ -81,6 +80,7 @@ import tachiyomi.domain.source.model.StubSource
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.TwoPanelBox
 import tachiyomi.presentation.core.components.VerticalFastScroller
+import tachiyomi.presentation.core.components.material.KuroFab
 import tachiyomi.presentation.core.components.material.PullRefresh
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
@@ -365,7 +365,7 @@ private fun MangaScreenSmallImpl(
                     enabled = isFABVisible,
                 )
                 val continueLabel = continueReadingLabel(state)
-                SmallExtendedFloatingActionButton(
+                KuroFab(
                     text = {
                         Text(text = continueLabel, fontWeight = FontWeight.Bold)
                     },
@@ -630,7 +630,7 @@ fun MangaScreenLargeImpl(
                     enabled = isFABVisible,
                 )
                 val continueLabel = continueReadingLabel(state)
-                SmallExtendedFloatingActionButton(
+                KuroFab(
                     text = {
                         Text(text = continueLabel, fontWeight = FontWeight.Bold)
                     },

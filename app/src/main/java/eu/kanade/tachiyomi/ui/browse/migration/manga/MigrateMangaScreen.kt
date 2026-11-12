@@ -20,7 +20,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SmallExtendedFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.animateFloatingActionButton
 import androidx.compose.runtime.Composable
@@ -50,6 +49,7 @@ import mihon.icons.materialsymbols.rounded.Check
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.FastScrollLazyColumn
+import tachiyomi.presentation.core.components.material.KuroFab
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.screens.EmptyScreen
@@ -95,7 +95,7 @@ data class MigrateMangaScreen(
                 )
             },
             floatingActionButton = {
-                SmallExtendedFloatingActionButton(
+                KuroFab(
                     text = { Text(text = stringResource(MR.strings.migrationConfigScreen_continueButtonText)) },
                     icon = {
                         Icon(imageVector = MaterialSymbols.AutoMirroredRounded.ArrowForward, contentDescription = null)
