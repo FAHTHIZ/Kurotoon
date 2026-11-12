@@ -1,0 +1,182 @@
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tap "Filter"
+> sleep 2
+> shot lib_sheet
+  [shot 001_lib_sheet] visible: ['Filter', 'Sort', 'Display', 'Downloaded', 'Unread', 'Started', 'Bookmarked', 'Completed', 'One-shots', 'Customized update frequency']
+> key BACK
+> sleep 1
+> tapxy 160 300
+> sleep 1
+> key BACK
+> sleep 1
+> tapx Me
+> sleep 2
+> tap History
+> sleep 3
+> shot history
+  [shot 002_history] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '1', 'In library', '126', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me', 'Incognito mode']
+> key BACK
+> tap "Download queue"
+  !! not found: Download queue
+  [shot 003_notfound] visible: ['Osora', 'Up next', 'Osora', 'Chapter 1', 'Resume', 'Out today', 'Series that usually update on Thursday', 'See all', 'Osora', '126', 'Osora', 'New today', 'The White Devil', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me', 'Incognito mode']
+> sleep 2
+> shot downloads
+  [shot 004_downloads] visible: ['Osora', 'Up next', 'Osora', 'Chapter 1', 'Resume', 'Out today', 'Series that usually update on Thursday', 'See all', 'Osora', '126', 'Osora', 'New today', 'unOrdinary', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me', 'Incognito mode']
+> key BACK
+> tap Statistics
+  !! not found: Statistics
+  [shot 005_notfound] visible: ['Pixel is starting…']
+> sleep 3
+> shot stats
+  [shot 006_stats] visible: ['Pixel is starting…']
+> key BACK
+> tap Categories
+  !! not found: Categories
+  [shot 007_notfound] visible: ['Pixel is starting…']
+> sleep 2
+> shot categories
+  [shot 008_categories] visible: ['Pixel is starting…']
+> key BACK
+> tap Settings
+  !! not found: Settings
+  [shot 009_notfound] visible: ['Pixel is starting…']
+> sleep 2
+> tapx Library
+  !! not found: Library
+  [shot 010_notfound] visible: ['Pixel is starting…']
+> sleep 2
+> shot set_library
+  [shot 011_set_library] visible: ['Pixel is starting…']
+> key BACK
+> tapx Reader
+  !! not found: Reader
+  [shot 012_notfound] visible: ['Pixel is starting…']
+> sleep 2
+> shot set_reader
+  [shot 013_set_reader] visible: ['Pixel is starting…']
+> key BACK
+> tapx Downloads
+  !! not found: Downloads
+  [shot 014_notfound] visible: ['Pixel is starting…']
+> sleep 2
+> shot set_downloads
+  [shot 015_set_downloads] visible: ['Pixel is starting…']
+> key BACK
+> tapx Tracking
+  !! not found: Tracking
+  [shot 016_notfound] visible: ['Pixel is starting…']
+> sleep 2
+> shot set_tracking
+  [shot 017_set_tracking] visible: ['Pixel is starting…']
+> key BACK
+> tapx Browse
+  !! not found: Browse
+  [shot 018_notfound] visible: ['Pixel is starting…']
+> sleep 2
+> shot set_browse
+  [shot 019_set_browse] visible: ['Pixel is starting…']
+> key BACK
+> scrollup
+> tap "Data and storage"
+  !! not found: Data and storage
+  [shot 020_notfound] visible: ['Pixel is starting…']
+> sleep 2
+> shot set_data
+  [shot 021_set_data] visible: ['Pixel is starting…']
+> key BACK
+> tap "Security and privacy"
+  !! not found: Security and privacy
+  [shot 022_notfound] visible: ['Pixel is starting…']
+> sleep 2
+> shot set_security
+  [shot 023_set_security] visible: ['Pixel is starting…']
+> key BACK
+> tap Advanced
+  !! not found: Advanced
+  [shot 024_notfound] visible: ['Pixel is starting…']
+> sleep 2
+> shot set_advanced
+  [shot 025_set_advanced] visible: ['Pixel is starting…']
+> key BACK
+> tap About
+  !! not found: About
+  [shot 026_notfound] visible: ['Pixel is starting…']
+> sleep 2
+> shot set_about
+  [shot 027_set_about] visible: ['Pixel is starting…']
+> key BACK
+> key BACK
+> sleep 1
+> tapx Library
+  !! not found: Library
+  [shot 028_notfound] visible: ['Pixel is starting…']
+> sleep 2
+> tap Osora
+  !! not found: Osora
+  [shot 029_notfound] visible: ['Pixel is starting…']
+> sleep 5
+> tap Tracking
+  !! not found: Tracking
+  [shot 030_notfound] visible: ['Pixel is starting…']
+> sleep 3
+> shot track_sheet
+  [shot 031_track_sheet] visible: ['Pixel is starting…']
+> key BACK
+> sleep 1
+> tap "More options"
+  !! not found: More options
+  [shot 032_notfound] visible: ['Pixel is starting…']
+> sleep 1
+> shot series_menu
+  [shot 033_series_menu] visible: ['Pixel is starting…']
+> key BACK
+> sleep 1
+> scrollup
+> sleep 1
+> long 540 1700
+> sleep 2
+> shot selection
+  [shot 034_selection] visible: ['Pixel is starting…']
+> key BACK
+> sleep 1
+> tap "Filter"
+  !! not found: Filter
+  [shot 035_notfound] visible: ['Pixel is starting…']
+> sleep 2
+> shot chapter_filter
+  [shot 036_chapter_filter] visible: ['Pixel is starting…']
+> key BACK
+> sleep 1
+> key BACK
+> tapx Browse
+  !! not found: Browse
+  [shot 037_notfound] visible: ['Pixel is starting…']
+> sleep 2
+> tap Webtoons.com
+  !! not found: Webtoons.com
+  [shot 038_notfound] visible: ['Pixel is starting…']
+> sleep 8
+> tap Filter
+  !! not found: Filter
+  [shot 039_notfound] visible: ['Pixel is starting…']
+> sleep 3
+> shot src_filter
+  [shot 040_src_filter] visible: ['Pixel is starting…']
+> key BACK
+> sleep 1
+> key BACK
+> tapx Extensions
+  !! not found: Extensions
+  [shot 041_notfound] visible: ['Pixel is starting…']
+> sleep 3
+> tap Webtoons.com
+  !! not found: Webtoons.com
+  [shot 042_notfound] visible: ['Pixel is starting…']
+> sleep 3
+> shot ext_details
+  [shot 043_ext_details] visible: ['Pixel is starting…']
+  [shot 044_end] visible: ['Pixel is starting…']
