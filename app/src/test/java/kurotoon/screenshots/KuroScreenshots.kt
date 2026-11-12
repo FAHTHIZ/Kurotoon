@@ -691,6 +691,21 @@ class KuroScreenshots {
     }
 
     @Test
+    fun selectionDock() = shot("selection_dock") {
+        androidx.compose.foundation.layout.Box(Modifier.padding(vertical = 16.dp)) {
+            eu.kanade.presentation.manga.components.MangaBottomActionMenu(
+                visible = true,
+                modifier = Modifier.fillMaxWidth(),
+                onBookmarkClicked = {},
+                onMarkAsReadClicked = {},
+                onMarkPreviousAsReadClicked = {},
+                onDownloadClicked = {},
+                onDeleteClicked = {},
+            )
+        }
+    }
+
+    @Test
     fun sheetRows() = shot("sheet_rows") {
         androidx.compose.foundation.layout.Column(Modifier.padding(vertical = 12.dp)) {
             tachiyomi.presentation.core.components.HeadingItem("Filter")
