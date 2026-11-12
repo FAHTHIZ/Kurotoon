@@ -1,0 +1,157 @@
+> key BACK
+> stop app.kurotoon.dev
+> clear app.kurotoon.dev
+> sh "run-as app.kurotoon.dev sh -c 'mkdir -p shared_prefs; echo PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiIHN0YW5kYWxvbmU9InllcyIgPz4KPG1hcD4KICAgIDxib29sZWFuIG5hbWU9Il9fQVBQX1NUQVRFX29uYm9hcmRpbmdfY29tcGxldGUiIHZhbHVlPSJ0cnVlIiAvPgo8L21hcD4= | base64 -d > shared_prefs/app.kurotoon.dev_preferences.xml'"
+
+> sh "appops set app.kurotoon.dev REQUEST_INSTALL_PACKAGES allow"
+
+> start app.kurotoon.dev
+> sleep 8
+> shot home_empty
+  [shot 001_home_empty] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif Cancel
+> start app.kurotoon.dev
+> sleep 3
+> tapx Browse
+> sleep 2
+> shot browse_sources
+  [shot 002_browse_sources] visible: ['Universal Search', 'One search across every installed source.', 'Other', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Extensions
+> sleep 3
+> shot browse_extensions
+  [shot 003_browse_extensions] visible: ['Not loaded', 'MangaDex', '1.6.4', 'Untrusted', 'Mixed', 'Trust', 'Taddy INK (Webtoons)', '1.6.1', 'Untrusted', 'Trust', 'Webtoons.com', '1.6.3', 'Untrusted', 'Trust', 'WebtoonScan', '1.6.58', 'Untrusted', 'Mixed', 'Trust', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Search', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Migrate
+> sleep 2
+> shot browse_migrate
+  [shot 004_browse_migrate] visible: ['Your library is empty', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Source migration guide', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Sources
+> sleep 2
+> tap Webtoons.com
+  !! not found: Webtoons.com
+  [shot 005_notfound] visible: ['Universal Search', 'One search across every installed source.', 'Other', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 12
+> shot src_popular
+  [shot 006_src_popular] visible: ['Universal Search', 'One search across every installed source.', 'Other', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Latest
+> sleep 8
+> shot src_latest
+  [shot 007_src_latest] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> tapx Popular
+> sleep 8
+> tapxy 270 1000
+> sleep 12
+> shot series
+  [shot 008_series] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 009_notfound] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> sleep 3
+> shot series_added
+  [shot 010_series_added] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> scrollup
+> sleep 2
+> shot series_chapters
+  [shot 011_series_chapters] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> scrollup
+> sleep 2
+> shot series_chapters2
+  [shot 012_series_chapters2] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> scrolldown
+> scrolldown
+> scrolldown
+> sleep 1
+> tap Start
+  !! not found: Start
+  [shot 013_notfound] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> sleep 20
+> shot reader
+  [shot 014_reader] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> tapxy 540 1200
+> sleep 2
+> shot reader_menu
+  [shot 015_reader_menu] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> tap Settings
+  !! not found: Settings
+  [shot 016_notfound] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> sleep 2
+> shot reader_settings
+  [shot 017_reader_settings] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> key BACK
+> sleep 1
+> tap Chapters
+  !! not found: Chapters
+  [shot 018_notfound] visible: ['Universal Search', 'One search across every installed source.', 'Last used', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Other', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 2
+> shot reader_chapters
+  [shot 019_reader_chapters] visible: ['Universal Search', 'One search across every installed source.', 'Last used', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Other', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Sources', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> key BACK
+> sleep 1
+> key BACK
+> sleep 2
+> key BACK
+> sleep 3
+> shot series_after
+  [shot 020_series_after] visible: ['Pixel is starting…']
+> key BACK
+> sleep 2
+> key BACK
+> sleep 2
+> key BACK
+> sleep 2
+> start app.kurotoon.dev
+> sleep 3
+> tapx Home
+> sleep 8
+> shot home
+  [shot 021_home] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> sleep 2
+> shot home2
+  [shot 022_home2] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> sleep 2
+> shot home3
+  [shot 023_home3] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Library
+> sleep 3
+> shot library
+  [shot 024_library] visible: ['Your library is empty', 'Getting started guide', 'Library', 'Search', 'Filter', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Updates
+> sleep 3
+> shot updates
+  [shot 025_updates] visible: ['Not checked yet', 'Pull down or tap Check now to look for new chapters', 'Check now', 'No recent updates', 'Updates', 'Filter', 'Release schedule', 'View Upcoming Updates', 'Update library', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif "Check now"
+> sleep 20
+> shot updates_after
+  [shot 026_updates_after] visible: ['Checked Just now', 'Pull down or tap Check now to look for new chapters', 'Check now', 'No recent updates', 'Updates', 'Filter', 'Release schedule', 'View Upcoming Updates', 'Update library', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Me
+> sleep 2
+> shot me
+  [shot 027_me] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '0', 'In library', '0', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> sleep 1
+> shot me2
+  [shot 028_me2] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> sleep 1
+> shot me3
+  [shot 029_me3] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap Settings
+> sleep 2
+> shot settings
+  [shot 030_settings] visible: ['Search all settings', 'Look & read', 'Appearance', 'Theme, date & time format', 'Library', 'Categories, global update, chapter swipe', 'Reader', 'Reading mode, display, navigation', 'Content & sources', 'Downloads', 'Automatic download, download ahead', 'Tracking', 'One-way progress sync, enhanced sync', 'Browse', 'Sources, extensions, global search', 'App & data', 'Data and storage', 'Manual & automatic backups, storage space', 'Security and privacy', 'App lock, secure screen', 'Advanced', 'Dump crash logs, battery optimizations', 'Navigate up', 'Settings', 'Search']
+> tapx Appearance
+> sleep 2
+> shot settings_appearance
+  [shot 031_settings_appearance] visible: ['Theme', 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Green Apple', 'Pure black dark mode', 'Display', 'App language', 'Tablet UI', 'Auto', 'Date format', 'Default (11/12/26)', 'Time format', 'Follow language (5:12\u202fAM)', 'Navigate up', 'Appearance']
+> back
+> back
+> tapx Home
+> tap "Search manga"
+> sleep 2
+> type Solo
+> key 66
+> sleep 15
+> shot global_search
+  [shot 032_global_search] visible: ['Local source', 'Other', 'See all', 'No results found', 'Navigate up', 'Solo', 'Reset', 'Pinned', 'All', 'Has results']
+  [shot 033_end] visible: ['Local source', 'Other', 'See all', 'No results found', 'Navigate up', 'Solo', 'Reset', 'Pinned', 'All', 'Has results']
