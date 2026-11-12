@@ -871,6 +871,12 @@ class KuroScreenshots {
                 clock = "21:40",
                 batteryPercent = 82,
             )
+            androidx.compose.foundation.layout.Row(
+                horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(16.dp),
+            ) {
+                kurotoon.ui.reader.ReaderPageLoader(progress = { 0f })
+                kurotoon.ui.reader.ReaderPageLoader(progress = { 0.42f })
+            }
             eu.kanade.presentation.reader.ReaderError(
                 message = "HTTP error 404",
                 onRetry = {},
