@@ -50,6 +50,7 @@ import mihon.icons.materialsymbols.rounded.Home
 import mihon.icons.materialsymbols.rounded.NewReleases
 import mihon.icons.materialsymbols.rounded.Person
 import mihon.icons.materialsymbols.rounded.Refresh
+import mihon.icons.materialsymbols.roundedfilled.PlayArrow
 import org.junit.Assume.assumeTrue
 import org.junit.Before
 import org.junit.Test
@@ -866,6 +867,32 @@ class KuroScreenshots {
                 onSelect = {},
                 modifier = Modifier.padding(horizontal = 16.dp),
             )
+            androidx.compose.foundation.layout.Row(
+                modifier = Modifier.padding(16.dp),
+                horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(16.dp),
+            ) {
+                tachiyomi.presentation.core.components.material.KuroFab(
+                    text = { androidx.compose.material3.Text("Continue Ep. 126") },
+                    icon = {
+                        androidx.compose.material3.Icon(
+                            mihon.icons.materialsymbols.MaterialSymbols.RoundedFilled.PlayArrow,
+                            contentDescription = null,
+                        )
+                    },
+                    onClick = {},
+                )
+                tachiyomi.presentation.core.components.material.KuroFab(
+                    text = { androidx.compose.material3.Text("Add") },
+                    icon = {
+                        androidx.compose.material3.Icon(
+                            mihon.icons.materialsymbols.MaterialSymbols.RoundedFilled.PlayArrow,
+                            contentDescription = null,
+                        )
+                    },
+                    onClick = {},
+                    expanded = false,
+                )
+            }
         }
     }
 

@@ -14,7 +14,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SmallExtendedFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -70,6 +69,7 @@ import tachiyomi.domain.source.service.SourceManager
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.FastScrollLazyColumn
 import tachiyomi.presentation.core.components.Pill
+import tachiyomi.presentation.core.components.material.KuroFab
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
@@ -149,7 +149,7 @@ class MigrationConfigScreen(private val mangaIds: Collection<Long>) : Screen() {
                 )
             },
             floatingActionButton = {
-                SmallExtendedFloatingActionButton(
+                KuroFab(
                     text = { Text(text = stringResource(MR.strings.migrationConfigScreen_continueButtonText)) },
                     icon = {
                         Icon(imageVector = MaterialSymbols.AutoMirroredRounded.ArrowForward, contentDescription = null)
