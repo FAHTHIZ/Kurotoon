@@ -109,6 +109,7 @@ fun MangaChapterListItem(
                 number = number,
                 read = read,
                 inProgress = inProgress,
+                selected = selected,
             )
             Spacer(Modifier.width(14.dp))
             Column(

@@ -691,6 +691,49 @@ class KuroScreenshots {
     }
 
     @Test
+    fun episodeSelection() = shot("episode_selection") {
+        Column(Modifier.padding(vertical = 8.dp)) {
+            eu.kanade.presentation.manga.components.ChapterHeader(
+                enabled = true,
+                chapterCount = 126,
+                missingChapterCount = 0,
+                onClick = {},
+                sortDescending = true,
+                onFlipSortOrder = {},
+            )
+            data class Row(val n: Int, val date: String, val read: Boolean, val new: Boolean, val progress: Boolean)
+            listOf(
+                Row(126, "Today", read = false, new = true, progress = false),
+                Row(125, "Nov 5", read = false, new = false, progress = true),
+                Row(124, "Oct 29", read = true, new = false, progress = false),
+                Row(123, "Oct 22", read = true, new = false, progress = false),
+            ).forEach { row ->
+                eu.kanade.presentation.manga.components.MangaChapterListItem(
+                    title = "Episode ${row.n}",
+                    date = row.date,
+                    readProgress = if (row.progress) "Page 14" else null,
+                    scanlator = null,
+                    read = row.read,
+                    bookmark = false,
+                    selected = row.n == 124 || row.n == 125,
+                    downloadIndicatorEnabled = true,
+                    downloadStateProvider = { eu.kanade.tachiyomi.data.download.model.Download.State.NOT_DOWNLOADED },
+                    downloadProgressProvider = { 0 },
+                    chapterSwipeStartAction = SwipeAction.Disabled,
+                    chapterSwipeEndAction = SwipeAction.Disabled,
+                    onLongClick = {},
+                    onClick = {},
+                    onDownloadClick = {},
+                    onChapterSwipe = {},
+                    number = row.n.toString(),
+                    isNew = row.new,
+                    inProgress = row.progress,
+                )
+            }
+        }
+    }
+
+    @Test
     fun selectionDock() = shot("selection_dock") {
         androidx.compose.foundation.layout.Box(Modifier.padding(vertical = 16.dp)) {
             eu.kanade.presentation.manga.components.MangaBottomActionMenu(

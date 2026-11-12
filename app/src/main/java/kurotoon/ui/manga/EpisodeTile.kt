@@ -30,10 +30,12 @@ fun EpisodeTile(
     read: Boolean,
     inProgress: Boolean,
     modifier: Modifier = Modifier,
+    selected: Boolean = false,
 ) {
     val shape = RoundedCornerShape(12.dp)
     val primary = MaterialTheme.colorScheme.primary
     val background = when {
+        selected -> primary
         read -> MaterialTheme.colorScheme.surfaceContainer
         inProgress -> primary.copy(alpha = 0.14f)
         else -> MaterialTheme.colorScheme.surfaceContainerHighest
@@ -43,10 +45,16 @@ fun EpisodeTile(
             .size(46.dp)
             .clip(shape)
             .background(background)
-            .then(if (inProgress && !read) Modifier.border(1.5.dp, primary, shape) else Modifier),
+            .then(if (inProgress && !read && !selected) Modifier.border(1.5.dp, primary, shape) else Modifier),
         contentAlignment = Alignment.Center,
     ) {
         when {
+            selected -> Icon(
+                imageVector = MaterialSymbols.Rounded.Check,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onPrimary,
+                modifier = Modifier.size(22.dp),
+            )
             read -> Icon(
                 imageVector = MaterialSymbols.Rounded.Check,
                 contentDescription = null,
