@@ -26,6 +26,7 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
+import kurotoon.ui.browse.tagsTab
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -64,6 +65,7 @@ data object BrowseTab : Tab {
 
         val tabs = listOf(
             sourcesTab(),
+            tagsTab(),
             extensionsTab(extensionsViewModel),
             migrateSourceTab(),
         )
@@ -79,7 +81,7 @@ data object BrowseTab : Tab {
         )
         LaunchedEffect(Unit) {
             switchToExtensionTabChannel.receiveAsFlow()
-                .collectLatest { state.scrollToPage(1) }
+                .collectLatest { state.scrollToPage(EXTENSIONS_PAGE) }
         }
 
         LaunchedEffect(Unit) {
@@ -87,3 +89,6 @@ data object BrowseTab : Tab {
         }
     }
 }
+
+// Sources, Tags, then Extensions
+private const val EXTENSIONS_PAGE = 2

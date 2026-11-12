@@ -829,6 +829,24 @@ class KuroScreenshots {
     }
 
     @Test
+    fun browseTags() = shot("browse_tags") {
+        val tags = listOf(
+            "Action" to 14, "Romance" to 12, "Fantasy" to 12, "Comedy" to 11, "Drama" to 10, "Isekai" to 8,
+            "Martial Arts" to 7, "Slice of Life" to 7, "Murim" to 4, "Regression" to 3, "4-Koma" to 1,
+        ).map { (name, count) -> kurotoon.catalogue.SourceTagIndex.Tag(name, count) }
+        kurotoon.ui.browse.TagsContent(
+            tags = tags,
+            hidden = setOf("isekai"),
+            libraryTags = listOf("Murim", "Regression"),
+            sourceCount = 14,
+            contentPadding = androidx.compose.foundation.layout.PaddingValues(0.dp),
+            onTag = {},
+            onSearchText = {},
+            onHide = {},
+        )
+    }
+
+    @Test
     fun readerChrome() = shot("reader_chrome") {
         Column(
             modifier = Modifier.background(androidx.compose.ui.graphics.Color(0xFF2A2A30)).padding(vertical = 16.dp),
