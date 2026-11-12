@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Changed
+- Source filter choices with a few options show as tappable pills; long lists open from a rounded field. Overflow menus are rounded, lifted cards that drop below their button
 - Selecting chapters, updates or library entries brings up a floating dock with labelled actions (Bookmark, Read, Read before, Download, Delete) instead of a bare icon strip; long-press still spells each out in full
 - Filter, sort and display sheets drop the stock checkbox lists: each row is a rounded block that tints when on, with a check, cross or arrow mark on the right, and hidden filters are struck through
 - Between episodes the reader shows a calm "Up next" card instead of plain text, and dialogs with tabs use the same segmented pill tabs as the rest of the app

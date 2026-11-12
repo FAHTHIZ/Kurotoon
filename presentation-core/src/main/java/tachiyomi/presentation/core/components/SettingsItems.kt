@@ -272,41 +272,80 @@ fun SelectItem(
     selectedIndex: Int,
     onSelect: (Int) -> Unit,
 ) {
-    var expanded by remember { mutableStateOf(false) }
+    // A handful of short choices read faster as pills you can see all at once; long lists keep a menu
+    val asPills = options.size <= MAX_PILL_OPTIONS && options.sumOf { it.toString().length } <= MAX_PILL_CHARS
+    if (asPills) {
+        Column {
+            HeadingItem(label)
+            FlowRow(
+                modifier = Modifier.padding(horizontal = SettingsItemsPaddings.Horizontal).padding(bottom = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                options.forEachIndexed { index, option ->
+                    ChoicePill(
+                        text = option.toString(),
+                        selected = index == selectedIndex,
+                        onClick = { onSelect(index) },
+                    )
+                }
+            }
+        }
+        return
+    }
 
+    var expanded by remember { mutableStateOf(false) }
     ExposedDropdownMenuBox(
         expanded = expanded,
         onExpandedChange = { expanded = !expanded },
     ) {
-        OutlinedTextField(
+        Row(
             modifier = Modifier
                 .menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable)
                 .fillMaxWidth()
-                .padding(
-                    horizontal = SettingsItemsPaddings.Horizontal,
-                    vertical = SettingsItemsPaddings.Vertical,
-                ),
-            label = { Text(text = label) },
-            value = options.getOrNull(selectedIndex)?.toString().orEmpty(),
-            onValueChange = {},
-            readOnly = true,
-            singleLine = true,
-            trailingIcon = {
-                ExposedDropdownMenuDefaults.TrailingIcon(
-                    expanded = expanded,
+                .padding(horizontal = RowInset, vertical = 4.dp)
+                .clip(RowShape)
+                .background(MaterialTheme.colorScheme.surfaceContainerHighest)
+                .padding(horizontal = RowPadding, vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.medium),
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = label,
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-            },
-            colors = ExposedDropdownMenuDefaults.textFieldColors(),
-        )
+                Text(
+                    text = options.getOrNull(selectedIndex)?.toString().orEmpty(),
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.SemiBold,
+                    maxLines = 1,
+                )
+            }
+            ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+        }
 
         ExposedDropdownMenu(
             modifier = Modifier.exposedDropdownSize(),
             expanded = expanded,
             onDismissRequest = { expanded = false },
+            shape = RoundedCornerShape(20.dp),
+            containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
         ) {
             options.forEachIndexed { index, text ->
                 DropdownMenuItem(
-                    text = { Text(text.toString()) },
+                    text = {
+                        Text(
+                            text = text.toString(),
+                            fontWeight = if (index == selectedIndex) FontWeight.SemiBold else FontWeight.Normal,
+                            color = if (index == selectedIndex) {
+                                MaterialTheme.colorScheme.primary
+                            } else {
+                                MaterialTheme.colorScheme.onSurface
+                            },
+                        )
+                    },
                     onClick = {
                         onSelect(index)
                         expanded = false
@@ -315,6 +354,29 @@ fun SelectItem(
                 )
             }
         }
+    }
+}
+
+private const val MAX_PILL_OPTIONS = 12
+private const val MAX_PILL_CHARS = 120
+
+@Composable
+private fun ChoicePill(text: String, selected: Boolean, onClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .clip(CircleShape)
+            .background(
+                if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceContainerHighest,
+            )
+            .clickable(onClick = onClick)
+            .padding(horizontal = 14.dp, vertical = 8.dp),
+    ) {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.labelLarge,
+            fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
+            color = if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
 }
 

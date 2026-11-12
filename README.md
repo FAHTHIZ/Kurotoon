@@ -104,6 +104,13 @@ one, tap Use.
 </tr>
 </table>
 
+<table>
+<tr>
+<td width="50%" valign="top"><img src="docs/images/sheet_rows.png" alt="Filter, sort and display rows with tinted states and choice pills"><br><sub><b>Sheets</b> · on, only, hide at a glance</sub></td>
+<td width="50%" valign="top"><img src="docs/images/selection_dock.png" alt="Floating selection dock with labelled actions"><br><sub><b>Selection</b> · a labelled floating dock</sub></td>
+</tr>
+</table>
+
 <p align="center"><img src="docs/images/segmented_tabs.png" alt="Segmented tabs: Sources, Extensions, Migrate" width="70%"></p>
 
 <p align="center"><img src="docs/images/bottom_bar.png" alt="Floating bottom dock with the Browse tab selected" width="70%"></p>

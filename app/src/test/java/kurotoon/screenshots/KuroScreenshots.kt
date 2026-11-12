@@ -720,6 +720,18 @@ class KuroScreenshots {
             tachiyomi.presentation.core.components.RadioItem("List", selected = false, onClick = {})
             tachiyomi.presentation.core.components.CheckboxItem("Unread badges", checked = true, onClick = {})
             tachiyomi.presentation.core.components.CheckboxItem("Language badges", checked = false, onClick = {})
+            tachiyomi.presentation.core.components.SelectItem(
+                label = "Search type",
+                options = arrayOf("All", "Originals", "Canvas"),
+                selectedIndex = 0,
+                onSelect = {},
+            )
+            tachiyomi.presentation.core.components.SelectItem(
+                label = "Genre",
+                options = Array(20) { "Genre $it" },
+                selectedIndex = 3,
+                onSelect = {},
+            )
         }
     }
 
