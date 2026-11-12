@@ -2,7 +2,6 @@ package eu.kanade.presentation.reader.settings
 
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,6 +13,7 @@ import eu.kanade.tachiyomi.util.system.hasDisplayCutout
 import kurotoon.reader.DataSaver
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.CheckboxItem
+import tachiyomi.presentation.core.components.ChoiceChip
 import tachiyomi.presentation.core.components.SettingsChipRow
 import tachiyomi.presentation.core.components.SliderItem
 import tachiyomi.presentation.core.i18n.pluralStringResource
@@ -59,7 +59,7 @@ internal fun ColumnScope.GeneralPage(viewModel: ReaderSettingsViewModel) {
 
     SettingsChipRow(MR.strings.pref_reader_theme) {
         themes.map { (labelRes, value) ->
-            FilterChip(
+            ChoiceChip(
                 selected = readerTheme == value,
                 onClick = { viewModel.preferences.readerTheme.set(value) },
                 label = { Text(stringResource(labelRes)) },
@@ -85,7 +85,7 @@ internal fun ColumnScope.GeneralPage(viewModel: ReaderSettingsViewModel) {
     val dataSaver by viewModel.preferences.dataSaver.collectAsState()
     SettingsChipRow(MR.strings.kurotoon_dataSaver_title) {
         DataSaver.MODES.forEach { mode ->
-            FilterChip(
+            ChoiceChip(
                 selected = dataSaver == mode,
                 onClick = { viewModel.preferences.dataSaver.set(mode) },
                 label = {
@@ -118,7 +118,7 @@ internal fun ColumnScope.GeneralPage(viewModel: ReaderSettingsViewModel) {
 
     SettingsChipRow(MR.strings.pref_vertical_navigator) {
         ReadingMode.entries.filter { it != ReadingMode.DEFAULT }.forEach { mode ->
-            FilterChip(
+            ChoiceChip(
                 selected = verticalNavigatorModes.contains(mode),
                 onClick = {
                     val newModes = if (verticalNavigatorModes.contains(mode)) {
@@ -209,7 +209,7 @@ internal fun ColumnScope.GeneralPage(viewModel: ReaderSettingsViewModel) {
         )
         SettingsChipRow(MR.strings.pref_flash_with) {
             flashColors.map { (labelRes, value) ->
-                FilterChip(
+                ChoiceChip(
                     selected = flashColor == value,
                     onClick = { flashColorPref.set(value) },
                     label = { Text(stringResource(labelRes)) },

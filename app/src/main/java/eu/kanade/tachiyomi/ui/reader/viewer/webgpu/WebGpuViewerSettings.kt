@@ -12,7 +12,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -63,6 +62,7 @@ import tachiyomi.core.common.util.system.logcat
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.BaseSliderItem
 import tachiyomi.presentation.core.components.CheckboxItem
+import tachiyomi.presentation.core.components.ChoiceChip
 import tachiyomi.presentation.core.components.HeadingItem
 import tachiyomi.presentation.core.components.SettingsChipRow
 import tachiyomi.presentation.core.components.SettingsItemsPaddings
@@ -81,7 +81,7 @@ internal fun WebGpuViewerSettings(viewModel: ReaderSettingsViewModel) {
     val readingMode = remember(manga) { ReadingMode.fromPreference(manga?.readingMode?.toInt()) }
     SettingsChipRow(MR.strings.pref_category_reading_mode) {
         ReadingMode.entries.forEach {
-            FilterChip(
+            ChoiceChip(
                 selected = it == readingMode,
                 onClick = { viewModel.setReadingMode(it) },
                 label = { Text(stringResource(it.stringRes)) },
@@ -104,7 +104,7 @@ internal fun WebGpuViewerSettings(viewModel: ReaderSettingsViewModel) {
     if (isPaged) {
         SettingsChipRow(MR.strings.pref_dual_page_view) {
             ReaderPreferences.DualPageView.entries.forEach {
-                FilterChip(
+                ChoiceChip(
                     selected = it == dualPageView,
                     onClick = { viewModel.preferences.dualPageView.set(it) },
                     label = { Text(stringResource(it.titleRes)) },
@@ -150,7 +150,7 @@ internal fun WebGpuViewerSettings(viewModel: ReaderSettingsViewModel) {
     val orientation = remember(manga) { ReaderOrientation.fromPreference(manga?.readerOrientation?.toInt()) }
     SettingsChipRow(MR.strings.rotation_type) {
         ReaderOrientation.entries.forEach {
-            FilterChip(
+            ChoiceChip(
                 selected = it == orientation,
                 onClick = { viewModel.setOrientation(it) },
                 label = { Text(stringResource(it.stringRes)) },
@@ -171,7 +171,7 @@ internal fun WebGpuViewerSettings(viewModel: ReaderSettingsViewModel) {
         val imageScaleType by viewModel.preferences.imageScaleType.collectAsState()
         SettingsChipRow(MR.strings.pref_image_scale_type) {
             ReaderPreferences.ImageScaleTypeWebGpuViewer.forEach {
-                FilterChip(
+                ChoiceChip(
                     selected = ReaderPreferences.ImageScaleType[imageScaleType - 1] == it,
                     onClick = {
                         viewModel.preferences.imageScaleType.set(ReaderPreferences.ImageScaleType.indexOf(it) + 1)
@@ -184,7 +184,7 @@ internal fun WebGpuViewerSettings(viewModel: ReaderSettingsViewModel) {
         val zoomStart by viewModel.preferences.zoomStart.collectAsState()
         SettingsChipRow(MR.strings.pref_zoom_start) {
             ReaderPreferences.ZoomStart.mapIndexed { index, it ->
-                FilterChip(
+                ChoiceChip(
                     selected = zoomStart == index + 1,
                     onClick = { viewModel.preferences.zoomStart.set(index + 1) },
                     label = { Text(stringResource(it)) },
@@ -229,7 +229,7 @@ internal fun WebGpuViewerSettings(viewModel: ReaderSettingsViewModel) {
         val cutoutMode by viewModel.preferences.cutoutMode.collectAsState()
         SettingsChipRow(MR.strings.pref_cutout_mode) {
             ReaderPreferences.CutoutMode.entries.forEach {
-                FilterChip(
+                ChoiceChip(
                     selected = it == cutoutMode,
                     onClick = { viewModel.preferences.cutoutMode.set(it) },
                     label = { Text(stringResource(it.titleRes)) },
@@ -240,7 +240,7 @@ internal fun WebGpuViewerSettings(viewModel: ReaderSettingsViewModel) {
         val transitionAnimation by viewModel.preferences.transitionAnimation.collectAsState()
         SettingsChipRow(MR.strings.pref_transition_animation) {
             ReaderPreferences.TransitionAnimation.entries.forEach {
-                FilterChip(
+                ChoiceChip(
                     selected = it == transitionAnimation,
                     onClick = { viewModel.preferences.transitionAnimation.set(it) },
                     label = { Text(stringResource(it.titleRes)) },
@@ -253,7 +253,7 @@ internal fun WebGpuViewerSettings(viewModel: ReaderSettingsViewModel) {
         val cutoutMode by viewModel.preferences.cutoutModeDual.collectAsState()
         SettingsChipRow(MR.strings.pref_cutout_mode_dual) {
             ReaderPreferences.CutoutMode.entries.forEach {
-                FilterChip(
+                ChoiceChip(
                     selected = it == cutoutMode,
                     onClick = { viewModel.preferences.cutoutModeDual.set(it) },
                     label = { Text(stringResource(it.titleRes)) },
@@ -267,7 +267,7 @@ internal fun WebGpuViewerSettings(viewModel: ReaderSettingsViewModel) {
                 ReaderPreferences.TransitionAnimation.entries - ReaderPreferences.TransitionAnimation.FLIP_LEFT -
                     ReaderPreferences.TransitionAnimation.FLIP_RIGHT
                 ).forEach {
-                FilterChip(
+                ChoiceChip(
                     selected = it == transitionAnimation,
                     onClick = { viewModel.preferences.transitionAnimationDual.set(it) },
                     label = { Text(stringResource(it.titleRes)) },
