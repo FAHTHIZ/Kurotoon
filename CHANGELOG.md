@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Changed
+- Picking series to migrate uses cover cards with a round check, and the Continue button is a solid accent button
 - Reader and library option chips (reading mode, rotation, tap zones, display mode and more) use the same solid crimson pills as the rest of the app
 - Selected chapters turn their episode tile into a crimson check, and selected rows everywhere wear a faint accent tint instead of grey
 - Source filter choices with a few options show as tappable pills; long lists open from a rounded field. Overflow menus are rounded, lifted cards that drop below their button
