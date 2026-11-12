@@ -1,0 +1,28 @@
+t14
+rebuild
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Browse
+sleep 2
+tapx Migrate
+sleep 2
+tapx Webtoons.com
+sleep 3
+shot migrate_list
+tapx Osora
+sleep 2
+shot migrate_selected
+tapx Continue
+sleep 3
+shot migrate_config
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Library
+sleep 3
+tapx Osora
+sleep 6
+tap "More options"
+sleep 1
+shot series_menu
