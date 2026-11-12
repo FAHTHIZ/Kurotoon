@@ -130,3 +130,76 @@ fun KuroSegmentedTabs(
         }
     }
 }
+
+/**
+ * The same sliding-thumb track for a plain choice, such as the theme mode: [selected] picks the
+ * segment and the thumb springs to it.
+ */
+@Composable
+fun KuroSegmentedChoice(
+    titles: List<String>,
+    selected: Int,
+    onSelect: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+    height: Dp = 44.dp,
+) {
+    if (titles.isEmpty()) return
+    val position by androidx.compose.animation.core.animateFloatAsState(
+        selected.coerceIn(0, titles.lastIndex).toFloat(),
+        androidx.compose.animation.core.spring(dampingRatio = 0.75f, stiffness = 500f),
+        label = "kuroSegmentedChoice",
+    )
+    BoxWithConstraints(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(height)
+            .clip(CircleShape)
+            .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+            .padding(4.dp),
+    ) {
+        val segment = maxWidth / titles.size
+        if (selected in titles.indices) {
+            Box(
+                modifier = Modifier
+                    .offset(x = segment * position)
+                    .width(segment)
+                    .fillMaxHeight()
+                    .clip(CircleShape)
+                    .background(MaterialTheme.colorScheme.primary),
+            )
+        }
+        Row(Modifier.fillMaxWidth().fillMaxHeight()) {
+            titles.forEachIndexed { index, title ->
+                val isSelected = index == selected
+                val color by animateColorAsState(
+                    if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+                    label = "kuroSegmentedChoiceLabel",
+                )
+                Box(
+                    modifier = Modifier
+                        .width(segment)
+                        .fillMaxHeight()
+                        .clip(CircleShape)
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null,
+                        ) { onSelect(index) }
+                        .semantics {
+                            role = Role.RadioButton
+                            this.selected = isSelected
+                        },
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = title,
+                        color = color,
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = if (isSelected) FontWeight.ExtraBold else FontWeight.SemiBold,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
+            }
+        }
+    }
+}
