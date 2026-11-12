@@ -30,8 +30,22 @@ fun Context.toast(
     duration: Int = Toast.LENGTH_SHORT,
     block: (Toast) -> Unit = {},
 ): Toast {
-    return Toast.makeText(applicationContext, text.orEmpty(), duration).also {
+    val toast = Toast.makeText(applicationContext, text.orEmpty(), duration)
+    // A KuroToon screen in front shows the message itself; the system toast is the fallback
+    if (!text.isNullOrBlank() && InAppToasts.handler?.invoke(text, duration == Toast.LENGTH_LONG) == true) {
+        return toast
+    }
+    return toast.also {
         block(it)
         it.show()
     }
+}
+
+/**
+ * Where [toast] messages go while a KuroToon activity is in front. The activity sets [handler] when
+ * it resumes and clears it when it pauses; returning true means the message was shown in-app.
+ */
+object InAppToasts {
+    @Volatile
+    var handler: ((text: String, long: Boolean) -> Boolean)? = null
 }

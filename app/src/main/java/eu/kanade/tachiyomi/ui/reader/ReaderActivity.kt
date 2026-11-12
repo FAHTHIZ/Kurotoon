@@ -622,6 +622,7 @@ class ReaderActivity : BaseActivity() {
     override fun onPause() {
         viewModel.saveHistory()
         soundtrack.onPause()
+        readerHint.releaseToasts()
         super.onPause()
     }
 
@@ -635,6 +636,7 @@ class ReaderActivity : BaseActivity() {
         muteIfPhoneSilent()
         soundtrack.onResume()
         setMenuVisibility(viewModel.state.value.menuVisible)
+        readerHint.claimToasts(this)
     }
 
     /**
