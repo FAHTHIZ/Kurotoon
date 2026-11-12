@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.text.input.rememberTextFieldState
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SelectableDates
@@ -89,6 +87,8 @@ import tachiyomi.domain.track.model.Track
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.LabeledCheckbox
 import tachiyomi.presentation.core.components.material.AlertDialogContent
+import tachiyomi.presentation.core.components.material.KuroButton
+import tachiyomi.presentation.core.components.material.KuroButtonStyle
 import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
@@ -671,15 +671,13 @@ data class TrackDateRemoverScreen(
                     KuroTextButton(onClick = navigator::pop) {
                         Text(text = stringResource(MR.strings.action_cancel))
                     }
-                    FilledTonalButton(
+                    KuroButton(
+                        style = KuroButtonStyle.Tonal,
                         onClick = {
                             viewModel.removeDate()
                             navigator.popUntil { it is TrackInfoDialogHomeScreen }
                         },
-                        colors = ButtonDefaults.filledTonalButtonColors(
-                            containerColor = MaterialTheme.colorScheme.errorContainer,
-                            contentColor = MaterialTheme.colorScheme.onErrorContainer,
-                        ),
+                        accent = MaterialTheme.colorScheme.error,
                     ) {
                         Text(text = stringResource(MR.strings.action_remove))
                     }
@@ -893,16 +891,14 @@ data class TrackerRemoveScreen(
                     KuroTextButton(onClick = navigator::pop) {
                         Text(text = stringResource(MR.strings.action_cancel))
                     }
-                    FilledTonalButton(
+                    KuroButton(
+                        style = KuroButtonStyle.Tonal,
                         onClick = {
                             viewModel.unregisterTracking(serviceId)
                             if (removeRemoteTrack) viewModel.deleteMangaFromService()
                             navigator.pop()
                         },
-                        colors = ButtonDefaults.filledTonalButtonColors(
-                            containerColor = MaterialTheme.colorScheme.errorContainer,
-                            contentColor = MaterialTheme.colorScheme.onErrorContainer,
-                        ),
+                        accent = MaterialTheme.colorScheme.error,
                     ) {
                         Text(text = stringResource(MR.strings.action_ok))
                     }

@@ -11,9 +11,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -31,6 +29,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroButton
+import tachiyomi.presentation.core.components.material.KuroButtonStyle
 import tachiyomi.presentation.core.i18n.stringResource
 
 /**
@@ -137,8 +137,9 @@ fun SleepTimerCurtain(state: SleepTimerState, onClose: () -> Unit, onKeepReading
                     color = Color.White.copy(alpha = 0.75f),
                     textAlign = TextAlign.Center,
                 )
-                Button(onClick = onClose) { Text(stringResource(MR.strings.kurotoon_sleep_close)) }
-                OutlinedButton(
+                KuroButton(onClick = onClose) { Text(stringResource(MR.strings.kurotoon_sleep_close)) }
+                KuroButton(
+                    style = KuroButtonStyle.Outlined,
                     onClick = {
                         state.dismiss()
                         onKeepReading()

@@ -8,9 +8,7 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,6 +35,8 @@ import mihon.app.di.appGraph
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.manga.model.MangaRemoteUpdate
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroButton
+import tachiyomi.presentation.core.components.material.KuroButtonStyle
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -109,7 +109,8 @@ class EditMangaInfoScreen(private val mangaId: Long) : Screen() {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
-                    OutlinedButton(
+                    KuroButton(
+                        style = KuroButtonStyle.Outlined,
                         modifier = Modifier.weight(1f),
                         onClick = {
                             graph.kuroPreferences.setMangaEdit(mangaId, null)
@@ -117,11 +118,11 @@ class EditMangaInfoScreen(private val mangaId: Long) : Screen() {
                             navigator.pop()
                         },
                     ) { Text(stringResource(MR.strings.kurotoon_editInfo_reset)) }
-                    Button(
+                    KuroButton(
                         modifier = Modifier.weight(1f),
                         enabled = manga != null && title.isNotBlank(),
                         onClick = {
-                            val m = manga ?: return@Button
+                            val m = manga ?: return@KuroButton
                             val edit = MangaEdit(
                                 title = title.takeIf { it.trim() != m.title },
                                 author = author.takeIf { it.trim() != m.author.orEmpty() },

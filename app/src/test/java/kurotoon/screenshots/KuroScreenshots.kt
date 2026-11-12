@@ -881,6 +881,25 @@ class KuroScreenshots {
                 androidx.compose.material3.Text("OK")
             }
         }
+        androidx.compose.foundation.layout.Row(
+            modifier = Modifier.padding(start = 16.dp, top = 128.dp),
+            horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(12.dp),
+        ) {
+            tachiyomi.presentation.core.components.material.KuroButton(onClick = {}) {
+                androidx.compose.material3.Text("Install")
+            }
+            tachiyomi.presentation.core.components.material.KuroButton(
+                onClick = {},
+                style = tachiyomi.presentation.core.components.material.KuroButtonStyle.Tonal,
+            ) { androidx.compose.material3.Text("Check now") }
+            tachiyomi.presentation.core.components.material.KuroButton(
+                onClick = {},
+                style = tachiyomi.presentation.core.components.material.KuroButtonStyle.Outlined,
+            ) { androidx.compose.material3.Text("Later") }
+            tachiyomi.presentation.core.components.material.KuroButton(onClick = {}, enabled = false) {
+                androidx.compose.material3.Text("Save")
+            }
+        }
     }
 
     @Test

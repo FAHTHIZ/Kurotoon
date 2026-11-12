@@ -10,12 +10,9 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.TextObfuscationMode
 import androidx.compose.foundation.text.input.rememberTextFieldState
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedSecureTextField
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -63,6 +60,8 @@ import mihon.icons.materialsymbols.rounded.Close
 import mihon.icons.materialsymbols.roundedfilled.Visibility
 import mihon.icons.materialsymbols.roundedfilled.VisibilityOff
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroButton
+import tachiyomi.presentation.core.components.material.KuroButtonStyle
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -279,7 +278,7 @@ object SettingsTrackingScreen : SearchableSettings {
                 }
             },
             confirmButton = {
-                Button(
+                KuroButton(
                     modifier = Modifier.fillMaxWidth(),
                     enabled = !processing && username.text.isNotBlank() && password.text.isNotBlank(),
                     onClick = {
@@ -338,23 +337,22 @@ object SettingsTrackingScreen : SearchableSettings {
             },
             confirmButton = {
                 Row(horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.extraSmall)) {
-                    OutlinedButton(
+                    KuroButton(
+                        style = KuroButtonStyle.Outlined,
                         modifier = Modifier.weight(1f),
                         onClick = onDismissRequest,
                     ) {
                         Text(text = stringResource(MR.strings.action_cancel))
                     }
-                    Button(
+                    KuroButton(
                         modifier = Modifier.weight(1f),
                         onClick = {
                             tracker.logout()
                             onDismissRequest()
                             context.toast(MR.strings.logout_success)
                         },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.error,
-                            contentColor = MaterialTheme.colorScheme.onError,
-                        ),
+                        accent = MaterialTheme.colorScheme.error,
+                        onAccent = MaterialTheme.colorScheme.onError,
                     ) {
                         Text(text = stringResource(MR.strings.logout))
                     }
