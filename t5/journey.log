@@ -1,0 +1,170 @@
+> key BACK
+> stop app.kurotoon.dev
+> clear app.kurotoon.dev
+> sh "run-as app.kurotoon.dev sh -c 'mkdir -p shared_prefs; echo PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiIHN0YW5kYWxvbmU9InllcyIgPz4KPG1hcD4KICAgIDxib29sZWFuIG5hbWU9Il9fQVBQX1NUQVRFX29uYm9hcmRpbmdfY29tcGxldGUiIHZhbHVlPSJ0cnVlIiAvPgo8L21hcD4= | base64 -d > shared_prefs/app.kurotoon.dev_preferences.xml'"
+
+> sh "appops set app.kurotoon.dev REQUEST_INSTALL_PACKAGES allow"
+
+> start app.kurotoon.dev
+> sleep 8
+> shot home_empty
+  [shot 001_home_empty] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> view "tachiyomi://add-repo?url=https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
+> sleep 4
+> start app.kurotoon.dev
+> sleep 3
+> tapx Browse
+  !! not found: Browse
+  [shot 002_notfound] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> sleep 2
+> shot browse_sources
+  [shot 003_browse_sources] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> tapx Extensions
+  !! not found: Extensions
+  [shot 004_notfound] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> sleep 3
+> shot browse_extensions
+  [shot 005_browse_extensions] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> tapx Migrate
+  !! not found: Migrate
+  [shot 006_notfound] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> sleep 2
+> shot browse_migrate
+  [shot 007_browse_migrate] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> tapx Sources
+  !! not found: Sources
+  [shot 008_notfound] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> sleep 2
+> tap Webtoons.com
+  !! not found: Webtoons.com
+  [shot 009_notfound] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> sleep 12
+> shot src_popular
+  [shot 010_src_popular] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> tapx Latest
+  !! not found: Latest
+  [shot 011_notfound] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> sleep 8
+> shot src_latest
+  [shot 012_src_latest] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> tapx Popular
+  !! not found: Popular
+  [shot 013_notfound] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> sleep 8
+> tapxy 270 1000
+> sleep 12
+> shot series
+  [shot 014_series] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 015_notfound] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> sleep 3
+> shot series_added
+  [shot 016_series_added] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Add', 'Cancel']
+> scrollup
+> sleep 2
+> shot series_chapters
+  [shot 017_series_chapters] visible: ["You haven't added an extension store yet", 'Navigate up', 'Extension stores', 'Refresh']
+> scrollup
+> sleep 2
+> shot series_chapters2
+  [shot 018_series_chapters2] visible: ["You haven't added an extension store yet", 'Navigate up', 'Extension stores', 'Refresh']
+> scrolldown
+> scrolldown
+> scrolldown
+> sleep 1
+> tap Start
+  !! not found: Start
+  [shot 019_notfound] visible: ["You haven't added an extension store yet", 'Navigate up', 'Extension stores', 'Refresh']
+> sleep 20
+> shot reader
+  [shot 020_reader] visible: ["You haven't added an extension store yet", 'Navigate up', 'Extension stores', 'Refresh']
+> tapxy 540 1200
+> sleep 2
+> shot reader_menu
+  [shot 021_reader_menu] visible: ["You haven't added an extension store yet", 'Navigate up', 'Extension stores', 'Refresh']
+> tap Settings
+  !! not found: Settings
+  [shot 022_notfound] visible: ["You haven't added an extension store yet", 'Navigate up', 'Extension stores', 'Refresh']
+> sleep 2
+> shot reader_settings
+  [shot 023_reader_settings] visible: ["You haven't added an extension store yet", 'Navigate up', 'Extension stores', 'Refresh']
+> key BACK
+> sleep 1
+> tap Chapters
+  !! not found: Chapters
+  [shot 024_notfound] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 2
+> shot reader_chapters
+  [shot 025_reader_chapters] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> key BACK
+> sleep 1
+> key BACK
+> sleep 2
+> key BACK
+> sleep 3
+> shot series_after
+  [shot 026_series_after] visible: ['Pixel is starting…']
+> key BACK
+> sleep 2
+> key BACK
+> sleep 2
+> key BACK
+> sleep 2
+> start app.kurotoon.dev
+> sleep 3
+> tapx Home
+> sleep 8
+> shot home
+  [shot 027_home] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> sleep 2
+> shot home2
+  [shot 028_home2] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> sleep 2
+> shot home3
+  [shot 029_home3] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Library
+> sleep 3
+> shot library
+  [shot 030_library] visible: ['Your library is empty', 'Getting started guide', 'Library', 'Search', 'Filter', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Updates
+> sleep 3
+> shot updates
+  [shot 031_updates] visible: ['Not checked yet', 'Pull down or tap Check now to look for new chapters', 'Check now', 'No recent updates', 'Updates', 'Filter', 'Release schedule', 'View Upcoming Updates', 'Update library', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif "Check now"
+> sleep 20
+> shot updates_after
+  [shot 032_updates_after] visible: ['Checked Just now', 'Pull down or tap Check now to look for new chapters', 'Check now', 'No recent updates', 'Updates', 'Filter', 'Release schedule', 'View Upcoming Updates', 'Update library', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Me
+> sleep 2
+> shot me
+  [shot 033_me] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '0', 'In library', '0', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> sleep 1
+> shot me2
+  [shot 034_me2] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> sleep 1
+> shot me3
+  [shot 035_me3] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap Settings
+> sleep 2
+> shot settings
+  [shot 036_settings] visible: ['Search all settings', 'Look & read', 'Appearance', 'Theme, date & time format', 'Library', 'Categories, global update, chapter swipe', 'Reader', 'Reading mode, display, navigation', 'Content & sources', 'Downloads', 'Automatic download, download ahead', 'Tracking', 'One-way progress sync, enhanced sync', 'Browse', 'Sources, extensions, global search', 'App & data', 'Data and storage', 'Manual & automatic backups, storage space', 'Security and privacy', 'App lock, secure screen', 'Advanced', 'Dump crash logs, battery optimizations', 'Navigate up', 'Settings', 'Search']
+> tapx Appearance
+> sleep 2
+> shot settings_appearance
+  [shot 037_settings_appearance] visible: ['Theme', 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Green Apple', 'Pure black dark mode', 'Display', 'App language', 'Tablet UI', 'Auto', 'Date format', 'Default (11/12/26)', 'Time format', 'Follow language (4:56\u202fAM)', 'Navigate up', 'Appearance']
+> back
+> back
+> tapx Home
+> tap "Search manga"
+> sleep 2
+> type Solo
+> key 66
+> sleep 15
+> shot global_search
+  [shot 038_global_search] visible: ['Local source', 'Other', 'See all', 'No results found', 'Navigate up', 'Solo', 'Reset', 'Pinned', 'All', 'Has results']
+  [shot 039_end] visible: ['Local source', 'Other', 'See all', 'No results found', 'Navigate up', 'Solo', 'Reset', 'Pinned', 'All', 'Has results']
