@@ -1,0 +1,500 @@
+soon?
+11-12 04:32:53.455 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.455 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.459 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.459 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.461 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.469 D/ActivityManager(  547): sync unfroze 7778 com.google.android.gms for 6
+11-12 04:32:53.470 W/ProcessStats(  547): Tracking association SourceState{4005636 com.google.android.gms.persistent/10128 ImpBg #19156} whose proc state 6 is better than process ProcessState{b2ad7cc com.google.android.gms/10128 pkg=com.google.android.gms} proc state 14 (15 skipped)
+11-12 04:32:53.475 I/NetworkScheduler.Stats( 5492): Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService started execution. cause:9 exec_start_elapsed_seconds: 3296 [CONTEXT service_id=218 ]
+11-12 04:32:53.478 I/NetworkScheduler.Stats( 5492): Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService finished executing. cause:9 result: 1 elapsed_millis: 55 uptime_millis: 55 exec_start_elapsed_seconds: 3296 [CONTEXT service_id=218 ]
+11-12 04:32:53.487 D/AndroidRuntime(17459): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-12 04:32:53.490 I/AndroidRuntime(17459): Using default boot image
+11-12 04:32:53.490 I/AndroidRuntime(17459): Leaving lock profiling enabled
+11-12 04:32:53.492 I/app_process(17459): Core platform API reporting enabled, enforcing=false
+11-12 04:32:53.492 I/app_process(17459): Using CollectorTypeCC GC.
+11-12 04:32:53.522 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.542 D/nativeloader(17459): InitDefaultPublicLibraries for_preload=1: libandroid.so:libaaudio.so:libamidi.so:libbinder_ndk.so:libc.so:libcamera2ndk.so:libdl.so:libEGL.so:libGLESv1_CM.so:libGLESv2.so:libGLESv3.so:libicu.so:libicui18n.so:libicuuc.so:libjnigraphics.so:liblog.so:libmediandk.so:libm.so:libnativehelper.so:libnativewindow.so:libOpenMAXAL.so:libOpenSLES.so:libRS.so:libstdc++.so:libsync.so:libvulkan.so:libwebviewchromium_plat_support.so:libz.so
+11-12 04:32:53.550 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.551 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.551 D/app_process(17459): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-12 04:32:53.551 D/app_process(17459): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt72l.dat
+11-12 04:32:53.554 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.555 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.556 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.556 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.557 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.558 W/app_process(17459): Unexpected CPU variant for x86: x86_64.
+11-12 04:32:53.558 W/app_process(17459): Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+11-12 04:32:53.559 W/app_process(17459): ClassLoaderContext shared library size mismatch. Expected=2, found=0 (PCL[]{PCL[/system/framework/android.test.base.jar*836642756]#PCL[/system/framework/android.test.mock.jar*3186112116]} | PCL[])
+11-12 04:32:53.560 W/app_process(17459): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[]{PCL[/system/framework/android.test.runner.jar*4168958247]{PCL[/system/framework/android.test.base.jar*836642756]#PCL[/system/framework/android.test.mock.jar*3186112116]}#PCL[/system/framework/android.test.base.jar*836642756]} | PCL[/system/framework/android.test.runner.jar*4168958247])
+11-12 04:32:53.574 W/libc    (17459): Access denied finding property "ro.product.name_for_attestation"
+11-12 04:32:53.574 W/libc    (17459): Access denied finding property "ro.product.brand_for_attestation"
+11-12 04:32:53.574 W/libc    (17459): Access denied finding property "ro.product.model_for_attestation"
+11-12 04:32:53.575 D/AndroidRuntime(17459): Calling main entry com.android.commands.uiautomator.Launcher
+11-12 04:32:53.577 D/UiAutomationConnection(17459): Created on user UserHandle{0}
+11-12 04:32:53.577 I/UiAutomation(17459): Initialized for user 0 on display 0
+11-12 04:32:53.578 W/UiAutomation(17459): Created with deprecatead constructor, assumes DEFAULT_DISPLAY
+11-12 04:32:53.572 W/main    (17459): type=1400 audit(0.0:1055): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-12 04:32:53.581 D/AccessibilityManagerService(  547): changeCurrentUserForTestAutomationIfNeededLocked(0): ignoring because device doesn't support visible background users
+11-12 04:32:53.581 I/UiAutomationManager(  547): Registering UiTestAutomationService (id=com.android.server.accessibility/UiAutomation) when called by user 0
+11-12 04:32:53.572 W/main    (17459): type=1400 audit(0.0:1056): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-12 04:32:53.584 W/WindowMagnificationMgr(  547): requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-12 04:32:53.585 I/AiAiEcho( 1836): Settings changed for uri: content://settings/secure/accessibility_enabled
+11-12 04:32:53.585 D/BatterySaverPolicy(  547): accessibility changed to true, updating policy.
+11-12 04:32:53.585 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:53.585 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:53.585 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:53.585 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:53.585 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:53.585 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:53.585 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:53.585 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:53.586 V/UiAutomation(17459): Init UiAutomation@413bc14[id=312, displayId=0, flags=0]
+11-12 04:32:53.586 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface media_data_manager with targets# 0 (types=[])
+11-12 04:32:53.586 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-12 04:32:53.572 W/main    (17459): type=1400 audit(0.0:1057): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-12 04:32:53.590 W/WindowMagnificationMgr(  547): requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-12 04:32:53.590 I/AiAiEcho( 1836): Settings changed for uri: content://settings/secure/accessibility_enabled
+11-12 04:32:53.590 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:53.591 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:53.591 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:53.591 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:53.591 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:53.591 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:53.591 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:53.591 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:53.591 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface media_data_manager with targets# 0 (types=[])
+11-12 04:32:53.591 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-12 04:32:53.592 W/PageIndicator( 3605): Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:32:53.593 D/SsMediaDataProvider( 3605): Forwarding Smartspace updates []
+11-12 04:32:53.593 W/PageIndicator( 3605): Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:32:53.593 D/SsMediaDataProvider( 3605): Forwarding Smartspace updates []
+11-12 04:32:53.702 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.867 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.956 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.956 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.957 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.957 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.960 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.960 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:53.961 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.022 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.051 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.051 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.055 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.056 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.056 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.057 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.057 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.203 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.368 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.457 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.457 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.457 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.458 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.460 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.461 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.462 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.523 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.551 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.551 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.555 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.556 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.558 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.558 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.558 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.597 W/MediaProvider( 1850): isAppCloneUserPair for user 0: false
+11-12 04:32:54.611 I/NetworkScheduler.Stats( 5492): Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService started execution. cause:9 exec_start_elapsed_seconds: 3297 [CONTEXT service_id=218 ]
+11-12 04:32:54.613 I/NetworkScheduler.Stats( 5492): Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService finished executing. cause:9 result: 1 elapsed_millis: 7 uptime_millis: 7 exec_start_elapsed_seconds: 3297 [CONTEXT service_id=218 ]
+11-12 04:32:54.697 I/AccessibilityNodeInfoDumper(17459): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b798; boundsInParent: Rect(0, 0 - 0, 0); boundsInScreen: Rect(980, 304 - 1080, 430); boundsInWindow: Rect(980, 304 - 1080, 430); packageName: app.kurotoon.dev; className: android.view.View; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; containerTitle: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null]; isTextSelectable: false
+11-12 04:32:54.704 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.707 I/AccessibilityNodeInfoDumper(17459): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b2a1; boundsInParent: Rect(0, 0 - 0, 0); boundsInScreen: Rect(148, 157 - 303, 283); boundsInWindow: Rect(148, 157 - 303, 283); packageName: app.kurotoon.dev; className: android.view.View; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; containerTitle: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null]; isTextSelectable: false
+11-12 04:32:54.728 W/AccessibilityNodeInfoDumper(17459): Fetch time: 133ms
+11-12 04:32:54.729 W/WindowMagnificationMgr(  547): requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-12 04:32:54.729 D/AccessibilityManagerService(  547): restoreCurrentUserForTestAutomationIfNeededLocked(): ignoring because device doesn't support visible background users
+11-12 04:32:54.730 I/AiAiEcho( 1836): Settings changed for uri: content://settings/secure/accessibility_enabled
+11-12 04:32:54.730 D/BatterySaverPolicy(  547): accessibility changed to false, updating policy.
+11-12 04:32:54.730 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:54.730 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:54.730 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:54.730 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:54.730 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:54.730 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:54.730 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:54.730 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:54.730 D/AndroidRuntime(17459): Shutting down VM
+11-12 04:32:54.731 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface media_data_manager with targets# 0 (types=[])
+11-12 04:32:54.731 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-12 04:32:54.737 D/SsMediaDataProvider( 3605): Forwarding Smartspace updates []
+11-12 04:32:54.737 W/PageIndicator( 3605): Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:32:54.869 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.958 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.958 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.958 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.959 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.960 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.962 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:54.962 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.024 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.051 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.053 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.055 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.057 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.058 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.058 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.059 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.205 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.370 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.458 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.459 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.459 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.460 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.460 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.462 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.463 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.470 D/StatusBarIconController( 3605): ignoring old pipeline callbacks, because the new mobile icons are enabled
+11-12 04:32:55.524 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.551 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.553 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.555 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.557 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.559 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.559 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.559 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.643 D/AndroidRuntime(17482): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-12 04:32:55.647 I/AndroidRuntime(17482): Using default boot image
+11-12 04:32:55.647 I/AndroidRuntime(17482): Leaving lock profiling enabled
+11-12 04:32:55.648 I/app_process(17482): Core platform API reporting enabled, enforcing=false
+11-12 04:32:55.649 I/app_process(17482): Using CollectorTypeCC GC.
+11-12 04:32:55.697 D/nativeloader(17482): InitDefaultPublicLibraries for_preload=1: libandroid.so:libaaudio.so:libamidi.so:libbinder_ndk.so:libc.so:libcamera2ndk.so:libdl.so:libEGL.so:libGLESv1_CM.so:libGLESv2.so:libGLESv3.so:libicu.so:libicui18n.so:libicuuc.so:libjnigraphics.so:liblog.so:libmediandk.so:libm.so:libnativehelper.so:libnativewindow.so:libOpenMAXAL.so:libOpenSLES.so:libRS.so:libstdc++.so:libsync.so:libvulkan.so:libwebviewchromium_plat_support.so:libz.so
+11-12 04:32:55.705 D/app_process(17482): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-12 04:32:55.705 D/app_process(17482): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt72l.dat
+11-12 04:32:55.705 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.710 W/app_process(17482): Unexpected CPU variant for x86: x86_64.
+11-12 04:32:55.710 W/app_process(17482): Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+11-12 04:32:55.711 W/app_process(17482): ClassLoaderContext shared library size mismatch. Expected=2, found=0 (PCL[]{PCL[/system/framework/android.test.base.jar*836642756]#PCL[/system/framework/android.test.mock.jar*3186112116]} | PCL[])
+11-12 04:32:55.711 W/app_process(17482): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[]{PCL[/system/framework/android.test.runner.jar*4168958247]{PCL[/system/framework/android.test.base.jar*836642756]#PCL[/system/framework/android.test.mock.jar*3186112116]}#PCL[/system/framework/android.test.base.jar*836642756]} | PCL[/system/framework/android.test.runner.jar*4168958247])
+11-12 04:32:55.723 W/libc    (17482): Access denied finding property "ro.product.name_for_attestation"
+11-12 04:32:55.723 W/libc    (17482): Access denied finding property "ro.product.brand_for_attestation"
+11-12 04:32:55.723 W/libc    (17482): Access denied finding property "ro.product.model_for_attestation"
+11-12 04:32:55.724 D/AndroidRuntime(17482): Calling main entry com.android.commands.uiautomator.Launcher
+11-12 04:32:55.726 D/UiAutomationConnection(17482): Created on user UserHandle{0}
+11-12 04:32:55.726 I/UiAutomation(17482): Initialized for user 0 on display 0
+11-12 04:32:55.726 W/UiAutomation(17482): Created with deprecatead constructor, assumes DEFAULT_DISPLAY
+11-12 04:32:55.727 D/AccessibilityManagerService(  547): changeCurrentUserForTestAutomationIfNeededLocked(0): ignoring because device doesn't support visible background users
+11-12 04:32:55.727 I/UiAutomationManager(  547): Registering UiTestAutomationService (id=com.android.server.accessibility/UiAutomation) when called by user 0
+11-12 04:32:55.720 W/main    (17482): type=1400 audit(0.0:1058): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-12 04:32:55.730 W/WindowMagnificationMgr(  547): requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-12 04:32:55.730 V/UiAutomation(17482): Init UiAutomation@958f0e6[id=313, displayId=0, flags=0]
+11-12 04:32:55.730 D/BatterySaverPolicy(  547): accessibility changed to true, updating policy.
+11-12 04:32:55.731 I/AiAiEcho( 1836): Settings changed for uri: content://settings/secure/accessibility_enabled
+11-12 04:32:55.731 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:55.731 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:55.731 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:55.731 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:55.731 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:55.731 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:55.731 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:55.731 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:55.732 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface media_data_manager with targets# 0 (types=[])
+11-12 04:32:55.732 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-12 04:32:55.734 I/AiAiEcho( 1836): Settings changed for uri: content://settings/secure/accessibility_enabled
+11-12 04:32:55.734 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:55.734 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:55.734 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:55.734 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:55.734 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:55.734 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:55.734 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:55.734 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:55.720 W/main    (17482): type=1400 audit(0.0:1059): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-12 04:32:55.737 D/SsMediaDataProvider( 3605): Forwarding Smartspace updates []
+11-12 04:32:55.737 W/PageIndicator( 3605): Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:32:55.740 W/WindowMagnificationMgr(  547): requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-12 04:32:55.741 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface media_data_manager with targets# 0 (types=[])
+11-12 04:32:55.742 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-12 04:32:55.720 W/main    (17482): type=1400 audit(0.0:1060): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-12 04:32:55.753 D/SsMediaDataProvider( 3605): Forwarding Smartspace updates []
+11-12 04:32:55.754 W/PageIndicator( 3605): Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:32:55.871 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.960 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.960 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.961 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.961 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.962 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.963 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:55.963 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.026 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.052 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.054 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.055 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.058 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.059 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.059 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.060 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.207 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.371 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.460 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.461 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.461 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.461 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.462 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.463 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.463 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.527 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.552 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.554 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.555 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.559 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.559 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.560 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.561 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.708 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.737 W/MediaProvider( 1850): isAppCloneUserPair for user 0: false
+11-12 04:32:56.753 I/NetworkScheduler.Stats( 5492): Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService started execution. cause:9 exec_start_elapsed_seconds: 3299 [CONTEXT service_id=218 ]
+11-12 04:32:56.755 I/NetworkScheduler.Stats( 5492): Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService finished executing. cause:9 result: 1 elapsed_millis: 8 uptime_millis: 8 exec_start_elapsed_seconds: 3299 [CONTEXT service_id=218 ]
+11-12 04:32:56.814 I/AccessibilityNodeInfoDumper(17482): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b79d; boundsInParent: Rect(0, 0 - 0, 0); boundsInScreen: Rect(980, 304 - 1080, 430); boundsInWindow: Rect(980, 304 - 1080, 430); packageName: app.kurotoon.dev; className: android.view.View; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; containerTitle: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null]; isTextSelectable: false
+11-12 04:32:56.823 I/AccessibilityNodeInfoDumper(17482): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b2a6; boundsInParent: Rect(0, 0 - 0, 0); boundsInScreen: Rect(148, 157 - 303, 283); boundsInWindow: Rect(148, 157 - 303, 283); packageName: app.kurotoon.dev; className: android.view.View; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; containerTitle: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null]; isTextSelectable: false
+11-12 04:32:56.841 W/AccessibilityNodeInfoDumper(17482): Fetch time: 105ms
+11-12 04:32:56.842 W/WindowMagnificationMgr(  547): requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-12 04:32:56.842 D/AccessibilityManagerService(  547): restoreCurrentUserForTestAutomationIfNeededLocked(): ignoring because device doesn't support visible background users
+11-12 04:32:56.842 D/BatterySaverPolicy(  547): accessibility changed to false, updating policy.
+11-12 04:32:56.843 I/AiAiEcho( 1836): Settings changed for uri: content://settings/secure/accessibility_enabled
+11-12 04:32:56.843 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:56.843 D/AndroidRuntime(17482): Shutting down VM
+11-12 04:32:56.843 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:56.843 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:56.843 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:56.843 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:56.843 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:56.843 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:56.843 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:56.844 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface media_data_manager with targets# 0 (types=[])
+11-12 04:32:56.844 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-12 04:32:56.845 D/SsMediaDataProvider( 3605): Forwarding Smartspace updates []
+11-12 04:32:56.845 W/PageIndicator( 3605): Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:32:56.873 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.961 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.961 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.962 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.962 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.963 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.963 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:56.963 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.028 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.053 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.055 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.055 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.059 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.060 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.061 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.061 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.209 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.375 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.462 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.462 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.463 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.463 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.463 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.464 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.464 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.529 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.553 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.556 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.556 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.560 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.561 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.561 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.561 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.709 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.737 W/BpBinder(17504): Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+11-12 04:32:57.737 W/ProcessState(17504): Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-12 04:32:57.966 I/servicemanager(    0): Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+11-12 04:32:57.752 I/hwservicemanager(  154): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-12 04:32:57.752 I/Gralloc4(17504): mapper 4.x is not supported
+11-12 04:32:57.877 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.962 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.963 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.963 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.963 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.964 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.964 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:57.964 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.029 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.054 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.056 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.057 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.061 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.062 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.062 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.062 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.209 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.323 I/MediaProvider( 1850): Deleted 0 0 0 0 0 0 1 items on external_primary due to com.android.shell
+11-12 04:32:58.341 I/NetworkScheduler.Stats( 5492): Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService started execution. cause:9 exec_start_elapsed_seconds: 3301 [CONTEXT service_id=218 ]
+11-12 04:32:58.343 I/NetworkScheduler.Stats( 5492): Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService finished executing. cause:9 result: 1 elapsed_millis: 8 uptime_millis: 8 exec_start_elapsed_seconds: 3301 [CONTEXT service_id=218 ]
+11-12 04:32:58.378 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.394 D/AndroidRuntime(17508): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-12 04:32:58.397 I/AndroidRuntime(17508): Using default boot image
+11-12 04:32:58.397 I/AndroidRuntime(17508): Leaving lock profiling enabled
+11-12 04:32:58.399 I/app_process(17508): Core platform API reporting enabled, enforcing=false
+11-12 04:32:58.399 I/app_process(17508): Using CollectorTypeCC GC.
+11-12 04:32:58.449 D/nativeloader(17508): InitDefaultPublicLibraries for_preload=1: libandroid.so:libaaudio.so:libamidi.so:libbinder_ndk.so:libc.so:libcamera2ndk.so:libdl.so:libEGL.so:libGLESv1_CM.so:libGLESv2.so:libGLESv3.so:libicu.so:libicui18n.so:libicuuc.so:libjnigraphics.so:liblog.so:libmediandk.so:libm.so:libnativehelper.so:libnativewindow.so:libOpenMAXAL.so:libOpenSLES.so:libRS.so:libstdc++.so:libsync.so:libvulkan.so:libwebviewchromium_plat_support.so:libz.so
+11-12 04:32:58.458 D/app_process(17508): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-12 04:32:58.458 D/app_process(17508): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt72l.dat
+11-12 04:32:58.463 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.463 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.464 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.464 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.464 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.465 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.465 W/app_process(17508): Unexpected CPU variant for x86: x86_64.
+11-12 04:32:58.465 W/app_process(17508): Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+11-12 04:32:58.466 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.467 W/app_process(17508): ClassLoaderContext shared library size mismatch. Expected=2, found=0 (PCL[]{PCL[/system/framework/android.test.base.jar*836642756]#PCL[/system/framework/android.test.mock.jar*3186112116]} | PCL[])
+11-12 04:32:58.468 W/app_process(17508): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[]{PCL[/system/framework/android.test.runner.jar*4168958247]{PCL[/system/framework/android.test.base.jar*836642756]#PCL[/system/framework/android.test.mock.jar*3186112116]}#PCL[/system/framework/android.test.base.jar*836642756]} | PCL[/system/framework/android.test.runner.jar*4168958247])
+11-12 04:32:58.486 W/libc    (17508): Access denied finding property "ro.product.name_for_attestation"
+11-12 04:32:58.486 W/libc    (17508): Access denied finding property "ro.product.brand_for_attestation"
+11-12 04:32:58.486 W/libc    (17508): Access denied finding property "ro.product.model_for_attestation"
+11-12 04:32:58.487 D/AndroidRuntime(17508): Calling main entry com.android.commands.uiautomator.Launcher
+11-12 04:32:58.484 W/main    (17508): type=1400 audit(0.0:1061): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-12 04:32:58.493 D/UiAutomationConnection(17508): Created on user UserHandle{0}
+11-12 04:32:58.493 I/UiAutomation(17508): Initialized for user 0 on display 0
+11-12 04:32:58.493 W/UiAutomation(17508): Created with deprecatead constructor, assumes DEFAULT_DISPLAY
+11-12 04:32:58.494 D/AccessibilityManagerService(  547): changeCurrentUserForTestAutomationIfNeededLocked(0): ignoring because device doesn't support visible background users
+11-12 04:32:58.494 I/UiAutomationManager(  547): Registering UiTestAutomationService (id=com.android.server.accessibility/UiAutomation) when called by user 0
+11-12 04:32:58.496 W/WindowMagnificationMgr(  547): requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-12 04:32:58.484 W/main    (17508): type=1400 audit(0.0:1062): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-12 04:32:58.497 D/BatterySaverPolicy(  547): accessibility changed to true, updating policy.
+11-12 04:32:58.499 V/UiAutomation(17508): Init UiAutomation@140c021[id=314, displayId=0, flags=0]
+11-12 04:32:58.501 I/AiAiEcho( 1836): Settings changed for uri: content://settings/secure/accessibility_enabled
+11-12 04:32:58.502 W/WindowMagnificationMgr(  547): requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-12 04:32:58.503 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:58.503 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:58.503 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:58.503 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:58.503 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:58.503 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:58.503 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:58.503 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:58.503 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface media_data_manager with targets# 0 (types=[])
+11-12 04:32:58.503 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-12 04:32:58.503 I/AiAiEcho( 1836): Settings changed for uri: content://settings/secure/accessibility_enabled
+11-12 04:32:58.505 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:58.505 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:58.505 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:58.505 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:58.505 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:58.505 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:58.505 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:58.505 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:58.505 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface media_data_manager with targets# 0 (types=[])
+11-12 04:32:58.505 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-12 04:32:58.484 W/main    (17508): type=1400 audit(0.0:1063): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-12 04:32:58.517 W/PageIndicator( 3605): Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:32:58.518 W/PageIndicator( 3605): Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:32:58.518 D/SsMediaDataProvider( 3605): Forwarding Smartspace updates []
+11-12 04:32:58.518 D/SsMediaDataProvider( 3605): Forwarding Smartspace updates []
+11-12 04:32:58.531 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.555 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.556 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.557 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.562 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.562 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.562 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.565 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.710 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.878 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.963 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.965 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.965 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.965 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.966 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.967 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:58.967 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.032 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.055 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.058 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.058 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.062 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.062 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.063 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.065 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.211 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.380 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.464 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.465 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.465 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.466 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.466 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.468 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.468 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.508 W/MediaProvider( 1850): isAppCloneUserPair for user 0: false
+11-12 04:32:59.523 I/NetworkScheduler.Stats( 5492): Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService started execution. cause:9 exec_start_elapsed_seconds: 3302 [CONTEXT service_id=218 ]
+11-12 04:32:59.526 I/NetworkScheduler.Stats( 5492): Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService finished executing. cause:9 result: 1 elapsed_millis: 8 uptime_millis: 8 exec_start_elapsed_seconds: 3302 [CONTEXT service_id=218 ]
+11-12 04:32:59.532 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.555 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.558 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.559 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.562 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.563 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.564 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.565 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.586 I/AccessibilityNodeInfoDumper(17508): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b7a9; boundsInParent: Rect(0, 0 - 0, 0); boundsInScreen: Rect(980, 304 - 1080, 430); boundsInWindow: Rect(980, 304 - 1080, 430); packageName: app.kurotoon.dev; className: android.view.View; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; containerTitle: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null]; isTextSelectable: false
+11-12 04:32:59.594 I/AccessibilityNodeInfoDumper(17508): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b2b2; boundsInParent: Rect(0, 0 - 0, 0); boundsInScreen: Rect(148, 157 - 303, 283); boundsInWindow: Rect(148, 157 - 303, 283); packageName: app.kurotoon.dev; className: android.view.View; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; containerTitle: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null]; isTextSelectable: false
+11-12 04:32:59.612 W/AccessibilityNodeInfoDumper(17508): Fetch time: 105ms
+11-12 04:32:59.613 W/WindowMagnificationMgr(  547): requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-12 04:32:59.613 D/AccessibilityManagerService(  547): restoreCurrentUserForTestAutomationIfNeededLocked(): ignoring because device doesn't support visible background users
+11-12 04:32:59.613 I/AiAiEcho( 1836): Settings changed for uri: content://settings/secure/accessibility_enabled
+11-12 04:32:59.613 D/BatterySaverPolicy(  547): accessibility changed to false, updating policy.
+11-12 04:32:59.613 D/AndroidRuntime(17508): Shutting down VM
+11-12 04:32:59.614 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:59.614 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:59.614 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:59.614 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:59.614 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:32:59.614 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:32:59.614 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:32:59.614 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:32:59.614 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface media_data_manager with targets# 0 (types=[])
+11-12 04:32:59.615 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-12 04:32:59.617 D/SsMediaDataProvider( 3605): Forwarding Smartspace updates []
+11-12 04:32:59.617 W/PageIndicator( 3605): Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:32:59.712 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.881 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.965 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.965 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.966 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.966 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.966 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.969 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:32:59.969 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:33:00.034 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:33:00.034 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:33:00.034 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:33:00.034 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:33:00.035 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:33:00.035 I/AiAiEcho( 1836): Predicting[0]: 
+11-12 04:33:00.035 I/AiAiEcho( 1836): EchoTargets: 
+11-12 04:33:00.035 I/AiAiEcho( 1836): Filtered by AiAi flag check: 
+11-12 04:33:00.035 I/AiAiEcho( 1836): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-12 04:33:00.035 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-12 04:33:00.035 I/AiAiEcho( 1836): #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-12 04:33:00.037 D/EGL_emulation( 3605): app_time_stats: avg=32742.83ms min=32742.83ms max=32742.83ms count=1
+11-12 04:33:00.049 W/PageIndicator( 3605): Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:33:00.049 W/PageIndicator( 3605): Total number of pages invalid: 0. Assuming 1 page.
+11-12 04:33:00.056 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:33:00.060 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:33:00.062 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:33:00.062 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:33:00.064 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:33:00.065 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:33:00.065 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:33:00.213 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:33:00.382 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:33:00.681 I/logd    (    0): logdr: UID=2000 GID=2000 PID=17528 n tail=0 logMask=10 pid=0 start=0ns deadline=0ns
+11-12 04:33:00.465 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:33:00.466 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:33:00.466 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:33:00.466 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?
+11-12 04:33:00.466 D/FallbackHome( 1145): User unlocked but no home; let's hope someone enables one soon?

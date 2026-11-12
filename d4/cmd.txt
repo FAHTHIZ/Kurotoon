@@ -1,0 +1,9 @@
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Library
+sleep 3
+tap Osora
+sleep 8
+shot s
+sh "uiautomator dump /sdcard/x.xml >/dev/null; cat /sdcard/x.xml | tr '>' '\n' | grep -E 'bounds=\"\[[0-9]+,(19|2[0-3])[0-9][0-9]\]'"
