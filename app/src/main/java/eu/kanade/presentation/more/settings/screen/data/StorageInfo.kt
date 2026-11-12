@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -69,12 +68,9 @@ private fun StorageInfo(
             style = MaterialTheme.typography.header,
         )
 
-        LinearProgressIndicator(
-            modifier = Modifier
-                .clip(MaterialTheme.shapes.small)
-                .fillMaxWidth()
-                .height(12.dp),
+        tachiyomi.presentation.core.components.KuroProgressBar(
             progress = { if (total > 0) 1 - (available / total.toFloat()) else 0f },
+            height = 12.dp,
         )
 
         Text(
