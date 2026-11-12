@@ -1,0 +1,139 @@
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Me
+> sleep 2
+> scrollup
+> scrollup
+> scrollup
+> tapx Settings
+> sleep 2
+> tapx Browse
+> sleep 2
+> tap "Extension repos"
+  !! not found: Extension repos
+  [shot 001_notfound] visible: ['Sources', 'Hide entries already in library', 'Hidden tags', 'Tags you never want to see in browse, search or Home', 'Hidden series', '0 series kept out of results', 'Extension stores', '1 store', 'Extensions', 'Allowed content warnings', 'Safe, Mixed', 'Also apply to installed extensions', 'When off, extensions you already installed keep loading and updating regardless of their warning', "Installed extensions that aren't loaded stay listed without their sources; ones you haven't installed are hidden. This does not prevent unofficial or potentially incorrectly flagged extensions from surfacing 18+ content within the app.", 'Navigate up', 'Browse']
+> sleep 2
+> shot ext_repos
+  [shot 002_ext_repos] visible: ['Sources', 'Hide entries already in library', 'Hidden tags', 'Tags you never want to see in browse, search or Home', 'Hidden series', '0 series kept out of results', 'Extension stores', '1 store', 'Extensions', 'Allowed content warnings', 'Safe, Mixed', 'Also apply to installed extensions', 'When off, extensions you already installed keep loading and updating regardless of their warning', "Installed extensions that aren't loaded stay listed without their sources; ones you haven't installed are hidden. This does not prevent unofficial or potentially incorrectly flagged extensions from surfacing 18+ content within the app.", 'Navigate up', 'Browse']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Browse
+> sleep 2
+> tapx Migrate
+> sleep 2
+> tapx Webtoons.com
+> sleep 3
+> shot migrate_list
+  [shot 003_migrate_list] visible: ['Osora', 'Navigate up', 'Webtoons.com']
+> tapx Osora
+> sleep 3
+> shot migrate_config
+  [shot 004_migrate_config] visible: ['Osora', 'Navigate up', 'Webtoons.com']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> tapx Tracking
+> sleep 3
+> shot track_sheet
+  [shot 005_track_sheet] visible: ['Update progress after reading', 'Update progress when marked as read', 'Always', 'Trackers', 'MangaBaka', 'MangaBaka', 'MyAnimeList', 'MyAnimeList', 'AniList', 'AniList', 'Kitsu', 'Kitsu', 'MangaUpdates', 'MangaUpdates', 'Shikimori', 'Shikimori', 'Bangumi', 'Bangumi', 'Hikka', 'Hikka', 'Comick', 'Comick', 'Navigate up', 'Tracking', 'Tracking guide']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> tap "More options"
+> sleep 1
+> tapx "Edit info"
+> sleep 2
+> shot edit_info
+  [shot 006_edit_info] visible: ['Osora', 'Title', 'ToniRenea', 'Author', 'Artist', 'Fantasy', 'Tags, separated by commas', 'Prince Osora is destined to rule over the Calaveras Kingdom in a life planned out by his family since birth, when his father presented him to the kingdom as male. However, the magic-wielding race called Sergos has a different plan for Osora: to use him as collateral in war with the humans. Bound by what others force him to be and trapped in a love triangle between a promised fiancée and his childhood best friend, Osora must recreate his own story. This series contains themes regarding sexuality, gender identity, homophobia, transphobia, and other prejudices.', 'Description', "Your edits stay even when the series is refreshed from its source. Reset to go back to the source's details on the next refresh.", 'Reset', 'Save', 'Navigate up', 'Edit info', 'Osora']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> tap "More options"
+> sleep 1
+> tapx Notes
+> sleep 2
+> shot notes
+  [shot 007_notes] visible: ['Enjoyed the part where…', 'Rounded.FormatBold', 'Rounded.FormatItalic', 'Rounded.FormatUnderlined', 'AutoMirroredRounded.FormatListBulleted', 'Rounded.FormatListNumbered', '0', 'Navigate up', 'Edit notes', 'Osora']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> tap "More options"
+> sleep 1
+> tapx "Edit categories"
+> sleep 2
+> shot edit_categories
+  [shot 008_edit_categories] visible: ['Set categories', "You don't have any categories yet.", 'Edit categories']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> tapx "6 days"
+> sleep 2
+> shot interval_dialog
+  [shot 009_interval_dialog] visible: ['Smart update', 'New chapters predicted to be released in around 6 days, checking around every 7 days.', 'Custom update frequency:', 'Default', '1', 'OK', 'Cancel']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> tapx Similar
+> sleep 6
+> shot similar
+  [shot 010_similar] visible: ['No recommendations found for this series', 'Navigate up', 'More like this', 'Osora']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Me
+> sleep 2
+> tapx Categories
+  !! not found: Categories
+  [shot 011_notfound] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '1', 'In library', '126', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 2
+> shot categories
+  [shot 012_categories] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '1', 'In library', '126', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> stop app.kurotoon.dev
+> sh "run-as app.kurotoon.dev sh -c 'sed -i s/onboarding_complete\" value=\"true/onboarding_complete\" value=\"false/ shared_prefs/app.kurotoon.dev_preferences.xml'"
+
+> start app.kurotoon.dev
+> sleep 6
+> shot onboarding1
+  [shot 013_onboarding1] visible: ['Osora', 'Up next', 'Osora', 'Chapter 1', 'Resume', 'Out today', 'Series that usually update on Thursday', 'See all', 'Osora', '126', 'Osora', 'New today', 'Rainbow and the Gleamstone', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif Next
+> tapif Continue
+> sleep 2
+> shot onboarding2
+  [shot 014_onboarding2] visible: ['Cover', 'Osora', 'ToniRenea', 'Ongoing', ' • ', 'Webtoons.com', 'In library', '6 days', 'Tracking', 'Similar', 'WebView', 'Prince Osora is destined to rule over the Calaveras Kingdom in a life planned out by his family since birth, when his father presented him to the kingdom as male. However, the magic-wielding race called Sergos has a different plan for Osora: to use him as collateral in war with the humans. Bound by what others force him to be and trapped in a love triangle between a promised fiancée and his childhood best friend, Osora must recreate his own story. This series contains themes regarding sexuality, gender identity, homophobia, transphobia, and other prejudices.', 'More', 'Fantasy', '126 chapters', 'Newest', 'Filter', 'New chapters usually every Thursday', '126', '(S2) Chapter 126', 'UP', 'Today', 'Download', '125', '(S2) Chapter 125', '11/5/26', 'Download', '124', '(S2) Chapter 124', '10/29/26', 'Download', 'Navigate up', 'Download', 'Filter', 'More options', 'Jump to where you left off', 'Resume · Ch. 1']
+> tapif Next
+> tapif Continue
+> sleep 2
+> shot onboarding3
+  [shot 015_onboarding3] visible: ['Cover', 'Osora', 'ToniRenea', 'Ongoing', ' • ', 'Webtoons.com', 'In library', '6 days', 'Tracking', 'Similar', 'WebView', 'Prince Osora is destined to rule over the Calaveras Kingdom in a life planned out by his family since birth, when his father presented him to the kingdom as male. However, the magic-wielding race called Sergos has a different plan for Osora: to use him as collateral in war with the humans. Bound by what others force him to be and trapped in a love triangle between a promised fiancée and his childhood best friend, Osora must recreate his own story. This series contains themes regarding sexuality, gender identity, homophobia, transphobia, and other prejudices.', 'More', 'Fantasy', '126 chapters', 'Newest', 'Filter', 'New chapters usually every Thursday', '126', '(S2) Chapter 126', 'UP', 'Today', 'Download', '125', '(S2) Chapter 125', '11/5/26', 'Download', '124', '(S2) Chapter 124', '10/29/26', 'Download', 'Navigate up', 'Download', 'Filter', 'More options', 'Jump to where you left off', 'Resume · Ch. 1']
+> tapif Next
+> tapif Continue
+> sleep 2
+> shot onboarding4
+  [shot 016_onboarding4] visible: ['Cover', 'Osora', 'ToniRenea', 'Ongoing', ' • ', 'Webtoons.com', 'In library', '6 days', 'Tracking', 'Similar', 'WebView', 'Prince Osora is destined to rule over the Calaveras Kingdom in a life planned out by his family since birth, when his father presented him to the kingdom as male. However, the magic-wielding race called Sergos has a different plan for Osora: to use him as collateral in war with the humans. Bound by what others force him to be and trapped in a love triangle between a promised fiancée and his childhood best friend, Osora must recreate his own story. This series contains themes regarding sexuality, gender identity, homophobia, transphobia, and other prejudices.', 'More', 'Fantasy', '126 chapters', 'Newest', 'Filter', 'New chapters usually every Thursday', '126', '(S2) Chapter 126', 'UP', 'Today', 'Download', '125', '(S2) Chapter 125', '11/5/26', 'Download', '124', '(S2) Chapter 124', '10/29/26', 'Download', 'Navigate up', 'Download', 'Filter', 'More options', 'Jump to where you left off', 'Resume · Ch. 1']
+  [shot 017_end] visible: ['Cover', 'Osora', 'ToniRenea', 'Ongoing', ' • ', 'Webtoons.com', 'In library', '6 days', 'Tracking', 'Similar', 'WebView', 'Prince Osora is destined to rule over the Calaveras Kingdom in a life planned out by his family since birth, when his father presented him to the kingdom as male. However, the magic-wielding race called Sergos has a different plan for Osora: to use him as collateral in war with the humans. Bound by what others force him to be and trapped in a love triangle between a promised fiancée and his childhood best friend, Osora must recreate his own story. This series contains themes regarding sexuality, gender identity, homophobia, transphobia, and other prejudices.', 'More', 'Fantasy', '126 chapters', 'Newest', 'Filter', 'New chapters usually every Thursday', '126', '(S2) Chapter 126', 'UP', 'Today', 'Download', '125', '(S2) Chapter 125', '11/5/26', 'Download', '124', '(S2) Chapter 124', '10/29/26', 'Download', 'Navigate up', 'Download', 'Filter', 'More options', 'Jump to where you left off', 'Resume · Ch. 1']

@@ -1,0 +1,119 @@
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Me
+sleep 2
+scrollup
+scrollup
+scrollup
+tapx Settings
+sleep 2
+tapx Browse
+sleep 2
+tap "Extension repos"
+sleep 2
+shot ext_repos
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Browse
+sleep 2
+tapx Migrate
+sleep 2
+tapx Webtoons.com
+sleep 3
+shot migrate_list
+tapx Osora
+sleep 3
+shot migrate_config
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Library
+sleep 3
+tapx Osora
+sleep 6
+tapx Tracking
+sleep 3
+shot track_sheet
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Library
+sleep 3
+tapx Osora
+sleep 6
+tap "More options"
+sleep 1
+tapx "Edit info"
+sleep 2
+shot edit_info
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Library
+sleep 3
+tapx Osora
+sleep 6
+tap "More options"
+sleep 1
+tapx Notes
+sleep 2
+shot notes
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Library
+sleep 3
+tapx Osora
+sleep 6
+tap "More options"
+sleep 1
+tapx "Edit categories"
+sleep 2
+shot edit_categories
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Library
+sleep 3
+tapx Osora
+sleep 6
+tapx "6 days"
+sleep 2
+shot interval_dialog
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Library
+sleep 3
+tapx Osora
+sleep 6
+tapx Similar
+sleep 6
+shot similar
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Me
+sleep 2
+tapx Categories
+sleep 2
+shot categories
+stop app.kurotoon.dev
+sh "run-as app.kurotoon.dev sh -c 'sed -i s/onboarding_complete\" value=\"true/onboarding_complete\" value=\"false/ shared_prefs/app.kurotoon.dev_preferences.xml'"
+start app.kurotoon.dev
+sleep 6
+shot onboarding1
+tapif Next
+tapif Continue
+sleep 2
+shot onboarding2
+tapif Next
+tapif Continue
+sleep 2
+shot onboarding3
+tapif Next
+tapif Continue
+sleep 2
+shot onboarding4
