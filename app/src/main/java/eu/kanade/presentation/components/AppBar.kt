@@ -4,6 +4,7 @@ import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
@@ -82,6 +83,7 @@ fun AppBar(
     actionModeActions: @Composable RowScope.() -> Unit = {},
 
     scrollBehavior: TopAppBarScrollBehavior? = null,
+    windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
 ) {
     val isActionMode by remember(actionModeCounter) {
         derivedStateOf { actionModeCounter > 0 }
@@ -109,6 +111,7 @@ fun AppBar(
         isActionMode = isActionMode,
         onCancelActionMode = onCancelActionMode,
         scrollBehavior = scrollBehavior,
+        windowInsets = windowInsets,
     )
 }
 
@@ -129,6 +132,7 @@ fun AppBar(
     onCancelActionMode: () -> Unit = {},
 
     scrollBehavior: TopAppBarScrollBehavior? = null,
+    windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
 ) {
     Column(
         modifier = modifier,
@@ -158,6 +162,7 @@ fun AppBar(
                 ),
             ),
             scrollBehavior = scrollBehavior,
+            windowInsets = windowInsets,
         )
     }
 }

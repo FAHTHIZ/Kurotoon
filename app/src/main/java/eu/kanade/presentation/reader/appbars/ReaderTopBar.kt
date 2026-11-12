@@ -1,5 +1,6 @@
 package eu.kanade.presentation.reader.appbars
 
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,6 +31,7 @@ fun ReaderTopBar(
         title = mangaTitle,
         subtitle = chapterTitle,
         navigateUp = navigateUp,
+        windowInsets = WindowInsets(0),
         actions = {
             AppBarActions(
                 actions = buildList {
