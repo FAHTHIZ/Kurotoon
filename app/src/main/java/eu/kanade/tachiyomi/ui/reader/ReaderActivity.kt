@@ -16,9 +16,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,9 +25,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -171,6 +166,7 @@ class ReaderActivity : BaseActivity() {
     private var assistUrl: String? = null
 
     private var menuToggleToast: Toast? = null
+    private val readerHint = kurotoon.ui.reader.ReaderHintState()
     private var readingModeToast: Toast? = null
     private val displayRefreshHost by lazy { DisplayRefreshHost(readerPreferences) }
     private val navigationOverlayState = ReaderNavigationOverlayState()
@@ -283,8 +279,7 @@ class ReaderActivity : BaseActivity() {
                     state.isLoadingAdjacentChapter ||
                     !lifecycleState.isAtLeast(Lifecycle.State.RESUMED),
                 onReachedEnd = {
-                    menuToggleToast?.cancel()
-                    menuToggleToast = toast(MR.strings.kurotoon_reader_autoScrollEnd)
+                    hint(MR.strings.kurotoon_reader_autoScrollEnd)
                 },
             )
 
@@ -401,6 +396,14 @@ class ReaderActivity : BaseActivity() {
 
                 AppBars(state = state)
 
+                kurotoon.ui.reader.ReaderHintHost(
+                    state = readerHint,
+                    modifier = Modifier
+                        .align(Alignment.TopCenter)
+                        .statusBarsPadding()
+                        .padding(top = if (state.menuVisible) 84.dp else 16.dp),
+                )
+
                 SleepTimerCurtain(
                     state = sleepTimer,
                     onClose = ::finish,
@@ -410,19 +413,7 @@ class ReaderActivity : BaseActivity() {
             }
 
             if (state.isLoadingAdjacentChapter) {
-                AlertDialog(
-                    onDismissRequest = {},
-                    confirmButton = {},
-                    text = {
-                        Row(
-                            horizontalArrangement = Arrangement.spacedBy(16.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-                            CircularProgressIndicator()
-                            Text(stringResource(MR.strings.loading))
-                        }
-                    },
-                )
+                kurotoon.ui.reader.ReaderLoadingChapter()
             }
 
             val onDismissRequest = viewModel::closeDialog
@@ -442,7 +433,7 @@ class ReaderActivity : BaseActivity() {
                         onChange = { stringRes ->
                             menuToggleToast?.cancel()
                             if (!readerPreferences.showReadingMode.get()) {
-                                menuToggleToast = toast(stringRes)
+                                hint(stringRes)
                             }
                         },
                     )
@@ -452,8 +443,7 @@ class ReaderActivity : BaseActivity() {
                         onDismissRequest = onDismissRequest,
                         viewModel = settingsViewModel,
                         onChange = { stringRes ->
-                            menuToggleToast?.cancel()
-                            menuToggleToast = toast(stringRes)
+                            hint(stringRes)
                         },
                     )
                 }
@@ -551,7 +541,7 @@ class ReaderActivity : BaseActivity() {
                         onShareImageResult(event.uri, event.page)
                     }
                     is ReaderViewModel.Event.PanelKept -> {
-                        toast(if (event.ok) MR.strings.kurotoon_panels_kept else MR.strings.kurotoon_panels_failed)
+                        hint(if (event.ok) MR.strings.kurotoon_panels_kept else MR.strings.kurotoon_panels_failed)
                     }
                     is ReaderViewModel.Event.CopyImage -> {
                         onCopyImageResult(event.uri)
@@ -875,8 +865,7 @@ class ReaderActivity : BaseActivity() {
             cropEnabled = cropEnabled,
             onClickCropBorder = {
                 val enabled = viewModel.toggleCropBorders()
-                menuToggleToast?.cancel()
-                menuToggleToast = toast(if (enabled) MR.strings.on else MR.strings.off)
+                hint(if (enabled) MR.strings.kurotoon_reader_cropOn else MR.strings.kurotoon_reader_cropOff)
             },
             onClickSettings = viewModel::openSettingsDialog,
             autoScrolling = autoScroll.enabled,
@@ -911,7 +900,7 @@ class ReaderActivity : BaseActivity() {
             val audio = getSystemService(android.media.AudioManager::class.java) ?: return@LaunchedEffect
             if (audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC) == 0) {
                 mediaVolumeHinted = true
-                toast(MR.strings.kurotoon_sound_mediaVolumeOff)
+                hint(MR.strings.kurotoon_sound_mediaVolumeOff)
             }
         }
         LaunchedEffect(chapter?.chapter?.id, chapter?.pages?.size, episodeMusic) {
@@ -947,20 +936,19 @@ class ReaderActivity : BaseActivity() {
         val pref = readerPreferences.autoScrollSpeed
         val speed = (pref.get() + delta).coerceIn(1, 10)
         pref.set(speed)
-        menuToggleToast?.cancel()
-        menuToggleToast = toast(stringResource(MR.strings.kurotoon_reader_autoScrollSpeedNow, speed))
+        hint(stringResource(MR.strings.kurotoon_reader_autoScrollSpeedNow, speed))
     }
 
     private fun toggleAutoScroll() {
         autoScroll.enabled = !autoScroll.enabled
         menuToggleToast?.cancel()
         if (autoScroll.enabled) {
-            val hint = if (settingsViewModel.general.value.volumeKeysEnabled) {
+            val message = if (settingsViewModel.general.value.volumeKeysEnabled) {
                 MR.strings.kurotoon_reader_autoScrollOnVolume
             } else {
                 MR.strings.kurotoon_reader_autoScrollOn
             }
-            menuToggleToast = toast(hint)
+            hint(message)
             setMenuVisibility(false)
         }
     }
@@ -1033,10 +1021,17 @@ class ReaderActivity : BaseActivity() {
         }
     }
 
+    /** A short message in the reader's own capsule rather than a system toast. */
+    private fun hint(text: String?) {
+        menuToggleToast?.cancel()
+        readerHint.show(text)
+    }
+
+    private fun hint(res: dev.icerock.moko.resources.StringResource) = hint(stringResource(res))
+
     private fun showReadingModeToast(mode: Int) {
         try {
-            readingModeToast?.cancel()
-            readingModeToast = toast(ReadingMode.fromPreference(mode).stringRes)
+            hint(ReadingMode.fromPreference(mode).stringRes)
         } catch (_: ArrayIndexOutOfBoundsException) {
             logcat(LogPriority.ERROR) { "Unknown reading mode: $mode" }
         }
@@ -1192,7 +1187,7 @@ class ReaderActivity : BaseActivity() {
     private fun onSaveImageResult(result: ReaderViewModel.SaveImageResult) {
         when (result) {
             is ReaderViewModel.SaveImageResult.Success -> {
-                toast(MR.strings.picture_saved)
+                hint(MR.strings.picture_saved)
             }
             is ReaderViewModel.SaveImageResult.Error -> {
                 logcat(LogPriority.ERROR, result.error)
@@ -1205,7 +1200,7 @@ class ReaderActivity : BaseActivity() {
      * depending on the [result].
      */
     private fun onSetAsCoverResult(result: ReaderViewModel.SetAsCoverResult) {
-        toast(
+        hint(
             when (result) {
                 Success -> MR.strings.cover_updated
                 AddToLibraryFirst -> MR.strings.notification_first_add_to_library

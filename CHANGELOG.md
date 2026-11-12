@@ -6,6 +6,12 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Changed
+- Reader: the page slider is a slim accent track with a round thumb and no step dots, the page you're on sits in an accent pill (tap it to jump), and previous/next chapter are round glass buttons that match the dock
+- Reader: the page counter shown while reading is a dark glass capsule with a thin progress line, instead of outlined text
+- Reader: a page that fails to load shows a card with Retry and Open on web; long-pressing a page opens a row of tiles led by Keep panel
+- Reader: short messages (crop borders, reading mode, saved, auto-scroll) drop in as a capsule at the top of the page instead of a system toast, and loading the next chapter shows a small spinner capsule instead of a dialog
+- Reader: the tap-zone guide uses rounded panels, accent for forward and a light tint for back, with pill labels
+- Reading mode and rotation choices are rounded tiles that turn solid when picked; Apply and Revert are KuroToon pills; tick rows and every settings slider use the KuroToon style
 - Picking series to migrate uses cover cards with a round check, and the Continue button is a solid accent button
 - Reader and library option chips (reading mode, rotation, tap zones, display mode and more) use the same solid crimson pills as the rest of the app
 - Selected chapters turn their episode tile into a crimson check, and selected rows everywhere wear a faint accent tint instead of grey
