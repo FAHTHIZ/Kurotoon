@@ -244,6 +244,7 @@ class MangaViewModel(
             // Chapters re-emit when reading progress changes, so this follows the reader
             lastOpenedChapterId = latest.takeIf { resumeFromLastOpened || rereading },
             lastOpenedIsRereading = rereading,
+            hasHistory = latest != null,
         )
     }
 
@@ -306,6 +307,7 @@ class MangaViewModel(
             downloadedOnly = downloadedOnly,
             lastOpenedChapterId = mangaAndChapters.lastOpenedChapterId,
             lastOpenedIsRereading = mangaAndChapters.lastOpenedIsRereading,
+            hasHistory = mangaAndChapters.hasHistory,
         )
     }
         // Composition would otherwise build these on first read, on the main thread, for every new state
@@ -1156,6 +1158,7 @@ class MangaViewModel(
         val chapters: List<ChapterList.Item>,
         val lastOpenedChapterId: Long?,
         val lastOpenedIsRereading: Boolean = false,
+        val hasHistory: Boolean = false,
     )
 
     sealed interface State {
@@ -1180,6 +1183,7 @@ class MangaViewModel(
             /** Set when Resume should pick up from the last chapter opened. */
             val lastOpenedChapterId: Long? = null,
             val lastOpenedIsRereading: Boolean = false,
+            val hasHistory: Boolean = false,
         ) : State {
             val processedChapters by lazy {
                 chapters.applyFilters(manga).toList()
@@ -1199,6 +1203,11 @@ class MangaViewModel(
 
             val hasReadChapters by lazy {
                 chapters.fastAny { it.chapter.read }
+            }
+
+            /** Something has been opened: a finished chapter or one with pages read. */
+            val hasStartedReading by lazy {
+                hasHistory || chapters.fastAny { it.chapter.read || it.chapter.lastPageRead > 0 }
             }
 
             /** What Resume / Start opens, so the button can name it. */

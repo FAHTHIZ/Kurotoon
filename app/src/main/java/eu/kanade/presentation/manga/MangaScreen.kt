@@ -911,7 +911,7 @@ private fun onChapterItemClick(
 /** "Resume · Ch. 37" or "Start · Ch. 1"; just the verb when the chapter has no number. */
 @Composable
 private fun continueReadingLabel(state: MangaViewModel.State.Success): String {
-    val verb = stringResource(if (state.hasReadChapters) MR.strings.action_resume else MR.strings.action_start)
+    val verb = stringResource(if (state.hasStartedReading) MR.strings.action_resume else MR.strings.action_start)
     val number = state.nextUnreadChapter?.chapterNumber?.takeIf { it >= 0 } ?: return verb
     return stringResource(MR.strings.kurotoon_manga_continueChapter, verb, formatChapterNumber(number))
 }
