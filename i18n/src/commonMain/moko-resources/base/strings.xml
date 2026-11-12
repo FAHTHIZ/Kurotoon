@@ -1648,4 +1648,10 @@
     <string name="kurotoon.library.sourceBadge">Source name</string>
     <string name="kurotoon.browse.selectSeveral">Select several</string>
     <string name="kurotoon.browse.selected">%d selected</string>
+    <string name="kurotoon.reader.pageFailed">This page didn\'t load</string>
+    <string name="kurotoon.reader.openWeb">Open on web</string>
+    <string name="kurotoon.reader.pageActions">This page</string>
+    <string name="kurotoon.reader.loadingChapter">Opening the episode…</string>
+    <string name="kurotoon.reader.cropOn">Crop borders on</string>
+    <string name="kurotoon.reader.cropOff">Crop borders off</string>
 </resources>

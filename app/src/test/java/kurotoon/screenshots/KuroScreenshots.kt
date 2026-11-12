@@ -828,6 +828,70 @@ class KuroScreenshots {
         }
     }
 
+    @Test
+    fun readerChrome() = shot("reader_chrome") {
+        Column(
+            modifier = Modifier.background(androidx.compose.ui.graphics.Color(0xFF2A2A30)).padding(vertical = 16.dp),
+            verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(16.dp),
+            horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
+        ) {
+            eu.kanade.presentation.reader.components.ChapterNavigator(
+                type = eu.kanade.presentation.reader.components.ChapterNavigatorType.HORIZONTAL_LTR,
+                onNextChapter = {},
+                enabledNext = true,
+                onPreviousChapter = {},
+                enabledPrevious = false,
+                currentPage = 12,
+                totalPages = 48,
+                onPageIndexChange = {},
+                onPageIndexChangeFinished = {},
+            )
+            eu.kanade.presentation.reader.ReaderPageIndicator(
+                currentPage = 12,
+                totalPages = 48,
+                minutesLeft = 4,
+                clock = "21:40",
+                batteryPercent = 82,
+            )
+            eu.kanade.presentation.reader.ReaderError(
+                message = "HTTP error 404",
+                onRetry = {},
+                onOpenInWebView = {},
+            )
+            tachiyomi.presentation.core.components.material.Slider(
+                value = 6,
+                onValueChange = {},
+                valueRange = 0..10,
+                modifier = Modifier.padding(horizontal = 24.dp),
+            )
+            tachiyomi.presentation.core.components.LabeledCheckbox(
+                label = "Use for every series from Asura Scans",
+                checked = true,
+                onCheckedChange = {},
+                modifier = Modifier.padding(horizontal = 16.dp),
+            )
+            androidx.compose.foundation.layout.Row(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(8.dp),
+            ) {
+                tachiyomi.presentation.core.components.material.IconToggleButton(
+                    checked = true,
+                    onCheckedChange = {},
+                    imageVector = eu.kanade.tachiyomi.ui.reader.setting.ReadingMode.WEBTOON.icon,
+                    title = "Long strip",
+                    modifier = Modifier.weight(1f),
+                )
+                tachiyomi.presentation.core.components.material.IconToggleButton(
+                    checked = false,
+                    onCheckedChange = {},
+                    imageVector = eu.kanade.tachiyomi.ui.reader.setting.ReadingMode.LEFT_TO_RIGHT.icon,
+                    title = "Paged (left to right)",
+                    modifier = Modifier.weight(1f),
+                )
+            }
+        }
+    }
+
     private fun shot(name: String, fullScreen: Boolean = false, content: @Composable () -> Unit) {
         captureRoboImage("build/screenshots/$name.png") {
             val covers = AsyncImagePreviewHandler { request -> fakeCover(request.data.hashCode()) }

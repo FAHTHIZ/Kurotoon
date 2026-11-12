@@ -6,10 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,11 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
+import kurotoon.ui.KuroPrimaryButton
+import kurotoon.ui.KuroTonalButton
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Check
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.SettingsItemsPaddings
-import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 
 @Composable
@@ -36,32 +33,26 @@ fun ModeSelectionDialog(
             content()
 
             Row(
-                modifier = Modifier.padding(
-                    horizontal = SettingsItemsPaddings.Horizontal,
-                ),
+                modifier = Modifier
+                    .padding(horizontal = SettingsItemsPaddings.Horizontal)
+                    .padding(top = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 onUseDefault?.let {
-                    OutlinedButton(onClick = it) {
-                        Text(text = stringResource(MR.strings.action_revert_to_default))
-                    }
+                    KuroTonalButton(
+                        text = stringResource(MR.strings.action_revert_to_default),
+                        onClick = it,
+                    )
                 }
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                FilledTonalButton(
+                KuroPrimaryButton(
+                    text = stringResource(MR.strings.action_apply),
                     onClick = onApply,
-                ) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(
-                            imageVector = MaterialSymbols.Rounded.Check,
-                            contentDescription = null,
-                        )
-                        Text(text = stringResource(MR.strings.action_apply))
-                    }
-                }
+                    icon = MaterialSymbols.Rounded.Check,
+                )
             }
         }
     }
