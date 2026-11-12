@@ -14,10 +14,8 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.InputChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -29,6 +27,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.onClick
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -148,19 +148,18 @@ internal fun HiddenTagsContent(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         } else {
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
                 hidden.forEach { tag ->
-                    InputChip(
+                    val removeLabel = stringResource(MR.strings.action_remove)
+                    kurotoon.ui.KuroFilterPill(
+                        text = tag,
                         selected = true,
                         onClick = { onRemove(tag) },
-                        label = { Text(tag) },
-                        trailingIcon = {
-                            Icon(
-                                MaterialSymbols.Rounded.Close,
-                                contentDescription = stringResource(MR.strings.action_remove),
-                                modifier = Modifier.size(16.dp),
-                            )
-                        },
+                        icon = MaterialSymbols.Rounded.Close,
+                        modifier = Modifier.semantics { onClick(label = removeLabel, action = null) },
                     )
                 }
             }
@@ -173,12 +172,16 @@ internal fun HiddenTagsContent(
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(top = 8.dp),
             )
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
                 offers.forEach { tag ->
-                    SuggestionChip(
+                    kurotoon.ui.KuroFilterPill(
+                        text = tag,
+                        selected = false,
                         onClick = { onAdd(tag) },
-                        label = { Text(tag) },
-                        icon = { Icon(MaterialSymbols.Rounded.Add, contentDescription = null, Modifier.size(16.dp)) },
+                        icon = MaterialSymbols.Rounded.Add,
                     )
                 }
             }
