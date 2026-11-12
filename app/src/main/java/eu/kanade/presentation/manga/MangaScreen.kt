@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.asPaddingValues
@@ -44,6 +45,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastAll
@@ -349,9 +352,10 @@ private fun MangaScreenSmallImpl(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         floatingActionButton = {
             val isFABVisible = (state.hasUnreadChapters || state.lastOpenedIsRereading) && !isAnySelected
-            Column(
-                horizontalAlignment = Alignment.End,
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+            // Side by side so the jump button never sits over the episode download buttons
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 JumpToChapterButton(
                     listState = chapterListState,
@@ -360,16 +364,18 @@ private fun MangaScreenSmallImpl(
                     headerCount = 4,
                     enabled = isFABVisible,
                 )
+                val continueLabel = continueReadingLabel(state)
                 SmallExtendedFloatingActionButton(
                     text = {
-                        Text(text = continueReadingLabel(state), fontWeight = FontWeight.Bold)
+                        Text(text = continueLabel, fontWeight = FontWeight.Bold)
                     },
                     icon = { Icon(imageVector = MaterialSymbols.RoundedFilled.PlayArrow, contentDescription = null) },
                     onClick = onContinueReading,
                     expanded = chapterListState.shouldExpandFAB(),
                     containerColor = MaterialTheme.colorScheme.primary,
                     contentColor = MaterialTheme.colorScheme.onPrimary,
-                    modifier = Modifier.animateFloatingActionButton(
+                    // The label lives inside an animated slot that TalkBack can't read, so name the button itself
+                    modifier = Modifier.semantics { contentDescription = continueLabel }.animateFloatingActionButton(
                         visible = isFABVisible,
                         alignment = Alignment.BottomEnd,
                     ),
@@ -611,9 +617,10 @@ fun MangaScreenLargeImpl(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         floatingActionButton = {
             val isFABVisible = (state.hasUnreadChapters || state.lastOpenedIsRereading) && !isAnySelected
-            Column(
-                horizontalAlignment = Alignment.End,
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+            // Side by side so the jump button never sits over the episode download buttons
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 JumpToChapterButton(
                     listState = chapterListState,
@@ -622,16 +629,18 @@ fun MangaScreenLargeImpl(
                     headerCount = 1,
                     enabled = isFABVisible,
                 )
+                val continueLabel = continueReadingLabel(state)
                 SmallExtendedFloatingActionButton(
                     text = {
-                        Text(text = continueReadingLabel(state), fontWeight = FontWeight.Bold)
+                        Text(text = continueLabel, fontWeight = FontWeight.Bold)
                     },
                     icon = { Icon(imageVector = MaterialSymbols.RoundedFilled.PlayArrow, contentDescription = null) },
                     onClick = onContinueReading,
                     expanded = chapterListState.shouldExpandFAB(),
                     containerColor = MaterialTheme.colorScheme.primary,
                     contentColor = MaterialTheme.colorScheme.onPrimary,
-                    modifier = Modifier.animateFloatingActionButton(
+                    // The label lives inside an animated slot that TalkBack can't read, so name the button itself
+                    modifier = Modifier.semantics { contentDescription = continueLabel }.animateFloatingActionButton(
                         visible = isFABVisible,
                         alignment = Alignment.BottomEnd,
                     ),
