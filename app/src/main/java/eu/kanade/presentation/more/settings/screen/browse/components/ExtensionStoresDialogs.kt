@@ -20,7 +20,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroFieldShape
 import tachiyomi.presentation.core.components.material.KuroTextButton
+import tachiyomi.presentation.core.components.material.kuroFieldColors
 import tachiyomi.presentation.core.i18n.stringResource
 
 @Composable
@@ -48,6 +50,8 @@ fun ExtensionStoreCreateDialog(
         },
         text = {
             OutlinedTextField(
+                shape = KuroFieldShape,
+                colors = kuroFieldColors(),
                 modifier = Modifier
                     .fillMaxWidth()
                     .focusRequester(focusRequester),
@@ -146,6 +150,8 @@ fun ExtensionStoreConfirmDialog(
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(text = stringResource(MR.strings.extensionStoresScreen_addStoreDeeplink_bodyText))
                 OutlinedTextField(
+                    shape = KuroFieldShape,
+                    colors = kuroFieldColors(),
                     modifier = Modifier.fillMaxWidth(),
                     state = state,
                     readOnly = true,

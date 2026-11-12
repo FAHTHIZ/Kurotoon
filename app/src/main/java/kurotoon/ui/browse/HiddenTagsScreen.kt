@@ -49,7 +49,9 @@ import mihon.icons.materialsymbols.rounded.Close
 import tachiyomi.core.common.preference.getAndSet
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroFieldShape
 import tachiyomi.presentation.core.components.material.Scaffold
+import tachiyomi.presentation.core.components.material.kuroFieldColors
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.util.collectAsState
 
@@ -129,6 +131,8 @@ internal fun HiddenTagsContent(
         )
         Row(verticalAlignment = Alignment.CenterVertically) {
             OutlinedTextField(
+                shape = KuroFieldShape,
+                colors = kuroFieldColors(),
                 value = input,
                 onValueChange = { input = it },
                 singleLine = true,

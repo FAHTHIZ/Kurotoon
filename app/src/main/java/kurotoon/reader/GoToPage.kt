@@ -25,7 +25,9 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroFieldShape
 import tachiyomi.presentation.core.components.material.KuroTextButton
+import tachiyomi.presentation.core.components.material.kuroFieldColors
 import tachiyomi.presentation.core.i18n.stringResource
 
 /**
@@ -81,6 +83,8 @@ private fun GoToPageDialog(currentPage: Int, totalPages: Int, onDismiss: () -> U
         title = { Text(stringResource(MR.strings.kurotoon_reader_goToPage)) },
         text = {
             OutlinedTextField(
+                shape = KuroFieldShape,
+                colors = kuroFieldColors(),
                 value = value,
                 onValueChange = { new -> value = new.copy(text = new.text.filter(Char::isDigit).take(5)) },
                 singleLine = true,

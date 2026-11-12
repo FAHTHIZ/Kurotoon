@@ -28,8 +28,10 @@ import tachiyomi.core.common.preference.CheckboxState
 import tachiyomi.domain.category.model.Category
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroCheckbox
+import tachiyomi.presentation.core.components.material.KuroFieldShape
 import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.KuroTriStateCheckbox
+import tachiyomi.presentation.core.components.material.kuroFieldColors
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -67,6 +69,8 @@ fun CategoryCreateDialog(
         },
         text = {
             OutlinedTextField(
+                shape = KuroFieldShape,
+                colors = kuroFieldColors(),
                 modifier = Modifier
                     .focusRequester(focusRequester),
                 value = name,
@@ -129,6 +133,8 @@ fun CategoryRenameDialog(
         },
         text = {
             OutlinedTextField(
+                shape = KuroFieldShape,
+                colors = kuroFieldColors(),
                 modifier = Modifier.focusRequester(focusRequester),
                 value = name,
                 onValueChange = {

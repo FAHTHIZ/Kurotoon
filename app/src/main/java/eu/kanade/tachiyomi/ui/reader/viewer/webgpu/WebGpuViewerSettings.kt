@@ -66,7 +66,9 @@ import tachiyomi.presentation.core.components.HeadingItem
 import tachiyomi.presentation.core.components.SettingsChipRow
 import tachiyomi.presentation.core.components.SettingsItemsPaddings
 import tachiyomi.presentation.core.components.SliderItem
+import tachiyomi.presentation.core.components.material.KuroFieldShape
 import tachiyomi.presentation.core.components.material.KuroTextButton
+import tachiyomi.presentation.core.components.material.kuroFieldColors
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.util.collectAsState
@@ -531,6 +533,8 @@ private fun ShaderParams(
                 } else {
                     var text by remember(value) { mutableStateOf(format.format(value)) }
                     OutlinedTextField(
+                        shape = KuroFieldShape,
+                        colors = kuroFieldColors(),
                         value = text,
                         onValueChange = { new ->
                             text = new

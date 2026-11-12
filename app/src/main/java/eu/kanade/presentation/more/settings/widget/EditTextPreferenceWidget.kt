@@ -22,7 +22,9 @@ import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.roundedfilled.Cancel
 import mihon.icons.materialsymbols.roundedfilled.Error
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroFieldShape
 import tachiyomi.presentation.core.components.material.KuroTextButton
+import tachiyomi.presentation.core.components.material.kuroFieldColors
 import tachiyomi.presentation.core.i18n.stringResource
 
 @Composable
@@ -53,6 +55,8 @@ fun EditTextPreferenceWidget(
             title = { Text(text = title) },
             text = {
                 OutlinedTextField(
+                    shape = KuroFieldShape,
+                    colors = kuroFieldColors(),
                     value = textFieldValue,
                     onValueChange = { textFieldValue = it },
                     trailingIcon = {

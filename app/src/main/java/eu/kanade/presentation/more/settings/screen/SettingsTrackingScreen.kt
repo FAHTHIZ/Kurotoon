@@ -62,6 +62,8 @@ import mihon.icons.materialsymbols.roundedfilled.VisibilityOff
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroButton
 import tachiyomi.presentation.core.components.material.KuroButtonStyle
+import tachiyomi.presentation.core.components.material.KuroFieldShape
+import tachiyomi.presentation.core.components.material.kuroFieldColors
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -235,6 +237,8 @@ object SettingsTrackingScreen : SearchableSettings {
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     OutlinedTextField(
+                        shape = KuroFieldShape,
+                        colors = kuroFieldColors(),
                         modifier = Modifier
                             .fillMaxWidth()
                             .semantics { contentType = ContentType.Username + ContentType.EmailAddress },

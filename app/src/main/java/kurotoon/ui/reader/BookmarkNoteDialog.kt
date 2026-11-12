@@ -16,7 +16,9 @@ import androidx.compose.ui.focus.focusRequester
 import kurotoon.manga.BookmarkNotes
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroFieldShape
 import tachiyomi.presentation.core.components.material.KuroTextButton
+import tachiyomi.presentation.core.components.material.kuroFieldColors
 import tachiyomi.presentation.core.i18n.stringResource
 
 /** Write or edit the note on a chapter's bookmark. Saving a note also bookmarks the chapter. */
@@ -34,6 +36,8 @@ fun BookmarkNoteDialog(
         title = { Text(stringResource(MR.strings.kurotoon_bookmarkNote_title)) },
         text = {
             OutlinedTextField(
+                shape = KuroFieldShape,
+                colors = kuroFieldColors(),
                 value = text,
                 onValueChange = { text = it.take(BookmarkNotes.MAX_LENGTH) },
                 placeholder = { Text(stringResource(MR.strings.kurotoon_bookmarkNote_hint)) },
