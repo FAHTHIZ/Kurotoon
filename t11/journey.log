@@ -1,0 +1,83 @@
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tap Filter
+> sleep 2
+> shot lib_filter
+  [shot 001_lib_filter] visible: ['Filter', 'Sort', 'Display', 'Downloaded', 'Unread', 'Started', 'Bookmarked', 'Completed', 'One-shots', 'Customized update frequency']
+> tapx Sort
+> sleep 1
+> shot lib_sort
+  [shot 002_lib_sort] visible: ['Filter', 'Sort', 'Display', 'Alphabetically', 'Total chapters', 'Last read', 'Last update check', 'Unread count', 'Latest chapter', 'Chapter fetch date', 'Date added', 'Random']
+> tapx Display
+> sleep 1
+> shot lib_display
+  [shot 003_lib_display] visible: ['Filter', 'Sort', 'Display', 'Display mode', 'Compact grid', 'Comfortable grid', 'Cover-only grid', 'List', 'Items per row', 'Auto', 'Overlay', 'Downloaded chapters', 'Unread chapters', 'Local source', 'Language', 'Source name', 'Show a series saved from several sources once', 'Continue reading button', 'Tabs', 'Show category tabs']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> long Osora
+> sleep 2
+> shot lib_selection
+  [shot 004_lib_selection] visible: ['Osora', '126', 'Cancel', '1', 'Select all', 'Select inverse', 'Set categories', 'Move', 'Mark as read', 'Read', 'Mark as unread', 'Unread', 'Download', 'Download', 'More', 'More']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> tap "More options"
+> sleep 1
+> shot series_menu
+  [shot 005_series_menu] visible: ['Refresh', 'Edit categories', 'Migrate', 'Share', 'Notes', 'Edit info']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> scrollup
+> sleep 1
+> long 540 1700
+> sleep 2
+> shot selection
+  [shot 006_selection] visible: ['Cover', 'Osora', 'ToniRenea', 'Ongoing', ' • ', 'Webtoons.com', 'In library', '6 days', 'Tracking', 'Similar', 'WebView', 'Prince Osora is destined to rule over the Calaveras Kingdom in a life planned out by his family since birth, when his father presented him to the kingdom as male. However, the magic-wielding race called Sergos has a different plan for Osora: to use him as collateral in war with the humans. Bound by what others force him to be and trapped in a love triangle between a promised fiancée and his childhood best friend, Osora must recreate his own story. This series contains themes regarding sexuality, gender identity, homophobia, transphobia, and other prejudices.', 'More', 'Fantasy', '126 chapters', 'Newest', 'Filter', 'New chapters usually every Thursday', '126', '(S2) Chapter 126', 'UP', 'Today', 'Download', '125', '(S2) Chapter 125', '11/5/26', 'Download', '124', '(S2) Chapter 124', '10/29/26', 'Download', '123', '(S2) Chapter 123', '10/22/26', 'Download', '122', '(S2) Chapter 122', '10/15/26', 'Download', '(S2) Chapter 121', '120', '(S2) Chapter 120', '10/1/26', 'Download', 'Cancel', '1', 'Select all', 'Select inverse', 'Bookmark chapter', 'Bookmark', 'Mark as read', 'Read', 'Mark previous as read', 'Read before', 'Download', 'Download']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> tap Filter
+> sleep 2
+> shot chapter_filter
+  [shot 007_chapter_filter] visible: ['Filter', 'Sort', 'Display', 'More', 'Downloaded', 'Unread', 'Bookmarked', 'Scanlator']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Updates
+> sleep 2
+> tapif "Navigate up"
+> sleep 1
+> shot updates
+  [shot 008_updates] visible: ['Checked 1 hour ago', 'Pull down or tap Check now to look for new chapters', 'Check now', 'No recent updates', 'Updates', 'Filter', 'Release schedule', 'View Upcoming Updates', 'Update library', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Browse
+> sleep 2
+> tapx Sources
+> tap Webtoons.com
+> sleep 8
+> tapx Filter
+> sleep 3
+> shot src_filter
+  [shot 009_src_filter] visible: ['Search Type', 'ALL', 'Originals', 'Canvas', 'Reset', 'Filter']
+  [shot 010_end] visible: ['Search Type', 'ALL', 'Originals', 'Canvas', 'Reset', 'Filter']
