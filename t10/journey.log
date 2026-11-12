@@ -1,0 +1,272 @@
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Me
+> sleep 2
+> tapx "Incognito mode"
+> sleep 1
+> shot me_incog
+  [shot 001_me_incog] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '1', 'In library', '126', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me', 'Incognito mode']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Updates
+> sleep 2
+> tap History
+  !! not found: History
+  [shot 002_notfound] visible: ['Checked 56 minutes ago', 'Pull down or tap Check now to look for new chapters', 'Check now', 'No recent updates', 'Updates', 'Filter', 'Release schedule', 'View Upcoming Updates', 'Update library', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 3
+> shot history
+  [shot 003_history] visible: ['Checked 56 minutes ago', 'Pull down or tap Check now to look for new chapters', 'Check now', 'No recent updates', 'Updates', 'Filter', 'Release schedule', 'View Upcoming Updates', 'Update library', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Me
+> sleep 2
+> tapx "Download queue"
+> sleep 2
+> shot downloads
+  [shot 004_downloads] visible: ['No downloads', 'Navigate up', 'Download queue']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Me
+> sleep 2
+> tapx Statistics
+> sleep 4
+> shot stats
+  [shot 005_stats] visible: ['OVERVIEW', '1', 'In library', '1m 1s', 'Read duration', '0', 'Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '1', 'Chapters', '1', 'Active days', '1', 'Day streak', '1', 'Best streak', '2026 in reading', '1m', '1 chapters across 1 series', 'MOST READ', '1', 'Osora', '1 ch.', 'Share', 'Navigate up', 'Statistics']
+> scrollup
+> shot stats2
+  [shot 006_stats2] visible: ['READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '1', 'Chapters', '1', 'Active days', '1', 'Day streak', '1', 'Best streak', '2026 in reading', '1m', '1 chapters across 1 series', 'MOST READ', '1', 'Osora', '1 ch.', 'YOUR GENRES', 'Fantasy', 'Busiest month: November, with 1 chapters', 'Share', 'ENTRIES', '0', 'In global update', '0', 'Started', '0', 'Local', 'CHAPTERS', '126', '0', '0', 'Navigate up', 'Statistics']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Me
+> sleep 2
+> scrollup
+> sleep 1
+> shot me_tools
+  [shot 007_me_tools] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> shot me_tools2
+  [shot 008_me_tools2] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Me
+> sleep 2
+> scrollup
+> scrollup
+> scrollup
+> tapx Settings
+> sleep 2
+> tapx "Library"
+> sleep 2
+> shot set_library
+  [shot 009_set_library] visible: ['Categories', 'Edit categories', '0 categories', 'Default category', 'Always ask', 'Open library on', 'The category you left it on', 'Per-category settings for sort', 'Global update', 'Automatic updates', 'Off', 'Categories', 'Include: All\nExclude: None', 'Automatically refresh metadata', 'Check for new cover and details when updating library', 'Smart update', 'Skip entries with unread chapter(s), Skip entries with "Completed" status, Skip unstarted entries, Predict next release time', 'Skip series with unread chapters', 'Navigate up', 'Library']
+> scrollup
+> shot set_library_b
+  [shot 010_set_library_b] visible: ['Per-category settings for sort', 'Global update', 'Automatic updates', 'Off', 'Categories', 'Include: All\nExclude: None', 'Automatically refresh metadata', 'Check for new cover and details when updating library', 'Smart update', 'Skip entries with unread chapter(s), Skip entries with "Completed" status, Skip unstarted entries, Predict next release time', 'Skip series with unread chapters', 'Any unread chapter', 'Show unread count on Updates icon', 'Behavior', 'Chapter on swipe to left', 'Bookmark chapter', 'Chapter on swipe to right', 'Mark as read', 'Mark duplicate read chapter as read', 'None', 'Navigate up', 'Library']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Me
+> sleep 2
+> scrollup
+> scrollup
+> scrollup
+> tapx Settings
+> sleep 2
+> tapx "Reader"
+> sleep 2
+> shot set_reader
+  [shot 011_set_reader] visible: ['Default reading mode', 'Paged (right to left)', 'Detect webtoons', 'Open manhwa, manhua and webtoons in long-strip mode unless you picked a mode for that series', 'Resume where you left off', 'Resume opens the last chapter you opened, even if you skipped ahead, instead of the first unread one', 'Bookmark follows your progress', "Finishing a chapter moves the series' bookmark onto it. Bookmarks with a note stay put", 'Time left in chapter', 'Estimate from your reading pace, shown next to the page number', 'Time and battery', 'Show the clock and battery level next to the page number, since the reader hides the status bar', 'Bedtime warmth', 'Pages warm up and dim a little from 9:30 PM, easing back to normal by 6:30 AM', 'Double tap animation speed', 'Normal', 'Show reading mode', 'Briefly show current mode when reader is opened', 'Show tap zones overlay', 'Navigate up', 'Reader']
+> scrollup
+> shot set_reader_b
+  [shot 012_set_reader_b] visible: ['Bookmark follows your progress', "Finishing a chapter moves the series' bookmark onto it. Bookmarks with a note stay put", 'Time left in chapter', 'Estimate from your reading pace, shown next to the page number', 'Time and battery', 'Show the clock and battery level next to the page number, since the reader hides the status bar', 'Bedtime warmth', 'Pages warm up and dim a little from 9:30 PM, easing back to normal by 6:30 AM', 'Double tap animation speed', 'Normal', 'Show reading mode', 'Briefly show current mode when reader is opened', 'Show tap zones overlay', 'Briefly show when reader is opened', 'Animate page transitions', 'Load ahead only on Wi-Fi', "Saves mobile data by loading only the pages near the one you're reading", 'Display', 'Default rotation', 'Free', 'Background color', 'Black', 'Navigate up', 'Reader']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Me
+> sleep 2
+> scrollup
+> scrollup
+> scrollup
+> tapx Settings
+> sleep 2
+> tapx "Downloads"
+> sleep 2
+> shot set_downloads
+  [shot 013_set_downloads] visible: ['Only on Wi-Fi', 'Save as CBZ archive', 'Concurrent source downloads', '5', 'Concurrent page downloads', 'Pages downloaded simultaneously per source', '5', 'Pause between chapters', 'Download one chapter per source at a time and wait this long before the next, for sources that block bulk downloads', 'Off', 'Delete chapters', 'After manually marked as read', 'After reading automatically delete', 'Disabled', 'Allow deleting bookmarked chapters', 'Excluded categories', 'Navigate up', 'Downloads']
+> scrollup
+> shot set_downloads_b
+  [shot 014_set_downloads_b] visible: ['Concurrent page downloads', 'Pages downloaded simultaneously per source', '5', 'Pause between chapters', 'Download one chapter per source at a time and wait this long before the next, for sources that block bulk downloads', 'Off', 'Delete chapters', 'After manually marked as read', 'After reading automatically delete', 'Disabled', 'Allow deleting bookmarked chapters', 'Excluded categories', 'None', 'Auto-download', 'Download new chapters', 'Download ahead', 'Auto download while reading', 'Disabled', 'Only works if the current chapter + the next one are already downloaded.', 'Navigate up', 'Downloads']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Me
+> sleep 2
+> scrollup
+> scrollup
+> scrollup
+> tapx Settings
+> sleep 2
+> tapx "Tracking"
+> sleep 2
+> shot set_tracking
+  [shot 015_set_tracking] visible: ['Update progress after reading', 'Update progress when marked as read', 'Always', 'Trackers', 'MangaBaka', 'MangaBaka', 'MyAnimeList', 'MyAnimeList', 'AniList', 'AniList', 'Kitsu', 'Kitsu', 'MangaUpdates', 'MangaUpdates', 'Shikimori', 'Shikimori', 'Bangumi', 'Bangumi', 'Hikka', 'Hikka', 'Comick', 'Comick', 'Navigate up', 'Tracking', 'Tracking guide']
+> scrollup
+> shot set_tracking_b
+  [shot 016_set_tracking_b] visible: ['MangaBaka', 'MangaBaka', 'MyAnimeList', 'MyAnimeList', 'AniList', 'AniList', 'Kitsu', 'Kitsu', 'MangaUpdates', 'MangaUpdates', 'Shikimori', 'Shikimori', 'Bangumi', 'Bangumi', 'Hikka', 'Hikka', 'Comick', 'Comick', 'One-way sync to update the chapter progress in external tracker services. Set up tracking for individual entries from their tracking button.', 'Enhanced trackers', 'Provides enhanced features for specific sources. Entries are automatically tracked when added to your library.\n\nAvailable but source not installed: Komga, Kavita, Suwayomi', 'Navigate up', 'Tracking', 'Tracking guide']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Me
+> sleep 2
+> scrollup
+> scrollup
+> scrollup
+> tapx Settings
+> sleep 2
+> tapx "Browse"
+> sleep 2
+> shot set_browse
+  [shot 017_set_browse] visible: ['Sources', 'Hide entries already in library', 'Hidden tags', 'Tags you never want to see in browse, search or Home', 'Hidden series', '0 series kept out of results', 'Extension stores', '1 store', 'Extensions', 'Allowed content warnings', 'Safe, Mixed', 'Also apply to installed extensions', 'When off, extensions you already installed keep loading and updating regardless of their warning', "Installed extensions that aren't loaded stay listed without their sources; ones you haven't installed are hidden. This does not prevent unofficial or potentially incorrectly flagged extensions from surfacing 18+ content within the app.", 'Navigate up', 'Browse']
+> scrollup
+> shot set_browse_b
+  [shot 018_set_browse_b] visible: ['Sources', 'Hide entries already in library', 'Hidden tags', 'Tags you never want to see in browse, search or Home', 'Hidden series', '0 series kept out of results', 'Extension stores', '1 store', 'Extensions', 'Allowed content warnings', 'Safe, Mixed', 'Also apply to installed extensions', 'When off, extensions you already installed keep loading and updating regardless of their warning', "Installed extensions that aren't loaded stay listed without their sources; ones you haven't installed are hidden. This does not prevent unofficial or potentially incorrectly flagged extensions from surfacing 18+ content within the app.", 'Navigate up', 'Browse']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Me
+> sleep 2
+> scrollup
+> scrollup
+> scrollup
+> tapx Settings
+> sleep 2
+> scrollup
+> sleep 1
+> tapx "Data and storage"
+> sleep 2
+> shot set_data
+  [shot 019_set_data] visible: ['Storage location', 'No storage location set', 'Used for automatic backups, chapter downloads, and local source.', 'Backup and restore', 'Create backup', 'Restore backup', 'Automatic backup frequency', 'Every 12 hours', 'You should keep copies of backups in other places as well. Backups may contain sensitive data including any stored passwords; be careful if sharing.\n\nLast automatically backed up: Never', 'Storage usage', '/storage/emulated/0', 'Available: 4.84 GB / Total: 6.23 GB', 'Clear chapter cache', 'Used: 19.44 MB', 'Remove downloads not in library', "Free space taken by series you've removed from your library", 'Navigate up', 'Data and storage', 'Tracking guide']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Me
+> sleep 2
+> scrollup
+> scrollup
+> scrollup
+> tapx Settings
+> sleep 2
+> scrollup
+> sleep 1
+> tapx "Security and privacy"
+> sleep 2
+> shot set_security
+  [shot 020_set_security] visible: ['Security', 'Hide notification content', 'Secure screen', 'Incognito mode', 'Secure screen hides app contents when switching apps and block screenshots', 'Navigate up', 'Security and privacy']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Me
+> sleep 2
+> scrollup
+> scrollup
+> scrollup
+> tapx Settings
+> sleep 2
+> scrollup
+> sleep 1
+> tapx "Advanced"
+> sleep 2
+> shot set_advanced
+  [shot 021_set_advanced] visible: ['Share crash logs', 'Saves error logs to a file for sharing with the developers', 'Verbose logging', 'Print verbose logs to system log (reduces app performance)', 'Redact sensitive headers', 'Redacts certain sensitive values in the logs. Keep enabled for your security when sharing logs with other people.', 'Debug info', 'Onboarding guide', 'Manage notifications', 'Background activity', 'Disable battery optimization', 'Helps with background library updates and backups', "Don't kill my app!", 'Some manufacturers have additional app restrictions that kill background services. This website has more info on how to fix it.', 'Data', 'Reindex downloads', 'Force app to recheck downloaded chapters', 'Navigate up', 'Advanced']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Me
+> sleep 2
+> scrollup
+> scrollup
+> scrollup
+> tapx Settings
+> sleep 2
+> scrollup
+> sleep 1
+> tapx "About"
+> sleep 2
+> shot set_about
+  [shot 022_set_about] visible: ['K', 'KuroToon', 'Every source. Every soundtrack. One beautifully simple home.', 'Debug 622b358', 'About', 'Version', 'Debug 622b358 (11/12/26 5:35\u202fAM)', 'Open source licenses', 'Privacy policy', 'GitHub', 'Navigate up', 'About']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> tapx Tracking
+> sleep 3
+> shot track_sheet
+  [shot 023_track_sheet] visible: ['Update progress after reading', 'Update progress when marked as read', 'Always', 'Trackers', 'MangaBaka', 'MangaBaka', 'MyAnimeList', 'MyAnimeList', 'AniList', 'AniList', 'Kitsu', 'Kitsu', 'MangaUpdates', 'MangaUpdates', 'Shikimori', 'Shikimori', 'Bangumi', 'Bangumi', 'Hikka', 'Hikka', 'Comick', 'Comick', 'Navigate up', 'Tracking', 'Tracking guide']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> tap "More options"
+> sleep 1
+> shot series_menu
+  [shot 024_series_menu] visible: ['Refresh', 'Edit categories', 'Migrate', 'Share', 'Notes', 'Edit info']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> scrollup
+> sleep 1
+> long 540 1700
+> sleep 2
+> shot selection
+  [shot 025_selection] visible: ['Cover', 'Osora', 'ToniRenea', 'Ongoing', ' • ', 'Webtoons.com', 'In library', '6 days', 'Tracking', 'Similar', 'WebView', 'Prince Osora is destined to rule over the Calaveras Kingdom in a life planned out by his family since birth, when his father presented him to the kingdom as male. However, the magic-wielding race called Sergos has a different plan for Osora: to use him as collateral in war with the humans. Bound by what others force him to be and trapped in a love triangle between a promised fiancée and his childhood best friend, Osora must recreate his own story. This series contains themes regarding sexuality, gender identity, homophobia, transphobia, and other prejudices.', 'More', 'Fantasy', '126 chapters', 'Newest', 'Filter', 'New chapters usually every Thursday', '126', '(S2) Chapter 126', 'UP', 'Today', 'Download', '125', '(S2) Chapter 125', '11/5/26', 'Download', '124', '(S2) Chapter 124', '10/29/26', 'Download', '123', '(S2) Chapter 123', '10/22/26', 'Download', '122', '(S2) Chapter 122', '10/15/26', 'Download', '121', '(S2) Chapter 121', '10/8/26', 'Download', 'Cancel', '1', 'Select all', 'Select inverse', 'Bookmark chapter', 'Mark as read', 'Mark previous as read', 'Download']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> tap "Filter"
+> sleep 2
+> shot chapter_filter
+  [shot 026_chapter_filter] visible: ['Filter', 'Sort', 'Display', 'More', 'Downloaded', 'Unread', 'Bookmarked', 'Scanlator']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Browse
+> sleep 2
+> tapx Sources
+> tap Webtoons.com
+> sleep 8
+> tapx Filter
+> sleep 3
+> shot src_filter
+  [shot 027_src_filter] visible: ['ALL', 'Search Type', 'Reset', 'Filter']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Browse
+> sleep 2
+> tapx Extensions
+> sleep 3
+> tapx Webtoons.com
+> sleep 3
+> shot ext_details
+  [shot 028_ext_details] visible: ['Webtoons.com', 'eu.kanade.tachiyomi.extension.all.webtoons', 'Keiyoushi', '1.6.3', 'Version', 'Multi', 'Language', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Deutsch', 'Settings', 'English', 'Settings', 'Español', 'Settings', 'Français', 'Settings', 'Indonesia', 'Settings', 'ไทย', 'Settings', '中文 (繁體中文)', 'Settings', 'Navigate up', 'Extension info', 'More options']
+  [shot 029_end] visible: ['Webtoons.com', 'eu.kanade.tachiyomi.extension.all.webtoons', 'Keiyoushi', '1.6.3', 'Version', 'Multi', 'Language', 'Uninstall', 'App info', 'Incognito mode', 'Pause reading history for extension', 'Deutsch', 'Settings', 'English', 'Settings', 'Español', 'Settings', 'Français', 'Settings', 'Indonesia', 'Settings', 'ไทย', 'Settings', '中文 (繁體中文)', 'Settings', 'Navigate up', 'Extension info', 'More options']

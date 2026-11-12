@@ -1,0 +1,242 @@
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Me
+sleep 2
+tapx "Incognito mode"
+sleep 1
+shot me_incog
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Updates
+sleep 2
+tap History
+sleep 3
+shot history
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Me
+sleep 2
+tapx "Download queue"
+sleep 2
+shot downloads
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Me
+sleep 2
+tapx Statistics
+sleep 4
+shot stats
+scrollup
+shot stats2
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Me
+sleep 2
+scrollup
+sleep 1
+shot me_tools
+scrollup
+shot me_tools2
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Me
+sleep 2
+scrollup
+scrollup
+scrollup
+tapx Settings
+sleep 2
+tapx "Library"
+sleep 2
+shot set_library
+scrollup
+shot set_library_b
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Me
+sleep 2
+scrollup
+scrollup
+scrollup
+tapx Settings
+sleep 2
+tapx "Reader"
+sleep 2
+shot set_reader
+scrollup
+shot set_reader_b
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Me
+sleep 2
+scrollup
+scrollup
+scrollup
+tapx Settings
+sleep 2
+tapx "Downloads"
+sleep 2
+shot set_downloads
+scrollup
+shot set_downloads_b
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Me
+sleep 2
+scrollup
+scrollup
+scrollup
+tapx Settings
+sleep 2
+tapx "Tracking"
+sleep 2
+shot set_tracking
+scrollup
+shot set_tracking_b
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Me
+sleep 2
+scrollup
+scrollup
+scrollup
+tapx Settings
+sleep 2
+tapx "Browse"
+sleep 2
+shot set_browse
+scrollup
+shot set_browse_b
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Me
+sleep 2
+scrollup
+scrollup
+scrollup
+tapx Settings
+sleep 2
+scrollup
+sleep 1
+tapx "Data and storage"
+sleep 2
+shot set_data
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Me
+sleep 2
+scrollup
+scrollup
+scrollup
+tapx Settings
+sleep 2
+scrollup
+sleep 1
+tapx "Security and privacy"
+sleep 2
+shot set_security
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Me
+sleep 2
+scrollup
+scrollup
+scrollup
+tapx Settings
+sleep 2
+scrollup
+sleep 1
+tapx "Advanced"
+sleep 2
+shot set_advanced
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Me
+sleep 2
+scrollup
+scrollup
+scrollup
+tapx Settings
+sleep 2
+scrollup
+sleep 1
+tapx "About"
+sleep 2
+shot set_about
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Library
+sleep 3
+tapx Osora
+sleep 6
+tapx Tracking
+sleep 3
+shot track_sheet
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Library
+sleep 3
+tapx Osora
+sleep 6
+tap "More options"
+sleep 1
+shot series_menu
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Library
+sleep 3
+tapx Osora
+sleep 6
+scrollup
+sleep 1
+long 540 1700
+sleep 2
+shot selection
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Library
+sleep 3
+tapx Osora
+sleep 6
+tap "Filter"
+sleep 2
+shot chapter_filter
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Browse
+sleep 2
+tapx Sources
+tap Webtoons.com
+sleep 8
+tapx Filter
+sleep 3
+shot src_filter
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 6
+tapx Browse
+sleep 2
+tapx Extensions
+sleep 3
+tapx Webtoons.com
+sleep 3
+shot ext_details
