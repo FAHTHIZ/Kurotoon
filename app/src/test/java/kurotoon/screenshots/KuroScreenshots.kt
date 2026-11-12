@@ -769,6 +769,7 @@ class KuroScreenshots {
                 selectedIndex = 0,
                 onSelect = {},
             )
+            tachiyomi.presentation.core.components.TextItem(label = "Author", value = "", onChange = {})
             tachiyomi.presentation.core.components.SelectItem(
                 label = "Genre",
                 options = Array(20) { "Genre $it" },
