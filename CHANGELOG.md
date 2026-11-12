@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Changed
+- Between episodes the reader shows a calm "Up next" card instead of plain text, and dialogs with tabs use the same segmented pill tabs as the rest of the app
 - **New look**: Plus Jakarta Sans throughout, a deeper ink-black palette with a brighter crimson accent, and rounder shapes
 - The bottom bar is now a floating dock; the current tab sits in a solid crimson pill
 - Home: the top pick is a full-bleed artwork card with tags and Read now, popular rows show rank numerals 1–10, and shelf headers are bolder with a pill See all
