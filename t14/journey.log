@@ -1,0 +1,33 @@
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Browse
+> sleep 2
+> tapx Migrate
+> sleep 2
+> tapx Webtoons.com
+> sleep 3
+> shot migrate_list
+  [shot 001_migrate_list] visible: ['Osora', 'ToniRenea', 'Navigate up', 'Webtoons.com']
+> tapx Osora
+> sleep 2
+> shot migrate_selected
+  [shot 002_migrate_selected] visible: ['Osora', 'ToniRenea', 'Navigate up', 'Webtoons.com']
+> tapx Continue
+  !! not found: Continue
+  [shot 003_notfound] visible: ['Osora', 'ToniRenea', 'Navigate up', 'Webtoons.com']
+> sleep 3
+> shot migrate_config
+  [shot 004_migrate_config] visible: ['Osora', 'ToniRenea', 'Navigate up', 'Webtoons.com']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 6
+> tapx Library
+> sleep 3
+> tapx Osora
+> sleep 6
+> tap "More options"
+> sleep 1
+> shot series_menu
+  [shot 005_series_menu] visible: ['Refresh', 'Edit categories', 'Migrate', 'Share', 'Notes', 'Edit info']
+  [shot 006_end] visible: ['Refresh', 'Edit categories', 'Migrate', 'Share', 'Notes', 'Edit info']
