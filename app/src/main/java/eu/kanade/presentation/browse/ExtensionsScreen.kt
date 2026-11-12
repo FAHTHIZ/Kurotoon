@@ -438,8 +438,9 @@ private fun ExtensionItemIcon(
     ) {
         val idle = installStep.isCompleted()
         if (!idle) {
-            CircularProgressIndicator(
-                modifier = Modifier.size(48.dp),
+            tachiyomi.presentation.core.components.KuroSpinner(
+                modifier = Modifier,
+                size = 48.dp,
                 strokeWidth = 2.dp,
             )
         }

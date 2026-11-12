@@ -49,7 +49,7 @@ fun CombinedCircularProgressIndicator(
     ) { indeterminate ->
         if (indeterminate) {
             // Indeterminate
-            CircularProgressIndicator()
+            KuroSpinner()
         } else {
             // Determinate
             val infiniteTransition = rememberInfiniteTransition(label = "infiniteRotation")
@@ -70,6 +70,8 @@ fun CombinedCircularProgressIndicator(
             CircularProgressIndicator(
                 progress = { animatedProgress },
                 modifier = Modifier.rotate(rotation),
+                strokeCap = androidx.compose.ui.graphics.StrokeCap.Round,
+                trackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.14f),
             )
         }
     }
