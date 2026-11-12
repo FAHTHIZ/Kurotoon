@@ -6,7 +6,6 @@ import android.content.Intent
 import android.provider.Settings
 import android.webkit.WebStorage
 import android.webkit.WebView
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -50,6 +49,7 @@ import eu.kanade.tachiyomi.util.system.workManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kurotoon.ui.KuroAlertDialog
 import logcat.LogPriority
 import mihon.app.di.appGraph
 import okhttp3.Headers
@@ -365,7 +365,7 @@ object SettingsAdvancedScreen : SearchableSettings {
 
         if (shizukuMissing) {
             val dismiss = { shizukuMissing = false }
-            AlertDialog(
+            KuroAlertDialog(
                 onDismissRequest = dismiss,
                 title = { Text(text = stringResource(MR.strings.ext_installer_shizuku)) },
                 text = { Text(text = stringResource(MR.strings.ext_installer_shizuku_unavailable_dialog)) },

@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -17,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.StringResource
 import eu.kanade.tachiyomi.extension.model.Extension
+import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -61,7 +61,7 @@ fun ExtensionSortDialog(
     onSelect: (ExtensionSort) -> Unit,
     onDismissRequest: () -> Unit,
 ) {
-    AlertDialog(
+    KuroAlertDialog(
         onDismissRequest = onDismissRequest,
         title = { Text(stringResource(MR.strings.kurotoon_extensions_sort)) },
         text = {

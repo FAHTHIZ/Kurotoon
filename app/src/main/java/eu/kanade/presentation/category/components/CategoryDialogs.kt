@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -27,6 +26,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import eu.kanade.core.preference.asToggleableState
 import eu.kanade.presentation.category.visualName
+import kurotoon.ui.KuroAlertDialog
 import tachiyomi.core.common.preference.CheckboxState
 import tachiyomi.domain.category.model.Category
 import tachiyomi.i18n.MR
@@ -44,7 +44,7 @@ fun CategoryCreateDialog(
     val focusRequester = remember { FocusRequester() }
     val nameAlreadyExists = remember(name) { categories.contains(name) }
 
-    AlertDialog(
+    KuroAlertDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             TextButton(
@@ -106,7 +106,7 @@ fun CategoryRenameDialog(
     val focusRequester = remember { FocusRequester() }
     val nameAlreadyExists = remember(name) { categories.contains(name) }
 
-    AlertDialog(
+    KuroAlertDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             TextButton(
@@ -161,7 +161,7 @@ fun CategoryDeleteDialog(
     onDelete: () -> Unit,
     category: String,
 ) {
-    AlertDialog(
+    KuroAlertDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             TextButton(onClick = {
@@ -193,7 +193,7 @@ fun ChangeCategoryDialog(
     onConfirm: (List<Long>, List<Long>) -> Unit,
 ) {
     if (initialSelection.isEmpty()) {
-        AlertDialog(
+        KuroAlertDialog(
             onDismissRequest = onDismissRequest,
             confirmButton = {
                 tachiyomi.presentation.core.components.material.TextButton(
@@ -215,7 +215,7 @@ fun ChangeCategoryDialog(
         return
     }
     var selection by remember { mutableStateOf(initialSelection) }
-    AlertDialog(
+    KuroAlertDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             Row {

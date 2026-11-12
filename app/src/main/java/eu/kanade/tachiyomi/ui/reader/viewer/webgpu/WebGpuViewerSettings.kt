@@ -11,7 +11,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -48,6 +47,7 @@ import eu.kanade.tachiyomi.ui.reader.setting.ReaderSettingsViewModel
 import eu.kanade.tachiyomi.ui.reader.setting.ReadingMode
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
+import kurotoon.ui.KuroAlertDialog
 import logcat.LogPriority
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Add
@@ -329,7 +329,7 @@ private fun rememberShaderPicker(pref: Preference<List<WebGpuShader>>, sampler: 
     }
 
     error?.let { message ->
-        AlertDialog(
+        KuroAlertDialog(
             onDismissRequest = { error = null },
             confirmButton = {
                 TextButton(onClick = { error = null }) {

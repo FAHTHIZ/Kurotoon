@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -30,6 +29,7 @@ import eu.kanade.presentation.browse.components.SourceIcon
 import eu.kanade.tachiyomi.ui.browse.source.SourcesViewModel
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceViewModel.Listing
 import eu.kanade.tachiyomi.util.system.LocaleHelper
+import kurotoon.ui.KuroAlertDialog
 import kurotoon.ui.KuroSectionHeader
 import kurotoon.ui.browse.SourceFilterField
 import kurotoon.ui.browse.UniversalSearchCard
@@ -282,7 +282,7 @@ fun SourceOptionsDialog(
     onClickDisable: () -> Unit,
     onDismiss: () -> Unit,
 ) {
-    AlertDialog(
+    KuroAlertDialog(
         title = {
             Text(text = source.visualName)
         },

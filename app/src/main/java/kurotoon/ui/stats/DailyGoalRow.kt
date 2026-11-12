@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
@@ -33,6 +32,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -123,7 +123,7 @@ private val GOAL_OPTIONS = listOf(0, 1, 2, 3, 5, 10, 20)
 @Composable
 private fun GoalPicker(current: Int, onDismiss: () -> Unit, onPick: (Int) -> Unit) {
     var selected by remember { mutableStateOf(current) }
-    AlertDialog(
+    KuroAlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(MR.strings.kurotoon_goal_title)) },
         text = {

@@ -1,9 +1,9 @@
 package eu.kanade.presentation.browse.components
 
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import kurotoon.ui.KuroAlertDialog
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
@@ -14,7 +14,7 @@ fun RemoveMangaDialog(
     onConfirm: () -> Unit,
     mangaToRemove: Manga,
 ) {
-    AlertDialog(
+    KuroAlertDialog(
         onDismissRequest = onDismissRequest,
         dismissButton = {
             TextButton(onClick = onDismissRequest) {

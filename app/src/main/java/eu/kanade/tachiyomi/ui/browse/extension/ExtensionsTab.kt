@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.ui.browse.extension
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -24,6 +23,7 @@ import eu.kanade.tachiyomi.ui.webview.WebViewScreen
 import eu.kanade.tachiyomi.util.system.AuthenticatorUtil.authenticate
 import eu.kanade.tachiyomi.util.system.isPackageInstalled
 import kotlinx.coroutines.launch
+import kurotoon.ui.KuroAlertDialog
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
@@ -141,7 +141,7 @@ private fun ExtensionUninstallConfirmation(
     onClickConfirm: () -> Unit,
     onDismissRequest: () -> Unit,
 ) {
-    AlertDialog(
+    KuroAlertDialog(
         title = {
             Text(text = stringResource(MR.strings.ext_confirm_remove))
         },

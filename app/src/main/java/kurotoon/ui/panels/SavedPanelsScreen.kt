@@ -15,7 +15,6 @@ import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -43,6 +42,7 @@ import eu.kanade.presentation.util.Screen
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import kurotoon.panels.SavedPanel
 import kurotoon.panels.SavedPanels
+import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
@@ -102,7 +102,7 @@ class SavedPanelsScreen : Screen() {
         }
 
         removing?.let { panel ->
-            AlertDialog(
+            KuroAlertDialog(
                 onDismissRequest = { removing = null },
                 title = { Text(stringResource(MR.strings.kurotoon_panels_remove)) },
                 text = { Text("${panel.mangaTitle} · ${panel.chapterName}") },
