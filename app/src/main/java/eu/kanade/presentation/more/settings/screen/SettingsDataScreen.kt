@@ -69,7 +69,7 @@ import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.storage.service.StoragePreferences
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroCheckbox
-import tachiyomi.presentation.core.components.material.TextButton
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.util.collectAsState
 
@@ -474,7 +474,7 @@ object SettingsDataScreen : SearchableSettings {
                 }
             },
             confirmButton = {
-                TextButton(
+                KuroTextButton(
                     onClick = {
                         onConfirm(
                             ExportOptions(
@@ -490,7 +490,7 @@ object SettingsDataScreen : SearchableSettings {
                 }
             },
             dismissButton = {
-                TextButton(onClick = onDismissRequest) {
+                KuroTextButton(onClick = onDismissRequest) {
                     Text(text = stringResource(MR.strings.action_cancel))
                 }
             },

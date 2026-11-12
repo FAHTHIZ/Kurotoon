@@ -15,7 +15,6 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroRadioButton
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 
 /** Today's chapters against the daily goal, as a ring. Tap to change or set the goal. */
@@ -150,10 +150,10 @@ private fun GoalPicker(current: Int, onDismiss: () -> Unit, onPick: (Int) -> Uni
             }
         },
         confirmButton = {
-            TextButton(onClick = { onPick(selected) }) { Text(stringResource(MR.strings.action_ok)) }
+            KuroTextButton(onClick = { onPick(selected) }) { Text(stringResource(MR.strings.action_ok)) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(MR.strings.action_cancel)) }
+            KuroTextButton(onClick = onDismiss) { Text(stringResource(MR.strings.action_cancel)) }
         },
     )
 }

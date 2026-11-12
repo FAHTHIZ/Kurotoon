@@ -5,7 +5,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
@@ -13,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import kurotoon.library.OrphanDownloads
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.pluralStringResource
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -39,12 +39,12 @@ fun OrphanDownloadsDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = onConfirm) {
+            KuroTextButton(onClick = onConfirm) {
                 Text(stringResource(MR.strings.kurotoon_orphans_confirm), color = MaterialTheme.colorScheme.error)
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(MR.strings.action_cancel)) }
+            KuroTextButton(onClick = onDismiss) { Text(stringResource(MR.strings.action_cancel)) }
         },
     )
 }

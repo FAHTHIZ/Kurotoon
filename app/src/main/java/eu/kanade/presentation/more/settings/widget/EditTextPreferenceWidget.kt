@@ -5,7 +5,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,6 +22,7 @@ import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.roundedfilled.Cancel
 import mihon.icons.materialsymbols.roundedfilled.Error
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 
 @Composable
@@ -73,7 +73,7 @@ fun EditTextPreferenceWidget(
                 usePlatformDefaultWidth = true,
             ),
             confirmButton = {
-                TextButton(
+                KuroTextButton(
                     enabled = textFieldValue.text != value && textFieldValue.text.isNotBlank(),
                     onClick = {
                         scope.launch {
@@ -87,7 +87,7 @@ fun EditTextPreferenceWidget(
                 }
             },
             dismissButton = {
-                TextButton(onClick = onDismissRequest) {
+                KuroTextButton(onClick = onDismissRequest) {
                     Text(text = stringResource(MR.strings.action_cancel))
                 }
             },

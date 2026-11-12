@@ -7,7 +7,6 @@ import android.provider.Settings
 import android.webkit.WebStorage
 import android.webkit.WebView
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.getValue
@@ -56,6 +55,7 @@ import okhttp3.Headers
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.library.service.LibraryPreferences
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.util.collectAsState
 import java.io.File
@@ -370,12 +370,12 @@ object SettingsAdvancedScreen : SearchableSettings {
                 title = { Text(text = stringResource(MR.strings.ext_installer_shizuku)) },
                 text = { Text(text = stringResource(MR.strings.ext_installer_shizuku_unavailable_dialog)) },
                 dismissButton = {
-                    TextButton(onClick = dismiss) {
+                    KuroTextButton(onClick = dismiss) {
                         Text(text = stringResource(MR.strings.action_cancel))
                     }
                 },
                 confirmButton = {
-                    TextButton(
+                    KuroTextButton(
                         onClick = {
                             dismiss()
                             uriHandler.openUri("https://shizuku.rikka.app/download")

@@ -16,7 +16,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -67,6 +66,7 @@ import tachiyomi.presentation.core.components.HeadingItem
 import tachiyomi.presentation.core.components.SettingsChipRow
 import tachiyomi.presentation.core.components.SettingsItemsPaddings
 import tachiyomi.presentation.core.components.SliderItem
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.util.collectAsState
@@ -332,7 +332,7 @@ private fun rememberShaderPicker(pref: Preference<List<WebGpuShader>>, sampler: 
         KuroAlertDialog(
             onDismissRequest = { error = null },
             confirmButton = {
-                TextButton(onClick = { error = null }) {
+                KuroTextButton(onClick = { error = null }) {
                     Text(stringResource(MR.strings.action_ok))
                 }
             },
@@ -377,7 +377,7 @@ private fun SamplerItem(labelRes: StringResource, defaultName: String, pref: Pre
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
-        TextButton(onClick = pick) {
+        KuroTextButton(onClick = pick) {
             Text(stringResource(MR.strings.action_choose_shader))
         }
         shader?.let {
@@ -462,7 +462,7 @@ private fun ShaderList(labelRes: StringResource, pref: Preference<List<WebGpuSha
             }
         }
     }
-    TextButton(
+    KuroTextButton(
         onClick = pick,
         modifier = Modifier.padding(horizontal = SettingsItemsPaddings.Horizontal - MaterialTheme.padding.small),
     ) {

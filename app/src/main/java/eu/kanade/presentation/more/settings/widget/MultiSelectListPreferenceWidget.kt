@@ -3,7 +3,6 @@ package eu.kanade.presentation.more.settings.widget
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,6 +15,7 @@ import androidx.compose.ui.window.DialogProperties
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.LabeledCheckbox
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 
 @Composable
@@ -91,7 +91,7 @@ fun <T> MultiSelectListPreferenceDialog(
             usePlatformDefaultWidth = true,
         ),
         confirmButton = {
-            TextButton(
+            KuroTextButton(
                 onClick = {
                     // Values without an entry stay, as they can't be unselected here
                     onValuesChange(values.filterNot { it in entries.keys }.toMutableSet().apply { addAll(selected) })
@@ -102,7 +102,7 @@ fun <T> MultiSelectListPreferenceDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.action_cancel))
             }
         },

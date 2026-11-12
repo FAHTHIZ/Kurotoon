@@ -26,7 +26,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -74,6 +73,7 @@ import mihon.icons.materialsymbols.rounded.VerifiedUser
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.FastScrollLazyColumn
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.PullRefresh
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.components.material.topSmallPaddingValues
@@ -683,7 +683,7 @@ private fun ExtensionNotLoadedDialog(
                     )
 
                     val context = LocalContext.current
-                    TextButton(
+                    KuroTextButton(
                         onClick = {
                             context.copyToClipboard(
                                 label = context.stringResource(MR.strings.ext_copy_stacktrace),
@@ -698,12 +698,12 @@ private fun ExtensionNotLoadedDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.action_ok))
             }
         },
         dismissButton = {
-            TextButton(onClick = onClickUninstall) {
+            KuroTextButton(onClick = onClickUninstall) {
                 Text(text = stringResource(MR.strings.ext_uninstall))
             }
         },
@@ -725,12 +725,12 @@ private fun ExtensionTrustDialog(
             Text(text = stringResource(MR.strings.untrusted_extension_message))
         },
         confirmButton = {
-            TextButton(onClick = onClickConfirm) {
+            KuroTextButton(onClick = onClickConfirm) {
                 Text(text = stringResource(MR.strings.ext_trust))
             }
         },
         dismissButton = {
-            TextButton(onClick = onClickDismiss) {
+            KuroTextButton(onClick = onClickDismiss) {
                 Text(text = stringResource(MR.strings.ext_uninstall))
             }
         },

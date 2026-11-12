@@ -7,7 +7,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -26,6 +25,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 
 /**
@@ -92,12 +92,12 @@ private fun GoToPageDialog(currentPage: Int, totalPages: Int, onDismiss: () -> U
             )
         },
         confirmButton = {
-            TextButton(enabled = valid, onClick = { onGoTo(page!!) }) {
+            KuroTextButton(enabled = valid, onClick = { onGoTo(page!!) }) {
                 Text(stringResource(MR.strings.kurotoon_reader_goToPageAction))
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(MR.strings.action_cancel)) }
+            KuroTextButton(onClick = onDismiss) { Text(stringResource(MR.strings.action_cancel)) }
         },
     )
 }

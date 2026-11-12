@@ -1,10 +1,10 @@
 package mihon.feature.migration.list.components
 
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 
 @Composable
@@ -18,12 +18,12 @@ fun MigrationExitDialog(
             Text(text = stringResource(MR.strings.migrationListScreen_exitDialogTitle))
         },
         confirmButton = {
-            TextButton(onClick = exitMigration) {
+            KuroTextButton(onClick = exitMigration) {
                 Text(text = stringResource(MR.strings.migrationListScreen_exitDialog_stopLabel))
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.migrationListScreen_exitDialog_cancelLabel))
             }
         },

@@ -13,7 +13,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,6 +31,7 @@ import mihon.icons.materialsymbols.rounded.Bookmark
 import mihon.icons.materialsymbols.rounded.BookmarkAdd
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroSwitch
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 
 /**
@@ -151,18 +151,18 @@ fun SavedSearchDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = { onConfirm(name.trim(), onHome) }, enabled = name.isNotBlank()) {
+            KuroTextButton(onClick = { onConfirm(name.trim(), onHome) }, enabled = name.isNotBlank()) {
                 Text(stringResource(MR.strings.action_save))
             }
         },
         dismissButton = {
             Row {
                 if (onDelete != null) {
-                    TextButton(onClick = onDelete) {
+                    KuroTextButton(onClick = onDelete) {
                         Text(stringResource(MR.strings.action_delete), color = MaterialTheme.colorScheme.error)
                     }
                 }
-                TextButton(onClick = onDismiss) { Text(stringResource(MR.strings.action_cancel)) }
+                KuroTextButton(onClick = onDismiss) { Text(stringResource(MR.strings.action_cancel)) }
             }
         },
     )

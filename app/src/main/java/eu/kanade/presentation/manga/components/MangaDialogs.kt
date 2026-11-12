@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -25,6 +24,7 @@ import kurotoon.ui.KuroAlertDialog
 import tachiyomi.domain.manga.interactor.FetchInterval
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.WheelTextPicker
+import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.pluralStringResource
 import tachiyomi.presentation.core.i18n.stringResource
@@ -40,12 +40,12 @@ fun DeleteChaptersDialog(
     KuroAlertDialog(
         onDismissRequest = onDismissRequest,
         dismissButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.action_cancel))
             }
         },
         confirmButton = {
-            TextButton(
+            KuroTextButton(
                 onClick = {
                     onDismissRequest()
                     onConfirm()
@@ -137,12 +137,12 @@ fun SetIntervalDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismissRequest) {
+            KuroTextButton(onClick = onDismissRequest) {
                 Text(text = stringResource(MR.strings.action_cancel))
             }
         },
         confirmButton = {
-            TextButton(onClick = {
+            KuroTextButton(onClick = {
                 onValueChanged?.invoke(selectedInterval)
                 onDismissRequest()
             }) {
