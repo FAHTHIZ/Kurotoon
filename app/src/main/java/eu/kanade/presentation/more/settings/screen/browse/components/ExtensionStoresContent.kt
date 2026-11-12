@@ -98,7 +98,7 @@ private fun ExtensionStoresListItem(
                 },
                 modifier = Modifier.padding(start = MaterialTheme.padding.medium).weight(1f),
             )
-            androidx.compose.material3.Switch(
+            tachiyomi.presentation.core.components.material.KuroSwitch(
                 checked = enabled,
                 onCheckedChange = { onToggleEnabled() },
             )

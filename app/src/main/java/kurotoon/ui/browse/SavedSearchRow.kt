@@ -12,7 +12,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -32,6 +31,7 @@ import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Bookmark
 import mihon.icons.materialsymbols.rounded.BookmarkAdd
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroSwitch
 import tachiyomi.presentation.core.i18n.stringResource
 
 /**
@@ -146,7 +146,7 @@ fun SavedSearchDialog(
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
-                    Switch(checked = onHome, onCheckedChange = { onHome = it })
+                    KuroSwitch(checked = onHome, onCheckedChange = { onHome = it })
                 }
             }
         },

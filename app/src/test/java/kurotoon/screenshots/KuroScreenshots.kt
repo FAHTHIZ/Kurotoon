@@ -847,6 +847,24 @@ class KuroScreenshots {
     }
 
     @Test
+    fun controls() = shot("controls") {
+        androidx.compose.foundation.layout.Row(
+            modifier = Modifier.padding(16.dp),
+            horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(16.dp),
+            verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
+        ) {
+            tachiyomi.presentation.core.components.material.KuroSwitch(checked = true, onCheckedChange = {})
+            tachiyomi.presentation.core.components.material.KuroSwitch(checked = false, onCheckedChange = {})
+            tachiyomi.presentation.core.components.material.KuroSwitch(
+                checked = true,
+                onCheckedChange = null,
+                enabled = false,
+            )
+            tachiyomi.presentation.core.components.KuroSpinner()
+        }
+    }
+
+    @Test
     fun readerChrome() = shot("reader_chrome") {
         Column(
             modifier = Modifier.background(androidx.compose.ui.graphics.Color(0xFF2A2A30)).padding(vertical = 16.dp),

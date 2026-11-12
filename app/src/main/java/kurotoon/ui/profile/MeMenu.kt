@@ -19,7 +19,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -40,6 +39,7 @@ import kurotoon.ui.kuroCard
 import kurotoon.ui.kuroPopOn
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.KeyboardArrowRight
+import tachiyomi.presentation.core.components.material.KuroSwitch
 
 /**
  * A large on/off tile for the Me tab's session modes (Downloaded only, Incognito). Lights up with the
@@ -113,7 +113,7 @@ fun MeModeTile(
                 )
             }
             Box(Modifier.weight(1f))
-            Switch(
+            KuroSwitch(
                 checked = checked,
                 onCheckedChange = onCheckedChange,
                 modifier = Modifier.graphicsLayer {
