@@ -20,7 +20,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.VerticalDivider
@@ -59,6 +58,7 @@ import mihon.icons.materialsymbols.rounded.Eyeglasses2
 import mihon.icons.materialsymbols.rounded.Settings
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.ScrollbarLazyColumn
+import tachiyomi.presentation.core.components.material.KuroSwitch
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
@@ -354,7 +354,7 @@ private fun DetailsHeader(
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Switch(
+                    KuroSwitch(
                         checked = extIncognitoMode,
                         onCheckedChange = onExtIncognitoChange,
                         modifier = Modifier.padding(start = TrailingWidgetBuffer),
@@ -443,7 +443,7 @@ private fun SourceSwitchPreference(
                     }
                 }
 
-                Switch(
+                KuroSwitch(
                     checked = source.enabled,
                     onCheckedChange = null,
                     modifier = Modifier.padding(start = TrailingWidgetBuffer),

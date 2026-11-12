@@ -9,6 +9,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Browse › Tags: every tag your installed sources offer in one searchable page, by most sources or A–Z, with how many sources carry each and your library's tags on top. Tap a tag to browse it on every source; long-press to search titles with it or hide it everywhere
 
 ### Changed
+- Every on/off switch (settings, filters, extension stores, migration options, onboarding) is a KuroToon pill switch with a springy round knob
 - Loading spinners across the app (full-screen loads, browse paging, chapter transitions, migration, extension installs) are a KuroToon accent arc with round ends that breathes as it turns
 - Every confirmation and choice dialog (delete, migrate, categories, settings lists, extension stores and the rest) is a KuroToon card: rounded ink panel with a faint edge, accent icon disc, bold title and actions in a wrapping row
 - Reader: a page still downloading shows an accent ring on a dark glass disc with the percentage inside, instead of the stock spinner
