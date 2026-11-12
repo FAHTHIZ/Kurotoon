@@ -19,7 +19,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,6 +39,7 @@ import eu.kanade.presentation.manga.components.MangaCover
 import eu.kanade.presentation.util.formatChapterNumber
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kurotoon.ui.KuroSnackbarHost
 import kurotoon.ui.KuroTip
 import kurotoon.ui.KuroTopBar
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -84,7 +84,7 @@ fun KuroHomeContent(
     var refreshing by remember { mutableStateOf(false) }
     Scaffold(
         topBar = { KuroTopBar(onSearchClick = onSearchClick) },
-        snackbarHost = { SnackbarHost(snackbarHostState) },
+        snackbarHost = { KuroSnackbarHost(snackbarHostState) },
     ) { contentPadding ->
         PullRefresh(
             refreshing = refreshing,

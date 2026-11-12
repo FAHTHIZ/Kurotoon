@@ -27,7 +27,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SmallExtendedFloatingActionButton
-import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.animateFloatingActionButton
@@ -70,6 +69,7 @@ import eu.kanade.tachiyomi.ui.manga.MangaViewModel
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import kurotoon.catalogue.TagAction
 import kurotoon.manga.ChapterTitles
+import kurotoon.ui.KuroSnackbarHost
 import kurotoon.ui.manga.JumpToChapterButton
 import kurotoon.ui.manga.MergedChaptersCard
 import mihon.icons.materialsymbols.MaterialSymbols
@@ -349,7 +349,7 @@ private fun MangaScreenSmallImpl(
                 fillFraction = 1f,
             )
         },
-        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
+        snackbarHost = { KuroSnackbarHost(snackbarHostState) },
         floatingActionButton = {
             val isFABVisible = (state.hasUnreadChapters || state.lastOpenedIsRereading) && !isAnySelected
             // Side by side so the jump button never sits over the episode download buttons
@@ -614,7 +614,7 @@ fun MangaScreenLargeImpl(
                     .wrapContentWidth(Alignment.End),
             )
         },
-        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
+        snackbarHost = { KuroSnackbarHost(snackbarHostState) },
         floatingActionButton = {
             val isFABVisible = (state.hasUnreadChapters || state.lastOpenedIsRereading) && !isAnySelected
             // Side by side so the jump button never sits over the episode download buttons

@@ -847,6 +847,21 @@ class KuroScreenshots {
     }
 
     @Test
+    fun snackbar() = shot("snackbar") {
+        val data = object : androidx.compose.material3.SnackbarData {
+            override val visuals = object : androidx.compose.material3.SnackbarVisuals {
+                override val message = "3 series hidden from this source"
+                override val actionLabel = "Undo"
+                override val withDismissAction = false
+                override val duration = androidx.compose.material3.SnackbarDuration.Long
+            }
+            override fun performAction() = Unit
+            override fun dismiss() = Unit
+        }
+        kurotoon.ui.KuroSnackbar(data)
+    }
+
+    @Test
     fun controls() = shot("controls") {
         androidx.compose.foundation.layout.Row(
             modifier = Modifier.padding(16.dp),
