@@ -3,7 +3,6 @@ package kurotoon.reader
 import android.content.Context
 import android.content.ContextWrapper
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,6 +17,8 @@ import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Favorite
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroButton
+import tachiyomi.presentation.core.components.material.KuroButtonStyle
 import tachiyomi.presentation.core.i18n.stringResource
 
 /**
@@ -31,7 +32,8 @@ fun AddToLibraryPrompt(onButtonPressChange: (Boolean) -> Unit) {
     val state by activity.viewModel.state.collectAsState()
     val manga = state.manga ?: return
     if (manga.favorite || manga.source == LOCAL_SOURCE_ID) return
-    FilledTonalButton(
+    KuroButton(
+        style = KuroButtonStyle.Tonal,
         onClick = activity.viewModel::addToLibrary,
         modifier = Modifier
             .padding(top = 20.dp)

@@ -28,13 +28,11 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -82,6 +80,8 @@ import mihon.icons.materialsymbols.rounded.Share
 import mihon.icons.materialsymbols.rounded.UploadFile
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroButton
+import tachiyomi.presentation.core.components.material.KuroButtonStyle
 import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
@@ -451,11 +451,11 @@ private fun ItemSheet(
             .fillMaxWidth()
             .height(52.dp)
         if (inUse) {
-            OutlinedButton(onClick = onStopUsing, modifier = buttonModifier) {
+            KuroButton(style = KuroButtonStyle.Outlined, onClick = onStopUsing, modifier = buttonModifier) {
                 Text(stringResource(MR.strings.kurotoon_collection_stopUsing))
             }
         } else {
-            Button(
+            KuroButton(
                 onClick = {
                     haptics.performHapticFeedback(HapticFeedbackType.Confirm)
                     onUse()

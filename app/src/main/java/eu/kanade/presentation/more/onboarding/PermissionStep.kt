@@ -16,7 +16,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -40,6 +39,8 @@ import mihon.app.di.appGraph
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Check
 import tachiyomi.i18n.MR
+import tachiyomi.presentation.core.components.material.KuroButton
+import tachiyomi.presentation.core.components.material.KuroButtonStyle
 import tachiyomi.presentation.core.components.material.KuroSwitch
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.util.collectAsState
@@ -155,7 +156,8 @@ internal class PermissionStep : OnboardingStep {
         ListItem(
             modifier = modifier,
             trailingContent = {
-                OutlinedButton(
+                KuroButton(
+                    style = KuroButtonStyle.Outlined,
                     enabled = !granted,
                     onClick = onButtonClick,
                 ) {

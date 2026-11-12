@@ -14,12 +14,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
@@ -57,6 +55,8 @@ import mihon.icons.materialsymbols.rounded.Eyeglasses2
 import mihon.icons.materialsymbols.rounded.Settings
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.ScrollbarLazyColumn
+import tachiyomi.presentation.core.components.material.KuroButton
+import tachiyomi.presentation.core.components.material.KuroButtonStyle
 import tachiyomi.presentation.core.components.material.KuroSwitch
 import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.Scaffold
@@ -328,7 +328,8 @@ private fun DetailsHeader(
                 .padding(top = MaterialTheme.padding.small),
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.medium),
         ) {
-            OutlinedButton(
+            KuroButton(
+                style = KuroButtonStyle.Outlined,
                 modifier = Modifier.weight(1f),
                 onClick = onClickUninstall,
             ) {
@@ -336,7 +337,7 @@ private fun DetailsHeader(
             }
 
             if (onClickAppInfo != null) {
-                Button(
+                KuroButton(
                     modifier = Modifier.weight(1f),
                     onClick = onClickAppInfo,
                 ) {

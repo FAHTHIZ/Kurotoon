@@ -19,7 +19,6 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -54,6 +53,8 @@ import mihon.icons.materialsymbols.roundedfilled.Bookmark
 import tachiyomi.domain.updates.model.UpdatesWithRelations
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.DISABLED_ALPHA
+import tachiyomi.presentation.core.components.material.KuroButton
+import tachiyomi.presentation.core.components.material.KuroButtonStyle
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.util.selectedBackground
@@ -143,7 +144,8 @@ internal fun UpdatesLastUpdatedHeader(
             }
         }
         if (onCheckNow != null) {
-            FilledTonalButton(
+            KuroButton(
+                style = KuroButtonStyle.Tonal,
                 onClick = onCheckNow,
                 contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp),
             ) {

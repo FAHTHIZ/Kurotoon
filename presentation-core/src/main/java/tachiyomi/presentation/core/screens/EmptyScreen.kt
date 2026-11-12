@@ -21,8 +21,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -43,6 +41,8 @@ import androidx.compose.ui.util.fastForEachIndexed
 import dev.icerock.moko.resources.StringResource
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.LocalLibrary
+import tachiyomi.presentation.core.components.material.KuroButton
+import tachiyomi.presentation.core.components.material.KuroButtonStyle
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -132,12 +132,8 @@ fun EmptyScreen(
                 verticalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small),
             ) {
                 actions.fastForEachIndexed { index, it ->
-                    val colors = if (index == 0) {
-                        ButtonDefaults.buttonColors()
-                    } else {
-                        ButtonDefaults.filledTonalButtonColors()
-                    }
-                    Button(onClick = it.onClick, colors = colors) {
+                    val style = if (index == 0) KuroButtonStyle.Filled else KuroButtonStyle.Tonal
+                    KuroButton(onClick = it.onClick, style = style) {
                         Icon(
                             imageVector = it.icon,
                             contentDescription = null,
