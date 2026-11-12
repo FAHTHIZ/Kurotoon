@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
@@ -27,6 +26,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -54,6 +54,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kurotoon.ui.kuroCard
 import mihon.feature.migration.list.MigrationListScreen
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.automirroredrounded.ArrowForward
@@ -246,11 +247,12 @@ class MigrationConfigScreen(private val mangaIds: Collection<Long>) : Screen() {
             key = key(source),
             enabled = dragEnabled,
         ) { _ ->
-            ElevatedCard(
-                shape = shape,
+            androidx.compose.foundation.layout.Column(
                 modifier = Modifier
                     .padding(horizontal = MaterialTheme.padding.medium)
-                    .animateItem(),
+                    .animateItem()
+                    .kuroCard(shape = shape)
+                    .clip(shape),
             ) {
                 SourceItem(
                     source = source,
