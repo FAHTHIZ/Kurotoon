@@ -6,8 +6,7 @@ sh "appops set app.kurotoon.dev REQUEST_INSTALL_PACKAGES allow"
 start app.kurotoon.dev
 sleep 8
 shot home_empty
-view "tachiyomi://add-repo?url=https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
-sleep 4
+tapif Cancel
 start app.kurotoon.dev
 sleep 3
 tapx Browse
