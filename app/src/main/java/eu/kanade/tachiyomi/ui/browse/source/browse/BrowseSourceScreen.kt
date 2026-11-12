@@ -12,7 +12,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -54,6 +53,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kurotoon.catalogue.SavedSearches
+import kurotoon.ui.KuroSnackbarHost
 import kurotoon.ui.browse.BrowseChips
 import kurotoon.ui.browse.BrowseSort
 import kurotoon.ui.browse.FacetActions
@@ -325,7 +325,7 @@ data class BrowseSourceScreen(
                     )
                 }
             },
-            snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
+            snackbarHost = { KuroSnackbarHost(snackbarHostState) },
         ) { paddingValues ->
             androidx.compose.runtime.CompositionLocalProvider(
                 kurotoon.ui.browse.LocalBrowseSelection provides selected.keys,
