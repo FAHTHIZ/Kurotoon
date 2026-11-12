@@ -175,8 +175,16 @@ fun AppBarTitle(
 ) {
     Column(modifier = modifier) {
         title?.let {
+            // KuroToon titles: heavier and tighter than stock Material, smaller when a subtitle sits below
             Text(
                 text = it,
+                style = if (subtitle == null) {
+                    MaterialTheme.typography.titleLarge
+                } else {
+                    MaterialTheme.typography.titleMedium
+                },
+                fontWeight = FontWeight.ExtraBold,
+                letterSpacing = (-0.3).sp,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
@@ -184,7 +192,8 @@ fun AppBarTitle(
         subtitle?.let {
             Text(
                 text = it,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.basicMarquee(
