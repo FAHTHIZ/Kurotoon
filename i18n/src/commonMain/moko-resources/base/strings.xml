@@ -1677,4 +1677,5 @@
     <string name="kurotoon.tags.noMatch">No tag matches “%s”</string>
     <string name="kurotoon.tags.summary">%1$d tags from %2$d sources</string>
     <string name="kurotoon.tags.hiddenNow">%s is hidden</string>
+    <string name="kurotoon.tags.recent">Recently opened</string>
 </resources>

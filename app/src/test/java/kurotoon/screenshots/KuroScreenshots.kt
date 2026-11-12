@@ -879,6 +879,7 @@ class KuroScreenshots {
             tags = tags,
             hidden = setOf("isekai"),
             libraryTags = listOf("Murim", "Regression"),
+            recentTags = listOf("Romance", "Martial Arts"),
             sourceCount = 14,
             contentPadding = androidx.compose.foundation.layout.PaddingValues(0.dp),
             onTag = {},
