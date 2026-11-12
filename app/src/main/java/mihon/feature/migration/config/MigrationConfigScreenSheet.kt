@@ -38,7 +38,9 @@ import tachiyomi.core.common.preference.getAndSet
 import tachiyomi.core.common.preference.toggle
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Button
+import tachiyomi.presentation.core.components.material.KuroFieldShape
 import tachiyomi.presentation.core.components.material.KuroSwitch
+import tachiyomi.presentation.core.components.material.kuroFieldColors
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.theme.active
@@ -115,6 +117,8 @@ fun MigrationConfigScreenSheet(
                 )
                 MigrationSheetDividerItem()
                 OutlinedTextField(
+                    shape = KuroFieldShape,
+                    colors = kuroFieldColors(),
                     value = extraSearchQuery,
                     onValueChange = { extraSearchQuery = it },
                     label = { Text(stringResource(MR.strings.migrationConfigScreen_additionalSearchQueryLabel)) },

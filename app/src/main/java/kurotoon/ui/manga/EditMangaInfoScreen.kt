@@ -37,7 +37,9 @@ import tachiyomi.domain.manga.model.MangaRemoteUpdate
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroButton
 import tachiyomi.presentation.core.components.material.KuroButtonStyle
+import tachiyomi.presentation.core.components.material.KuroFieldShape
 import tachiyomi.presentation.core.components.material.Scaffold
+import tachiyomi.presentation.core.components.material.kuroFieldColors
 import tachiyomi.presentation.core.i18n.stringResource
 
 /**
@@ -97,6 +99,8 @@ class EditMangaInfoScreen(private val mangaId: Long) : Screen() {
                 Field(MR.strings.kurotoon_editInfo_artist, artist) { artist = it }
                 Field(MR.strings.kurotoon_editInfo_tags, tags) { tags = it }
                 OutlinedTextField(
+                    shape = KuroFieldShape,
+                    colors = kuroFieldColors(),
                     value = description,
                     onValueChange = { description = it },
                     label = { Text(stringResource(MR.strings.kurotoon_editInfo_description)) },
@@ -155,6 +159,8 @@ class EditMangaInfoScreen(private val mangaId: Long) : Screen() {
 @Composable
 private fun Field(label: dev.icerock.moko.resources.StringResource, value: String, onChange: (String) -> Unit) {
     OutlinedTextField(
+        shape = KuroFieldShape,
+        colors = kuroFieldColors(),
         value = value,
         onValueChange = onChange,
         label = { Text(stringResource(label)) },
