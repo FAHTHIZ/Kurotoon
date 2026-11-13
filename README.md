@@ -219,8 +219,8 @@ one, tap Use.
 
 ## Design
 
-KuroToon keeps Mihon's engine (sources, downloads, backups, trackers) and replaces the screens on top with its own
-design language.
+KuroToon's engine (sources, downloads, backups, trackers) grew out of Mihon and stays compatible with its extensions
+and backups; everything you see and touch is KuroToon's own design language.
 
 |                       | Principle                                                                                      |
 | --------------------- | ---------------------------------------------------------------------------------------------- |
