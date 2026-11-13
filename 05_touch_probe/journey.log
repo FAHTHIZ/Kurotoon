@@ -1,0 +1,23 @@
+> start app.kurotoon.dev
+> sleep 10
+> dumpxml onboarding
+> sh input touchscreen swipe 540 2200 540 2200 180
+
+> sleep 2
+> sh input touchscreen swipe 540 2200 540 2200 180
+
+> sleep 2
+> sh input touchscreen swipe 540 2200 540 2200 180
+
+> sleep 2
+> sh input touchscreen swipe 540 2200 540 2200 180
+
+> sleep 3
+> shot after_next
+  [shot 001_after_next] visible: []
+> dumpxml onboarding_later
+> back
+> sleep 2
+> shot home
+  [shot 002_home] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> dumpxml home

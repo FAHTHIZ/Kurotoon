@@ -1,0 +1,946 @@
+--------- beginning of main
+11-13 03:22:45.834 D/EGL_emulation( 1124): app_time_stats: avg=28835.09ms min=57.26ms max=86368.41ms count=3
+11-13 03:22:45.834 I/PermissionControllerServiceImpl(  865): Updating user sensitive for uid 10126
+11-13 03:22:45.836 I/InputReader(  583): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+--------- beginning of system
+11-13 03:22:45.837 I/Telecom (  583): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AKw
+11-13 03:22:45.838 V/MediaPlayerList( 1040): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+11-13 03:22:45.838 D/MediaPlayerList( 1040): Name of package changed: app.kurotoon.dev
+11-13 03:22:45.839 V/MediaPlayerList( 1040): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+11-13 03:22:45.839 D/MediaPlayerList( 1040): Name of package changed: app.kurotoon.dev
+11-13 03:22:45.844 W/BackupTransportManager(  583): Package app.kurotoon.dev enabled setting: 0
+11-13 03:22:45.845 D/AppWidgetServiceImpl(  583): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.UpdatesGridGlanceReceiver} won't be persisted.
+11-13 03:22:45.845 D/AppWidgetServiceImpl(  583): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.UpdatesGridCoverScreenGlanceReceiver} won't be persisted.
+11-13 03:22:45.845 D/AppWidgetServiceImpl(  583): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.ContinueReadingGlanceReceiver} won't be persisted.
+11-13 03:22:45.847 W/PackageManager(  583): Failed registering loading progress callback. Package is fully loaded.
+11-13 03:22:45.847 W/VoiceInteractionManager(  583): no available voice recognition services found for user 0
+11-13 03:22:45.847 E/system_server(  583): No package ID 7f found for ID 0x7f0801a3.
+11-13 03:22:45.847 E/system_server(  583): No package ID 7f found for ID 0x7f120434.
+11-13 03:22:45.847 E/system_server(  583): No package ID 7f found for ID 0x7f120434.
+11-13 03:22:45.847 E/system_server(  583): No package ID 7f found for ID 0x7f12009e.
+11-13 03:22:45.848 E/system_server(  583): No package ID 7f found for ID 0x7f0801a6.
+11-13 03:22:45.848 E/system_server(  583): No package ID 7f found for ID 0x7f12043e.
+11-13 03:22:45.848 E/system_server(  583): No package ID 7f found for ID 0x7f12043e.
+11-13 03:22:45.848 E/system_server(  583): No package ID 7f found for ID 0x7f12009e.
+11-13 03:22:45.848 E/system_server(  583): No package ID 7f found for ID 0x7f0801a5.
+11-13 03:22:45.848 E/system_server(  583): No package ID 7f found for ID 0x7f12043d.
+11-13 03:22:45.848 E/system_server(  583): No package ID 7f found for ID 0x7f12043d.
+11-13 03:22:45.848 E/system_server(  583): No package ID 7f found for ID 0x7f12009e.
+11-13 03:22:45.849 D/AppWidgetServiceImpl(  583): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.UpdatesGridGlanceReceiver} won't be persisted.
+11-13 03:22:45.849 D/AppWidgetServiceImpl(  583): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.UpdatesGridCoverScreenGlanceReceiver} won't be persisted.
+11-13 03:22:45.849 D/AppWidgetServiceImpl(  583): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.ContinueReadingGlanceReceiver} won't be persisted.
+11-13 03:22:45.864 D/CarrierSvcBindHelper( 1081): onPackageModified: app.kurotoon.dev
+11-13 03:22:45.864 D/CarrierSvcBindHelper( 1081): No carrier app for: 0
+11-13 03:22:45.868 D/ImsResolver( 1081): maybeAddedImsService, packageName: app.kurotoon.dev
+11-13 03:22:45.886 W/Role    (  865): Cannot get ApplicationInfo for default holder: com.google.android.contacts
+11-13 03:22:45.903 W/VoiceInteractionManager(  583): no available voice recognition services found for user 0
+--------- beginning of kernel
+11-13 03:22:46.199 I/logd    (    0): logdr: UID=2000 GID=2000 PID=2540 b tail=0 logMask=99 pid=0 start=0ns deadline=0ns
+11-13 03:22:45.954 I/system_server(  583): Background concurrent copying GC freed 193900(12MB) AllocSpace objects, 9(180KB) LOS objects, 49% free, 12MB/25MB, paused 6.092ms,34us total 174.269ms
+11-13 03:22:45.966 I/DropBoxManagerService(  583): add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-13 03:22:46.152 D/AndroidRuntime( 2546): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 03:22:46.154 I/AndroidRuntime( 2546): Using default boot image
+11-13 03:22:46.154 I/AndroidRuntime( 2546): Leaving lock profiling enabled
+11-13 03:22:46.156 I/app_process( 2546): Core platform API reporting enabled, enforcing=false
+11-13 03:22:46.233 D/app_process( 2546): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 03:22:46.233 D/app_process( 2546): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 03:22:46.237 W/app_process( 2546): Unexpected CPU variant for x86: x86_64.
+11-13 03:22:46.237 W/app_process( 2546): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 03:22:46.251 D/AndroidRuntime( 2546): Calling main entry com.android.commands.monkey.Monkey
+11-13 03:22:46.251 W/Monkey  ( 2546): args: [-p, app.kurotoon.dev, -c, android.intent.category.LAUNCHER, 1]
+11-13 03:22:46.251 W/Monkey  ( 2546):  arg: "-p"
+11-13 03:22:46.251 W/Monkey  ( 2546):  arg: "app.kurotoon.dev"
+11-13 03:22:46.251 W/Monkey  ( 2546):  arg: "-c"
+11-13 03:22:46.251 W/Monkey  ( 2546):  arg: "android.intent.category.LAUNCHER"
+11-13 03:22:46.251 W/Monkey  ( 2546):  arg: "1"
+11-13 03:22:46.252 W/Monkey  ( 2546): data="app.kurotoon.dev"
+11-13 03:22:46.252 W/Monkey  ( 2546): data="android.intent.category.LAUNCHER"
+11-13 03:22:46.258 D/CompatibilityChangeReporter(  583): Compat change id reported: 161145287; UID 2000; state: DISABLED
+11-13 03:22:46.258 W/BroadcastQueue(  583): Skipping deliver [background] BroadcastRecord{5309201 u-1 android.net.conn.CONNECTIVITY_CHANGE} to ReceiverList{ff0a8a6 2546 (unknown name)/2000/u-1 remote:bc3f10b}: process gone or crashing
+11-13 03:22:46.262 D/CompatibilityChangeReporter(  583): Compat change id reported: 161252188; UID 10126; state: ENABLED
+11-13 03:22:46.262 I/ActivityTaskManager(  583): START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=app.kurotoon.dev/eu.kanade.tachiyomi.ui.main.MainActivity} from uid 2000
+11-13 03:22:46.266 D/CompatibilityChangeReporter(  583): Compat change id reported: 194480991; UID 10126; state: ENABLED
+11-13 03:22:46.268 D/CompatibilityChangeReporter(  583): Compat change id reported: 174042980; UID 10126; state: DISABLED
+11-13 03:22:46.268 D/CompatibilityChangeReporter(  583): Compat change id reported: 184838306; UID 10126; state: DISABLED
+11-13 03:22:46.268 D/CompatibilityChangeReporter(  583): Compat change id reported: 185004937; UID 10126; state: DISABLED
+11-13 03:22:46.268 D/CompatibilityChangeReporter(  583): Compat change id reported: 181136395; UID 10126; state: DISABLED
+11-13 03:22:46.268 D/CompatibilityChangeReporter(  583): Compat change id reported: 174042936; UID 10126; state: DISABLED
+11-13 03:22:46.269 D/CompatibilityChangeReporter(  583): Compat change id reported: 197654537; UID 10126; state: ENABLED
+11-13 03:22:46.270 D/CompatibilityChangeReporter(  583): Compat change id reported: 205907456; UID 10126; state: ENABLED
+11-13 03:22:46.272 D/CompatibilityChangeReporter(  583): Compat change id reported: 194833441; UID 10126; state: ENABLED
+11-13 03:22:46.272 I/Monkey  ( 2546): Events injected: 1
+11-13 03:22:46.273 D/CompatibilityChangeReporter(  583): Compat change id reported: 135634846; UID 10126; state: DISABLED
+11-13 03:22:46.273 D/CompatibilityChangeReporter(  583): Compat change id reported: 143937733; UID 10126; state: ENABLED
+11-13 03:22:46.276 I/Monkey  ( 2546): ## Network stats: elapsed time=15ms (0ms mobile, 0ms wifi, 15ms not connected)
+11-13 03:22:46.276 I/app_process( 2546): System.exit called, status: 0
+11-13 03:22:46.276 I/AndroidRuntime( 2546): VM exiting with result code 0.
+11-13 03:22:46.295 D/SplashScreenView(  864): Build android.window.SplashScreenView{9ea6527 V.E...... ......ID 0,0-0,0}
+11-13 03:22:46.295 D/SplashScreenView(  864): Icon: view: android.widget.ImageView{6c923d4 V.ED..... ......I. 0,0-0,0 #10204dc android:id/splashscreen_icon_view} drawable: com.android.wm.shell.startingsurface.SplashscreenIconDrawableFactory$ImmobileIconDrawable@687097d size: 504
+11-13 03:22:46.295 D/SplashScreenView(  864): Branding: view: android.view.View{115072 G.ED..... ......I. 0,0-0,0 #10204db android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+11-13 03:22:46.310 D/Zygote  (  385): Forked child process 2562
+11-13 03:22:46.311 I/ActivityManager(  583): Start proc 2562:app.kurotoon.dev/u0a126 for next-top-activity {app.kurotoon.dev/eu.kanade.tachiyomi.ui.main.MainActivity}
+11-13 03:22:46.329 I/pp.kurotoon.dev( 2562): Late-enabling -Xcheck:jni
+11-13 03:22:46.375 W/pp.kurotoon.dev( 2562): Unexpected CPU variant for x86: x86_64.
+11-13 03:22:46.375 W/pp.kurotoon.dev( 2562): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 03:22:46.387 I/adbd    (  489): jdwp connection from 2562
+11-13 03:22:46.418 D/CompatibilityChangeReporter( 2562): Compat change id reported: 171979766; UID 10126; state: ENABLED
+11-13 03:22:46.426 W/ziparchive( 2562): Unable to open '/data/app/~~j5qVYt8HyUvUpDhQJd-S6Q==/app.kurotoon.dev-9G_M4-0X9wsFBcuYReW8eQ==/base.dm': No such file or directory
+11-13 03:22:46.426 W/ziparchive( 2562): Unable to open '/data/app/~~j5qVYt8HyUvUpDhQJd-S6Q==/app.kurotoon.dev-9G_M4-0X9wsFBcuYReW8eQ==/base.dm': No such file or directory
+11-13 03:22:46.532 W/Parcel  (  864): Expecting binder but got null!
+11-13 03:22:46.568 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a706b0
+11-13 03:22:46.568 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a721b0
+11-13 03:22:46.568 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a721b0
+11-13 03:22:46.568 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a706b0
+11-13 03:22:47.270 V/GraphicsEnvironment( 2562): ANGLE Developer option for 'app.kurotoon.dev' set to: 'default'
+11-13 03:22:47.270 V/GraphicsEnvironment( 2562): ANGLE GameManagerService for app.kurotoon.dev: false
+11-13 03:22:47.270 V/GraphicsEnvironment( 2562): Neither updatable production driver nor prerelease driver is supported.
+11-13 03:22:47.272 D/NetworkSecurityConfig( 2562): Using Network Security Config from resource network_security_config debugBuild: true
+11-13 03:22:47.273 D/NetworkSecurityConfig( 2562): Using Network Security Config from resource network_security_config debugBuild: true
+11-13 03:22:47.345 V/NativeCrypto( 2562): Registering org/conscrypt/NativeCrypto's 367 native methods...
+11-13 03:22:47.348 W/pp.kurotoon.dev( 2562): Accessing hidden method Ljava/security/spec/ECParameterSpec;->getCurveName()Ljava/lang/String; (unsupported, reflection, allowed)
+11-13 03:22:47.361 D/WM-WrkMgrInitializer( 2562): Initializing WorkManager with default configuration.
+11-13 03:22:47.399 D/WM-Schedulers( 2562): Created SystemJobScheduler and enabled SystemJobService
+11-13 03:22:47.401 D/WM-ForceStopRunnable( 2562): The default process name was not specified.
+11-13 03:22:47.402 D/CompatibilityChangeReporter( 2562): Compat change id reported: 183155436; UID 10126; state: ENABLED
+11-13 03:22:47.403 D/WM-ForceStopRunnable( 2562): Performing cleanup operations.
+11-13 03:22:47.408 W/pp.kurotoon.dev( 2562): Accessing hidden method Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder; (unsupported, reflection, allowed)
+11-13 03:22:47.408 D/ShizukuProvider( 2562): Initialize Sui: false
+11-13 03:22:47.431 D/CompatibilityChangeReporter( 2562): Compat change id reported: 160794467; UID 10126; state: ENABLED
+11-13 03:22:47.489 D/App     ( 2562): Migration from 0 to 41 with 8 migration(s)
+11-13 03:22:47.498 D/ContextScope( 2562): Running migration: { name = InstallationIdMigration, version = -1.0 }
+11-13 03:22:47.499 D/ContextScope( 2562): Running migration: { name = SetupLibraryUpdateMigration, version = -1.0 }
+11-13 03:22:47.499 D/ContextScope( 2562): Running migration: { name = SetupBackupCreateMigration, version = -1.0 }
+11-13 03:22:47.506 D/EGL_emulation(  864): app_time_stats: avg=13406.83ms min=13406.83ms max=13406.83ms count=1
+11-13 03:22:47.512 D/libEGL  ( 2562): loaded /vendor/lib64/egl/libEGL_emulation.so
+11-13 03:22:47.514 D/libEGL  ( 2562): loaded /vendor/lib64/egl/libGLESv1_CM_emulation.so
+11-13 03:22:47.521 D/libEGL  ( 2562): loaded /vendor/lib64/egl/libGLESv2_emulation.so
+11-13 03:22:47.530 D/App     ( 2562): Updating last version to 41
+11-13 03:22:47.555 W/PackageConfigPersister(  583): App-specific configuration not found for packageName: app.kurotoon.dev and userId: 0
+11-13 03:22:47.556 D/PackageManager(  583): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+11-13 03:22:47.556 D/PackageManager(  583): Clear ephemeral installer activity
+11-13 03:22:47.558 D/CompatibilityChangeReporter( 2562): Compat change id reported: 194532703; UID 10126; state: ENABLED
+11-13 03:22:47.558 D/WM-SystemJobScheduler( 2562): Scheduling work ID 4051d716-af02-4089-8d93-a7556f1ce30e (eu.kanade.tachiyomi.data.backup.create.BackupCreateWorker), Job ID 0
+11-13 03:22:47.558 D/CompatibilityChangeReporter(  583): Compat change id reported: 194532703; UID 10126; state: ENABLED
+11-13 03:22:47.562 D/PackageManager(  583): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+11-13 03:22:47.562 D/PackageManager(  583): Clear ephemeral installer activity
+11-13 03:22:47.562 D/WM-PackageManagerHelper( 2562): androidx.work.impl.background.systemalarm.RescheduleReceiver enabled
+11-13 03:22:47.620 W/pp.kurotoon.dev( 2562): Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (unsupported, reflection, allowed)
+11-13 03:22:47.631 D/CoreBackPreview(  583): Window{b4248f0 u0 app.kurotoon.dev/eu.kanade.tachiyomi.ui.main.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@9cc60ee, mPriority=-1}
+11-13 03:22:47.686 D/CompatibilityChangeReporter(  583): Compat change id reported: 161145287; UID 10126; state: DISABLED
+11-13 03:22:47.741 D/CompatibilityChangeReporter( 2562): Compat change id reported: 193247900; UID 10126; state: ENABLED
+11-13 03:22:47.991 W/ServiceManager(  466): Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10126 pid=0
+11-13 03:22:47.991 D/PermissionCache(  466): checking android.permission.ACCESS_SURFACE_FLINGER for uid=10126 => denied (152 us)
+11-13 03:22:47.991 W/ServiceManager(  466): Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10126 pid=2562
+11-13 03:22:47.991 D/PermissionCache(  466): checking android.permission.ACCESS_SURFACE_FLINGER for uid=10126 => denied (108 us)
+11-13 03:22:47.991 W/ServiceManager(  466): Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10126 pid=0
+11-13 03:22:47.991 W/ServiceManager(  466): Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10126 pid=2562
+11-13 03:22:47.991 D/PermissionCache(  466): checking android.permission.ROTATE_SURFACE_FLINGER for uid=10126 => denied (74 us)
+11-13 03:22:47.991 D/PermissionCache(  466): checking android.permission.ROTATE_SURFACE_FLINGER for uid=10126 => denied (128 us)
+11-13 03:22:47.991 W/ServiceManager(  466): Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10126 pid=2562
+11-13 03:22:47.991 D/PermissionCache(  466): checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10126 => denied (70 us)
+11-13 03:22:47.991 W/ServiceManager(  466): Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10126 pid=0
+11-13 03:22:47.991 D/PermissionCache(  466): checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10126 => denied (92 us)
+11-13 03:22:48.011 D/HostConnection( 2562): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+11-13 03:22:48.017 W/pp.kurotoon.dev( 2562): Accessing hidden method Landroid/os/SystemProperties;->addChangeCallback(Ljava/lang/Runnable;)V (unsupported, reflection, allowed)
+11-13 03:22:48.024 W/OpenGLRenderer( 2562): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+11-13 03:22:48.028 D/EGL_emulation( 2562): eglCreateContext: 0x7b558ce14c50: maj 3 min 0 rcv 3
+11-13 03:22:48.031 D/EGL_emulation( 2562): eglMakeCurrent: 0x7b558ce14c50: ver 3 0 (tinfo 0x7b57c04e1080) (first time)
+11-13 03:22:48.050 I/hwservicemanager(  233): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-13 03:22:48.050 I/Gralloc4( 2562): mapper 4.x is not supported
+11-13 03:22:48.064 I/hwservicemanager(  233): getTransport: Cannot find entry android.hardware.graphics.allocator@4.0::IAllocator/default in either framework or device VINTF manifest.
+11-13 03:22:48.066 I/servicemanager(  232): Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+11-13 03:22:48.069 W/Gralloc4( 2562): allocator 4.x is not supported
+11-13 03:22:48.085 D/HostConnection( 2562): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+11-13 03:22:48.175 D/CoreBackPreview(  583): Window{b4248f0 u0 app.kurotoon.dev/eu.kanade.tachiyomi.ui.main.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@67ec8db, mPriority=0}
+11-13 03:22:48.566 I/Telecom (  583): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AK0
+11-13 03:22:48.568 I/RoleService(  583): Granting default roles...
+11-13 03:22:48.570 I/PermissionControllerServiceImpl(  865): Updating user sensitive for uid 10126
+11-13 03:22:48.571 V/MediaPlayerList( 1040): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+11-13 03:22:48.573 D/MediaPlayerList( 1040): Name of package changed: app.kurotoon.dev
+11-13 03:22:48.574 E/system_server(  583): No package ID 7f found for ID 0x7f0801a3.
+11-13 03:22:48.574 E/system_server(  583): No package ID 7f found for ID 0x7f120434.
+11-13 03:22:48.574 E/system_server(  583): No package ID 7f found for ID 0x7f120434.
+11-13 03:22:48.574 E/system_server(  583): No package ID 7f found for ID 0x7f12009e.
+11-13 03:22:48.574 E/system_server(  583): No package ID 7f found for ID 0x7f0801a6.
+11-13 03:22:48.574 E/system_server(  583): No package ID 7f found for ID 0x7f12043e.
+11-13 03:22:48.574 E/system_server(  583): No package ID 7f found for ID 0x7f12043e.
+11-13 03:22:48.574 E/system_server(  583): No package ID 7f found for ID 0x7f12009e.
+11-13 03:22:48.574 E/system_server(  583): No package ID 7f found for ID 0x7f0801a5.
+11-13 03:22:48.574 E/system_server(  583): No package ID 7f found for ID 0x7f12043d.
+11-13 03:22:48.574 E/system_server(  583): No package ID 7f found for ID 0x7f12043d.
+11-13 03:22:48.574 E/system_server(  583): No package ID 7f found for ID 0x7f12009e.
+11-13 03:22:48.576 I/InputReader(  583): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+11-13 03:22:48.579 V/MediaPlayerList( 1040): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+11-13 03:22:48.579 D/MediaPlayerList( 1040): Name of package changed: app.kurotoon.dev
+11-13 03:22:48.581 W/Role    (  865): Cannot get ApplicationInfo for default holder: com.google.android.contacts
+11-13 03:22:48.582 D/AppWidgetServiceImpl(  583): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.UpdatesGridGlanceReceiver} won't be persisted.
+11-13 03:22:48.582 D/AppWidgetServiceImpl(  583): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.UpdatesGridCoverScreenGlanceReceiver} won't be persisted.
+11-13 03:22:48.582 D/AppWidgetServiceImpl(  583): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.ContinueReadingGlanceReceiver} won't be persisted.
+11-13 03:22:48.587 W/VoiceInteractionManager(  583): no available voice recognition services found for user 0
+11-13 03:22:48.590 D/CarrierSvcBindHelper( 1081): onPackageModified: app.kurotoon.dev
+11-13 03:22:48.594 D/CarrierSvcBindHelper( 1081): No carrier app for: 0
+11-13 03:22:48.597 D/ImsResolver( 1081): maybeAddedImsService, packageName: app.kurotoon.dev
+11-13 03:22:49.023 I/pp.kurotoon.dev( 2562): Compiler allocated 4533KB to compile void android.view.ViewRootImpl.performTraversals()
+11-13 03:22:49.775 E/TaskPersister(  583): File error accessing recents directory (directory doesn't exist?).
+11-13 03:22:53.228 W/healthd (    0): battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+11-13 03:22:53.220 W/Parcel  ( 2562): Expecting binder but got null!
+11-13 03:22:53.226 D/OomAdjuster(  583): Not killing cached processes
+11-13 03:22:53.228 W/ziparchive(  583): Unable to open '/data/app/~~j5qVYt8HyUvUpDhQJd-S6Q==/app.kurotoon.dev-9G_M4-0X9wsFBcuYReW8eQ==/base.dm': No such file or directory
+11-13 03:22:53.229 I/ActivityTaskManager(  583): Displayed app.kurotoon.dev/eu.kanade.tachiyomi.ui.main.MainActivity: +6s966ms
+11-13 03:22:53.260 D/CompatibilityChangeReporter(  583): Compat change id reported: 214016041; UID 10126; state: ENABLED
+11-13 03:22:53.265 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a71cd0
+11-13 03:22:53.282 W/InputManager-JNI(  583): Input channel object '9b6d0eb Splash Screen app.kurotoon.dev (client)' was disposed without first being removed with the input manager!
+11-13 03:22:53.312 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a72b70
+11-13 03:22:53.314 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a71df0
+11-13 03:22:53.314 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a6ef10
+11-13 03:22:53.314 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a72b70
+11-13 03:22:53.314 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a6ef10
+11-13 03:22:53.314 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a72b70
+11-13 03:22:53.314 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a71df0
+11-13 03:22:53.314 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a72510
+11-13 03:22:53.314 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a6ef10
+11-13 03:22:53.314 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a71df0
+11-13 03:22:53.314 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a6ef10
+11-13 03:22:53.314 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a71df0
+11-13 03:22:53.489 D/ProfileInstaller( 2562): Installing profile for app.kurotoon.dev
+11-13 03:22:56.301 I/keystore2(  253): keystore2::watchdog: Watchdog thread idle -> terminating. Have a great day.
+11-13 03:22:58.588 D/OomAdjuster(  583): Not killing cached processes
+11-13 03:23:00.029 D/EGL_emulation(  864): app_time_stats: avg=12523.26ms min=12523.26ms max=12523.26ms count=1
+11-13 03:23:00.393 D/AndroidRuntime( 2617): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 03:23:00.397 I/AndroidRuntime( 2617): Using default boot image
+11-13 03:23:00.397 I/AndroidRuntime( 2617): Leaving lock profiling enabled
+11-13 03:23:00.399 I/app_process( 2617): Core platform API reporting enabled, enforcing=false
+11-13 03:23:00.529 D/app_process( 2617): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 03:23:00.529 D/app_process( 2617): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 03:23:00.533 W/app_process( 2617): Unexpected CPU variant for x86: x86_64.
+11-13 03:23:00.533 W/app_process( 2617): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 03:23:00.539 W/app_process( 2617): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[] | PCL[/system/framework/android.test.runner.jar*2256426886])
+11-13 03:23:00.551 D/AndroidRuntime( 2617): Calling main entry com.android.commands.uiautomator.Launcher
+11-13 03:23:00.557 V/UiAutomation( 2617): Init UiAutomation@96217cb[id=1, flags=0]
+11-13 03:23:00.561 D/BatterySaverPolicy(  583): accessibility changed to true, updating policy.
+11-13 03:23:01.569 D/CompatibilityChangeReporter( 1498): Compat change id reported: 183155436; UID 10119; state: ENABLED
+11-13 03:23:01.571 D/CompatibilityChangeReporter(  583): Compat change id reported: 149924527; UID 2000; state: ENABLED
+11-13 03:23:01.571 D/CompatibilityChangeReporter(  583): Compat change id reported: 132649864; UID 2000; state: DISABLED
+11-13 03:23:01.575 W/MediaProvider( 1498): isAppCloneUserPair for user 0: false
+11-13 03:23:01.577 V/MediaProvider( 1498): Inserted id:1000000018 less than next row id backup:1000001000.
+11-13 03:23:01.656 W/AccessibilityNodeInfoDumper( 2617): Fetch time: 91ms
+11-13 03:23:01.658 D/BatterySaverPolicy(  583): accessibility changed to false, updating policy.
+11-13 03:23:01.658 D/AndroidRuntime( 2617): Shutting down VM
+11-13 03:23:01.683 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a72270
+11-13 03:23:02.703 W/AudioFlinger(  452): createTrack_l(): mismatch between requested flags (00000004) and output flags (00000002)
+11-13 03:23:02.705 D/AF::TrackHandle(  452): OpPlayAudio: track:55 usage:13 not muted
+11-13 03:23:02.760 D/EGL_emulation( 2562): app_time_stats: avg=3181.55ms min=169.50ms max=8394.61ms count=3
+11-13 03:23:03.660 D/OomAdjuster(  583): Not killing cached processes
+11-13 03:23:04.759 D/EGL_emulation( 2562): app_time_stats: avg=999.81ms min=77.81ms max=1921.81ms count=2
+11-13 03:23:04.901 I/ActivityTaskManager(  583): START u0 {act=android.intent.action.OPEN_DOCUMENT_TREE cmp=com.android.documentsui/.picker.PickActivity} from uid 10126
+11-13 03:23:04.903 D/CompatibilityChangeReporter(  583): Compat change id reported: 194480991; UID 10059; state: ENABLED
+11-13 03:23:04.904 D/CompatibilityChangeReporter(  583): Compat change id reported: 197654537; UID 10126; state: ENABLED
+11-13 03:23:04.904 D/CompatibilityChangeReporter(  583): Compat change id reported: 174042980; UID 10059; state: DISABLED
+11-13 03:23:04.904 D/CompatibilityChangeReporter(  583): Compat change id reported: 184838306; UID 10059; state: DISABLED
+11-13 03:23:04.904 D/CompatibilityChangeReporter(  583): Compat change id reported: 185004937; UID 10059; state: DISABLED
+11-13 03:23:04.905 D/CompatibilityChangeReporter(  583): Compat change id reported: 181136395; UID 10059; state: DISABLED
+11-13 03:23:04.905 D/CompatibilityChangeReporter(  583): Compat change id reported: 174042936; UID 10059; state: DISABLED
+11-13 03:23:04.910 D/CompatibilityChangeReporter(  583): Compat change id reported: 168419799; UID 10059; state: DISABLED
+11-13 03:23:04.914 D/AudioFlinger(  452): mixer(0x7a10a26c29a0) throttle end: throttle time(34)
+11-13 03:23:04.947 D/AppCompatDelegate( 1642): Checking for metadata for AppLocalesMetadataHolderService : Service not found
+11-13 03:23:04.952 D/libEGL  ( 1642): loaded /vendor/lib64/egl/libEGL_emulation.so
+11-13 03:23:04.953 D/libEGL  ( 1642): loaded /vendor/lib64/egl/libGLESv1_CM_emulation.so
+11-13 03:23:04.965 D/libEGL  ( 1642): loaded /vendor/lib64/egl/libGLESv2_emulation.so
+11-13 03:23:04.990 D/CompatibilityChangeReporter( 1642): Compat change id reported: 171228096; UID 10059; state: ENABLED
+11-13 03:23:05.009 D/PickActivity( 1642): Created new state object: State{action=6, acceptMimes=[*/*], allowMultiple=false, localOnly=false, stack=DocumentStack{root=null, docStack=[], stackTouched=false}, dirConfigs={}, excludedAuthorities=[], openableOnly=false, restrictScopeStorage=true, sortModel=SortModel{dimensions={16908304=SortDimension{id=16908304, labelId=2131820917, dataType=0, sortCapability=0, defaultSortDirection=1, sortDirection=0, visibility=4}, 16908310=SortDimension{id=16908310, labelId=2131820911, dataType=0, sortCapability=3, defaultSortDirection=1, sortDirection=0, visibility=0}, 2131296413=SortDimension{id=2131296413, labelId=2131820904, dataType=1, sortCapability=3, defaultSortDirection=2, sortDirection=0, visibility=0}, 2131296478=SortDimension{id=2131296478, labelId=2131820908, dataType=0, sortCapability=3, defaultSortDirection=1, sortDirection=0, visibility=0}, 2131296724=SortDimension{id=2131296724, labelId=2131820914, dataType=1, sortCapability=3, defaultSortDirection=1, sortDirection=0, visibility=0}}, defaultDimensionId=0, sortedDimension=null}}
+11-13 03:23:05.009 D/DrawerController( 1642): Calculated drawer width:280.0
+11-13 03:23:05.024 D/PickerActionHandler( 1642): Load last accessed stack.
+11-13 03:23:05.024 D/PickerActionHandler( 1642): Attempting to load last used stack for calling package.
+11-13 03:23:05.030 D/ProvidersAccess( 1642): Matched roots: [Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=Android SDK built for x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary]
+11-13 03:23:05.031 D/LoadRootTask( 1642): Loading root: content://com.android.externalstorage.documents/root/primary on user 0
+11-13 03:23:05.036 E/oid.documentsui( 1642): No package ID ff found for ID 0xffffffff.
+11-13 03:23:05.038 D/ProvidersAccess( 1642): Matched roots: [Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=Android SDK built for x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary]
+11-13 03:23:05.042 D/CoreBackPreview(  583): Window{10b2bc3 u0 com.android.documentsui/com.android.documentsui.picker.PickActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@12a5779, mPriority=0}
+11-13 03:23:05.042 D/LoadRootTask( 1642): Loaded root: Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=Android SDK built for x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary
+11-13 03:23:05.042 W/ActionModeController( 1642): Tried to finish a null action mode.
+11-13 03:23:05.042 D/DocumentStack( 1642): Root changed to: Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=Android SDK built for x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary
+11-13 03:23:05.044 E/oid.documentsui( 1642): No package ID ff found for ID 0xffffffff.
+11-13 03:23:05.046 D/CompatibilityChangeReporter(  583): Compat change id reported: 149924527; UID 10047; state: ENABLED
+11-13 03:23:05.046 D/CompatibilityChangeReporter(  583): Compat change id reported: 132649864; UID 10047; state: DISABLED
+11-13 03:23:05.064 W/ServiceManager(  466): Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10059 pid=1642
+11-13 03:23:05.064 D/PermissionCache(  466): checking android.permission.ACCESS_SURFACE_FLINGER for uid=10059 => denied (147 us)
+11-13 03:23:05.064 W/ServiceManager(  466): Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10059 pid=1642
+11-13 03:23:05.064 D/PermissionCache(  466): checking android.permission.ROTATE_SURFACE_FLINGER for uid=10059 => denied (869 us)
+11-13 03:23:05.065 W/ServiceManager(  466): Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10059 pid=0
+11-13 03:23:05.065 D/PermissionCache(  466): checking android.permission.ACCESS_SURFACE_FLINGER for uid=10059 => denied (1296 us)
+11-13 03:23:05.065 W/ServiceManager(  466): Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10059 pid=0
+11-13 03:23:05.065 D/PermissionCache(  466): checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10059 => denied (586 us)
+11-13 03:23:05.065 W/ServiceManager(  466): Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10059 pid=1642
+11-13 03:23:05.065 D/PermissionCache(  466): checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10059 => denied (780 us)
+11-13 03:23:05.087 D/HostConnection( 1642): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+11-13 03:23:05.087 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a71f70
+11-13 03:23:05.087 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a6d530
+11-13 03:23:05.091 W/OpenGLRenderer( 1642): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+11-13 03:23:05.092 D/EGL_emulation( 1642): eglCreateContext: 0x7b558ce20ad0: maj 3 min 0 rcv 3
+11-13 03:23:05.094 D/EGL_emulation( 1642): eglMakeCurrent: 0x7b558ce20ad0: ver 3 0 (tinfo 0x7b57c04e4080) (first time)
+11-13 03:23:05.113 I/hwservicemanager(  233): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-13 03:23:05.113 I/Gralloc4( 1642): mapper 4.x is not supported
+11-13 03:23:05.130 I/hwservicemanager(  233): getTransport: Cannot find entry android.hardware.graphics.allocator@4.0::IAllocator/default in either framework or device VINTF manifest.
+11-13 03:23:05.131 I/servicemanager(  232): Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+11-13 03:23:05.131 W/Gralloc4( 1642): allocator 4.x is not supported
+11-13 03:23:05.158 D/HostConnection( 1642): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+11-13 03:23:05.486 W/Parcel  ( 1642): Expecting binder but got null!
+11-13 03:23:05.497 D/DocumentStack( 1642): Adding doc to stack: DocumentInfo{docId=primary:, userId=0, name=0, mimeType=vnd.android.document/directory, isContainer=true, isDirectory=true, isArchive=false, isInArchive=false, isPartial=false, isVirtual=false, isDeleteSupported=true, isCreateSupported=true, isMoveSupported=true, isRenameSupported=true, isMetadataSupported=true, isBlockedFromTree=true} @ content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:05.498 E/oid.documentsui( 1642): No package ID ff found for ID 0xffffffff.
+11-13 03:23:05.499 D/ProvidersAccess( 1642): Matched roots: [Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=Android SDK built for x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary]
+11-13 03:23:05.505 D/DirectoryFragment( 1642): Showing directory: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:05.505 D/DirectoryFragment( 1642): Creating new fragment for directory: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:05.524 I/ActivityTaskManager(  583): Displayed com.android.documentsui/.picker.PickActivity: +598ms
+11-13 03:23:05.543 E/oid.documentsui( 1642): No package ID ff found for ID 0xffffffff.
+11-13 03:23:05.588 E/oid.documentsui( 1642): No package ID ff found for ID 0xffffffff.
+11-13 03:23:05.597 W/SelectionTracker( 1642): Setting gestureTooltypes is likely to result in unexpected behavior.
+11-13 03:23:05.598 D/AbstractActionHandler( 1642): Creating new directory loader for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:05.661 D/HostConnection(  583): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+11-13 03:23:05.663 W/OpenGLRenderer(  583): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+11-13 03:23:05.665 D/EGL_emulation(  583): eglCreateContext: 0x7b558ce2b150: maj 3 min 0 rcv 3
+11-13 03:23:05.677 D/EGL_emulation(  583): eglMakeCurrent: 0x7b558ce2b150: ver 3 0 (tinfo 0x7b57c3e01100) (first time)
+11-13 03:23:05.808 D/EGL_emulation(  864): app_time_stats: avg=5778.53ms min=5778.53ms max=5778.53ms count=1
+11-13 03:23:05.880 D/EGL_emulation(  864): app_time_stats: avg=53677.26ms min=825.38ms max=106529.15ms count=2
+11-13 03:23:05.886 I/hwservicemanager(  233): getTransport: Cannot find entry android.hardware.graphics.allocator@4.0::IAllocator/default in either framework or device VINTF manifest.
+11-13 03:23:05.887 I/servicemanager(  232): Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+11-13 03:23:05.887 W/Gralloc4(  583): allocator 4.x is not supported
+11-13 03:23:06.009 I/OpenGLRenderer( 1642): Davey! duration=926ms; Flags=0, FrameTimelineVsyncId=5841, IntendedVsync=148740822869, Vsync=149190822851, InputEventId=0, HandleInputStart=149194390861, AnimationStart=149194391524, PerformTraversalsStart=149249067953, DrawStart=149260300940, FrameDeadline=149174156135, FrameInterval=149194388231, FrameStartTime=16666666, SyncQueued=149262507042, SyncStart=149262591213, IssueDrawCommandsStart=149262695881, SwapBuffers=149565992538, FrameCompleted=149667772552, DequeueBufferDuration=2772, QueueBufferDuration=185597, GpuCompleted=149667772552, SwapBuffersCompleted=149629629500, DisplayPresentTime=0, CommandSubmissionCompleted=149565992538, 
+11-13 03:23:06.010 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:06.011 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:06.013 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:06.013 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:06.018 V/RefreshTask( 1642): Provider does not support refresh and did not refresh
+11-13 03:23:06.018 D/AbstractActionHandler( 1642): Creating new directory loader for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:06.245 W/Parcel  (  583): Expecting binder but got null!
+11-13 03:23:06.290 W/Parcel  (  583): Expecting binder but got null!
+11-13 03:23:06.350 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a73e90
+11-13 03:23:06.350 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a72a50
+11-13 03:23:06.458 D/CoreBackPreview(  583): Window{b4248f0 u0 app.kurotoon.dev/eu.kanade.tachiyomi.ui.main.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@841c7a3, mPriority=-1}
+11-13 03:23:06.504 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:06.504 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:06.504 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:06.504 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:06.507 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a70230
+11-13 03:23:06.617 D/CompatibilityChangeReporter(  583): Compat change id reported: 214016041; UID 10059; state: DISABLED
+11-13 03:23:06.644 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a70a70
+11-13 03:23:07.189 D/EGL_emulation( 1642): app_time_stats: avg=150.50ms min=37.91ms max=480.16ms count=11
+11-13 03:23:07.908 E/TaskPersister(  583): File error accessing recents directory (directory doesn't exist?).
+11-13 03:23:10.938 E/android.hardware.power.stats@1.0-service-mock(  426): Failed to getEnergyData
+11-13 03:23:12.064 D/OomAdjuster(  583): Not killing cached processes
+11-13 03:23:12.154 D/EGL_emulation( 1642): app_time_stats: avg=1238.53ms min=34.56ms max=4722.25ms count=4
+11-13 03:23:12.453 W/ProcessState( 2690): Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-13 03:23:12.456 W/ServiceManager(  466): Permission failure: android.permission.CAPTURE_BLACKOUT_CONTENT from uid=2000 pid=2690
+11-13 03:23:12.456 D/PermissionCache(  466): checking android.permission.CAPTURE_BLACKOUT_CONTENT for uid=2000 => denied (366 us)
+11-13 03:23:12.469 I/hwservicemanager(  233): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-13 03:23:12.469 I/Gralloc4( 2690): mapper 4.x is not supported
+11-13 03:23:12.503 D/HostConnection( 2690): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+11-13 03:23:12.678 I/MediaProvider( 1498): Deleted 0 0 0 0 0 0 1 items on external_primary due to com.android.shell
+11-13 03:23:12.679 D/Documents( 1642): Content updated.
+11-13 03:23:12.680 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:12.690 I/ProvidersCache( 1642): Updating roots due to change on user 0at content://com.android.providers.media.documents/root
+11-13 03:23:12.705 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:12.705 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:12.706 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:12.709 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:12.765 D/ProvidersAccess( 1642): Matched roots: [Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=Android SDK built for x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary]
+11-13 03:23:12.768 D/AndroidRuntime( 2695): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 03:23:12.772 I/AndroidRuntime( 2695): Using default boot image
+11-13 03:23:12.772 I/AndroidRuntime( 2695): Leaving lock profiling enabled
+11-13 03:23:12.777 I/app_process( 2695): Core platform API reporting enabled, enforcing=false
+11-13 03:23:12.860 E/oid.documentsui( 1642): No package ID ff found for ID 0xffffffff.
+11-13 03:23:12.997 D/app_process( 2695): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 03:23:12.997 D/app_process( 2695): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 03:23:13.006 W/app_process( 2695): Unexpected CPU variant for x86: x86_64.
+11-13 03:23:13.006 W/app_process( 2695): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 03:23:13.027 W/app_process( 2695): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[] | PCL[/system/framework/android.test.runner.jar*2256426886])
+11-13 03:23:13.077 D/AndroidRuntime( 2695): Calling main entry com.android.commands.uiautomator.Launcher
+11-13 03:23:13.104 D/BatterySaverPolicy(  583): accessibility changed to true, updating policy.
+11-13 03:23:13.111 V/UiAutomation( 2695): Init UiAutomation@90154b7[id=2, flags=0]
+11-13 03:23:13.158 D/EGL_emulation( 1642): app_time_stats: avg=59.18ms min=14.71ms max=413.18ms count=15
+11-13 03:23:14.338 W/MediaProvider( 1498): isAppCloneUserPair for user 0: false
+11-13 03:23:14.339 V/MediaProvider( 1498): Inserted id:1000000018 less than next row id backup:1000001000.
+11-13 03:23:14.340 D/Documents( 1642): Content updated.
+11-13 03:23:14.340 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:14.341 I/AccessibilityNodeInfoDumper( 2695): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@caa9; boundsInParent: Rect(0, 0 - 1080, 0); boundsInScreen: Rect(0, 380 - 1080, 380); packageName: com.android.documentsui; className: android.widget.HorizontalScrollView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: true; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: true; visible: false; actions: [AccessibilityAction: ACTION_FOCUS - null, AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:14.347 I/AccessibilityNodeInfoDumper( 2695): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@47162; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(88, 879 - 167, 958); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:14.349 I/AccessibilityNodeInfoDumper( 2695): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@4932b; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(575, 879 - 654, 958); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:14.351 I/AccessibilityNodeInfoDumper( 2695): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@4b4f4; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(88, 1028 - 167, 1107); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:14.351 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:14.351 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:14.351 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:14.352 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:14.390 D/BatterySaverPolicy(  583): accessibility changed to false, updating policy.
+11-13 03:23:14.390 D/AndroidRuntime( 2695): Shutting down VM
+--------- beginning of crash
+11-13 03:23:14.391 E/AndroidRuntime( 2695): FATAL EXCEPTION: main
+11-13 03:23:14.391 E/AndroidRuntime( 2695): PID: 2695
+11-13 03:23:14.391 E/AndroidRuntime( 2695): java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.CharSequence android.view.accessibility.AccessibilityNodeInfo.getContentDescription()' on a null object reference
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.childNafCheck(AccessibilityNodeInfoDumper.java:296)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.nafCheck(AccessibilityNodeInfoDumper.java:276)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:200)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpWindowToFile(AccessibilityNodeInfoDumper.java:96)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.commands.uiautomator.DumpCommand.run(DumpCommand.java:111)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:355)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): Error reporting crash
+11-13 03:23:14.391 E/AndroidRuntime( 2695): java.lang.RuntimeException: Bad file descriptor
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at android.os.BinderProxy.transactNative(Native Method)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at android.os.BinderProxy.transact(BinderProxy.java:584)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at android.os.IServiceManager$Stub$Proxy.checkService(IServiceManager.java:421)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at android.os.ServiceManagerProxy.getService(ServiceManagerNative.java:63)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at android.os.ServiceManager.rawGetService(ServiceManager.java:372)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at android.os.ServiceManager.getService(ServiceManager.java:147)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at android.app.ActivityManager$1.create(ActivityManager.java:4687)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at android.app.ActivityManager$1.create(ActivityManager.java:4684)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at android.util.Singleton.get(Singleton.java:43)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at android.app.ActivityManager.getService(ActivityManager.java:4675)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at com.android.internal.os.RuntimeInit$KillApplicationHandler.uncaughtException(RuntimeInit.java:156)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:1073)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:1068)
+11-13 03:23:14.391 E/AndroidRuntime( 2695): 	at java.lang.Thread.dispatchUncaughtException(Thread.java:2306)
+11-13 03:23:14.391 I/Process ( 2695): Sending signal. PID: 2695 SIG: 9
+11-13 03:23:14.422 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a742b0
+11-13 03:23:14.458 D/EGL_emulation( 1642): app_time_stats: avg=254.58ms min=24.24ms max=1167.74ms count=5
+11-13 03:23:14.473 D/Documents( 1642): Content updated.
+11-13 03:23:14.473 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:14.743 I/binder  (    0): 1642:1642 transaction failed 29189/-22, size 480-0 line 2920
+11-13 03:23:14.569 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:14.569 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:14.569 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:14.569 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:15.454 D/Documents( 1642): Content updated.
+11-13 03:23:15.454 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:15.457 I/MediaProvider( 1498): Deleted 0 0 0 0 0 0 1 items on external_primary due to com.android.shell
+11-13 03:23:15.459 I/ProvidersCache( 1642): Updating roots due to change on user 0at content://com.android.providers.media.documents/root
+11-13 03:23:15.470 D/ProvidersAccess( 1642): Matched roots: [Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=Android SDK built for x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary]
+11-13 03:23:15.471 E/oid.documentsui( 1642): No package ID ff found for ID 0xffffffff.
+11-13 03:23:15.485 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:15.485 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:15.486 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:15.486 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:15.522 D/EGL_emulation( 1642): app_time_stats: avg=123.53ms min=17.47ms max=741.17ms count=8
+11-13 03:23:15.536 D/AndroidRuntime( 2730): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 03:23:15.540 I/AndroidRuntime( 2730): Using default boot image
+11-13 03:23:15.540 I/AndroidRuntime( 2730): Leaving lock profiling enabled
+11-13 03:23:15.543 I/app_process( 2730): Core platform API reporting enabled, enforcing=false
+11-13 03:23:15.648 D/app_process( 2730): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 03:23:15.650 D/app_process( 2730): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 03:23:15.659 W/app_process( 2730): Unexpected CPU variant for x86: x86_64.
+11-13 03:23:15.659 W/app_process( 2730): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 03:23:15.665 W/app_process( 2730): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[] | PCL[/system/framework/android.test.runner.jar*2256426886])
+11-13 03:23:15.695 D/AndroidRuntime( 2730): Calling main entry com.android.commands.uiautomator.Launcher
+11-13 03:23:15.743 D/BatterySaverPolicy(  583): accessibility changed to true, updating policy.
+11-13 03:23:15.747 V/UiAutomation( 2730): Init UiAutomation@e923f2[id=3, flags=0]
+11-13 03:23:16.948 W/MediaProvider( 1498): isAppCloneUserPair for user 0: false
+11-13 03:23:16.948 V/MediaProvider( 1498): Inserted id:1000000018 less than next row id backup:1000001000.
+11-13 03:23:16.950 D/Documents( 1642): Content updated.
+11-13 03:23:16.950 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:16.951 I/AccessibilityNodeInfoDumper( 2730): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@cab6; boundsInParent: Rect(0, 0 - 1080, 0); boundsInScreen: Rect(0, 380 - 1080, 380); packageName: com.android.documentsui; className: android.widget.HorizontalScrollView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: true; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: true; visible: false; actions: [AccessibilityAction: ACTION_FOCUS - null, AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:16.955 I/AccessibilityNodeInfoDumper( 2730): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@7d0d5; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(88, 879 - 167, 958); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:16.957 I/AccessibilityNodeInfoDumper( 2730): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@7f29e; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(575, 879 - 654, 958); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:16.959 I/AccessibilityNodeInfoDumper( 2730): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@81467; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(88, 1028 - 167, 1107); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:16.961 I/AccessibilityNodeInfoDumper( 2730): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@83630; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(575, 1028 - 654, 1107); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:16.963 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:16.963 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:16.963 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:16.964 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:16.966 I/AccessibilityNodeInfoDumper( 2730): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@857f9; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(88, 1177 - 167, 1256); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:16.997 D/AndroidRuntime( 2730): Shutting down VM
+11-13 03:23:16.997 D/BatterySaverPolicy(  583): accessibility changed to false, updating policy.
+11-13 03:23:16.997 E/AndroidRuntime( 2730): FATAL EXCEPTION: main
+11-13 03:23:16.997 E/AndroidRuntime( 2730): PID: 2730
+11-13 03:23:16.997 E/AndroidRuntime( 2730): java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.CharSequence android.view.accessibility.AccessibilityNodeInfo.getContentDescription()' on a null object reference
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.childNafCheck(AccessibilityNodeInfoDumper.java:296)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.nafCheck(AccessibilityNodeInfoDumper.java:276)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:200)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpWindowToFile(AccessibilityNodeInfoDumper.java:96)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.commands.uiautomator.DumpCommand.run(DumpCommand.java:111)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:355)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): Error reporting crash
+11-13 03:23:16.997 E/AndroidRuntime( 2730): java.lang.RuntimeException: Bad file descriptor
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at android.os.BinderProxy.transactNative(Native Method)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at android.os.BinderProxy.transact(BinderProxy.java:584)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at android.os.IServiceManager$Stub$Proxy.checkService(IServiceManager.java:421)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at android.os.ServiceManagerProxy.getService(ServiceManagerNative.java:63)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at android.os.ServiceManager.rawGetService(ServiceManager.java:372)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at android.os.ServiceManager.getService(ServiceManager.java:147)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at android.app.ActivityManager$1.create(ActivityManager.java:4687)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at android.app.ActivityManager$1.create(ActivityManager.java:4684)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at android.util.Singleton.get(Singleton.java:43)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at android.app.ActivityManager.getService(ActivityManager.java:4675)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at com.android.internal.os.RuntimeInit$KillApplicationHandler.uncaughtException(RuntimeInit.java:156)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:1073)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:1068)
+11-13 03:23:16.997 E/AndroidRuntime( 2730): 	at java.lang.Thread.dispatchUncaughtException(Thread.java:2306)
+11-13 03:23:16.997 I/Process ( 2730): Sending signal. PID: 2730 SIG: 9
+11-13 03:23:17.020 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a71f70
+11-13 03:23:17.040 D/EGL_emulation( 1642): app_time_stats: avg=130.35ms min=18.63ms max=1107.57ms count=11
+11-13 03:23:17.320 I/binder  (    0): 1642:1642 transaction failed 29189/-22, size 480-0 line 2920
+11-13 03:23:17.080 D/Documents( 1642): Content updated.
+11-13 03:23:17.080 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:17.201 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:17.201 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:17.201 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:17.201 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:18.730 D/OomAdjuster(  583): Not killing cached processes
+11-13 03:23:19.108 D/Documents( 1642): Content updated.
+11-13 03:23:19.108 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:19.110 I/MediaProvider( 1498): Deleted 0 0 0 0 0 0 1 items on external_primary due to com.android.shell
+11-13 03:23:19.115 I/ProvidersCache( 1642): Updating roots due to change on user 0at content://com.android.providers.media.documents/root
+11-13 03:23:19.118 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:19.118 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:19.118 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:19.119 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:19.177 D/EGL_emulation( 1642): app_time_stats: avg=231.81ms min=14.70ms max=1791.93ms count=9
+11-13 03:23:19.180 D/ProvidersAccess( 1642): Matched roots: [Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=Android SDK built for x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary]
+11-13 03:23:19.212 E/oid.documentsui( 1642): No package ID ff found for ID 0xffffffff.
+11-13 03:23:19.231 D/AndroidRuntime( 2757): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 03:23:19.236 I/AndroidRuntime( 2757): Using default boot image
+11-13 03:23:19.236 I/AndroidRuntime( 2757): Leaving lock profiling enabled
+11-13 03:23:19.242 I/app_process( 2757): Core platform API reporting enabled, enforcing=false
+11-13 03:23:19.382 D/app_process( 2757): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 03:23:19.382 D/app_process( 2757): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 03:23:19.387 W/app_process( 2757): Unexpected CPU variant for x86: x86_64.
+11-13 03:23:19.387 W/app_process( 2757): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 03:23:19.388 W/app_process( 2757): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[] | PCL[/system/framework/android.test.runner.jar*2256426886])
+11-13 03:23:19.407 D/AndroidRuntime( 2757): Calling main entry com.android.commands.uiautomator.Launcher
+11-13 03:23:19.438 D/BatterySaverPolicy(  583): accessibility changed to true, updating policy.
+11-13 03:23:19.438 V/UiAutomation( 2757): Init UiAutomation@b738d96[id=4, flags=0]
+11-13 03:23:20.681 W/MediaProvider( 1498): isAppCloneUserPair for user 0: false
+11-13 03:23:20.681 V/MediaProvider( 1498): Inserted id:1000000018 less than next row id backup:1000001000.
+11-13 03:23:20.683 D/Documents( 1642): Content updated.
+11-13 03:23:20.683 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:20.684 I/AccessibilityNodeInfoDumper( 2757): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@cac1; boundsInParent: Rect(0, 0 - 1080, 0); boundsInScreen: Rect(0, 380 - 1080, 380); packageName: com.android.documentsui; className: android.widget.HorizontalScrollView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: true; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: true; visible: false; actions: [AccessibilityAction: ACTION_FOCUS - null, AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:20.690 I/AccessibilityNodeInfoDumper( 2757): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b2142; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(88, 879 - 167, 958); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:20.691 I/AccessibilityNodeInfoDumper( 2757): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b430b; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(575, 879 - 654, 958); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:20.694 I/AccessibilityNodeInfoDumper( 2757): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b64d4; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(88, 1028 - 167, 1107); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:20.695 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:20.695 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:20.695 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:20.695 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:20.721 D/AndroidRuntime( 2757): Shutting down VM
+11-13 03:23:20.721 D/BatterySaverPolicy(  583): accessibility changed to false, updating policy.
+11-13 03:23:20.721 E/AndroidRuntime( 2757): FATAL EXCEPTION: main
+11-13 03:23:20.721 E/AndroidRuntime( 2757): PID: 2757
+11-13 03:23:20.721 E/AndroidRuntime( 2757): java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.CharSequence android.view.accessibility.AccessibilityNodeInfo.getContentDescription()' on a null object reference
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.childNafCheck(AccessibilityNodeInfoDumper.java:296)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.nafCheck(AccessibilityNodeInfoDumper.java:276)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:200)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpWindowToFile(AccessibilityNodeInfoDumper.java:96)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.commands.uiautomator.DumpCommand.run(DumpCommand.java:111)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:355)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): Error reporting crash
+11-13 03:23:20.721 E/AndroidRuntime( 2757): java.lang.RuntimeException: Bad file descriptor
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at android.os.BinderProxy.transactNative(Native Method)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at android.os.BinderProxy.transact(BinderProxy.java:584)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at android.os.IServiceManager$Stub$Proxy.checkService(IServiceManager.java:421)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at android.os.ServiceManagerProxy.getService(ServiceManagerNative.java:63)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at android.os.ServiceManager.rawGetService(ServiceManager.java:372)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at android.os.ServiceManager.getService(ServiceManager.java:147)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at android.app.ActivityManager$1.create(ActivityManager.java:4687)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at android.app.ActivityManager$1.create(ActivityManager.java:4684)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at android.util.Singleton.get(Singleton.java:43)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at android.app.ActivityManager.getService(ActivityManager.java:4675)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at com.android.internal.os.RuntimeInit$KillApplicationHandler.uncaughtException(RuntimeInit.java:156)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:1073)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:1068)
+11-13 03:23:20.721 E/AndroidRuntime( 2757): 	at java.lang.Thread.dispatchUncaughtException(Thread.java:2306)
+11-13 03:23:20.721 I/Process ( 2757): Sending signal. PID: 2757 SIG: 9
+11-13 03:23:20.769 D/EGL_emulation( 1642): app_time_stats: avg=106.55ms min=11.07ms max=1155.50ms count=14
+11-13 03:23:21.050 I/binder  (    0): 1642:1642 transaction failed 29189/-22, size 480-0 line 2920
+11-13 03:23:20.795 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a755d0
+11-13 03:23:20.836 D/Documents( 1642): Content updated.
+11-13 03:23:20.836 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:20.866 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:20.866 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:20.874 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:20.874 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:20.912 I/Dialer  ( 1379): OmtpVvmCarrierCfgHlpr - OmtpEvent:CONFIG_STATUS_SMS_TIME_OUT
+11-13 03:23:20.913 I/Dialer  ( 1379): RetryPolicy - discarding deferred status: configuration_state=4
+11-13 03:23:20.914 I/Dialer  ( 1379): VvmTaskExecutor - no more tasks, stopping service if no task are added in 5000 millis
+11-13 03:23:20.915 I/Dialer  ( 1379): VvmTaskReceiver - task received
+11-13 03:23:20.915 I/Dialer  ( 1379): VvmTaskReceiver - TaskExecutor already running
+11-13 03:23:20.915 I/Dialer  ( 1379): Task.createTask - create task:com.android.voicemail.impl.ActivationTask
+11-13 03:23:20.915 I/Dialer  ( 1379): RetryPolicy - retry #2 for com.android.voicemail.impl.ActivationTask@8108389 queued, executing in 5000
+11-13 03:23:20.915 I/Dialer  ( 1379): VvmTaskExecutor - com.android.voicemail.impl.ActivationTask@8108389 added
+11-13 03:23:20.915 I/Dialer  ( 1379): VvmTaskExecutor - minimal wait time:5000
+11-13 03:23:20.915 I/Dialer  ( 1379): VvmTaskExecutor - sleep for 5000 millis
+11-13 03:23:23.804 D/Documents( 1642): Content updated.
+11-13 03:23:23.804 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:23.805 I/MediaProvider( 1498): Deleted 0 0 0 0 0 0 1 items on external_primary due to com.android.shell
+11-13 03:23:23.807 I/ProvidersCache( 1642): Updating roots due to change on user 0at content://com.android.providers.media.documents/root
+11-13 03:23:23.819 D/ProvidersAccess( 1642): Matched roots: [Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=Android SDK built for x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary]
+11-13 03:23:23.820 E/oid.documentsui( 1642): No package ID ff found for ID 0xffffffff.
+11-13 03:23:23.835 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:23.835 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:23.835 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:23.836 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:23.869 D/EGL_emulation( 1642): app_time_stats: avg=299.92ms min=12.58ms max=2713.25ms count=10
+11-13 03:23:23.871 D/AndroidRuntime( 2781): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 03:23:23.874 I/AndroidRuntime( 2781): Using default boot image
+11-13 03:23:23.874 I/AndroidRuntime( 2781): Leaving lock profiling enabled
+11-13 03:23:23.876 I/app_process( 2781): Core platform API reporting enabled, enforcing=false
+11-13 03:23:23.976 D/app_process( 2781): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 03:23:23.976 D/app_process( 2781): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 03:23:23.980 W/app_process( 2781): Unexpected CPU variant for x86: x86_64.
+11-13 03:23:23.980 W/app_process( 2781): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 03:23:23.985 W/app_process( 2781): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[] | PCL[/system/framework/android.test.runner.jar*2256426886])
+11-13 03:23:24.018 D/AndroidRuntime( 2781): Calling main entry com.android.commands.uiautomator.Launcher
+11-13 03:23:24.028 D/BatterySaverPolicy(  583): accessibility changed to true, updating policy.
+11-13 03:23:24.030 V/UiAutomation( 2781): Init UiAutomation@5fdf73a[id=5, flags=0]
+11-13 03:23:25.144 D/OomAdjuster(  583): Not killing cached processes
+11-13 03:23:25.260 W/MediaProvider( 1498): isAppCloneUserPair for user 0: false
+11-13 03:23:25.260 V/MediaProvider( 1498): Inserted id:1000000018 less than next row id backup:1000001000.
+11-13 03:23:25.261 D/Documents( 1642): Content updated.
+11-13 03:23:25.261 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:25.262 I/AccessibilityNodeInfoDumper( 2781): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@cacc; boundsInParent: Rect(0, 0 - 1080, 0); boundsInScreen: Rect(0, 380 - 1080, 380); packageName: com.android.documentsui; className: android.widget.HorizontalScrollView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: true; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: true; visible: false; actions: [AccessibilityAction: ACTION_FOCUS - null, AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:25.271 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:25.271 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:25.271 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:25.271 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:25.332 D/EGL_emulation( 1642): app_time_stats: avg=139.71ms min=13.51ms max=1116.23ms count=10
+11-13 03:23:25.336 D/BatterySaverPolicy(  583): accessibility changed to false, updating policy.
+11-13 03:23:25.338 D/AndroidRuntime( 2781): Shutting down VM
+11-13 03:23:25.339 E/AndroidRuntime( 2781): FATAL EXCEPTION: main
+11-13 03:23:25.339 E/AndroidRuntime( 2781): PID: 2781
+11-13 03:23:25.339 E/AndroidRuntime( 2781): java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.CharSequence android.view.accessibility.AccessibilityNodeInfo.getContentDescription()' on a null object reference
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.childNafCheck(AccessibilityNodeInfoDumper.java:296)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.nafCheck(AccessibilityNodeInfoDumper.java:276)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:200)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpWindowToFile(AccessibilityNodeInfoDumper.java:96)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.commands.uiautomator.DumpCommand.run(DumpCommand.java:111)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:355)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): Error reporting crash
+11-13 03:23:25.339 E/AndroidRuntime( 2781): java.lang.RuntimeException: Bad file descriptor
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at android.os.BinderProxy.transactNative(Native Method)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at android.os.BinderProxy.transact(BinderProxy.java:584)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at android.os.IServiceManager$Stub$Proxy.checkService(IServiceManager.java:421)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at android.os.ServiceManagerProxy.getService(ServiceManagerNative.java:63)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at android.os.ServiceManager.rawGetService(ServiceManager.java:372)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at android.os.ServiceManager.getService(ServiceManager.java:147)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at android.app.ActivityManager$1.create(ActivityManager.java:4687)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at android.app.ActivityManager$1.create(ActivityManager.java:4684)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at android.util.Singleton.get(Singleton.java:43)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at android.app.ActivityManager.getService(ActivityManager.java:4675)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at com.android.internal.os.RuntimeInit$KillApplicationHandler.uncaughtException(RuntimeInit.java:156)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:1073)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:1068)
+11-13 03:23:25.339 E/AndroidRuntime( 2781): 	at java.lang.Thread.dispatchUncaughtException(Thread.java:2306)
+11-13 03:23:25.339 I/Process ( 2781): Sending signal. PID: 2781 SIG: 9
+11-13 03:23:25.369 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a736b0
+11-13 03:23:25.481 D/Documents( 1642): Content updated.
+11-13 03:23:25.481 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:25.560 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:25.560 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:25.561 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:25.563 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:25.921 I/Dialer  ( 1379): VvmTaskExecutor - executing task com.android.voicemail.impl.ActivationTask@8108389
+11-13 03:23:25.921 I/Dialer  ( 1379): PreOMigrationHandler - ComponentInfo{com.android.phone/com.android.services.telephony.TelephonyConnectionService}, 1, UserHandle{0} already migrated
+11-13 03:23:25.932 I/VoicemailNotifier( 1754): receivers for android.intent.action.PROVIDER_CHANGED :[]
+11-13 03:23:25.933 I/Dialer  ( 1379): VvmActivationTask - VVM content provider configured - vvm_type_cvvm
+11-13 03:23:25.933 I/Dialer  ( 1379): OmtpVvmCarrierCfgHlpr - OmtpEvent:CONFIG_ACTIVATING
+11-13 03:23:25.935 I/VoicemailNotifier( 1754): receivers for android.intent.action.PROVIDER_CHANGED :[]
+11-13 03:23:25.942 D/SmsNumberUtils( 1081): enter filterDestAddr. destAddr="[BajqU4K5_YhSYbs-7QUn0dOwcmI]"
+11-13 03:23:25.943 D/SmsNumberUtils( 1081): destAddr is not formatted.
+11-13 03:23:25.943 D/SmsNumberUtils( 1081): leave filterDestAddr, new destAddr="[BajqU4K5_YhSYbs-7QUn0dOwcmI]"
+11-13 03:23:25.949 W/BroadcastQueue(  583): Permission Denial: broadcasting Intent { act=com.android.voicemailomtp.sms.REQUEST_SENT flg=0x10 pkg=com.android.dialer } from com.android.dialer (pid=-1, uid=10086) requires com.android.dialer.permission.DIALER_ORIGIN due to registered receiver BroadcastFilter{759d0d7 10086/u0 ReceiverList{2fb6856 1379 com.android.dialer/10086/u0 remote:c94c271}}
+11-13 03:23:26.477 D/Documents( 1642): Content updated.
+11-13 03:23:26.477 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:26.478 I/MediaProvider( 1498): Deleted 0 0 0 0 0 0 1 items on external_primary due to com.android.shell
+11-13 03:23:26.480 I/ProvidersCache( 1642): Updating roots due to change on user 0at content://com.android.providers.media.documents/root
+11-13 03:23:26.488 D/ProvidersAccess( 1642): Matched roots: [Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=Android SDK built for x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary]
+11-13 03:23:26.489 E/oid.documentsui( 1642): No package ID ff found for ID 0xffffffff.
+11-13 03:23:26.502 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:26.502 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:26.502 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:26.502 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:26.530 D/EGL_emulation( 1642): app_time_stats: avg=110.63ms min=17.47ms max=796.70ms count=10
+11-13 03:23:26.546 D/AndroidRuntime( 2813): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 03:23:26.550 I/AndroidRuntime( 2813): Using default boot image
+11-13 03:23:26.551 I/AndroidRuntime( 2813): Leaving lock profiling enabled
+11-13 03:23:26.557 I/app_process( 2813): Core platform API reporting enabled, enforcing=false
+11-13 03:23:26.663 D/app_process( 2813): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 03:23:26.665 D/app_process( 2813): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 03:23:26.675 W/app_process( 2813): Unexpected CPU variant for x86: x86_64.
+11-13 03:23:26.675 W/app_process( 2813): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 03:23:26.682 W/app_process( 2813): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[] | PCL[/system/framework/android.test.runner.jar*2256426886])
+11-13 03:23:26.721 D/AndroidRuntime( 2813): Calling main entry com.android.commands.uiautomator.Launcher
+11-13 03:23:26.747 D/BatterySaverPolicy(  583): accessibility changed to true, updating policy.
+11-13 03:23:26.750 V/UiAutomation( 2813): Init UiAutomation@de5c675[id=6, flags=0]
+11-13 03:23:27.905 W/MediaProvider( 1498): isAppCloneUserPair for user 0: false
+11-13 03:23:27.906 V/MediaProvider( 1498): Inserted id:1000000018 less than next row id backup:1000001000.
+11-13 03:23:27.908 D/Documents( 1642): Content updated.
+11-13 03:23:27.908 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:27.908 I/AccessibilityNodeInfoDumper( 2813): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@cad7; boundsInParent: Rect(0, 0 - 1080, 0); boundsInScreen: Rect(0, 380 - 1080, 380); packageName: com.android.documentsui; className: android.widget.HorizontalScrollView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: true; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: true; visible: false; actions: [AccessibilityAction: ACTION_FOCUS - null, AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:27.913 I/AccessibilityNodeInfoDumper( 2813): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@11c21c; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(88, 879 - 167, 958); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:27.915 I/AccessibilityNodeInfoDumper( 2813): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@11e3e5; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(575, 879 - 654, 958); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:27.917 I/AccessibilityNodeInfoDumper( 2813): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@1205ae; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(88, 1028 - 167, 1107); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:27.919 I/AccessibilityNodeInfoDumper( 2813): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@122777; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(575, 1028 - 654, 1107); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:27.920 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:27.920 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:27.920 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:27.920 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:27.955 D/BatterySaverPolicy(  583): accessibility changed to false, updating policy.
+11-13 03:23:27.955 D/AndroidRuntime( 2813): Shutting down VM
+11-13 03:23:27.956 E/AndroidRuntime( 2813): FATAL EXCEPTION: main
+11-13 03:23:27.956 E/AndroidRuntime( 2813): PID: 2813
+11-13 03:23:27.956 E/AndroidRuntime( 2813): java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.CharSequence android.view.accessibility.AccessibilityNodeInfo.getContentDescription()' on a null object reference
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.childNafCheck(AccessibilityNodeInfoDumper.java:296)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.childNafCheck(AccessibilityNodeInfoDumper.java:300)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.nafCheck(AccessibilityNodeInfoDumper.java:276)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:200)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpWindowToFile(AccessibilityNodeInfoDumper.java:96)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.commands.uiautomator.DumpCommand.run(DumpCommand.java:111)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:355)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): Error reporting crash
+11-13 03:23:27.956 E/AndroidRuntime( 2813): java.lang.RuntimeException: Bad file descriptor
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at android.os.BinderProxy.transactNative(Native Method)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at android.os.BinderProxy.transact(BinderProxy.java:584)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at android.os.IServiceManager$Stub$Proxy.checkService(IServiceManager.java:421)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at android.os.ServiceManagerProxy.getService(ServiceManagerNative.java:63)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at android.os.ServiceManager.rawGetService(ServiceManager.java:372)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at android.os.ServiceManager.getService(ServiceManager.java:147)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at android.app.ActivityManager$1.create(ActivityManager.java:4687)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at android.app.ActivityManager$1.create(ActivityManager.java:4684)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at android.util.Singleton.get(Singleton.java:43)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at android.app.ActivityManager.getService(ActivityManager.java:4675)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at com.android.internal.os.RuntimeInit$KillApplicationHandler.uncaughtException(RuntimeInit.java:156)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:1073)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:1068)
+11-13 03:23:27.956 E/AndroidRuntime( 2813): 	at java.lang.Thread.dispatchUncaughtException(Thread.java:2306)
+11-13 03:23:27.956 I/Process ( 2813): Sending signal. PID: 2813 SIG: 9
+11-13 03:23:27.985 D/EGL_emulation( 1642): app_time_stats: avg=139.29ms min=4.49ms max=1144.99ms count=10
+11-13 03:23:28.266 I/binder  (    0): 1642:1642 transaction failed 29189/-22, size 480-0 line 2920
+11-13 03:23:28.031 D/Documents( 1642): Content updated.
+11-13 03:23:28.031 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:28.077 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:28.077 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:28.087 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:28.090 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:30.069 D/Documents( 1642): Content updated.
+11-13 03:23:30.069 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:30.071 I/MediaProvider( 1498): Deleted 0 0 0 0 0 0 1 items on external_primary due to com.android.shell
+11-13 03:23:30.072 I/ProvidersCache( 1642): Updating roots due to change on user 0at content://com.android.providers.media.documents/root
+11-13 03:23:30.079 D/ProvidersAccess( 1642): Matched roots: [Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=Android SDK built for x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary]
+11-13 03:23:30.081 E/oid.documentsui( 1642): No package ID ff found for ID 0xffffffff.
+11-13 03:23:30.102 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:30.102 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:30.102 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:30.102 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:30.132 D/AndroidRuntime( 2842): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 03:23:30.135 I/AndroidRuntime( 2842): Using default boot image
+11-13 03:23:30.135 I/AndroidRuntime( 2842): Leaving lock profiling enabled
+11-13 03:23:30.137 I/app_process( 2842): Core platform API reporting enabled, enforcing=false
+11-13 03:23:30.138 D/EGL_emulation( 1642): app_time_stats: avg=266.11ms min=23.21ms max=1811.19ms count=8
+11-13 03:23:30.218 D/app_process( 2842): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 03:23:30.218 D/app_process( 2842): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 03:23:30.226 W/app_process( 2842): Unexpected CPU variant for x86: x86_64.
+11-13 03:23:30.226 W/app_process( 2842): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 03:23:30.234 W/app_process( 2842): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[] | PCL[/system/framework/android.test.runner.jar*2256426886])
+11-13 03:23:30.283 D/AndroidRuntime( 2842): Calling main entry com.android.commands.uiautomator.Launcher
+11-13 03:23:30.296 D/BatterySaverPolicy(  583): accessibility changed to true, updating policy.
+11-13 03:23:30.297 V/UiAutomation( 2842): Init UiAutomation@8703019[id=7, flags=0]
+11-13 03:23:31.538 W/MediaProvider( 1498): isAppCloneUserPair for user 0: false
+11-13 03:23:31.538 V/MediaProvider( 1498): Inserted id:1000000018 less than next row id backup:1000001000.
+11-13 03:23:31.539 D/Documents( 1642): Content updated.
+11-13 03:23:31.540 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:31.540 I/AccessibilityNodeInfoDumper( 2842): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@cae2; boundsInParent: Rect(0, 0 - 1080, 0); boundsInScreen: Rect(0, 380 - 1080, 380); packageName: com.android.documentsui; className: android.widget.HorizontalScrollView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: true; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: true; visible: false; actions: [AccessibilityAction: ACTION_FOCUS - null, AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:31.544 I/AccessibilityNodeInfoDumper( 2842): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@151289; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(88, 879 - 167, 958); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:31.550 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:31.550 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:31.551 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:31.551 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:31.553 I/AccessibilityNodeInfoDumper( 2842): Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@153452; boundsInParent: Rect(0, 0 - 79, 79); boundsInScreen: Rect(575, 879 - 654, 958); packageName: com.android.documentsui; className: android.widget.ImageView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; viewIdResName: com.android.documentsui:id/icon_check; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; visible: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+11-13 03:23:31.591 D/AndroidRuntime( 2842): Shutting down VM
+11-13 03:23:31.591 D/BatterySaverPolicy(  583): accessibility changed to false, updating policy.
+11-13 03:23:31.591 E/AndroidRuntime( 2842): FATAL EXCEPTION: main
+11-13 03:23:31.591 E/AndroidRuntime( 2842): PID: 2842
+11-13 03:23:31.591 E/AndroidRuntime( 2842): java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.CharSequence android.view.accessibility.AccessibilityNodeInfo.getContentDescription()' on a null object reference
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.childNafCheck(AccessibilityNodeInfoDumper.java:296)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.nafCheck(AccessibilityNodeInfoDumper.java:276)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:200)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpNodeRec(AccessibilityNodeInfoDumper.java:225)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.uiautomator.core.AccessibilityNodeInfoDumper.dumpWindowToFile(AccessibilityNodeInfoDumper.java:96)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.commands.uiautomator.DumpCommand.run(DumpCommand.java:111)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+11-13 03:23:31.591 E/AndroidRuntime( 2842): 	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:355)
+11-13 03:23:31.592 E/AndroidRuntime( 2842): Error reporting crash
+11-13 03:23:31.592 E/AndroidRuntime( 2842): java.lang.RuntimeException: Bad file descriptor
+11-13 03:23:31.592 E/AndroidRuntime( 2842): 	at android.os.BinderProxy.transactNative(Native Method)
+11-13 03:23:31.592 E/AndroidRuntime( 2842): 	at android.os.BinderProxy.transact(BinderProxy.java:584)
+11-13 03:23:31.592 E/AndroidRuntime( 2842): 	at android.os.IServiceManager$Stub$Proxy.checkService(IServiceManager.java:421)
+11-13 03:23:31.592 E/AndroidRuntime( 2842): 	at android.os.ServiceManagerProxy.getService(ServiceManagerNative.java:63)
+11-13 03:23:31.592 E/AndroidRuntime( 2842): 	at android.os.ServiceManager.rawGetService(ServiceManager.java:372)
+11-13 03:23:31.592 E/AndroidRuntime( 2842): 	at android.os.ServiceManager.getService(ServiceManager.java:147)
+11-13 03:23:31.592 E/AndroidRuntime( 2842): 	at android.app.ActivityManager$1.create(ActivityManager.java:4687)
+11-13 03:23:31.592 E/AndroidRuntime( 2842): 	at android.app.ActivityManager$1.create(ActivityManager.java:4684)
+11-13 03:23:31.592 E/AndroidRuntime( 2842): 	at android.util.Singleton.get(Singleton.java:43)
+11-13 03:23:31.592 E/AndroidRuntime( 2842): 	at android.app.ActivityManager.getService(ActivityManager.java:4675)
+11-13 03:23:31.592 E/AndroidRuntime( 2842): 	at com.android.internal.os.RuntimeInit$KillApplicationHandler.uncaughtException(RuntimeInit.java:156)
+11-13 03:23:31.592 E/AndroidRuntime( 2842): 	at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:1073)
+11-13 03:23:31.592 E/AndroidRuntime( 2842): 	at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:1068)
+11-13 03:23:31.592 E/AndroidRuntime( 2842): 	at java.lang.Thread.dispatchUncaughtException(Thread.java:2306)
+11-13 03:23:31.592 I/Process ( 2842): Sending signal. PID: 2842 SIG: 9
+11-13 03:23:31.621 D/EGL_emulation( 1642): app_time_stats: avg=142.84ms min=15.31ms max=1156.20ms count=10
+11-13 03:23:31.905 I/binder  (    0): 1642:1642 transaction failed 29189/-22, size 480-0 line 2920
+11-13 03:23:31.670 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a733b0
+11-13 03:23:31.687 D/Documents( 1642): Content updated.
+11-13 03:23:31.687 D/ContentLock( 1642): run when unlock, is locked : false
+11-13 03:23:31.764 D/AbstractActionHandler( 1642): Loader has finished for: content://com.android.externalstorage.documents/document/primary%3A
+11-13 03:23:31.766 I/Model   ( 1642): Updating model with new result set.
+11-13 03:23:31.770 D/DirectoryFragment( 1642): Received model update. Loading=false
+11-13 03:23:31.772 D/DefaultSelectionTracker( 1642): Ignoring onDataSetChange. No active selection.
+11-13 03:23:34.763 D/AutofillManagerService(  583): onBackKeyPressed()
+11-13 03:23:34.763 D/AutofillManagerServiceImpl(  583): Reset component for user 0:
+11-13 03:23:34.763 D/AutofillUI(  583): destroySaveUiUiThread(): already destroyed
+11-13 03:23:34.764 D/OomAdjuster(  583): Not killing cached processes
+11-13 03:23:34.790 D/CompatibilityChangeReporter(  583): Compat change id reported: 181136395; UID 10126; state: DISABLED
+11-13 03:23:34.791 D/CompatibilityChangeReporter(  583): Compat change id reported: 174042936; UID 10126; state: DISABLED
+11-13 03:23:34.797 D/CompatibilityChangeReporter( 2562): Compat change id reported: 78294732; UID 10126; state: ENABLED
+11-13 03:23:34.817 D/CoreBackPreview(  583): Window{b4248f0 u0 app.kurotoon.dev/eu.kanade.tachiyomi.ui.main.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@589598c, mPriority=0}
+11-13 03:23:34.915 D/EGL_emulation( 1642): app_time_stats: avg=361.55ms min=15.60ms max=2923.51ms count=9
+11-13 03:23:35.041 I/system_server(  583): NativeAlloc concurrent copying GC freed 188249(10MB) AllocSpace objects, 13(260KB) LOS objects, 49% free, 11MB/23MB, paused 53us,36us total 162.615ms
+11-13 03:23:35.087 I/DropBoxManagerService(  583): add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-13 03:23:35.172 D/EGL_emulation(  864): app_time_stats: avg=29361.71ms min=29361.71ms max=29361.71ms count=1
+11-13 03:23:35.224 D/EGL_emulation(  864): app_time_stats: avg=29343.55ms min=29343.55ms max=29343.55ms count=1
+11-13 03:23:35.257 W/Parcel  (  583): Expecting binder but got null!
+11-13 03:23:35.289 W/Parcel  (  583): Expecting binder but got null!
+11-13 03:23:35.331 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a73c50
+11-13 03:23:35.331 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a752d0
+11-13 03:23:35.331 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a6f9f0
+11-13 03:23:35.331 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a72b10
+11-13 03:23:35.361 D/CoreBackPreview(  583): Window{10b2bc3 u0 com.android.documentsui/com.android.documentsui.picker.PickActivity}: Setting back callback null
+11-13 03:23:35.393 W/InputManager-JNI(  583): Input channel object '10b2bc3 com.android.documentsui/com.android.documentsui.picker.PickActivity (client)' was disposed without first being removed with the input manager!
+11-13 03:23:35.400 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a71250
+11-13 03:23:35.400 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a729f0
+11-13 03:23:35.424 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a721b0
+11-13 03:23:38.035 W/ProcessState( 2877): Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-13 03:23:38.045 I/hwservicemanager(  233): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-13 03:23:38.046 I/Gralloc4( 2877): mapper 4.x is not supported
+11-13 03:23:38.083 D/HostConnection( 2877): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+11-13 03:23:38.241 I/MediaProvider( 1498): Deleted 0 0 0 0 0 0 1 items on external_primary due to com.android.shell
+11-13 03:23:38.315 D/AndroidRuntime( 2882): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 03:23:38.319 I/AndroidRuntime( 2882): Using default boot image
+11-13 03:23:38.319 I/AndroidRuntime( 2882): Leaving lock profiling enabled
+11-13 03:23:38.322 I/app_process( 2882): Core platform API reporting enabled, enforcing=false
+11-13 03:23:38.401 E/TaskPersister(  583): File error accessing recents directory (directory doesn't exist?).
+11-13 03:23:38.427 D/app_process( 2882): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 03:23:38.427 D/app_process( 2882): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 03:23:38.431 W/app_process( 2882): Unexpected CPU variant for x86: x86_64.
+11-13 03:23:38.431 W/app_process( 2882): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 03:23:38.434 W/app_process( 2882): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[] | PCL[/system/framework/android.test.runner.jar*2256426886])
+11-13 03:23:38.446 D/AndroidRuntime( 2882): Calling main entry com.android.commands.uiautomator.Launcher
+11-13 03:23:38.455 V/UiAutomation( 2882): Init UiAutomation@d850361[id=8, flags=0]
+11-13 03:23:38.459 D/BatterySaverPolicy(  583): accessibility changed to true, updating policy.
+11-13 03:23:39.476 W/MediaProvider( 1498): isAppCloneUserPair for user 0: false
+11-13 03:23:39.477 V/MediaProvider( 1498): Inserted id:1000000018 less than next row id backup:1000001000.
+11-13 03:23:39.498 W/AccessibilityNodeInfoDumper( 2882): Fetch time: 25ms
+11-13 03:23:39.504 D/BatterySaverPolicy(  583): accessibility changed to false, updating policy.
+11-13 03:23:39.505 D/AndroidRuntime( 2882): Shutting down VM
+11-13 03:23:40.137 W/oid.documentsui( 1642): Cleared Reference was only reachable from finalizer (only reported once)
+11-13 03:23:40.345 I/MediaProvider( 1498): Deleted 0 0 0 0 0 0 1 items on external_primary due to com.android.shell
+11-13 03:23:40.400 D/AndroidRuntime( 2906): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 03:23:40.403 I/AndroidRuntime( 2906): Using default boot image
+11-13 03:23:40.403 I/AndroidRuntime( 2906): Leaving lock profiling enabled
+11-13 03:23:40.404 I/app_process( 2906): Core platform API reporting enabled, enforcing=false
+11-13 03:23:40.483 D/app_process( 2906): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 03:23:40.483 D/app_process( 2906): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 03:23:40.487 W/app_process( 2906): Unexpected CPU variant for x86: x86_64.
+11-13 03:23:40.487 W/app_process( 2906): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 03:23:40.489 W/app_process( 2906): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[] | PCL[/system/framework/android.test.runner.jar*2256426886])
+11-13 03:23:40.499 D/AndroidRuntime( 2906): Calling main entry com.android.commands.uiautomator.Launcher
+11-13 03:23:40.503 V/UiAutomation( 2906): Init UiAutomation@2ca3833[id=9, flags=0]
+11-13 03:23:40.503 D/BatterySaverPolicy(  583): accessibility changed to true, updating policy.
+11-13 03:23:41.509 W/MediaProvider( 1498): isAppCloneUserPair for user 0: false
+11-13 03:23:41.510 V/MediaProvider( 1498): Inserted id:1000000018 less than next row id backup:1000001000.
+11-13 03:23:41.517 W/AccessibilityNodeInfoDumper( 2906): Fetch time: 9ms
+11-13 03:23:41.518 D/BatterySaverPolicy(  583): accessibility changed to false, updating policy.
+11-13 03:23:41.519 D/AndroidRuntime( 2906): Shutting down VM
+11-13 03:23:41.548 W/TransactionTracing(  466): Could not find layer handle 0x7995e8a75450
