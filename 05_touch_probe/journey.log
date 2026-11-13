@@ -1,0 +1,6 @@
+> start app.kurotoon.dev
+> sleep 10
+> sh uiautomator dump /sdcard/u.xml >/dev/null; sed 's/<node/\n<node/g' /sdcard/u.xml
+
+> sh dumpsys activity top | grep -iE "mVisibleRect|Insets|navigationBars|getVisibleDisplayFrame|mAttachInfo" | head -20
+
