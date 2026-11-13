@@ -43,15 +43,48 @@ def dump():
     return raw_dump()
 
 
+def app_bounds():
+    """Screen rect apps may use (between the status and navigation bars); follows rotation."""
+    m = re.search(r"mAppBounds=Rect\((\d+), (\d+) - (\d+), (\d+)\)", adb("shell", "dumpsys", "window", "displays"))
+    return tuple(map(int, m.groups())) if m else None
+
+
 def nodes(root):
+    """(text, desc, x, y, node) for every node.
+
+    uiautomator clips bounds to the display's *usable* height, which starts at 0 rather than below
+    the status bar, so on an edge-to-edge app the strip just above the navigation bar (bottom bars,
+    the tab dock, the onboarding Next button) comes back as [0,0][0,0]. Those nodes are mapped back
+    into that strip, under the nearest ancestor that still has real bounds.
+    """
     if root is None:
         return []
+    parent = {c: p for p in root.iter() for c in p}
+    clip = None
     out = []
     for n in root.iter("node"):
         b = re.findall(r"\d+", n.get("bounds", ""))
-        if len(b) == 4:
-            x1, y1, x2, y2 = map(int, b)
-            out.append((n.get("text", ""), n.get("content-desc", ""), (x1 + x2) // 2, (y1 + y2) // 2, n))
+        if len(b) != 4:
+            continue
+        x1, y1, x2, y2 = map(int, b)
+        if x2 <= x1 or y2 <= y1:
+            a = parent.get(n)
+            while a is not None:
+                ab = list(map(int, re.findall(r"\d+", a.get("bounds", "")) or [0, 0, 0, 0]))
+                if len(ab) == 4 and ab[2] > ab[0] and ab[3] > ab[1]:
+                    break
+                a = parent.get(a)
+            if a is None:
+                continue
+            if clip is None:
+                top = root.find("node")
+                clip = int(re.findall(r"\d+", top.get("bounds"))[3]) if top is not None else 0
+                bounds = app_bounds()
+                clip = (clip, bounds[3] if bounds else clip)
+            if ab[3] >= clip[0] - 2 and clip[1] > clip[0]:
+                out.append((n.get("text", ""), n.get("content-desc", ""), (ab[0] + ab[2]) // 2, (clip[0] + clip[1]) // 2, n))
+            continue
+        out.append((n.get("text", ""), n.get("content-desc", ""), (x1 + x2) // 2, (y1 + y2) // 2, n))
     return out
 
 
