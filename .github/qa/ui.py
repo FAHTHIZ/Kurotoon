@@ -129,6 +129,11 @@ def run(path):
                     adb("shell", "input", "tap", str(x), str(y)); time.sleep(1.5)
                 else:
                     say(f"  !! not found: {args[1]} near {args[0]}")
+            elif cmd == "dumpxml":
+                # dumpxml NAME: keep the raw accessibility tree next to the screenshots
+                root = raw_dump()
+                if root is not None:
+                    ET.ElementTree(root).write(f"{OUT}/{args[0]}.xml")
             elif cmd == "coords":
                 for t, d, x, y, n in nodes(dump()):
                     if t or d:
