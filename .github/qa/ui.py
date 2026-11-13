@@ -175,6 +175,12 @@ def run(path):
                 pos = find(args[0], exact=True) or find(args[0])
                 if pos:
                     adb("shell", "input", "tap", str(pos[0]), str(pos[1])); time.sleep(2)
+            elif cmd == "tapor":
+                # tapor LABEL X Y: tap LABEL, or X,Y when the tree can't be read (the system folder picker
+                # crashes uiautomator, so its screens only answer to coordinates)
+                pos = find(args[0], exact=True) or find(args[0]) or (int(args[1]), int(args[2]))
+                say(f"  tapping {pos[0]},{pos[1]}")
+                adb("shell", "input", "tap", str(pos[0]), str(pos[1])); time.sleep(2)
             elif cmd == "tapxy":
                 adb("shell", "input", "tap", args[0], args[1]); time.sleep(1.5)
             elif cmd == "long":
