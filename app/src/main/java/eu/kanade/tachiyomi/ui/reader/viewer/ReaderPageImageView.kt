@@ -96,6 +96,22 @@ open class ReaderPageImageView @JvmOverloads constructor(
     var onScaleChanged: ((newScale: Float) -> Unit)? = null
     var onViewClicked: (() -> Unit)? = null
 
+    /** The scale the reader zoomed to on its own (landscape zoom), which still counts as "not zoomed in". */
+    private var autoZoomScale = 0F
+
+    /**
+     * Whether the reader has zoomed into this page past the size it was fitted to. Taps on the side
+     * zones shouldn't turn the page then: people tap to look around, not to leave.
+     */
+    val isZoomedIn: Boolean
+        get() = when (val view = pageView) {
+            is SubsamplingScaleImageView ->
+                view.isReady &&
+                    view.scale > maxOf(view.minScale, autoZoomScale) * ZOOMED_IN_SLACK
+            is PhotoView -> view.scale > ZOOMED_IN_SLACK
+            else -> false
+        }
+
     /**
      * For automatic background. Will be set as background color when [onImageLoaded] is called.
      */
@@ -162,6 +178,7 @@ open class ReaderPageImageView @JvmOverloads constructor(
                 }
 
                 val targetScale = height.toFloat() / sHeight.toFloat()
+                autoZoomScale = targetScale
                 animateScaleAndCenter(targetScale, point)!!
                     .withDuration(500)
                     .withEasing(EASE_IN_OUT_QUAD)
@@ -482,3 +499,5 @@ open class ReaderPageImageView @JvmOverloads constructor(
 }
 
 private const val MAX_ZOOM_SCALE = 5F
+
+private const val ZOOMED_IN_SLACK = 1.05F
