@@ -1025,7 +1025,8 @@ class KuroScreenshots {
                 kurotoon.ui.reader.ReaderPageLoader(progress = { 0.42f })
             }
             eu.kanade.presentation.reader.ReaderError(
-                message = "The site doesn\u2019t have this any more (HTTP 404). Refresh the series to pick up moved chapters",
+                message = "The site doesn\u2019t have this any more (HTTP 404). " +
+                    "Refresh the series to pick up moved chapters",
                 onRetry = {},
                 onOpenInWebView = {},
             )
