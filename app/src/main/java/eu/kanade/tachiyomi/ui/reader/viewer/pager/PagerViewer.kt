@@ -124,7 +124,10 @@ abstract class PagerViewer(val activity: ReaderActivity) : Viewer {
                 (event.rawX - viewPosition[0] + viewPositionRelativeToWindow[0]) / pager.width,
                 (event.rawY - viewPosition[1] + viewPositionRelativeToWindow[1]) / pager.height,
             )
-            activity.onViewerTap(pos)
+            val zoomed = pager.children.filterIsInstance<PagerPageHolder>()
+                .firstOrNull { it.item == adapter.items.getOrNull(pager.currentItem) }
+                ?.isZoomedIn == true
+            activity.onViewerTap(pos, pageZoomedIn = zoomed)
         }
         pager.longTapListener = f@{
             if (activity.viewModel.state.value.menuVisible || general.longTapEnabled) {

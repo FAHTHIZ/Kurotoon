@@ -768,8 +768,13 @@ class ReaderActivity : BaseActivity() {
     /**
      * Called from the viewer when it's tapped at [pos], given as a fraction of its size.
      */
-    fun onViewerTap(pos: Offset) {
+    fun onViewerTap(pos: Offset, pageZoomedIn: Boolean = false) {
         val action = settingsViewModel.navigation.value?.getAction(pos) ?: Action.MENU
+        // A tap on a zoomed-in page is someone looking around it; turning the page would lose their spot
+        if (pageZoomedIn && action != Action.MENU) {
+            toggleMenu()
+            return
+        }
         when (action) {
             Action.MENU -> toggleMenu()
             Action.FORWARD -> viewer?.moveForward()
