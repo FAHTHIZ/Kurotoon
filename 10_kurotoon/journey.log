@@ -1,0 +1,125 @@
+> start app.kurotoon.dev
+> sleep 6
+> shot welcome
+  [shot 001_welcome] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapuntil Next "Select a folder"
+  found
+> shot storage
+  [shot 002_storage] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tapuntil "Select a folder" "Use this folder" 4
+  !! never reached Use this folder
+> shot picker
+  [shot 003_picker] visible: []
+> tap "More options" 20
+  !! not found: More options
+  [shot 004_notfound] visible: []
+> tap "New folder"
+  !! not found: New folder
+  [shot 005_notfound] visible: []
+> shot newfolder
+  [shot 006_newfolder] visible: []
+> type Kurotoon
+> tapx OK
+  !! not found: OK
+  [shot 007_notfound] visible: []
+> sleep 3
+> tap "Use this folder" 15
+  !! not found: Use this folder
+  [shot 008_notfound] visible: []
+> sleep 2
+> shot picker_allow
+  [shot 009_picker_allow] visible: []
+> tap Allow
+  !! not found: Allow
+  [shot 010_notfound] visible: []
+> sleep 3
+> shot storage_done
+  [shot 011_storage_done] visible: []
+> tapuntil Next "Get started" 6
+  !! never reached Get started
+> shot guides
+  [shot 012_guides] visible: []
+> tapuntil "Get started" Library 4
+  !! never reached Library
+> sleep 4
+> shot home_empty
+  [shot 013_home_empty] visible: []
+> tapx Browse
+  !! not found: Browse
+  [shot 014_notfound] visible: []
+> sleep 2
+> shot browse_empty
+  [shot 015_browse_empty] visible: ['Android SDK built for x86_64', 'Files on Android SDK built for x86_64', 'List view', 'Android SDK built for x86_64', 'New folder', 'Sort by...', 'More options', 'Can’t use this folder', 'To protect your privacy, choose another folder', 'CREATE NEW FOLDER', 'Alarms', 'Android', 'Audiobooks', 'DCIM', 'Documents', 'Download', 'Movies', 'Music', 'Alarms', 'Android', 'Audiobooks', 'DCIM', 'Documents', 'USE THIS FOLDER']
+> tapx Library
+  !! not found: Library
+  [shot 016_notfound] visible: []
+> shot library_empty
+  [shot 017_library_empty] visible: []
+> tapx Updates
+  !! not found: Updates
+  [shot 018_notfound] visible: []
+> shot updates_empty
+  [shot 019_updates_empty] visible: []
+> tapx Me
+  !! not found: Me
+  [shot 020_notfound] visible: []
+> shot me_new
+  [shot 021_me_new] visible: []
+> tapx Home
+  !! not found: Home
+  [shot 022_notfound] visible: []
+> view "tachiyomi://add-repo?url=https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
+> sleep 4
+> shot addrepo_dialog
+  [shot 023_addrepo_dialog] visible: []
+> tapx Add
+  !! not found: Add
+  [shot 024_notfound] visible: []
+> sleep 5
+> shot store_added
+  [shot 025_store_added] visible: []
+> start app.kurotoon.dev
+> sleep 3
+> tapx Home
+  !! not found: Home
+  [shot 026_notfound] visible: []
+> tap "Add sources"
+  !! not found: Add sources
+  [shot 027_notfound] visible: []
+> sleep 8
+> shot extensions
+  [shot 028_extensions] visible: []
+> tap "Tap here to grant"
+  !! not found: Tap here to grant
+  [shot 029_notfound] visible: []
+> sleep 3
+> shot grant_settings
+  [shot 030_grant_settings] visible: ['Android SDK built for x86_64', 'Files on Android SDK built for x86_64', 'List view', 'Android SDK built for x86_64', 'New folder', 'Sort by...', 'More options', 'Can’t use this folder', 'To protect your privacy, choose another folder', 'CREATE NEW FOLDER', 'Alarms', 'Android', 'Audiobooks', 'DCIM', 'Documents', 'Download', 'Movies', 'Music', 'Alarms', 'Android', 'Audiobooks', 'DCIM', 'Documents', 'USE THIS FOLDER']
+> tap "Allow from this source"
+  !! not found: Allow from this source
+  [shot 031_notfound] visible: ['Android SDK built for x86_64', 'Files on Android SDK built for x86_64', 'List view', 'Android SDK built for x86_64', 'New folder', 'Sort by...', 'More options', 'Can’t use this folder', 'To protect your privacy, choose another folder', 'CREATE NEW FOLDER', 'Alarms', 'Android', 'Audiobooks', 'DCIM', 'Documents', 'Download', 'Movies', 'Music', 'Alarms', 'Android', 'Audiobooks', 'DCIM', 'Documents', 'USE THIS FOLDER']
+> sleep 2
+> shot grant_on
+  [shot 032_grant_on] visible: []
+> back
+> sleep 2
+> shot extensions_granted
+  [shot 033_extensions_granted] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tap Search
+  !! not found: Search
+  [shot 034_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> type MangaDex
+> sleep 4
+> shot ext_search
+  [shot 035_ext_search] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tapx Install
+  !! not found: Install
+  [shot 036_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> sleep 15
+> shot install_prompt
+  [shot 037_install_prompt] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> shot installed
+  [shot 038_installed] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']

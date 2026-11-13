@@ -1,0 +1,217 @@
+> start app.kurotoon.dev
+> sleep 4
+> tapx Browse
+  !! not found: Browse
+  [shot 001_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tapx Extensions
+  !! not found: Extensions
+  [shot 002_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> sleep 4
+> tap Search
+  !! not found: Search
+  [shot 003_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> type Webtoons
+> sleep 5
+> shot ext_webtoons
+  [shot 004_ext_webtoons] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tapx Install
+  !! not found: Install
+  [shot 005_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> sleep 15
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> shot ext_webtoons_done
+  [shot 006_ext_webtoons_done] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tapif Reset
+> tapif "Navigate up"
+> tap Search
+  !! not found: Search
+  [shot 007_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> type Asura
+> sleep 5
+> shot ext_asura
+  [shot 008_ext_asura] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tapx Install
+  !! not found: Install
+  [shot 009_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> sleep 15
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> shot ext_asura_done
+  [shot 010_ext_asura_done] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> start app.kurotoon.dev
+> tapx Browse
+  !! not found: Browse
+  [shot 011_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tapx Sources
+  !! not found: Sources
+  [shot 012_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> sleep 3
+> shot sources
+  [shot 013_sources] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tap MangaDex
+  !! not found: MangaDex
+  [shot 014_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> sleep 12
+> shot mangadex_popular
+  [shot 015_mangadex_popular] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tapx Latest
+  !! not found: Latest
+  [shot 016_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> sleep 10
+> shot mangadex_latest
+  [shot 017_mangadex_latest] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tapxy 270 1000
+> sleep 12
+> shot mangadex_series
+  [shot 018_mangadex_series] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 019_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> sleep 3
+> shot mangadex_added
+  [shot 020_mangadex_added] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tap Start
+  !! not found: Start
+  [shot 021_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> sleep 20
+> shot reader
+  [shot 022_reader] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tapxy 540 1200
+> sleep 2
+> shot reader_menu
+  [shot 023_reader_menu] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tap Chapters
+  !! not found: Chapters
+  [shot 024_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> sleep 3
+> shot reader_chapters
+  [shot 025_reader_chapters] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> back
+> back
+> sleep 2
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Browse
+  !! not found: Browse
+  [shot 026_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapx Sources
+  !! not found: Sources
+  [shot 027_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tap Webtoons.com
+  !! not found: Webtoons.com
+  [shot 028_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> sleep 12
+> shot webtoons_popular
+  [shot 029_webtoons_popular] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapxy 270 1000
+> sleep 12
+> shot webtoons_series
+  [shot 030_webtoons_series] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 031_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> sleep 3
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Browse
+> tapx Sources
+> tap "Asura Scans"
+  !! not found: Asura Scans
+  [shot 032_notfound] visible: ['Universal Search', 'One search across every installed source.', 'Other', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 15
+> shot asura_popular
+  [shot 033_asura_popular] visible: ['Universal Search', 'One search across every installed source.', 'Other', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapxy 270 1000
+> sleep 12
+> shot asura_series
+  [shot 034_asura_series] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 035_notfound] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> sleep 3
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Library
+> sleep 3
+> shot library
+  [shot 036_library] visible: ['Your library is empty', 'Getting started guide', 'Library', 'Search', 'Filter', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "More options"
+> tap "Group library by"
+> sleep 2
+> shot group_by
+  [shot 037_group_by] visible: ['Group library by', 'Your categories', 'Source', 'Publishing status', 'Nothing (one list)', 'Cancel']
+> tap Source
+> sleep 3
+> shot library_by_source
+  [shot 038_library_by_source] visible: ['Your library is empty', 'Getting started guide', 'Library', 'Search', 'Filter', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Updates
+> sleep 3
+> shot updates
+  [shot 039_updates] visible: ['Not checked yet', 'Pull down or tap Check now to look for new chapters', 'Check now', 'No recent updates', 'Updates', 'Filter', 'Release schedule', 'View Upcoming Updates', 'Update library', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "Release schedule"
+> sleep 3
+> shot schedule
+  [shot 040_schedule] visible: ['No ongoing series in your library has a regular update day yet. Once a series has posted a few chapters it shows up here.', 'Navigate up', 'Release schedule']
+> back
+> tapx Home
+> sleep 8
+> shot home
+  [shot 041_home] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> shot home_scrolled
+  [shot 042_home_scrolled] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> shot home_scrolled2
+  [shot 043_home_scrolled2] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Me
+> sleep 2
+> shot me
+  [shot 044_me] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '0', 'In library', '0', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "Kuro Points"
+  !! not found: Kuro Points
+  [shot 045_notfound] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '0', 'In library', '0', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 3
+> shot shop_missions
+  [shot 046_shop_missions] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '0', 'In library', '0', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Shop
+  !! not found: Shop
+  [shot 047_notfound] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '0', 'In library', '0', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 2
+> shot shop
+  [shot 048_shop] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '0', 'In library', '0', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> shot shop_scrolled
+  [shot 049_shop_scrolled] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Achievements
+  !! not found: Achievements
+  [shot 050_notfound] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 2
+> shot achievements
+  [shot 051_achievements] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Collection
+> sleep 2
+> shot collection
+  [shot 052_collection] visible: ['Avatars, frames, stickers and looks for your profile and the app. Everything here is free.', 'All', 'Avatars', '6', 'Profile frames', '7', 'Stickers', 'Avatars', '6', 'Kuro', 'Kuro', 'Classic Kuro', 'Classic Kuro', 'Galaxy Kuro', 'Galaxy Kuro', 'Royal Kuro', 'Royal Kuro', 'Cool Kuro', 'Cool Kuro', 'Pumpkin Kuro', 'Pumpkin Kuro', 'Profile frames', '7', 'Crimson Ring', 'Starfield', 'Aurora', 'Nebula', 'Coin Holder', 'Mythic', 'Navigate up', 'Collection', 'Import pack']
+> tapx Packs
+  !! not found: Packs
+  [shot 053_notfound] visible: ['Avatars, frames, stickers and looks for your profile and the app. Everything here is free.', 'All', 'Avatars', '6', 'Profile frames', '7', 'Stickers', 'Avatars', '6', 'Kuro', 'Kuro', 'Classic Kuro', 'Classic Kuro', 'Galaxy Kuro', 'Galaxy Kuro', 'Royal Kuro', 'Royal Kuro', 'Cool Kuro', 'Cool Kuro', 'Pumpkin Kuro', 'Pumpkin Kuro', 'Profile frames', '7', 'Crimson Ring', 'Starfield', 'Aurora', 'Nebula', 'Coin Holder', 'Mythic', 'Navigate up', 'Collection', 'Import pack']
+> sleep 2
+> shot packs
+  [shot 054_packs] visible: ['Avatars, frames, stickers and looks for your profile and the app. Everything here is free.', 'All', 'Avatars', '6', 'Profile frames', '7', 'Stickers', 'Avatars', '6', 'Kuro', 'Kuro', 'Classic Kuro', 'Classic Kuro', 'Galaxy Kuro', 'Galaxy Kuro', 'Royal Kuro', 'Royal Kuro', 'Cool Kuro', 'Cool Kuro', 'Pumpkin Kuro', 'Pumpkin Kuro', 'Profile frames', '7', 'Crimson Ring', 'Starfield', 'Aurora', 'Nebula', 'Coin Holder', 'Mythic', 'Navigate up', 'Collection', 'Import pack']
+> back
+> tap Statistics
+> sleep 3
+> shot stats
+  [shot 055_stats] visible: ['OVERVIEW', '0', 'In library', 'None', 'Read duration', '0', 'Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '0', 'Chapters', '0', 'Active days', '0', 'Day streak', '0', 'Best streak', 'ENTRIES', '0', 'In global update', '0', 'Started', '0', 'Local', 'CHAPTERS', '0', '0', '0', 'Navigate up', 'Statistics']
