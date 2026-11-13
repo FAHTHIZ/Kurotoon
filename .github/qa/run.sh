@@ -10,7 +10,7 @@ adb shell input keyevent 3
 adb install -r -g "$APK"
 adb logcat -c
 adb logcat -v time > qa-out/logcat.txt 2>&1 &
-for j in .github/qa/journeys/*.txt; do
+for j in .github/qa/journeys/${JOURNEYS:-*}.txt; do
   OUT="qa-out/$(basename "$j" .txt)" python3 .github/qa/ui.py "$j"
 done
 adb logcat -d -b crash > qa-out/crash.txt 2>&1
