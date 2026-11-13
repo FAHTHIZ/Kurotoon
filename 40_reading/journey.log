@@ -1,0 +1,178 @@
+> start app.kurotoon.dev
+> tapx Browse
+> tapx Sources
+  !! not found: Sources
+  [shot 001_notfound] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap Webtoons.com
+  !! not found: Webtoons.com
+  [shot 002_notfound] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 12
+> tapxy 270 1000
+> sleep 12
+> shot strip_series
+  [shot 003_strip_series] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif Resume
+> tapif Start
+> sleep 20
+> shot strip_open
+  [shot 004_strip_open] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> scrollup
+> scrollup
+> sleep 2
+> shot strip_scrolled
+  [shot 005_strip_scrolled] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> scrollup
+> scrollup
+> sleep 3
+> shot strip_scrolled_more
+  [shot 006_strip_scrolled_more] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapxy 540 1200
+> sleep 2
+> shot strip_menu
+  [shot 007_strip_menu] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapxy 540 1200
+> sleep 1
+> back
+> sleep 3
+> shot strip_back_on_series
+  [shot 008_strip_back_on_series] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> tapif Resume
+> sleep 15
+> shot strip_resumed
+  [shot 009_strip_resumed] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> rotate 1
+> sleep 5
+> shot strip_landscape
+  [shot 010_strip_landscape] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> rotate 0
+> sleep 5
+> shot strip_portrait_again
+  [shot 011_strip_portrait_again] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 8
+> shot home_after_kill
+  [shot 012_home_after_kill] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapif Resume
+> sleep 15
+> shot strip_after_kill
+  [shot 013_strip_after_kill] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> sleep 3
+> shot strip_end
+  [shot 014_strip_end] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> sleep 8
+> shot strip_next_chapter
+  [shot 015_strip_next_chapter] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapxy 540 1200
+> sleep 2
+> shot strip_next_menu
+  [shot 016_strip_next_menu] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'KuroToon', 'Selected', 'Dynamic', 'Catppuccin', 'Next']
+> tap Chapters
+  !! not found: Chapters
+  [shot 017_notfound] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'KuroToon', 'Selected', 'Dynamic', 'Catppuccin', 'Next']
+> sleep 3
+> shot strip_chapter_list
+  [shot 018_strip_chapter_list] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'KuroToon', 'Selected', 'Dynamic', 'Catppuccin', 'Next']
+> back
+> sleep 1
+> back
+> sleep 3
+> shot strip_series_after
+  [shot 019_strip_series_after] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Browse
+> tapx Sources
+  !! not found: Sources
+  [shot 020_notfound] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap MangaDex
+  !! not found: MangaDex
+  [shot 021_notfound] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 12
+> tapxy 270 1000
+> sleep 12
+> shot paged_series
+  [shot 022_paged_series] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif Resume
+> tapif Start
+> sleep 20
+> shot paged_open
+  [shot 023_paged_open] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> swipe 900 1200 150 1200 150
+> sleep 3
+> shot paged_swipe_left
+  [shot 024_paged_swipe_left] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> swipe 150 1200 900 1200 150
+> sleep 3
+> shot paged_swipe_right
+  [shot 025_paged_swipe_right] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sh "input tap 540 1100; input tap 540 1100"
+
+> sleep 2
+> shot paged_zoomed
+  [shot 026_paged_zoomed] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> swipe 700 1200 400 1200 300
+> sleep 2
+> shot paged_zoomed_pan
+  [shot 027_paged_zoomed_pan] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sh "input tap 540 1100; input tap 540 1100"
+
+> sleep 2
+> shot paged_unzoomed
+  [shot 028_paged_unzoomed] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> rotate 1
+> sleep 5
+> shot paged_landscape
+  [shot 029_paged_landscape] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'Next']
+> rotate 0
+> sleep 5
+> shot paged_portrait_again
+  [shot 030_paged_portrait_again] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'KuroToon', 'Selected', 'Dynamic', 'Catppuccin', 'Next']
+> tapxy 540 1200
+> sleep 2
+> tap Settings
+> sleep 3
+> shot paged_settings
+  [shot 031_paged_settings] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'KuroToon', 'Selected', 'Dynamic', 'Catppuccin', 'Next']
+> scrollup
+> shot paged_settings_more
+  [shot 032_paged_settings_more] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'KuroToon', 'Selected', 'Dynamic', 'Catppuccin', 'Next']
+> back
+> sleep 2
+> back
+> sleep 3
+> shot paged_back_on_series
+  [shot 033_paged_back_on_series] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Home
+> sleep 6
+> shot home_after_reading
+  [shot 034_home_after_reading] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif History
+> sleep 3
+> shot history_after_reading
+  [shot 035_history_after_reading] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
