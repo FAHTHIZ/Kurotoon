@@ -75,6 +75,7 @@ import eu.kanade.presentation.reader.ReadingModeSelectDialog
 import eu.kanade.presentation.reader.appbars.ReaderAppBars
 import eu.kanade.presentation.reader.components.ChapterNavigatorType
 import eu.kanade.presentation.reader.settings.ReaderSettingsDialog
+import eu.kanade.presentation.util.formattedMessage
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.notification.Notifications
@@ -1069,7 +1070,8 @@ class ReaderActivity : BaseActivity() {
     private fun setInitialChapterError(error: Throwable) {
         logcat(LogPriority.ERROR, error)
         finish()
-        toast(error.message)
+        // Say what went wrong in plain words ("the site is down", "you're offline") rather than a raw code
+        toast(error.formattedMessage)
     }
 
     /**
