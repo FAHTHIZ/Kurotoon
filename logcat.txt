@@ -1,0 +1,351 @@
+--------- beginning of main
+11-13 02:58:08.010 D/EGL_emulation( 1114): app_time_stats: avg=12101.11ms min=41.49ms max=83953.81ms count=7
+--------- beginning of system
+11-13 02:58:08.035 W/PackageManager(  584): Failed registering loading progress callback. Package is fully loaded.
+11-13 02:58:08.035 W/VoiceInteractionManager(  584): no available voice recognition services found for user 0
+11-13 02:58:08.036 E/system_server(  584): No package ID 7f found for ID 0x7f0801a3.
+11-13 02:58:08.036 E/system_server(  584): No package ID 7f found for ID 0x7f120434.
+11-13 02:58:08.036 E/system_server(  584): No package ID 7f found for ID 0x7f120434.
+11-13 02:58:08.036 E/system_server(  584): No package ID 7f found for ID 0x7f12009e.
+11-13 02:58:08.036 E/system_server(  584): No package ID 7f found for ID 0x7f0801a6.
+11-13 02:58:08.036 E/system_server(  584): No package ID 7f found for ID 0x7f12043e.
+11-13 02:58:08.036 E/system_server(  584): No package ID 7f found for ID 0x7f12043e.
+11-13 02:58:08.036 E/system_server(  584): No package ID 7f found for ID 0x7f12009e.
+11-13 02:58:08.036 E/system_server(  584): No package ID 7f found for ID 0x7f0801a5.
+11-13 02:58:08.036 E/system_server(  584): No package ID 7f found for ID 0x7f12043d.
+11-13 02:58:08.036 E/system_server(  584): No package ID 7f found for ID 0x7f12043d.
+11-13 02:58:08.036 E/system_server(  584): No package ID 7f found for ID 0x7f12009e.
+11-13 02:58:08.039 D/AppWidgetServiceImpl(  584): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.UpdatesGridGlanceReceiver} won't be persisted.
+11-13 02:58:08.039 D/AppWidgetServiceImpl(  584): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.UpdatesGridCoverScreenGlanceReceiver} won't be persisted.
+11-13 02:58:08.039 D/AppWidgetServiceImpl(  584): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.ContinueReadingGlanceReceiver} won't be persisted.
+11-13 02:58:08.045 W/VoiceInteractionManager(  584): no available voice recognition services found for user 0
+11-13 02:58:08.045 D/AppWidgetServiceImpl(  584): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.UpdatesGridGlanceReceiver} won't be persisted.
+11-13 02:58:08.045 D/AppWidgetServiceImpl(  584): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.UpdatesGridCoverScreenGlanceReceiver} won't be persisted.
+11-13 02:58:08.045 D/AppWidgetServiceImpl(  584): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.ContinueReadingGlanceReceiver} won't be persisted.
+--------- beginning of kernel
+11-13 02:58:08.294 I/logd    (    0): logdr: UID=2000 GID=2000 PID=2514 b tail=0 logMask=99 pid=0 start=0ns deadline=0ns
+11-13 02:58:08.125 I/system_server(  584): Background concurrent copying GC freed 153629(9509KB) AllocSpace objects, 6(120KB) LOS objects, 49% free, 12MB/24MB, paused 50us,43us total 167.715ms
+11-13 02:58:08.135 I/DropBoxManagerService(  584): add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-13 02:58:08.216 D/AndroidRuntime( 2518): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 02:58:08.219 I/AndroidRuntime( 2518): Using default boot image
+11-13 02:58:08.219 I/AndroidRuntime( 2518): Leaving lock profiling enabled
+11-13 02:58:08.220 I/app_process( 2518): Core platform API reporting enabled, enforcing=false
+11-13 02:58:08.281 D/app_process( 2518): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 02:58:08.281 D/app_process( 2518): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 02:58:08.284 W/app_process( 2518): Unexpected CPU variant for x86: x86_64.
+11-13 02:58:08.284 W/app_process( 2518): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 02:58:08.300 D/AndroidRuntime( 2518): Calling main entry com.android.commands.monkey.Monkey
+11-13 02:58:08.301 W/Monkey  ( 2518): args: [-p, app.kurotoon.dev, -c, android.intent.category.LAUNCHER, 1]
+11-13 02:58:08.301 W/Monkey  ( 2518):  arg: "-p"
+11-13 02:58:08.301 W/Monkey  ( 2518):  arg: "app.kurotoon.dev"
+11-13 02:58:08.301 W/Monkey  ( 2518):  arg: "-c"
+11-13 02:58:08.301 W/Monkey  ( 2518):  arg: "android.intent.category.LAUNCHER"
+11-13 02:58:08.301 W/Monkey  ( 2518):  arg: "1"
+11-13 02:58:08.301 W/Monkey  ( 2518): data="app.kurotoon.dev"
+11-13 02:58:08.301 W/Monkey  ( 2518): data="android.intent.category.LAUNCHER"
+11-13 02:58:08.307 D/CompatibilityChangeReporter(  584): Compat change id reported: 161145287; UID 2000; state: DISABLED
+11-13 02:58:08.307 W/BroadcastQueue(  584): Skipping deliver [background] BroadcastRecord{485c8a0 u-1 android.net.conn.CONNECTIVITY_CHANGE} to ReceiverList{bd75c59 2518 (unknown name)/2000/u-1 remote:2ddc8d2}: process gone or crashing
+11-13 02:58:08.310 D/CompatibilityChangeReporter(  584): Compat change id reported: 161252188; UID 10126; state: ENABLED
+11-13 02:58:08.310 I/ActivityTaskManager(  584): START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=app.kurotoon.dev/eu.kanade.tachiyomi.ui.main.MainActivity} from uid 2000
+11-13 02:58:08.311 D/CompatibilityChangeReporter(  584): Compat change id reported: 194480991; UID 10126; state: ENABLED
+11-13 02:58:08.312 D/CompatibilityChangeReporter(  584): Compat change id reported: 174042980; UID 10126; state: DISABLED
+11-13 02:58:08.312 D/CompatibilityChangeReporter(  584): Compat change id reported: 184838306; UID 10126; state: DISABLED
+11-13 02:58:08.312 D/CompatibilityChangeReporter(  584): Compat change id reported: 185004937; UID 10126; state: DISABLED
+11-13 02:58:08.312 D/CompatibilityChangeReporter(  584): Compat change id reported: 181136395; UID 10126; state: DISABLED
+11-13 02:58:08.312 D/CompatibilityChangeReporter(  584): Compat change id reported: 174042936; UID 10126; state: DISABLED
+11-13 02:58:08.312 D/CompatibilityChangeReporter(  584): Compat change id reported: 197654537; UID 10126; state: ENABLED
+11-13 02:58:08.313 D/CompatibilityChangeReporter(  584): Compat change id reported: 205907456; UID 10126; state: ENABLED
+11-13 02:58:08.314 D/CompatibilityChangeReporter(  584): Compat change id reported: 194833441; UID 10126; state: ENABLED
+11-13 02:58:08.314 D/CompatibilityChangeReporter(  584): Compat change id reported: 135634846; UID 10126; state: DISABLED
+11-13 02:58:08.314 D/CompatibilityChangeReporter(  584): Compat change id reported: 143937733; UID 10126; state: ENABLED
+11-13 02:58:08.317 D/SplashScreenView(  859): Build android.window.SplashScreenView{10ca6e V.E...... ......ID 0,0-0,0}
+11-13 02:58:08.317 D/SplashScreenView(  859): Icon: view: android.widget.ImageView{3e7e50f V.ED..... ......I. 0,0-0,0 #10204dc android:id/splashscreen_icon_view} drawable: com.android.wm.shell.startingsurface.SplashscreenIconDrawableFactory$ImmobileIconDrawable@a21499c size: 504
+11-13 02:58:08.317 D/SplashScreenView(  859): Branding: view: android.view.View{f420fa5 G.ED..... ......I. 0,0-0,0 #10204db android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+11-13 02:58:08.319 I/Monkey  ( 2518): Events injected: 1
+11-13 02:58:08.322 I/Monkey  ( 2518): ## Network stats: elapsed time=12ms (0ms mobile, 0ms wifi, 12ms not connected)
+11-13 02:58:08.337 D/Zygote  (  386): Forked child process 2535
+11-13 02:58:08.338 I/ActivityManager(  584): Start proc 2535:app.kurotoon.dev/u0a126 for next-top-activity {app.kurotoon.dev/eu.kanade.tachiyomi.ui.main.MainActivity}
+11-13 02:58:08.342 I/app_process( 2518): System.exit called, status: 0
+11-13 02:58:08.342 I/AndroidRuntime( 2518): VM exiting with result code 0.
+11-13 02:58:08.362 I/pp.kurotoon.dev( 2535): Late-enabling -Xcheck:jni
+11-13 02:58:08.405 W/pp.kurotoon.dev( 2535): Unexpected CPU variant for x86: x86_64.
+11-13 02:58:08.405 W/pp.kurotoon.dev( 2535): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 02:58:08.414 I/adbd    (  482): jdwp connection from 2535
+11-13 02:58:08.418 D/CompatibilityChangeReporter( 2535): Compat change id reported: 171979766; UID 10126; state: ENABLED
+11-13 02:58:08.433 W/ziparchive( 2535): Unable to open '/data/app/~~2MC32HB3G5Cx6PSt3g3d1w==/app.kurotoon.dev-3JOEiw_D9HFtDD7AN7kSbQ==/base.dm': No such file or directory
+11-13 02:58:08.437 W/ziparchive( 2535): Unable to open '/data/app/~~2MC32HB3G5Cx6PSt3g3d1w==/app.kurotoon.dev-3JOEiw_D9HFtDD7AN7kSbQ==/base.dm': No such file or directory
+11-13 02:58:08.479 W/Parcel  (  859): Expecting binder but got null!
+11-13 02:58:08.539 W/TransactionTracing(  456): Could not find layer handle 0x70448c3bc6f0
+11-13 02:58:08.540 W/TransactionTracing(  456): Could not find layer handle 0x70448c3bc990
+11-13 02:58:08.540 W/TransactionTracing(  456): Could not find layer handle 0x70448c3bc990
+11-13 02:58:08.540 W/TransactionTracing(  456): Could not find layer handle 0x70448c3bc6f0
+11-13 02:58:09.247 V/GraphicsEnvironment( 2535): ANGLE Developer option for 'app.kurotoon.dev' set to: 'default'
+11-13 02:58:09.248 V/GraphicsEnvironment( 2535): ANGLE GameManagerService for app.kurotoon.dev: false
+11-13 02:58:09.248 V/GraphicsEnvironment( 2535): Neither updatable production driver nor prerelease driver is supported.
+11-13 02:58:09.249 D/NetworkSecurityConfig( 2535): Using Network Security Config from resource network_security_config debugBuild: true
+11-13 02:58:09.250 D/NetworkSecurityConfig( 2535): Using Network Security Config from resource network_security_config debugBuild: true
+11-13 02:58:09.310 V/NativeCrypto( 2535): Registering org/conscrypt/NativeCrypto's 367 native methods...
+11-13 02:58:09.312 W/pp.kurotoon.dev( 2535): Accessing hidden method Ljava/security/spec/ECParameterSpec;->getCurveName()Ljava/lang/String; (unsupported, reflection, allowed)
+11-13 02:58:09.321 D/WM-WrkMgrInitializer( 2535): Initializing WorkManager with default configuration.
+11-13 02:58:09.353 D/WM-Schedulers( 2535): Created SystemJobScheduler and enabled SystemJobService
+11-13 02:58:09.355 D/WM-ForceStopRunnable( 2535): The default process name was not specified.
+11-13 02:58:09.356 D/CompatibilityChangeReporter( 2535): Compat change id reported: 183155436; UID 10126; state: ENABLED
+11-13 02:58:09.357 D/WM-ForceStopRunnable( 2535): Performing cleanup operations.
+11-13 02:58:09.362 W/pp.kurotoon.dev( 2535): Accessing hidden method Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder; (unsupported, reflection, allowed)
+11-13 02:58:09.362 D/ShizukuProvider( 2535): Initialize Sui: false
+11-13 02:58:09.383 D/CompatibilityChangeReporter( 2535): Compat change id reported: 160794467; UID 10126; state: ENABLED
+11-13 02:58:09.437 D/App     ( 2535): Migration from 0 to 41 with 8 migration(s)
+11-13 02:58:09.445 D/ContextScope( 2535): Running migration: { name = InstallationIdMigration, version = -1.0 }
+11-13 02:58:09.446 D/ContextScope( 2535): Running migration: { name = SetupLibraryUpdateMigration, version = -1.0 }
+11-13 02:58:09.446 D/ContextScope( 2535): Running migration: { name = SetupBackupCreateMigration, version = -1.0 }
+11-13 02:58:09.449 D/EGL_emulation(  859): app_time_stats: avg=9435.76ms min=9435.76ms max=9435.76ms count=1
+11-13 02:58:09.454 D/libEGL  ( 2535): loaded /vendor/lib64/egl/libEGL_emulation.so
+11-13 02:58:09.458 D/libEGL  ( 2535): loaded /vendor/lib64/egl/libGLESv1_CM_emulation.so
+11-13 02:58:09.460 D/libEGL  ( 2535): loaded /vendor/lib64/egl/libGLESv2_emulation.so
+11-13 02:58:09.471 D/App     ( 2535): Updating last version to 41
+11-13 02:58:09.498 W/PackageConfigPersister(  584): App-specific configuration not found for packageName: app.kurotoon.dev and userId: 0
+11-13 02:58:09.499 D/PackageManager(  584): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+11-13 02:58:09.499 D/PackageManager(  584): Clear ephemeral installer activity
+11-13 02:58:09.502 D/CompatibilityChangeReporter( 2535): Compat change id reported: 194532703; UID 10126; state: ENABLED
+11-13 02:58:09.502 D/WM-SystemJobScheduler( 2535): Scheduling work ID 5210bea2-74bb-405d-a859-abbd6f36b462 (eu.kanade.tachiyomi.data.backup.create.BackupCreateWorker), Job ID 0
+11-13 02:58:09.503 D/CompatibilityChangeReporter(  584): Compat change id reported: 194532703; UID 10126; state: ENABLED
+11-13 02:58:09.506 D/PackageManager(  584): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+11-13 02:58:09.506 D/PackageManager(  584): Clear ephemeral installer activity
+11-13 02:58:09.506 D/WM-PackageManagerHelper( 2535): androidx.work.impl.background.systemalarm.RescheduleReceiver enabled
+11-13 02:58:09.565 W/pp.kurotoon.dev( 2535): Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (unsupported, reflection, allowed)
+11-13 02:58:09.577 D/CoreBackPreview(  584): Window{f69c773 u0 app.kurotoon.dev/eu.kanade.tachiyomi.ui.main.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@3b7fb53, mPriority=-1}
+11-13 02:58:09.583 D/CompatibilityChangeReporter(  584): Compat change id reported: 161145287; UID 10126; state: DISABLED
+11-13 02:58:09.669 D/CompatibilityChangeReporter( 2535): Compat change id reported: 193247900; UID 10126; state: ENABLED
+11-13 02:58:09.903 W/ServiceManager(  456): Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10126 pid=0
+11-13 02:58:09.903 D/PermissionCache(  456): checking android.permission.ACCESS_SURFACE_FLINGER for uid=10126 => denied (156 us)
+11-13 02:58:09.903 W/ServiceManager(  456): Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10126 pid=0
+11-13 02:58:09.903 D/PermissionCache(  456): checking android.permission.ROTATE_SURFACE_FLINGER for uid=10126 => denied (99 us)
+11-13 02:58:09.903 W/ServiceManager(  456): Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10126 pid=2535
+11-13 02:58:09.903 D/PermissionCache(  456): checking android.permission.ACCESS_SURFACE_FLINGER for uid=10126 => denied (148 us)
+11-13 02:58:09.903 W/ServiceManager(  456): Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10126 pid=0
+11-13 02:58:09.903 D/PermissionCache(  456): checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10126 => denied (94 us)
+11-13 02:58:09.903 W/ServiceManager(  456): Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10126 pid=2535
+11-13 02:58:09.903 D/PermissionCache(  456): checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10126 => denied (92 us)
+11-13 02:58:09.907 D/HostConnection( 2535): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+11-13 02:58:09.916 W/OpenGLRenderer( 2535): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+11-13 02:58:09.918 D/EGL_emulation( 2535): eglCreateContext: 0x7c90e4163790: maj 3 min 0 rcv 3
+11-13 02:58:09.919 W/pp.kurotoon.dev( 2535): Accessing hidden method Landroid/os/SystemProperties;->addChangeCallback(Ljava/lang/Runnable;)V (unsupported, reflection, allowed)
+11-13 02:58:09.924 D/EGL_emulation( 2535): eglMakeCurrent: 0x7c90e4163790: ver 3 0 (tinfo 0x7c93057fe080) (first time)
+11-13 02:58:09.950 I/hwservicemanager(  234): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-13 02:58:09.950 I/Gralloc4( 2535): mapper 4.x is not supported
+11-13 02:58:09.959 I/hwservicemanager(  234): getTransport: Cannot find entry android.hardware.graphics.allocator@4.0::IAllocator/default in either framework or device VINTF manifest.
+11-13 02:58:09.960 I/servicemanager(  233): Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+11-13 02:58:09.960 W/Gralloc4( 2535): allocator 4.x is not supported
+11-13 02:58:09.965 D/HostConnection( 2535): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+11-13 02:58:10.030 D/CoreBackPreview(  584): Window{f69c773 u0 app.kurotoon.dev/eu.kanade.tachiyomi.ui.main.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@37a4da8, mPriority=0}
+11-13 02:58:10.505 I/RoleService(  584): Granting default roles...
+11-13 02:58:10.506 V/MediaPlayerList( 1023): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+11-13 02:58:10.507 I/Telecom (  584): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AKc
+11-13 02:58:10.507 D/MediaPlayerList( 1023): Name of package changed: app.kurotoon.dev
+11-13 02:58:10.507 E/system_server(  584): No package ID 7f found for ID 0x7f0801a3.
+11-13 02:58:10.507 E/system_server(  584): No package ID 7f found for ID 0x7f120434.
+11-13 02:58:10.507 E/system_server(  584): No package ID 7f found for ID 0x7f120434.
+11-13 02:58:10.507 E/system_server(  584): No package ID 7f found for ID 0x7f12009e.
+11-13 02:58:10.507 E/system_server(  584): No package ID 7f found for ID 0x7f0801a6.
+11-13 02:58:10.507 E/system_server(  584): No package ID 7f found for ID 0x7f12043e.
+11-13 02:58:10.507 E/system_server(  584): No package ID 7f found for ID 0x7f12043e.
+11-13 02:58:10.507 E/system_server(  584): No package ID 7f found for ID 0x7f12009e.
+11-13 02:58:10.507 E/system_server(  584): No package ID 7f found for ID 0x7f0801a5.
+11-13 02:58:10.507 E/system_server(  584): No package ID 7f found for ID 0x7f12043d.
+11-13 02:58:10.507 E/system_server(  584): No package ID 7f found for ID 0x7f12043d.
+11-13 02:58:10.507 E/system_server(  584): No package ID 7f found for ID 0x7f12009e.
+11-13 02:58:10.508 V/MediaPlayerList( 1023): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+11-13 02:58:10.508 D/MediaPlayerList( 1023): Name of package changed: app.kurotoon.dev
+11-13 02:58:10.508 I/PermissionControllerServiceImpl(  862): Updating user sensitive for uid 10126
+11-13 02:58:10.512 W/Role    (  862): Cannot get ApplicationInfo for default holder: com.google.android.contacts
+11-13 02:58:10.514 D/CarrierSvcBindHelper( 1066): onPackageModified: app.kurotoon.dev
+11-13 02:58:10.514 I/InputReader(  584): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+11-13 02:58:10.514 D/CarrierSvcBindHelper( 1066): No carrier app for: 0
+11-13 02:58:10.516 D/ImsResolver( 1066): maybeAddedImsService, packageName: app.kurotoon.dev
+11-13 02:58:10.516 W/VoiceInteractionManager(  584): no available voice recognition services found for user 0
+11-13 02:58:10.517 D/AppWidgetServiceImpl(  584): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.UpdatesGridGlanceReceiver} won't be persisted.
+11-13 02:58:10.517 D/AppWidgetServiceImpl(  584): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.UpdatesGridCoverScreenGlanceReceiver} won't be persisted.
+11-13 02:58:10.517 D/AppWidgetServiceImpl(  584): Provider info from ComponentInfo{app.kurotoon.dev/tachiyomi.presentation.widget.ContinueReadingGlanceReceiver} won't be persisted.
+11-13 02:58:10.842 I/pp.kurotoon.dev( 2535): Compiler allocated 4533KB to compile void android.view.ViewRootImpl.performTraversals()
+11-13 02:58:11.816 E/TaskPersister(  584): File error accessing recents directory (directory doesn't exist?).
+11-13 02:58:15.275 W/Parcel  ( 2535): Expecting binder but got null!
+11-13 02:58:15.283 W/ziparchive(  584): Unable to open '/data/app/~~2MC32HB3G5Cx6PSt3g3d1w==/app.kurotoon.dev-3JOEiw_D9HFtDD7AN7kSbQ==/base.dm': No such file or directory
+11-13 02:58:15.284 I/ActivityTaskManager(  584): Displayed app.kurotoon.dev/eu.kanade.tachiyomi.ui.main.MainActivity: +6s972ms
+11-13 02:58:15.284 I/OpenGLRenderer( 2535): Davey! duration=700ms; Flags=1, FrameTimelineVsyncId=4988, IntendedVsync=127057778905, Vsync=127057778905, InputEventId=0, HandleInputStart=127058057629, AnimationStart=127058058861, PerformTraversalsStart=127058059121, DrawStart=127058367080, FrameDeadline=127074445571, FrameInterval=127058053723, FrameStartTime=16666666, SyncQueued=127068092696, SyncStart=127068355748, IssueDrawCommandsStart=127068756336, SwapBuffers=127652963178, FrameCompleted=127758046859, DequeueBufferDuration=4107, QueueBufferDuration=201781, GpuCompleted=127758046859, SwapBuffersCompleted=127750805143, DisplayPresentTime=0, CommandSubmissionCompleted=127652963178, 
+11-13 02:58:15.286 D/OomAdjuster(  584): Not killing cached processes
+11-13 02:58:15.296 D/CompatibilityChangeReporter(  584): Compat change id reported: 214016041; UID 10126; state: ENABLED
+11-13 02:58:15.310 W/TransactionTracing(  456): Could not find layer handle 0x70448c3bbbb0
+11-13 02:58:15.310 W/TransactionTracing(  456): Could not find layer handle 0x70448c3bc5d0
+11-13 02:58:15.329 W/InputManager-JNI(  584): Input channel object '743aed5 Splash Screen app.kurotoon.dev (client)' was disposed without first being removed with the input manager!
+11-13 02:58:15.346 D/ProfileInstaller( 2535): Installing profile for app.kurotoon.dev
+11-13 02:58:18.469 I/keystore2(  254): keystore2::watchdog: Watchdog thread idle -> terminating. Have a great day.
+11-13 02:58:20.514 D/OomAdjuster(  584): Not killing cached processes
+11-13 02:58:22.069 W/healthd (    0): battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+11-13 02:58:22.427 W/ProcessState( 2587): Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-13 02:58:22.429 W/ServiceManager(  456): Permission failure: android.permission.CAPTURE_BLACKOUT_CONTENT from uid=2000 pid=2587
+11-13 02:58:22.429 D/PermissionCache(  456): checking android.permission.CAPTURE_BLACKOUT_CONTENT for uid=2000 => denied (484 us)
+11-13 02:58:22.435 I/hwservicemanager(  234): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-13 02:58:22.435 I/Gralloc4( 2587): mapper 4.x is not supported
+11-13 02:58:22.451 D/HostConnection( 2587): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+11-13 02:58:22.650 D/AndroidRuntime( 2592): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 02:58:22.653 I/AndroidRuntime( 2592): Using default boot image
+11-13 02:58:22.653 I/AndroidRuntime( 2592): Leaving lock profiling enabled
+11-13 02:58:22.655 I/app_process( 2592): Core platform API reporting enabled, enforcing=false
+11-13 02:58:22.749 D/app_process( 2592): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 02:58:22.749 D/app_process( 2592): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 02:58:22.753 W/app_process( 2592): Unexpected CPU variant for x86: x86_64.
+11-13 02:58:22.753 W/app_process( 2592): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 02:58:22.757 W/app_process( 2592): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[] | PCL[/system/framework/android.test.runner.jar*2256426886])
+11-13 02:58:22.770 D/AndroidRuntime( 2592): Calling main entry com.android.commands.uiautomator.Launcher
+11-13 02:58:22.779 V/UiAutomation( 2592): Init UiAutomation@29a9d95[id=1, flags=0]
+11-13 02:58:22.781 D/BatterySaverPolicy(  584): accessibility changed to true, updating policy.
+11-13 02:58:23.793 D/CompatibilityChangeReporter( 1492): Compat change id reported: 183155436; UID 10111; state: ENABLED
+11-13 02:58:23.795 D/CompatibilityChangeReporter(  584): Compat change id reported: 149924527; UID 2000; state: ENABLED
+11-13 02:58:23.795 D/CompatibilityChangeReporter(  584): Compat change id reported: 132649864; UID 2000; state: DISABLED
+11-13 02:58:23.799 W/MediaProvider( 1492): isAppCloneUserPair for user 0: false
+11-13 02:58:23.799 V/MediaProvider( 1492): Inserted id:1000000018 less than next row id backup:1000001000.
+11-13 02:58:23.870 W/AccessibilityNodeInfoDumper( 2592): Fetch time: 80ms
+11-13 02:58:23.872 D/BatterySaverPolicy(  584): accessibility changed to false, updating policy.
+11-13 02:58:23.873 D/AndroidRuntime( 2592): Shutting down VM
+11-13 02:58:23.892 W/TransactionTracing(  456): Could not find layer handle 0x70448c3bcdb0
+11-13 02:58:24.716 I/MediaProvider( 1492): Deleted 0 0 0 0 0 0 1 items on external_primary due to com.android.shell
+11-13 02:58:24.755 D/AndroidRuntime( 2622): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 02:58:24.757 I/AndroidRuntime( 2622): Using default boot image
+11-13 02:58:24.757 I/AndroidRuntime( 2622): Leaving lock profiling enabled
+11-13 02:58:24.758 I/app_process( 2622): Core platform API reporting enabled, enforcing=false
+11-13 02:58:24.820 D/app_process( 2622): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 02:58:24.820 D/app_process( 2622): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 02:58:24.823 W/app_process( 2622): Unexpected CPU variant for x86: x86_64.
+11-13 02:58:24.823 W/app_process( 2622): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 02:58:24.824 W/app_process( 2622): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[] | PCL[/system/framework/android.test.runner.jar*2256426886])
+11-13 02:58:24.833 D/AndroidRuntime( 2622): Calling main entry com.android.commands.uiautomator.Launcher
+11-13 02:58:24.836 D/BatterySaverPolicy(  584): accessibility changed to true, updating policy.
+11-13 02:58:24.836 V/UiAutomation( 2622): Init UiAutomation@7dfd267[id=2, flags=0]
+11-13 02:58:25.567 D/OomAdjuster(  584): Not killing cached processes
+11-13 02:58:25.841 W/MediaProvider( 1492): isAppCloneUserPair for user 0: false
+11-13 02:58:25.842 V/MediaProvider( 1492): Inserted id:1000000018 less than next row id backup:1000001000.
+11-13 02:58:25.861 W/AccessibilityNodeInfoDumper( 2622): Fetch time: 21ms
+11-13 02:58:25.863 D/BatterySaverPolicy(  584): accessibility changed to false, updating policy.
+11-13 02:58:25.863 D/AndroidRuntime( 2622): Shutting down VM
+11-13 02:58:25.892 W/TransactionTracing(  456): Could not find layer handle 0x70448c3be130
+11-13 02:58:26.701 W/FastPrintWriter(  584): Write failure
+11-13 02:58:26.701 W/FastPrintWriter(  584): java.io.IOException: write failed: EPIPE (Broken pipe)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at libcore.io.IoBridge.write(IoBridge.java:651)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at java.io.FileOutputStream.write(FileOutputStream.java:401)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.internal.util.FastPrintWriter.flushBytesLocked(FastPrintWriter.java:354)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.internal.util.FastPrintWriter.flushLocked(FastPrintWriter.java:377)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.internal.util.FastPrintWriter.appendLocked(FastPrintWriter.java:322)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.internal.util.FastPrintWriter.print(FastPrintWriter.java:499)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at java.io.PrintWriter.println(PrintWriter.java:822)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowState.dump(WindowState.java:4279)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.RootWindowContainer.lambda$dumpWindowsNoHeader$9(RootWindowContainer.java:1192)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.RootWindowContainer.$r8$lambda$0K5_lOUa9Z-fSiefUa0kyLzyOco(Unknown Source:0)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.RootWindowContainer$$ExternalSyntheticLambda49.accept(Unknown Source:10)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowContainer$ForAllWindowsConsumerWrapper.apply(WindowContainer.java:2665)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowContainer$ForAllWindowsConsumerWrapper.apply(WindowContainer.java:2655)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowState.applyInOrderWithImeWindows(WindowState.java:4905)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowState.forAllWindows(WindowState.java:4749)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowContainer.forAllWindows(WindowContainer.java:1636)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowContainer.forAllWindows(WindowContainer.java:1636)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowContainer.forAllWindows(WindowContainer.java:1636)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowContainer.forAllWindows(WindowContainer.java:1636)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowContainer.forAllWindows(WindowContainer.java:1636)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowContainer.forAllWindows(WindowContainer.java:1653)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.RootWindowContainer.dumpWindowsNoHeader(RootWindowContainer.java:1189)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowManagerService.dumpWindowsNoHeaderLocked(WindowManagerService.java:6567)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowManagerService.dumpWindowsLocked(WindowManagerService.java:6562)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowManagerService.doDump(WindowManagerService.java:6980)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowManagerService.-$$Nest$mdoDump(Unknown Source:0)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowManagerService$3.dump(WindowManagerService.java:527)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.utils.PriorityDump.dump(PriorityDump.java:182)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowManagerService.dump(WindowManagerService.java:6811)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at android.os.Binder.doDump(Binder.java:985)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at android.os.Binder.dump(Binder.java:975)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at android.os.Binder.onTransact(Binder.java:856)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at android.view.IWindowManager$Stub.onTransact(IWindowManager.java:2909)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at com.android.server.wm.WindowManagerService.onTransact(WindowManagerService.java:1429)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at android.os.Binder.execTransactInternal(Binder.java:1285)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at android.os.Binder.execTransact(Binder.java:1244)
+11-13 02:58:26.701 W/FastPrintWriter(  584): Caused by: android.system.ErrnoException: write failed: EPIPE (Broken pipe)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at libcore.io.Linux.writeBytes(Native Method)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at libcore.io.Linux.write(Linux.java:296)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at libcore.io.ForwardingOs.write(ForwardingOs.java:943)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at libcore.io.BlockGuardOs.write(BlockGuardOs.java:448)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	at libcore.io.IoBridge.write(IoBridge.java:646)
+11-13 02:58:26.701 W/FastPrintWriter(  584): 	... 35 more
+11-13 02:58:26.905 I/binder  (    0): release 2644:2648 transaction 118055 out, still active
+11-13 02:58:26.912 I/binder  (    0): 584:942 transaction failed 29189/0, size 4-0 line 2851
+11-13 02:58:26.915 I/binder  (    0): send failed reply for transaction 118055, target dead
+11-13 02:58:26.760 I/MediaProvider( 1492): Deleted 0 0 0 0 0 0 1 items on external_primary due to com.android.shell
+11-13 02:58:26.801 D/AndroidRuntime( 2670): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 02:58:26.803 I/AndroidRuntime( 2670): Using default boot image
+11-13 02:58:26.803 I/AndroidRuntime( 2670): Leaving lock profiling enabled
+11-13 02:58:26.805 I/app_process( 2670): Core platform API reporting enabled, enforcing=false
+11-13 02:58:26.927 D/app_process( 2670): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 02:58:26.927 D/app_process( 2670): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 02:58:26.930 W/app_process( 2670): Unexpected CPU variant for x86: x86_64.
+11-13 02:58:26.930 W/app_process( 2670): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 02:58:26.931 W/app_process( 2670): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[] | PCL[/system/framework/android.test.runner.jar*2256426886])
+11-13 02:58:26.941 D/AndroidRuntime( 2670): Calling main entry com.android.commands.uiautomator.Launcher
+11-13 02:58:26.945 D/BatterySaverPolicy(  584): accessibility changed to true, updating policy.
+11-13 02:58:26.945 V/UiAutomation( 2670): Init UiAutomation@d250739[id=3, flags=0]
+11-13 02:58:27.952 W/MediaProvider( 1492): isAppCloneUserPair for user 0: false
+11-13 02:58:27.952 V/MediaProvider( 1492): Inserted id:1000000018 less than next row id backup:1000001000.
+11-13 02:58:27.970 W/AccessibilityNodeInfoDumper( 2670): Fetch time: 19ms
+11-13 02:58:27.971 D/BatterySaverPolicy(  584): accessibility changed to false, updating policy.
+11-13 02:58:27.972 D/AndroidRuntime( 2670): Shutting down VM
+11-13 02:58:27.992 W/TransactionTracing(  456): Could not find layer handle 0x70448c3b1bf0
+11-13 02:58:33.246 E/android.hardware.power.stats@1.0-service-mock(  415): Failed to getEnergyData
+11-13 02:58:33.351 W/ProcessState( 2697): Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-13 02:58:33.380 I/hwservicemanager(  234): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-13 02:58:33.380 I/Gralloc4( 2697): mapper 4.x is not supported
+11-13 02:58:33.396 D/HostConnection( 2697): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+11-13 02:58:33.526 I/MediaProvider( 1492): Deleted 0 0 0 0 0 0 1 items on external_primary due to com.android.shell
+11-13 02:58:33.586 D/AndroidRuntime( 2702): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 02:58:33.589 I/AndroidRuntime( 2702): Using default boot image
+11-13 02:58:33.589 I/AndroidRuntime( 2702): Leaving lock profiling enabled
+11-13 02:58:33.591 I/app_process( 2702): Core platform API reporting enabled, enforcing=false
+11-13 02:58:33.689 D/app_process( 2702): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 02:58:33.689 D/app_process( 2702): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 02:58:33.693 W/app_process( 2702): Unexpected CPU variant for x86: x86_64.
+11-13 02:58:33.693 W/app_process( 2702): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 02:58:33.695 W/app_process( 2702): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[] | PCL[/system/framework/android.test.runner.jar*2256426886])
+11-13 02:58:33.705 D/AndroidRuntime( 2702): Calling main entry com.android.commands.uiautomator.Launcher
+11-13 02:58:33.711 V/UiAutomation( 2702): Init UiAutomation@f974018[id=4, flags=0]
+11-13 02:58:33.712 D/BatterySaverPolicy(  584): accessibility changed to true, updating policy.
+11-13 02:58:34.720 W/MediaProvider( 1492): isAppCloneUserPair for user 0: false
+11-13 02:58:34.720 V/MediaProvider( 1492): Inserted id:1000000018 less than next row id backup:1000001000.
+11-13 02:58:34.746 W/AccessibilityNodeInfoDumper( 2702): Fetch time: 28ms
+11-13 02:58:34.748 D/BatterySaverPolicy(  584): accessibility changed to false, updating policy.
+11-13 02:58:34.748 D/AndroidRuntime( 2702): Shutting down VM
+11-13 02:58:34.768 I/ProvidersCache( 1649): Updating roots due to change on user 0at content://com.android.providers.media.documents/root
+11-13 02:58:34.777 W/TransactionTracing(  456): Could not find layer handle 0x70448c3bb130
+11-13 02:58:35.681 D/EGL_emulation( 2535): app_time_stats: avg=10206.53ms min=8557.81ms max=11855.26ms count=2
+11-13 02:58:35.780 W/AudioFlinger(  445): createTrack_l(): mismatch between requested flags (00000004) and output flags (00000002)
+11-13 02:58:35.782 D/AF::TrackHandle(  445): OpPlayAudio: track:55 usage:13 not muted
+11-13 02:58:36.772 I/ProvidersCache( 1649): Updating roots due to change on user 0at content://com.android.providers.media.documents/root
+11-13 02:58:38.818 W/ProcessState( 2745): Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-13 02:58:38.829 I/hwservicemanager(  234): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-13 02:58:38.829 I/Gralloc4( 2745): mapper 4.x is not supported
+11-13 02:58:38.854 D/HostConnection( 2745): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+11-13 02:58:38.996 I/MediaProvider( 1492): Deleted 0 0 0 0 0 0 1 items on external_primary due to com.android.shell
+11-13 02:58:39.053 D/AndroidRuntime( 2750): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-13 02:58:39.056 I/AndroidRuntime( 2750): Using default boot image
+11-13 02:58:39.056 I/AndroidRuntime( 2750): Leaving lock profiling enabled
+11-13 02:58:39.058 I/app_process( 2750): Core platform API reporting enabled, enforcing=false
+11-13 02:58:39.126 D/app_process( 2750): Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-13 02:58:39.126 D/app_process( 2750): I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt70l.dat
+11-13 02:58:39.130 W/app_process( 2750): Unexpected CPU variant for x86: x86_64.
+11-13 02:58:39.130 W/app_process( 2750): Known variants: atom, sandybridge, silvermont, kabylake, default
+11-13 02:58:39.132 W/app_process( 2750): ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[] | PCL[/system/framework/android.test.runner.jar*2256426886])
+11-13 02:58:39.141 D/AndroidRuntime( 2750): Calling main entry com.android.commands.uiautomator.Launcher
+11-13 02:58:39.147 V/UiAutomation( 2750): Init UiAutomation@f66de8e[id=5, flags=0]
+11-13 02:58:39.151 D/BatterySaverPolicy(  584): accessibility changed to true, updating policy.
+11-13 02:58:40.157 W/MediaProvider( 1492): isAppCloneUserPair for user 0: false
+11-13 02:58:40.158 V/MediaProvider( 1492): Inserted id:1000000018 less than next row id backup:1000001000.
+11-13 02:58:40.175 W/AccessibilityNodeInfoDumper( 2750): Fetch time: 19ms
+11-13 02:58:40.176 D/BatterySaverPolicy(  584): accessibility changed to false, updating policy.
+11-13 02:58:40.176 D/AndroidRuntime( 2750): Shutting down VM
+11-13 02:58:40.209 W/TransactionTracing(  456): Could not find layer handle 0x70448c3bcff0
+11-13 02:58:41.225 I/logd    (    0): logdr: UID=2000 GID=2000 PID=2781 n tail=200 logMask=99 pid=0 start=0ns deadline=0ns
+11-13 02:58:41.241 I/logd    (    0): logdr: UID=2000 GID=2000 PID=2787 n tail=0 logMask=10 pid=0 start=0ns deadline=0ns
