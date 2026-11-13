@@ -1,5 +1,18 @@
-# The accessibility tree reports the bottom buttons at 0,0, so taps by label miss. Dump the raw tree to see why.
+# The accessibility tree reports the bottom buttons at 0,0, so taps by label miss. Keep the raw tree to see why.
 start app.kurotoon.dev
 sleep 10
-sh uiautomator dump /sdcard/u.xml >/dev/null; sed 's/<node/\n<node/g' /sdcard/u.xml
-sh dumpsys activity top | grep -iE "mVisibleRect|Insets|navigationBars|getVisibleDisplayFrame|mAttachInfo" | head -20
+dumpxml onboarding
+sh input touchscreen swipe 540 2200 540 2200 180
+sleep 2
+sh input touchscreen swipe 540 2200 540 2200 180
+sleep 2
+sh input touchscreen swipe 540 2200 540 2200 180
+sleep 2
+sh input touchscreen swipe 540 2200 540 2200 180
+sleep 3
+shot after_next
+dumpxml onboarding_later
+back
+sleep 2
+shot home
+dumpxml home
