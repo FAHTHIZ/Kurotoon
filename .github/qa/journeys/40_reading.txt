@@ -1,0 +1,153 @@
+# Reading like a regular user, checking what readers complain about most in other apps:
+# losing your place, rotation jumping pages, zoom turning the page, and the hop to the next chapter.
+# Runs after 30_showcase, which installs Webtoons.com and MangaDex and adds a series from each.
+
+# Long strip (Webtoons.com)
+start app.kurotoon.dev
+tapx Browse
+tapx Sources
+tap Webtoons.com
+sleep 12
+tapxy 270 1000
+sleep 12
+shot strip_series
+tapif Resume
+tapif Start
+sleep 20
+shot strip_open
+scrollup
+scrollup
+scrollup
+sleep 2
+shot strip_scrolled
+scrollup
+scrollup
+scrollup
+sleep 3
+shot strip_scrolled_more
+# Menu over the page, then hide it again
+tapxy 540 1200
+sleep 2
+shot strip_menu
+tapxy 540 1200
+sleep 1
+# Leave mid-chapter and come back: should land on the same panel
+back
+sleep 3
+shot strip_back_on_series
+tapif Resume
+sleep 15
+shot strip_resumed
+# Turning the phone must not move you
+rotate 1
+sleep 5
+shot strip_landscape
+rotate 0
+sleep 5
+shot strip_portrait_again
+# Kill the app; Home should offer this chapter and reopen it in place
+stop app.kurotoon.dev
+start app.kurotoon.dev
+sleep 8
+shot home_after_kill
+tapif Resume
+sleep 15
+shot strip_after_kill
+# Fling to the end of the chapter and on to the next one
+swipe 540 1900 540 300 80
+swipe 540 1900 540 300 80
+swipe 540 1900 540 300 80
+swipe 540 1900 540 300 80
+swipe 540 1900 540 300 80
+swipe 540 1900 540 300 80
+swipe 540 1900 540 300 80
+swipe 540 1900 540 300 80
+swipe 540 1900 540 300 80
+swipe 540 1900 540 300 80
+swipe 540 1900 540 300 80
+swipe 540 1900 540 300 80
+sleep 3
+shot strip_end
+swipe 540 1900 540 300 80
+swipe 540 1900 540 300 80
+swipe 540 1900 540 300 80
+sleep 8
+shot strip_next_chapter
+tapxy 540 1200
+sleep 2
+shot strip_next_menu
+tap Chapters
+sleep 3
+shot strip_chapter_list
+back
+sleep 1
+back
+sleep 3
+shot strip_series_after
+back
+sleep 2
+back
+sleep 2
+
+# Paged (MangaDex)
+start app.kurotoon.dev
+tapx Browse
+tapx Sources
+tap MangaDex
+sleep 12
+tapxy 270 1000
+sleep 12
+shot paged_series
+tapif Resume
+tapif Start
+sleep 20
+shot paged_open
+swipe 900 1200 150 1200 150
+sleep 3
+shot paged_swipe_left
+swipe 150 1200 900 1200 150
+sleep 3
+shot paged_swipe_right
+# Double-tap to zoom, then pan: the page must stay put while zoomed
+sh "input tap 540 1100; input tap 540 1100"
+sleep 2
+shot paged_zoomed
+swipe 700 1200 400 1200 300
+sleep 2
+shot paged_zoomed_pan
+sh "input tap 540 1100; input tap 540 1100"
+sleep 2
+shot paged_unzoomed
+# Rotate on a page
+rotate 1
+sleep 5
+shot paged_landscape
+rotate 0
+sleep 5
+shot paged_portrait_again
+# Reader settings sheet
+tapxy 540 1200
+sleep 2
+tap Settings
+sleep 3
+shot paged_settings
+scrollup
+shot paged_settings_more
+back
+sleep 2
+back
+sleep 3
+shot paged_back_on_series
+back
+sleep 2
+back
+sleep 2
+
+# Afterwards: History and Home reflect what was read
+start app.kurotoon.dev
+tapx Home
+sleep 6
+shot home_after_reading
+tapif History
+sleep 3
+shot history_after_reading
