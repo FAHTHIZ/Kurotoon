@@ -41,6 +41,8 @@ import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.Hyphens
+import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -165,7 +167,13 @@ private fun BoxScope.CoverTextOverlay(
         GridItemTitle(
             modifier = Modifier
                 .weight(1f)
-                .padding(8.dp),
+                .padding(
+                    start = 8.dp,
+                    top = 8.dp,
+                    bottom = 8.dp,
+                    // The resume button already leaves a gap; don't squeeze long words further.
+                    end = if (onClickContinueReading != null) 2.dp else 8.dp,
+                ),
             title = title,
             style = MaterialTheme.typography.titleSmall.copy(
                 color = Color.White,
@@ -310,7 +318,8 @@ private fun GridItemTitle(
         minLines = minLines,
         maxLines = maxLines,
         overflow = TextOverflow.Ellipsis,
-        style = style,
+        // Long single words ("Omniscient") otherwise get chopped at an arbitrary letter.
+        style = style.copy(hyphens = Hyphens.Auto, lineBreak = LineBreak.Heading),
     )
 }
 
