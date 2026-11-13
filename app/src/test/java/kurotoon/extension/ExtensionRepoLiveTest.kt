@@ -6,7 +6,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.protobuf.ProtoBuf
-import mihon.data.extension.service.ExtensionStoreService
+import kurotoon.data.extension.service.ExtensionStoreService
 import okhttp3.OkHttpClient
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Assumptions.assumeTrue

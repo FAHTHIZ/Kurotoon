@@ -37,8 +37,8 @@ abstract class BaseTracker(
     private val upsertTrack: UpsertTrack by dependencies.upsertTrack
 
     /**
-     * Tells the reader this tracker's sign-in ran out, so progress stops syncing silently otherwise
-     * (mihon#1700). Tapping it opens Settings > Tracking to sign in again.
+     * Tells the reader this tracker's sign-in ran out, so progress stops syncing silently otherwise.
+     * Tapping it opens Settings > Tracking to sign in again.
      */
     fun notifySignedOut() {
         kurotoon.track.TrackerAuthAlert.signedOut(context, id, name)

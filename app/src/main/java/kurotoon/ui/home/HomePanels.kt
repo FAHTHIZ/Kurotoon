@@ -31,9 +31,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.CollectionsBookmark
 import kurotoon.panels.SavedPanels
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.CollectionsBookmark
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 

@@ -1,0 +1,16 @@
+[versions]
+# Used in [/gradle/build-config/src/main/kotlin/PluginKotlinMultiplatform.kt]
+android-sdk-min = "26"
+android-sdk-compile = "37.2"
+android-sdk-target = "36"
+android-ndk = "29.0.14206865"
+java = "17"
+
+[plugins]
+android-application = { id = "kurotoon.plugins.android.application" }
+android-base = { id = "kurotoon.plugins.android.base" }
+android-library = { id = "kurotoon.plugins.android.library" }
+android-test = { id = "kurotoon.plugins.android.test" }
+compose = { id = "kurotoon.plugins.compose.android" }
+kotlin-multiplatform = { id = "kurotoon.plugins.kotlin.multiplatform" }
+spotless = { id = "kurotoon.plugins.spotless" }

@@ -61,8 +61,8 @@ import eu.kanade.tachiyomi.source.sourcePreferences
 import eu.kanade.tachiyomi.util.view.setIncognito
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kurotoon.app.di.appGraph
 import kurotoon.ui.KuroAlertDialog
-import mihon.app.di.appGraph
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.ScrollbarLazyColumn
 import tachiyomi.presentation.core.components.material.KuroTextButton

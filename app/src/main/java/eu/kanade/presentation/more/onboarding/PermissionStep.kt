@@ -35,9 +35,9 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import eu.kanade.presentation.util.rememberRequestPackageInstallsPermissionState
 import eu.kanade.tachiyomi.util.system.launchRequestPackageInstallsPermission
 import eu.kanade.tachiyomi.util.system.telemetryIncluded
-import mihon.app.di.appGraph
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Check
+import kurotoon.app.di.appGraph
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Check
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroButton
 import tachiyomi.presentation.core.components.material.KuroButtonStyle

@@ -54,11 +54,11 @@ import eu.kanade.tachiyomi.util.system.workManager
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kurotoon.app.di.appGraph
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.automirroredrounded.Help
 import kurotoon.ui.KuroAlertDialog
 import logcat.LogPriority
-import mihon.app.di.appGraph
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.automirroredrounded.Help
 import tachiyomi.core.common.i18n.pluralStringResource
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.core.common.storage.displayablePath

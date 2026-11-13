@@ -11,7 +11,7 @@ import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.i18n.MR
 import java.util.concurrent.ConcurrentHashMap
 
-/** A notification for a tracker whose sign-in ran out, shown once per tracker per app run (mihon#1700). */
+/** A notification for a tracker whose sign-in ran out, shown once per tracker per app run. */
 object TrackerAuthAlert {
 
     private val shown = ConcurrentHashMap.newKeySet<Long>()

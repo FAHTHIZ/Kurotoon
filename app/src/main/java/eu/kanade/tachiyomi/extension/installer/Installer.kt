@@ -5,8 +5,8 @@ import android.net.Uri
 import androidx.annotation.CallSuper
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.extension.model.InstallStep
+import kurotoon.app.di.appGraph
 import logcat.LogPriority
-import mihon.app.di.appGraph
 import tachiyomi.core.common.util.system.logcat
 import java.util.Collections
 import java.util.concurrent.CopyOnWriteArraySet

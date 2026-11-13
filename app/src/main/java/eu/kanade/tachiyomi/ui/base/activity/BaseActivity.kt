@@ -8,7 +8,7 @@ import eu.kanade.tachiyomi.ui.base.delegate.SecureActivityDelegateImpl
 import eu.kanade.tachiyomi.ui.base.delegate.ThemingDelegate
 import eu.kanade.tachiyomi.ui.base.delegate.ThemingDelegateImpl
 import eu.kanade.tachiyomi.util.system.prepareTabletUiContext
-import mihon.app.di.appGraph
+import kurotoon.app.di.appGraph
 
 open class BaseActivity :
     AppCompatActivity(),

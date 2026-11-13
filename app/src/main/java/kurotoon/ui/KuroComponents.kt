@@ -22,8 +22,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Info
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Info
 
 /** A short, quiet hint in a card. */
 @Composable

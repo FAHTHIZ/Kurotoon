@@ -71,13 +71,14 @@
                 <data android:host="add-repo" />
             </intent-filter>
 
-            <!-- Deeplink to add extension store -->
+            <!-- Deeplink to add extension store. kurotoon:// is ours; mihon:// stays because store sites publish it -->
             <intent-filter android:label="@string/action_addExtensionStore">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
+                <data android:scheme="kurotoon" />
                 <data android:scheme="mihon" />
                 <data android:host="extension-store" />
             </intent-filter>
@@ -189,6 +190,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
+                <!--
+                Tracker sign-in returns here. The OAuth clients are registered with these redirect schemes,
+                so they can only change once KuroToon has its own client ids with each tracker.
+                -->
                 <data android:scheme="mihon" />
 
                 <data android:host="anilist-auth" />

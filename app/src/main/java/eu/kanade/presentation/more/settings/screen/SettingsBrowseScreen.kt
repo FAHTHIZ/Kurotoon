@@ -12,10 +12,10 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import eu.kanade.presentation.more.settings.Preference
 import eu.kanade.presentation.more.settings.screen.browse.ExtensionStoresScreen
 import eu.kanade.tachiyomi.util.system.AuthenticatorUtil.authenticate
+import kurotoon.app.di.appGraph
 import kurotoon.catalogue.HiddenTags
+import kurotoon.domain.extension.model.ContentWarning
 import kurotoon.ui.browse.HiddenTagsScreen
-import mihon.app.di.appGraph
-import mihon.domain.extension.model.ContentWarning
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.pluralStringResource

@@ -12,7 +12,7 @@ import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.system.notify
 import eu.kanade.tachiyomi.util.system.workManager
-import mihon.app.di.appGraph
+import kurotoon.app.di.appGraph
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.i18n.MR
 import java.time.Duration

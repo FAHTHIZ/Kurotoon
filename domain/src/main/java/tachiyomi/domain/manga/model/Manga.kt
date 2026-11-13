@@ -7,7 +7,7 @@ import eu.kanade.tachiyomi.source.model.UpdateStrategy
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
-import mihon.core.common.extensions.EMPTY
+import kurotoon.core.common.extensions.EMPTY
 import tachiyomi.core.common.preference.TriState
 import java.io.ObjectStreamException
 import kotlin.time.Instant

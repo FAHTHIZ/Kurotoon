@@ -26,9 +26,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import kurotoon.app.di.appGraph
 import kurotoon.ui.KuroColors
 import kurotoon.ui.kuroCard
-import mihon.app.di.appGraph
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.util.collectAsState

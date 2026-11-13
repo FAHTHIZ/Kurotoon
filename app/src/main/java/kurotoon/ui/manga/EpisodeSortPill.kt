@@ -30,9 +30,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.ArrowDownward
 import kurotoon.ui.kuroPressScale
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.ArrowDownward
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 

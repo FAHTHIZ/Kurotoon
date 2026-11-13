@@ -12,8 +12,8 @@ import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.isoDayNumber
 import kotlinx.datetime.todayIn
+import kurotoon.app.di.appGraph
 import kurotoon.schedule.ReleaseSchedule
-import mihon.app.di.appGraph
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 import java.time.format.TextStyle

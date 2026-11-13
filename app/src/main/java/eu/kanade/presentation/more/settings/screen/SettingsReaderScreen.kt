@@ -11,7 +11,7 @@ import eu.kanade.tachiyomi.ui.reader.setting.ReaderOrientation
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderPreferences
 import eu.kanade.tachiyomi.ui.reader.setting.ReadingMode
 import eu.kanade.tachiyomi.util.system.hasDisplayCutout
-import mihon.app.di.appGraph
+import kurotoon.app.di.appGraph
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.pluralStringResource
 import tachiyomi.presentation.core.i18n.stringResource

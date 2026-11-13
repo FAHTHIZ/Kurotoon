@@ -1,14 +1,14 @@
 plugins {
-    alias(mihonx.plugins.android.library)
-    alias(mihonx.plugins.compose)
+    alias(kurox.plugins.android.library)
+    alias(kurox.plugins.compose)
 
-    alias(mihonx.plugins.spotless)
+    alias(kurox.plugins.spotless)
 
     alias(libs.plugins.valkyrie)
 }
 
 android {
-    namespace = "mihon.icons.simpleicons"
+    namespace = "kurotoon.icons.simpleicons"
 }
 
 spotless {
@@ -20,7 +20,7 @@ spotless {
 }
 
 valkyrie {
-    packageName = "mihon.icons.simpleicons"
+    packageName = "kurotoon.icons.simpleicons"
     generateAtSync = true
 
     imageVector {

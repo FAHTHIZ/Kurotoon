@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.shareIn
-import mihon.core.metro.AppCoroutineScope
+import kurotoon.core.metro.AppCoroutineScope
 import java.util.concurrent.ConcurrentHashMap
 
 @Inject

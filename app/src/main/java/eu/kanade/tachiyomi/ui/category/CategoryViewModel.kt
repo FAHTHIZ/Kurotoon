@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import mihon.core.metro.AppCoroutineScope
+import kurotoon.core.metro.AppCoroutineScope
 import tachiyomi.domain.category.interactor.CreateCategoryWithName
 import tachiyomi.domain.category.interactor.DeleteCategory
 import tachiyomi.domain.category.interactor.GetCategories

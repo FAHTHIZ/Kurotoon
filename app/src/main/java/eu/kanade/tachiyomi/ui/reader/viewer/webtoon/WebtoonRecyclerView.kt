@@ -77,7 +77,7 @@ class WebtoonRecyclerView @JvmOverloads constructor(
         x = getPositionX(x)
     }
 
-    // Pixels a mouse wheel or trackpad still has to scroll, eased out a frame at a time (mihon#2328)
+    // Pixels a mouse wheel or trackpad still has to scroll, eased out a frame at a time
     private var wheelRemaining = 0f
     private val wheelStep = Runnable { stepWheel() }
 

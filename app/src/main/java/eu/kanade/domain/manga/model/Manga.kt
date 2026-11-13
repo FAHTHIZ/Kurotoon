@@ -107,7 +107,7 @@ fun getComicInfo(
             ComicInfoPublishingStatus.toComicInfoValue(manga.status),
         ),
         categories = categories?.let { ComicInfo.CategoriesTachiyomi(it.joinToString()) },
-        source = ComicInfo.SourceMihon(sourceName),
+        source = ComicInfo.SourceName(sourceName),
         inker = null,
         colorist = null,
         letterer = null,

@@ -18,12 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Delete
+import kurotoon.icons.materialsymbols.rounded.DragHandle
+import kurotoon.icons.materialsymbols.rounded.Edit
+import kurotoon.icons.materialsymbols.rounded.Eyeglasses2
 import kurotoon.ui.kuroCard
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Delete
-import mihon.icons.materialsymbols.rounded.DragHandle
-import mihon.icons.materialsymbols.rounded.Edit
-import mihon.icons.materialsymbols.rounded.Eyeglasses2
 import sh.calvin.reorderable.ReorderableCollectionItemScope
 import tachiyomi.domain.category.model.Category
 import tachiyomi.i18n.MR

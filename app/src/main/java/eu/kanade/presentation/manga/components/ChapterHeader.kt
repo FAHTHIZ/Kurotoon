@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import mihon.icons.materialsymbols.rounded.FilterList
+import kurotoon.icons.materialsymbols.rounded.FilterList
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.KuroProgressBar
 import tachiyomi.presentation.core.components.material.SECONDARY_ALPHA
@@ -66,7 +66,7 @@ fun ChapterHeader(
                 )
             }
             kurotoon.ui.KuroIconButton(
-                icon = mihon.icons.materialsymbols.MaterialSymbols.Rounded.FilterList,
+                icon = kurotoon.icons.materialsymbols.MaterialSymbols.Rounded.FilterList,
                 contentDescription = stringResource(MR.strings.action_filter),
                 onClick = onClick,
                 enabled = enabled,

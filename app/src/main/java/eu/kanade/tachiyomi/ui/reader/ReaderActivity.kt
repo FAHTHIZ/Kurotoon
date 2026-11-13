@@ -111,6 +111,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kurotoon.app.di.AppGraph
+import kurotoon.core.metro.metroGraph
 import kurotoon.manga.ChapterTitles
 import kurotoon.reader.AutoScrollDriver
 import kurotoon.reader.AutoScrollState
@@ -125,8 +127,6 @@ import kurotoon.reader.sound.Soundscape
 import kurotoon.ui.reader.ReaderSoundBadge
 import kurotoon.ui.reader.ReaderSoundSheet
 import logcat.LogPriority
-import mihon.app.di.AppGraph
-import mihon.core.metro.metroGraph
 import tachiyomi.core.common.Constants
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.core.common.util.system.logcat

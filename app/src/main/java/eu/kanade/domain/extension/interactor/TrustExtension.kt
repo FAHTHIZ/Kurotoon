@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
-import mihon.domain.extension.model.ExtensionStore
-import mihon.domain.extension.repository.ExtensionStoreRepository
+import kurotoon.domain.extension.model.ExtensionStore
+import kurotoon.domain.extension.repository.ExtensionStoreRepository
 import tachiyomi.core.common.preference.getAndSet
 
 @Inject

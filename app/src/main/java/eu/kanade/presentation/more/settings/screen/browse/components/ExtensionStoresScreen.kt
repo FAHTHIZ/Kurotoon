@@ -12,10 +12,10 @@ import androidx.compose.ui.Modifier
 import eu.kanade.presentation.category.components.CategoryFloatingActionButton
 import eu.kanade.presentation.components.AppBar
 import eu.kanade.presentation.more.settings.screen.browse.ExtensionStoreScreenState
-import mihon.app.di.appGraph
-import mihon.domain.extension.model.ExtensionStore
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Refresh
+import kurotoon.app.di.appGraph
+import kurotoon.domain.extension.model.ExtensionStore
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Refresh
 import tachiyomi.core.common.preference.getAndSet
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold

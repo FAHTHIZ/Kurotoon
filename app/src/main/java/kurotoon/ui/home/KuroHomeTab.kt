@@ -24,12 +24,12 @@ import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.stats.StatsScreen
 import kotlinx.coroutines.launch
+import kurotoon.app.di.appGraph
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Home
+import kurotoon.icons.materialsymbols.roundedfilled.Home
 import kurotoon.ui.panels.SavedPanelsScreen
 import kurotoon.ui.schedule.ScheduleScreen
-import mihon.app.di.appGraph
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Home
-import mihon.icons.materialsymbols.roundedfilled.Home
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource

@@ -18,11 +18,11 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import eu.kanade.presentation.manga.components.MarkdownRender
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import eu.kanade.tachiyomi.ui.more.NewUpdateScreenModel
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.automirroredrounded.OpenInNew
+import kurotoon.icons.materialsymbols.rounded.UpdateDisabled
+import kurotoon.icons.materialsymbols.rounded.Verified
 import kurotoon.ui.KuroAlertDialog
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.automirroredrounded.OpenInNew
-import mihon.icons.materialsymbols.rounded.UpdateDisabled
-import mihon.icons.materialsymbols.rounded.Verified
 import org.intellij.markdown.flavours.gfm.GFMFlavourDescriptor
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroButton

@@ -9,8 +9,8 @@ import eu.kanade.tachiyomi.data.backup.models.toBackupTracking
 import eu.kanade.tachiyomi.ui.reader.setting.ReadingMode
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import mihon.core.common.extensions.toByteArray
-import mihon.core.common.extensions.toEpochMillisOrZero
+import kurotoon.core.common.extensions.toByteArray
+import kurotoon.core.common.extensions.toEpochMillisOrZero
 import tachiyomi.domain.category.repository.CategoryRepository
 import tachiyomi.domain.chapter.repository.ChapterRepository
 import tachiyomi.domain.history.repository.HistoryRepository

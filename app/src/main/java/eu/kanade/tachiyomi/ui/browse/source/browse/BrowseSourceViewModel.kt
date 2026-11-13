@@ -51,8 +51,8 @@ import kurotoon.catalogue.HiddenTags
 import kurotoon.catalogue.SavedSearch
 import kurotoon.catalogue.SavedSearches
 import kurotoon.catalogue.copyStateFrom
+import kurotoon.core.metro.AppCoroutineScope
 import kurotoon.prefs.KuroPreferences
-import mihon.core.metro.AppCoroutineScope
 import tachiyomi.core.common.preference.CheckboxState
 import tachiyomi.core.common.preference.getAndSet
 import tachiyomi.core.common.preference.mapAsCheckboxState

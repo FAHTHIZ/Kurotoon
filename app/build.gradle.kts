@@ -1,32 +1,24 @@
 import com.android.build.api.variant.ApplicationVariant
 import com.android.build.api.variant.BuildConfigField
-import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
-import mihon.gradle.Config
-import mihon.gradle.getCurrentTime
-import mihon.gradle.getLatestCommitCount
-import mihon.gradle.getLatestCommitSha
-import mihon.gradle.getLatestCommitTime
-import mihon.gradle.tasks.ReplaceShortcutsPlaceholderTask
+import kurotoon.gradle.Config
+import kurotoon.gradle.getCurrentTime
+import kurotoon.gradle.getLatestCommitCount
+import kurotoon.gradle.getLatestCommitSha
+import kurotoon.gradle.getLatestCommitTime
+import kurotoon.gradle.tasks.ReplaceShortcutsPlaceholderTask
 import java.io.FileInputStream
 import java.util.Properties
 
 plugins {
-    alias(mihonx.plugins.android.application)
-    alias(mihonx.plugins.compose)
-    alias(mihonx.plugins.spotless)
+    alias(kurox.plugins.android.application)
+    alias(kurox.plugins.compose)
+    alias(kurox.plugins.spotless)
 
     alias(libs.plugins.metro)
     alias(libs.plugins.aboutLibraries)
     alias(libs.plugins.androidx.baselineProfile)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.apollo)
-}
-
-if (Config.includeTelemetry) {
-    pluginManager.apply {
-        apply(libs.plugins.google.services.get().pluginId)
-        apply(libs.plugins.firebase.crashlytics.get().pluginId)
-    }
 }
 
 val keystorePropertiesFile = layout.settingsDirectory.file("keystore.properties").asFile
@@ -42,7 +34,7 @@ android {
         versionCode = 41
         versionName = "0.23.0"
 
-        buildConfigField("boolean", "TELEMETRY_INCLUDED", "${Config.includeTelemetry}")
+        buildConfigField("boolean", "TELEMETRY_INCLUDED", "false")
         buildConfigField("boolean", "UPDATER_ENABLED", "${Config.enableUpdater}")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -109,14 +101,6 @@ android {
             applicationIdSuffix = ".benchmark"
 
             matchingFallbacks.addAll(commonMatchingFallbacks)
-        }
-
-        if (Config.includeTelemetry) {
-            configureEach {
-                configure<CrashlyticsExtension> {
-                    mappingFileUploadEnabled = Config.uploadCrashlyticsMapping
-                }
-            }
         }
     }
 
@@ -359,9 +343,9 @@ tasks.withType<Test>().configureEach {
 }
 
 apollo {
-    val schemaBasePath = "src/main/graphql/mihon/graphql"
+    val schemaBasePath = "src/main/graphql/kurotoon/graphql"
     service("anilist") {
-        packageName.set("mihon.graphql.anilist")
+        packageName.set("kurotoon.graphql.anilist")
         val srcDir = "$schemaBasePath/anilist"
         srcDir(file(srcDir))
 
@@ -375,7 +359,7 @@ apollo {
     }
 
     service("kitsu") {
-        packageName.set("mihon.graphql.kitsu")
+        packageName.set("kurotoon.graphql.kitsu")
         val srcDir = "$schemaBasePath/kitsu"
         srcDir(file(srcDir))
         android.defaultConfig.versionCode
@@ -398,12 +382,12 @@ apollo {
         mapScalar(
             "Map",
             "kotlin.collections.Map<String, Any?>",
-            "mihon.graphql.kitsu.adapter.KitsuMapAdapter",
+            "kurotoon.graphql.kitsu.adapter.KitsuMapAdapter",
         )
     }
 
     service("shikimori") {
-        packageName.set("mihon.graphql.shikimori")
+        packageName.set("kurotoon.graphql.shikimori")
         val srcDir = "$schemaBasePath/shikimori"
         srcDir(file(srcDir))
 
@@ -417,7 +401,7 @@ apollo {
     }
 
     service("suwayomi") {
-        packageName.set("mihon.graphql.suwayomi")
+        packageName.set("kurotoon.graphql.suwayomi")
         val srcDir = "$schemaBasePath/suwayomi"
         srcDir(file(srcDir))
 

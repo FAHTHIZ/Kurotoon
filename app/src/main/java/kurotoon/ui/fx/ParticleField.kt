@@ -37,8 +37,8 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import kurotoon.app.di.appGraph
 import kurotoon.shop.KuroCosmetics
-import mihon.app.di.appGraph
 import tachiyomi.presentation.core.util.collectAsState
 import kotlin.math.PI
 import kotlin.math.cos

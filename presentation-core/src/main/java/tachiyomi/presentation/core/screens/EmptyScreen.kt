@@ -39,8 +39,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
 import dev.icerock.moko.resources.StringResource
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.LocalLibrary
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.LocalLibrary
 import tachiyomi.presentation.core.components.material.KuroButton
 import tachiyomi.presentation.core.components.material.KuroButtonStyle
 import tachiyomi.presentation.core.components.material.padding

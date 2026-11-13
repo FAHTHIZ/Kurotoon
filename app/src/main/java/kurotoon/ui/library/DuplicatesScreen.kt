@@ -31,9 +31,9 @@ import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
+import kurotoon.app.di.appGraph
 import kurotoon.library.LibraryDuplicates
 import logcat.LogPriority
-import mihon.app.di.appGraph
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.library.model.LibraryManga
 import tachiyomi.domain.manga.model.asMangaCover

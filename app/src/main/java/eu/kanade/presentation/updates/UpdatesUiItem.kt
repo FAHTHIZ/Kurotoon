@@ -45,11 +45,11 @@ import eu.kanade.presentation.manga.components.MangaCover
 import eu.kanade.presentation.util.relativeTimeSpanString
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.ui.updates.UpdatesItem
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Sync
+import kurotoon.icons.materialsymbols.roundedfilled.Bookmark
 import kurotoon.ui.KuroSectionHeader
 import kurotoon.ui.kuroCard
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Sync
-import mihon.icons.materialsymbols.roundedfilled.Bookmark
 import tachiyomi.domain.updates.model.UpdatesWithRelations
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.DISABLED_ALPHA
@@ -332,7 +332,7 @@ private fun UpdatesUiItem(
                         overflow = TextOverflow.Ellipsis,
                     )
                 }
-                // Who released it, so a series followed from several groups shows which one did (mihon#1914)
+                // Who released it, so a series followed from several groups shows which one did
                 val scanlator = update.scanlator?.takeIf { it.isNotBlank() }
                 if (scanlator != null) {
                     DotSeparatorText()

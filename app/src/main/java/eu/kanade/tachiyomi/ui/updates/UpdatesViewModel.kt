@@ -46,8 +46,8 @@ import kotlinx.coroutines.plus
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.minus
+import kurotoon.core.metro.AppCoroutineScope
 import logcat.LogPriority
-import mihon.core.metro.AppCoroutineScope
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.core.common.preference.TriState
 import tachiyomi.core.common.util.lang.SubscriberGate
@@ -262,7 +262,7 @@ class UpdatesViewModel(
             }
     }
 
-    /** Hides everything currently listed, with an Undo; new chapters still show up (mihon#1534). */
+    /** Hides everything currently listed, with an Undo; new chapters still show up. */
     fun clearUpdates() {
         val previous = kuroPreferences.updatesClearedAt.get()
         kuroPreferences.updatesClearedAt.set(Clock.System.now().toEpochMilliseconds())

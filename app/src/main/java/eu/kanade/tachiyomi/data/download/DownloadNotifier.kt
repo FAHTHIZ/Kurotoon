@@ -19,7 +19,7 @@ import eu.kanade.tachiyomi.util.system.notify
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.i18n.MR
 import java.util.regex.Pattern
-import mihon.icons.materialsymbols.R as MaterialSymbolsR
+import kurotoon.icons.materialsymbols.R as MaterialSymbolsR
 
 /**
  * DownloadNotifier is used to show notifications when downloading one or multiple chapters.

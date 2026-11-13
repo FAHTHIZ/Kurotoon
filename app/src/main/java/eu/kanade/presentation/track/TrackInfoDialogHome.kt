@@ -56,9 +56,9 @@ import eu.kanade.tachiyomi.util.lang.toJavaLocalDate
 import eu.kanade.tachiyomi.util.lang.toLocalDate
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import kotlinx.datetime.toJavaLocalDate
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.MoreVert
-import mihon.icons.materialsymbols.roundedfilled.VisibilityOff
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.MoreVert
+import kurotoon.icons.materialsymbols.roundedfilled.VisibilityOff
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource

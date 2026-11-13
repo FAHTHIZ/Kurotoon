@@ -29,10 +29,10 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Public
+import kurotoon.icons.materialsymbols.rounded.Search
 import kurotoon.ui.kuroCard
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Public
-import mihon.icons.materialsymbols.rounded.Search
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 

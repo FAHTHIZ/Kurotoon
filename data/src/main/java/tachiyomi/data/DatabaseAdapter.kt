@@ -3,8 +3,8 @@ package tachiyomi.data
 import app.cash.sqldelight.ColumnAdapter
 import eu.kanade.tachiyomi.source.model.UpdateStrategy
 import kotlinx.serialization.json.JsonObject
-import mihon.core.common.extensions.toByteArray
-import mihon.core.common.extensions.toJsonObject
+import kurotoon.core.common.extensions.toByteArray
+import kurotoon.core.common.extensions.toJsonObject
 import kotlin.time.Instant
 
 object InstantColumnAdapter : ColumnAdapter<Instant, Long> {

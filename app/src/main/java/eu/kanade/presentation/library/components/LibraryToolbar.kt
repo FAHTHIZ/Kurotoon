@@ -17,11 +17,11 @@ import androidx.compose.ui.unit.sp
 import eu.kanade.presentation.components.AppBar
 import eu.kanade.presentation.components.AppBarActions
 import eu.kanade.presentation.components.SearchToolbar
-import mihon.app.di.appGraph
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.FilterList
-import mihon.icons.materialsymbols.rounded.FlipToBack
-import mihon.icons.materialsymbols.rounded.SelectAll
+import kurotoon.app.di.appGraph
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.FilterList
+import kurotoon.icons.materialsymbols.rounded.FlipToBack
+import kurotoon.icons.materialsymbols.rounded.SelectAll
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.Pill
 import tachiyomi.presentation.core.i18n.stringResource
@@ -119,7 +119,7 @@ private fun LibraryRegularToolbar(
         onChangeSearchQuery = onSearchQueryChange,
         actions = {
             val filterTint = if (hasFilters) MaterialTheme.colorScheme.active else LocalContentColor.current
-            // A quick on/off switch, since incognito is meant to be toggled per session (mihon#1577)
+            // A quick on/off switch, since incognito is meant to be toggled per session
             val incognitoPref = androidx.compose.ui.platform.LocalContext.current.appGraph.basePreferences.incognitoMode
             val incognito by incognitoPref.collectAsState()
             AppBarActions(

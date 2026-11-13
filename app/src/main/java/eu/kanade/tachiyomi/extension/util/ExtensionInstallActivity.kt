@@ -8,8 +8,8 @@ import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.extension.model.InstallStep
 import eu.kanade.tachiyomi.util.system.hasMiuiPackageInstaller
 import eu.kanade.tachiyomi.util.system.toast
+import kurotoon.app.di.appGraph
 import logcat.LogPriority
-import mihon.app.di.appGraph
 import tachiyomi.core.common.util.system.logcat
 import kotlin.time.Duration.Companion.seconds
 

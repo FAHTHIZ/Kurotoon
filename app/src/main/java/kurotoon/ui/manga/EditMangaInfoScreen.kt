@@ -30,8 +30,8 @@ import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kurotoon.app.di.appGraph
 import kurotoon.manga.MangaEdit
-import mihon.app.di.appGraph
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.manga.model.MangaRemoteUpdate
 import tachiyomi.i18n.MR

@@ -75,10 +75,10 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 import kotlinx.coroutines.withContext
+import kurotoon.core.metro.AppCoroutineScope
+import kurotoon.domain.chapter.interactor.FilterChaptersForDownload
+import kurotoon.domain.source.interactor.UpdateMangaFromRemote
 import logcat.LogPriority
-import mihon.core.metro.AppCoroutineScope
-import mihon.domain.chapter.interactor.FilterChaptersForDownload
-import mihon.domain.source.interactor.UpdateMangaFromRemote
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.core.common.preference.CheckboxState
 import tachiyomi.core.common.preference.TriState
@@ -234,7 +234,7 @@ class MangaViewModel(
             ?.filter { it.readAt != null }
             ?.maxByOrNull { it.readAt!! }
             ?.chapterId
-        // A re-read in progress resumes at its page even when "resume last opened" is off (mihon#698)
+        // A re-read in progress resumes at its page even when "resume last opened" is off
         val rereading = latest != null && kuroPreferences.isRereading(latest)
         MangaAndChapters(
             manga = manga,
@@ -1229,7 +1229,7 @@ class MangaViewModel(
                 }
             }
 
-            // Counted over every chapter, so ones hidden by a filter aren't reported as missing (mihon#87)
+            // Counted over every chapter, so ones hidden by a filter aren't reported as missing
             private val knownChapterNumbers by lazy {
                 chapters.mapNotNullTo(HashSet()) { item ->
                     item.chapter.takeIf { it.isRecognizedNumber }?.let { floor(it.chapterNumber).toInt() }

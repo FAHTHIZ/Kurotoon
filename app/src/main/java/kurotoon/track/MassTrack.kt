@@ -18,9 +18,9 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kurotoon.app.di.appGraph
 import kurotoon.ui.KuroAlertDialog
 import logcat.LogPriority
-import mihon.app.di.appGraph
 import tachiyomi.core.common.i18n.pluralStringResource
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.core.common.util.system.logcat
@@ -30,7 +30,7 @@ import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 import java.util.Locale
 
-/** Links many library series to one tracker using its closest search match (mihon#2441). */
+/** Links many library series to one tracker using its closest search match. */
 object MassTrack {
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)

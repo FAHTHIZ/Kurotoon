@@ -7,7 +7,7 @@ import eu.kanade.tachiyomi.source.model.MangasPage
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import mihon.domain.manga.model.toDomainManga
+import kurotoon.domain.manga.model.toDomainManga
 import tachiyomi.domain.manga.interactor.NetworkToLocalManga
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.source.repository.SourcePagingSource

@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.more.settings.screen.SettingsDataScreen
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.collectLatest
-import mihon.app.di.appGraph
+import kurotoon.app.di.appGraph
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Button
 import tachiyomi.presentation.core.components.material.padding

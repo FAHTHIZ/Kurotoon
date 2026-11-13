@@ -56,11 +56,11 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.StringResource
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.ArrowDownward
-import mihon.icons.materialsymbols.rounded.ArrowUpward
-import mihon.icons.materialsymbols.rounded.Check
-import mihon.icons.materialsymbols.rounded.Close
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.ArrowDownward
+import kurotoon.icons.materialsymbols.rounded.ArrowUpward
+import kurotoon.icons.materialsymbols.rounded.Check
+import kurotoon.icons.materialsymbols.rounded.Close
 import tachiyomi.core.common.preference.Preference
 import tachiyomi.core.common.preference.TriState
 import tachiyomi.core.common.preference.toggle

@@ -25,7 +25,7 @@ import com.materialkolor.ktx.themeColorOrNull
 import eu.kanade.presentation.theme.colorscheme.MonetCompatColorScheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import mihon.app.di.appGraph
+import kurotoon.app.di.appGraph
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.presentation.core.util.collectAsState
 

@@ -40,7 +40,7 @@ import tachiyomi.domain.source.service.SourceManager
 import tachiyomi.i18n.MR
 import java.math.RoundingMode
 import java.text.NumberFormat
-import mihon.icons.materialsymbols.R as MaterialSymbolsR
+import kurotoon.icons.materialsymbols.R as MaterialSymbolsR
 
 @Inject
 class LibraryUpdateNotifier(
@@ -171,7 +171,7 @@ class LibraryUpdateNotifier(
             setContentText(context.stringResource(MR.strings.action_show_errors))
             setSmallIcon(R.drawable.ic_kurotoon)
 
-            // Open the in-app list (mihon#132); the raw log stays one action away
+            // Open the in-app list; the raw log stays one action away
             setContentIntent(NotificationReceiver.openUpdateErrorsPendingActivity(context))
             addAction(
                 R.drawable.ic_kurotoon,

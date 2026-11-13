@@ -50,8 +50,8 @@ import eu.kanade.presentation.components.UpIcon
 import eu.kanade.presentation.more.settings.Preference
 import eu.kanade.presentation.util.Screen
 import kotlinx.coroutines.flow.collectLatest
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Close
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Close
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource

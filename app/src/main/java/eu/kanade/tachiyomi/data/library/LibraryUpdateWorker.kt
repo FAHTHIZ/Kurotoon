@@ -42,13 +42,13 @@ import kotlinx.coroutines.sync.withPermit
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import kurotoon.app.di.AppGraph
+import kurotoon.app.di.appGraph
+import kurotoon.core.metro.metroGraph
+import kurotoon.domain.chapter.interactor.FilterChaptersForDownload
+import kurotoon.domain.source.interactor.UpdateMangaFromRemote
 import kurotoon.updates.UpdateErrors
 import logcat.LogPriority
-import mihon.app.di.AppGraph
-import mihon.app.di.appGraph
-import mihon.core.metro.metroGraph
-import mihon.domain.chapter.interactor.FilterChaptersForDownload
-import mihon.domain.source.interactor.UpdateMangaFromRemote
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.core.common.preference.getAndSet
 import tachiyomi.core.common.util.system.logcat
@@ -131,7 +131,7 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
         val categoryId = inputData.getLong(KEY_CATEGORY, -1L)
         val mangaIds = inputData.getLongArray(KEY_MANGA_IDS)
         if (mangaIds != null) {
-            // Picked by hand, so the smart-update restrictions don't apply (mihon#2933)
+            // Picked by hand, so the smart-update restrictions don't apply
             val picked = mangaIds.toHashSet()
             mangaToUpdate = getLibraryManga.await().filter { it.manga.id in picked }.sortedBy { it.manga.title }
         } else {

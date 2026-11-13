@@ -46,11 +46,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import eu.kanade.presentation.manga.components.MangaCover
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Check
+import kurotoon.icons.materialsymbols.roundedfilled.PlayArrow
 import kurotoon.ui.kuroCard
 import kurotoon.ui.library.CoverReadProgress
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Check
-import mihon.icons.materialsymbols.roundedfilled.PlayArrow
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.BadgeGroup
 import tachiyomi.presentation.core.i18n.stringResource
@@ -76,7 +76,7 @@ private val ContinueReadingButtonListSpacing = 8.dp
 
 private const val GRID_SELECTED_COVER_ALPHA = 0.76f
 
-/** KuroToon covers are rounder than Mihon's, so the grid reads as cards rather than tiles. */
+/** Covers are rounded so the grid reads as cards rather than tiles. */
 private val GridCoverShape = RoundedCornerShape(14.dp)
 
 /** A hairline keeps dark covers from melting into the ink background. */

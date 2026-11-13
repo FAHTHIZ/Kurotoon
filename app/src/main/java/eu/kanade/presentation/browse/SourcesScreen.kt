@@ -29,14 +29,14 @@ import eu.kanade.presentation.browse.components.SourceIcon
 import eu.kanade.tachiyomi.ui.browse.source.SourcesViewModel
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceViewModel.Listing
 import eu.kanade.tachiyomi.util.system.LocaleHelper
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Keep
+import kurotoon.icons.materialsymbols.roundedfilled.Keep
 import kurotoon.ui.KuroAlertDialog
 import kurotoon.ui.KuroSectionHeader
 import kurotoon.ui.browse.SourceFilterField
 import kurotoon.ui.browse.UniversalSearchCard
 import kurotoon.ui.kuroCard
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Keep
-import mihon.icons.materialsymbols.roundedfilled.Keep
 import tachiyomi.domain.source.model.Pin
 import tachiyomi.domain.source.model.Source
 import tachiyomi.i18n.MR

@@ -21,7 +21,7 @@ interface SChapter : Serializable {
      * Extra metadata associated with the chapter.
      *
      * The JSON object is not visible to users and intended for internal or source-specific
-     * purposes. Apps may define their own namespaced keys (e.g., `"mihon.*"`) for sources to populate.
+     * purposes. Apps may define their own namespaced keys (e.g., `"kurotoon.*"`) for sources to populate.
      *
      * This allows apps to attach and ask for custom information without affecting the visible
      * chapter data.

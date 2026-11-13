@@ -149,7 +149,7 @@ class ReaderPreferences(
 
     val webtoonSidePadding: Preference<Int> = preferenceStore.getInt("webtoon_side_padding", WEBTOON_PADDING_MIN)
 
-    /** A separate side padding when the phone is sideways, where full-width pages get huge (mihon#155). */
+    /** A separate side padding when the phone is sideways, where full-width pages get huge. */
     val webtoonSidePaddingLandscapeEnabled: Preference<Boolean> =
         preferenceStore.getBoolean("kurotoon_webtoon_side_padding_landscape_enabled", false)
 
@@ -171,7 +171,7 @@ class ReaderPreferences(
 
     val webtoonDisableZoomOut: Preference<Boolean> = preferenceStore.getBoolean("webtoon_disable_zoom_out", false)
 
-    /** Ignore pinch and double-tap zoom in the long strip so a stray two-finger touch never zooms (mihon#1397). */
+    /** Ignore pinch and double-tap zoom in the long strip so a stray two-finger touch never zooms. */
     val webtoonZoomLocked: Preference<Boolean> = preferenceStore.getBoolean("kurotoon_webtoon_zoom_locked", false)
 
     /** The same lock for the paged viewers: pages stay fitted, and taps and swipes only turn them. */

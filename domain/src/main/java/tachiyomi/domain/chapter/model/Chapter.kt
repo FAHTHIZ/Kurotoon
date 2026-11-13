@@ -1,7 +1,7 @@
 package tachiyomi.domain.chapter.model
 
 import kotlinx.serialization.json.JsonObject
-import mihon.core.common.extensions.EMPTY
+import kurotoon.core.common.extensions.EMPTY
 import kotlin.time.Instant
 
 data class Chapter(

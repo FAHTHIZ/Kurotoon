@@ -95,15 +95,15 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kurotoon.app.di.AppGraph
+import kurotoon.app.di.appGraph
+import kurotoon.core.metro.metroGraph
+import kurotoon.core.migration.Migrator
+import kurotoon.data.cache.ChapterCache
+import kurotoon.domain.database.repository.DatabaseRepository
 import kurotoon.prefs.KuroPreferences
 import kurotoon.ui.fx.ParticleField
 import logcat.LogPriority
-import mihon.app.di.AppGraph
-import mihon.app.di.appGraph
-import mihon.core.metro.metroGraph
-import mihon.core.migration.Migrator
-import mihon.data.cache.ChapterCache
-import mihon.domain.database.repository.DatabaseRepository
 import tachiyomi.core.common.Constants
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.library.service.LibraryPreferences
@@ -553,7 +553,7 @@ class MainActivity : BaseActivity() {
 
     private fun Intent.isAddExtensionStoreIntent(): Boolean {
         return (scheme == "tachiyomi" && data?.host == "add-repo") ||
-            (scheme == "mihon" && data?.host == "extension-store")
+            (scheme in EXTENSION_STORE_SCHEMES && data?.host == "extension-store")
     }
 
     companion object {
@@ -564,6 +564,9 @@ class MainActivity : BaseActivity() {
         const val INTENT_SEARCH_FILTER = "filter"
     }
 }
+
+// kurotoon:// is our own; mihon:// is what extension store sites publish
+private val EXTENSION_STORE_SCHEMES = setOf("kurotoon", "mihon")
 
 // Splash screen
 private const val SPLASH_MIN_DURATION = 500 // ms

@@ -24,8 +24,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
-import mihon.app.di.AppGraph
-import mihon.core.metro.metroGraph
+import kurotoon.app.di.AppGraph
+import kurotoon.core.metro.metroGraph
 import tachiyomi.domain.download.service.DownloadPreferences
 import tachiyomi.i18n.R
 import kotlin.time.Duration.Companion.seconds
@@ -117,7 +117,7 @@ class DownloadWorker(context: Context, workerParams: WorkerParameters) : Corouti
 
         /**
          * Picks the queue back up by itself once a suitable network returns, instead of leaving it
-         * stalled until the user opens the app and taps resume (mihon#1053).
+         * stalled until the user opens the app and taps resume.
          */
         fun scheduleResume(context: Context, wifiOnly: Boolean) {
             val network = if (wifiOnly) NetworkType.UNMETERED else NetworkType.CONNECTED

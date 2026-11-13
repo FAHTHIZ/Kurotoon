@@ -8,8 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Preview
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Preview
 import tachiyomi.presentation.core.components.material.KuroSwitch
 
 @Composable

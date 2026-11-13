@@ -31,9 +31,9 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import eu.kanade.presentation.manga.components.MangaCover
 import eu.kanade.presentation.util.formatChapterNumber
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.PlayArrow
 import kurotoon.ui.kuroBounceClickable
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.PlayArrow
 import tachiyomi.domain.history.model.HistoryWithRelations
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource

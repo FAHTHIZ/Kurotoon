@@ -9,7 +9,7 @@ import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
-import mihon.core.archive.archiveReader
+import kurotoon.core.archive.archiveReader
 import tachiyomi.domain.manga.model.Manga
 
 /**

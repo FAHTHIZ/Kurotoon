@@ -21,8 +21,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Close
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Close
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource

@@ -25,9 +25,9 @@ import androidx.compose.ui.unit.dp
 import eu.kanade.domain.manga.model.downloadedFilter
 import eu.kanade.presentation.components.TabbedDialog
 import eu.kanade.presentation.components.TabbedDialogPaddings
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Group
 import kurotoon.ui.KuroAlertDialog
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Group
 import tachiyomi.core.common.preference.TriState
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.i18n.MR

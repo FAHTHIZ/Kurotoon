@@ -18,10 +18,10 @@ import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceScreen
 import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kurotoon.app.di.appGraph
 import kurotoon.catalogue.SourceTagIndex
 import kurotoon.library.LibraryTags
 import kurotoon.ui.catalogue.TagEverywhereScreen
-import mihon.app.di.appGraph
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.presentation.core.screens.LoadingScreen
 

@@ -12,7 +12,7 @@ import eu.kanade.tachiyomi.util.system.cancelNotification
 import eu.kanade.tachiyomi.util.system.notify
 import tachiyomi.core.common.i18n.pluralStringResource
 import tachiyomi.i18n.MR
-import mihon.icons.materialsymbols.R as MaterialSymbolsR
+import kurotoon.icons.materialsymbols.R as MaterialSymbolsR
 
 @Inject
 @SingleIn(AppScope::class)

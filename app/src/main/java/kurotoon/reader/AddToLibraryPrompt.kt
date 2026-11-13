@@ -14,8 +14,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.reader.reportPress
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Favorite
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Favorite
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroButton
 import tachiyomi.presentation.core.components.material.KuroButtonStyle

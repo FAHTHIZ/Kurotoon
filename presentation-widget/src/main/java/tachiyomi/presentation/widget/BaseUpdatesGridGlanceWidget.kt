@@ -39,8 +39,8 @@ import kotlinx.coroutines.withContext
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.minus
-import mihon.core.metro.metroGraph
-import mihon.presentation.widget.di.PresentationWidgetGraph
+import kurotoon.core.metro.metroGraph
+import kurotoon.presentation.widget.di.PresentationWidgetGraph
 import tachiyomi.domain.manga.model.MangaCover
 import tachiyomi.domain.updates.interactor.GetUpdates
 import tachiyomi.domain.updates.model.UpdatesWithRelations

@@ -1,6 +1,6 @@
 plugins {
-    alias(mihonx.plugins.android.library)
-    alias(mihonx.plugins.spotless)
+    alias(kurox.plugins.android.library)
+    alias(kurox.plugins.spotless)
 
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.sqldelight)

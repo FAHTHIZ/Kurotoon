@@ -42,10 +42,10 @@ import eu.kanade.presentation.util.Screen
 import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.collectLatest
-import mihon.feature.migration.config.MigrationConfigScreen
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.automirroredrounded.ArrowForward
-import mihon.icons.materialsymbols.rounded.Check
+import kurotoon.feature.migration.config.MigrationConfigScreen
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.automirroredrounded.ArrowForward
+import kurotoon.icons.materialsymbols.rounded.Check
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.FastScrollLazyColumn

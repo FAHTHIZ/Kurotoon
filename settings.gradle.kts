@@ -10,8 +10,8 @@ pluginManagement {
 
 dependencyResolutionManagement {
     versionCatalogs {
-        create("mihonx") {
-            from(files("gradle/mihon.versions.toml"))
+        create("kurox") {
+            from(files("gradle/kuro.versions.toml"))
         }
     }
 

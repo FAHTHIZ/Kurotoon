@@ -145,7 +145,7 @@ class ReaderSettingsViewModel(
         )
     }
 
-    /** This series' own scale type and zoom start, when it has them (mihon#1622). */
+    /** This series' own scale type and zoom start, when it has them. */
     val seriesPagedScale: StateFlow<Pair<Int, Int>?> = combine(
         mangaFlow,
         kuroPreferences.seriesPagedScale.changes(),

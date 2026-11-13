@@ -71,7 +71,7 @@ object Notifications {
     const val CHANNEL_READING_REMINDER = "kurotoon_reading_reminder_channel"
     const val ID_READING_REMINDER = -1301
 
-    /** A tracker's sign-in ran out; one id per tracker, offset from this (mihon#1700). */
+    /** A tracker's sign-in ran out; one id per tracker, offset from this. */
     const val ID_TRACKER_SIGNED_OUT = -1400
 
     /**

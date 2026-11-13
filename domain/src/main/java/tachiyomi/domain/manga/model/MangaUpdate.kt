@@ -1,6 +1,6 @@
 package tachiyomi.domain.manga.model
 
-import mihon.domain.common.PartialUpdate
+import kurotoon.domain.common.PartialUpdate
 import kotlin.time.Instant
 
 class MangaUpdate(val id: Long, block: MangaUpdate.() -> Unit) : PartialUpdate() {

@@ -13,8 +13,8 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import eu.kanade.tachiyomi.ui.manga.ChapterList
 import kotlinx.coroutines.launch
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.History
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.History
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 

@@ -48,9 +48,9 @@ import eu.kanade.tachiyomi.util.system.workManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kurotoon.app.di.appGraph
 import kurotoon.ui.KuroAlertDialog
 import logcat.LogPriority
-import mihon.app.di.appGraph
 import okhttp3.Headers
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.library.service.LibraryPreferences

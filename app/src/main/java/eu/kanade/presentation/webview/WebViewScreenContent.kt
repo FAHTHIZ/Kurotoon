@@ -49,12 +49,12 @@ import eu.kanade.tachiyomi.util.system.setDefaultSettings
 import eu.kanade.tachiyomi.util.system.setUserAgent
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.launch
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.automirroredrounded.ArrowBack
+import kurotoon.icons.materialsymbols.automirroredrounded.ArrowForward
+import kurotoon.icons.materialsymbols.rounded.Close
+import kurotoon.icons.materialsymbols.rounded.TabClose
 import logcat.LogPriority
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.automirroredrounded.ArrowBack
-import mihon.icons.materialsymbols.automirroredrounded.ArrowForward
-import mihon.icons.materialsymbols.rounded.Close
-import mihon.icons.materialsymbols.rounded.TabClose
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold

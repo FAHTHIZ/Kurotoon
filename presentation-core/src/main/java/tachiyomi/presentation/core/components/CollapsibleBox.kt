@@ -17,9 +17,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.KeyboardArrowDown
-import mihon.icons.materialsymbols.rounded.KeyboardArrowUp
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.KeyboardArrowDown
+import kurotoon.icons.materialsymbols.rounded.KeyboardArrowUp
 import tachiyomi.presentation.core.theme.header
 
 @Composable

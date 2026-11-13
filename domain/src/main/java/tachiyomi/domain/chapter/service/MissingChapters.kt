@@ -49,8 +49,8 @@ fun calculateChapterGap(higherChapterNumber: Double, lowerChapterNumber: Double)
 }
 
 /**
- * Chapters missing between two shown chapters, ignoring numbers that exist but are hidden by a filter
- * (mihon#87). [known] holds the whole-number chapters the series really has; a null [lowerChapterNumber]
+ * Chapters missing between two shown chapters, ignoring numbers that exist but are hidden by a filter.
+ * [known] holds the whole-number chapters the series really has; a null [lowerChapterNumber]
  * means "from the start".
  */
 fun calculateChapterGap(higherChapterNumber: Double, lowerChapterNumber: Double?, known: Set<Int>): Int {

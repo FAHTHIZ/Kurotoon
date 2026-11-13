@@ -20,7 +20,7 @@ import tachiyomi.presentation.core.components.material.KuroRadioButton
 import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.i18n.stringResource
 
-/** How the installed extension sections are ordered (mihon#2744). */
+/** How the installed extension sections are ordered. */
 enum class ExtensionSort(val label: StringResource) {
     NAME(MR.strings.kurotoon_extensions_sortName),
     RECENTLY_UPDATED(MR.strings.kurotoon_extensions_sortRecent),

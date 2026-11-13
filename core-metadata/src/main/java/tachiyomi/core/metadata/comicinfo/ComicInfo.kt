@@ -88,7 +88,7 @@ data class ComicInfo(
     val day: Day?,
     val publishingStatus: PublishingStatusTachiyomi?,
     val categories: CategoriesTachiyomi?,
-    val source: SourceMihon?,
+    val source: SourceName?,
 ) {
     @XmlElement(false)
     @XmlSerialName("xmlns:xsd", "", "")
@@ -176,8 +176,9 @@ data class ComicInfo(
     data class CategoriesTachiyomi(@XmlValue(true) val value: String = "")
 
     @Serializable
+    // Element name kept as-is so CBZ files written by other Tachiyomi-family apps still read back
     @XmlSerialName("SourceMihon", "http://www.w3.org/2001/XMLSchema", "mh")
-    data class SourceMihon(@XmlValue(true) val value: String = "")
+    data class SourceName(@XmlValue(true) val value: String = "")
 }
 
 enum class ComicInfoPublishingStatus(

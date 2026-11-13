@@ -1,31 +1,13 @@
-import mihon.gradle.Config
-
 plugins {
-    alias(mihonx.plugins.android.library)
-    alias(mihonx.plugins.spotless)
+    alias(kurox.plugins.android.library)
+    alias(kurox.plugins.spotless)
 }
 
+// KuroToon collects no analytics or crash reports. This module only keeps the call sites compiling.
 android {
-    namespace = "mihon.telemetry"
-
-    sourceSets {
-        getByName("main") {
-            if (Config.includeTelemetry) {
-                kotlin.directories.add("src/firebase/kotlin")
-            } else {
-                kotlin.directories.add("src/noop/kotlin")
-                manifest.srcFile("src/noop/AndroidManifext.xml")
-            }
-        }
-    }
+    namespace = "kurotoon.telemetry"
 }
 
 dependencies {
     implementation(projects.core.common)
-
-    if (Config.includeTelemetry) {
-        implementation(platform(libs.firebase.bom))
-        implementation(libs.firebase.analytics)
-        implementation(libs.firebase.crashlytics)
-    }
 }

@@ -52,11 +52,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.flow.drop
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.automirroredrounded.ArrowBack
-import mihon.icons.materialsymbols.rounded.Close
-import mihon.icons.materialsymbols.rounded.MoreVert
-import mihon.icons.materialsymbols.rounded.Search
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.automirroredrounded.ArrowBack
+import kurotoon.icons.materialsymbols.rounded.Close
+import kurotoon.icons.materialsymbols.rounded.MoreVert
+import kurotoon.icons.materialsymbols.rounded.Search
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.util.clearFocusOnSoftKeyboardHide
@@ -322,7 +322,6 @@ fun SearchToolbar(
 
             // Enter always puts the keyboard away. Focus isn't moved on afterwards: the next focusable was often
             // this field again, which reopened the keyboard, and coming back from a series restored it too
-            // (mihon#3124)
             val searchAndClearFocus: () -> Unit = {
                 val query = searchFieldState.text.toString()
                 if (query.isNotBlank()) onSearch(query)

@@ -9,8 +9,8 @@ import eu.kanade.tachiyomi.network.newCachelessCallWithProgress
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderPreferences
 import eu.kanade.tachiyomi.util.system.isConnectedToWifi
+import kurotoon.app.di.appGraph
 import logcat.LogPriority
-import mihon.app.di.appGraph
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.Response
 import tachiyomi.core.common.util.system.logcat

@@ -54,6 +54,11 @@ import androidx.compose.ui.util.lerp
 import coil3.compose.AsyncImage
 import eu.kanade.presentation.manga.components.MangaCover
 import kotlinx.coroutines.delay
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.AutoAwesome
+import kurotoon.icons.materialsymbols.rounded.Bookmark
+import kurotoon.icons.materialsymbols.rounded.LocalFireDepartment
+import kurotoon.icons.materialsymbols.roundedfilled.PlayArrow
 import kurotoon.ui.KuroMetaLine
 import kurotoon.ui.KuroPrimaryButton
 import kurotoon.ui.KuroRankNumeral
@@ -63,11 +68,6 @@ import kurotoon.ui.kuroBounceClickable
 import kurotoon.ui.kuroEntrance
 import kurotoon.ui.kuroShimmer
 import kurotoon.ui.onArtwork
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.AutoAwesome
-import mihon.icons.materialsymbols.rounded.Bookmark
-import mihon.icons.materialsymbols.rounded.LocalFireDepartment
-import mihon.icons.materialsymbols.roundedfilled.PlayArrow
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.manga.model.asMangaCover
 import tachiyomi.i18n.MR

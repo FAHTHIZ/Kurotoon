@@ -23,7 +23,7 @@ import eu.kanade.presentation.theme.TachiyomiTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import mihon.app.di.appGraph
+import kurotoon.app.di.appGraph
 
 inline fun ComponentActivity.setComposeContent(
     parent: CompositionContext? = null,

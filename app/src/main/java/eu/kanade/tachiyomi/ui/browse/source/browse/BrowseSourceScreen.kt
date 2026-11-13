@@ -53,19 +53,19 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kurotoon.catalogue.SavedSearches
+import kurotoon.feature.migration.dialog.MigrateMangaDialog
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.FilterList
+import kurotoon.icons.materialsymbols.rounded.Refresh
+import kurotoon.icons.materialsymbols.rounded.Verified
+import kurotoon.icons.materialsymbols.roundedfilled.Favorite
+import kurotoon.presentation.core.util.collectAsLazyPagingItems
 import kurotoon.ui.KuroSnackbarHost
 import kurotoon.ui.browse.BrowseChips
 import kurotoon.ui.browse.BrowseSort
 import kurotoon.ui.browse.FacetActions
 import kurotoon.ui.browse.SavedSearchDialog
 import kurotoon.ui.browse.SavedSearchRow
-import mihon.feature.migration.dialog.MigrateMangaDialog
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.FilterList
-import mihon.icons.materialsymbols.rounded.Refresh
-import mihon.icons.materialsymbols.rounded.Verified
-import mihon.icons.materialsymbols.roundedfilled.Favorite
-import mihon.presentation.core.util.collectAsLazyPagingItems
 import tachiyomi.core.common.Constants
 import tachiyomi.core.common.i18n.pluralStringResource
 import tachiyomi.core.common.i18n.stringResource
@@ -173,7 +173,7 @@ data class BrowseSourceScreen(
                         isActionMode = true,
                         onCancelActionMode = stopSelecting,
                         actions = {
-                            // Library series picked here can be checked for new chapters on their own (mihon#834)
+                            // Library series picked here can be checked for new chapters on their own
                             if (selected.values.any { it.favorite }) {
                                 androidx.compose.material3.IconButton(
                                     onClick = {
@@ -195,7 +195,7 @@ data class BrowseSourceScreen(
                                     },
                                 ) {
                                     androidx.compose.material3.Icon(
-                                        imageVector = mihon.icons.materialsymbols.MaterialSymbols.Rounded.Refresh,
+                                        imageVector = kurotoon.icons.materialsymbols.MaterialSymbols.Rounded.Refresh,
                                         contentDescription = stringResource(MR.strings.kurotoon_library_updateSelected),
                                     )
                                 }

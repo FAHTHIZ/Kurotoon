@@ -26,8 +26,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kurotoon.core.common.utils.mutate
 import logcat.LogPriority
-import mihon.core.common.utils.mutate
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.manga.interactor.GetFavorites
 import tachiyomi.domain.manga.model.Manga

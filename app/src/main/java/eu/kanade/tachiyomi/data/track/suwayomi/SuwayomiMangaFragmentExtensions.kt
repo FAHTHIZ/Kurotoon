@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.data.track.suwayomi
 
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
-import mihon.graphql.suwayomi.fragment.MangaFragment
+import kurotoon.graphql.suwayomi.fragment.MangaFragment
 
 internal fun MangaFragment.toTrackSearch(trackId: Long, baseUrl: String): TrackSearch {
     val manga = this

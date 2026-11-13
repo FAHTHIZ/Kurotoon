@@ -42,11 +42,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Person
 import kurotoon.shop.ShopItem
 import kurotoon.shop.ShopKind
 import kurotoon.ui.KuroColors
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Person
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin

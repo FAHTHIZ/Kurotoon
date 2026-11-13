@@ -50,7 +50,7 @@ class LibraryPreferences(
         ),
     )
 
-    /** Name local chapters after their files even when a ComicInfo.xml gives them a title (mihon#2393). */
+    /** Name local chapters after their files even when a ComicInfo.xml gives them a title. */
     val localChapterNamesFromFiles: Preference<Boolean> =
         preferenceStore.getBoolean("kurotoon_local_chapter_names_from_files", false)
 
