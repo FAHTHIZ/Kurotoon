@@ -1,0 +1,17 @@
+# Why do taps on the app's own screens never land on the emulator? Log the window and input state around a tap.
+start app.kurotoon.dev
+sleep 10
+shot probe_start
+coords
+sh dumpsys window | grep -E "mCurrentFocus|mFocusedApp|mFocusedWindow"
+sh dumpsys window windows | grep -E "Window #|mHasSurface|FLAG|fl=|isVisible|mViewVisibility"
+sh dumpsys input | grep -iE "focus|touchableRegion|flags=|name=" | head -80
+sh settings get global animator_duration_scale
+tapx Next
+sleep 3
+shot probe_after_tap
+sh input touchscreen swipe 540 2200 540 2200 180
+sleep 3
+shot probe_after_slow_tap
+sh dumpsys input | grep -iE "RecentQueue|Last|dropped|Drop" | head -40
+sh logcat -d -t 200 | grep -iE "input|touch|kurotoon" | tail -60
