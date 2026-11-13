@@ -1,0 +1,115 @@
+> start app.kurotoon.dev
+> sleep 6
+> shot welcome
+  [shot 001_welcome] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapuntil Next "Select a folder"
+  found
+> shot storage
+  [shot 002_storage] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tap "Select a folder"
+> sleep 6
+> shot picker
+  [shot 003_picker] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tapor Documents 285 1215
+  tapping 285,1215
+> sleep 4
+> shot picker_documents
+  [shot 004_picker_documents] visible: ['K', 'Welcome!', "Let's set some things up first. You can always change these in the settings later too.", 'Select a folder where KuroToon will store chapter downloads, backups, and more.\n\nA dedicated folder is recommended.\n\nSelected folder: No storage location set', 'Select a folder', 'Updating from an older version and not sure what to select? Refer to the storage guide for more information.', 'Storage guide', 'Next']
+> tapor "USE THIS FOLDER" 540 2208
+  tapping 540,2208
+> sleep 3
+> shot picker_allow
+  [shot 005_picker_allow] visible: []
+> tapor ALLOW 870 1380
+  tapping 870,1380
+> sleep 3
+> shot storage_done
+  [shot 006_storage_done] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> tapuntil Next "Get started" 6
+  !! never reached Get started
+> shot guides
+  [shot 007_guides] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> tapuntil "Get started" Library 4
+  !! never reached Library
+> sleep 4
+> shot home_empty
+  [shot 008_home_empty] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> tapx Browse
+  !! not found: Browse
+  [shot 009_notfound] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> sleep 2
+> shot browse_empty
+  [shot 010_browse_empty] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> tapx Library
+  !! not found: Library
+  [shot 011_notfound] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> shot library_empty
+  [shot 012_library_empty] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> tapx Updates
+  !! not found: Updates
+  [shot 013_notfound] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> shot updates_empty
+  [shot 014_updates_empty] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> tapx Me
+  !! not found: Me
+  [shot 015_notfound] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> shot me_new
+  [shot 016_me_new] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> tapx Home
+  !! not found: Home
+  [shot 017_notfound] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> view "tachiyomi://add-repo?url=https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
+> sleep 4
+> shot addrepo_dialog
+  [shot 018_addrepo_dialog] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> tapx Add
+  !! not found: Add
+  [shot 019_notfound] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> sleep 5
+> shot store_added
+  [shot 020_store_added] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> start app.kurotoon.dev
+> sleep 3
+> tapx Home
+  !! not found: Home
+  [shot 021_notfound] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> tap "Add sources"
+  !! not found: Add sources
+  [shot 022_notfound] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> sleep 8
+> shot extensions
+  [shot 023_extensions] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> tap "Tap here to grant"
+  !! not found: Tap here to grant
+  [shot 024_notfound] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> sleep 3
+> shot grant_settings
+  [shot 025_grant_settings] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> tap "Allow from this source"
+  !! not found: Allow from this source
+  [shot 026_notfound] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> sleep 2
+> shot grant_on
+  [shot 027_grant_on] visible: ['Android SDK built for x86_64', 'Music', 'Files in Music', 'List view', 'Music', 'New folder', 'Sort by...', 'More options', 'No items', 'USE THIS FOLDER']
+> back
+> sleep 2
+> shot extensions_granted
+  [shot 028_extensions_granted] visible: []
+> tap Search
+  !! not found: Search
+  [shot 029_notfound] visible: []
+> type MangaDex
+> sleep 4
+> shot ext_search
+  [shot 030_ext_search] visible: []
+> tapx Install
+  !! not found: Install
+  [shot 031_notfound] visible: []
+> sleep 15
+> shot install_prompt
+  [shot 032_install_prompt] visible: []
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> shot installed
+  [shot 033_installed] visible: []
