@@ -90,6 +90,15 @@ class WebtoonPageHolder(
         loadJob?.cancel()
         loadJob = scope.launch { loadPageAndProcessStatus() }
         refreshLayoutParams()
+        holdPlaceholderHeight(page)
+    }
+
+    /** Keep the loading placeholder at the height this page had last time, if the strip is still as wide. */
+    private fun holdPlaceholderHeight(page: ReaderPage) {
+        val known = viewer.pageHeights[page]?.takeIf { it.first == viewer.recycler.width }?.second
+        progressContainer.updateLayoutParams<FrameLayout.LayoutParams> {
+            height = known ?: parentHeight
+        }
     }
 
     private fun refreshLayoutParams() {
@@ -224,6 +233,12 @@ class WebtoonPageHolder(
     private fun onImageDecoded() {
         progressContainer.isVisible = false
         removeErrorLayout()
+        val page = page ?: return
+        frame.post {
+            if (this.page === page && frame.height > 0 && viewer.recycler.width > 0) {
+                viewer.pageHeights[page] = viewer.recycler.width to frame.height
+            }
+        }
     }
 
     /**

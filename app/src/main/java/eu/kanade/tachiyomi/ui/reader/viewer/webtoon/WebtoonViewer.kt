@@ -194,6 +194,12 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
     private val isLandscape: Boolean
         get() = activity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
+    /**
+     * Heights pages had once shown, keyed by page and strip width. A page scrolled back into view keeps
+     * that height while it decodes again, so the strip doesn't jump under the reader's thumb.
+     */
+    internal val pageHeights = java.util.WeakHashMap<ReaderPage, Pair<Int, Int>>()
+
     /** The page images' colours, for pages bound later - see [LocalPageColorFilter]. */
     var pageColorFilter: ColorFilter? = null
         private set
