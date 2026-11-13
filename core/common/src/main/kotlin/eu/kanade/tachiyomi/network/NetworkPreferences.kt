@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.network
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
-import mihon.core.metro.IsDebugBuild
+import kurotoon.core.metro.IsDebugBuild
 import tachiyomi.core.common.preference.Preference
 import tachiyomi.core.common.preference.PreferenceStore
 

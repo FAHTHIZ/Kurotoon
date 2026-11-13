@@ -19,10 +19,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.manga.components.MangaCover
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.BookmarkAdd
-import mihon.icons.materialsymbols.rounded.DoneAll
-import mihon.icons.materialsymbols.rounded.History
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.BookmarkAdd
+import kurotoon.icons.materialsymbols.rounded.DoneAll
+import kurotoon.icons.materialsymbols.rounded.History
 import tachiyomi.domain.library.model.LibraryManga
 import tachiyomi.domain.manga.model.asMangaCover
 import tachiyomi.i18n.MR

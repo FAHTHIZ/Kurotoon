@@ -26,10 +26,10 @@ import eu.kanade.tachiyomi.util.system.setForegroundSafely
 import eu.kanade.tachiyomi.util.system.workManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kurotoon.app.di.AppGraph
+import kurotoon.app.di.appGraph
+import kurotoon.core.metro.metroGraph
 import logcat.LogPriority
-import mihon.app.di.AppGraph
-import mihon.app.di.appGraph
-import mihon.core.metro.metroGraph
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.storage.service.StorageManager
 import java.util.concurrent.TimeUnit

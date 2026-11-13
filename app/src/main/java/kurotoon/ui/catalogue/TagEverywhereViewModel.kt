@@ -22,10 +22,10 @@ import kotlinx.coroutines.sync.withPermit
 import kotlinx.coroutines.withContext
 import kurotoon.catalogue.CatalogFacets
 import kurotoon.catalogue.HiddenTags
+import kurotoon.domain.manga.model.toDomainManga
 import kurotoon.prefs.KuroPreferences
 import kurotoon.ui.home.KuroHomeViewModel.SourceRow
 import logcat.LogPriority
-import mihon.domain.manga.model.toDomainManga
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.manga.interactor.NetworkToLocalManga
 import tachiyomi.domain.source.service.SourceManager

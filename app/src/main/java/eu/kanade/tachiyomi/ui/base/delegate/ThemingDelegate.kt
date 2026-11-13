@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.ui.base.delegate
 import android.app.Activity
 import eu.kanade.domain.ui.model.AppTheme
 import eu.kanade.tachiyomi.R
-import mihon.app.di.appGraph
+import kurotoon.app.di.appGraph
 
 interface ThemingDelegate {
     fun applyAppTheme(activity: Activity)

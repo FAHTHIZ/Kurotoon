@@ -46,10 +46,10 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
+import kurotoon.core.archive.ZipWriter
+import kurotoon.core.metro.AppCoroutineScope
+import kurotoon.data.cache.ChapterCache
 import logcat.LogPriority
-import mihon.core.archive.ZipWriter
-import mihon.core.metro.AppCoroutineScope
-import mihon.data.cache.ChapterCache
 import nl.adaptivity.xmlutil.serialization.XML
 import okhttp3.Response
 import tachiyomi.core.common.i18n.stringResource

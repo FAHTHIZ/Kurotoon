@@ -35,11 +35,11 @@ import eu.kanade.presentation.components.AdaptiveSheet
 import eu.kanade.presentation.util.formatChapterNumber
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kurotoon.app.di.appGraph
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.FormatListNumbered
 import kurotoon.manga.MergedChapters
 import kurotoon.ui.kuroCard
-import mihon.app.di.appGraph
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.FormatListNumbered
 import tachiyomi.domain.chapter.model.Chapter
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.i18n.MR

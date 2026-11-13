@@ -29,8 +29,8 @@ import eu.kanade.tachiyomi.ui.reader.viewer.Viewer
 import eu.kanade.tachiyomi.ui.reader.viewer.collectChanges
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
+import kurotoon.app.di.appGraph
 import kurotoon.reader.StripPosition
-import mihon.app.di.appGraph
 import tachiyomi.core.common.util.system.logcat
 import java.util.Collections
 import java.util.WeakHashMap

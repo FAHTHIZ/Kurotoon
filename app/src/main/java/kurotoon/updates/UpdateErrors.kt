@@ -20,7 +20,7 @@ data class UpdateError(
 
 /**
  * The failures from the most recent library update, kept so they can be fixed from inside the app
- * instead of from a text file (mihon#132). A series leaves the list once it updates cleanly.
+ * instead of from a text file. A series leaves the list once it updates cleanly.
  */
 class UpdateErrors private constructor(private val file: File) {
 

@@ -17,8 +17,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kurotoon.data.cache.ChapterCache
 import kurotoon.reader.DataSaver
-import mihon.data.cache.ChapterCache
 import java.io.FileNotFoundException
 import java.util.concurrent.ConcurrentHashMap
 

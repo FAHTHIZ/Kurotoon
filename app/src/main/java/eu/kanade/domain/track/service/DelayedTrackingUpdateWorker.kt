@@ -14,9 +14,9 @@ import eu.kanade.domain.track.store.DelayedTrackingStore
 import eu.kanade.tachiyomi.util.system.workManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kurotoon.app.di.AppGraph
+import kurotoon.core.metro.metroGraph
 import logcat.LogPriority
-import mihon.app.di.AppGraph
-import mihon.core.metro.metroGraph
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.track.interactor.GetTracks
 import java.util.concurrent.TimeUnit

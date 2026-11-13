@@ -32,8 +32,8 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
+import kurotoon.core.metro.AppCoroutineScope
 import logcat.LogPriority
-import mihon.core.metro.AppCoroutineScope
 import tachiyomi.core.common.preference.CheckboxState
 import tachiyomi.core.common.preference.mapAsCheckboxState
 import tachiyomi.core.common.util.lang.SubscriberGate
@@ -131,7 +131,7 @@ class HistoryViewModel(
 
     fun getNextChapterForManga(mangaId: Long, chapterId: Long) {
         viewModelScope.launch {
-            // Mid re-read: go back to that exact chapter rather than the one after it (mihon#698)
+            // Mid re-read: go back to that exact chapter rather than the one after it
             val rereading = chapterId.takeIf { kuroPreferences.isRereading(it) }?.let { getChapter.await(it) }
             if (rereading != null) {
                 _events.send(Event.OpenChapter(rereading))

@@ -1,7 +1,7 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
-import mihon.gradle.extensions.alias
-import mihon.gradle.extensions.libs
-import mihon.gradle.extensions.plugins
+import kurotoon.gradle.extensions.alias
+import kurotoon.gradle.extensions.libs
+import kurotoon.gradle.extensions.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -23,22 +23,22 @@ class PluginSpotless : Plugin<Project> {
                 endWithNewline()
                 forbidRegex(
                     "materialSymbolsRImport",
-                    "(?m)^import mihon\\.icons\\.materialsymbols\\.R(?! as MaterialSymbolsR$)\\b.*$",
-                    "Import mihon.icons.materialsymbols.R as MaterialSymbolsR",
+                    "(?m)^import kurotoon\\.icons\\.materialsymbols\\.R(?! as MaterialSymbolsR$)\\b.*$",
+                    "Import kurotoon.icons.materialsymbols.R as MaterialSymbolsR",
                 )
                 forbidRegex(
                     "materialSymbolsRQualified",
-                    "(?m)^(?!import ).*\\bmihon\\.icons\\.materialsymbols\\.R\\.",
+                    "(?m)^(?!import ).*\\bkurotoon\\.icons\\.materialsymbols\\.R\\.",
                     "Use the MaterialSymbolsR import alias instead of the qualified name",
                 )
                 forbidRegex(
                     "customMaterialSymbolsRImport",
-                    "(?m)^import mihon\\.icons\\.custommaterialsymbols\\.R(?! as CustomMaterialSymbolsR$)\\b.*$",
-                    "Import mihon.icons.custommaterialsymbols.R as CustomMaterialSymbolsR",
+                    "(?m)^import kurotoon\\.icons\\.custommaterialsymbols\\.R(?! as CustomMaterialSymbolsR$)\\b.*$",
+                    "Import kurotoon.icons.custommaterialsymbols.R as CustomMaterialSymbolsR",
                 )
                 forbidRegex(
                     "customMaterialSymbolsRQualified",
-                    "(?m)^(?!import ).*\\bmihon\\.icons\\.custommaterialsymbols\\.R\\.",
+                    "(?m)^(?!import ).*\\bkurotoon\\.icons\\.custommaterialsymbols\\.R\\.",
                     "Use the CustomMaterialSymbolsR import alias instead of the qualified name",
                 )
             }

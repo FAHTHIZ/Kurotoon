@@ -17,10 +17,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.window.DialogProperties
 import kotlinx.coroutines.launch
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.roundedfilled.Cancel
+import kurotoon.icons.materialsymbols.roundedfilled.Error
 import kurotoon.ui.KuroAlertDialog
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.roundedfilled.Cancel
-import mihon.icons.materialsymbols.roundedfilled.Error
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroFieldShape
 import tachiyomi.presentation.core.components.material.KuroTextButton

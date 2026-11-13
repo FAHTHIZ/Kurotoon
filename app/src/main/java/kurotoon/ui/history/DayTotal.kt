@@ -8,7 +8,7 @@ import androidx.compose.ui.platform.LocalContext
 import eu.kanade.presentation.util.toDurationString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import mihon.app.di.appGraph
+import kurotoon.app.di.appGraph
 import tachiyomi.core.common.i18n.pluralStringResource
 import tachiyomi.i18n.MR
 import java.time.LocalDate

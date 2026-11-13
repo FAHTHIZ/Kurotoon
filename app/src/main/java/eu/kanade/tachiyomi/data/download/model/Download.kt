@@ -29,7 +29,7 @@ data class Download(
             _pagesFlow.value = pages
         }
 
-    /** Set when the user chose to keep this chapter even if some pages still fail (mihon#587). */
+    /** Set when the user chose to keep this chapter even if some pages still fail. */
     @Transient
     @Volatile
     var acceptMissingPages = false

@@ -12,8 +12,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.net.toUri
 import com.hippo.unifile.UniFile
 import eu.kanade.presentation.more.settings.Preference
+import kurotoon.app.di.appGraph
 import logcat.LogPriority
-import mihon.app.di.appGraph
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
@@ -21,7 +21,7 @@ import tachiyomi.presentation.core.util.collectAsState
 
 /**
  * Where saved pages go: the Pictures folder by default, or any folder the reader picks, such as one
- * on an SD card (mihon#295). Tapping it again while a folder is set goes back to Pictures.
+ * on an SD card. Tapping it again while a folder is set goes back to Pictures.
  */
 @Composable
 fun pageSaveFolderPreference(): Preference.PreferenceItem.TextPreference {

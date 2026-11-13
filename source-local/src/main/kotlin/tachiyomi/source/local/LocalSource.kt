@@ -25,9 +25,9 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
+import kurotoon.core.archive.archiveReader
+import kurotoon.core.archive.epubReader
 import logcat.LogPriority
-import mihon.core.archive.archiveReader
-import mihon.core.archive.epubReader
 import nl.adaptivity.xmlutil.core.AndroidXmlReader
 import nl.adaptivity.xmlutil.serialization.XML
 import tachiyomi.core.common.i18n.stringResource

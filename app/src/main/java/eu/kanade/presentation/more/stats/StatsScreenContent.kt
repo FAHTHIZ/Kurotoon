@@ -17,12 +17,12 @@ import eu.kanade.presentation.more.stats.components.StatsItem
 import eu.kanade.presentation.more.stats.components.StatsOverviewItem
 import eu.kanade.presentation.more.stats.data.StatsData
 import eu.kanade.presentation.util.toDurationString
+import kurotoon.app.di.appGraph
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.CollectionsBookmark
+import kurotoon.icons.materialsymbols.rounded.LocalLibrary
+import kurotoon.icons.materialsymbols.rounded.Schedule
 import kurotoon.ui.stats.ReadingActivityCard
-import mihon.app.di.appGraph
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.CollectionsBookmark
-import mihon.icons.materialsymbols.rounded.LocalLibrary
-import mihon.icons.materialsymbols.rounded.Schedule
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.SectionCard
 import tachiyomi.presentation.core.components.material.padding

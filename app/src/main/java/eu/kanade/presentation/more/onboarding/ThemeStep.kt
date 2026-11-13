@@ -8,7 +8,7 @@ import androidx.compose.ui.platform.LocalContext
 import eu.kanade.domain.ui.model.setAppCompatDelegateThemeMode
 import eu.kanade.presentation.more.settings.widget.AppThemeModePreferenceWidget
 import eu.kanade.presentation.more.settings.widget.AppThemePreferenceWidget
-import mihon.app.di.appGraph
+import kurotoon.app.di.appGraph
 import tachiyomi.presentation.core.util.collectAsState
 
 internal class ThemeStep : OnboardingStep {

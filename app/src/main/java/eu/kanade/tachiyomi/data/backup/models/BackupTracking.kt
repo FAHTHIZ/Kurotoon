@@ -2,8 +2,8 @@ package eu.kanade.tachiyomi.data.backup.models
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
-import mihon.core.common.extensions.toEpochMillisOrZero
-import mihon.core.common.extensions.toInstantOrNull
+import kurotoon.core.common.extensions.toEpochMillisOrZero
+import kurotoon.core.common.extensions.toInstantOrNull
 import tachiyomi.domain.track.model.Track
 
 @Serializable

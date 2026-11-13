@@ -39,6 +39,9 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Person
+import kurotoon.icons.materialsymbols.roundedfilled.Person
 import kurotoon.prefs.KuroPreferences
 import kurotoon.rewards.RewardsStore
 import kurotoon.shop.ShopKind
@@ -46,9 +49,6 @@ import kurotoon.ui.profile.ProfileLook
 import kurotoon.ui.profile.ProfileStats
 import kurotoon.ui.shop.CollectionScreen
 import logcat.LogPriority
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Person
-import mihon.icons.materialsymbols.roundedfilled.Person
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.manga.interactor.GetLibraryManga
 import tachiyomi.i18n.MR

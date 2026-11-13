@@ -24,10 +24,10 @@ import eu.kanade.tachiyomi.util.system.WebViewUtil
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import kotlinx.coroutines.guava.await
 import kotlinx.coroutines.launch
-import mihon.app.di.appGraph
-import mihon.core.common.FeatureFlags
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Autorenew
+import kurotoon.app.di.appGraph
+import kurotoon.core.common.FeatureFlags
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Autorenew
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.util.collectAsState
 

@@ -15,10 +15,10 @@ import eu.kanade.presentation.components.RadioMenuItem
 import eu.kanade.presentation.components.SearchToolbar
 import eu.kanade.tachiyomi.source.ConfigurableSource
 import eu.kanade.tachiyomi.source.Source
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.automirroredroundedfilled.ViewList
-import mihon.icons.materialsymbols.roundedfilled.ViewCompact
-import mihon.icons.materialsymbols.roundedfilled.ViewModule
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.automirroredroundedfilled.ViewList
+import kurotoon.icons.materialsymbols.roundedfilled.ViewCompact
+import kurotoon.icons.materialsymbols.roundedfilled.ViewModule
 import tachiyomi.domain.library.model.LibraryDisplayMode
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource

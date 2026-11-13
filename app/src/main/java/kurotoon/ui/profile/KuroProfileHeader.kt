@@ -41,6 +41,11 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Book
+import kurotoon.icons.materialsymbols.rounded.CollectionsBookmark
+import kurotoon.icons.materialsymbols.rounded.Edit
+import kurotoon.icons.materialsymbols.rounded.History
 import kurotoon.shop.ShopItem
 import kurotoon.ui.animatedCount
 import kurotoon.ui.kuroBounceClickable
@@ -48,11 +53,6 @@ import kurotoon.ui.kuroCard
 import kurotoon.ui.shop.KuroAvatar
 import kurotoon.ui.shop.KuroBadge
 import kurotoon.ui.shop.ShopItemArt
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Book
-import mihon.icons.materialsymbols.rounded.CollectionsBookmark
-import mihon.icons.materialsymbols.rounded.Edit
-import mihon.icons.materialsymbols.rounded.History
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 

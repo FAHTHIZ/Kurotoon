@@ -18,7 +18,7 @@ import eu.kanade.tachiyomi.util.system.notificationBuilder
 import eu.kanade.tachiyomi.util.system.notify
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.i18n.MR
-import mihon.icons.materialsymbols.R as MaterialSymbolsR
+import kurotoon.icons.materialsymbols.R as MaterialSymbolsR
 
 /**
  * Class used to show BigPictureStyle notifications

@@ -50,8 +50,8 @@ import eu.kanade.tachiyomi.util.system.dpToPx
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
-import mihon.core.metro.metroGraph
-import mihon.presentation.widget.di.PresentationWidgetGraph
+import kurotoon.core.metro.metroGraph
+import kurotoon.presentation.widget.di.PresentationWidgetGraph
 import tachiyomi.core.common.Constants
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.domain.history.interactor.GetHistory

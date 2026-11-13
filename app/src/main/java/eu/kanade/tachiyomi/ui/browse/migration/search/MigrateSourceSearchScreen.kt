@@ -26,12 +26,12 @@ import eu.kanade.tachiyomi.ui.home.HomeScreen
 import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import eu.kanade.tachiyomi.ui.webview.WebViewScreen
 import kotlinx.coroutines.launch
+import kurotoon.feature.migration.dialog.MigrateMangaDialog
+import kurotoon.feature.migration.list.MigrationListScreen
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.FilterList
+import kurotoon.presentation.core.util.collectAsLazyPagingItems
 import kurotoon.ui.KuroSnackbarHost
-import mihon.feature.migration.dialog.MigrateMangaDialog
-import mihon.feature.migration.list.MigrationListScreen
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.FilterList
-import mihon.presentation.core.util.collectAsLazyPagingItems
 import tachiyomi.core.common.Constants
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.i18n.MR

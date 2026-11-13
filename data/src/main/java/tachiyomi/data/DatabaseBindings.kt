@@ -20,7 +20,7 @@ import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Provides
 import dev.zacsweers.metro.SingleIn
-import mihon.data.database.DatabaseRepositoryImpl
+import kurotoon.data.database.DatabaseRepositoryImpl
 
 @ContributesTo(AppScope::class)
 @BindingContainer

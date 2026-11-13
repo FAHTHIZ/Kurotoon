@@ -37,12 +37,12 @@ import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Check
+import kurotoon.icons.materialsymbols.rounded.Info
+import kurotoon.icons.materialsymbols.roundedfilled.CheckCircle
+import kurotoon.icons.materialsymbols.roundedfilled.Warning
 import kurotoon.reader.caughtUpLabel
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Check
-import mihon.icons.materialsymbols.rounded.Info
-import mihon.icons.materialsymbols.roundedfilled.CheckCircle
-import mihon.icons.materialsymbols.roundedfilled.Warning
 import tachiyomi.domain.chapter.model.Chapter
 import tachiyomi.domain.chapter.service.calculateChapterGap
 import tachiyomi.i18n.MR

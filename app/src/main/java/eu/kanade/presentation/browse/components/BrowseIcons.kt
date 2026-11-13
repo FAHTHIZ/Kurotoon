@@ -19,9 +19,9 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.coil.InstalledExtensionIcon
 import eu.kanade.tachiyomi.data.coil.InstalledSourceIcon
 import eu.kanade.tachiyomi.extension.model.Extension
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.roundedfilled.Dangerous
-import mihon.icons.materialsymbols.roundedfilled.Warning
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.roundedfilled.Dangerous
+import kurotoon.icons.materialsymbols.roundedfilled.Warning
 import tachiyomi.domain.source.model.Source
 import tachiyomi.source.local.isLocal
 

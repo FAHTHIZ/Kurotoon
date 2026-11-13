@@ -112,7 +112,7 @@ class DownloadManager(
 
     /**
      * Gives a failed [download] one more try and keeps it with whatever pages it gets, instead of failing again
-     * over pages the source won't serve (mihon#587).
+     * over pages the source won't serve.
      */
     suspend fun finishWithMissingPages(download: Download) {
         download.acceptMissingPages = true

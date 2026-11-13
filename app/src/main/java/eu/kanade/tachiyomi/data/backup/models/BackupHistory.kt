@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.data.backup.models
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
-import mihon.core.common.extensions.toInstantOrNull
+import kurotoon.core.common.extensions.toInstantOrNull
 import tachiyomi.domain.history.model.History
 
 @Serializable

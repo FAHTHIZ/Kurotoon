@@ -22,9 +22,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Close
-import mihon.icons.materialsymbols.rounded.FilterList
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Close
+import kurotoon.icons.materialsymbols.rounded.FilterList
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 

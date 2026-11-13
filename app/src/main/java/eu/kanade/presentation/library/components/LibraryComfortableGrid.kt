@@ -10,8 +10,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import eu.kanade.tachiyomi.ui.library.LibraryItem
+import kurotoon.app.di.appGraph
 import kurotoon.ui.library.readFraction
-import mihon.app.di.appGraph
 import tachiyomi.domain.library.model.LibraryManga
 import tachiyomi.domain.manga.model.MangaCover
 import tachiyomi.presentation.core.util.collectAsState

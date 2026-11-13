@@ -20,7 +20,7 @@ import kurotoon.ui.browse.Pill
 import tachiyomi.domain.category.model.Category
 
 /**
- * Categories as a row of pills rather than Mihon's underlined tab strip. The pill for the page on
+ * Categories as a row of pills rather than an underlined tab strip. The pill for the page on
  * screen is filled with the accent and the row keeps it in view as you swipe.
  */
 @Composable

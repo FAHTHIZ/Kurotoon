@@ -21,7 +21,7 @@ object LibraryDuplicates {
 
     /**
      * Groups of two or more entries that share a title key or a tracker entry (same tracker, same remote
-     * id, mihon#84), so copies with different titles are still caught. Biggest groups first, then by title.
+     * id), so copies with different titles are still caught. Biggest groups first, then by title.
      *
      * [trackKeys] maps a manga id to its tracker keys, such as "2:12345".
      */

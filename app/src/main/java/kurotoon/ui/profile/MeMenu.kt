@@ -34,11 +34,11 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.KeyboardArrowRight
 import kurotoon.ui.KuroSectionTitle
 import kurotoon.ui.kuroCard
 import kurotoon.ui.kuroPopOn
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.KeyboardArrowRight
 import tachiyomi.presentation.core.components.material.KuroSwitch
 
 /**

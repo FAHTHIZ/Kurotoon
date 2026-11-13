@@ -1,16 +1,16 @@
-import mihon.gradle.tasks.GenerateVectorDrawablesTask
+import kurotoon.gradle.tasks.GenerateVectorDrawablesTask
 
 plugins {
-    alias(mihonx.plugins.android.library)
-    alias(mihonx.plugins.compose)
+    alias(kurox.plugins.android.library)
+    alias(kurox.plugins.compose)
 
-    alias(mihonx.plugins.spotless)
+    alias(kurox.plugins.spotless)
 
     alias(libs.plugins.valkyrie)
 }
 
 android {
-    namespace = "mihon.icons.materialsymbols"
+    namespace = "kurotoon.icons.materialsymbols"
 }
 
 spotless {
@@ -22,7 +22,7 @@ spotless {
 }
 
 valkyrie {
-    packageName = "mihon.icons.materialsymbols"
+    packageName = "kurotoon.icons.materialsymbols"
     generateAtSync = true
 
     imageVector {

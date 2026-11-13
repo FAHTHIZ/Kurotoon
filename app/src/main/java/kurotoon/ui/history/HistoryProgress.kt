@@ -7,13 +7,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import mihon.app.di.appGraph
+import kurotoon.app.di.appGraph
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 
 /**
  * "Finished" or "p. 12" for a history row, so a chapter you stopped halfway through looks different
- * from one you read to the end (mihon#146). Null while loading or when there's nothing to add.
+ * from one you read to the end. Null while loading or when there's nothing to add.
  */
 @Composable
 fun rememberHistoryProgress(chapterId: Long, readAt: Any?): String? {

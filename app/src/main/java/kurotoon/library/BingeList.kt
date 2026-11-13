@@ -40,7 +40,7 @@ object StalledList {
             .toList()
 }
 
-/** Series saved in the last few weeks, newest first, so a fresh add is easy to find again (mihon#2529). */
+/** Series saved in the last few weeks, newest first, so a fresh add is easy to find again. */
 object RecentlyAddedList {
 
     const val LIMIT = 15

@@ -17,11 +17,11 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
+import kurotoon.app.di.appGraph
+import kurotoon.data.dalvik.DelegateLastClassLoaderCompat
+import kurotoon.domain.extension.model.ContentWarning
+import kurotoon.domain.extension.model.ExtensionStore
 import logcat.LogPriority
-import mihon.app.di.appGraph
-import mihon.data.dalvik.DelegateLastClassLoaderCompat
-import mihon.domain.extension.model.ContentWarning
-import mihon.domain.extension.model.ExtensionStore
 import tachiyomi.core.common.util.system.logcat
 import java.io.File
 import java.io.IOException

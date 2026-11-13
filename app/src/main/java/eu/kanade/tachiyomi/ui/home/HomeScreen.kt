@@ -56,10 +56,10 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import kurotoon.app.di.appGraph
 import kurotoon.ui.KuroBottomBar
 import kurotoon.ui.KuroBottomBarItem
 import kurotoon.ui.home.KuroHomeTab
-import mihon.app.di.appGraph
 import soup.compose.material.motion.animation.materialFadeThroughIn
 import soup.compose.material.motion.animation.materialFadeThroughOut
 import tachiyomi.i18n.MR

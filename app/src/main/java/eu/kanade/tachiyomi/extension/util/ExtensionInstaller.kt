@@ -24,8 +24,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runInterruptible
+import kurotoon.core.metro.AppCoroutineScope
 import logcat.LogPriority
-import mihon.core.metro.AppCoroutineScope
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import tachiyomi.core.common.util.system.logcat

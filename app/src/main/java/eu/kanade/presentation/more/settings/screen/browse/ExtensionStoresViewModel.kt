@@ -19,11 +19,11 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import mihon.domain.extension.interactor.AddExtensionStore
-import mihon.domain.extension.interactor.GetExtensionStores
-import mihon.domain.extension.interactor.RemoveExtensionStore
-import mihon.domain.extension.interactor.UpdateExtensionStores
-import mihon.domain.extension.model.ExtensionStore
+import kurotoon.domain.extension.interactor.AddExtensionStore
+import kurotoon.domain.extension.interactor.GetExtensionStores
+import kurotoon.domain.extension.interactor.RemoveExtensionStore
+import kurotoon.domain.extension.interactor.UpdateExtensionStores
+import kurotoon.domain.extension.model.ExtensionStore
 import kotlin.time.Duration.Companion.seconds
 
 @Inject

@@ -73,14 +73,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
+import kurotoon.app.di.appGraph
+import kurotoon.core.metro.AppCoroutineScope
+import kurotoon.data.cache.ChapterCache
 import kurotoon.reader.WebtoonDetector
 import kurotoon.rewards.RewardEvent
 import kurotoon.rewards.RewardsStore
 import kurotoon.shortcuts.ContinueShortcut
 import logcat.LogPriority
-import mihon.app.di.appGraph
-import mihon.core.metro.AppCoroutineScope
-import mihon.data.cache.ChapterCache
 import tachiyomi.core.common.preference.toggle
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.chapter.interactor.GetChaptersByMangaId
@@ -883,7 +883,7 @@ class ReaderViewModel(
         return kurotoon.manga.BookmarkNotes.get(context).get(chapter.id)
     }
 
-    /** Saves the note on the current chapter's bookmark, bookmarking it first if needed (mihon#1509). */
+    /** Saves the note on the current chapter's bookmark, bookmarking it first if needed. */
     fun setBookmarkNote(note: String) {
         val readerChapter = getCurrentChapter() ?: return
         kurotoon.manga.BookmarkNotes.get(context).set(readerChapter.chapter.id, note)

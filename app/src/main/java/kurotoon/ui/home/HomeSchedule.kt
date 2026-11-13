@@ -10,11 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.datetime.LocalDate
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Schedule
 import kurotoon.schedule.ScheduledSeries
 import kurotoon.ui.schedule.ScheduleCover
 import kurotoon.ui.schedule.longName
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Schedule
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 

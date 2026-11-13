@@ -39,6 +39,7 @@ import kurotoon.catalogue.HiddenTags
 import kurotoon.catalogue.SavedSearch
 import kurotoon.catalogue.SavedSearches
 import kurotoon.catalogue.SearchFeed
+import kurotoon.domain.manga.model.toDomainManga
 import kurotoon.library.BingeList
 import kurotoon.library.LibraryTags
 import kurotoon.library.RecentlyAddedList
@@ -47,7 +48,6 @@ import kurotoon.prefs.KuroPreferences
 import kurotoon.schedule.ScheduleLoader
 import kurotoon.schedule.WeeklySchedule
 import logcat.LogPriority
-import mihon.domain.manga.model.toDomainManga
 import tachiyomi.core.common.preference.getAndSet
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.category.interactor.GetCategories

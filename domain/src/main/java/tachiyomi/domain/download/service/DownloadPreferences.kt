@@ -62,7 +62,7 @@ class DownloadPreferences(
 
     val parallelPageLimit: Preference<Int> = preferenceStore.getInt("download_parallel_page_limit", 5)
 
-    /** Seconds to wait after a chapter finishes before the same source starts the next one (mihon#1958). */
+    /** Seconds to wait after a chapter finishes before the same source starts the next one. */
     val chapterDelaySeconds: Preference<Int> = preferenceStore.getInt("kurotoon_download_chapter_delay", 0)
 
     companion object {

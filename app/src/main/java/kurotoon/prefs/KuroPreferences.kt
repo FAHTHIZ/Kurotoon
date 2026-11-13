@@ -24,16 +24,16 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
         mangaEdits.set(kurotoon.manga.MangaEdit.encodeAll(all))
     }
 
-    /** Updates fetched at or before this time (epoch ms) are hidden from the Updates tab (mihon#1534). */
+    /** Updates fetched at or before this time (epoch ms) are hidden from the Updates tab. */
     val updatesClearedAt = preferenceStore.getLong("kurotoon_updates_cleared_at", 0L)
 
-    /** The category the library opens on; -1 means wherever you left it (mihon#2165). */
+    /** The category the library opens on; -1 means wherever you left it. */
     val libraryStartCategory = preferenceStore.getLong("kurotoon_library_start_category", -1L)
 
-    /** Manga ids kept out of Browse and Search results (mihon#2322). */
+    /** Manga ids kept out of Browse and Search results. */
     val hiddenSeries = preferenceStore.getStringSet("kurotoon_hidden_series", emptySet())
 
-    /** Per-series paged scale type and zoom start as "mangaId=scale,zoom" (mihon#1622). */
+    /** Per-series paged scale type and zoom start as "mangaId=scale,zoom". */
     val seriesPagedScale = preferenceStore.getStringSet("kurotoon_series_paged_scale", emptySet())
 
     /** The series' own (scale type, zoom start), or null when it follows the global setting. */
@@ -48,26 +48,26 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
         seriesPagedScale.set(if (scale == null) rest else rest + "$mangaId=${scale.first},${scale.second}")
     }
 
-    /** Order of the installed extension lists, a [kurotoon.extension.ExtensionSort] ordinal (mihon#2744). */
+    /** Order of the installed extension lists, a [kurotoon.extension.ExtensionSort] ordinal. */
     val extensionSort = preferenceStore.getInt("kurotoon_extension_sort", 0)
 
-    /** A folder (tree URI) saved pages go to instead of Pictures; empty for Pictures (mihon#295). */
+    /** A folder (tree URI) saved pages go to instead of Pictures; empty for Pictures. */
     val pageSaveFolder = preferenceStore.getString("kurotoon_page_save_folder", "")
 
     /** The Home tip card: which KuroToon feature it shows next, and whether it was switched off. */
     val homeTipIndex = preferenceStore.getInt("kurotoon_home_tip_index", 0)
     val homeTipsHidden = preferenceStore.getBoolean("kurotoon_home_tips_hidden", false)
 
-    /** Keep a single bookmark per series on the furthest chapter finished (mihon#2386). */
+    /** Keep a single bookmark per series on the furthest chapter finished. */
     val bookmarkFollowsProgress = preferenceStore.getBoolean("kurotoon_bookmark_follows_progress", false)
 
-    /** Optional bottom-bar tabs that are shown; Home and More are always there (mihon#2678). */
+    /** Optional bottom-bar tabs that are shown; Home and More are always there. */
     val navTabs = preferenceStore.getStringSet("kurotoon_nav_tabs", setOf("browse", "library", "updates"))
 
-    /** Tab the app opens on (mihon#2678). */
+    /** Tab the app opens on. */
     val startTab = preferenceStore.getString("kurotoon_start_tab", "home")
 
-    /** Per-source default library category as "sourceId=categoryId" (mihon#336). */
+    /** Per-source default library category as "sourceId=categoryId". */
     val sourceDefaultCategories = preferenceStore.getStringSet("kurotoon_source_default_categories", emptySet())
 
     /** The source's own default category if one is set, else [fallback] (the global default). */
@@ -82,7 +82,7 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
         sourceDefaultCategories.set(if (categoryId == null) rest.toSet() else rest.toSet() + "$sourceId=$categoryId")
     }
 
-    /** Categories whose series are read without history or progress being saved (mihon#3367). */
+    /** Categories whose series are read without history or progress being saved. */
     val incognitoCategories = preferenceStore.getStringSet("kurotoon_incognito_categories", emptySet())
 
     fun setIncognitoCategory(categoryId: Long, incognito: Boolean) {
@@ -90,7 +90,7 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
         incognitoCategories.set(incognitoCategories.get().let { if (incognito) it + id else it - id })
     }
 
-    /** Reading modes picked for every series of a source, as "sourceId=flagValue" (mihon#2140). */
+    /** Reading modes picked for every series of a source, as "sourceId=flagValue". */
     val sourceReadingModes = preferenceStore.getStringSet("kurotoon_source_reading_modes", emptySet())
 
     fun readingModeFor(sourceId: Long): Int? =
@@ -106,7 +106,7 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
 
     /**
      * Read chapters being read again and left part-way, by chapter id, so History and the reader resume
-     * on that page instead of skipping ahead or starting over (mihon#698). Capped to the latest few.
+     * on that page instead of skipping ahead or starting over. Capped to the latest few.
      */
     val rereading = preferenceStore.getStringSet("kurotoon_rereading", emptySet())
 
@@ -167,7 +167,7 @@ class KuroPreferences(private val preferenceStore: PreferenceStore) {
         deserializer = RecentSearches::decode,
     )
 
-    /** Recent searches inside one source, newest first (mihon#1409). */
+    /** Recent searches inside one source, newest first. */
     fun sourceRecentSearches(sourceId: Long) = preferenceStore.getObjectFromString<List<String>>(
         key = "kurotoon_recent_searches_$sourceId",
         defaultValue = emptyList(),

@@ -5,8 +5,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Add
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Add
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroFab
 import tachiyomi.presentation.core.i18n.stringResource

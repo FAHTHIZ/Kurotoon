@@ -19,7 +19,7 @@ import tachiyomi.core.common.storage.displayablePath
 import tachiyomi.i18n.MR
 import java.io.File
 import kotlin.time.Duration.Companion.milliseconds
-import mihon.icons.materialsymbols.R as MaterialSymbolsR
+import kurotoon.icons.materialsymbols.R as MaterialSymbolsR
 
 @Inject
 class BackupNotifier(

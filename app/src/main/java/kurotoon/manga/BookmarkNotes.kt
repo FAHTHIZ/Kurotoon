@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.serialization.json.Json
 import java.io.File
 
-/** A short note per bookmarked chapter, by chapter id (mihon#1509). Kept on the device. */
+/** A short note per bookmarked chapter, by chapter id. Kept on the device. */
 class BookmarkNotes private constructor(private val file: File) {
 
     private val json = Json { ignoreUnknownKeys = true }

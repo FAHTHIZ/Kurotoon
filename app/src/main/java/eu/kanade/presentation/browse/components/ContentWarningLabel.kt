@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.graphics.Color
 import dev.icerock.moko.resources.StringResource
-import mihon.domain.extension.model.ContentWarning
+import kurotoon.domain.extension.model.ContentWarning
 import tachiyomi.i18n.MR
 
 internal data class ContentWarningLabel(

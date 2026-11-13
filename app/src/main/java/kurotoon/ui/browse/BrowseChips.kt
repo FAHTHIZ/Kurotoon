@@ -55,13 +55,13 @@ import kurotoon.catalogue.ActiveFacet
 import kurotoon.catalogue.CatalogFacet
 import kurotoon.catalogue.CatalogFacets
 import kurotoon.catalogue.FacetState
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Block
-import mihon.icons.materialsymbols.rounded.Check
-import mihon.icons.materialsymbols.rounded.Close
-import mihon.icons.materialsymbols.rounded.KeyboardArrowDown
-import mihon.icons.materialsymbols.rounded.KeyboardArrowUp
-import mihon.icons.materialsymbols.rounded.Tune
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Block
+import kurotoon.icons.materialsymbols.rounded.Check
+import kurotoon.icons.materialsymbols.rounded.Close
+import kurotoon.icons.materialsymbols.rounded.KeyboardArrowDown
+import kurotoon.icons.materialsymbols.rounded.KeyboardArrowUp
+import kurotoon.icons.materialsymbols.rounded.Tune
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 

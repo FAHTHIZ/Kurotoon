@@ -7,7 +7,7 @@ import dev.zacsweers.metro.SingleIn
 import eu.kanade.tachiyomi.util.storage.DiskUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import mihon.core.metro.AppCoroutineScope
+import kurotoon.core.metro.AppCoroutineScope
 import tachiyomi.domain.manga.model.Manga
 import java.io.File
 import java.io.IOException

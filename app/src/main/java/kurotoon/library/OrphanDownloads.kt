@@ -5,10 +5,10 @@ import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.util.storage.DiskUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import mihon.app.di.appGraph
+import kurotoon.app.di.appGraph
 
 /**
- * Downloads that belong to series no longer in the library (mihon#565).
+ * Downloads that belong to series no longer in the library.
  *
  * Deliberately cautious: only folders of installed online sources are looked at, so downloads of a
  * series whose extension is missing are never touched, and anything queued for download is kept.

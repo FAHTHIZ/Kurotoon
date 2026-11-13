@@ -17,8 +17,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.category.visualName
+import kurotoon.app.di.appGraph
 import kurotoon.ui.KuroAlertDialog
-import mihon.app.di.appGraph
 import tachiyomi.domain.category.model.Category
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroRadioButton

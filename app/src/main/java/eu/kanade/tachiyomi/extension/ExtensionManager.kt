@@ -34,13 +34,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
+import kurotoon.core.metro.AppCoroutineScope
+import kurotoon.domain.extension.interactor.UpdateExtensionStores
+import kurotoon.domain.extension.model.ExtensionStore
+import kurotoon.domain.extension.repository.ExtensionStoreRepository
 import kurotoon.rewards.RewardEvent
 import kurotoon.rewards.RewardsStore
 import logcat.LogPriority
-import mihon.core.metro.AppCoroutineScope
-import mihon.domain.extension.interactor.UpdateExtensionStores
-import mihon.domain.extension.model.ExtensionStore
-import mihon.domain.extension.repository.ExtensionStoreRepository
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.source.model.StubSource
 import tachiyomi.i18n.MR

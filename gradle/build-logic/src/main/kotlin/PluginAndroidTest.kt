@@ -1,7 +1,7 @@
-import mihon.gradle.extensions.alias
-import mihon.gradle.extensions.libs
-import mihon.gradle.extensions.mihonx
-import mihon.gradle.extensions.plugins
+import kurotoon.gradle.extensions.alias
+import kurotoon.gradle.extensions.kurox
+import kurotoon.gradle.extensions.libs
+import kurotoon.gradle.extensions.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -10,7 +10,7 @@ class PluginAndroidTest : Plugin<Project> {
     override fun apply(target: Project): Unit = with(target) {
         plugins {
             alias(libs.plugins.android.test)
-            alias(mihonx.plugins.android.base)
+            alias(kurox.plugins.android.base)
         }
     }
 }

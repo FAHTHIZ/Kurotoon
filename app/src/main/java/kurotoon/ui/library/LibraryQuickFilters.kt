@@ -10,9 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.StringResource
+import kurotoon.app.di.appGraph
 import kurotoon.catalogue.FacetState
 import kurotoon.ui.browse.TagPill
-import mihon.app.di.appGraph
 import tachiyomi.core.common.preference.Preference
 import tachiyomi.core.common.preference.TriState
 import tachiyomi.i18n.MR

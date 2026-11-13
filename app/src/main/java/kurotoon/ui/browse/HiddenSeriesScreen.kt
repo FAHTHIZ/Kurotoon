@@ -33,7 +33,7 @@ import eu.kanade.presentation.util.Screen
 import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import mihon.app.di.appGraph
+import kurotoon.app.di.appGraph
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.manga.model.asMangaCover
 import tachiyomi.i18n.MR
@@ -44,7 +44,7 @@ import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.screens.EmptyScreen
 import tachiyomi.presentation.core.util.collectAsState
 
-/** Series hidden from Browse and Search, each with a way to bring it back (mihon#2322). */
+/** Series hidden from Browse and Search, each with a way to bring it back. */
 class HiddenSeriesScreen : Screen() {
 
     @Composable

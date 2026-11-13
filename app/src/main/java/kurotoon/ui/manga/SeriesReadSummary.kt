@@ -12,7 +12,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import eu.kanade.presentation.util.toDurationString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import mihon.app.di.appGraph
+import kurotoon.app.di.appGraph
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.util.secondaryItemAlpha
@@ -41,7 +41,7 @@ fun SeriesReadSummary(mangaId: Long, readCount: Int, total: Int) {
     } else {
         progress
     }
-    // "Last read 3 weeks ago" for picking a series back up (mihon#1123); skipped if read today
+    // "Last read 3 weeks ago" for picking a series back up; skipped if read today
     val now = System.currentTimeMillis()
     val full = if (lastRead > 0 && now - lastRead >= DateUtils.DAY_IN_MILLIS) {
         val ago = DateUtils.getRelativeTimeSpanString(lastRead, now, DateUtils.DAY_IN_MILLIS).toString()

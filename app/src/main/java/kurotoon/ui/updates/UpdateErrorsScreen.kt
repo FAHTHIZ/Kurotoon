@@ -30,12 +30,12 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import eu.kanade.presentation.components.AppBar
 import eu.kanade.presentation.util.Screen
 import eu.kanade.tachiyomi.ui.manga.MangaScreen
+import kurotoon.feature.migration.config.MigrationConfigScreen
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Close
+import kurotoon.icons.materialsymbols.rounded.Error
 import kurotoon.updates.UpdateError
 import kurotoon.updates.UpdateErrors
-import mihon.feature.migration.config.MigrationConfigScreen
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Close
-import mihon.icons.materialsymbols.rounded.Error
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroTextButton
 import tachiyomi.presentation.core.components.material.Scaffold

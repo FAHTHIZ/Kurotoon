@@ -28,8 +28,8 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Newspaper
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Newspaper
 import tachiyomi.presentation.core.components.material.KuroButton
 import tachiyomi.presentation.core.components.material.KuroButtonStyle
 import tachiyomi.presentation.core.components.material.Scaffold

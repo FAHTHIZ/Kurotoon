@@ -35,6 +35,14 @@ import kotlinx.datetime.minus
 import kurotoon.catalogue.CatalogFacet
 import kurotoon.catalogue.CatalogFacets
 import kurotoon.catalogue.SavedSearch
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.CollectionsBookmark
+import kurotoon.icons.materialsymbols.rounded.Explore
+import kurotoon.icons.materialsymbols.rounded.Home
+import kurotoon.icons.materialsymbols.rounded.NewReleases
+import kurotoon.icons.materialsymbols.rounded.Person
+import kurotoon.icons.materialsymbols.rounded.Refresh
+import kurotoon.icons.materialsymbols.roundedfilled.PlayArrow
 import kurotoon.shop.toPack
 import kurotoon.ui.KuroBottomBar
 import kurotoon.ui.KuroBottomBarItem
@@ -43,14 +51,6 @@ import kurotoon.ui.browse.BrowseSort
 import kurotoon.ui.browse.SavedSearchRow
 import kurotoon.ui.home.KuroHomeContent
 import kurotoon.ui.home.KuroHomeViewModel
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.CollectionsBookmark
-import mihon.icons.materialsymbols.rounded.Explore
-import mihon.icons.materialsymbols.rounded.Home
-import mihon.icons.materialsymbols.rounded.NewReleases
-import mihon.icons.materialsymbols.rounded.Person
-import mihon.icons.materialsymbols.rounded.Refresh
-import mihon.icons.materialsymbols.roundedfilled.PlayArrow
 import org.junit.Assume.assumeTrue
 import org.junit.Before
 import org.junit.Test
@@ -822,7 +822,7 @@ class KuroScreenshots {
                 actions = listOf(
                     tachiyomi.presentation.core.screens.EmptyScreenAction(
                         tachiyomi.i18n.MR.strings.getting_started_guide,
-                        mihon.icons.materialsymbols.MaterialSymbols.Rounded.Refresh,
+                        kurotoon.icons.materialsymbols.MaterialSymbols.Rounded.Refresh,
                     ) {},
                 ),
             )
@@ -916,7 +916,7 @@ class KuroScreenshots {
                     text = { androidx.compose.material3.Text("Continue Ep. 126") },
                     icon = {
                         androidx.compose.material3.Icon(
-                            mihon.icons.materialsymbols.MaterialSymbols.RoundedFilled.PlayArrow,
+                            kurotoon.icons.materialsymbols.MaterialSymbols.RoundedFilled.PlayArrow,
                             contentDescription = null,
                         )
                     },
@@ -926,7 +926,7 @@ class KuroScreenshots {
                     text = { androidx.compose.material3.Text("Add") },
                     icon = {
                         androidx.compose.material3.Icon(
-                            mihon.icons.materialsymbols.MaterialSymbols.RoundedFilled.PlayArrow,
+                            kurotoon.icons.materialsymbols.MaterialSymbols.RoundedFilled.PlayArrow,
                             contentDescription = null,
                         )
                     },
