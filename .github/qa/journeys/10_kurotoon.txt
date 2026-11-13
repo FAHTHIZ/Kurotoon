@@ -4,18 +4,17 @@ sleep 6
 shot welcome
 tapuntil Next "Select a folder"
 shot storage
-tapuntil "Select a folder" "Use this folder" 4
+tap "Select a folder"
+sleep 6
 shot picker
-tap "More options" 20
-tap "New folder"
-shot newfolder
-type Kurotoon
-tapx OK
+# The system folder picker can't be read by uiautomator, so pick Documents by position
+tapor Documents 285 1215
+sleep 4
+shot picker_documents
+tapor "USE THIS FOLDER" 540 2208
 sleep 3
-tap "Use this folder" 15
-sleep 2
 shot picker_allow
-tap Allow
+tapor ALLOW 870 1380
 sleep 3
 shot storage_done
 tapuntil Next "Get started" 6
