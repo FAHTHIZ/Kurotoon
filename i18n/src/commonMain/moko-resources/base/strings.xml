@@ -1104,6 +1104,13 @@
     <string name="exception_http">HTTP %d, check website in WebView</string>
     <string name="exception_offline">No Internet connection</string>
     <string name="exception_unknown_host">Couldn\'t reach %s</string>
+    <string name="exception_http_missing">The site doesn\'t have this any more (HTTP %d). Refresh the series to pick up moved chapters</string>
+    <string name="exception_http_blocked">The site turned the request away (HTTP %d). Open it on the web once, then retry</string>
+    <string name="exception_http_rate_limited">The site wants a short break (HTTP %d). Wait a moment, then retry</string>
+    <string name="exception_http_server">The site is having trouble (HTTP %d). Try again in a little while</string>
+    <string name="exception_timeout">The site took too long to answer. Retry, or check your connection</string>
+    <string name="exception_secure_connection">Couldn\'t open a secure connection to the site</string>
+    <string name="exception_cloudflare">The site\'s bot check didn\'t clear. Open it on the web, finish the check, then retry</string>
 
     <!-- Notes screen -->
     <string name="notes_placeholder">Enjoyed the part where…</string>
