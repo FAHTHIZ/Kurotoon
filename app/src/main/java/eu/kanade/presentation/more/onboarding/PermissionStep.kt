@@ -48,6 +48,9 @@ import tachiyomi.presentation.core.util.secondaryItemAlpha
 
 internal class PermissionStep : OnboardingStep {
 
+    override val title = MR.strings.onboarding_permissions_title
+    override val subtitle = MR.strings.onboarding_permissions_subtitle
+
     private var notificationGranted by mutableStateOf(false)
     private var batteryGranted by mutableStateOf(false)
 

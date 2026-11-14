@@ -2,22 +2,11 @@
 start app.kurotoon.dev
 sleep 6
 shot welcome
-tapuntil Next "Select a folder"
+tapuntil Next "Inside KuroToon"
 shot storage
-tap "Select a folder"
-sleep 6
-shot picker
-# The system folder picker can't be read by uiautomator, so pick Documents by position
-tapor Documents 285 1215
-sleep 4
-shot picker_documents
-tapor "USE THIS FOLDER" 540 2208
-sleep 3
-shot picker_allow
-tapor ALLOW 870 1380
-sleep 3
-shot storage_done
-tapuntil Next "Get started" 6
+tapuntil Next "A few permissions"
+shot permissions
+tapuntil Next "Add my first source"
 shot guides
 tapuntil "Get started" Library 4
 sleep 4

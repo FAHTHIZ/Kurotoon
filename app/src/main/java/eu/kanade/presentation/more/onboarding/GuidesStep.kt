@@ -2,25 +2,28 @@ package eu.kanade.presentation.more.onboarding
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
+import kurotoon.icons.materialsymbols.MaterialSymbols
+import kurotoon.icons.materialsymbols.rounded.Extension
+import kurotoon.icons.materialsymbols.rounded.History
+import kurotoon.icons.materialsymbols.rounded.LocalLibrary
 import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.KuroButton
-import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.stringResource
 
+/** The last step: what to do first. Get started finishes; the cards are shortcuts for people who know already. */
 internal class GuidesStep(
     private val onRestoreBackup: () -> Unit,
+    private val onAddSources: () -> Unit,
 ) : OnboardingStep {
+
+    override val title = MR.strings.onboarding_ready_title
+    override val subtitle = MR.strings.onboarding_ready_subtitle
 
     override val isComplete: Boolean = true
 
@@ -30,28 +33,32 @@ internal class GuidesStep(
 
         Column(
             modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            Text(stringResource(MR.strings.onboarding_guides_new_user, stringResource(MR.strings.app_name)))
-            KuroButton(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = { handler.openUri(GETTING_STARTED_URL) },
-            ) {
-                Text(stringResource(MR.strings.getting_started_guide))
-            }
-
-            HorizontalDivider(
-                modifier = Modifier.padding(vertical = 8.dp),
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
+            OnboardingChoice(
+                icon = MaterialSymbols.Rounded.Extension,
+                title = stringResource(MR.strings.onboarding_ready_sources_title),
+                body = stringResource(MR.strings.onboarding_ready_sources_body),
+                selected = false,
+                radio = false,
+                onClick = onAddSources,
             )
-
-            Text(stringResource(MR.strings.onboarding_guides_returning_user, stringResource(MR.strings.app_name)))
-            KuroButton(
-                modifier = Modifier.fillMaxWidth(),
+            OnboardingChoice(
+                icon = MaterialSymbols.Rounded.History,
+                title = stringResource(MR.strings.onboarding_ready_restore_title),
+                body = stringResource(MR.strings.onboarding_ready_restore_body),
+                selected = false,
+                radio = false,
                 onClick = onRestoreBackup,
-            ) {
-                Text(stringResource(MR.strings.pref_restore_backup))
-            }
+            )
+            OnboardingChoice(
+                icon = MaterialSymbols.Rounded.LocalLibrary,
+                title = stringResource(MR.strings.getting_started_guide),
+                body = stringResource(MR.strings.onboarding_ready_guide_body),
+                selected = false,
+                radio = false,
+                onClick = { handler.openUri(GETTING_STARTED_URL) },
+            )
         }
     }
 }
@@ -64,6 +71,7 @@ private fun GuidesStepPreview() {
     TachiyomiPreviewTheme {
         GuidesStep(
             onRestoreBackup = {},
+            onAddSources = {},
         ).Content()
     }
 }

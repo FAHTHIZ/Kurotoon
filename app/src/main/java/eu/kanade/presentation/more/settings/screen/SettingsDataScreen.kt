@@ -100,8 +100,17 @@ object SettingsDataScreen : SearchableSettings {
         val backupPreferences = remember { context.appGraph.backupPreferences }
         val storagePreferences = remember { context.appGraph.storagePreferences }
 
+        val storageDir by storagePreferences.baseStorageDirectory.collectAsState()
+        val appFolder = remember { context.inAppStorageUri() }
+
         return listOf(
             getStorageLocationPref(storagePreferences = storagePreferences),
+            Preference.PreferenceItem.TextPreference(
+                title = stringResource(MR.strings.pref_storage_use_app_folder),
+                subtitle = stringResource(MR.strings.pref_storage_use_app_folder_summary),
+                visible = storageDir != appFolder,
+                onClick = { storagePreferences.baseStorageDirectory.set(appFolder) },
+            ),
             Preference.PreferenceItem.InfoPreference(stringResource(MR.strings.pref_storage_location_info)),
 
             getBackupAndRestoreGroup(backupPreferences = backupPreferences),
@@ -148,9 +157,13 @@ object SettingsDataScreen : SearchableSettings {
     ): String {
         val context = LocalContext.current
         val storageDir by storageDirPref.collectAsState()
+        val appFolder = remember { context.inAppStorageUri() }
 
         if (storageDir == storageDirPref.defaultValue()) {
             return stringResource(MR.strings.no_location_set)
+        }
+        if (storageDir == appFolder) {
+            return stringResource(MR.strings.storage_app_folder_label)
         }
 
         return remember(storageDir) {
@@ -496,4 +509,15 @@ object SettingsDataScreen : SearchableSettings {
             },
         )
     }
+}
+
+/**
+ * KuroToon's own folder on shared storage (Android/data/<package>/files). It needs no permission and no folder
+ * picker, so it's where a new install keeps downloads until the reader picks a folder of their own. It goes
+ * away with the app on uninstall.
+ */
+fun android.content.Context.inAppStorageUri(): String {
+    val dir = getExternalFilesDir(null) ?: filesDir
+    dir.mkdirs()
+    return dir.toUri().toString()
 }

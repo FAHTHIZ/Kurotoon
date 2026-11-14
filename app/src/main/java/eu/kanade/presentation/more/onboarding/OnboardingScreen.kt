@@ -38,6 +38,7 @@ import tachiyomi.presentation.core.screens.InfoScreen
 fun OnboardingScreen(
     onComplete: () -> Unit,
     onRestoreBackup: () -> Unit,
+    onAddSources: () -> Unit,
 ) {
     val slideDistance = rememberSlideDistance()
 
@@ -47,7 +48,7 @@ fun OnboardingScreen(
             ThemeStep(),
             StorageStep(),
             PermissionStep(),
-            GuidesStep(onRestoreBackup = onRestoreBackup),
+            GuidesStep(onRestoreBackup = onRestoreBackup, onAddSources = onAddSources),
         )
     }
     val isLastStep = currentStep == steps.lastIndex
@@ -58,8 +59,8 @@ fun OnboardingScreen(
 
     InfoScreen(
         icon = MaterialSymbols.Rounded.RocketLaunch,
-        headingText = stringResource(MR.strings.onboarding_heading),
-        subtitleText = stringResource(MR.strings.onboarding_description),
+        headingText = stringResource(steps[currentStep].title),
+        subtitleText = stringResource(steps[currentStep].subtitle),
         acceptText = stringResource(
             if (isLastStep) {
                 MR.strings.onboarding_action_finish
