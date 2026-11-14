@@ -55,7 +55,7 @@ internal class StorageStep : OnboardingStep {
         val appFolder = remember { context.inAppStorageUri() }
         val pickStorageLocation = SettingsDataScreen.storageLocationPicker(storagePref)
 
-        val launchPicker = {
+        val launchPicker: () -> Unit = {
             try {
                 pickStorageLocation.launch(null)
             } catch (e: ActivityNotFoundException) {
