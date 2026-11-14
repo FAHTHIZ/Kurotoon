@@ -1,0 +1,180 @@
+> start app.kurotoon.dev
+> tapx Browse
+  !! not found: Browse
+  [shot 001_notfound] visible: ['OVERVIEW', '0', 'In library', 'None', 'Read duration', '0', 'Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '0', 'Chapters', '0', 'Active days', '0', 'Day streak', '0', 'Best streak', 'ENTRIES', '0', 'In global update', '0', 'Started', '0', 'Local', 'CHAPTERS', '0', '0', '0', 'Navigate up', 'Statistics']
+> tapx Sources
+  !! not found: Sources
+  [shot 002_notfound] visible: ['OVERVIEW', '0', 'In library', 'None', 'Read duration', '0', 'Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '0', 'Chapters', '0', 'Active days', '0', 'Day streak', '0', 'Best streak', 'ENTRIES', '0', 'In global update', '0', 'Started', '0', 'Local', 'CHAPTERS', '0', '0', '0', 'Navigate up', 'Statistics']
+> tap Webtoons.com
+  !! not found: Webtoons.com
+  [shot 003_notfound] visible: ['OVERVIEW', '0', 'In library', 'None', 'Read duration', '0', 'Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '0', 'Chapters', '0', 'Active days', '0', 'Day streak', '0', 'Best streak', 'ENTRIES', '0', 'In global update', '0', 'Started', '0', 'Local', 'CHAPTERS', '0', '0', '0', 'Navigate up', 'Statistics']
+> sleep 12
+> tapxy 270 1000
+> sleep 12
+> shot strip_series
+  [shot 004_strip_series] visible: ['OVERVIEW', '0', 'In library', 'None', 'Read duration', '0', 'Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '0', 'Chapters', '0', 'Active days', '0', 'Day streak', '0', 'Best streak', 'ENTRIES', '0', 'In global update', '0', 'Started', '0', 'Local', 'CHAPTERS', '0', '0', '0', 'Navigate up', 'Statistics']
+> tapif Resume
+> tapif Start
+> sleep 20
+> shot strip_open
+  [shot 005_strip_open] visible: ['OVERVIEW', '0', 'In library', 'None', 'Read duration', '0', 'Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '0', 'Chapters', '0', 'Active days', '0', 'Day streak', '0', 'Best streak', 'ENTRIES', '0', 'In global update', '0', 'Started', '0', 'Local', 'CHAPTERS', '0', '0', '0', 'Navigate up', 'Statistics']
+> scrollup
+> scrollup
+> scrollup
+> sleep 2
+> shot strip_scrolled
+  [shot 006_strip_scrolled] visible: ['Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '0', 'Chapters', '0', 'Active days', '0', 'Day streak', '0', 'Best streak', 'ENTRIES', '0', 'In global update', '0', 'Started', '0', 'Local', 'CHAPTERS', '0', 'Total', '0', 'Read', '0', 'Downloaded', 'TRACKERS', '0', 'Tracked entries', 'N/A', 'Mean score', '0', 'Used', 'Navigate up', 'Statistics']
+> scrollup
+> scrollup
+> scrollup
+> sleep 3
+> shot strip_scrolled_more
+  [shot 007_strip_scrolled_more] visible: ['Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '0', 'Chapters', '0', 'Active days', '0', 'Day streak', '0', 'Best streak', 'ENTRIES', '0', 'In global update', '0', 'Started', '0', 'Local', 'CHAPTERS', '0', 'Total', '0', 'Read', '0', 'Downloaded', 'TRACKERS', '0', 'Tracked entries', 'N/A', 'Mean score', '0', 'Used', 'Navigate up', 'Statistics']
+> tapxy 540 1200
+> sleep 2
+> shot strip_menu
+  [shot 008_strip_menu] visible: ['Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '0', 'Chapters', '0', 'Active days', '0', 'Day streak', '0', 'Best streak', 'ENTRIES', '0', 'In global update', '0', 'Started', '0', 'Local', 'CHAPTERS', '0', 'Total', '0', 'Read', '0', 'Downloaded', 'TRACKERS', '0', 'Tracked entries', 'N/A', 'Mean score', '0', 'Used', 'Navigate up', 'Statistics']
+> tapxy 540 1200
+> sleep 1
+> back
+> sleep 3
+> shot strip_back_on_series
+  [shot 009_strip_back_on_series] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif Resume
+> sleep 15
+> shot strip_resumed
+  [shot 010_strip_resumed] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> rotate 1
+> sleep 5
+> shot strip_landscape
+  [shot 011_strip_landscape] visible: ['K', 'Welcome to KuroToon', 'Manga, manhwa and webtoons from the sources you choose. No account, no coins, no waiting. Pick a look to start.', 'System', 'Light', 'Dark', 'Selected', 'Next']
+> rotate 0
+> sleep 5
+> shot strip_portrait_again
+  [shot 012_strip_portrait_again] visible: ['K', 'Welcome to KuroToon', 'Manga, manhwa and webtoons from the sources you choose. No account, no coins, no waiting. Pick a look to start.', 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 8
+> shot home_after_kill
+  [shot 013_home_after_kill] visible: ['K', 'Welcome to KuroToon', 'Manga, manhwa and webtoons from the sources you choose. No account, no coins, no waiting. Pick a look to start.', 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapif Resume
+> sleep 15
+> shot strip_after_kill
+  [shot 014_strip_after_kill] visible: ['K', 'Welcome to KuroToon', 'Manga, manhwa and webtoons from the sources you choose. No account, no coins, no waiting. Pick a look to start.', 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> sleep 3
+> shot strip_end
+  [shot 015_strip_end] visible: ['K', 'Welcome to KuroToon', 'Manga, manhwa and webtoons from the sources you choose. No account, no coins, no waiting. Pick a look to start.', 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> sleep 8
+> shot strip_next_chapter
+  [shot 016_strip_next_chapter] visible: ['K', 'Welcome to KuroToon', 'Manga, manhwa and webtoons from the sources you choose. No account, no coins, no waiting. Pick a look to start.', 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapxy 540 1200
+> sleep 2
+> shot strip_next_menu
+  [shot 017_strip_next_menu] visible: ['K', 'Welcome to KuroToon', 'Manga, manhwa and webtoons from the sources you choose. No account, no coins, no waiting. Pick a look to start.', 'System', 'Light', 'Dark', 'KuroToon', 'Selected', 'Dynamic', 'Catppuccin', 'Next']
+> tap Chapters
+  !! not found: Chapters
+  [shot 018_notfound] visible: ['K', 'Welcome to KuroToon', 'Manga, manhwa and webtoons from the sources you choose. No account, no coins, no waiting. Pick a look to start.', 'System', 'Light', 'Dark', 'KuroToon', 'Selected', 'Dynamic', 'Catppuccin', 'Next']
+> sleep 3
+> shot strip_chapter_list
+  [shot 019_strip_chapter_list] visible: ['K', 'Welcome to KuroToon', 'Manga, manhwa and webtoons from the sources you choose. No account, no coins, no waiting. Pick a look to start.', 'System', 'Light', 'Dark', 'KuroToon', 'Selected', 'Dynamic', 'Catppuccin', 'Next']
+> back
+> sleep 1
+> back
+> sleep 3
+> shot strip_series_after
+  [shot 020_strip_series_after] visible: ['Search', 'Gallery', 'Home', 'Phone', 'Messaging', 'WebView Browser Tester', 'Camera']
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Browse
+> tapx Sources
+> tap MangaDex
+  !! not found: MangaDex
+  [shot 021_notfound] visible: ['Universal Search', 'One search across every installed source.', 'Last used', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Other', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 12
+> tapxy 270 1000
+> sleep 12
+> shot paged_series
+  [shot 022_paged_series] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> tapif Resume
+> tapif Start
+> sleep 20
+> shot paged_open
+  [shot 023_paged_open] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> swipe 900 1200 150 1200 150
+> sleep 3
+> shot paged_swipe_left
+  [shot 024_paged_swipe_left] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> swipe 150 1200 900 1200 150
+> sleep 3
+> shot paged_swipe_right
+  [shot 025_paged_swipe_right] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> sh "input tap 540 1100; input tap 540 1100"
+
+> sleep 2
+> shot paged_zoomed
+  [shot 026_paged_zoomed] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> swipe 700 1200 400 1200 300
+> sleep 2
+> shot paged_zoomed_pan
+  [shot 027_paged_zoomed_pan] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> sh "input tap 540 1100; input tap 540 1100"
+
+> sleep 2
+> shot paged_unzoomed
+  [shot 028_paged_unzoomed] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> rotate 1
+> sleep 5
+> shot paged_landscape
+  [shot 029_paged_landscape] visible: ['K', 'Welcome to KuroToon', 'Manga, manhwa and webtoons from the sources you choose. No account, no coins, no waiting. Pick a look to start.', 'System', 'Light', 'Dark', 'Selected', 'Next']
+> rotate 0
+> sleep 5
+> shot paged_portrait_again
+  [shot 030_paged_portrait_again] visible: ['K', 'Welcome to KuroToon', 'Manga, manhwa and webtoons from the sources you choose. No account, no coins, no waiting. Pick a look to start.', 'System', 'Light', 'Dark', 'KuroToon', 'Selected', 'Dynamic', 'Catppuccin', 'Next']
+> tapxy 540 1200
+> sleep 2
+> tap Settings
+  !! not found: Settings
+  [shot 031_notfound] visible: ['K', 'Welcome to KuroToon', 'Manga, manhwa and webtoons from the sources you choose. No account, no coins, no waiting. Pick a look to start.', 'System', 'Light', 'Dark', 'KuroToon', 'Selected', 'Dynamic', 'Catppuccin', 'Next']
+> sleep 3
+> shot paged_settings
+  [shot 032_paged_settings] visible: ['K', 'Welcome to KuroToon', 'Manga, manhwa and webtoons from the sources you choose. No account, no coins, no waiting. Pick a look to start.', 'System', 'Light', 'Dark', 'KuroToon', 'Selected', 'Dynamic', 'Catppuccin', 'Next']
+> scrollup
+> shot paged_settings_more
+  [shot 033_paged_settings_more] visible: ['K', 'Welcome to KuroToon', 'Manga, manhwa and webtoons from the sources you choose. No account, no coins, no waiting. Pick a look to start.', 'System', 'Light', 'Dark', 'KuroToon', 'Selected', 'Dynamic', 'Catppuccin', 'Next']
+> back
+> sleep 2
+> back
+> sleep 3
+> shot paged_back_on_series
+  [shot 034_paged_back_on_series] visible: ['Universal Search', 'One search across every installed source.', 'Last used', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Other', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Home
+> sleep 6
+> shot home_after_reading
+  [shot 035_home_after_reading] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif History
+> sleep 3
+> shot history_after_reading
+  [shot 036_history_after_reading] visible: ['K', 'Welcome to KuroToon', 'A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search manga…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
