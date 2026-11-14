@@ -72,6 +72,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - **Motion**: covers, cards, tiles and buttons squish when pressed and spring back, Home shelves cascade in, the bottom bar icon pops with a small tilt when you switch tabs, and loading shelves shimmer
 
 ### Fixed
+- Extensions: the install permission notice was hidden under the tabs as a thin red line when the list loaded first. It's now an Allow installing sources card with an Allow button, always scrolled into view
 - Global search found nothing until you pinned a source, because it started on Pinned only. It now starts on All until something is pinned
 - TalkBack couldn't read the series page Start/Resume button
 
