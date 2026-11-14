@@ -1,11 +1,14 @@
 package eu.kanade.presentation.more.settings.screen.browse.components
 
+import android.content.ClipboardManager
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.rememberTextFieldState
+import androidx.compose.foundation.text.input.setTextAndPlaceCursorAtEnd
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,8 +19,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.core.content.getSystemService
+import kurotoon.domain.extension.StoreLink
 import kurotoon.ui.KuroAlertDialog
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.KuroFieldShape
@@ -33,10 +39,11 @@ fun ExtensionStoreCreateDialog(
     processing: Boolean,
     errorMessage: String?,
 ) {
+    val context = LocalContext.current
     val state = rememberTextFieldState()
     val storeAlreadyExists by remember(storeIndexUrls) {
         derivedStateOf {
-            val indexUrl = state.text.toString()
+            val indexUrl = StoreLink.normalize(state.text.toString())
             storeIndexUrls.contains(indexUrl)
         }
     }
@@ -63,9 +70,26 @@ fun ExtensionStoreCreateDialog(
                     val msgRes = if (storeAlreadyExists) {
                         MR.strings.extensionStoresScreen_addStore_alreadyExists
                     } else {
-                        MR.strings.information_required_plain
+                        MR.strings.extensionStoresScreen_addStoreInput_hint
                     }
                     Text(text = errorMessage ?: stringResource(msgRes))
+                },
+                trailingIcon = {
+                    KuroTextButton(
+                        onClick = {
+                            val clip = context.getSystemService<ClipboardManager>()
+                                ?.primaryClip
+                                ?.takeIf { it.itemCount > 0 }
+                                ?.getItemAt(0)
+                                ?.coerceToText(context)
+                                ?.toString()
+                                ?.trim()
+                            if (!clip.isNullOrEmpty()) state.setTextAndPlaceCursorAtEnd(clip)
+                        },
+                        modifier = Modifier.padding(end = 4.dp),
+                    ) {
+                        Text(text = stringResource(MR.strings.action_paste))
+                    }
                 },
                 isError = errorMessage != null || storeAlreadyExists,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Uri),

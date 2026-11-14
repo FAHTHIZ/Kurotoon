@@ -1,5 +1,6 @@
 package eu.kanade.presentation.more.settings.screen.browse
 
+import android.content.Context
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,7 +9,9 @@ import dev.zacsweers.metro.ContributesIntoMap
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import dev.zacsweers.metrox.viewmodel.ViewModelKey
+import eu.kanade.presentation.util.formattedMessage
 import eu.kanade.tachiyomi.extension.ExtensionManager
+import eu.kanade.tachiyomi.network.HttpException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -19,11 +22,14 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.serialization.SerializationException
 import kurotoon.domain.extension.interactor.AddExtensionStore
 import kurotoon.domain.extension.interactor.GetExtensionStores
 import kurotoon.domain.extension.interactor.RemoveExtensionStore
 import kurotoon.domain.extension.interactor.UpdateExtensionStores
 import kurotoon.domain.extension.model.ExtensionStore
+import tachiyomi.core.common.i18n.stringResource
+import tachiyomi.i18n.MR
 import kotlin.time.Duration.Companion.seconds
 
 @Inject
@@ -35,6 +41,7 @@ class ExtensionStoresViewModel(
     private val removeExtensionStore: RemoveExtensionStore,
     private val updateExtensionStores: UpdateExtensionStores,
     private val extensionManager: ExtensionManager,
+    private val context: Context,
 ) : ViewModel() {
 
     private val dialog = MutableStateFlow<ExtensionStoreDialog?>(null)
@@ -72,16 +79,27 @@ class ExtensionStoresViewModel(
                         when (it) {
                             is ExtensionStoreDialog.Create -> it.copy(
                                 processing = false,
-                                errorMessage = throwable.message ?: "unknown error",
+                                errorMessage = storeErrorMessage(throwable),
                             )
                             is ExtensionStoreDialog.Confirm -> it.copy(
                                 processing = false,
-                                errorMessage = throwable.message ?: "unknown error",
+                                errorMessage = storeErrorMessage(throwable),
                             )
                             else -> it
                         }
                     }
                 }
+        }
+    }
+
+    // Say what went wrong with the link in words a reader can act on, not the parser's exception
+    private fun storeErrorMessage(throwable: Throwable): String = with(context) {
+        when {
+            throwable is HttpException && throwable.code in listOf(404, 410) ->
+                stringResource(MR.strings.extensionStoresScreen_addStore_notFound)
+            throwable is SerializationException || throwable is IllegalArgumentException ->
+                stringResource(MR.strings.extensionStoresScreen_addStore_notAStore)
+            else -> throwable.formattedMessage
         }
     }
 
