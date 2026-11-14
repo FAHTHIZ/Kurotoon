@@ -41,6 +41,7 @@ class LibraryPreferences(
         Preference.appStateKey("library_update_last_timestamp"),
         0L,
     )
+
     // Once a day on Wi-Fi out of the box, so new chapters turn up the way they do in the official apps
     val autoUpdateInterval: Preference<Int> = preferenceStore.getInt("pref_library_update_interval_key", 24)
 
