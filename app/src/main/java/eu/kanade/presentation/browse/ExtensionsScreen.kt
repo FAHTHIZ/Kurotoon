@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -25,6 +26,7 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -46,7 +48,6 @@ import eu.kanade.presentation.browse.components.BaseBrowseItem
 import eu.kanade.presentation.browse.components.ExtensionIcon
 import eu.kanade.presentation.browse.components.ExtensionPill
 import eu.kanade.presentation.browse.components.label
-import eu.kanade.presentation.components.WarningBanner
 import eu.kanade.presentation.more.settings.screen.browse.ExtensionStoresScreen
 import eu.kanade.presentation.util.rememberRequestPackageInstallsPermissionState
 import eu.kanade.tachiyomi.extension.model.Extension
@@ -60,6 +61,7 @@ import kurotoon.domain.extension.model.ExtensionStore
 import kurotoon.icons.materialsymbols.MaterialSymbols
 import kurotoon.icons.materialsymbols.rounded.Close
 import kurotoon.icons.materialsymbols.rounded.Download
+import kurotoon.icons.materialsymbols.rounded.Extension
 import kurotoon.icons.materialsymbols.rounded.Info
 import kurotoon.icons.materialsymbols.rounded.Public
 import kurotoon.icons.materialsymbols.rounded.Refresh
@@ -215,18 +217,21 @@ private fun ExtensionContent(
     val context = LocalContext.current
     var notLoadedState by remember { mutableStateOf<Extension.NotLoaded?>(null) }
     val installGranted = rememberRequestPackageInstallsPermissionState(initialValue = true)
+    val showInstallPermission = !installGranted && state.installer?.requiresSystemPermission == true
+    val listState = rememberLazyListState()
+    // The card is added above a list that's already showing, so bring it into view instead of
+    // letting the list keep its place and hide it under the tabs
+    LaunchedEffect(showInstallPermission) {
+        if (showInstallPermission && listState.firstVisibleItemIndex <= 1) listState.scrollToItem(0)
+    }
 
     FastScrollLazyColumn(
+        state = listState,
         contentPadding = contentPadding + topSmallPaddingValues,
     ) {
-        if (!installGranted && state.installer?.requiresSystemPermission == true) {
+        if (showInstallPermission) {
             item(key = "extension-permissions-warning") {
-                WarningBanner(
-                    textRes = MR.strings.ext_permission_install_apps_warning,
-                    modifier = Modifier.clickable {
-                        context.launchRequestPackageInstallsPermission()
-                    },
-                )
+                InstallPermissionCard(onAllow = { context.launchRequestPackageInstallsPermission() })
             }
         }
 
@@ -739,4 +744,41 @@ private fun ExtensionTrustDialog(
         },
         onDismissRequest = onDismissRequest,
     )
+}
+
+/** Android asks once before an app may install others; this card explains why and opens that setting. */
+@Composable
+private fun InstallPermissionCard(onAllow: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .padding(horizontal = MaterialTheme.padding.medium, vertical = MaterialTheme.padding.small)
+            .fillMaxWidth()
+            .kuroCard(RoundedCornerShape(18.dp), borderColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.35f))
+            .clickable(onClick = onAllow)
+            .padding(MaterialTheme.padding.medium),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Icon(
+            imageVector = MaterialSymbols.Rounded.Extension,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.size(24.dp),
+        )
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = stringResource(MR.strings.ext_install_permission_title),
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
+            )
+            Text(
+                text = stringResource(MR.strings.ext_install_permission_body),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+        KuroButton(onClick = onAllow) {
+            Text(stringResource(MR.strings.ext_install_permission_allow))
+        }
+    }
 }
