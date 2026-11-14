@@ -349,8 +349,12 @@ Requires JDK 21 and the Android SDK.
 
 Every push to `main` is built and tested by GitHub Actions. The **QA emulator** workflows boot an Android emulator
 and walk real user journeys (first run, adding a store, installing sources, browsing, reading), saving a screenshot
-of every step. Pushing a `v*` tag publishes a release with per-ABI APKs and checksums; add the `SIGNING_KEY`
-(base64 keystore), `ALIAS`, `KEY_STORE_PASSWORD` and `KEY_PASSWORD` secrets to sign it with your own key.
+of every step. Pushing a `v*` tag publishes a release with per-ABI APKs and checksums. Releases are signed with the KuroToon
+release key held in the `SIGNING_KEY`, `ALIAS`, `KEY_STORE_PASSWORD` and `KEY_PASSWORD` secrets, so every update
+installs over the last one; the workflow refuses to publish if the key is missing or the certificate doesn't match.
+
+Release certificate SHA-256:
+`7B:7D:6B:82:05:8C:01:26:38:15:4C:1C:54:62:B0:CC:D2:A8:CC:4C:2B:26:B1:D4:4A:49:50:38:85:1A:24:77`
 
 <br>
 
