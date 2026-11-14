@@ -8,7 +8,7 @@ tapuntil Next "A few permissions"
 shot permissions
 tapuntil Next "Add my first source"
 shot guides
-tapuntil "Get started" Library 4
+tapuntil "Get started" Browse 4
 sleep 4
 shot home_empty
 tapx Browse
