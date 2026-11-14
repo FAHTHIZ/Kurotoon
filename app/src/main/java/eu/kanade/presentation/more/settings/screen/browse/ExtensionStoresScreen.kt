@@ -16,6 +16,7 @@ import eu.kanade.presentation.more.settings.screen.browse.components.ExtensionSt
 import eu.kanade.presentation.more.settings.screen.browse.components.ExtensionStoreDeleteDialog
 import eu.kanade.presentation.more.settings.screen.browse.components.ExtensionStoresScreen
 import eu.kanade.presentation.util.Screen
+import eu.kanade.tachiyomi.ui.home.HomeScreen
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import eu.kanade.tachiyomi.util.system.openInBrowser
 import tachiyomi.presentation.core.screens.LoadingScreen
@@ -46,7 +47,14 @@ class ExtensionStoresScreen(
             }
         }
         LaunchedEffect(Unit) {
-            if (startWithAdd) viewModel.storeAdded.collect { navigator.pop() }
+            when {
+                startWithAdd -> viewModel.storeAdded.collect { navigator.pop() }
+                // Added from a store's link: show its extensions straight away
+                url != null -> viewModel.storeAdded.collect {
+                    navigator.popUntilRoot()
+                    HomeScreen.openTab(HomeScreen.Tab.Browse(toExtensions = true))
+                }
+            }
         }
 
         if (state is ExtensionStoreScreenState.Loading) {

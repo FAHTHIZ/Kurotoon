@@ -28,11 +28,8 @@ shot addrepo_dialog
 tapx Add
 sleep 5
 shot store_added
-start app.kurotoon.dev
-sleep 3
-tapx Home
-tap "Add sources"
-sleep 8
+# Adding from a link lands on Extensions with the new store's sources
+sleep 6
 shot extensions
 # Android asks once before KuroToon may install extensions
 tap "Tap here to grant"

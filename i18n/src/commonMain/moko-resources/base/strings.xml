@@ -418,7 +418,7 @@
     <string name="extensionStoresScreen.addStoreInput.hint">Paste the store\'s link. GitHub pages and add-repo links work too.</string>
     <string name="extensionStoresScreen.addStore.notFound">Nothing at that link. Store links usually end in index.min.json.</string>
     <string name="extensionStoresScreen.addStore.notAStore">That link opens, but it isn\'t an extension store.</string>
-    <string name="extensionStoresScreen.addStoreDeeplink.bodyText">Do you wish to add the extension store below?</string>
+    <string name="extensionStoresScreen.addStoreDeeplink.bodyText">Add this extension store? Its sources show up in Extensions, ready to install.</string>
     <string name="extensionStoresScreen.deleteStore.title">Remove extension store</string>
     <string name="extensionStoresScreen.deleteStore.body">Do you wish to remove the extension store \"%1$s\" (%2$s)?</string>
 
