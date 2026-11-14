@@ -273,7 +273,7 @@
     <string name="follow_language">Follow language</string>
     <string name="time_24_hours">24-hour</string>
     <string name="time_12_hours">12-hour</string>
-    <string name="pref_display_images_description">Render images in manga descriptions</string>
+    <string name="pref_display_images_description">Show images in series descriptions</string>
 
     <string name="pref_manage_notifications">Manage notifications</string>
     <string name="pref_app_language">App language</string>
@@ -349,7 +349,7 @@
 
     <string name="pref_hide_missing_chapter_indicators">Hide missing chapter indicators</string>
     <string name="pref_disallow_non_ascii_filenames">Disallow non-ASCII filenames</string>
-    <string name="pref_disallow_non_ascii_filenames_details">Ensures compatibility with certain storage media that don't support Unicode. When this is enabled, you'll need to manually rename source and manga folders by replacing non-ASCII characters with their lowercase UTF-8 hexadecimal representations. Chapter files don't need to be renamed.</string>
+    <string name="pref_disallow_non_ascii_filenames_details">Ensures compatibility with certain storage media that don't support Unicode. When this is enabled, you'll need to manually rename source and series folders by replacing non-ASCII characters with their lowercase UTF-8 hexadecimal representations. Chapter files don't need to be renamed.</string>
     <string name="pref_enable_chapter_name_hash">Enable chapter name hash suffix</string>
     <string name="pref_enable_chapter_name_hash_details">Ensures a unique hash suffix is added to chapter names to prevent naming conflicts. If disabled, chapters with identical names cannot be downloaded.</string>
 
@@ -719,8 +719,8 @@
     <string name="pref_redact_sensitive_headers">Redact sensitive headers</string>
     <string name="pref_redact_sensitive_headers_summary">Redacts certain sensitive values in the logs. Keep enabled for your security when sharing logs with other people.</string>
     <string name="pref_debug_info">Debug info</string>
-    <string name="pref_update_library_manga_titles">Update library manga titles to match source</string>
-    <string name="pref_update_library_manga_titles_summary">Warning: if a manga is renamed, it will be removed from the download queue (if present).</string>
+    <string name="pref_update_library_manga_titles">Update library series titles to match the source</string>
+    <string name="pref_update_library_manga_titles_summary">Warning: if a series is renamed, it will be removed from the download queue (if present).</string>
 
       <!-- About section -->
     <string name="website">Website</string>
@@ -812,7 +812,7 @@
     <string name="display_mode_chapter">Chapter %1$s</string>
     <!-- "... around 2 days" -->
     <string name="manga_interval_expected_update">New chapters predicted to be released in around %1$s, checking around every %2$s.</string>
-    <string name="manga_interval_expected_update_null">This manga is either completed, or there is no predicted release date.</string>
+    <string name="manga_interval_expected_update_null">This series is either completed, or there is no predicted release date.</string>
     <string name="manga_interval_expected_update_soon">Soon</string>
     <string name="manga_interval_custom_amount">Custom update frequency:</string>
     <string name="chapter_downloading_progress">Downloading (%1$d/%2$d)</string>
@@ -1086,6 +1086,7 @@
     <string name="information_no_manga_category">Category is empty</string>
     <string name="information_no_entries_found">No entries found in this category</string>
     <string name="getting_started_guide">Getting started guide</string>
+    <string name="library_empty_find">Find something to read</string>
     <string name="information_empty_category">You have no categories. Tap the plus button to create one for organizing your library.</string>
     <string name="information_empty_category_dialog">You don\'t have any categories yet.</string>
     <string name="information_cloudflare_bypass_failure">Failed to bypass Cloudflare</string>
@@ -1185,7 +1186,7 @@
     <!-- KuroToon -->
     <string name="kurotoon.tab.home">Home</string>
     <string name="kurotoon.tab.me">Me</string>
-    <string name="kurotoon.home.search">Search manga…</string>
+    <string name="kurotoon.home.search">Search series…</string>
     <string name="kurotoon.me.defaultNickname">Reader</string>
     <string name="kurotoon.me.editNickname">Edit nickname</string>
     <string name="kurotoon.sound.title">Sound</string>
@@ -1619,7 +1620,7 @@
     <string name="kurotoon.browse.universalSearchBody">One search across every installed source.</string>
     <string name="kurotoon.browse.universalSearchHint">Search every source…</string>
     <string name="kurotoon.home.welcomeTitle">Welcome to KuroToon</string>
-    <string name="kurotoon.home.welcomeBody">A private manga reader that lives on your phone. It comes with no content — add the sources you want to read from.</string>
+    <string name="kurotoon.home.welcomeBody">A private reader for manga, manhwa and webtoons that lives on your phone. It comes with no content — add the sources you want to read from.</string>
     <string name="kurotoon.home.addSources">Add sources</string>
     <string name="kurotoon.home.continueReading">Continue reading</string>
     <string name="kurotoon.home.continueEmpty">Chapters you start reading will show up here.</string>
