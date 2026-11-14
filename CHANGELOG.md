@@ -6,6 +6,8 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Added
+- First run no longer needs the system folder picker: storage starts on KuroToon's own folder (no permission), and a folder of your own is one tap away. Settings › Data and storage can switch back to it too
+- Onboarding speaks KuroToon: each step has its own heading, storage is two clear choice cards, and the last step goes straight to adding a first source or restoring a KuroToon, Mihon or Tachiyomi backup
 - Browse › Tags remembers the last tags you opened and shows them first under Recently opened
 - Browse › Tags: every tag your installed sources offer in one searchable page, by most sources or A–Z, with how many sources carry each and your library's tags on top. Tap a tag to browse it on every source; long-press to search titles with it or hide it everywhere
 

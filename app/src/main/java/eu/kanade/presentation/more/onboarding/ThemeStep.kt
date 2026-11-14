@@ -9,9 +9,13 @@ import eu.kanade.domain.ui.model.setAppCompatDelegateThemeMode
 import eu.kanade.presentation.more.settings.widget.AppThemeModePreferenceWidget
 import eu.kanade.presentation.more.settings.widget.AppThemePreferenceWidget
 import kurotoon.app.di.appGraph
+import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.util.collectAsState
 
 internal class ThemeStep : OnboardingStep {
+
+    override val title = MR.strings.onboarding_theme_title
+    override val subtitle = MR.strings.onboarding_theme_subtitle
 
     override val isComplete: Boolean = true
 

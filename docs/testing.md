@@ -15,8 +15,10 @@ step number and a screenshot.
 
 - [ ] **1.1** Open the app. You should see the KuroToon logo, step dots and a Next button.
 - [ ] **1.2** Pick a theme. The screen recolours straight away.
-- [ ] **1.3** Choose a storage folder. Next stays put until you do, and tapping it opens the folder picker.
-- [ ] **1.4** Grant or skip permissions, then Finish. You land on **Home**, which shows a welcome card and an Add sources button.
+- [ ] **1.3** Storage: **Inside KuroToon** is already ticked, so Next works straight away. **A folder you pick** opens
+  the system folder picker instead.
+- [ ] **1.4** Grant or skip permissions. The last step offers **Add my first source**, **Restore a backup** and the
+  guide; **Get started** lands you on **Home**, which shows a welcome card and an Add sources button.
 
 ## 2. Get some sources
 

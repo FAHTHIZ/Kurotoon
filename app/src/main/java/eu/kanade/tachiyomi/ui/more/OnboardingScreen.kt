@@ -5,13 +5,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import eu.kanade.presentation.more.onboarding.OnboardingScreen
 import eu.kanade.presentation.more.settings.screen.SearchableSettings
 import eu.kanade.presentation.more.settings.screen.SettingsDataScreen
 import eu.kanade.presentation.util.Screen
+import eu.kanade.tachiyomi.ui.home.HomeScreen
 import eu.kanade.tachiyomi.ui.setting.SettingsScreen
+import kotlinx.coroutines.launch
 import kurotoon.app.di.appGraph
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.util.collectAsState
@@ -43,6 +47,13 @@ class OnboardingScreen : Screen() {
                 finishOnboarding()
                 SearchableSettings.highlightKey = restoreSettingKey
                 navigator.push(SettingsScreen(SettingsScreen.Destination.DataAndStorage))
+            },
+            onAddSources = {
+                finishOnboarding()
+                // Home picks this up once it's back on screen, so it outlives this screen's scope
+                (context as? LifecycleOwner)?.lifecycleScope?.launch {
+                    HomeScreen.openTab(HomeScreen.Tab.Browse(toExtensions = true))
+                }
             },
         )
     }
