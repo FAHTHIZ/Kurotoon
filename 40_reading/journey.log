@@ -1,0 +1,174 @@
+> start app.kurotoon.dev
+> tapx Browse
+  !! not found: Browse
+  [shot 001_notfound] visible: ['OVERVIEW', '2', 'In library', '33s', 'Read duration', '0', 'Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '1', 'Chapters', '1', 'Active days', '1', 'Day streak', '1', 'Best streak', '2026 in reading', '–', '1 chapters across 1 series', 'MOST READ', '1', 'IDOL×IDOL STORY!', '1 ch.', 'Share', 'Navigate up', 'Statistics']
+> tapx Sources
+  !! not found: Sources
+  [shot 002_notfound] visible: ['OVERVIEW', '2', 'In library', '33s', 'Read duration', '0', 'Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '1', 'Chapters', '1', 'Active days', '1', 'Day streak', '1', 'Best streak', '2026 in reading', '–', '1 chapters across 1 series', 'MOST READ', '1', 'IDOL×IDOL STORY!', '1 ch.', 'Share', 'Navigate up', 'Statistics']
+> tap Webtoons.com
+  !! not found: Webtoons.com
+  [shot 003_notfound] visible: ['OVERVIEW', '2', 'In library', '33s', 'Read duration', '0', 'Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '1', 'Chapters', '1', 'Active days', '1', 'Day streak', '1', 'Best streak', '2026 in reading', '–', '1 chapters across 1 series', 'MOST READ', '1', 'IDOL×IDOL STORY!', '1 ch.', 'Share', 'Navigate up', 'Statistics']
+> sleep 12
+> tapxy 270 1000
+> sleep 12
+> shot strip_series
+  [shot 004_strip_series] visible: ['OVERVIEW', '2', 'In library', '33s', 'Read duration', '0', 'Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '1', 'Chapters', '1', 'Active days', '1', 'Day streak', '1', 'Best streak', '2026 in reading', '–', '1 chapters across 1 series', 'MOST READ', '1', 'IDOL×IDOL STORY!', '1 ch.', 'Share', 'Navigate up', 'Statistics']
+> tapif Resume
+> tapif Start
+> sleep 20
+> shot strip_open
+  [shot 005_strip_open] visible: ['OVERVIEW', '2', 'In library', '33s', 'Read duration', '0', 'Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '1', 'Chapters', '1', 'Active days', '1', 'Day streak', '1', 'Best streak', '2026 in reading', '–', '1 chapters across 1 series', 'MOST READ', '1', 'IDOL×IDOL STORY!', '1 ch.', 'Share', 'Navigate up', 'Statistics']
+> scrollup
+> scrollup
+> scrollup
+> sleep 2
+> shot strip_scrolled
+  [shot 006_strip_scrolled] visible: ['Last 17 weeks', 'Less', 'More', '1', 'Chapters', '1', 'Active days', '1', 'Day streak', '1', 'Best streak', '2026 in reading', '–', '1 chapters across 1 series', 'MOST READ', '1', 'IDOL×IDOL STORY!', '1 ch.', 'YOUR GENRES', 'Drama', "Girl's Love", 'Japanese', 'Busiest month: November, with 1 chapters', 'Share', 'ENTRIES', '0', 'In global update', '0', 'Started', '0', 'Local', 'CHAPTERS', '1045', 'Total', '0', 'Read', '0', 'Downloaded', 'TRACKERS', '0', 'Tracked entries', 'N/A', 'Mean score', '0', 'Used', 'Navigate up', 'Statistics']
+> scrollup
+> scrollup
+> scrollup
+> sleep 3
+> shot strip_scrolled_more
+  [shot 007_strip_scrolled_more] visible: ['Last 17 weeks', 'Less', 'More', '1', 'Chapters', '1', 'Active days', '1', 'Day streak', '1', 'Best streak', '2026 in reading', '–', '1 chapters across 1 series', 'MOST READ', '1', 'IDOL×IDOL STORY!', '1 ch.', 'YOUR GENRES', 'Drama', "Girl's Love", 'Japanese', 'Busiest month: November, with 1 chapters', 'Share', 'ENTRIES', '0', 'In global update', '0', 'Started', '0', 'Local', 'CHAPTERS', '1045', 'Total', '0', 'Read', '0', 'Downloaded', 'TRACKERS', '0', 'Tracked entries', 'N/A', 'Mean score', '0', 'Used', 'Navigate up', 'Statistics']
+> tapxy 540 1200
+> sleep 2
+> shot strip_menu
+  [shot 008_strip_menu] visible: ['Last 17 weeks', 'Less', 'More', '1', 'Chapters', '1', 'Active days', '1', 'Day streak', '1', 'Best streak', '2026 in reading', '–', '1 chapters across 1 series', 'MOST READ', '1', 'IDOL×IDOL STORY!', '1 ch.', 'YOUR GENRES', 'Drama', "Girl's Love", 'Japanese', 'Busiest month: November, with 1 chapters', 'Share', 'ENTRIES', '0', 'In global update', '0', 'Started', '0', 'Local', 'CHAPTERS', '1045', 'Total', '0', 'Read', '0', 'Downloaded', 'TRACKERS', '0', 'Tracked entries', 'N/A', 'Mean score', '0', 'Used', 'Navigate up', 'Statistics']
+> tapxy 540 1200
+> sleep 1
+> back
+> sleep 3
+> shot strip_back_on_series
+  [shot 009_strip_back_on_series] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif Resume
+> sleep 15
+> shot strip_resumed
+  [shot 010_strip_resumed] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> rotate 1
+> sleep 5
+> shot strip_landscape
+  [shot 011_strip_landscape] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> rotate 0
+> sleep 5
+> shot strip_portrait_again
+  [shot 012_strip_portrait_again] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> stop app.kurotoon.dev
+> start app.kurotoon.dev
+> sleep 8
+> shot home_after_kill
+  [shot 013_home_after_kill] visible: ['IDOL×IDOL STORY!', 'Up next', 'IDOL×IDOL STORY!', 'Chapter 1', 'Resume', 'Out today', 'Series that usually update on Saturday', 'See all', 'Overgeared', '348', 'Overgeared', '8 days ago', 'Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'K', 'KuroToon', 'Search series…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif Resume
+> sleep 15
+> shot strip_after_kill
+  [shot 014_strip_after_kill] visible: ['Viewing full screen', 'To exit, swipe down from the top.', 'GOT IT']
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> sleep 3
+> shot strip_end
+  [shot 015_strip_end] visible: ['Viewing full screen', 'To exit, swipe down from the top.', 'GOT IT']
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> swipe 540 1900 540 300 80
+> sleep 8
+> shot strip_next_chapter
+  [shot 016_strip_next_chapter] visible: ['Viewing full screen', 'To exit, swipe down from the top.', 'GOT IT']
+> tapxy 540 1200
+> sleep 2
+> shot strip_next_menu
+  [shot 017_strip_next_menu] visible: ['Navigate up', 'IDOL×IDOL STORY!', 'Vol.1 Ch.1 · 696 chapters left', 'Bookmark chapter', 'More options', 'Next chapter', '63', '63', 'Previous chapter', 'Chapters', 'Reading mode', 'Rotation', 'Crop borders', 'Auto-scroll', 'Sound', 'Settings']
+> tap Chapters
+> sleep 3
+> shot strip_chapter_list
+  [shot 018_strip_chapter_list] visible: ['Cover', 'IDOL×IDOL STORY!', 'Tokunou Shoutarou', 'Ongoing', ' • ', 'MangaDex (ALL)', 'In library', '4 days', 'Tracking', 'Similar', 'WebView', 'Mimi Nagisa (22 years old) is a former idol. After giving up on her dream of being an idol because of her lacking talent she spends her days working part-time while attending college. However, the moment she meets the idol Ibuki Nanakusa, whom she recently found interest in, their lives begin to cross each other.', 'More', 'Drama', "Girl's Love", 'Slice of Life', 'Music', 'Seinen', 'Japanese', '697 chapters', 'Newest', 'Filter', 'New chapters usually every Wednesday & Friday', '100.1', 'Ch.100.1 - Bonus - Celebrating 100 Chapters of Serialization', 'UP', 'Today', ' • ', '[en] FlameSubsScans', 'Download', '100', 'Ch.100 - Koko-chan', 'UP', 'Today', ' • ', '[en] FlameSubsScans', 'Download', '99.5', 'Ch.99.5 - SSS Behind-The-Scenes 100', '11/4/26', ' • ', '[en] FlameSubsScans', 'Download', 'Navigate up', 'Download', 'Filter', 'More options', 'Jump to where you left off', 'Resume · Ch. 1', 'Resume · Ch. 1']
+> back
+> sleep 1
+> back
+> sleep 3
+> shot strip_series_after
+  [shot 019_strip_series_after] visible: ['IDOL×IDOL STORY!', 'Up next', 'IDOL×IDOL STORY!', 'Chapter 1', 'Resume', 'Out today', 'Series that usually update on Saturday', 'See all', 'Overgeared', '348', 'Overgeared', '8 days ago', 'Murim Login', 'K', 'KuroToon', 'Search series…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Browse
+> tapx Sources
+> tap MangaDex
+> sleep 12
+> tapxy 270 1000
+> sleep 12
+> shot paged_series
+  [shot 020_paged_series] visible: ['Cover', 'Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'Kagami Yuu', 'Mitsuya Ryo', 'Ongoing', ' • ', 'MangaDex (ALL)', 'Add to library', 'Soon', 'Tracking', 'Similar', 'WebView', "During the Spring break after middle school, Tochika Sky rescues a small girl getting crushed on a crowded train. He assumes she's just an elementary schooler, until he enters high school and finds her in his classroom!?", "Clocking in at just 140 centimeters and fueled by energy drinks, She may be small, but she's an absolute beauty.", "Her name is Naruse Chito. Sky considers himself a true-blue lover of tall, older women, so a tiny cutie like Chito should be completely outside his romantic strike zone. However, Chito kicks off a fierce assault with a bold declaration: “I'm gonna take that obsession of yours and turn it completely upside down!”. A romcom tug-of-war over tastes between a guy who loves older women and a teeny girl begins!", 'Compositor: Urano Ritsu\nCharacter Designer: Fuji Yama', 'Navigate up', 'Download', 'Filter', 'More options', 'Start · Ch. 1', 'Start · Ch. 1']
+> tapif Resume
+> tapif Start
+> sleep 20
+> shot paged_open
+  [shot 021_paged_open] visible: ['Viewing full screen', 'To exit, swipe down from the top.', 'GOT IT']
+> swipe 900 1200 150 1200 150
+> sleep 3
+> shot paged_swipe_left
+  [shot 022_paged_swipe_left] visible: ['Viewing full screen', 'To exit, swipe down from the top.', 'GOT IT']
+> swipe 150 1200 900 1200 150
+> sleep 3
+> shot paged_swipe_right
+  [shot 023_paged_swipe_right] visible: ['Viewing full screen', 'To exit, swipe down from the top.', 'GOT IT']
+> sh "input tap 540 1100; input tap 540 1100"
+
+> sleep 2
+> shot paged_zoomed
+  [shot 024_paged_zoomed] visible: ['Viewing full screen', 'To exit, swipe down from the top.', 'GOT IT']
+> swipe 700 1200 400 1200 300
+> sleep 2
+> shot paged_zoomed_pan
+  [shot 025_paged_zoomed_pan] visible: ['Viewing full screen', 'To exit, swipe down from the top.', 'GOT IT']
+> sh "input tap 540 1100; input tap 540 1100"
+
+> sleep 2
+> shot paged_unzoomed
+  [shot 026_paged_unzoomed] visible: ['Viewing full screen', 'To exit, swipe down from the top.', 'GOT IT']
+> rotate 1
+> sleep 5
+> shot paged_landscape
+  [shot 027_paged_landscape] visible: ['Viewing full screen', 'To exit, swipe down from the top.', 'GOT IT']
+> rotate 0
+> sleep 5
+> shot paged_portrait_again
+  [shot 028_paged_portrait_again] visible: ['Viewing full screen', 'To exit, swipe down from the top.', 'GOT IT']
+> tapxy 540 1200
+> sleep 2
+> tap Settings
+> sleep 3
+> shot paged_settings
+  [shot 029_paged_settings] visible: ['Reading mode', 'General', 'Custom filter', 'For this series', 'Reading mode', 'Default', 'Paged (left to right)', 'Paged (right to left)', 'Paged (vertical)', 'Long strip', 'Long strip with gaps', 'Rotation', 'Default', 'Free', 'Portrait', 'Landscape', 'Locked portrait', 'Locked landscape', 'Reverse portrait', 'Long strip', 'Tap zones', 'Default', 'L shaped', 'Kindle-ish', 'Edge', 'Right and Left', 'Disabled', 'Invert tap zones', 'None', 'Horizontal', 'Vertical', 'Both']
+> scrollup
+> shot paged_settings_more
+  [shot 030_paged_settings_more] visible: ['Reading mode', 'General', 'Custom filter', 'Long strip', 'Tap zones', 'Default', 'L shaped', 'Kindle-ish', 'Edge', 'Right and Left', 'Disabled', 'Invert tap zones', 'None', 'Horizontal', 'Vertical', 'Both', 'Side padding', '0%', 'Different side padding in landscape', 'Crop borders', 'Split wide pages', 'Rotate wide pages to fit', 'Double tap to zoom']
+> back
+> sleep 2
+> back
+> sleep 3
+> shot paged_back_on_series
+  [shot 031_paged_back_on_series] visible: ['Cover', 'Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'Kagami Yuu', 'Mitsuya Ryo', 'Ongoing', ' • ', 'MangaDex (ALL)', 'Add to library', 'Soon', 'Tracking', 'Similar', 'WebView', "During the Spring break after middle school, Tochika Sky rescues a small girl getting crushed on a crowded train. He assumes she's just an elementary schooler, until he enters high school and finds her in his classroom!?", "Clocking in at just 140 centimeters and fueled by energy drinks, She may be small, but she's an absolute beauty.", "Her name is Naruse Chito. Sky considers himself a true-blue lover of tall, older women, so a tiny cutie like Chito should be completely outside his romantic strike zone. However, Chito kicks off a fierce assault with a bold declaration: “I'm gonna take that obsession of yours and turn it completely upside down!”. A romcom tug-of-war over tastes between a guy who loves older women and a teeny girl begins!", 'Compositor: Urano Ritsu\nCharacter Designer: Fuji Yama', 'Navigate up', 'Download', 'Filter', 'More options', 'Start · Ch. 1', 'Start · Ch. 1']
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Home
+> sleep 6
+> shot home_after_reading
+  [shot 032_home_after_reading] visible: ['Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'Up next', 'Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'Chapter 1', 'Continue reading', 'See all', 'IDOL×IDOL STORY!', 'Resume', 'IDOL×IDOL STORY!', 'Chapter 1', 'Out today', 'Series that usually update on Saturday', 'See all', 'Overgeared', '348', 'K', 'KuroToon', 'Search series…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif History
+> sleep 3
+> shot history_after_reading
+  [shot 033_history_after_reading] visible: ['Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'Up next', 'Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'Chapter 1', 'Continue reading', 'See all', 'IDOL×IDOL STORY!', 'Resume', 'IDOL×IDOL STORY!', 'Chapter 1', 'Out today', 'Series that usually update on Saturday', 'See all', 'Overgeared', '348', 'K', 'KuroToon', 'Search series…', 'Home', 'Browse', 'Library', 'Updates', 'Me']

@@ -1,0 +1,187 @@
+> start app.kurotoon.dev
+> sleep 4
+> tapx Browse
+> tapx Extensions
+> sleep 4
+> tap Search
+  !! not found: Search
+  [shot 001_notfound] visible: ['Installed', 'MangaDex', 'Keiyoushi', 'Multi • 1.6.4', 'Mixed', 'Settings', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Navigate up', 'MangaDex ', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> type Webtoons
+> sleep 5
+> shot ext_webtoons
+  [shot 002_ext_webtoons] visible: ['None of your extension stores lists “MangaDex Webtoons”. Stores drop sites from time to time; add another store that has it, or install its APK from a file.', 'Add an extension store', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Navigate up', 'MangaDex Webtoons', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Install
+  !! not found: Install
+  [shot 003_notfound] visible: ['None of your extension stores lists “MangaDex Webtoons”. Stores drop sites from time to time; add another store that has it, or install its APK from a file.', 'Add an extension store', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Navigate up', 'MangaDex Webtoons', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 15
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> shot ext_webtoons_done
+  [shot 004_ext_webtoons_done] visible: ['None of your extension stores lists “MangaDex Webtoons”. Stores drop sites from time to time; add another store that has it, or install its APK from a file.', 'Add an extension store', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Navigate up', 'MangaDex Webtoons', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapif Reset
+> tapif "Navigate up"
+> tap Search
+> type Asura
+> sleep 5
+> shot ext_asura
+  [shot 005_ext_asura] visible: ['English', 'Asura Scans', 'Keiyoushi', '1.6.72', 'Open in WebView', 'Install', 'Comic Asura', 'Keiyoushi', '1.6.7', 'Mixed', 'Open in WebView', 'Install', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Navigate up', 'Asura', 'Reset', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Install
+> sleep 15
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> shot ext_asura_done
+  [shot 006_ext_asura_done] visible: ['Tachiyomi: Comic Asura', 'Do you want to install this app?', 'CANCEL', 'INSTALL']
+> start app.kurotoon.dev
+> tapx Browse
+> tapx Sources
+> sleep 3
+> shot sources
+  [shot 007_sources] visible: ['Universal Search', 'One search across every installed source.', 'Multi', 'MangaDex', 'Popular', 'Latest', 'Multi', 'Pin', 'English', 'Asura Scans', 'Popular', 'Latest', 'English', 'Pin', 'MangaDex', 'Popular', 'Latest', 'English', 'Pin', 'Other', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap MangaDex
+> sleep 12
+> shot mangadex_popular
+  [shot 008_mangadex_popular] visible: ['Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'Zatsuyougakari to shite Yado de Hatarakihajimeta Renkinjutsushi, Kanbanmusume-tachi to Issho ni Kurasu koto ni natta', 'Sekai Saikyou no Honoo Mahoutsukai', 'Femme Fatale no Kyuusai', "Ren'AI Flag: AI ga Risou no Koibito o Erandekureru Matching Apuri o Tsukattara Isekai no Yuusha to Matching Shita", 'Takou no Ichigun Gyaru to Eki no Hoomu de Hajimaru Aoharu', 'Futari wa Sekai to Kamiawanai', 'Tonari no Heya no Dwarf-san', 'Teisou Gyakuten Sekai no Onsen de, Sansuke Yaru koto ni narimashita', 'Navigate up', 'MangaDex', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Alphabetic', 'Chapter uploaded at', 'Genre', 'Original language', 'Content rating', 'Publication demographic', 'Show all', 'Action', 'Adventure', "Boy's Love", 'Comedy']
+> tapx Latest
+> sleep 10
+> shot mangadex_latest
+  [shot 009_mangadex_latest] visible: ['IDOL×IDOL STORY!', 'Sewayaki Kitsune no Senko-san', 'Egao no Taenai Shokuba desu.', 'Nagi no Oitoma', 'Isekai Shoukan Ojisan no Juu Musou Life ~Sabage-zuki Salaryman wa Kaisha Owari ni Isekai e Chokki Suru~', 'Kamiina Botan, Yoeru Sugata wa Yuri no Hana', 'Amayo no Tsuki', 'Koi yori Aoku', 'Eleceed', 'Navigate up', 'MangaDex', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Alphabetic', 'Chapter uploaded at', 'Genre', 'Original language', 'Content rating', 'Publication demographic', 'Show all', 'Action', 'Adventure', "Boy's Love", 'Comedy']
+> tapxy 270 1000
+> sleep 12
+> shot mangadex_series
+  [shot 010_mangadex_series] visible: ['Cover', 'IDOL×IDOL STORY!', 'Tokunou Shoutarou', 'Ongoing', ' • ', 'MangaDex (ALL)', 'Add to library', '4 days', 'Tracking', 'Similar', 'WebView', 'Mimi Nagisa (22 years old) is a former idol. After giving up on her dream of being an idol because of her lacking talent she spends her days working part-time while attending college. However, the moment she meets the idol Ibuki Nanakusa, whom she recently found interest in, their lives begin to cross each other.', 'Source: Comic Fuz, translated', '• ', 'Official Twitter', 'Less', 'Drama', "Girl's Love", 'Slice of Life', 'Music', 'Seinen', 'Japanese', '697 chapters', 'Newest', 'Filter', 'New chapters usually every Wednesday & Friday', 'Navigate up', 'Download', 'Filter', 'More options', 'Jump to where you left off', 'Start · Ch. 1', 'Start · Ch. 1']
+> tap "Add to library"
+> sleep 3
+> shot mangadex_added
+  [shot 011_mangadex_added] visible: ['Cover', 'IDOL×IDOL STORY!', 'Tokunou Shoutarou', 'Ongoing', ' • ', 'MangaDex (ALL)', 'In library', '4 days', 'Tracking', 'Similar', 'WebView', 'Mimi Nagisa (22 years old) is a former idol. After giving up on her dream of being an idol because of her lacking talent she spends her days working part-time while attending college. However, the moment she meets the idol Ibuki Nanakusa, whom she recently found interest in, their lives begin to cross each other.', 'Source: Comic Fuz, translated', '• ', 'Official Twitter', 'Less', 'Drama', "Girl's Love", 'Slice of Life', 'Music', 'Seinen', 'Japanese', '697 chapters', 'Newest', 'Filter', 'New chapters usually every Wednesday & Friday', 'Navigate up', 'Download', 'Filter', 'More options', 'Jump to where you left off', 'Start · Ch. 1', 'Start · Ch. 1']
+> tap Start
+> sleep 20
+> shot reader
+  [shot 012_reader] visible: ['Viewing full screen', 'To exit, swipe down from the top.', 'GOT IT']
+> tapxy 540 1200
+> sleep 2
+> shot reader_menu
+  [shot 013_reader_menu] visible: ['Navigate up', 'IDOL×IDOL STORY!', 'Vol.1 Ch.1 · 696 chapters left', 'Bookmark chapter', 'More options', 'Next chapter', '63', '63', 'Previous chapter', 'Chapters', 'Reading mode', 'Rotation', 'Crop borders', 'Auto-scroll', 'Sound', 'Settings']
+> tap Chapters
+> sleep 3
+> shot reader_chapters
+  [shot 014_reader_chapters] visible: ['Cover', 'IDOL×IDOL STORY!', 'Tokunou Shoutarou', 'Ongoing', ' • ', 'MangaDex (ALL)', 'In library', '4 days', 'Tracking', 'Similar', 'WebView', 'Mimi Nagisa (22 years old) is a former idol. After giving up on her dream of being an idol because of her lacking talent she spends her days working part-time while attending college. However, the moment she meets the idol Ibuki Nanakusa, whom she recently found interest in, their lives begin to cross each other.', 'More', 'Drama', "Girl's Love", 'Slice of Life', 'Music', 'Seinen', 'Japanese', '697 chapters', 'Newest', 'Filter', 'New chapters usually every Wednesday & Friday', '100.1', 'Ch.100.1 - Bonus - Celebrating 100 Chapters of Serialization', 'UP', 'Today', ' • ', '[en] FlameSubsScans', 'Download', '100', 'Ch.100 - Koko-chan', 'UP', 'Today', ' • ', '[en] FlameSubsScans', 'Download', '99.5', 'Ch.99.5 - SSS Behind-The-Scenes 100', '11/4/26', ' • ', '[en] FlameSubsScans', 'Download', 'Navigate up', 'Download', 'Filter', 'More options', 'Jump to where you left off', 'Resume · Ch. 1', 'Resume · Ch. 1']
+> back
+> back
+> sleep 2
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Browse
+> tapx Sources
+> tap Webtoons.com
+  !! not found: Webtoons.com
+  [shot 015_notfound] visible: ['Universal Search', 'One search across every installed source.', 'Last used', 'MangaDex', 'Popular', 'Latest', 'Multi', 'Pin', 'Multi', 'MangaDex', 'Popular', 'Latest', 'Multi', 'Pin', 'English', 'Asura Scans', 'Popular', 'Latest', 'English', 'Pin', 'MangaDex', 'Popular', 'Latest', 'English', 'Pin', 'Other', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 12
+> shot webtoons_popular
+  [shot 016_webtoons_popular] visible: ['Universal Search', 'One search across every installed source.', 'Last used', 'MangaDex', 'Popular', 'Latest', 'Multi', 'Pin', 'Multi', 'MangaDex', 'Popular', 'Latest', 'Multi', 'Pin', 'English', 'Asura Scans', 'Popular', 'Latest', 'English', 'Pin', 'MangaDex', 'Popular', 'Latest', 'English', 'Pin', 'Other', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapxy 270 1000
+> sleep 12
+> shot webtoons_series
+  [shot 017_webtoons_series] visible: ['Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'Zatsuyougakari to shite Yado de Hatarakihajimeta Renkinjutsushi, Kanbanmusume-tachi to Issho ni Kurasu koto ni natta', 'Sekai Saikyou no Honoo Mahoutsukai', 'Femme Fatale no Kyuusai', "Ren'AI Flag: AI ga Risou no Koibito o Erandekureru Matching Apuri o Tsukattara Isekai no Yuusha to Matching Shita", 'Takou no Ichigun Gyaru to Eki no Hoomu de Hajimaru Aoharu', 'Futari wa Sekai to Kamiawanai', 'Tonari no Heya no Dwarf-san', 'Teisou Gyakuten Sekai no Onsen de, Sansuke Yaru koto ni narimashita', 'Navigate up', 'MangaDex', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Alphabetic', 'Chapter uploaded at', 'Genre', 'Original language', 'Content rating', 'Publication demographic', 'Show all', 'Action', 'Adventure', "Boy's Love", 'Comedy']
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 018_notfound] visible: ['Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'Zatsuyougakari to shite Yado de Hatarakihajimeta Renkinjutsushi, Kanbanmusume-tachi to Issho ni Kurasu koto ni natta', 'Sekai Saikyou no Honoo Mahoutsukai', 'Femme Fatale no Kyuusai', "Ren'AI Flag: AI ga Risou no Koibito o Erandekureru Matching Apuri o Tsukattara Isekai no Yuusha to Matching Shita", 'Takou no Ichigun Gyaru to Eki no Hoomu de Hajimaru Aoharu', 'Futari wa Sekai to Kamiawanai', 'Tonari no Heya no Dwarf-san', 'Teisou Gyakuten Sekai no Onsen de, Sansuke Yaru koto ni narimashita', 'Navigate up', 'MangaDex', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Alphabetic', 'Chapter uploaded at', 'Genre', 'Original language', 'Content rating', 'Publication demographic', 'Show all', 'Action', 'Adventure', "Boy's Love", 'Comedy']
+> sleep 3
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Browse
+> tapx Sources
+> tap "Asura Scans"
+> sleep 15
+> shot asura_popular
+  [shot 019_asura_popular] visible: ['Overgeared', 'Murim Login', 'Nano Machine', 'Pick Me Up, Infinite Gacha', 'Star-Embracing Swordmaster', 'The Greatest Estate Developer', 'SSS-Class Suicide Hunter', 'Swordmaster’s Youngest Son', 'Return of the Mount Hua Sect', 'Navigate up', 'Asura Scans', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Latest Update', 'Popular', 'Status', 'Type', 'All', 'Ongoing', 'Completed', 'Hiatus', 'Dropped']
+> tapxy 270 1000
+> sleep 12
+> shot asura_series
+  [shot 020_asura_series] visible: ['Cover', 'Overgeared', 'LEE Dong Wook/ PARK Saenal', 'REDICE Studio', 'Ongoing', ' • ', 'Asura Scans', 'Add to library', 'Soon', 'Tracking', 'Similar', 'WebView', 'Rank: #1 • Rating: 9.06 • Bookmarks: 72.2K', 'Shin Youngwoo (a.k.a. Greed), an unlucky man in life and a low-level player in the popular VR game “Satisfy,” finds a powerful item that earns him a rare legendary class title: “Pagma’s Successor.” He’s now a skilled blacksmith who can forge unique weapons and equip the game’s most powerful gear. Grid resolves to use his new abilities to achieve fame and fortune, but as his very existence begins to stir up trouble in Satisfy, he realizes that life as a legend may be more than he bargained for….', 'Alternative Titles:', '• ', '템빨', '• ', 'Overgeared', '• ', "Grid's Item Peak", '• ', 'Item Overgeared', '• ', 'Over Geared', 'Navigate up', 'Download', 'Filter', 'More options', 'Jump to where you left off', 'Start · Ch. 0', 'Start · Ch. 0']
+> tap "Add to library"
+> sleep 3
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Library
+> sleep 3
+> shot library
+  [shot 021_library] visible: ['Unread', 'Started', 'Downloaded', 'Bookmarked', 'Completed', 'Drama 1', 'Fantasy 1', 'Game 1', "Girl's Love 1", 'Japanese 1', 'Overgeared', '348', 'IDOL×IDOL STORY!', '697', 'Library', 'Search', 'Filter', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "More options"
+> tap "Group library by"
+> sleep 2
+> shot group_by
+  [shot 022_group_by] visible: ['Group library by', 'Your categories', 'Source', 'Publishing status', 'Nothing (one list)', 'Cancel']
+> tap Source
+> sleep 3
+> shot library_by_source
+  [shot 023_library_by_source] visible: ['Asura Scans', 'MangaDex', 'Unread', 'Started', 'Downloaded', 'Bookmarked', 'Completed', 'Drama 1', 'Fantasy 1', 'Game 1', "Girl's Love 1", 'Japanese 1', 'Overgeared', '348', 'Library', 'Search', 'Filter', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Updates
+> sleep 3
+> shot updates
+  [shot 024_updates] visible: ['Not checked yet', 'Pull down or tap Check now to look for new chapters', 'Check now', 'No recent updates', 'Updates', 'Filter', 'Release schedule', 'View Upcoming Updates', 'Update library', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "Release schedule"
+> sleep 3
+> shot schedule
+  [shot 025_schedule] visible: ['Mon', 'Tue', 'Wed', '1', 'Thu', 'Fri', '2', 'Sat', '1', 'Sun', '1 series usually updates on Saturday', 'Overgeared', '348', 'Overgeared', '8 days ago', 'Navigate up', 'Release schedule']
+> back
+> tapx Home
+> sleep 8
+> shot home
+  [shot 026_home] visible: ['IDOL×IDOL STORY!', 'Up next', 'IDOL×IDOL STORY!', 'Chapter 1', 'Resume', 'Out today', 'Series that usually update on Saturday', 'See all', 'Overgeared', '348', 'Overgeared', '8 days ago', 'An Alchemist Who Started Working as a Handyman at an Inn Ends Up Living with the Inn’s Lovely Girls', 'K', 'KuroToon', 'Search series…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> shot home_scrolled
+  [shot 027_home_scrolled] visible: ['Series that usually update on Saturday', 'Overgeared', '348', 'Overgeared', '8 days ago', 'Overgeared', 'Top on Asura Scans', 'Overgeared', 'Read now', 'Recently added', 'Saved to your library this month', 'K', 'KuroToon', 'Search series…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> shot home_scrolled2
+  [shot 028_home_scrolled2] visible: ['Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'Top on MangaDex', 'Oneesan-ha no Ore ga Naze Chicchai Kimi o Suki ni Natta no ka?', 'Read now', 'Recently added', 'Saved to your library this month', 'Overgeared', 'Overgeared', 'Today', 'IDOL×IDOL STORY!', 'IDOL×IDOL STORY!', 'Today', 'Asura Scans', 'Popular', 'Latest', 'See all', 'Overgeared', '1', 'Murim Login', '2', 'Nano Machine', '3', 'Pick Me Up, Infinite Gacha', '4', 'K', 'KuroToon', 'Search series…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Me
+> sleep 2
+> shot me
+  [shot 029_me] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '2', 'In library', '1,045', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "Kuro Points"
+  !! not found: Kuro Points
+  [shot 030_notfound] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '2', 'In library', '1,045', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 3
+> shot shop_missions
+  [shot 031_shop_missions] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '2', 'In library', '1,045', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Shop
+  !! not found: Shop
+  [shot 032_notfound] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '2', 'In library', '1,045', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 2
+> shot shop
+  [shot 033_shop] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '2', 'In library', '1,045', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> shot shop_scrolled
+  [shot 034_shop_scrolled] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Achievements
+  !! not found: Achievements
+  [shot 035_notfound] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 2
+> shot achievements
+  [shot 036_achievements] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Collection
+> sleep 2
+> shot collection
+  [shot 037_collection] visible: ['Avatars, frames, stickers and looks for your profile and the app. Everything here is free.', 'All', 'Avatars', '6', 'Profile frames', '7', 'Stickers', 'Avatars', '6', 'Kuro', 'Kuro', 'Classic Kuro', 'Classic Kuro', 'Galaxy Kuro', 'Galaxy Kuro', 'Royal Kuro', 'Royal Kuro', 'Cool Kuro', 'Cool Kuro', 'Pumpkin Kuro', 'Pumpkin Kuro', 'Profile frames', '7', 'Crimson Ring', 'Starfield', 'Aurora', 'Nebula', 'Coin Holder', 'Mythic', 'Navigate up', 'Collection', 'Import pack']
+> tapx Packs
+  !! not found: Packs
+  [shot 038_notfound] visible: ['Avatars, frames, stickers and looks for your profile and the app. Everything here is free.', 'All', 'Avatars', '6', 'Profile frames', '7', 'Stickers', 'Avatars', '6', 'Kuro', 'Kuro', 'Classic Kuro', 'Classic Kuro', 'Galaxy Kuro', 'Galaxy Kuro', 'Royal Kuro', 'Royal Kuro', 'Cool Kuro', 'Cool Kuro', 'Pumpkin Kuro', 'Pumpkin Kuro', 'Profile frames', '7', 'Crimson Ring', 'Starfield', 'Aurora', 'Nebula', 'Coin Holder', 'Mythic', 'Navigate up', 'Collection', 'Import pack']
+> sleep 2
+> shot packs
+  [shot 039_packs] visible: ['Avatars, frames, stickers and looks for your profile and the app. Everything here is free.', 'All', 'Avatars', '6', 'Profile frames', '7', 'Stickers', 'Avatars', '6', 'Kuro', 'Kuro', 'Classic Kuro', 'Classic Kuro', 'Galaxy Kuro', 'Galaxy Kuro', 'Royal Kuro', 'Royal Kuro', 'Cool Kuro', 'Cool Kuro', 'Pumpkin Kuro', 'Pumpkin Kuro', 'Profile frames', '7', 'Crimson Ring', 'Starfield', 'Aurora', 'Nebula', 'Coin Holder', 'Mythic', 'Navigate up', 'Collection', 'Import pack']
+> back
+> tap Statistics
+> sleep 3
+> shot stats
+  [shot 040_stats] visible: ['OVERVIEW', '2', 'In library', '33s', 'Read duration', '0', 'Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '1', 'Chapters', '1', 'Active days', '1', 'Day streak', '1', 'Best streak', '2026 in reading', '–', '1 chapters across 1 series', 'MOST READ', '1', 'IDOL×IDOL STORY!', '1 ch.', 'Share', 'Navigate up', 'Statistics']
