@@ -1,0 +1,86 @@
+> start app.kurotoon.dev
+> sleep 6
+> shot welcome
+  [shot 001_welcome] visible: ['K', 'Welcome to KuroToon', 'Manga, manhwa and webtoons from the sources you choose. No account, no coins, no waiting. Pick a look to start.', 'System', 'Light', 'Dark', 'Selected', 'KuroToon', 'Dynamic', 'Catppuccin', 'Next']
+> tapuntil Next "Inside KuroToon"
+  found
+> shot storage
+  [shot 002_storage] visible: ['K', 'Where should downloads live?', 'Downloaded chapters, backups and series you add from files are kept here.', 'Inside KuroToon', 'Easiest', 'Ready now, no permission needed. Removed if you uninstall the app.', 'A folder you pick', 'Survives reinstalls and shows up in your file manager. Pick the KuroToon or Mihon folder you used before to keep its downloads.', 'You can move this any time in Settings › Data and storage.', 'Next']
+> tapuntil Next "A few permissions"
+  found
+> shot permissions
+  [shot 003_permissions] visible: ['K', 'A few permissions', 'All optional. KuroToon asks again the moment a feature needs one.', 'Install apps permission', 'To install source extensions.', 'Grant', 'Notification permission', 'Get notified for library updates and more.', 'Background battery usage', 'Avoid interruptions to long-running library updates, downloads, and backup restores.', 'Grant', 'Next']
+> tapuntil Next "Add my first source"
+  found
+> shot guides
+  [shot 004_guides] visible: ['K', "You're set", 'KuroToon ships with no content. Add a source and your first series is a search away.', 'Add my first source', 'Opens Extensions so you can add a store and install a source.', 'Restore a backup', 'Coming from KuroToon, Mihon or Tachiyomi? Bring your library, history and categories with you.', 'Getting started guide', 'A ten-minute walk through every feature.', 'Get started']
+> tapuntil "Get started" Browse 4
+  found
+> sleep 4
+> shot home_empty
+  [shot 005_home_empty] visible: ['K', 'Welcome to KuroToon', 'A private reader for manga, manhwa and webtoons that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search series…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Browse
+> sleep 2
+> shot browse_empty
+  [shot 006_browse_empty] visible: ['Universal Search', 'One search across every installed source.', 'Other', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Library
+> shot library_empty
+  [shot 007_library_empty] visible: ['Your library is empty', 'Find something to read', 'Getting started guide', 'Library', 'Search', 'Filter', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Updates
+> shot updates_empty
+  [shot 008_updates_empty] visible: ['Not checked yet', 'Pull down or tap Check now to look for new chapters', 'Check now', 'No recent updates', 'Updates', 'Filter', 'Release schedule', 'View Upcoming Updates', 'Update library', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Me
+> shot me_new
+  [shot 009_me_new] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '0', 'In library', '0', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Home
+> view "tachiyomi://add-repo?url=https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
+> sleep 4
+> shot addrepo_dialog
+  [shot 010_addrepo_dialog] visible: ['Add extension store', 'Do you wish to add the extension store below?', 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json', 'Cancel', 'Add']
+> tapx Add
+> sleep 5
+> shot store_added
+  [shot 011_store_added] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh', 'Add']
+> start app.kurotoon.dev
+> sleep 3
+> tapx Home
+  !! not found: Home
+  [shot 012_notfound] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh', 'Add']
+> tap "Add sources"
+  !! not found: Add sources
+  [shot 013_notfound] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh', 'Add']
+> sleep 8
+> shot extensions
+  [shot 014_extensions] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh', 'Add']
+> tap "Tap here to grant"
+  !! not found: Tap here to grant
+  [shot 015_notfound] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh', 'Add']
+> sleep 3
+> shot grant_settings
+  [shot 016_grant_settings] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh', 'Add']
+> tap "Allow from this source"
+  !! not found: Allow from this source
+  [shot 017_notfound] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh', 'Add']
+> sleep 2
+> shot grant_on
+  [shot 018_grant_on] visible: ['Keiyoushi', 'Open in browser', 'Copy to clipboard', 'Delete', 'Navigate up', 'Extension stores', 'Refresh', 'Add']
+> back
+> sleep 2
+> shot extensions_granted
+  [shot 019_extensions_granted] visible: ['K', 'Welcome to KuroToon', 'A private reader for manga, manhwa and webtoons that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search series…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap Search
+> type MangaDex
+> sleep 4
+> shot ext_search
+  [shot 020_ext_search] visible: ['Navigate up', 'MangaDex', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> tapx Install
+  !! not found: Install
+  [shot 021_notfound] visible: ['Navigate up', 'MangaDex', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> sleep 15
+> shot install_prompt
+  [shot 022_install_prompt] visible: ['Navigate up', 'MangaDex', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> shot installed
+  [shot 023_installed] visible: ['Navigate up', 'MangaDex', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
