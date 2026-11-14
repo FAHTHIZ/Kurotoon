@@ -1,0 +1,211 @@
+> start app.kurotoon.dev
+> sleep 4
+> tapx Browse
+  !! not found: Browse
+  [shot 001_notfound] visible: ['Navigate up', 'MangaDex', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> tapx Extensions
+  !! not found: Extensions
+  [shot 002_notfound] visible: ['Navigate up', 'MangaDex', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> sleep 4
+> tap Search
+  !! not found: Search
+  [shot 003_notfound] visible: ['Navigate up', 'MangaDex', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> type Webtoons
+> sleep 5
+> shot ext_webtoons
+  [shot 004_ext_webtoons] visible: ['Navigate up', 'MangaDexWebtoons', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> tapx Install
+  !! not found: Install
+  [shot 005_notfound] visible: ['Navigate up', 'MangaDexWebtoons', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> sleep 15
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> shot ext_webtoons_done
+  [shot 006_ext_webtoons_done] visible: ['Navigate up', 'MangaDexWebtoons', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> tapif Reset
+> tapif "Navigate up"
+> tap Search
+> type Asura
+> sleep 5
+> shot ext_asura
+  [shot 007_ext_asura] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> tapx Install
+  !! not found: Install
+  [shot 008_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> sleep 15
+> tapif INSTALL
+> tapif Install
+> sleep 25
+> shot ext_asura_done
+  [shot 009_ext_asura_done] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> start app.kurotoon.dev
+> tapx Browse
+  !! not found: Browse
+  [shot 010_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> tapx Sources
+  !! not found: Sources
+  [shot 011_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> sleep 3
+> shot sources
+  [shot 012_sources] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> tap MangaDex
+  !! not found: MangaDex
+  [shot 013_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> sleep 12
+> shot mangadex_popular
+  [shot 014_mangadex_popular] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> tapx Latest
+  !! not found: Latest
+  [shot 015_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> sleep 10
+> shot mangadex_latest
+  [shot 016_mangadex_latest] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> tapxy 270 1000
+> sleep 12
+> shot mangadex_series
+  [shot 017_mangadex_series] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 018_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> sleep 3
+> shot mangadex_added
+  [shot 019_mangadex_added] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> tap Start
+  !! not found: Start
+  [shot 020_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> sleep 20
+> shot reader
+  [shot 021_reader] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> tapxy 540 1200
+> sleep 2
+> shot reader_menu
+  [shot 022_reader_menu] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> tap Chapters
+  !! not found: Chapters
+  [shot 023_notfound] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> sleep 3
+> shot reader_chapters
+  [shot 024_reader_chapters] visible: ['Navigate up', 'Asura', 'Reset', 'Merged', 'By source', 'Pinned', 'All']
+> back
+> back
+> sleep 2
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Browse
+> tapx Sources
+> tap Webtoons.com
+  !! not found: Webtoons.com
+  [shot 025_notfound] visible: ['Universal Search', 'One search across every installed source.', 'Other', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 12
+> shot webtoons_popular
+  [shot 026_webtoons_popular] visible: ['Universal Search', 'One search across every installed source.', 'Other', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapxy 270 1000
+> sleep 12
+> shot webtoons_series
+  [shot 027_webtoons_series] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 028_notfound] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> sleep 3
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Browse
+> tapx Sources
+> tap "Asura Scans"
+  !! not found: Asura Scans
+  [shot 029_notfound] visible: ['Universal Search', 'One search across every installed source.', 'Last used', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Other', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 15
+> shot asura_popular
+  [shot 030_asura_popular] visible: ['Universal Search', 'One search across every installed source.', 'Last used', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Other', 'Local source', 'Popular', 'Latest', 'Other', 'Pin', 'Sources', 'Tags', 'Extensions', 'Migrate', 'Browse', 'Global search', 'Filter', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapxy 270 1000
+> sleep 12
+> shot asura_series
+  [shot 031_asura_series] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> tap "Add to library"
+  !! not found: Add to library
+  [shot 032_notfound] visible: ['No results found', 'Local source guide', 'Navigate up', 'Local source', 'Search', 'Display mode', 'More options', 'Popular', 'Latest', 'Title', 'Date', 'Filter']
+> sleep 3
+> back
+> sleep 2
+> back
+> sleep 2
+> start app.kurotoon.dev
+> tapx Library
+> sleep 3
+> shot library
+  [shot 033_library] visible: ['Your library is empty', 'Find something to read', 'Getting started guide', 'Library', 'Search', 'Filter', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "More options"
+> tap "Group library by"
+> sleep 2
+> shot group_by
+  [shot 034_group_by] visible: ['Group library by', 'Your categories', 'Source', 'Publishing status', 'Nothing (one list)', 'Cancel']
+> tap Source
+> sleep 3
+> shot library_by_source
+  [shot 035_library_by_source] visible: ['Your library is empty', 'Find something to read', 'Getting started guide', 'Library', 'Search', 'Filter', 'More options', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Updates
+> sleep 3
+> shot updates
+  [shot 036_updates] visible: ['Not checked yet', 'Pull down or tap Check now to look for new chapters', 'Check now', 'No recent updates', 'Updates', 'Filter', 'Release schedule', 'View Upcoming Updates', 'Update library', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "Release schedule"
+> sleep 3
+> shot schedule
+  [shot 037_schedule] visible: ['No ongoing series in your library has a regular update day yet. Once a series has posted a few chapters it shows up here.', 'Navigate up', 'Release schedule']
+> back
+> tapx Home
+> sleep 8
+> shot home
+  [shot 038_home] visible: ['K', 'Welcome to KuroToon', 'A private reader for manga, manhwa and webtoons that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search series…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> shot home_scrolled
+  [shot 039_home_scrolled] visible: ['K', 'Welcome to KuroToon', 'A private reader for manga, manhwa and webtoons that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search series…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> shot home_scrolled2
+  [shot 040_home_scrolled2] visible: ['K', 'Welcome to KuroToon', 'A private reader for manga, manhwa and webtoons that lives on your phone. It comes with no content — add the sources you want to read from.', 'Add sources', 'K', 'KuroToon', 'Search series…', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Me
+> sleep 2
+> shot me
+  [shot 041_me] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '0', 'In library', '0', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tap "Kuro Points"
+  !! not found: Kuro Points
+  [shot 042_notfound] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '0', 'In library', '0', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 3
+> shot shop_missions
+  [shot 043_shop_missions] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '0', 'In library', '0', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Shop
+  !! not found: Shop
+  [shot 044_notfound] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '0', 'In library', '0', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 2
+> shot shop
+  [shot 045_shop] visible: ['R', 'Reader', 'Edit nickname', 'No account. Your data stays on this device.', '0', 'In library', '0', 'Unread chapters', '0', 'Chapters read', 'Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> scrollup
+> shot shop_scrolled
+  [shot 046_shop_scrolled] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Achievements
+  !! not found: Achievements
+  [shot 047_notfound] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> sleep 2
+> shot achievements
+  [shot 048_achievements] visible: ['Downloaded only', 'Filters all entries in your library', 'Incognito mode', 'Pauses reading history', 'Reading', 'Download queue', 'Statistics', 'Saved panels', 'Pages you kept from the reader', 'Collection', 'Avatars, frames and stickers', 'Library tools', 'Categories', 'Data and storage', 'App', 'Settings', 'About', 'Help', 'Home', 'Browse', 'Library', 'Updates', 'Me']
+> tapx Collection
+> sleep 2
+> shot collection
+  [shot 049_collection] visible: ['Avatars, frames, stickers and looks for your profile and the app. Everything here is free.', 'All', 'Avatars', '6', 'Profile frames', '7', 'Stickers', 'Avatars', '6', 'Kuro', 'Kuro', 'Classic Kuro', 'Classic Kuro', 'Galaxy Kuro', 'Galaxy Kuro', 'Royal Kuro', 'Royal Kuro', 'Cool Kuro', 'Cool Kuro', 'Pumpkin Kuro', 'Pumpkin Kuro', 'Profile frames', '7', 'Crimson Ring', 'Starfield', 'Aurora', 'Nebula', 'Coin Holder', 'Mythic', 'Navigate up', 'Collection', 'Import pack']
+> tapx Packs
+  !! not found: Packs
+  [shot 050_notfound] visible: ['Avatars, frames, stickers and looks for your profile and the app. Everything here is free.', 'All', 'Avatars', '6', 'Profile frames', '7', 'Stickers', 'Avatars', '6', 'Kuro', 'Kuro', 'Classic Kuro', 'Classic Kuro', 'Galaxy Kuro', 'Galaxy Kuro', 'Royal Kuro', 'Royal Kuro', 'Cool Kuro', 'Cool Kuro', 'Pumpkin Kuro', 'Pumpkin Kuro', 'Profile frames', '7', 'Crimson Ring', 'Starfield', 'Aurora', 'Nebula', 'Coin Holder', 'Mythic', 'Navigate up', 'Collection', 'Import pack']
+> sleep 2
+> shot packs
+  [shot 051_packs] visible: ['Avatars, frames, stickers and looks for your profile and the app. Everything here is free.', 'All', 'Avatars', '6', 'Profile frames', '7', 'Stickers', 'Avatars', '6', 'Kuro', 'Kuro', 'Classic Kuro', 'Classic Kuro', 'Galaxy Kuro', 'Galaxy Kuro', 'Royal Kuro', 'Royal Kuro', 'Cool Kuro', 'Cool Kuro', 'Pumpkin Kuro', 'Pumpkin Kuro', 'Profile frames', '7', 'Crimson Ring', 'Starfield', 'Aurora', 'Nebula', 'Coin Holder', 'Mythic', 'Navigate up', 'Collection', 'Import pack']
+> back
+> tap Statistics
+> sleep 3
+> shot stats
+  [shot 052_stats] visible: ['OVERVIEW', '0', 'In library', '0m', 'Read duration', '0', 'Completed entries', 'READING ACTIVITY', '–', 'Set a daily goal', 'Pick how many chapters a day you want to read', 'Last 17 weeks', 'Less', 'More', '0', 'Chapters', '0', 'Active days', '0', 'Day streak', '0', 'Best streak', 'ENTRIES', '0', 'In global update', '0', 'Started', '0', 'Local', 'CHAPTERS', '0', '0', '0', 'Navigate up', 'Statistics']
