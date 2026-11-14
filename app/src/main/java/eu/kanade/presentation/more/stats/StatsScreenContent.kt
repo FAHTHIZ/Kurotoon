@@ -72,7 +72,7 @@ fun StatsScreenContent(
 private fun LazyItemScope.OverviewSection(
     data: StatsData.Overview,
 ) {
-    val none = stringResource(MR.strings.none)
+    val none = stringResource(MR.strings.minute_short, 0)
     val context = LocalContext.current
     val readDurationString = remember(data.totalReadDuration) {
         data.totalReadDuration
