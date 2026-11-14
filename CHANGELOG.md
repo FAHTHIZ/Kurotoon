@@ -6,6 +6,7 @@ All notable changes to KuroToon are documented here. Versions follow
 ## [Unreleased]
 
 ### Added
+- With no extensions yet, Add store opens the add dialog straight away and comes back to Extensions once the store is in, so the list fills without extra steps
 - Adding an extension store accepts the link however you copied it: a GitHub page, an add-repo link, a folder or a link without https:// all resolve to the store index. A Paste button fills the field, and a link that fails says whether nothing is there, it isn't a store, or you're offline
 - First run no longer needs the system folder picker: storage starts on KuroToon's own folder (no permission), and a folder of your own is one tap away. Settings › Data and storage can switch back to it too
 - Onboarding speaks KuroToon: each step has its own heading, storage is two clear choice cards, and the last step goes straight to adding a first source or restoring a KuroToon, Mihon or Tachiyomi backup

@@ -3,6 +3,9 @@ package eu.kanade.presentation.more.settings.screen.browse
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -19,6 +22,8 @@ import tachiyomi.presentation.core.screens.LoadingScreen
 
 class ExtensionStoresScreen(
     private val url: String? = null,
+    // Opened from an empty Extensions tab: start on the add dialog and go back once a store is in
+    private val startWithAdd: Boolean = false,
 ) : Screen() {
 
     @Composable
@@ -31,6 +36,17 @@ class ExtensionStoresScreen(
 
         LaunchedEffect(url) {
             url?.let { viewModel.addFromDeeplink(url) }
+        }
+
+        var openedAdd by rememberSaveable { mutableStateOf(false) }
+        LaunchedEffect(Unit) {
+            if (startWithAdd && url == null && !openedAdd) {
+                openedAdd = true
+                viewModel.showDialog(ExtensionStoreDialog.Create())
+            }
+        }
+        LaunchedEffect(Unit) {
+            if (startWithAdd) viewModel.storeAdded.collect { navigator.pop() }
         }
 
         if (state is ExtensionStoreScreenState.Loading) {

@@ -141,7 +141,7 @@ fun ExtensionScreen(
                             EmptyScreenAction(
                                 stringRes = MR.strings.kurotoon_extensions_addStore,
                                 icon = MaterialSymbols.Rounded.Settings,
-                                onClick = { navigator.push(ExtensionStoresScreen()) },
+                                onClick = { navigator.push(ExtensionStoresScreen(startWithAdd = true)) },
                             ),
                         ),
                     )
@@ -189,7 +189,10 @@ private fun HiddenMatchesCard(hidden: List<Extension.Available>, onAllow: () -> 
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.weight(1f),
         )
-        androidx.compose.material3.FilledTonalButton(onClick = onAllow) {
+        tachiyomi.presentation.core.components.material.KuroButton(
+            onClick = onAllow,
+            style = tachiyomi.presentation.core.components.material.KuroButtonStyle.Tonal,
+        ) {
             Text(stringResource(MR.strings.kurotoon_ext_hidden_allow))
         }
     }
