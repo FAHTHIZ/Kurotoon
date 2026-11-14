@@ -14,6 +14,7 @@ All notable changes to KuroToon are documented here. Versions follow
 - Browse › Tags: every tag your installed sources offer in one searchable page, by most sources or A–Z, with how many sources carry each and your library's tags on top. Tap a tag to browse it on every source; long-press to search titles with it or hide it everywhere
 
 ### Changed
+- Library checks for new chapters once a day on Wi-Fi by default (it was off), so new episodes turn up without a manual refresh. Settings › Library › Automatic updates sets it back to Never
 - App language picker uses rounded Kuro rows with an accent wash on the chosen language
 - Hidden series list shows each cover; tap a row to open the series, or Unhide with a tonal pill
 - Floating actions (continue reading, add category, pause downloads, migration) are a glowing Kuro pill that folds to its icon while scrolling
