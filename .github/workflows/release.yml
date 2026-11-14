@@ -47,8 +47,9 @@ jobs:
             echo "$SIGNING_KEY" | base64 -d > "$RUNNER_TEMP/release.jks"
             echo "enabled=true" >> "$GITHUB_OUTPUT"
           else
-            echo "::warning::SIGNING_KEY secret not set; the APKs will be signed with the debug key."
-            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            # A debug-signed release can't install over the previous one, so never publish it
+            echo "::error::SIGNING_KEY secret not set; refusing to publish a release signed with a throwaway key."
+            exit 1
           fi
 
       # Release gate: nothing is published unless formatting, unit tests and database migrations pass
@@ -69,6 +70,20 @@ jobs:
           keyAlias: ${{ secrets.ALIAS }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
         run: ./gradlew assembleRelease -Pdist=ci
+
+      - name: Check the release signature
+        env:
+          EXPECTED_SHA256: 7b7d6b82058c012638154c1c5462b0ccd2a8cc4c2b26b1d44a495038851a2477
+        run: |
+          apksigner="$(ls -d "$ANDROID_HOME"/build-tools/*/ | sort -V | tail -1)apksigner"
+          for apk in app/build/outputs/apk/release/app-*-release.apk; do
+            digest=$("$apksigner" verify --print-certs "$apk" | grep -m1 'SHA-256 digest' | awk '{print $NF}')
+            if [ "$digest" != "$EXPECTED_SHA256" ]; then
+              echo "::error::$apk is signed with $digest, expected $EXPECTED_SHA256"
+              exit 1
+            fi
+          done
+          echo "All APKs carry the KuroToon release certificate"
 
       - name: Publish GitHub release
         env:

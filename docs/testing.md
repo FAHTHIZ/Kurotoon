@@ -8,7 +8,9 @@ step number and a screenshot.
 
 1. Download the APK from the [latest release](https://github.com/FAHTHIZ/Kurotoon/releases/latest). Most phones want
    `arm64-v8a`; `universal` works on any phone. `checksums.txt` lets you verify the download.
-2. Install it. KuroToon installs next to Mihon or Tachiyomi; it doesn't replace them.
+2. Install it. KuroToon installs next to Mihon or Tachiyomi; it doesn't replace them. From 0.24.0 every release is
+   signed with the same key and updates in place. If you have 0.23.0 or older, create a backup (Settings › Data and
+   storage › Create backup), uninstall it once, then install 0.24.0 and restore.
 3. Have one extension store URL ready (an `index.min.json` link), or a `tachiyomi://add-repo` link.
 
 ## 1. First run
