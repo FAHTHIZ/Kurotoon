@@ -32,7 +32,7 @@ shot store_added
 sleep 6
 shot extensions
 # Android asks once before KuroToon may install extensions
-tap "Tap here to grant"
+tapx Allow
 sleep 3
 shot grant_settings
 tap "Allow from this source"
