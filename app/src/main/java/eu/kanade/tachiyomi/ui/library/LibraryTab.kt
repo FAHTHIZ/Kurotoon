@@ -53,6 +53,7 @@ import kotlinx.coroutines.launch
 import kurotoon.feature.migration.config.MigrationConfigScreen
 import kurotoon.icons.materialsymbols.MaterialSymbols
 import kurotoon.icons.materialsymbols.automirroredrounded.Help
+import kurotoon.icons.materialsymbols.rounded.Explore
 import kurotoon.ui.KuroSnackbarHost
 import kurotoon.ui.library.DuplicatesScreen
 import tachiyomi.core.common.i18n.pluralStringResource
@@ -248,6 +249,11 @@ data object LibraryTab : Tab {
                         stringRes = MR.strings.information_empty_library,
                         modifier = Modifier.padding(contentPadding),
                         actions = listOf(
+                            EmptyScreenAction(
+                                stringRes = MR.strings.library_empty_find,
+                                icon = MaterialSymbols.Rounded.Explore,
+                                onClick = { scope.launch { HomeScreen.openTab(HomeScreen.Tab.Browse()) } },
+                            ),
                             EmptyScreenAction(
                                 stringRes = MR.strings.getting_started_guide,
                                 icon = MaterialSymbols.AutoMirroredRounded.Help,
