@@ -13,12 +13,14 @@ import eu.kanade.presentation.util.formattedMessage
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.network.HttpException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.WhileSubscribed
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -45,6 +47,11 @@ class ExtensionStoresViewModel(
 ) : ViewModel() {
 
     private val dialog = MutableStateFlow<ExtensionStoreDialog?>(null)
+
+    private val _storeAdded = Channel<Unit>(Channel.CONFLATED)
+
+    /** Fires once each time a store is added, so a screen opened just to add one can step back. */
+    val storeAdded = _storeAdded.receiveAsFlow()
 
     val state: StateFlow<ExtensionStoreScreenState> = combine(
         getExtensionStores.subscribe(),
@@ -73,6 +80,7 @@ class ExtensionStoresViewModel(
                 .onSuccess {
                     extensionManager.findAvailableExtensions()
                     dismissDialog()
+                    _storeAdded.trySend(Unit)
                 }
                 .onFailure { throwable ->
                     dialog.update {
