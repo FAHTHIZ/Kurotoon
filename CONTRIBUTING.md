@@ -26,6 +26,22 @@ SQLDelight and moko-resources for strings. KuroToon-specific UI lives under
 - New user-facing text goes in `i18n/src/commonMain/moko-resources/base/strings.xml`.
 - Run `./gradlew spotlessCheck testDebugUnitTest` before opening a pull request; CI runs the same.
 
+### Local Git hooks
+
+To enable the repository's commit-message filter in your checkout, run:
+
+```sh
+python scripts/install-git-hooks.py
+```
+
+The hook removes recognized AI-tool and bot attribution trailers from **new local commit messages**, while
+preserving human co-authors, human sign-offs, the message body and issue references. Run
+`python scripts/test_commit_attribution.py` to test the filter.
+
+This is a local Git hook, not a history rewrite or a GitHub-side filter. It does not change existing commits,
+commits made through GitHub's web interface, or commits created by external automation that does not use
+this checkout's installed hook. Each clone must enable the hook separately.
+
 ## Translations
 
 Edit the files under `i18n/src/commonMain/moko-resources/<language>/` and open a pull request.
